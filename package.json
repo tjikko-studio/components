@@ -1,0 +1,31 @@
+{
+  "name": "smpx",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.2.6",
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.3.2",
+    "@storybook/addon-essentials": "^6.3.2",
+    "@storybook/addon-links": "^6.3.2",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "^6.3.2",
+    "eslint": "7.30.0",
+    "eslint-config-next": "11.0.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^2.2.4"
+  }
+}
