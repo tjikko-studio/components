@@ -1,19 +1,19 @@
-import { Input, InputProps } from './Input'
+import { TextArea, TextAreaProps } from "./index"
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/Forms/Input',
-  component: Input,
+  title: 'Tjikko/Forms/TextArea',
+  component: TextArea,
   parameters: {
-    componentSubtitle: 'The Forms/Input'
+    componentSubtitle: 'The Forms/TextArea'
   }
 } as Meta
 
-const Template: Story<InputProps> = (args) => <Input {...args} />
+const Template: Story<TextAreaProps> = (args) => <TextArea {...args} />
 
 export const Text = Template.bind({})
 Text.args = {
-  text: "Input Text",
+  text: "Text Area",
   information: "informations",
   error: "Error Message",
   label: "Label"

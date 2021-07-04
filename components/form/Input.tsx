@@ -9,9 +9,21 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
      */
     isFocussed?: boolean
     /**
+     * Label text
+     */
+    label?: string
+    /**
      * filled text
      */
     text?: string
+    /**
+     * information text
+     */
+    information?: string
+    /**
+     * error text
+     */
+    error?: string
     /**
      * error
      */
@@ -38,7 +50,7 @@ export const Input: FC<InputProps> = (props) => {
     return (
         <div className="flex flex-col gap-y-1 w-72">
             <div className={`text-sm font-inter font-semibold flex flex-row justify-between dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}>
-                <p>Label</p>
+                <p>{ props.label }</p>
                 { props.isError && <ErrorIcon />}
                 { props.isValidating && <ValidatingIcon />}
                 { props.isSuccessed && <TickIcon />}
@@ -53,8 +65,8 @@ export const Input: FC<InputProps> = (props) => {
                 disabled={props.isDisabled}
                 />
             </div>
-            <div className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"} `}>Information</div>
-            {props.isError && (<div className="text-sm font-normal text-red-700 font-inter">Error message</div>)}
+            <div className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}>{ props.information }</div>
+            {props.isError && (<div className="text-sm font-normal text-red-700 font-inter">{ props.error }</div>)}
         </div>
     )
 }
