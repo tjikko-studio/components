@@ -55,7 +55,7 @@ export const TextArea: FC<TextAreaProps> = (props) => {
                 { props.isSuccessed && <TickIcon />}
             </div>
             <div className="col-span-2">
-                <textarea className={`dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border ${ !props.isDisabled && "hover:border-gray-300" }border-gray-200 dark:border-gray-800 w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent shadow 
+                <textarea className={`${ !props.isDisabled && "hover:border-gray-300" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 dark:border-gray-800 w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent shadow 
                 ${props.isFocussed && "drop-shadow-sm outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"} 
                 ${props.isError && "drop-shadow-sm outline-none ring-2 ring-red-600 border-transparent dark:ring-offset-0"} 
                 ${props.isValidating && "drop-shadow-sm outline-none ring-2 ring-blue-600 border-transparent dark:ring-offset-0"} 
