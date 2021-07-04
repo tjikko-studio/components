@@ -2,9 +2,9 @@ module.exports = {
   stories: [
     // Paths to the story files
     '../stories/components/**/*.stories.mdx',
-    '../stories/components/**/*.stories.@(js|jsx|ts|tsx)'
+    '../stories/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-controls'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-controls', 'storybook-tailwind-dark-mode'],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.scss$/,
