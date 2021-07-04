@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "components",
   "version": "1.0.0",
-  "description": "",
+  "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
     "start": "npm run storybook",
