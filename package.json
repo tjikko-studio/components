@@ -1,0 +1,32 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "Component library for Tjikko Studio apps",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.3.2",
+    "@storybook/addon-essentials": "^6.3.2",
+    "@storybook/addon-links": "^6.3.2",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "^6.3.2",
+    "@tailwindcss/postcss7-compat": "^2.2.4",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "postcss": "^8.3.5",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
