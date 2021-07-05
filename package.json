@@ -1,5 +1,5 @@
 {
-  "name": "components",
+  "name": "tjikko-components",
   "version": "1.0.0",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
