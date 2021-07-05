@@ -47,24 +47,37 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const TextArea: FC<TextAreaProps> = (props) => {
     return (
-        <div className="flex flex-col gap-y-1 w-72">
-            <div className={`text-sm font-inter font-semibold flex flex-row justify-between dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}>
-                <p>{ props.label }</p>
-                { props.isError && <ErrorIcon />}
-                { props.isValidating && <ValidatingIcon />}
-                { props.isSuccessed && <TickIcon />}
+        <div 
+            className="flex flex-col gap-y-1 w-72"
+        >
+            <div 
+                className={`text-sm font-inter font-semibold flex flex-row justify-between dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}
+            >
+                <p>
+                    { props.label }
+                </p>
+                { props.isError && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
+                { props.isValidating && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
+                { props.isSuccessed && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
             </div>
-            <div className="col-span-2">
-                <textarea className={`${ !props.isDisabled && "hover:border-gray-300" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 dark:border-gray-800 w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent shadow 
-                ${props.isFocussed && "drop-shadow-sm outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"} 
-                ${props.isError && "drop-shadow-sm outline-none ring-2 ring-red-600 border-transparent dark:ring-offset-0"} 
-                ${props.isValidating && "drop-shadow-sm outline-none ring-2 ring-blue-600 border-transparent dark:ring-offset-0"} 
-                ${props.isSuccessed && "drop-shadow-sm outline-none ring-2 ring-green-800 border-transparent dark:ring-offset-0"}` } 
-                defaultValue={props.text} 
-                disabled={props.isDisabled}
+            <div 
+                className="col-span-2"
+            >
+                <textarea 
+                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter 
+                    ${props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"} 
+                    ${props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0"} 
+                    ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0"} 
+                    ${props.isSuccessed && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent dark:ring-offset-0"}` } 
+                    defaultValue={props.text} 
+                    disabled={props.isDisabled}
                 />
             </div>
-            <div className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"} `}>{ props.information }</div>
+            <div 
+                className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"} `}
+            >
+                { props.information }
+            </div>
             {props.isError && (<div className="text-sm font-normal text-red-700 font-inter">{ props.error }</div>)}
         </div>
     )
