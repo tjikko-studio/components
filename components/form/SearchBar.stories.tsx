@@ -1,4 +1,4 @@
-import { SearchBar, SearchBarProps } from "../../stories/components/Form/SearchBar/index"
+import { SearchBar, SearchBarProps } from './SearchBar'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
@@ -13,8 +13,8 @@ const Template: Story<SearchBarProps> = (args) => <SearchBar {...args} />
 
 export const Text = Template.bind({})
 Text.args = {
-  text: "Search",
-  placeHolder: "Search"
+  text: 'Search',
+  placeHolder: 'Search'
 }
 export const Focused = Template.bind({})
 Focused.args = {
@@ -24,6 +24,6 @@ Focused.args = {
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...Text.args,
-  text: "",
+  text: '',
   isDisabled: true
 }
