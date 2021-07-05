@@ -7,17 +7,20 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    fontFamily: {
+      'inter': ['inter']
+    },
     extend: {
       borderColor: theme => ({
         ...theme('colors'),
         DEFAULT: theme('colors.gray.300', 'currentColor'),
-        'input_focus': '#25B6D0',
+        'input_focus': '#63AFC0',
         'secondary': '#ffed4a',
         'danger': '#e3342f',
-      }),
-      fontFamily: {
-        'inter': ['inter']
-      }
+      })
+    },
+    boxShadow: {
+      'input_focus': '0px 0px 10px #75B6C5'
     }
   },
   variants: {

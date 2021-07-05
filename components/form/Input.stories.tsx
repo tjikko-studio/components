@@ -13,10 +13,10 @@ const Template: Story<InputProps> = (args) => <Input {...args} />
 
 export const Text = Template.bind({})
 Text.args = {
-  text: "Input Text",
-  information: "informations",
-  error: "Error Message",
-  label: "Label"
+  text: 'Input Text',
+  information: 'informations',
+  error: 'Error Message',
+  label: 'Label'
 }
 export const Focused = Template.bind({})
 Focused.args = {
@@ -36,7 +36,7 @@ Validate.args = {
 export const Success = Template.bind({})
 Success.args = {
   ...Text.args,
-  isSuccessed: true
+  isSuccess: true
 }
 export const Disabled = Template.bind({})
 Disabled.args = {
