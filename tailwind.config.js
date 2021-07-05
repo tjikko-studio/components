@@ -5,12 +5,22 @@ module.exports = {
     // Read more about this here: https://tailwindcss.com/docs/installation#building-your-css
     './stories/components/**/*.@(js|jsx|ts|tsx)'
   ],
-  darkMode: false,
+  darkMode: "class",
   theme: {
+    fontFamily: {
+      'inter': ['inter']
+    },
     extend: {
-      fontFamily: {
-        'inter': ['inter']
-      }
+      borderColor: theme => ({
+        ...theme('colors'),
+        DEFAULT: theme('colors.gray.300', 'currentColor'),
+        'input_focus': '#63AFC0',
+        'secondary': '#ffed4a',
+        'danger': '#e3342f',
+      })
+    },
+    boxShadow: {
+      'input_focus': '0px 0px 10px #75B6C5'
     }
   },
   variants: {

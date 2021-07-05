@@ -3,50 +3,49 @@ import { ErrorIcon } from "../svg/Error"
 import { ValidatingIcon } from "../svg/Validating"
 import { TickIcon } from "../svg/Tick"
 
-export interface InputProps extends HTMLAttributes<HTMLDivElement> {
+export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * focussed type
      */
     isFocussed?: boolean
     /**
-     * Label text
-     */
+      * Label text
+      */
     label?: string
     /**
-     * filled text
-     */
+      * filled text
+      */
     text?: string
     /**
-     * information text
-     */
+      * information text
+      */
     information?: string
     /**
-     * error text
-     */
+      * error text
+      */
     error?: string
     /**
-     * error
-     */
+      * error
+      */
     isError?: boolean
     /**
-     * checking...
-     */
+      * checking...
+      */
     isValidating?: boolean
     /**
-     * success
-     */
+      * success
+      */
     isSuccess?: boolean
     /**
-     * disabled
-     */
+      * disabled
+      */
     isDisabled?: boolean
-
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Input: FC<InputProps> = (props) => {
+export const TextArea: FC<TextAreaProps> = (props) => {
     return (
         <div
             className="flex flex-col gap-y-1 w-72"
@@ -61,9 +60,11 @@ export const Input: FC<InputProps> = (props) => {
                 { props.isValidating && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
                 { props.isSuccess && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
             </div>
-            <div className="col-span-2">
-                <input
-                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200  ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter
+            <div
+                className="col-span-2"
+            >
+                <textarea
+                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter
                     ${props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}
                     ${props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0"}
                     ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0"}
@@ -73,7 +74,7 @@ export const Input: FC<InputProps> = (props) => {
                 />
             </div>
             <div
-                className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}
+                className={`text-sm font-inter font-normal dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"} `}
             >
                 { props.information }
             </div>
