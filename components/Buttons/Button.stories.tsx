@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "./index"
+import { Button, ButtonProps } from "./Button"
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
