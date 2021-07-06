@@ -6,4 +6,5 @@
 @font-face {
   font-family: 'inter';
   src: local('inter'), url(./fonts/Inter-Regular.ttf) format('ttf');
+  src: local('inter'), url(./fonts/inter.woff2) format('woff2');
 }

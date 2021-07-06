@@ -63,7 +63,7 @@ export const Input: FC<InputProps> = (props) => {
             </div>
             <div className="col-span-2">
                 <input
-                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200  ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter
+                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } bg-gray-50 dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200  ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter
                     ${props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}
                     ${props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0"}
                     ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0"}

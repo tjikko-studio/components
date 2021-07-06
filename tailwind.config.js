@@ -11,6 +11,32 @@ module.exports = {
       'inter': ['inter']
     },
     extend: {
+      colors: {
+        gray: {
+          50: '#fafbfb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#313b4a',
+          800: '#222735',
+          900: '#171a22',
+        },
+        brand: {
+          50: '#F3FCFE',
+          100: '#E4F7FC',
+          200: '#BDF1F9',
+          300: '#9EE9F5',
+          400: '#6ad8e9',
+          500: '#46D2E7',
+          600: '#1196AE',
+          700: '#0B6A7D',
+          800: '#023846',
+          900: '#022631',
+        }
+      },
       textColor: theme => theme('colors'),
       textColor: {
         'button': {
