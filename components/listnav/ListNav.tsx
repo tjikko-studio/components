@@ -92,7 +92,7 @@ export const ListNav: FC<ListNavProps> = ({
     let keys = Object.keys(linkList)
     return (
         <div
-            className={`rounded-lg bg-gray-50 dark:bg-transparent px-3 py-2.5
+            className={`rounded-lg bg-gray-50 dark:bg-transparent px-3 py-2.5 w-max
                 ${ (styles == "elevated") && "shadow-lg" }
                 ${ (keys.length > 1) && (styles == "elevated") && "flex" }
                 ${ (keys.length > 1) && (styles == "flat") && "grid grid-cols-2" }
@@ -102,7 +102,7 @@ export const ListNav: FC<ListNavProps> = ({
             {
                 keys.map((key, index) => {
                     let captions = Object.keys(linkList[key])
-                    return <div className="m-1.5" key={index} >
+                    return <div className="m-1.5 w-max" key={index} >
                         {
                             (keys.length > 1) && (
                                 <div
