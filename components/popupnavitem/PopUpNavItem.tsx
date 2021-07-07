@@ -6,7 +6,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
     /**
      * pop up type
      */
-    type: "default" | "link" | "button"
+    type: "default" | "link" | "button" | "special"
     /**
      * flag to check pop up item is active
      */
@@ -19,6 +19,12 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
      * url to show
      */
      href?: string
+     /**
+      * child node
+      */
+     children?: React.ReactNode
+
+
 }
 
 /**
@@ -37,6 +43,9 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
             { ...props }
             className={`font-inter
                 ${(type != "link") && "uppercase"}
+                ${(type == "special") && "text-gray-100 tracking-wider font-semibold text-sm "}
+                    ${((type == "special") && (!isActive) && "hover:text-brand-300 dark:text-gray-100 dark:hover:text-brand-300")}
+                    ${((type == "special") && (isActive) && "text-brand-300 dark:text-brand-300")}
                 ${(type == "default") && "text-gray-800 tracking-wider font-semibold text-sm "}
                     ${((type == "default") && (!isActive) && "hover:text-brand-600 dark:text-gray-100 dark:hover:text-brand-300")}
                     ${((type == "default") && (isActive) && "text-brand-600 dark:text-brand-300")}
@@ -51,6 +60,9 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
             <a href={href}>
                 { caption }
             </a>
+            {
+                props.children ? props.children : ""
+            }
         </div>
     )
 }

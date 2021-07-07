@@ -114,7 +114,7 @@ export const ListNav: FC<ListNavProps> = ({
                         }
                         {
                             captions.map((subKey, subIndex) => {
-                                return <PopUpNavItem  caption={subKey} type={subIndex < captions.length - 1 ? "link" : "button"} key={subIndex} className='px-3 py-2.5' href={linkList[key][subKey]} />
+                                return <PopUpNavItem  caption={subKey} type={subIndex < captions.length - 1 ? "link" : "button"} key={subIndex} className='px-3 py-2.5' href={linkList[key][subKey]} ></PopUpNavItem>
                             })
                         }
                     </div>
