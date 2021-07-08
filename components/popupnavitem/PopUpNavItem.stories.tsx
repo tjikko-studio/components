@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/PopUpNavItem',
   component: PopUpNavItem,
   argTypes: {
-    type: { control: { type: "select", options: ["default", "link", "button", "special"] }},
+    type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
   },
   parameters: {
     componentSubtitle: 'The Buttons'
@@ -16,7 +16,7 @@ const Template: Story<PopUpNavItemProps> = (args) => <PopUpNavItem {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  caption: "Header"
+  caption: "Link"
 }
 
 export const Active = Template.bind({})

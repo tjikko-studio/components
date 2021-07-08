@@ -31,7 +31,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const PopUpNavItem: FC<PopUpNavItemProps> = ({
-    caption="Header",
+    caption="Link",
     type="default",
     href="#",
     isActive=false,
@@ -42,18 +42,17 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
         <div
             { ...props }
             className={`font-inter
-                ${(type != "link") && "uppercase"}
-                ${(type == "special") && "text-gray-100 tracking-wider font-semibold text-sm "}
+                ${(type != "default") && "uppercase"}
+                ${(type == "special") && "px-3 py-2.5 text-gray-100 tracking-wider font-semibold text-sm "}
                     ${((type == "special") && (!isActive) && "hover:text-brand-300 dark:text-gray-100 dark:hover:text-brand-300")}
                     ${((type == "special") && (isActive) && "text-brand-300 dark:text-brand-300")}
-                ${(type == "default") && "text-gray-800 tracking-wider font-semibold text-sm "}
-                    ${((type == "default") && (!isActive) && "hover:text-brand-600 dark:text-gray-100 dark:hover:text-brand-300")}
-                    ${((type == "default") && (isActive) && "text-brand-600 dark:text-brand-300")}
-                ${(type == "link") && "text-gray-800 text-sm dark:text-gray-100"}
-                ${(type == "button") && "tracking-wider text-xs font-semibold text-brand-600"}
-                    ${((type == "button") && (!isActive) && "hover:text-brand-800 dark:text-brand-300 dark:hover:text-brand-100")}
-                    ${((type == "button") && (isActive) && "text-brand-800 dark:text-brand-100")}
-                ${props.className && props.className}
+                ${(type == "default") && "px-3 py-2.5 text-sm  "}
+                    ${((type == "default") && (!props.isActive) && "text-gray-800  hover:text-brand-600 dark:text-gray-100 dark:hover:text-brand-300")}
+                    ${((type == "default") && (props.isActive) && "text-brand-600 dark:text-brand-300")}
+                ${(type == "header") && "px-3 py-2.5 font-semibold text-sm tracking-wider text-gray-800 text-sm dark:text-gray-100"}
+                ${(type == "button") && "px-3 py-3.5 tracking-wider text-xs font-semibold "}
+                    ${((type == "button") && (!props.isActive) && "text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-100")}
+                    ${((type == "button") && (props.isActive) && "text-brand-700 dark:text-brand-100")}
             `}
             style={{width: 'fit-content'}}
         >

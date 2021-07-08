@@ -4,7 +4,7 @@ import { PopUpNavItem, PopUpNavItemProps } from '../popupnavitem/PopUpNavItem'
 export interface MenuItem {
     name: string
     url: string
-    type?: "default" | "link" | "button"
+    type?: "default" | "header" | "button"
 }
 
 export interface MenuType {
@@ -56,7 +56,7 @@ export const ListNav: FC<ListNavProps> = ({
                         }
                         {
                             menu.grouplist.map((menuItem, subIndex) => {
-                                return (<PopUpNavItem  caption={menuItem.name} type={menuItem.type?menuItem.type:"link"} key={subIndex} className='px-3 py-2.5' href={menuItem.url} ></PopUpNavItem>)
+                                return (<PopUpNavItem  caption={menuItem.name} type={menuItem.type?menuItem.type:"default"} key={subIndex} className='px-3 py-2.5' href={menuItem.url} ></PopUpNavItem>)
                             })
                         }
                     </div>

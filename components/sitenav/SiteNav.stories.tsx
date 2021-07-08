@@ -45,12 +45,10 @@ Default.args = {
             {
                 name: "Features",
                 url: "/features",
-                type: "button"
             },
             {
               name: "Customer Success Stories",
               url: "/customer",
-              type: "link"
             },
             {
               name: "Quality and reliability",
@@ -74,7 +72,6 @@ Default.args = {
             {
                 name: "Real estate",
                 url: "/real",
-                type: "button"
             },
             {
               name: "Others",
@@ -88,7 +85,6 @@ Default.args = {
             {
                 name: "Sales Office",
                 url: "/sale",
-                type: "button"
             },
             {
               name: "Presentation",

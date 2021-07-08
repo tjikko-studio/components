@@ -24,12 +24,10 @@ SingleData.args = {
             {
                 name: "Link 01",
                 url: "/linkURL",
-                type: "link"
             },
             {
                 name: "Link 02",
                 url: "/linkURL",
-                type: "button"
             },
             {
                 name: "Link 03",
@@ -48,7 +46,6 @@ MultiData.args = {
             {
                 name: "Link 01",
                 url: "/linkURL",
-                type: "link"
             },
             {
                 name: "Link 02",
@@ -67,7 +64,6 @@ MultiData.args = {
             {
                 name: "Link 01",
                 url: "/linkURL",
-                type: "link"
             },
             {
                 name: "Link 02",
@@ -76,7 +72,6 @@ MultiData.args = {
             {
                 name: "Link 03",
                 url: "/linkURL",
-                type: "link"
             }
         ]
     },
@@ -86,7 +81,6 @@ MultiData.args = {
             {
                 name: "Link 01",
                 url: "/linkURL",
-                type: "button"
             },
             {
                 name: "Link 02",
@@ -94,7 +88,7 @@ MultiData.args = {
             },
             {
                 name: "Link 03",
-                url: "/linkURL"
+                url: "/linkURL",
             }
         ]
     }
