@@ -49,7 +49,7 @@ export const Button: FC<ButtonProps> = ({
                     />
                 }
                 <p
-                    className={`font-inter font-semibold 
+                    className={`font-semibold 
                         ${ (type == "primary" ) && "text-white dark:text-brand-900"}
                         ${ (type == "tertiary" ) && "text-brand-600 hover:text-brand-700 dark:bg-brand-400 dark:hover:bg-brand-200"}
                         ${ (size == "small") && "text-xs px-3.5 py-2.5"}

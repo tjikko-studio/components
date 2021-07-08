@@ -48,7 +48,7 @@ export const ListNav: FC<ListNavProps> = ({
                         {
                             (linkList.length > 1) && (
                                 <div
-                                    className={`font-inter font-semibold text-sm leading-5 uppercase px-3 py-2.5 dark:text-gray-100 text-gray-800`}
+                                    className={`font-semibold text-sm leading-5 uppercase px-3 py-2.5 dark:text-gray-100 text-gray-800`}
                                 >
                                     { menu.groupcaption }
                                 </div>

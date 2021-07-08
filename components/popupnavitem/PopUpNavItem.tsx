@@ -41,7 +41,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
     return (
         <div
             { ...props }
-            className={`font-inter flex items-center
+            className={`flex items-center
                 ${(type != "default") && "uppercase"}
                 ${(type == "special") && "px-3 py-2.5 text-gray-100 tracking-wider font-semibold text-sm "}
                     ${((type == "special") && (!isActive) && "hover:text-brand-300 dark:text-gray-100 dark:hover:text-brand-300")}

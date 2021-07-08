@@ -27,7 +27,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                 >
                     <a 
                         href={demourl}
-                        className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold font-inter"
+                        className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold"
                     >
                         {demobuttontext}
                     </a>
@@ -87,7 +87,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                                                                         key={itemIndex}
                                                                     >
                                                                         <a
-                                                                            className={`font-inter
+                                                                            className={`
                                                                                 ${(item.type=="button") && "text-brand-300 hover:text-brand-600"}
                                                                             `}
                                                                             href={item.url}    
