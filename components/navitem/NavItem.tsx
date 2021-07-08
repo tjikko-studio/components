@@ -48,7 +48,7 @@ export const NavItem: FC<NavItemProps> = ({
     return (
         <div 
             {...props}
-            className={`cursor-pointer w-max relative
+            className={`w-max relative
                 ${props.className ? props.className : ""}
             `}
             style={{width: 'fit-content'}} 
