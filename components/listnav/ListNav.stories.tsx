@@ -39,15 +39,6 @@ SingleData.args = {
         ]
     }]
 }
-export const DirectData = Template.bind({})
-DirectData.args = {
-  linkList:
-  [
-    {
-        groupcaption: "Direct Name",
-        grouplist: null
-    }]
-}
 export const MultiData = Template.bind({})
 MultiData.args = {
   linkList: [

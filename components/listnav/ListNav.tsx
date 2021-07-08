@@ -29,67 +29,10 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
     styles="elevated",
-    linkList = [
-        {
-            groupcaption: "Group 01",
-            grouplist: [
-                {
-                    name: "Link 01",
-                    url: "/linkURL",
-                    type: "link"
-                },
-                {
-                    name: "Link 02",
-                    url: "/linkURL",
-                    type: "button"
-                },
-                {
-                    name: "Link 03",
-                    url: "/linkURL",
-                    type: "button"
-                }
-            ]
-        },
-        {
-            groupcaption: "Group 02",
-            grouplist: [
-                {
-                    name: "Link 01",
-                    url: "/linkURL",
-                    type: "link"
-                },
-                {
-                    name: "Link 02",
-                    url: "/linkURL",
-                    type: "button"
-                },
-                {
-                    name: "Link 03",
-                    url: "/linkURL",
-                    type: "link"
-                }
-            ]
-        },
-        {
-            groupcaption: "Group 03",
-            grouplist: [
-                {
-                    name: "Link 01",
-                    url: "/linkURL"
-                },
-                {
-                    name: "Link 02",
-                    url: "/linkURL"
-                },
-                {
-                    name: "Link 03",
-                    url: "/linkURL"
-                }
-            ]
-        }
-    ],
+    linkList = [],
     ...props
 }) => {
+    linkList = (linkList == null || linkList == undefined) ? [] : linkList
     return (
         <div
             className={`rounded-lg bg-gray-50 dark:bg-transparent px-3 py-2.5 w-max

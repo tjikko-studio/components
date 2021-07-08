@@ -1,74 +1,116 @@
 import React, { FC, HTMLAttributes } from 'react'
+import { SiteNavProps } from './SiteNav'
 import { NavItem } from '../navitem/NavItem'
-
-export interface MobileMenuProps extends HTMLAttributes<HTMLDivElement> {
-    /**
-     * menu json data same as NavItem
-     */
-    menudata?: Object
-    /**
-     * demo button text
-     */
-    demobuttontext?: string
-    /**
-     * url to go when click demo button
-     */
-    demourl?: string
-    /**
-     * language list
-     */
-    languagelist?: Object
-    /**
-     * nav background color style
-     */
-    styles: "black" | "transWhite"
-}
 
 /**
  * Primary UI component for user interaction
  */
-export const MobileMenu: FC<MobileMenuProps> = ({
+export const MobileMenu: FC<SiteNavProps> = ({
     demobuttontext="Free Demo",
     demourl="#",
     styles="black",
+    menudata=[],
     ...props
 }) => {
-    let menuKeys = []
-    try{
-        menuKeys = Object.keys(props.menudata)
-    }catch(error){
-        console.log(error)
-    }
-    console.log(menuKeys)
     return (
-        <div 
-            className={`bg-brand-400 
+        <div
+            {...props}
+            className={`bg-gray-900
                 ${(styles=="transWhite") && "bg-opacity-10"}
-                ${props.className ? props.className : ''}
             `}
         >
-        {
-            menuKeys.map((key, index) => {
-                return (
-                    <>
-                        <p>{ key }</p>
-                        <div className="flex" style={{}}>
-                        { Object.keys(props.menudata[key]).map((subkey ,index) => {
-                            return (
-                            <div key={index}>
-                                { Object.keys(props.menudata[key]).length > 1 ? 
-                                <p>{ subkey }</p>
-                                : "" }
-                                { Object.keys(props.menudata[key][subkey]).map(item => (
-                                    <p>{ item }</p>
-                                )) }
+            {
+                menudata.map((menu, menuIndex) => {
+                    return (
+                        <div key={menuIndex}>
+                            <div
+                                className="font-borda uppercase text-gray-50 text-lg tracking-widest pl-6 pt-4 "
+                            >
+                                {
+                                    (menu.submenu == null) ? (
+                                        <a
+                                            href={menu.captionlink}
+                                        >
+                                            {menu.caption}
+                                        </a>
+                                    ) : menu.caption
+                                }
                             </div>
-                        )}) }
+                            <div>
+                                {
+                                    (menu.submenu == null) ? (
+                                       <></>
+                                    ) : (
+                                        <div
+                                            className="grid grid-cols-2"
+                                        >
+                                            {
+                                                menu.submenu.map((group, groupIndex) => {
+                                                    return (
+                                                    <div 
+                                                        key={groupIndex}
+                                                    >
+                                                        <div
+                                                            className="text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5"
+                                                        >
+                                                            {group.groupcaption}
+                                                        </div>
+                                                        {
+                                                            group.grouplist.map((item, itemIndex) => {
+                                                                return (
+                                                                    <div 
+                                                                        className='px-6 pt-5 text-gray-100'
+                                                                        key={itemIndex}
+                                                                    >
+                                                                        <a
+                                                                            className={`font-inter
+                                                                                ${(item.type=="button") && "text-brand-300 hover:text-brand-600"}
+                                                                            `}
+                                                                            href={item.url}    
+                                                                        >
+                                                                            {item.name}
+                                                                        </a>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div> 
+                                                    )
+                                                })
+                                            }
+                                            
+                                        </div>
+                                    )
+                                }
+                            </div>
+                            <hr 
+                                className='mx-2 bg-opacity-10 mt-6 text-gray-400'
+                            />
                         </div>
-                    </>
-                )
-            })
-        }
+                    )
+                    
+                })
+            }
+            <div 
+                className='flex justify-between pb-20 mt-5'
+            >
+                <div
+                    className="ml-6"
+                >
+                    <a 
+                        href={demourl}
+                        className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold font-inter"
+                    >
+                        {demobuttontext}
+                    </a>
+                </div>
+                <NavItem 
+                    className='mr-7'
+                    styles="default/white" 
+                    caption={props.languagelist.current ? props.languagelist.current : "En" } 
+                    submenu={props.languagelist.submenu}
+                />
+            </div>
         </div>
     )
 }

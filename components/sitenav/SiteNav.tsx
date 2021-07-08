@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { FC, HTMLAttributes, useState } from 'react'
 import { useMediaPredicate } from "react-media-hook";
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
@@ -50,6 +50,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     styles="black",
     ...props
 }) => {
+    const [mobileExpand, setMobileExpand] = useState(false);
     const large = useMediaPredicate("(min-width: 1024px)")
     const medium = useMediaPredicate("(max-width: 1023px)")
     const mobile = useMediaPredicate("(max-width: 640px)")
@@ -104,11 +105,16 @@ export const SiteNav: FC<SiteNavProps> = ({
                     submenu={props.languagelist.submenu}
                 />
             </div>
-            <Disclosure as="nav" className="bg-gray-900">
+            <Disclosure as="nav" 
+                className="bg-transparent"
+            >
                 <div className="md:hidden mr-4">
-                    <Disclosure.Button className="bg-gray-900 inline-flex items-center justify-center ">
+                    <button 
+                        className="bg-transparent inline-flex items-center justify-center"
+                        onClick={()=>setMobileExpand(!mobileExpand)}
+                    >
                         <span className="sr-only">Open main menu</span>
-                        {open ? (
+                        { mobileExpand ? (
                             <XIcon 
                                 className={`text-gray-300 w-5 h-5`} 
                             />
@@ -116,15 +122,15 @@ export const SiteNav: FC<SiteNavProps> = ({
                             <MenuIcon 
                                 className={`h-5 w-5
                                     ${styles=="black" && "text-gray-300"}
-                                    ${styles=="transWhite" && "text-gray-50"}
+                                    ${styles=="transWhite" && "text-gray-300"}
                                 `}  
                             />
                         )}
-                    </Disclosure.Button>
+                    </button>
                 </div>
             </Disclosure>
         </div>
-        {/* {open ? <MobileMenu styles="black" menudata={menudata}></MobileMenu> : ""} */}
+        { mobileExpand ? <MobileMenu styles={styles} menudata={menudata} {...props} ></MobileMenu> : ""}
         </>
     )
 }

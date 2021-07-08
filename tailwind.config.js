@@ -8,9 +8,54 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      'inter': ['inter']
+      'inter': ['inter'],
+      'Borda': ['Borda']
     },
     extend: {
+      fontSize: {
+        "xl": "1.25rem",
+        "2xl": "1.5rem",
+        "3xl": "1.25rem",
+        "4xl": "1.25rem",
+        "5xl": "1.25rem",
+        "6xl": "1.25rem",
+        "7xl": "1.25rem",
+        "8xl": "1.25rem",
+        "9xl": "1.25rem"
+      },
+      lineHeight:{
+        "xl": "1.5rem",
+        "2xl": "1.5rem",
+        "3xl": "2.25rem",
+        "4xl": "2.5rem",
+        "5xl": "1rem",
+        "6xl": "1rem",
+        "7xl": "1rem",
+        "8xl": "1rem",
+        "9xl": "1rem"
+      },
+      space: {
+        "xl": "4%",
+        "2xl": "1%",
+        "3xl": "2%",
+        "4xl": "2%",
+        "5xl": "5%m",
+        "6xl": "3%",
+        "7xl": "4%",
+        "8xl": "4%",
+        "9xl": "4%"
+      },
+      fontWeight: {
+        "xl": "500",
+        "2xl": "600",
+        "3xl": "600",
+        "4xl": "600",
+        "5xl": "500",
+        "6xl": "500",
+        "7xl": "500",
+        "8xl": "40",
+        "9xl": "40"
+      },
       colors: {
         gray: {
           50: '#fafbfb',

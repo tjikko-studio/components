@@ -30,10 +30,6 @@ Default.args = {
           {
             name: "Afr",
             url: "/afr",
-          },
-          {
-            name: "Ch",
-            url: "/ch"
           }
         ]
       }
@@ -113,7 +109,7 @@ Default.args = {
     },
     {
       caption: "Portfolio",
-      captionurl: "/protfolio",
+      captionlink: "/protfolio",
       submenu: null
     }
   ]
