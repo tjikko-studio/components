@@ -6,7 +6,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
     /**
      * pop up type
      */
-    type: "default" | "link" | "button" | "special"
+    type: "default" | "header" | "button" | "special"
     /**
      * flag to check pop up item is active
      */
