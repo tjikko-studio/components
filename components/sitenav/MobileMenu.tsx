@@ -19,12 +19,36 @@ export const MobileMenu: FC<SiteNavProps> = ({
                 ${(styles=="transWhite") && "bg-opacity-10"}
             `}
         >
+            <div 
+                className='flex justify-between pb-5 pt-6'
+            >
+                <div
+                    className="ml-2"
+                >
+                    <a 
+                        href={demourl}
+                        className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold font-inter"
+                    >
+                        {demobuttontext}
+                    </a>
+                </div>
+                <NavItem 
+                    className='mr-7'
+                    styles="default/white" 
+                    caption={props.languagelist.current ? props.languagelist.current : "En" } 
+                    submenu={props.languagelist.submenu}
+                />
+            </div>
+            <hr 
+                className='mx-2 bg-opacity-10 mt-6 text-gray-400'
+            />
+
             {
                 menudata.map((menu, menuIndex) => {
                     return (
                         <div key={menuIndex}>
                             <div
-                                className="font-borda uppercase text-gray-50 text-lg tracking-widest pl-6 pt-4 "
+                                className="font-borda uppercase text-gray-50 text-lg tracking-widest pl-6 pt-6 "
                             >
                                 {
                                     (menu.submenu == null) ? (
@@ -83,34 +107,19 @@ export const MobileMenu: FC<SiteNavProps> = ({
                                     )
                                 }
                             </div>
-                            <hr 
-                                className='mx-2 bg-opacity-10 mt-6 text-gray-400'
-                            />
+                            {
+                               ( menudata.length - 1 > menuIndex ) && 
+                               <hr 
+                                    className='mx-2 bg-opacity-10 mt-6 text-gray-400'
+                                />
+                            }
+                            
                         </div>
                     )
                     
                 })
             }
-            <div 
-                className='flex justify-between pb-20 mt-5'
-            >
-                <div
-                    className="ml-6"
-                >
-                    <a 
-                        href={demourl}
-                        className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold font-inter"
-                    >
-                        {demobuttontext}
-                    </a>
-                </div>
-                <NavItem 
-                    className='mr-7'
-                    styles="default/white" 
-                    caption={props.languagelist.current ? props.languagelist.current : "En" } 
-                    submenu={props.languagelist.submenu}
-                />
-            </div>
+            <div className='pb-20'></div>
         </div>
     )
 }

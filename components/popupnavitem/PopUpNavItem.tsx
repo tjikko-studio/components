@@ -51,7 +51,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
                     ${((type == "default") && (isActive) && "text-brand-600 dark:text-brand-300")}
                 ${(type == "link") && "text-gray-800 text-sm dark:text-gray-100"}
                 ${(type == "button") && "tracking-wider text-xs font-semibold text-brand-600"}
-                    ${((type == "button") && (!isActive) && "hover:text-button-hover dark:text-brand-300 dark:hover:text-brand-100")}
+                    ${((type == "button") && (!isActive) && "hover:text-brand-800 dark:text-brand-300 dark:hover:text-brand-100")}
                     ${((type == "button") && (isActive) && "text-brand-800 dark:text-brand-100")}
                 ${props.className && props.className}
             `}
