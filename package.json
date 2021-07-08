@@ -1,17 +1,21 @@
 {
   "name": "tjikko-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
-    "start": "npm run storybook",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "build": "babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\""
+    "build:dev": "babel components --out-dir dev --extensions \".tsx\" --ignore \"components/**/*.stories.*\" --source-maps inline",
+    "build:prod": "cross-env BABEL_ENV=production babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\"",
+    "dev:babel": "npm run build:dev -- --watch",
+    "dev": "concurrently npm:dev:babel npm:dev:storybook",
+    "build": "npm run build:prod",
+    "test": "echo 'No tests yet'",
+    "dev:storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tjikko Studio <https://tjikko.studio>",
+  "license": "",
   "devDependencies": {
     "@babel/cli": "7.14.5",
     "@babel/core": "7.14.6",
@@ -24,13 +28,18 @@
     "@storybook/react": "6.3.2",
     "autoprefixer": "10.2.6",
     "babel-loader": "8.2.2",
+    "concurrently": "6.2.0",
     "postcss": "8.3.5",
     "postcss-preset-env": "6.7.0",
     "storybook-tailwind-dark-mode": "1.0.9"
   },
   "dependencies": {
+    "cross-env": "7.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "tailwindcss": "2.2.4"
-  }
+  },
+  "files": [
+    "/dist"
+  ]
 }
