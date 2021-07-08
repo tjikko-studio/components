@@ -6,7 +6,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
     /**
      * pop up type
      */
-    type: "default" | "link" | "button" | "special"
+    type: "default" | "header" | "button" | "special"
     /**
      * flag to check pop up item is active
      */
@@ -47,12 +47,12 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
                     ${((type == "special") && (!isActive) && "hover:text-brand-300 dark:text-gray-100 dark:hover:text-brand-300")}
                     ${((type == "special") && (isActive) && "text-brand-300 dark:text-brand-300")}
                 ${(type == "default") && "px-3 py-2.5 text-sm  "}
-                    ${((type == "default") && (!props.isActive) && "text-gray-800  hover:text-brand-600 dark:text-gray-100 dark:hover:text-brand-300")}
-                    ${((type == "default") && (props.isActive) && "text-brand-600 dark:text-brand-300")}
-                ${(type == "header") && "px-3 py-2.5 font-semibold text-sm tracking-wider text-gray-800 text-sm dark:text-gray-100"}
+                    ${((type == "default") && (!isActive) && "text-gray-800  hover:text-brand-600 dark:text-gray-100 dark:hover:text-brand-300")}
+                    ${((type == "default") && (isActive) && "text-brand-600 dark:text-brand-300")}
+                ${(type == "header") && "px-3 py-2.5 font-semibold tracking-wider text-gray-800 text-sm dark:text-gray-100"}
                 ${(type == "button") && "px-3 py-3.5 tracking-wider text-xs font-semibold "}
-                    ${((type == "button") && (!props.isActive) && "text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-100")}
-                    ${((type == "button") && (props.isActive) && "text-brand-700 dark:text-brand-100")}
+                    ${((type == "button") && (!isActive) && "text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-100")}
+                    ${((type == "button") && (isActive) && "text-brand-700 dark:text-brand-100")}
             `}
             style={{width: 'fit-content'}}
         >
