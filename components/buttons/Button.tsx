@@ -34,7 +34,7 @@ export const Button: FC<ButtonProps> = ({
     return (
         <button 
             className={`
-                ${ (type == "primary") && "rounded-lg bg-button-default hover:bg-button-hover dark:bg-button-dark-default dark:hover:bg-button-dark-hover "}
+                ${ (type == "primary") && "rounded-lg bg-brand-600 hover:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-200"}
                 ${ (type == "tertiary") && "bg-none" }
                 ${ (size == "small") && ""}
                 ${ (size == "default") && ""}
@@ -51,7 +51,7 @@ export const Button: FC<ButtonProps> = ({
                 <p
                     className={`font-inter font-semibold 
                         ${ (type == "primary" ) && "text-white dark:text-brand-900"}
-                        ${ (type == "tertiary" ) && "text-button-default hover:text-brand-800 dark:text-button-dark-default dark:hover:text-brand-200"}
+                        ${ (type == "tertiary" ) && "text-brand-600 hover:text-brand-700 dark:bg-brand-400 dark:hover:bg-brand-200"}
                         ${ (size == "small") && "text-xs px-3.5 py-2.5"}
                         ${ (size == "default") && "text-sm  px-4 py-3.5"}
                         ${ (size == "large") && "text-base py-4 px-5"}
