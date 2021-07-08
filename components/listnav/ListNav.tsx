@@ -1,6 +1,17 @@
 import React, { FC, HTMLAttributes } from 'react'
 import { PopUpNavItem, PopUpNavItemProps } from '../popupnavitem/PopUpNavItem'
 
+export interface MenuItem {
+    name: string
+    url: string
+    type?: "default" | "link" | "button"
+}
+
+export interface MenuType {
+    groupcaption: string
+    grouplist:Array<MenuItem>
+}
+
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
     
     /**
@@ -8,40 +19,9 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
      */
     styles: "elevated" | "flat"
     /**
-     * {
-     *  "default": {
-     *      "Link 01": "/linkURL",
-     *      "Link 02": "/linkURL",
-     *      "Link 03": "/linkURL",
-     *      "Button": "/linkURL"
-     *  },
-     * }
-     * {
-     *  "Group 01": {
-     *      "Link 01": "/linkURL",
-     *      "Link 02": "/linkURL",
-     *      "Link 03": "/linkURL",
-     *      "Link 04": "/linkURL",
-     *      "Button": "/linkURL"
-     *  },
-     * "Group 02": {
-     *      "Link 01": "/linkURL",
-     *      "Link 02": "/linkURL",
-     *      "Link 03": "/linkURL",
-     *      "Link 04": "/linkURL",
-     *      "Button": "/linkURL"
-     *  },
-     * "Group 03": {
-     *      "Link 01": "/linkURL",
-     *      "Link 02": "/linkURL",
-     *      "Link 03": "/linkURL",
-     *      "Link 04": "/linkURL",
-     *      "Button": "/linkURL"
-     *  }
-     * }
      * If data contains one, it will be single. If data contains more than one, it will be multi. At this time, last element will be tertiary  button.
      */
-    linkList?: Object
+    linkList: Array<MenuType>
 }
 
 /**
@@ -49,72 +29,91 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
     styles="elevated",
-    // linkList = {
-    //     "default": {
-    //         "Link 01": "/linkURL",
-    //         "Link 02": "/linkURL",
-    //         "Link 03": "/linkURL",
-    //         "Button": "/linkURL"
-    //     },
-    // },
-    linkList = {
-        "Group 01": {
-            "Link 01": "/linkURL",
-            "Link 02": "/linkURL",
-            "Link 03": "/linkURL",
-            "Link 04": "/linkURL",
-            "Button": "/linkURL"
+    linkList = [
+        {
+            groupcaption: "Group 01",
+            grouplist: [
+                {
+                    name: "Link 01",
+                    url: "/linkURL",
+                    type: "link"
+                },
+                {
+                    name: "Link 02",
+                    url: "/linkURL",
+                    type: "button"
+                },
+                {
+                    name: "Link 03",
+                    url: "/linkURL",
+                    type: "button"
+                }
+            ]
         },
-        "Group 02": {
-            "Link 01": "/linkURL",
-            "Link 02": "/linkURL",
-            "Link 03": "/linkURL",
-            "Link 04": "/linkURL",
-            "Button": "/linkURL"
+        {
+            groupcaption: "Group 02",
+            grouplist: [
+                {
+                    name: "Link 01",
+                    url: "/linkURL",
+                    type: "link"
+                },
+                {
+                    name: "Link 02",
+                    url: "/linkURL",
+                    type: "button"
+                },
+                {
+                    name: "Link 03",
+                    url: "/linkURL",
+                    type: "link"
+                }
+            ]
         },
-        "Group 03": {
-            "Link 01": "/linkURL",
-            "Link 02": "/linkURL",
-            "Link 03": "/linkURL",
-            "Link 04": "/linkURL",
-            "Button": "/linkURL"
-        },
-        "Group 04": {
-            "Link 01": "/linkURL",
-            "Link 02": "/linkURL",
-            "Link 03": "/linkURL",
-            "Link 04": "/linkURL",
-            "Button": "/linkURL"
+        {
+            groupcaption: "Group 03",
+            grouplist: [
+                {
+                    name: "Link 01",
+                    url: "/linkURL"
+                },
+                {
+                    name: "Link 02",
+                    url: "/linkURL"
+                },
+                {
+                    name: "Link 03",
+                    url: "/linkURL"
+                }
+            ]
         }
-    },
+    ],
     ...props
 }) => {
-    let keys = Object.keys(linkList)
     return (
         <div
             className={`rounded-lg bg-gray-50 dark:bg-transparent px-3 py-2.5 w-max
                 ${ (styles == "elevated") && "shadow-lg" }
-                ${ (keys.length > 1) && (styles == "elevated") && "flex" }
-                ${ (keys.length > 1) && (styles == "flat") && "grid grid-cols-2" }
+                ${ (linkList.length > 1) && (styles == "elevated") && "flex" }
+                ${ (linkList.length > 1) && (styles == "flat") && "grid grid-cols-2" }
             `}
             style={{width: 'fit-content'}}
         >
             {
-                keys.map((key, index) => {
-                    let captions = Object.keys(linkList[key])
+                linkList.map((menu, index) => {
                     return <div className="m-1.5 w-max" key={index} >
                         {
-                            (keys.length > 1) && (
+                            (linkList.length > 1) && (
                                 <div
                                     className={`font-inter font-semibold text-sm leading-5 uppercase px-3 py-2.5 dark:text-gray-100 text-gray-800`}
                                 >
-                                    { key }
+                                    { menu.groupcaption }
                                 </div>
                             )
                         }
                         {
-                            captions.map((subKey, subIndex) => {
-                                return <PopUpNavItem  caption={subKey} type={subIndex < captions.length - 1 ? "link" : "button"} key={subIndex} className='px-3 py-2.5' href={linkList[key][subKey]} ></PopUpNavItem>
+                            menu.grouplist.map((menuItem, subIndex) => {
+                                return (<PopUpNavItem  caption={menuItem.name} type={menuItem.type?menuItem.type:"link"} key={subIndex} className='px-3 py-2.5' href={menuItem.url} ></PopUpNavItem>)
                             })
                         }
                     </div>

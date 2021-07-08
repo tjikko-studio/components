@@ -16,45 +16,96 @@ const Template: Story<ListNavProps> = (args) => <ListNav {...args} />
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  linkList: {
-      "default": {
-          "Link 01": "/linkURL",
-          "Link 02": "/linkURL",
-          "Link 03": "/linkURL",
-          "Button": "/linkURL"
-      },
-  },
+  linkList:
+  [
+    {
+        groupcaption: "Group 01",
+        grouplist: [
+            {
+                name: "Link 01",
+                url: "/linkURL",
+                type: "link"
+            },
+            {
+                name: "Link 02",
+                url: "/linkURL",
+                type: "button"
+            },
+            {
+                name: "Link 03",
+                url: "/linkURL",
+                type: "button"
+            }
+        ]
+    }]
+}
+export const DirectData = Template.bind({})
+DirectData.args = {
+  linkList:
+  [
+    {
+        groupcaption: "Direct Name",
+        grouplist: null
+    }]
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  linkList: {
-    "Group 01": {
-        "Link 01": "/linkURL",
-        "Link 02": "/linkURL",
-        "Link 03": "/linkURL",
-        "Link 04": "/linkURL",
-        "Button": "/linkURL"
+  linkList: [
+    {
+        groupcaption: "Group 01",
+        grouplist: [
+            {
+                name: "Link 01",
+                url: "/linkURL",
+                type: "link"
+            },
+            {
+                name: "Link 02",
+                url: "/linkURL"
+            },
+            {
+                name: "Link 03",
+                url: "/linkURL",
+                type: "button"
+            }
+        ]
     },
-    "Group 02": {
-        "Link 01": "/linkURL",
-        "Link 02": "/linkURL",
-        "Link 03": "/linkURL",
-        "Link 04": "/linkURL",
-        "Button": "/linkURL"
+    {
+        groupcaption: "Group 02",
+        grouplist: [
+            {
+                name: "Link 01",
+                url: "/linkURL",
+                type: "link"
+            },
+            {
+                name: "Link 02",
+                url: "/linkURL"
+            },
+            {
+                name: "Link 03",
+                url: "/linkURL",
+                type: "link"
+            }
+        ]
     },
-    "Group 03": {
-        "Link 01": "/linkURL",
-        "Link 02": "/linkURL",
-        "Link 03": "/linkURL",
-        "Link 04": "/linkURL",
-        "Button": "/linkURL"
-    },
-    "Group 04": {
-        "Link 01": "/linkURL",
-        "Link 02": "/linkURL",
-        "Link 03": "/linkURL",
-        "Link 04": "/linkURL",
-        "Button": "/linkURL"
+    {
+        groupcaption: "Group 03",
+        grouplist: [
+            {
+                name: "Link 01",
+                url: "/linkURL",
+                type: "button"
+            },
+            {
+                name: "Link 02",
+                url: "/linkURL"
+            },
+            {
+                name: "Link 03",
+                url: "/linkURL"
+            }
+        ]
     }
-  }
+  ]
 }

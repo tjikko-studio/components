@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/PopUpNavItem',
   component: PopUpNavItem,
   argTypes: {
-    type: { control: { type: "select", options: ["default", "link", "button"] }},
+    type: { control: { type: "select", options: ["default", "link", "button", "special"] }},
   },
   parameters: {
     componentSubtitle: 'The Buttons'
