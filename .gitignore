@@ -1,4 +1,10 @@
+# Dependencies
 node_modules
-storybook-static
+
+# Pesky editors
 .vscode
 .DS_Store
+# Built files
+dev
+# dist
+storybook-static
