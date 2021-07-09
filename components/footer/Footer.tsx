@@ -36,7 +36,7 @@ export const Footer: FC<FooterProps> = ({
 }) => {
     
     return (
-        <div
+        <footer
             className='bg-gray-800'
         >
             <div
@@ -47,25 +47,25 @@ export const Footer: FC<FooterProps> = ({
             <hr 
                 className='mx-6 bg-opacity-30 border-gray-500'
             />
-            <div
+            <nav
                 className='px-6 pt-8 lg:flex md:grid md:grid-cols-2'
             >
                 {
                     footermenu.map((menu, menuIndex) => {
                         return (
-                            <div 
+                            <ul 
                                 key={menuIndex}
                                 className={`flex-1 pb-12 lg:mb-0`}
                             >
-                                <div
+                                <li
                                     className='text-gray-300 text-xs font-medium uppercase'
                                 >
                                     { menu.caption }
-                                </div>
+                                </li>
                                 {
                                     menu.menuList.map((menuItem, itemIndex) => {
                                         return (
-                                            <div
+                                            <li
                                                 key={itemIndex}
                                                 className='text-gray-50 hover:text-brand-300 text-sm pt-3'
                                             >
@@ -76,35 +76,63 @@ export const Footer: FC<FooterProps> = ({
                                                         menuItem.name
                                                     }
                                                 </a>
-                                            </div>
+                                            </li>
                                         )
                                     })
                                 }
-                            </div>
+                            </ul>
                         )
                     })
                 }
-            </div>
-            <div
+            </nav>
+            <nav
                 className="text-gray-50 text-sm flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6"
             >
                 <div className='flex flex-1 flex-row-reverse md:flex-row pt-4 md:pt-0'>
                     <div className='flex-1 flex justify-end md:justify-start'><span>© { props.year?props.year:new Date().getFullYear() }</span></div>
-                    <div className='flex-1'>{ props.privacy?props.privacy:"Privacy - Terms" }</div>
+                    <ul className='flex flex-1 space-x-2'>
+                        <li>
+                            <a href='#' className="text-gray-50 hover:text-brand-300">
+                                { props.privacy?props.privacy:"Privacy" }
+                            </a>
+                        </li>
+                        <li>-</li>
+                        <li>
+                            <a href='#' className="text-gray-50 hover:text-brand-300">
+                                { props.privacy?props.privacy:"Terms" }
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <div className='flex-1'></div>
-                <div 
-                    className='flex flex-1 md:-ml-20 '
+                <ul 
+                    className='flex flex-1 md:-ml-20 space-x-2'
                 >
-                    <div>Facebook</div>
-                    -
-                    <div>YouTube</div>
-                    -
-                    <div>Twitter</div>
-                    -
-                    <div>LinkedIn</div>
-                </div>
-            </div>
-        </div>
+                    <li>
+                        <a className='text-gray-50 hover:text-brand-300' href=''>
+                            Facebook
+                        </a>
+                    </li>
+                    <li>-</li>
+                    <li>
+                        <a className='text-gray-50 hover:text-brand-300' href=''>
+                            YouTube
+                        </a>
+                    </li>
+                    <li>-</li>
+                    <li>
+                        <a className='text-gray-50 hover:text-brand-300' href=''>
+                            Twitter
+                        </a>
+                    </li>
+                    <li>-</li>
+                    <li>
+                        <a className='text-gray-50 hover:text-brand-300' href=''>
+                            LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
     )
 }
