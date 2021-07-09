@@ -130,8 +130,23 @@ module.exports = {
         }
       })
     },
+    plugin(({ addVariant, e }) => {
+      addVariant('before', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`before${separator}${className}`)}::before`;
+        });
+      });
+      addVariant('after', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`after${separator}${className}`)}::after`;
+        });
+      });
+    }),
     plugin(function({ addUtilities, theme }) {
-      const newUtilities = {
+      /* 
+        Fonts Styles shorthands
+       */
+      const fontUtilities = {
         '.fontStyle-xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.xl'),
@@ -195,12 +210,9 @@ module.exports = {
           lineHeight: theme('lineHeight.9xl'),
           space: theme('space.9xl'),
           fontWeight: theme('fontWeight.9xl') 
-        }
+        },
       }
-    
-      addUtilities(newUtilities, {
-        variants: ['responsive', 'hover'],
-      })
+      addUtilities(fontUtilities, ['responsive']);
     })
   ]
 }
