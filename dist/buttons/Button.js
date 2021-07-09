@@ -30,14 +30,14 @@ var Button = _ref => {
       props = _objectWithoutProperties(_ref, _excluded);
 
   return /*#__PURE__*/_react.default.createElement("button", {
-    className: "\n                ".concat(type == "primary" && "rounded-lg bg-button-default hover:bg-button-hover dark:bg-button-dark-default dark:hover:bg-button-dark-hover ", "\n                ").concat(type == "tertiary" && "bg-none", "\n                ").concat(size == "small" && "", "\n                ").concat(size == "default" && "", "\n                ").concat(size == "large" && "", "\n            ")
+    className: "\n                ".concat(type == "primary" && "rounded-lg bg-brand-600 hover:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-200", "\n                ").concat(type == "tertiary" && "bg-none", "\n                ").concat(size == "small" && "", "\n                ").concat(size == "default" && "", "\n                ").concat(size == "large" && "", "\n            ")
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex items-center"
   }, icon != "none" && /*#__PURE__*/_react.default.createElement(_Search.SearchIcon, {
     color: "text-white",
     darkColor: "dark:text-black"
   }), /*#__PURE__*/_react.default.createElement("p", {
-    className: "font-inter font-semibold \n                        ".concat(type == "primary" && "text-white dark:text-button-primary_dark", "\n                        ").concat(type == "tertiary" && "text-button-default hover:text-button-hover dark:text-button-dark-default dark:hover:text-button-dark-hover", "\n                        ").concat(size == "small" && "text-xs px-3.5 py-2.5", "\n                        ").concat(size == "default" && "text-sm  px-4 py-3.5", "\n                        ").concat(size == "large" && "text-base py-4 px-5", "\n                    ")
+    className: "font-semibold \n                        ".concat(type == "primary" && "text-white dark:text-brand-900", "\n                        ").concat(type == "tertiary" && "text-brand-600 hover:text-brand-700 dark:bg-brand-400 dark:hover:bg-brand-200", "\n                        ").concat(size == "small" && "text-xs px-3.5 py-2.5", "\n                        ").concat(size == "default" && "text-sm  px-4 py-3.5", "\n                        ").concat(size == "large" && "text-base py-4 px-5", "\n                    ")
   }, text)));
 };
 

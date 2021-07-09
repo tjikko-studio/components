@@ -122,85 +122,97 @@ module.exports = {
     function({ addBase, config }) {
       addBase({
         'body': { fontFamily: config('theme.fontFamily.inter') },
-        'fontStyle-xl': { 
+        'fontStyle-xl': {
           fontSize: config('theme.fontSize.9xl'),
           lineHeight: config('theme.lineHeight.9xl'),
           space: config('theme.space.9xl'),
-          fontWeight: config('theme.fontWeight.9xl') 
+          fontWeight: config('theme.fontWeight.9xl')
         }
       })
     },
+    plugin(({ addVariant, e }) => {
+      addVariant('before', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`before${separator}${className}`)}::before`;
+        });
+      });
+      addVariant('after', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`after${separator}${className}`)}::after`;
+        });
+      });
+    }),
     plugin(function({ addUtilities, theme }) {
-      const newUtilities = {
+      /*
+        Fonts Styles shorthands
+       */
+      const fontUtilities = {
         '.fontStyle-xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.xl'),
           lineHeight: theme('lineHeight.xl'),
           space: theme('space.xl'),
           fontWeight: theme('fontWeight.xl'),
-          textTransform: "uppercase" 
+          textTransform: "uppercase"
         },
         '.fontStyle-2xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.2xl'),
           lineHeight: theme('lineHeight.2xl'),
           space: theme('space.2xl'),
-          fontWeight: theme('fontWeight.2xl') 
+          fontWeight: theme('fontWeight.2xl')
         },
         '.fontStyle-3xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.3xl'),
           lineHeight: theme('lineHeight.3xl'),
           space: theme('space.3xl'),
-          fontWeight: theme('fontWeight.3xl') 
+          fontWeight: theme('fontWeight.3xl')
         },
         '.fontStyle-4xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.4xl'),
           lineHeight: theme('lineHeight.4xl'),
           space: theme('space.4xl'),
-          fontWeight: theme('fontWeight.4xl') 
+          fontWeight: theme('fontWeight.4xl')
         },
         '.fontStyle-5xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.5xl'),
           lineHeight: theme('lineHeight.5xl'),
           space: theme('space.5xl'),
-          fontWeight: theme('fontWeight.5xl') 
+          fontWeight: theme('fontWeight.5xl')
         },
         '.fontStyle-6xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.6xl'),
           lineHeight: theme('lineHeight.6xl'),
           space: theme('space.6xl'),
-          fontWeight: theme('fontWeight.6xl') 
+          fontWeight: theme('fontWeight.6xl')
         },
         '.fontStyle-7xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.7xl'),
           lineHeight: theme('lineHeight.7xl'),
           space: theme('space.7xl'),
-          fontWeight: theme('fontWeight.7xl') 
+          fontWeight: theme('fontWeight.7xl')
         },
         '.fontStyle-8xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.8xl'),
           lineHeight: theme('lineHeight.8xl'),
           space: theme('space.8xl'),
-          fontWeight: theme('fontWeight.8xl') 
+          fontWeight: theme('fontWeight.8xl')
         },
         '.fontStyle-9xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.9xl'),
           lineHeight: theme('lineHeight.9xl'),
           space: theme('space.9xl'),
-          fontWeight: theme('fontWeight.9xl') 
-        }
+          fontWeight: theme('fontWeight.9xl')
+        },
       }
-    
-      addUtilities(newUtilities, {
-        variants: ['responsive', 'hover'],
-      })
+      addUtilities(fontUtilities, ['responsive']);
     })
   ]
 }
