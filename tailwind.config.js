@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   purge: [
     // This is not present inside the default configuration
@@ -13,19 +15,19 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        "xl": "1.25rem",
+        "xl":  "1.25rem",
         "2xl": "1.5rem",
-        "3xl": "1.25rem",
-        "4xl": "1.25rem",
-        "5xl": "1.25rem",
-        "6xl": "1.25rem",
-        "7xl": "1.25rem",
-        "8xl": "1.25rem",
-        "9xl": "1.25rem"
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "3.75rem",
+        "7xl": "4.5rem",
+        "8xl": "6rem",
+        "9xl": "8rem"
       },
       lineHeight:{
-        "xl": "1.5rem",
-        "2xl": "1.5rem",
+        "xl":  "1.5em",
+        "2xl": "1.75rem",
         "3xl": "2.25rem",
         "4xl": "2.5rem",
         "5xl": "1rem",
@@ -35,26 +37,26 @@ module.exports = {
         "9xl": "1rem"
       },
       space: {
-        "xl": "4%",
-        "2xl": "1%",
-        "3xl": "2%",
-        "4xl": "2%",
-        "5xl": "5%m",
-        "6xl": "3%",
-        "7xl": "4%",
-        "8xl": "4%",
-        "9xl": "4%"
+        "xl":  "9%",
+        "2xl": "9%",
+        "3xl": "8%",
+        "4xl": "8%",
+        "5xl": "6%",
+        "6xl": "6%",
+        "7xl": "5%",
+        "8xl": "5%",
+        "9xl": "5%"
       },
       fontWeight: {
-        "xl": "500",
+        "xl":  "500",
         "2xl": "600",
         "3xl": "600",
         "4xl": "600",
         "5xl": "500",
         "6xl": "500",
         "7xl": "500",
-        "8xl": "40",
-        "9xl": "40"
+        "8xl": "400",
+        "9xl": "400"
       },
       colors: {
         gray: {
@@ -119,8 +121,86 @@ module.exports = {
   plugins: [
     function({ addBase, config }) {
       addBase({
-        'body': { fontFamily: config('theme.fontFamily.inter') }
+        'body': { fontFamily: config('theme.fontFamily.inter') },
+        'fontStyle-xl': { 
+          fontSize: config('theme.fontSize.9xl'),
+          lineHeight: config('theme.lineHeight.9xl'),
+          space: config('theme.space.9xl'),
+          fontWeight: config('theme.fontWeight.9xl') 
+        }
       })
-    }
+    },
+    plugin(function({ addUtilities, theme }) {
+      const newUtilities = {
+        '.fontStyle-xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.xl'),
+          lineHeight: theme('lineHeight.xl'),
+          space: theme('space.xl'),
+          fontWeight: theme('fontWeight.xl'),
+          textTransform: "uppercase" 
+        },
+        '.fontStyle-2xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.2xl'),
+          lineHeight: theme('lineHeight.2xl'),
+          space: theme('space.2xl'),
+          fontWeight: theme('fontWeight.2xl') 
+        },
+        '.fontStyle-3xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.3xl'),
+          lineHeight: theme('lineHeight.3xl'),
+          space: theme('space.3xl'),
+          fontWeight: theme('fontWeight.3xl') 
+        },
+        '.fontStyle-4xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.4xl'),
+          lineHeight: theme('lineHeight.4xl'),
+          space: theme('space.4xl'),
+          fontWeight: theme('fontWeight.4xl') 
+        },
+        '.fontStyle-5xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.5xl'),
+          lineHeight: theme('lineHeight.5xl'),
+          space: theme('space.5xl'),
+          fontWeight: theme('fontWeight.5xl') 
+        },
+        '.fontStyle-6xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.6xl'),
+          lineHeight: theme('lineHeight.6xl'),
+          space: theme('space.6xl'),
+          fontWeight: theme('fontWeight.6xl') 
+        },
+        '.fontStyle-7xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.7xl'),
+          lineHeight: theme('lineHeight.7xl'),
+          space: theme('space.7xl'),
+          fontWeight: theme('fontWeight.7xl') 
+        },
+        '.fontStyle-8xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.8xl'),
+          lineHeight: theme('lineHeight.8xl'),
+          space: theme('space.8xl'),
+          fontWeight: theme('fontWeight.8xl') 
+        },
+        '.fontStyle-9xl': {
+          fontFamily: theme('fontFamily.Borda'),
+          fontSize: theme('fontSize.9xl'),
+          lineHeight: theme('lineHeight.9xl'),
+          space: theme('space.9xl'),
+          fontWeight: theme('fontWeight.9xl') 
+        }
+      }
+    
+      addUtilities(newUtilities, {
+        variants: ['responsive', 'hover'],
+      })
+    })
   ]
 }
