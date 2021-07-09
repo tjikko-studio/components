@@ -22,7 +22,7 @@ var TextArea = props => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "flex flex-col gap-y-1 w-72"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm font-inter font-semibold flex flex-row justify-between dark:text-gray-300 ".concat(props.isDisabled && "text-gray-500 dark:text-gray-600")
+    className: "text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ".concat(props.isDisabled && "text-gray-500 dark:text-gray-600")
   }, /*#__PURE__*/_react.default.createElement("p", null, props.label), props.isError && /*#__PURE__*/_react.default.createElement(_Error.ErrorIcon, {
     color: "text-red-600",
     darkColor: "dark:text-red-500"
@@ -35,13 +35,13 @@ var TextArea = props => {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-span-2"
   }, /*#__PURE__*/_react.default.createElement("textarea", {
-    className: "".concat(!props.isDisabled && "hover:border-gray-300 dark:border-gray-400", " dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ").concat(props.isDisabled && "dark:border-gray-500", " w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow font-inter\n                    ").concat(props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0", "\n                    ").concat(props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0", "\n                    ").concat(props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0", "\n                    ").concat(props.isSuccess && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent dark:ring-offset-0"),
+    className: "".concat(!props.isDisabled && "hover:border-gray-300 dark:border-gray-400", " dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ").concat(props.isDisabled && "dark:border-gray-500", " w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent shadow\n                    ").concat(props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0", "\n                    ").concat(props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0", "\n                    ").concat(props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0", "\n                    ").concat(props.isSuccess && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent dark:ring-offset-0"),
     defaultValue: props.text,
     disabled: props.isDisabled
   })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm font-inter font-normal dark:text-gray-300 ".concat(props.isDisabled && "text-gray-500 dark:text-gray-600", " ")
+    className: "text-sm font-normal dark:text-gray-300 ".concat(props.isDisabled && "text-gray-500 dark:text-gray-600", " ")
   }, props.information), props.isError && /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm font-normal text-red-700 font-inter"
+    className: "text-sm font-normal text-red-700"
   }, props.error));
 };
 
