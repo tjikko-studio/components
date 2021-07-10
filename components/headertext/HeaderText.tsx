@@ -28,6 +28,7 @@ export interface HeaderTextProps extends HTMLAttributes<HTMLElement> {
      */
     text: string
 
+    className?: string
 }
 
 /**
@@ -40,7 +41,10 @@ export const HeaderText: FC<HeaderTextProps> = ({
 
     return (
         <div
-            className='bg-gray-900'
+            {...props}
+            className={`bg-gray-900
+                ${props.className?props.className:''}
+            `}
         >
             <div>
                 <BreadCrumb 
