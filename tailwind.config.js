@@ -9,11 +9,19 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    
     fontFamily: {
       'inter': ['inter'],
       'Borda': ['Borda']
     },
     extend: {
+      height: {
+        "90vh": "90vh",
+        "568": "568px",
+      },
+      minHeight: {
+        "568": "568px",
+      },
       fontSize: {
         "xl":  "1.25rem",
         "2xl": "1.5rem",
