@@ -54,7 +54,7 @@ export const HeaderText: FC<HeaderTextProps> = ({
                 />
             </div>
             <div
-                className='text-gray-50 pt-3 font-Borda text-6xl tracking-wider'
+                className='text-gray-50 pt-3 font-Borda text-5xl lg:text-6xl md:text-5xl sm:text-5xl tracking-wider leading-none'
             >
                 { props.title }
             </div>
