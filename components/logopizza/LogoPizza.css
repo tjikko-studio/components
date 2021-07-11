@@ -1,0 +1,61 @@
+.logo-pizza .slick-list {
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.logo-pizza .res-img {
+    width: 88.37px;
+    height: 88.37px;
+}
+.logo-pizza.compact .res-img {
+    width: 66.13px;
+    height: 66.13px;
+}
+/* .logo-pizza .slick-slide {
+    padding-left: 107px;
+}
+.logo-pizza.compact .slick-slide {
+    padding-left: 151px;
+} */
+@media screen and (max-width: 1024px) {
+    .logo-pizza .res-img {
+        width: 88.37px;
+        height: 88.37px;
+    }
+    .logo-pizza.compact .res-img {
+        width: 66.13px;
+        height: 66.13px;
+    }
+    /* .logo-pizza .slick-slide {
+        padding-left: 163px;
+    }
+    .logo-pizza.compact .slick-slide {
+        padding-left: 151px;
+    } */
+}
+
+@media screen and (max-width: 768px) {
+    .logo-pizza .res-img {
+        width: 74.16px;
+        height: 74.16px;
+    }
+    .logo-pizza.compact .res-img {
+        width: 49.44px;
+        height: 49.44px;
+    }
+    /* .logo-pizza .slick-slide {
+        padding-left: 93.84px;
+    }
+    .logo-pizza.compact .slick-slide {
+        padding-left: 111px;
+    } */
+}
+
+@media screen and (max-width: 640px) {
+    .logo-pizza .res-img {
+        width: 59.33px;
+        height: 59.33px;
+    }
+    /* .logo-pizza .slick-slide {
+        padding-left: 77px;
+    } */
+}
