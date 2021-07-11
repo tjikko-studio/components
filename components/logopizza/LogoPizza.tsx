@@ -1,11 +1,11 @@
-import React, { FC, HTMLAttributes, useState } from 'react'
+import React, { FC, HTMLAttributes, useState, useEffect } from 'react'
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './LogoPizza.css';
 
-import { useEffect } from 'react';
+import imgTemp from './img0.png';
 
 let imgArr = [
     {imgUrl: "assets/imgs/img0.png"}, 
@@ -83,7 +83,7 @@ export const LogoPizza: FC<LogoPizzaProps> = ({
                     { company.imgUrl !== "" ?
                     <img 
                         className="res-img" 
-                        src={`${company.imgUrl}`}
+                        src={`${company.imgUrl ? company.imgUrl : imgTemp}`}
                         alt="" 
                     /> : 
                     <div
