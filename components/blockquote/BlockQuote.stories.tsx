@@ -5,8 +5,7 @@ export default {
   title: 'Tjikko/BlockQuote',
   component: BlockQuote,
   argTypes: {
-    type: { control: { type: "select", options: ["primary", "tertiary"] }},
-    size: { control: { type: "select", options: ["small", "default", "large"] }}
+    
   },
   parameters: {
     componentSubtitle: 'The BlockQuote'

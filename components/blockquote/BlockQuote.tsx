@@ -36,7 +36,7 @@ export const BlockQuote: FC<BlockQuoteProps> = ({
             >“{ speech }”</p>
             <img 
                 className="w-20 h-20 mx-auto my-6 rounded-full" 
-                src={ avatarUrl } 
+                src={ avatarUrl?avatarUrl:ImageBack } 
                 alt="" 
             />
             <p className={`text-sm text-center`}>{ customerName }</p>
