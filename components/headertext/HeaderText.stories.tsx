@@ -8,7 +8,16 @@ export default {
     // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
   },
   parameters: {
-    componentSubtitle: 'The HeaderText'
+    componentSubtitle: 'The HeaderText',
+    backgrounds: {
+      default: 'dark background',
+      values: [
+        {
+          name: 'dark background',
+          value: '#000',
+        }
+      ],
+    },
   }
 } as Meta
 
@@ -17,7 +26,7 @@ const Template: Story<HeaderTextProps> = (args) => <HeaderText {...args} />
 export const Default = Template.bind({})
 Default.args = {
   styles: {
-    type: "default",
+    type: "form",
     buttonText: "Book a demo",
     formPlaceholder: "Work email",
     caseText: "SP Architectutes",

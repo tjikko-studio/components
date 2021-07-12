@@ -28,14 +28,14 @@ module.exports = {
       },
       lineHeight:{
         "xl":  "1.5em",
-        "2xl": "1.75rem",
-        "3xl": "2.25rem",
-        "4xl": "2.5rem",
-        "5xl": "1rem",
-        "6xl": "1rem",
-        "7xl": "1rem",
-        "8xl": "1rem",
-        "9xl": "1rem"
+        "2xl": "1.75em",
+        "3xl": "2.25em",
+        "4xl": "2.5em",
+        "5xl": "1em",
+        "6xl": "1em",
+        "7xl": "1em",
+        "8xl": "1em",
+        "9xl": "1em"
       },
       space: {
         "xl":  "0.09em",
