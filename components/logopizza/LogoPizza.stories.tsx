@@ -5,8 +5,6 @@ export default {
   title: 'Tjikko/LogoPizza',
   component: LogoPizza,
   argTypes: {
-    type: { control: { type: "select", options: ["primary", "tertiary"] }},
-    size: { control: { type: "select", options: ["small", "default", "large"] }}
   },
   parameters: {
     componentSubtitle: 'The LogoPizza'
@@ -18,31 +16,20 @@ const Template: Story<LogoPizzaProps> = (args) => <LogoPizza {...args} />
 export const Default = Template.bind({})
 Default.args = {
     companyArr: [
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
+        { imgUrl: "", href: "#" },
     ],
     mode: "Default"
 }
 
 export const Compact = Template.bind({})
 Compact.args = {
-    companyArr: [
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-        { imgUrl: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`, href: "#" },
-    ],
+    ...Default.args,
     mode: "Compact"
 }

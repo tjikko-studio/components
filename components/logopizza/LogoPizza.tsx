@@ -1,24 +1,4 @@
 import React, { FC, HTMLAttributes, useState, useEffect } from 'react'
-import Slider from "react-slick";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import './LogoPizza.css';
-
-import imgTemp from './img0.png';
-
-let imgArr = [
-    {imgUrl: "assets/imgs/img0.png"}, 
-    {imgUrl: "assets/imgs/img1.png"}, 
-    {imgUrl: "assets/imgs/img2.png"}, 
-    {imgUrl: "assets/imgs/img3.png"}, 
-    {imgUrl: "assets/imgs/img4.png"}, 
-    {imgUrl: "assets/imgs/img5.png"}, 
-    {imgUrl: "assets/imgs/img6.png"}, 
-    {imgUrl: "assets/imgs/img7.png"}, 
-    {imgUrl: "assets/imgs/img8.png"}, 
-    {imgUrl: "assets/imgs/img9.png"}, 
-]
 
 export interface LogoPizzaInterface {
     imgUrl: string;
@@ -34,10 +14,6 @@ export interface LogoPizzaProps extends HTMLAttributes<HTMLDivElement> {
      * mode : "Default" | "Compact"
      */
     mode?: "Default" | "Compact"
-    /**
-     * speed : 100 ~ 10000
-     */
-    speed?: number
 }
 
 /**
@@ -46,55 +22,30 @@ export interface LogoPizzaProps extends HTMLAttributes<HTMLDivElement> {
 export const LogoPizza: FC<LogoPizzaProps> = ({
     companyArr = [],
     mode = "Default",
-    speed = 3000,
     ...props
 }) => {
-    
-    const [width, setWidth] = useState(window.innerWidth);
-    
-    useEffect(() => {
-        let resizeEvent = (e) => {
-            setWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', resizeEvent)
-        return () => window.removeEventListener('resize', resizeEvent);
-    }, []);
 
     return (
         <div
-            className={`logo-pizza ${mode == "Default" ? "" : "compact"}`}
+            className={`logo-pizza`}
             {...props}
         >
             <h3 className={`${ mode == "Compact" ? "text-2xl" : "text-4xl"} text-center mb-16`}>Trusted by</h3>
-            <Slider 
-                dots={false}
-                infinite={true}
-                speed={speed}
-                slidesToShow={width < 640 ? 3 : (width < 768 ? 5 : 4)}
-                slidesToScroll={1}
-                autoplay={true}
-                autoplaySpeed={speed}
-                cssEase='linear'
-            >
-            { companyArr.map((company, index) => (
-                <div 
-                    key={index} 
-                >
-                    { company.imgUrl !== "" ?
-                    <img 
-                        className="res-img" 
-                        src={`${company.imgUrl ? company.imgUrl : imgTemp}`}
-                        alt="" 
-                    /> : 
+            <marquee>
+                <div className={`flex flex-nowrap w-max`}>
+                { companyArr.map((company, id) => (
                     <div
-                        className="res-img"
-                        style={{
-                            backgroundColor: "black"
-                        }}
-                    ></div> }
+                        key={id}
+                        className={ mode == "Default" ? "w-14 h-14 lg:w-24 lg:h-24 md:w-20 md:h-20 sm:w-14 sm:h-14 mx-14 lg:mx-32 md:mx-16 sm:mx-14" : "w-14 h-14 lg:w-16 lg:h-16 md:w-12 md:h-12 md:w-14 md:h-14 sm:w-14 sm:h-14 mx-14 lg:mx-32 md:mx-16 sm:mx-14"}
+                    >
+                        { (company.imgUrl && company.imgUrl !== "") ? 
+                            <img className="w-full h-full" src={company.imgUrl ? company.imgUrl : `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`}></img>
+                            : <div className="w-full h-full bg-black"></div>
+                        }
+                    </div>
+                )) }
                 </div>
-            )) }
-            </Slider>
+            </marquee>
         </div>
     )
 }
