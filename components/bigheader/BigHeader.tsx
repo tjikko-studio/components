@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, useState, useEffect } from 'react'
 import { HeaderText, HeaderTextProps } from '../headertext/HeaderText'
-import { useMedia } from '../extensions/BreakpointQuery'
+import { useMediaPredicate } from "react-media-hook";
 /*
 * In production mode, show dynamic image and video with url
 */
@@ -31,7 +31,7 @@ export const BigHeader: FC<BigHeaderProps> = ({
     bgImage="../images",
     ...props
 }) => {
-  let desktop = useMedia("(min-width: 640px)");
+    const desktop = useMediaPredicate("(min-width: 640px)")
 
     return (
         <header
