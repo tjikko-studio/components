@@ -1,9 +1,10 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { FC, HTMLAttributes, useState, useEffect } from 'react'
 import { HeaderText, HeaderTextProps } from '../headertext/HeaderText'
+import { useMedia } from '../extensions/BreakpointQuery'
 /*
 * In production mode, show dynamic image and video with url
 */
-import bgTestImage from '../../assets/images/bg_bigheader.png'
+import bgTestImage from '../../assets/images/bg_bigheader.jpg'
 import bgTestVideo from '../../assets/images/bunny.mp4'
 
 export interface BigHeaderProps extends HTMLAttributes<HTMLElement> {
@@ -30,38 +31,53 @@ export const BigHeader: FC<BigHeaderProps> = ({
     bgImage="../images",
     ...props
 }) => {
+  let desktop = useMedia("(min-width: 640px)");
 
     return (
-        <div
+        <header
             {...props}
-            className={`min-h-568 lg:h-90vh md:h-90vh sm:h-90vh  flex flex-wrap content-end bg-cover bg-center w-full
+            className={`min-h-568 lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative
                 ${props.className?props.className:''}
             `}
             style={
                 {
                     //backgroundImage: 'url(https://source.unsplash.com/random)'
-                    backgroundImage: (props.bgtype == "image") ? `url(${bgTestImage})` : "none"
+                    backgroundImage: `url(${bgTestImage})`,
                 }
             }
              
         >
             {
-                (props.bgtype == "video") && (
-                    <video id="videoBG" poster={bgTestImage} autoPlay muted loop className='z-0 fixed top-0 flex flex-wrap content-end bg-cover bg-center w-full'>
+                (props.bgtype == "video" && desktop ) && (
+                    <video id="videoBG" poster={bgTestImage} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
                         <source src={bgTestVideo} type="video/mp4" />
                         {/* <source src={bgImage} type="video/mp4" /> */}
                     </video>
                 )
             }
-            
+            <div 
+                className='absolute z-10 h-2/6 -top-1/6 left-0 w-full bg-gradient-to-b from-gray-900 to-transparent opacity-40'
+            />
+            <div 
+                className='absolute z-10 h-full -bottom-1/6 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-60'
+            />
+            {/* 
+            position: absolute;
+            height: 160px;
+            left: 0px;
+            right: 0px;
+            top: 120px;
+
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+            transform: matrix(1, 0, 0, -1, 0, 0); */}
             <div
-                className='pb-6 lg:pb-12 md:pb-12 sm:pb-12 pl-6 lg:pl-12 md:pl-12 sm:pl-12 z-10'
+                className='absolute z-20 bottom-0 left-0 p-6 lg:p-12 md:p-12 sm:p-12'
             >
                 <HeaderText 
                     {...props.headerinfo} 
                     style={{backgroundColor:'transparent'}}
                 />
             </div>
-        </div>
+        </header>
     )
 }
