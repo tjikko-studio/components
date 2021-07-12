@@ -8,7 +8,16 @@ export default {
     // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
   },
   parameters: {
-    componentSubtitle: 'The TextBlock'
+    componentSubtitle: 'The TextBlock',
+    backgrounds: {
+      default: 'dark background',
+      values: [
+        {
+          name: 'dark background',
+          value: '#000',
+        }
+      ],
+    },
   }
 } as Meta
 
