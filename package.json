@@ -10,7 +10,7 @@
     "dev": "concurrently npm:dev:babel npm:dev:storybook",
     "build": "npm run build:prod",
     "test": "echo 'No tests yet'",
-    "dev:storybook": "start-storybook -p 6006",
+    "dev:storybook": "start-storybook -s ./assets -p 6006",
     "build:storybook": "build-storybook"
   },
   "keywords": [],
@@ -42,10 +42,9 @@
     "hammerjs": "2.0.8",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-fast-marquee": "1.2.1",
     "react-gesture-handler": "0.0.5",
     "react-media-hook": "0.4.9",
-    "react-slick": "0.28.1",
-    "slick-carousel": "1.8.1",
     "tailwindcss": "2.2.4"
   },
   "files": [
