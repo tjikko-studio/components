@@ -9,12 +9,35 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
+    
     fontFamily: {
       'inter': ['inter'],
       'Borda': ['Borda']
     },
     extend: {
+      height: {
+        "90vh": "90vh",
+        "568": "568px",
+      },
+      minHeight: {
+        "568": "568px",
+      },
+      inset: {
+        '1/6': '16.666667%',
+        '2/6': '33.333333%',
+        '3/6': '50%',
+        '4/6': '66.666667%',
+        '5/6': '83.333333%',
+        '6/6': '100%',
+        '-1/6': '-16.666667%',
+        '-2/6': '-33.333333%',
+        '-3/6': '-50%',
+        '-4/6': '-66.666667%',
+        '-5/6': '-83.333333%',
+        '-6/6': '-100%',
+      },
       fontSize: {
+        "xxs":  ".625rem",
         "xl":  "1.25rem",
         "2xl": "1.5rem",
         "3xl": "1.875rem",
@@ -27,25 +50,25 @@ module.exports = {
       },
       lineHeight:{
         "xl":  "1.5em",
-        "2xl": "1.75rem",
-        "3xl": "2.25rem",
-        "4xl": "2.5rem",
-        "5xl": "1rem",
-        "6xl": "1rem",
-        "7xl": "1rem",
-        "8xl": "1rem",
-        "9xl": "1rem"
+        "2xl": "1.75em",
+        "3xl": "2.25em",
+        "4xl": "2.5em",
+        "5xl": "1em",
+        "6xl": "1em",
+        "7xl": "1em",
+        "8xl": "1em",
+        "9xl": "1em"
       },
       space: {
-        "xl":  "9%",
-        "2xl": "9%",
-        "3xl": "8%",
-        "4xl": "8%",
-        "5xl": "6%",
-        "6xl": "6%",
-        "7xl": "5%",
-        "8xl": "5%",
-        "9xl": "5%"
+        "xl":  "0.09em",
+        "2xl": "0.09em",
+        "3xl": "0.08em",
+        "4xl": "0.08em",
+        "5xl": "0.06em",
+        "6xl": "0.06em",
+        "7xl": "0.05em",
+        "8xl": "0.05em",
+        "9xl": "0.05em"
       },
       fontWeight: {
         "xl":  "500",
@@ -111,7 +134,7 @@ module.exports = {
     },
     font: {
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    }
+    },
   },
   variants: {
     extend: {
@@ -151,7 +174,7 @@ module.exports = {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.xl'),
           lineHeight: theme('lineHeight.xl'),
-          space: theme('space.xl'),
+          letterSpacing: theme('space.xl'),
           fontWeight: theme('fontWeight.xl'),
           textTransform: "uppercase"
         },
@@ -159,56 +182,56 @@ module.exports = {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.2xl'),
           lineHeight: theme('lineHeight.2xl'),
-          space: theme('space.2xl'),
+          letterSpacing: theme('space.2xl'),
           fontWeight: theme('fontWeight.2xl')
         },
         '.fontStyle-3xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.3xl'),
           lineHeight: theme('lineHeight.3xl'),
-          space: theme('space.3xl'),
+          letterSpacing: theme('space.3xl'),
           fontWeight: theme('fontWeight.3xl')
         },
         '.fontStyle-4xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.4xl'),
           lineHeight: theme('lineHeight.4xl'),
-          space: theme('space.4xl'),
+          letterSpacing: theme('space.4xl'),
           fontWeight: theme('fontWeight.4xl')
         },
         '.fontStyle-5xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.5xl'),
           lineHeight: theme('lineHeight.5xl'),
-          space: theme('space.5xl'),
+          letterSpacing: theme('space.5xl'),
           fontWeight: theme('fontWeight.5xl')
         },
         '.fontStyle-6xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.6xl'),
           lineHeight: theme('lineHeight.6xl'),
-          space: theme('space.6xl'),
+          letterSpacing: theme('space.6xl'),
           fontWeight: theme('fontWeight.6xl')
         },
         '.fontStyle-7xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.7xl'),
           lineHeight: theme('lineHeight.7xl'),
-          space: theme('space.7xl'),
+          letterSpacing: theme('space.7xl'),
           fontWeight: theme('fontWeight.7xl')
         },
         '.fontStyle-8xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.8xl'),
           lineHeight: theme('lineHeight.8xl'),
-          space: theme('space.8xl'),
+          letterSpacing: theme('space.8xl'),
           fontWeight: theme('fontWeight.8xl')
         },
         '.fontStyle-9xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.9xl'),
           lineHeight: theme('lineHeight.9xl'),
-          space: theme('space.9xl'),
+          letterSpacing: theme('space.9xl'),
           fontWeight: theme('fontWeight.9xl')
         },
       }

@@ -17,6 +17,10 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
       */
     text?: string
     /**
+     * placeholder text
+     */
+    placeholder?: string
+    /**
       * information text
       */
     information?: string
@@ -50,16 +54,18 @@ export const TextArea: FC<TextAreaProps> = (props) => {
         <div
             className="flex flex-col gap-y-1 w-72"
         >
-            <div
-                className={`text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}
-            >
-                <p>
-                    { props.label }
-                </p>
-                { props.isError && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
-                { props.isValidating && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
-                { props.isSuccess && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
-            </div>
+            { props.label &&
+              <div
+                  className={`text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ${ props.isDisabled && "text-gray-500 dark:text-gray-600"}`}
+              >
+                  <p>
+                      { props.label }
+                  </p>
+                  { (props.isError && props.label )  && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
+                  { (props.isValidating && props.label )  && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
+                  { (props.isSuccess && props.label )  && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
+              </div>
+            }
             <div
                 className="col-span-2"
             >
@@ -70,6 +76,7 @@ export const TextArea: FC<TextAreaProps> = (props) => {
                     ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0"}
                     ${props.isSuccess && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent dark:ring-offset-0"}` }
                     defaultValue={props.text}
+                    placeholder={props.placeholder}
                     disabled={props.isDisabled}
                 />
             </div>

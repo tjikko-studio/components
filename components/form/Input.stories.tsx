@@ -14,6 +14,7 @@ const Template: Story<InputProps> = (args) => <Input {...args} />
 export const Text = Template.bind({})
 Text.args = {
   text: 'Input Text',
+  placeholder: 'Placeholder',
   information: 'informations',
   error: 'Error Message',
   label: 'Label'
