@@ -26,7 +26,7 @@ const Template: Story<HeaderTextProps> = (args) => <HeaderText {...args} />
 export const Default = Template.bind({})
 Default.args = {
   styles: {
-    type: "form",
+    type: "default",
     buttonText: "Book a demo",
     formPlaceholder: "Work email",
     caseText: "SP Architectutes",

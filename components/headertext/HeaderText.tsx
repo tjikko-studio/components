@@ -44,7 +44,7 @@ export const HeaderText: FC<HeaderTextProps> = ({
     return (
         <div
             {...props}
-            className={` flex p-6 flex-col
+            className={` flex flex-col
                 ${props.className?props.className:''}
             `}
         >
