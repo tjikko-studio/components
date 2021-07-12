@@ -1,5 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 import { BreadCrumb, BreadCrumbType } from '../breadcrumb/BreadCrumb'
+import { Input } from '../form/Input'
+import { Button } from '../buttons/Button'
 import { SP } from '../svg/SP'
 
 export interface HeaderTextFooterType {
@@ -42,27 +44,25 @@ export const HeaderText: FC<HeaderTextProps> = ({
     return (
         <div
             {...props}
-            className={`bg-gray-900
+            className={` flex flex-col
                 ${props.className?props.className:''}
             `}
         >
-            <div>
-                <BreadCrumb 
-                    crumblist={breadcrumb}
-                    styles="fixed"
-                    className="text-gray-50"
-                />
-            </div>
-            <div
-                className='text-gray-50 pt-3 font-Borda text-5xl lg:text-6xl md:text-5xl sm:text-5xl tracking-wider leading-none'
+            <BreadCrumb 
+                crumblist={breadcrumb}
+                styles="fixed"
+                className="text-gray-50 pb-3"
+            />
+            <h1
+                className='text-gray-50 fontStyle-5xl '// lg:fontStyle-6xl md:fontStyle-5xl sm:fontStyle-5xl'
             >
                 { props.title }
-            </div>
-            <div
+            </h1>
+            <p
                 className='text-gray-50 text-base break-words pt-4'
             >
                 { props.text }
-            </div>
+            </p>
             <div
                 className='pt-6 pb-4'
             >
@@ -78,18 +78,18 @@ export const HeaderText: FC<HeaderTextProps> = ({
                 }
                 {
                     (props.styles.type=="form") && (
-                        <div>
-                            <input type='text' 
-                                className='bg-gray-50 rounded-lg border border-gray-100 py-3 px-4 placeholder-gray-800 placeholder-opacity-40 w-80'
+                        <form className="flex space-x-2">
+                            <Input 
                                 placeholder={props.styles.formPlaceholder}
                             />
-                            <a
-                                href={props.styles.url}
-                                className='bg-brand-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-brand-900 hover:bg-brand-300 ml-2'
-                            >
-                                { props.styles.buttonText }
-                            </a>
-                        </div>
+                            <Button 
+                                text = {props.styles.buttonText}
+                                forceDark = "true"
+                                type = "primary"
+                                icon = 'none'
+                                size = "large"
+                            />
+                        </form>
                     )
                 }
                 {

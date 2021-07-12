@@ -29,41 +29,44 @@ export const BreadCrumb: FC<BreadCrumbProps> = ({
 }) => {
 
     return (
-        <div
+        <nav
             {...props}
+            aria-label="Breadcrumb"
             className={`
                 ${props.className?props.className:''}
             `}
         >
-            {
-                crumblist.map((item, index) => {
-                    return (
-                        <span
-                            key={index}
-                        >
-                            <span
-                                className={`fontStyle-xl text-sm 
-                                    ${(styles=='fixed') && ""}
-                                    ${ (styles=='responsive') && "hover:text-brand-300"}`}
+            <ul className="flex flex-wrap">
+                {
+                    crumblist.map((item, index) => {
+                        return (
+                            <li
                                 key={index}
                             >
-                                <a
-                                    href={ ((styles=='responsive') ? item.url : null) }
+                                <span
+                                    className={`fontStyle-xl
+                                        ${(styles=='fixed') && ""}
+                                        ${ (styles=='responsive') && "hover:text-brand-300"}`}
+                                    key={index}
                                 >
-                                    {
-                                        item.name
-                                    }
-                                </a>
-                            </span>
-                            {
-                                (crumblist.length - 1 > index) && <span className='px-2.5'>/</span>
-                            }
-                            
-                        </span>
-                    )
-                    
-                })
-            }
-        </div>
+                                    <a
+                                        href={ ((styles=='responsive') ? item.url : null) }
+                                    >
+                                        {
+                                            item.name
+                                        }
+                                    </a>
+                                </span>
+                                {
+                                    (crumblist.length - 1 > index) && <span className='px-2.5'>/</span>
+                                }
+                                
+                            </li>
+                        )
+                        
+                    })
+                }
+            </ul>
+        </nav>
     )
 }

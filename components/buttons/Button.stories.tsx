@@ -6,7 +6,8 @@ export default {
   component: Button,
   argTypes: {
     type: { control: { type: "select", options: ["primary", "tertiary"] }},
-    size: { control: { type: "select", options: ["small", "default", "large"] }}
+    size: { control: { type: "select", options: ["small", "default", "large"] }},
+    forceDark: { control: { type: "boolean", options: [true, false] }},
   },
   parameters: {
     componentSubtitle: 'The Buttons'
