@@ -27,19 +27,19 @@ export const BlockQuote: FC<BlockQuoteProps> = ({
 }) => {
 
     return (
-        <div
+        <div className='flex flex-col space-y-6'
             {...props}
         >
             <p
-                className={`font-normal text-xl text-center text-brand-900`}
+                className={`font-normal text-lg text-center text-brand-900`}
 
             >“{ speech }”</p>
             <img 
-                className="w-20 h-20 mx-auto my-6 rounded-full" 
+                className="w-20 h-20 mx-auto rounded-full" 
                 src={ avatarUrl?avatarUrl:ImageBack } 
                 alt="" 
             />
-            <p className={`text-sm text-center`}>{ customerName }</p>
+            <p className={`text-xs text-center uppercase`}>{ customerName }</p>
         </div>
     )
 }
