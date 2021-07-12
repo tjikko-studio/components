@@ -14,6 +14,7 @@ const Template: Story<TextAreaProps> = (args) => <TextArea {...args} />
 export const Text = Template.bind({})
 Text.args = {
   text: 'Text Area',
+  placeholder: 'Placeholder',
   information: 'informations',
   error: 'Error Message',
   label: 'Label'

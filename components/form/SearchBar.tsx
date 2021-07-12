@@ -29,7 +29,7 @@ export const SearchBar: FC<SearchBarProps> = (props) => {
     return (
         <div
             className={`w-72 flex rounded-lg items-center overflow-hidden
-                ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent
+                ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base h-12 max-h-12 py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent
                 ${(props.isFocussed || autoFocus) && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}` }
             defaultValue={props.text}
         >
