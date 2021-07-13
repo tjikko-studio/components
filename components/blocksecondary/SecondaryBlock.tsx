@@ -1,6 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
 import TestImage from './Blank.png'
-import { Button } from '../buttons/Button'
 
 
 export interface CTAInfoType {
