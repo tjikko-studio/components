@@ -35,7 +35,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
 export const Button: FC<ButtonProps> = ({
     type = "primary",
     text = 'LABEL',
-    //url = "www.google.com",
     icon = 'none',
     size = "default",
     ...props

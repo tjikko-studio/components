@@ -6,7 +6,7 @@ export default {
   component: PrimaryBlock,
   argTypes: {
     type: { control: { type: "select", options: ["default", "vertical"] }},
-    mirror: { control: { type: "boolean", options: [true, false] }},
+    mirror: { control: { type: "boolean"}},
   },
   parameters: {
     componentSubtitle: 'The PrimaryBlock'
@@ -18,6 +18,7 @@ const Template: Story<PrimaryBlockProps> = (args) => <PrimaryBlock {...args} />
 export const Default = Template.bind({})
 Default.args = {
   type: "default",
+  mirror: false,
   imageurl: "https://source.unsplash.com/random",
   info: {
     head: "Heading",

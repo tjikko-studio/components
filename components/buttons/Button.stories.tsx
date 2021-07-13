@@ -7,7 +7,7 @@ export default {
   argTypes: {
     type: { control: { type: "select", options: ["primary", "tertiary"] }},
     size: { control: { type: "select", options: ["small", "default", "large"] }},
-    forceDark: { control: { type: "boolean", options: [true, false] }},
+    forceDark: { control: { type: "boolean" }}
   },
   parameters: {
     componentSubtitle: 'The Buttons'
@@ -20,6 +20,8 @@ export const Default = Template.bind({})
 Default.args = {
   type: "primary",
   text: 'LABEL',
+  url: '',
   icon: 'none',
-  size: "default"
+  size: "default",
+  forceDark: false
 }
