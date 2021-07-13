@@ -2,18 +2,13 @@ import React, { FC, HTMLAttributes } from 'react'
 import TestImage from './Blank.png'
 import { Button } from '../buttons/Button'
 
-export interface CTAType {
-    name: string
-    url: string
-}
 
 export interface CTAInfoType {
     head: string
     text: string
-    cta: CTAType
 }
 
-export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
+export interface SecondaryBlockProps extends HTMLAttributes<HTMLDivElement> {
    /**
     *  image url to show
     */
@@ -37,7 +32,7 @@ export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const PrimaryBlock: FC<PrimaryBlockProps> = ({
+export const SecondaryBlock: FC<SecondaryBlockProps> = ({
     type  = "vertical",
     mirror = "false",
     ...props
@@ -46,8 +41,7 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
         return (
             <div
                 className={`
-                    ${type!="vertical" && "px-12 py-6"}
-                    ${type=="vertical" && "pb-8"}
+                    ${type=="vertical" && "pb-6"}
                 `}
             >
                 <img 
@@ -63,16 +57,13 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
         return (
             <div
                 className={`
-                    ${type!="vertical" && "flex items-center justify-center"}
+                    ${type!="vertical" && "flex justify-center"}
                 `}
             >
                 <div
-                    className={`
-                        ${type!="vertical" && "pl-12"}
-                    `}
                     style={
                         {
-                            width: "428px"
+                            width: type=="vertical" ? "605px" : "526px"
                         }
                     }
                 >
@@ -84,25 +75,12 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
                         }
                     </h2>
                     <p
-                        className='text-base pt-4'
+                        className='text-base pt-2'
                     >
                         {
                             props.info.text
                         }
                     </p>
-                    {
-                        props.info.cta &&
-                        <div
-                            className="pt-6">
-                            <Button 
-                                text = {props.info.cta.name}
-                                url = {props.info.cta.url}
-                                type = "primary"
-                                icon = 'none'
-                                size = "large"
-                            />
-                        </div>
-                    }
                 </div>
             </div>
         )
@@ -110,9 +88,9 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
     return (
         <div
             {...props}
-            className={`
+            className={`gap-6
                 ${type=="default" && "flex"}
-                ${mirror && "flex-row-reverse"}
+                ${!mirror && "flex-row-reverse"}
                 ${props.className?props.className:""}
             `}
         >
