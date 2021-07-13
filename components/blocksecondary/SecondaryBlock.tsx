@@ -66,13 +66,13 @@ export const SecondaryBlock: FC<SecondaryBlockProps> = ({
                         }
                     }
                 >
-                    <h2
-                        className='fontStyle-4xl'
+                    <h3
+                        className='fontStyle-3xl'
                     >
                         {
                             props.info.head
                         }
-                    </h2>
+                    </h3>
                     <p
                         className='text-base pt-2'
                     >
