@@ -5,7 +5,8 @@ export default {
   title: 'Tjikko/blocks/PrimaryBlock',
   component: PrimaryBlock,
   argTypes: {
-    styles: { control: { type: "select", options: ["default", "vertical", "mirror"] }},
+    type: { control: { type: "select", options: ["default", "vertical"] }},
+    mirror: { control: { type: "boolean", options: [true, false] }},
   },
   parameters: {
     componentSubtitle: 'The PrimaryBlock'
@@ -16,6 +17,7 @@ const Template: Story<PrimaryBlockProps> = (args) => <PrimaryBlock {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
+  type: "default",
   imageurl: "https://source.unsplash.com/random",
   info: {
     head: "Heading",

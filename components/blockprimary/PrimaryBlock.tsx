@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import TestImage from './Blank.png'
+import { Button } from '../buttons/Button'
 
 export interface CTAType {
     name: string
@@ -22,9 +23,13 @@ export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
      */
     info: CTAInfoType
     /**
-     * Block types
+     * Block type
      */
-    types?: "default" | "vertical" | "mirror"
+    type?: "default" | "vertical"
+    /**
+     * Is mirror
+     */
+    mirror?: boolean
     classNames?: string
 }
 
@@ -33,20 +38,22 @@ export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const PrimaryBlock: FC<PrimaryBlockProps> = ({
-    types="vertical",
+    type  = "vertical",
+    mirror = "false",
     ...props
 }) => {
     const Image = () => {
         return (
             <div
                 className={`
-                    ${types!="vertical" && "px-12 py-6"}    
+                    ${type!="vertical" && "px-12 py-6"}
+                    ${type=="vertical" && "pb-8"}
                 `}
             >
                 <img 
                     src={props.imageurl?props.imageurl:TestImage}
                     className={`rounded-lg
-                        ${types=="default" && "w-auto"}
+                        ${type=="default" && "w-auto"}
                     `}
                 />
             </div>
@@ -56,12 +63,12 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
         return (
             <div
                 className={`
-                    ${types!="vertical" && "flex items-center justify-center"}
+                    ${type!="vertical" && "flex items-center justify-center"}
                 `}
             >
                 <div
                     className={`
-                        ${types!="vertical" && "pl-12"}
+                        ${type!="vertical" && "pl-12"}
                     `}
                     style={
                         {
@@ -69,32 +76,33 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
                         }
                     }
                 >
-                    <div
+                    <h2
                         className='fontStyle-4xl'
                     >
                         {
                             props.info.head
                         }
-                    </div>
-                    <div
-                        className='text-base'
+                    </h2>
+                    <p
+                        className='text-base pt-4'
                     >
                         {
                             props.info.text
                         }
-                    </div>
-                    <div
-                        className='pt-10'
-                    >
-                        <a
-                            href={props.info.cta.url}
-                            className='text-brand-600 hover:text-brand-500 uppercase text-base font-semibold'
-                        >
-                            {
-                                props.info.cta.name
-                            }
-                        </a>
-                    </div>
+                    </p>
+                    {
+                        props.info.cta &&
+                        <div
+                            className="pt-6">
+                            <Button 
+                                text = {props.info.cta.name}
+                                url = {props.info.cta.url}
+                                type = "primary"
+                                icon = 'none'
+                                size = "large"
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         )
@@ -103,24 +111,16 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
         <div
             {...props}
             className={`
-                ${types!="vertical" && "grid grid-cols-2"}
-                ${types=="mirror" && "flex-row-reverse"}
+                ${type=="default" && "flex"}
+                ${mirror && "flex-row-reverse"}
                 ${props.classNames?props.classNames:""}
             `}
         >
             {
-                (types=="default" || types=="vertical") && (
+                (type=="default" || type=="vertical") && (
                     <>
                         <Image />
                         <Text />
-                    </>
-                )
-            }
-            {
-                (types=="mirror") && (
-                    <>
-                        <Text />
-                        <Image />
                     </>
                 )
             }
