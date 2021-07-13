@@ -16,8 +16,8 @@ const Template: Story<CTAProps> = (args) => <CTA {...args} />
 export const Default = Template.bind({})
 Default.args = {
   ctalist: [
-    { name: "MAIN cta", url:"#", active: true },
-    { name: "SECONDARY CTA", url:"#", active: false },
+    { name: "MAIN cta", url:"#" },
+    { name: "SECONDARY CTA", url:"#" },
   ],
   caption: "We can also create any simulated realities",
   description: "for any use case you may have in mind",
