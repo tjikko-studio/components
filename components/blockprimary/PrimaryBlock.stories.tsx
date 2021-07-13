@@ -29,3 +29,9 @@ Default.args = {
     }
   }
 }
+export const WidthControl = Template.bind({})
+WidthControl.args = {
+  className: "w-full",
+  ...Default.args
+}
+

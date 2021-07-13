@@ -19,7 +19,7 @@ export const Default = Template.bind({})
 Default.args = {
   type: "default",
   mirror: false,
-  imageurl: "",
+  imageurl: "https://source.unsplash.com/random",
   info: {
     head: "Heading",
     text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo."

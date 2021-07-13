@@ -59,20 +59,18 @@ export const SecondaryBlock: FC<SecondaryBlockProps> = ({
                     ${type!="vertical" && "flex justify-center"}
                 `}
             >
-                <div
-                    style={
-                        {
-                            width: type=="vertical" ? "605px" : "526px"
-                        }
+                <div 
+                    className={`
+                        ${type!="vertical" && "pl-12"
                     }
-                >
-                    <h3
-                        className='fontStyle-3xl'
+                `} >
+                    <h2
+                        className='fontStyle-4xl'
                     >
                         {
                             props.info.head
                         }
-                    </h3>
+                    </h2>
                     <p
                         className='text-base pt-2'
                     >
@@ -87,9 +85,9 @@ export const SecondaryBlock: FC<SecondaryBlockProps> = ({
     return (
         <div
             {...props}
-            className={`gap-6
+            className={`
                 ${type=="default" && "flex"}
-                ${!mirror && "flex-row-reverse"}
+                ${mirror && "flex-row-reverse"}
                 ${props.className?props.className:""}
             `}
         >

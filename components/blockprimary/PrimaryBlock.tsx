@@ -66,16 +66,11 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
                     ${type!="vertical" && "flex items-center justify-center"}
                 `}
             >
-                <div
+                <div 
                     className={`
-                        ${type!="vertical" && "pl-12"}
-                    `}
-                    style={
-                        {
-                            width: "428px"
-                        }
+                        ${type!="vertical" && "pl-12"
                     }
-                >
+                `} >
                     <h2
                         className='fontStyle-4xl'
                     >

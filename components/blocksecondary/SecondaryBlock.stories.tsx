@@ -25,3 +25,8 @@ Default.args = {
     text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo."
   }
 }
+export const WidthControl = Template.bind({})
+WidthControl.args = {
+  className: "w-full",
+  ...Default.args
+}

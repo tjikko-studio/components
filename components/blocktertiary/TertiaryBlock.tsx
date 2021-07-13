@@ -59,13 +59,11 @@ export const TertiaryBlock: FC<TertiaryBlockProps> = ({
                     ${type!="vertical" && "flex justify-center"}
                 `}
             >
-                <div
-                    style={
-                        {
-                            width: "205px"
-                        }
+                <div 
+                    className={`
+                        ${type!="vertical" && "pl-12"
                     }
-                >
+                `} >
                     <h2
                         className='fontStyle-2xl'
                     >
@@ -87,7 +85,7 @@ export const TertiaryBlock: FC<TertiaryBlockProps> = ({
     return (
         <div
             {...props}
-            className={`gap-6
+            className={`
                 ${type=="default" && "flex"}
                 ${mirror && "flex-row-reverse"}
                 ${props.className?props.className:""}
