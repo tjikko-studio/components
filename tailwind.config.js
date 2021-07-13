@@ -49,10 +49,10 @@ module.exports = {
         "9xl": "8rem"
       },
       lineHeight:{
-        "xl":  "1.5em",
-        "2xl": "1.75em",
-        "3xl": "2.25em",
-        "4xl": "2.5em",
+        "xl":  "1.33333em",
+        "2xl": "1.16667em",
+        "3xl": "1.2em",
+        "4xl": "1.1111em",
         "5xl": "1em",
         "6xl": "1em",
         "7xl": "1em",

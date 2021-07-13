@@ -7,7 +7,7 @@ export default {
   argTypes: {
     type: { control: { type: "select", options: ["primary", "tertiary"] }},
     size: { control: { type: "select", options: ["small", "default", "large"] }},
-    forceDark: { control: { type: "boolean", options: [true, false] }},
+    forceDark: { control: { type: "boolean" }}
   },
   parameters: {
     componentSubtitle: 'The Buttons'
@@ -18,8 +18,10 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: "tertiary",
+  type: "primary",
   text: 'LABEL',
+  url: '',
   icon: 'none',
-  size: "small"
+  size: "default",
+  forceDark: false
 }
