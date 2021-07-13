@@ -1,19 +1,19 @@
-import { SecondaryBlock, SecondaryBlockProps } from "./SecondaryBlock"
+import { TertiaryBlock, TertiaryBlockProps } from "./TertiaryBlock"
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/SecondaryBlock',
-  component: SecondaryBlock,
+  title: 'Tjikko/blocks/TertiaryBlock',
+  component: TertiaryBlock,
   argTypes: {
     type: { control: { type: "select", options: ["default", "vertical"] }},
     mirror: { control: { type: "boolean"}},
   },
   parameters: {
-    componentSubtitle: 'The SecondaryBlock'
+    componentSubtitle: 'The TertiaryBlock'
   }
 } as Meta
 
-const Template: Story<SecondaryBlockProps> = (args) => <SecondaryBlock {...args} />
+const Template: Story<TertiaryBlockProps> = (args) => <TertiaryBlock {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -27,6 +27,6 @@ Default.args = {
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {
-  className: "w-full",
+  className: "w-80",
   ...Default.args
 }

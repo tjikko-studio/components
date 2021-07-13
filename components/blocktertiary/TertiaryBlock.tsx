@@ -7,7 +7,7 @@ export interface CTAInfoType {
     text: string
 }
 
-export interface SecondaryBlockProps extends HTMLAttributes<HTMLDivElement> {
+export interface TertiaryBlockProps extends HTMLAttributes<HTMLDivElement> {
    /**
     *  image url to show
     */
@@ -31,7 +31,7 @@ export interface SecondaryBlockProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SecondaryBlock: FC<SecondaryBlockProps> = ({
+export const TertiaryBlock: FC<TertiaryBlockProps> = ({
     type  = "vertical",
     mirror = "false",
     ...props
@@ -65,7 +65,7 @@ export const SecondaryBlock: FC<SecondaryBlockProps> = ({
                     }
                 `} >
                     <h2
-                        className='fontStyle-4xl'
+                        className='fontStyle-2xl'
                     >
                         {
                             props.info.head
