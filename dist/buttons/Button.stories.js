@@ -22,6 +22,11 @@ var _default = {
         type: "select",
         options: ["small", "default", "large"]
       }
+    },
+    forceDark: {
+      control: {
+        type: "boolean"
+      }
     }
   },
   parameters: {
@@ -35,8 +40,10 @@ var Template = args => /*#__PURE__*/React.createElement(_Button.Button, args);
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  type: "tertiary",
+  type: "primary",
   text: 'LABEL',
+  url: '',
   icon: 'none',
-  size: "small"
+  size: "default",
+  forceDark: false
 };
