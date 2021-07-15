@@ -8,8 +8,7 @@ module.exports = {
     './stories/components/**/*.@(js|jsx|ts|tsx)'
   ],
   darkMode: "class",
-  theme: {
-    
+  theme: {    
     fontFamily: {
       'inter': ['inter'],
       'Borda': ['Borda']
@@ -144,13 +143,7 @@ module.exports = {
   plugins: [
     function({ addBase, config }) {
       addBase({
-        'body': { fontFamily: config('theme.fontFamily.inter') },
-        'fontStyle-xl': {
-          fontSize: config('theme.fontSize.9xl'),
-          lineHeight: config('theme.lineHeight.9xl'),
-          space: config('theme.space.9xl'),
-          fontWeight: config('theme.fontWeight.9xl')
-        }
+        'body': { fontFamily: config('theme.fontFamily.inter') }
       })
     },
     plugin(({ addVariant, e }) => {
@@ -165,11 +158,80 @@ module.exports = {
         });
       });
     }),
-    plugin(function({ addUtilities, theme }) {
+    plugin(function({ addBase, addUtilities, theme }) {
       /*
         Fonts Styles shorthands
        */
       const fontUtilities = {
+        '.fontStyle-body': {
+          fontSize: theme('fontSize.base'),
+          lineHeight: theme('lineHeight.6'),
+        },
+        '.fontStyle-body.strong, .fontStyle-body strong': {
+          fontWeight: theme("fontWeight.semibold")
+        },
+        '.fontStyle-body.uppercase, .fontStyle-body uppercase': {
+          letterSpacing: theme('letterSpacing.wider'),
+        },
+        '.fontStyle-body.button': {
+          fontSize: theme('fontSize.sm'),
+          lineHeight: theme('lineHeight.4'),
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.wider'),
+          fontWeight: theme('fontWeight.semibold')
+        },
+        '.fontStyle-lg': {
+          fontSize: theme('fontSize.lg'),
+          lineHeight: theme('lineHeight.7'),
+        },
+        '.fontStyle-lg.strong, .fontStyle-lg strong': {
+          fontWeight: theme("fontWeight.semibold")
+        },
+        '.fontStyle-lg.uppercase, .fontStyle-lg uppercase': {
+          letterSpacing: theme('letterSpacing.wider'),
+        },
+        '.fontStyle-lg.button': {
+          fontSize: theme('fontSize.base'),
+          lineHeight: theme('lineHeight.4'),
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.wider'),
+          fontWeight: theme('fontWeight.semibold')
+        },
+        '.fontStyle-sm': {
+          fontSize: theme('fontSize.sm'),
+          lineHeight: theme('lineHeight.5'),
+        },
+        '.fontStyle-sm.strong, .fontStyle-sm strong': {
+          fontWeight: theme("fontWeight.semibold")
+        },
+        '.fontStyle-sm.uppercase, .fontStyle-sm uppercase': {
+          letterSpacing: theme('letterSpacing.wider'),
+        },
+        '.fontStyle-sm.button': {
+          fontSize: theme('fontSize.xs'),
+          lineHeight: theme('lineHeight.4'),
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.wider'),
+          fontWeight: theme('fontWeight.semibold')
+        },
+        '.fontStyle-xs': {
+          fontSize: theme('fontSize.xs'),
+          lineHeight: theme('lineHeight.4'),
+          fontWeight: theme("fontWeight.medium")
+        },
+        '.fontStyle-xs.strong, .fontStyle-xs strong': {
+          fontWeight: theme("fontWeight.bold")
+        },
+        '.fontStyle-xs.uppercase, .fontStyle-xs uppercase': {
+          letterSpacing: theme('letterSpacing.wider'),
+        },
+        '.fontStyle-xs.button': {
+          fontSize: theme('fontSize.xxs'),
+          lineHeight: theme('lineHeight.4'),
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.wider'),
+          fontWeight: theme('fontWeight.bold')
+        },
         '.fontStyle-xl': {
           fontFamily: theme('fontFamily.Borda'),
           fontSize: theme('fontSize.xl'),
