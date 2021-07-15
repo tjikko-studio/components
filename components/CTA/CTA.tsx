@@ -34,7 +34,7 @@ export const CTA: FC<CTAProps> = ({
     return (
         <div className="w-full py-24 text-center bg-gray-900">
             <h2 className='fontStyle-4xl text-gray-50'>{ caption && caption !== "" ? caption : "We can also create any simulated realities" }</h2>
-            <p className="font-Inter text-lg text-gray-50 mt-4 leading-7 mb-7">{ description && description !== "" ? description : "for any use case you may have in mind" }</p>
+            <p className="text-lg text-gray-50 mt-4 leading-7 mb-7">{ description && description !== "" ? description : "for any use case you may have in mind" }</p>
             <div className="inline-flex space-x-4">
             { ctalist.map((cta, index) => (
                 index == 0 &&

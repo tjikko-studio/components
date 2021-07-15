@@ -10,8 +10,8 @@ module.exports = {
   darkMode: "class",
   theme: {    
     fontFamily: {
-      'inter': ['inter'],
-      'Borda': ['Borda']
+      Inter: ['Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'],
+      Borda: ['Borda, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif']
     },
     extend: {
       height: {
@@ -143,7 +143,7 @@ module.exports = {
   plugins: [
     function({ addBase, config }) {
       addBase({
-        'body': { fontFamily: config('theme.fontFamily.inter') }
+        'body': { fontFamily: config('theme.fontFamily.Inter') }
       })
     },
     plugin(({ addVariant, e }) => {
