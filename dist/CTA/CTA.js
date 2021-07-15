@@ -33,7 +33,7 @@ var CTA = _ref => {
   }, /*#__PURE__*/_react.default.createElement("h2", {
     className: "fontStyle-4xl text-gray-50"
   }, caption && caption !== "" ? caption : "We can also create any simulated realities"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "text-lg text-gray-50 mt-4 leading-7 mb-7"
+    className: "font-Inter text-lg text-gray-50 mt-4 leading-7 mb-7"
   }, description && description !== "" ? description : "for any use case you may have in mind"), /*#__PURE__*/_react.default.createElement("div", {
     className: "inline-flex space-x-4"
   }, ctalist.map((cta, index) => index == 0 && /*#__PURE__*/_react.default.createElement(_Button.Button, {
