@@ -55,12 +55,6 @@ Default.args = {
     {
       type: "header",
       status: "default",
-      text: "Header",
-      url: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`,
-    },
-    {
-      type: "header",
-      status: "default",
       text: "Industry",
       url: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`,
     },

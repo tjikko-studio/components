@@ -53,7 +53,7 @@ export const SideNavItem: FC<SideNavItemProps> = ({
             { spacer ? "" : 
             <a
                 href={url ? url : "#"}
-                className={`text-sm 
+                className={`fontStyle-sm
                     ${ type == "header" ? "font-semibold" : "" }
                 `}
             >{ text }</a> }
