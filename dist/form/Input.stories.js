@@ -28,6 +28,7 @@ var Text = Template.bind({});
 exports.Text = Text;
 Text.args = {
   text: 'Input Text',
+  placeholder: 'Placeholder',
   information: 'informations',
   error: 'Error Message',
   label: 'Label'
