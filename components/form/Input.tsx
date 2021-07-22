@@ -90,5 +90,3 @@ export const Input: FC<InputProps> = (props) => {
         </div>
     )
 }
-
-/* ${props.isFocussed && "outline-none ring-2 ring-brand-500 border-transparent"} */
