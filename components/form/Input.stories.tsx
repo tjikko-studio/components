@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/Forms/Input',
   component: Input,
   parameters: {
-    componentSubtitle: 'The Forms/Input'
+    componentSubtitle: 'The Forms/Input',
   }
 } as Meta
 
@@ -17,13 +17,15 @@ Text.args = {
   placeholder: 'Placeholder',
   information: 'informations',
   error: 'Error Message',
-  label: 'Label'
+  label: 'Label',
 }
+
 export const Focused = Template.bind({})
 Focused.args = {
   ...Text.args,
-  isFocussed: true
+  isFocussed: true,
 }
+
 export const Error = Template.bind({})
 Error.args = {
   ...Text.args,

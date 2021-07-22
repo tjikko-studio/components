@@ -2,6 +2,7 @@ import React, { FC, HTMLAttributes } from 'react'
 import { ErrorIcon } from "../svg/Error"
 import { ValidatingIcon } from "../svg/Validating"
 import { TickIcon } from "../svg/Tick"
+import focusClasses from "../../utilities/focusClasses"
 
 export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -70,11 +71,11 @@ export const TextArea: FC<TextAreaProps> = (props) => {
                 className="col-span-2"
             >
                 <textarea
-                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} w-72 focus:outline-none focus:ring-2 focus:border-input_focus focus:shadow-input_focus focus:border-transparent
-                    ${props.isFocussed && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}
-                    ${props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent dark:ring-offset-0"}
-                    ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent dark:ring-offset-0"}
-                    ${props.isSuccess && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent dark:ring-offset-0"}` }
+                    className={`${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} w-72
+                    ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', props.isFocussed)}
+                    ${props.isError && "drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent"}
+                    ${props.isValidating && "drop-shadow-sm outline-none ring-2 dark:ring-blue-500 ring-blue-600 border-transparent"}
+                    ${props.isSuccess && "drop-shadow-sm outline-none ring-2 dark:ring-green-500 ring-green-600 border-transparent"}` }
                     defaultValue={props.text}
                     placeholder={props.placeholder}
                     disabled={props.isDisabled}
