@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes, useState } from 'react'
 import SearchIcon from '../../assets/icons/search-line.svg'
+import focusClasses from "../../utilities/focusClasses"
 
 export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -36,8 +37,8 @@ export const SearchBar: FC<SearchBarProps> = (props) => {
             </button>
             <input
                 className={`w-72 flex rounded-lg items-center overflow-hidden pl-11
-                    ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base h-12 max-h-12 py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent
-                    ${(props.isFocussed || autoFocus) && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}` }
+                ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base h-12 max-h-12 py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"}
+                ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', (props.isFocussed || autoFocus) )}` }
                 disabled={props.isDisabled}
                 defaultValue={props.text}
                 placeholder={props.placeHolder}

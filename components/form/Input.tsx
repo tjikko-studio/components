@@ -2,6 +2,7 @@ import React, { FC, HTMLAttributes } from 'react'
 import ErrorIcon from '../../assets/icons/information-fill.svg'
 import ValidatingIcon from '../../assets/icons/loader-2-fill.svg'
 import TickIcon from '../../assets/icons/checkbox-circle-fill.svg'
+import focusClasses from "../../utilities/focusClasses"
 
 
 export interface InputProps extends HTMLAttributes<HTMLDivElement> {
