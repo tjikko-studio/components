@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes } from 'react'
 import { BreadCrumb, BreadCrumbType } from '../breadcrumb/BreadCrumb'
 import { Input } from '../form/Input'
 import { Button } from '../buttons/Button'
-import { SP } from '../svg/SP'
+import ClientLogo from '../../assets/images/logo_placeholder_square.svg'
 
 export interface HeaderTextFooterType {
     type: "default" | "form" | "case"
@@ -95,11 +95,12 @@ export const HeaderText: FC<HeaderTextProps> = ({
                 {
                     (props.styles.type=="case") && (
                         <div
-                            className='flex items-center'
+                            className='flex items-center space-x-6'
                         >
-                            <SP width='48' height='48' />
+                            <ClientLogo width='' height='48' className='w-auto' />
+
                             <a
-                                className='text-gray-50 ml-7'
+                                className='text-gray-50'
                                 href={ props.styles.url }
                             >
                                 { props.styles.caseText }

@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
-import { SearchIcon } from '../svg/Search';
+import ButtonIcon from '../../assets/icons/checkbox-blank-circle-line.svg';
 
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -49,25 +49,18 @@ export const Button: FC<ButtonProps> = ({
     `
     const Content = () => {
         return (
-            <div>
-                {
-                    (icon != "none") && 
-                    <SearchIcon 
-                        color="text-white" darkColor="dark:text-black"
-                    />
-                }
-                
-                <span
-                    className={`font-semibold tracking-wide uppercase
-                        ${ (type == "primary" && !props.forceDark ) && "text-white dark:text-brand-900"}
-                        ${ (type == "primary" && props.forceDark ) && "text-brand-900"}
-                        ${ (type == "tertiary" && !props.forceDark ) && "text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-200"}
-                        ${ (type == "tertiary" && props.forceDark ) && "text-brand-400 hover:text-brand-200"}
-                        ${ (size == "small") && "text-xxs"}
-                        ${ (size == "default") && "text-xs"}
-                        ${ (size == "large") && "text-sm"}
-                    `}
-                >{ text }</span>
+            <div
+                className={`font-semibold tracking-wide uppercase
+                    ${ (type == "primary" && !props.forceDark ) && "text-white dark:text-brand-900"}
+                    ${ (type == "primary" && props.forceDark ) && "text-brand-900"}
+                    ${ (type == "tertiary" && !props.forceDark ) && "text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-200"}
+                    ${ (type == "tertiary" && props.forceDark ) && "text-brand-400 hover:text-brand-200"}
+                    ${ (size == "small") && "text-xxs"}
+                    ${ (size == "default") && "text-xs"}
+                    ${ (size == "large") && "text-sm"}
+            `}>
+                { (icon != "none") &&  <ButtonIcon /> }
+                <span >{ text }</span>
             </div>
         )
     }

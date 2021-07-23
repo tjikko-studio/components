@@ -1,7 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react'
-import { ErrorIcon } from "../svg/Error"
-import { ValidatingIcon } from "../svg/Validating"
-import { TickIcon } from "../svg/Tick"
+import ErrorIcon from '../../assets/icons/information-fill.svg'
+import ValidatingIcon from '../../assets/icons/loader-2-fill.svg'
+import TickIcon from '../../assets/icons/checkbox-circle-fill.svg'
+
 
 export interface InputProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -62,9 +63,9 @@ export const Input: FC<InputProps> = (props) => {
                     <p>
                         { props.label }
                     </p>
-                    { (props.isError ) && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
-                    { (props.isValidating) && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
-                    { (props.isSuccess) && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
+                    { (props.isError ) && <ErrorIcon className="text-red-600 dark:text-red-500" />}
+                    { (props.isValidating) && <ValidatingIcon className="text-blue-600 dark:text-blue-500" />}
+                    { (props.isSuccess) && <TickIcon className="text-green-600 dark:text-green-500" />}
                 </div>
             }
             <div className="col-span-2">

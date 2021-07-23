@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, useState } from 'react'
 import { PopUpNavItem } from '../popupnavitem/PopUpNavItem'
-import { ArrowDown } from '../svg/ArrowDown'
+import ArrowDown from '../../assets/icons/arrow-down-s-line.svg'
 import { ListNav, MenuType } from '../listnav/ListNav'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -68,17 +68,7 @@ export const NavItem: FC<NavItemProps> = ({
             >
             {   (keys.length > 0) && (
                     <span className='ml-2.5'>
-                        <ArrowDown 
-                            color={`
-                                ${ !mouseIn && styles=="default" ? "text-gray-800" : "" }
-                                ${ !mouseIn && styles=="default/white" ? "text-gray-100" : "" }
-                                ${ !mouseIn && styles=="flat" ? "text-gray-100 dark:text-gray-100" : "" }
-                                ${ mouseIn && styles=="default" ? "text-brand-600" : "" }
-                                ${ mouseIn && styles=="default/white" ? "text-brand-300" : "" }
-                                ${ mouseIn && styles=="flat" ? "text-brand-300 dark:text-brand-300" : "" }
-                            `} 
-                            darkColor="text-gray-50"
-                        />
+                        <ArrowDown width='18' height='18' />
                     </span>
                 )
             }

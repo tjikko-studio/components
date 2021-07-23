@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/HeaderText',
   component: HeaderText,
   argTypes: {
-    // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
+    type: { control: { type: "select", options: ["default", "form", "case"] }},
   },
   parameters: {
     componentSubtitle: 'The HeaderText',

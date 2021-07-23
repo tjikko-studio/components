@@ -20,11 +20,9 @@ export const MobileMenu: FC<SiteNavProps> = ({
             `}
         >
             <div 
-                className='flex justify-between pb-5 pt-6'
+                className='flex justify-between p-5 p-6'
             >
-                <div
-                    className="ml-2"
-                >
+                <div>
                     <a 
                         href={demourl}
                         className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold"
@@ -60,7 +58,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                                     ) : menu.caption
                                 }
                             </div>
-                            <div>
+                            <div >
                                 {
                                     (menu.submenu == null) ? (
                                        <></>
@@ -74,11 +72,13 @@ export const MobileMenu: FC<SiteNavProps> = ({
                                                     <div 
                                                         key={groupIndex}
                                                     >
-                                                        <div
-                                                            className="text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5"
-                                                        >
-                                                            {group.groupcaption}
-                                                        </div>
+                                                        {group.groupcaption && (
+                                                            <div
+                                                                className="text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5"
+                                                            >
+                                                                {group.groupcaption}
+                                                            </div>
+                                                        )}
                                                         {
                                                             group.grouplist.map((item, itemIndex) => {
                                                                 return (

@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes, useState } from 'react'
-import { SearchIcon } from "../svg/Search"
+import SearchIcon from '../../assets/icons/search-line.svg'
 
 export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
     /**
@@ -28,19 +28,18 @@ export const SearchBar: FC<SearchBarProps> = (props) => {
     const [autoFocus, setInputFocus] = useState(false);
     return (
         <div
-            className={`w-72 flex rounded-lg items-center overflow-hidden
-                ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base h-12 max-h-12 py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent
-                ${(props.isFocussed || autoFocus) && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}` }
             defaultValue={props.text}
         >
-            <button
+            <button 
                 disabled={props.isDisabled}
             >
-                <SearchIcon color="text-gray-600" />
+                <SearchIcon width="16" height="16"/>
             </button>
             <input
+                className={`w-72 flex rounded-lg items-center overflow-hidden
+                    ${ !props.isDisabled && "hover:border-gray-300 dark:border-gray-400" } dark:bg-gray-800 dark:text-white text-base h-12 max-h-12 py-3 px-4 rounded-lg border border-gray-200 ${props.isDisabled && "dark:border-gray-500"} focus:outline-none focus:ring-2 focus:border-input_focus focus:border-transparent
+                    ${(props.isFocussed || autoFocus) && "shadow-input_focus outline-none ring-2 border-input_focus border-transparent dark:ring-offset-0"}` }
                 disabled={props.isDisabled}
-                className='border-none ml-3.5 focus:outline-none dark:bg-gray-800 bg-white dark:text-white'
                 defaultValue={props.text}
                 placeholder={props.placeHolder}
                 onFocus={() => setInputFocus(true) }

@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import { PopUpNavItem } from '../popupnavitem/PopUpNavItem'
-import { Logo } from '../svg/Logo'
+import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
 
 export interface FooterMenuItem {
     name: string
@@ -42,7 +42,7 @@ export const Footer: FC<FooterProps> = ({
             <div
                 className='pl-6 pt-6 lg:pt-9 md:pt-9 pb-6 lg:pb-7 md:pb-7'
             >
-                <Logo width="210" height="16" />
+                <CompanyLogo width='210' height='16' className='text-gray-50' />
             </div>
             <hr
                 className='mx-6 bg-opacity-30 border-gray-500'
