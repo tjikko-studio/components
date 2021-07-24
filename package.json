@@ -10,7 +10,7 @@
     "dev": "concurrently npm:dev:babel npm:dev:storybook",
     "build": "npm run build:prod",
     "test": "echo 'No tests yet'",
-    "dev:storybook": "start-storybook -s ./assets -p 6006",
+    "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "build:storybook": "build-storybook"
   },
   "keywords": [],
