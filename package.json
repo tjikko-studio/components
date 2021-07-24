@@ -4,7 +4,7 @@
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
-    "build:dev": "babel components --out-dir dev --extensions \".tsx\" --ignore \"components/**/*.stories.*\" --source-maps inline",
+    "build:dev": "babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\" --source-maps inline",
     "build:prod": "cross-env BABEL_ENV=production babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\"",
     "dev:babel": "npm run build:dev -- --watch",
     "dev": "concurrently npm:dev:babel npm:dev:storybook",
