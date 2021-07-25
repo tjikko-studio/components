@@ -1,18 +1,18 @@
-import { QABlock, QABlockProps } from "./QABlock"
+import { FAQBlock, FAQBlockProps } from "./FAQBlock"
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/QABlock',
-  component: QABlock,
+  title: 'Tjikko/blocks/FAQBlock',
+  component: FAQBlock,
   argTypes: {
     
   },
   parameters: {
-    componentSubtitle: 'The QABlock'
+    componentSubtitle: 'The FAQBlock'
   }
 } as Meta
 
-const Template: Story<QABlockProps> = (args) => <QABlock {...args} />
+const Template: Story<FAQBlockProps> = (args) => <FAQBlock {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

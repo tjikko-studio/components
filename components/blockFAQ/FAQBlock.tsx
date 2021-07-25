@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-export interface QABlockProps extends HTMLAttributes<HTMLDivElement> {
+export interface FAQBlockProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * text to show as question
      */
@@ -17,7 +17,7 @@ export interface QABlockProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const QABlock: FC<QABlockProps> = ({
+export const FAQBlock: FC<FAQBlockProps> = ({
     answer = "",
     ...props
 }) => {
