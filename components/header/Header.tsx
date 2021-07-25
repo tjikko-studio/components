@@ -4,7 +4,7 @@ import { Input } from '../form/Input'
 import { Button } from '../buttons/Button'
 import { SP } from '../svg/SP'
 
-export interface HeaderTextFooterType {
+export interface HeaderFooterType {
     type: "default" | "form" | "case"
     buttonText?: string
     formPlaceholder?: string
@@ -12,11 +12,11 @@ export interface HeaderTextFooterType {
     url?: string
 }
 
-export interface HeaderTextProps extends HTMLAttributes<HTMLElement> {
+export interface HeaderProps extends HTMLAttributes<HTMLElement> {
     /**
      * Header type and information
      */
-    styles: HeaderTextFooterType
+    styles: HeaderFooterType
     /**
      * breadcrumb
      */
@@ -36,7 +36,7 @@ export interface HeaderTextProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const HeaderText: FC<HeaderTextProps> = ({
+export const Header: FC<HeaderProps> = ({
     breadcrumb=[],
     ...props
 }) => {
@@ -84,7 +84,7 @@ export const HeaderText: FC<HeaderTextProps> = ({
                             />
                             <Button 
                                 text = {props.styles.buttonText}
-                                forceDark = "true"
+                                forceDark = {true}
                                 type = "primary"
                                 icon = 'none'
                                 size = "large"
