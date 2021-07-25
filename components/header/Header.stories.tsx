@@ -1,14 +1,14 @@
-import { HeaderText, HeaderTextProps } from "./HeaderText"
+import { Header, HeaderProps } from "./Header"
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/HeaderText',
-  component: HeaderText,
+  title: 'Tjikko/Header',
+  component: Header,
   argTypes: {
     // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
   },
   parameters: {
-    componentSubtitle: 'The HeaderText',
+    componentSubtitle: 'The Header',
     backgrounds: {
       default: 'dark background',
       values: [
@@ -21,7 +21,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<HeaderTextProps> = (args) => <HeaderText {...args} />
+const Template: Story<HeaderProps> = (args) => <Header {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
@@ -30,7 +30,7 @@ Default.args = {
     buttonText: "Book a demo",
     formPlaceholder: "Work email",
     caseText: "SP Architectutes",
-    url: "/headertext",
+    url: "/Header",
   },
   title: "Some amazing title",
   breadcrumb: [
