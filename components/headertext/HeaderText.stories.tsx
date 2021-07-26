@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/HeaderText',
   component: HeaderText,
   argTypes: {
-    // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
+    type: { control: { type: "select", options: ["default", "form", "case"] }},
   },
   parameters: {
     componentSubtitle: 'The HeaderText',
@@ -25,13 +25,11 @@ const Template: Story<HeaderTextProps> = (args) => <HeaderText {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  styles: {
-    type: "default",
-    buttonText: "Book a demo",
-    formPlaceholder: "Work email",
-    caseText: "SP Architectutes",
-    url: "/headertext",
-  },
+  type: "default",
+  buttonText: "Book a demo",
+  formPlaceholder: "Work email",
+  caseText: "SP Architectutes",
+  url: "/headertext",
   title: "Some amazing title",
   breadcrumb: [
     {

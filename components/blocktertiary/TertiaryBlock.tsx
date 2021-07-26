@@ -3,8 +3,6 @@ import TestImage from './Blank.png'
 
 
 export interface CTAInfoType {
-    head: string
-    text: string
 }
 
 export interface TertiaryBlockProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,7 +13,8 @@ export interface TertiaryBlockProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * text and button to show
      */
-    info: CTAInfoType
+    head: string
+    text: string
     /**
      * Block type
      */
@@ -68,14 +67,14 @@ export const TertiaryBlock: FC<TertiaryBlockProps> = ({
                         className='fontStyle-2xl'
                     >
                         {
-                            props.info.head
+                            props.head
                         }
                     </h2>
                     <p
                         className='text-base pt-2'
                     >
                         {
-                            props.info.text
+                            props.text
                         }
                     </p>
                 </div>

@@ -1,11 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import TestImage from './Blank.png'
-
-
-export interface CTAInfoType {
-    head: string
-    text: string
-}
+import { Button } from '../buttons/Button'
 
 export interface SecondaryBlockProps extends HTMLAttributes<HTMLDivElement> {
    /**
@@ -15,7 +10,10 @@ export interface SecondaryBlockProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * text and button to show
      */
-    info: CTAInfoType
+    head: string
+    text: string
+    cta_name: string
+    cta_link: string
     /**
      * Block type
      */
@@ -68,16 +66,29 @@ export const SecondaryBlock: FC<SecondaryBlockProps> = ({
                         className='fontStyle-4xl'
                     >
                         {
-                            props.info.head
+                            props.head
                         }
                     </h2>
                     <p
                         className='text-base pt-2'
                     >
                         {
-                            props.info.text
+                            props.text
                         }
                     </p>
+                    {
+                        (props.cta_name && props.cta_link) &&
+                        <div
+                            className="pt-6">
+                            <Button 
+                                text = {props.cta_name}
+                                url = {props.cta_link}
+                                type = "tertiary"
+                                icon = 'none'
+                                size = "large"
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         )

@@ -2,16 +2,6 @@ import React, { FC, HTMLAttributes } from 'react'
 import TestImage from './Blank.png'
 import { Button } from '../buttons/Button'
 
-export interface CTAType {
-    name: string
-    url: string
-}
-
-export interface CTAInfoType {
-    head: string
-    text: string
-    cta: CTAType
-}
 
 export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
    /**
@@ -21,7 +11,10 @@ export interface PrimaryBlockProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * text and button to show
      */
-    info: CTAInfoType
+    head: string
+    text: string
+    cta_name: string
+    cta_link: string
     /**
      * Block type
      */
@@ -75,23 +68,23 @@ export const PrimaryBlock: FC<PrimaryBlockProps> = ({
                         className='fontStyle-4xl'
                     >
                         {
-                            props.info.head
+                            props.head
                         }
                     </h2>
                     <p
                         className='text-base pt-4'
                     >
                         {
-                            props.info.text
+                            props.text
                         }
                     </p>
                     {
-                        props.info.cta &&
+                        (props.cta_name && props.cta_link) &&
                         <div
                             className="pt-6">
                             <Button 
-                                text = {props.info.cta.name}
-                                url = {props.info.cta.url}
+                                text = {props.cta_name}
+                                url = {props.cta_link}
                                 type = "primary"
                                 icon = 'none'
                                 size = "large"
