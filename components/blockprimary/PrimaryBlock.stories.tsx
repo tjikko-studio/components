@@ -20,14 +20,10 @@ Default.args = {
   type: "default",
   mirror: false,
   imageurl: "https://source.unsplash.com/random",
-  info: {
-    head: "Heading",
-    text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.",
-    cta: {
-      name: 'cta text',
-      url: "/ctatext"
-    }
-  }
+  head: "Heading",
+  text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.",
+  cta_name: 'cta text',
+  cta_link: "/ctatext"
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

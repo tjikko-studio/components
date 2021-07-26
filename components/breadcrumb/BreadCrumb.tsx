@@ -7,11 +7,6 @@ export interface BreadCrumbType {
 
 export interface BreadCrumbProps extends HTMLAttributes<HTMLDivElement> {
     /**
-     * fixed: no link, no click
-     * responsive: link, clickable and hover
-     */
-    styles?: "fixed" | "responsive"
-    /**
      * breadcrumb data list
      */
     crumblist: Array<BreadCrumbType>
@@ -23,7 +18,6 @@ export interface BreadCrumbProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const BreadCrumb: FC<BreadCrumbProps> = ({
-    styles="responsive",
     crumblist = [],
     ...props
 }) => {
@@ -44,13 +38,11 @@ export const BreadCrumb: FC<BreadCrumbProps> = ({
                                 key={index}
                             >
                                 <span
-                                    className={`fontStyle-xl
-                                        ${(styles=='fixed') && ""}
-                                        ${ (styles=='responsive') && "hover:text-brand-300"}`}
+                                    className={`fontStyle-xl hover:text-brand-600 dark:hover:text-brand-300`}
                                     key={index}
                                 >
                                     <a
-                                        href={ ((styles=='responsive') ? item.url : null) }
+                                        href={ (item.url ? item.url : null) }
                                     >
                                         {
                                             item.name

@@ -4,19 +4,16 @@ import { Input } from '../form/Input'
 import { Button } from '../buttons/Button'
 import { SP } from '../svg/SP'
 
-export interface HeaderTextFooterType {
-    type: "default" | "form" | "case"
-    buttonText?: string
-    formPlaceholder?: string
-    caseText?: string
-    url?: string
-}
 
 export interface HeaderTextProps extends HTMLAttributes<HTMLElement> {
     /**
      * Header type and information
      */
-    styles: HeaderTextFooterType
+    type: "default" | "form" | "case"
+    buttonText?: string
+    formPlaceholder?: string
+    caseText?: string
+    url?: string
     /**
      * breadcrumb
      */
@@ -44,7 +41,7 @@ export const HeaderText: FC<HeaderTextProps> = ({
     return (
         <div
             {...props}
-            className={` flex flex-col
+            className={`flex flex-col dark
                 ${props.className?props.className:''}
             `}
         >
@@ -54,7 +51,7 @@ export const HeaderText: FC<HeaderTextProps> = ({
                 className="text-gray-50 pb-3"
             />
             <h1
-                className='text-gray-50 fontStyle-5xl '// lg:fontStyle-6xl md:fontStyle-5xl sm:fontStyle-5xl'
+                className='text-gray-50 fontStyle-5xl '
             >
                 { props.title }
             </h1>
@@ -67,23 +64,23 @@ export const HeaderText: FC<HeaderTextProps> = ({
                 className='pt-6 pb-4'
             >
                 {
-                    (props.styles.type=="default") && (
+                    (props.type=="default") && (
                         <a
-                            href={props.styles.url}
+                            href={props.url}
                             className='bg-brand-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-brand-900 hover:bg-brand-300'
                         >
-                            { props.styles.buttonText }
+                            { props.buttonText }
                         </a>
                     )
                 }
                 {
-                    (props.styles.type=="form") && (
+                    (props.type=="form") && (
                         <form className="flex space-x-2">
                             <Input 
-                                placeholder={props.styles.formPlaceholder}
+                                placeholder={props.formPlaceholder}
                             />
                             <Button 
-                                text = {props.styles.buttonText}
+                                text = {props.buttonText}
                                 forceDark = "true"
                                 type = "primary"
                                 icon = 'none'
@@ -93,16 +90,16 @@ export const HeaderText: FC<HeaderTextProps> = ({
                     )
                 }
                 {
-                    (props.styles.type=="case") && (
+                    (props.type=="case") && (
                         <div
                             className='flex items-center'
                         >
                             <SP width='48' height='48' />
                             <a
                                 className='text-gray-50 ml-7'
-                                href={ props.styles.url }
+                                href={ props.url }
                             >
-                                { props.styles.caseText }
+                                { props.caseText }
                             </a>
                         </div>
                     )
