@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
-import { Button } from '../buttons/Button'
+import { Button } from '../Button'
 
 export interface CTAType {
   label?: string

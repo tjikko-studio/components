@@ -1,14 +1,44 @@
 import React, { FC, HTMLAttributes } from 'react'
 
 export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * text to show as question
+   */
+  question: string
+  /**
+   * text to show as answer
+   */
+  answer?: string
 
+  /**
+   * Additional space-separated class names to append
+   */
+  className?: string
 }
 
-export const FAQ: FC<FAQProps> = (props) => {
+
+/**
+ * Primary UI component for user interaction
+ */
+export const FAQ: FC<FAQProps> = ({
+  question,
+  answer = "",
+  className
+}) => {
   return (
-    <div>
-      <h2 className='text-5xl'>FAQ</h2>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+    <div
+      className={`text-gray-900 ${className}`}
+    >
+      <div
+        className='font-semibold text-lg leading-7'
+      >
+        {question}
+      </div>
+      <div
+        className='pt-2 text-base leading-6'
+      >
+        {answer}
+      </div>
     </div>
   )
 }

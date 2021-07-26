@@ -7,13 +7,52 @@ exports.Primary = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _Button = require("../Button");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Primary = props => {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "text-5xl"
-  }, "Primary"), /*#__PURE__*/_react.default.createElement("pre", null, JSON.stringify(props, null, 2)));
+/**
+ * Primary UI component for user interaction
+ */
+var Primary = _ref => {
+  var {
+    type = 'vertical',
+    mirror = false,
+    imageUrl = '',
+    head,
+    text,
+    cta_name,
+    cta_url
+  } = _ref;
+
+  var Text = () => {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      className: "\n          ".concat(type !== "vertical" && "flex items-center justify-center", "\n        ")
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "\n            ".concat(type !== 'vertical' && 'pl-12', "\n        ")
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      className: "fontStyle-4xl"
+    }, head), /*#__PURE__*/_react.default.createElement("p", {
+      className: "text-base pt-4"
+    }, text), cta_name && cta_url && /*#__PURE__*/_react.default.createElement("div", {
+      className: "pt-6"
+    }, /*#__PURE__*/_react.default.createElement(_Button.Button, {
+      text: cta_name,
+      url: cta_url,
+      type: "primary",
+      icon: "none",
+      size: "large"
+    }))));
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "".concat(type === 'default' ? 'flex' : '').concat(mirror ? ' flex-row-reverse' : '')
+  }, (type === "default" || type === "vertical") && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, imageUrl && /*#__PURE__*/_react.default.createElement("div", {
+    className: "".concat(type === 'vertical' ? 'pb-8' : 'px-12 py-6')
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: imageUrl,
+    className: "rounded-lg".concat(type === 'default' ? ' w-auto' : '')
+  })), /*#__PURE__*/_react.default.createElement(Text, null)));
 };
 
 exports.Primary = Primary;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2NvbXBvbmVudHMvYmxvY2tzL1ByaW1hcnkudHN4Il0sIm5hbWVzIjpbIlByaW1hcnkiLCJwcm9wcyIsIkpTT04iLCJzdHJpbmdpZnkiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTs7OztBQU1PLElBQU1BLE9BQXlCLEdBQUlDLEtBQUQsSUFBVztBQUNsRCxzQkFDRSx1REFDRTtBQUFJLElBQUEsU0FBUyxFQUFDO0FBQWQsZUFERixlQUVFLDBDQUFNQyxJQUFJLENBQUNDLFNBQUwsQ0FBZUYsS0FBZixFQUFzQixJQUF0QixFQUE0QixDQUE1QixDQUFOLENBRkYsQ0FERjtBQU1ELENBUE0iLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgRkMsIEhUTUxBdHRyaWJ1dGVzIH0gZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBpbnRlcmZhY2UgUHJpbWFyeVByb3BzIGV4dGVuZHMgSFRNTEF0dHJpYnV0ZXM8SFRNTERpdkVsZW1lbnQ+IHtcblxufVxuXG5leHBvcnQgY29uc3QgUHJpbWFyeTogRkM8UHJpbWFyeVByb3BzPiA9IChwcm9wcykgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXY+XG4gICAgICA8aDIgY2xhc3NOYW1lPSd0ZXh0LTV4bCc+UHJpbWFyeTwvaDI+XG4gICAgICA8cHJlPntKU09OLnN0cmluZ2lmeShwcm9wcywgbnVsbCwgMil9PC9wcmU+XG4gICAgPC9kaXY+XG4gIClcbn1cbiJdfQ==

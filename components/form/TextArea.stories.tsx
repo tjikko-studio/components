@@ -15,7 +15,7 @@ export const Text = Template.bind({})
 Text.args = {
   text: 'Text Area',
   placeholder: 'Placeholder',
-  information: 'informations',
+  information: 'information',
   error: 'Error Message',
   label: 'Label'
 }

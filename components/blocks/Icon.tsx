@@ -1,14 +1,75 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import {useMediaPredicate} from "react-media-hook"
+/*
+* In production mode, show dynamic image and video with url
+*/
 
-export interface IconProps extends HTMLAttributes<HTMLDivElement> {
-
+export interface IconProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * type of Icon ("horizontal" | "vertical")
+   */
+  type?: "horizontal" | "vertical"
+  /**
+   *  image url to show
+   */
+  imageUrl?: string
+  /**
+   * heading text
+   */
+  heading?: string
+  /**
+   * content text
+   */
+  text?: string
+  classNames?: string
 }
 
-export const Icon: FC<IconProps> = (props) => {
+/**
+ * Primary UI component for user interaction
+ */
+export const Icon: FC<IconProps> = ({
+  type = "horizontal",
+  heading = "Heading",
+  text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+  imageUrl
+}) => {
+  const desktop = useMediaPredicate("(min-width: 640px)")
+
   return (
-    <div>
-      <h2 className='text-5xl'>Icon</h2>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+    <div
+      className={type === 'horizontal' ? 'flex' : ''}
+    >
+      <div
+        className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
+      >
+        <img
+          src={imageUrl}
+          className={`w-14 h-14`}
+        />
+      </div>
+      <div
+        className={type === 'horizontal' ? 'ml-6' : 'mt-6'}
+        style={
+          {
+            width: type === "horizontal" ? "310px" : "290px"
+          }
+        }
+      >
+        <h2
+          className='fontStyle-2xl'
+        >
+          {
+            heading && heading === "" ? heading : "Heading"
+          }
+        </h2>
+        <p
+          className='text-base pt-2'
+        >
+          {
+            text && text === "" ? text : "Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+          }
+        </p>
+      </div>
     </div>
   )
 }
