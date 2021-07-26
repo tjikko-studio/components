@@ -1,8 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-export interface CTAInfoType {
-  head: string
-  text: string
-}
+import {Button} from '../Button'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -13,10 +10,10 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
    *  image url to show
    */
   imageUrl?: string
-  /**
-   * text and button to show
-   */
-  info: CTAInfoType
+  head?: string
+  text?: string
+  cta_name: string
+  cta_url: string
 
   /**
    * Is mirror
@@ -34,7 +31,10 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Secondary: FC<SecondaryProps> = ({
   type = 'vertical',
   imageUrl,
-  info = {},
+  head,
+  text,
+  cta_name,
+  cta_url,
   mirror = 'false',
   className,
 
@@ -67,8 +67,21 @@ export const Secondary: FC<SecondaryProps> = ({
               ${type != 'vertical' && 'pl-12'}
           `}
         >
-          <h2 className='fontStyle-4xl'>{info.head}</h2>
-          <p className='text-base pt-2'>{info.text}</p>
+          <h2 className='fontStyle-4xl'>{head}</h2>
+          <p className='text-base pt-2'>{text}</p>
+          {
+            (cta_name && cta_url) &&
+            <div
+              className="pt-6">
+              <Button
+                text={cta_name}
+                url={cta_url}
+                type="tertiary"
+                icon='none'
+                size="large"
+              />
+            </div>
+          }
         </div>
       </div>
     )

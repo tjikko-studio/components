@@ -1,34 +1,24 @@
 import React, { FC, HTMLAttributes } from 'react'
 import {Button} from '../Button'
 
-export interface CTAType {
-  name: string
-  url: string
-}
-
-export interface CTAInfoType {
-  head: string
-  text: string
-  cta: CTAType
-}
-
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-  *  image url to show
-  */
-  imageUrl: string
-  /**
-   * text and button to show
-   */
-  info: CTAInfoType
   /**
    * Block type
    */
-  type?: "default" | "vertical"
+  type?: 'default' | 'vertical'
   /**
    * Is mirror
    */
   mirror?: boolean
+  /**
+  *  image url to show
+  */
+  imageUrl?: string
+  head?: string
+  text?: string
+  cta_name: string
+  cta_url: string
+
   /**
    * Additional space-separated class names to append
    */
@@ -43,41 +33,39 @@ export const Primary: FC<PrimaryProps> = ({
   type = 'vertical',
   mirror = false,
   imageUrl = '',
-  info = {}
+  head,
+  text,
+  cta_name,
+  cta_url
 }) => {
   const Text = () => {
     return (
       <div
         className={`
-          ${type != "vertical" && "flex items-center justify-center"}
+          ${type !== "vertical" && "flex items-center justify-center"}
         `}
       >
         <div
           className={`
-            ${type != "vertical" && "pl-12"
-            }
+            ${type !== 'vertical' && 'pl-12'}
         `} >
           <h2
             className='fontStyle-4xl'
           >
-            {
-              info.head
-            }
+            {head}
           </h2>
           <p
             className='text-base pt-4'
           >
-            {
-              info.text
-            }
+            {text}
           </p>
           {
-            info.cta &&
+            cta_name && cta_url &&
             <div
               className="pt-6">
               <Button
-                text={info.cta.name}
-                url={info.cta.url}
+                text={cta_name}
+                url={cta_url}
                 type="primary"
                 icon='none'
                 size="large"

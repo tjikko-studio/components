@@ -1,15 +1,11 @@
 import React, {FC, HTMLAttributes} from 'react'
 
-export interface CTAInfoType {
-  head: string
-  text: string
-}
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Block type
    */
-  type?: "default" | "vertical"
+  type?: 'default' | 'vertical'
   /**
    * Is mirror
    */
@@ -19,10 +15,8 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    *  image url to show
    */
   imageUrl?: string
-  /**
-   * text and button to show
-   */
-  info: CTAInfoType
+  head: string
+  text: string
   /**
    * Additional space-separated class names to append
    */
@@ -37,7 +31,8 @@ export const Tertiary: FC<TertiaryProps> = ({
   type = 'vertical',
   mirror = false,
   imageUrl,
-  info,
+  head,
+  text,
   className = ''
 }) => {
   const Image = () => {
@@ -63,16 +58,12 @@ export const Tertiary: FC<TertiaryProps> = ({
           <h2
             className='fontStyle-2xl'
           >
-            {
-              info.head
-            }
+            {head}
           </h2>
           <p
             className='text-base pt-2'
           >
-            {
-              info.text
-            }
+            {text}
           </p>
         </div>
       </div>

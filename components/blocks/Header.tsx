@@ -4,19 +4,15 @@ import {Input} from '../form/Input'
 import {Button} from '../Button'
 import {SP} from '../svg/SP'
 
-export interface HeaderFooterType {
+export interface HeaderProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * Header type and information
+   */
   type: "default" | "form" | "case"
   buttonText?: string
   formPlaceholder?: string
   caseText?: string
   url?: string
-}
-
-export interface HeaderProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * Header type and information
-   */
-  styles: HeaderFooterType
   /**
    * breadcrumb
    */
@@ -43,7 +39,11 @@ export const Header: FC<HeaderProps> = ({
   className,
   title,
   text,
-  styles
+  type,
+  url,
+  buttonText,
+  formPlaceholder,
+  caseText
 }) => {
 
   return (
@@ -53,8 +53,7 @@ export const Header: FC<HeaderProps> = ({
             `}
     >
       <BreadCrumb
-        crumblist={breadcrumb}
-        styles="fixed"
+        crumbs={breadcrumb}
         className="text-gray-50 pb-3"
       />
       <h1
@@ -71,23 +70,23 @@ export const Header: FC<HeaderProps> = ({
         className='pt-6 pb-4'
       >
         {
-          (styles.type === "default") && (
+          (type === "default") && (
             <a
-              href={styles.url}
+              href={url}
               className='bg-brand-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-brand-900 hover:bg-brand-300'
             >
-              {styles.buttonText}
+              {buttonText}
             </a>
           )
         }
         {
-          (styles.type === "form") && (
+          (type === "form") && (
             <form className="flex space-x-2">
               <Input
-                placeholder={styles.formPlaceholder}
+                placeholder={formPlaceholder}
               />
               <Button
-                text={styles.buttonText}
+                text={buttonText}
                 forceDark={true}
                 type="primary"
                 icon='none'
@@ -97,16 +96,16 @@ export const Header: FC<HeaderProps> = ({
           )
         }
         {
-          (styles.type === "case") && (
+          (type === "case") && (
             <div
               className='flex items-center'
             >
               <SP width='48' height='48' />
               <a
                 className='text-gray-50 ml-7'
-                href={styles.url}
+                href={url}
               >
-                {styles.caseText}
+                {caseText}
               </a>
             </div>
           )
