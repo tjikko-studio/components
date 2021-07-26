@@ -9,7 +9,7 @@ export interface MenuItem {
 
 export interface MenuType {
   groupCaption: string
-  groups: Array<MenuItem>
+  groups: MenuItem[]
 }
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +21,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * If data contains one, it will be single. If data contains more than one, it will be multi. At this time, last element will be tertiary  button.
    */
-  linkList: Array<MenuType>
+  linkList: MenuType[]
 }
 
 /**

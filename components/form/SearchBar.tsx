@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
-import {SearchIcon} from "../svg/Search"
+import SearchIcon from '../../assets/icons/search-line.svg'
 import focusClasses from "../../utilities/focusClasses"
 import addDisabledClasses from "../../snippets/addDisabledClasses"
 
@@ -32,11 +32,11 @@ export const SearchBar: FC<SearchBarProps> = ({
   placeHolder
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
-  const classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200']
+  const classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200']
   addDisabledClasses(isDisabled, classes)
   return (
     <div
-      className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+      className='relative'
       defaultValue={text}
     >
       <button
@@ -46,7 +46,7 @@ export const SearchBar: FC<SearchBarProps> = ({
       </button>
       <input
         disabled={isDisabled}
-        className='border-none ml-3.5 focus:outline-none dark:bg-gray-800 bg-white dark:text-white'
+        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
         defaultValue={text}
         placeholder={placeHolder}
         onFocus={() => setInputFocus(true)}

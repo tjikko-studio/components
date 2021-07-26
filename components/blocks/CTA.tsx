@@ -18,8 +18,7 @@ export interface CTAProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Action buttons / links
    */
-  ctas?: Array<CTAType>
-
+  ctas?: CTAType[]
 }
 
 /**

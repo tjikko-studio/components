@@ -40,9 +40,7 @@ export const BigHeader: FC<BigHeaderProps> = ({
 
   return (
     <header
-      className={`min-h-568 lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative
-                ${className ? className : ''}
-            `}
+      className={`min-h-568 lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative ${className ? className : ''}`}
       style={
         {
           backgroundImage: `url(${bgImage})`,

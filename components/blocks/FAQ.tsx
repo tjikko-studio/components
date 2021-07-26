@@ -22,7 +22,7 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const FAQ: FC<FAQProps> = ({
   question,
-  answer = "",
+  answer = '',
   className
 }) => {
   return (

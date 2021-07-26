@@ -1,8 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {ErrorIcon} from "../svg/Error"
-import {ValidatingIcon} from "../svg/Validating"
-import {TickIcon} from "../svg/Tick"
-import focusClasses from "../../utilities/focusClasses"
+import ErrorIcon from '../../assets/icons/information-fill.svg'
+import ValidatingIcon from '../../assets/icons/loader-2-fill.svg'
+import TickIcon from '../../assets/icons/checkbox-circle-fill.svg'
+import focusClasses from '../../utilities/focusClasses'
 import addDisabledClasses from '../../snippets/addDisabledClasses'
 import addErrorClasses from '../../snippets/addErrorClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
@@ -79,22 +79,22 @@ export const TextArea: FC<TextAreaProps> = ({
   }
   return (
     <div
-      className="flex flex-col gap-y-1 w-72"
+      className='flex flex-col gap-y-1 w-72'
     >
       {label &&
         <div
-        className={`text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ${isDisabled && "text-gray-500 dark:text-gray-600"}`}
+        className={`text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         <p>
           {label}
         </p>
-          {(isError && label) && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
-          {(isValidating && label) && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
-          {(isSuccess && label) && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
+        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-500' />}
+        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-500' />}
+        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-500' />}
         </div>
       }
       <div
-        className="col-span-2"
+        className='col-span-2'
       >
         <textarea
           className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
@@ -104,11 +104,11 @@ export const TextArea: FC<TextAreaProps> = ({
         />
       </div>
       <div
-        className={`text-sm font-normal dark:text-gray-300 ${isDisabled && "text-gray-500 dark:text-gray-600"} `}
+        className={`text-sm font-normal dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} `}
       >
         {information}
       </div>
-      {isError && (<div className="text-sm font-normal text-red-700">{error}</div>)}
+      {isError && (<div className='text-sm font-normal text-red-700'>{error}</div>)}
     </div>
   )
 }
