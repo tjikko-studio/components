@@ -1,14 +1,96 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 
-export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
-
+export interface CTAInfoType {
+  head: string
+  text: string
 }
 
-export const Tertiary: FC<TertiaryProps> = (props) => {
+export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Block type
+   */
+  type?: "default" | "vertical"
+  /**
+   * Is mirror
+   */
+  mirror?: boolean
+  /**
+   *
+   *  image url to show
+   */
+  imageUrl?: string
+  /**
+   * text and button to show
+   */
+  info: CTAInfoType
+  /**
+   * Additional space-separated class names to append
+   */
+  className?: string
+}
+
+
+/**
+ * Primary UI component for user interaction
+ */
+export const Tertiary: FC<TertiaryProps> = ({
+  type = 'vertical',
+  mirror = false,
+  imageUrl,
+  info,
+  className = ''
+}) => {
+  const Image = () => {
+    return (
+      <div
+        className={(type === 'vertical' ? 'pb-6' : '')}
+      >
+        <img
+          src={imageUrl}
+          className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
+        />
+      </div>
+    )
+  }
+  const Text = () => {
+    return (
+      <div
+        className={type !== 'vertical' ? 'flex justify-center' : ''}
+      >
+        <div
+          className={type !== 'vertical' ? 'pl-12' : ''}
+        >
+          <h2
+            className='fontStyle-2xl'
+          >
+            {
+              info.head
+            }
+          </h2>
+          <p
+            className='text-base pt-2'
+          >
+            {
+              info.text
+            }
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div>
-      <h2 className='text-5xl'>Tertiary</h2>
-      <pre>{JSON.stringify(props, null, 2)}</pre>
+    <div
+      className={`${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''} ${className}`}
+    >
+      {
+        (type === 'default' || type === 'vertical') && (
+          <>
+            <Image />
+            <Text />
+          </>
+        )
+      }
     </div>
   )
 }
