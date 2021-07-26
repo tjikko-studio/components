@@ -13,11 +13,13 @@ var _outline = require("@heroicons/react/outline");
 
 var _react2 = require("@headlessui/react");
 
-var _Logo = require("../svg/Logo");
+var _company_logo_placeholder = _interopRequireDefault(require("../../assets/images/company_logo_placeholder.svg"));
 
 var _NavItem = require("./NavItem");
 
 var _MobileMenu = require("./MobileMenu");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -40,16 +42,13 @@ var SiteNav = _ref => {
   var medium = (0, _reactMediaHook.useMediaPredicate)("(max-width: 1023px)");
   var mobile = (0, _reactMediaHook.useMediaPredicate)("(max-width: 640px)");
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "bg-gray-900 flex items-center justify-between md:justify-Start\n                ".concat(styles === "transWhite" && "bg-opacity-10", "\n                ").concat(className, "\n            ")
-  }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-xl"
-  }, "Hello"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "pt-6 pb-7 lg:pt-10 lg:pb-9 lg:pl-10 sm:pl-6 pl-6 md:py-8 sm:pt-6 sm:pb-7"
-  }, /*#__PURE__*/_react.default.createElement(_Logo.Logo, {
-    width: large ? "269" : medium ? "215" : mobile ? "161" : "269",
-    height: large ? "20" : medium ? "16" : mobile ? "12" : "20"
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "hidden md:flex m-auto items-center"
+    className: "bg-gray-900 flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ".concat(styles === "transWhite" && "bg-opacity-10", " ").concat(className)
+  }, /*#__PURE__*/_react.default.createElement(_company_logo_placeholder.default, {
+    width: "",
+    height: "",
+    className: "h-3 lg:h-4 text-gray-50 w-auto"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "hidden lg:flex m-auto items-center lg:space-x-6"
   }, menuData.map((menuitem, index) => {
     return /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
       key: index,
@@ -60,12 +59,12 @@ var SiteNav = _ref => {
       className: "mr-9"
     });
   })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "hidden md:flex items-center"
+    className: "hidden lg:flex items-center"
   }, /*#__PURE__*/_react.default.createElement("a", {
     href: demoUrl,
     className: "py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold"
   }, demoButtonText), /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
-    className: "pl-6 lg:mr-11 sm:mr-9",
+    className: "space-x-2",
     styles: "default/white",
     caption: languageList.current ? languageList.current : "En",
     submenu: languageList.submenu
@@ -73,7 +72,7 @@ var SiteNav = _ref => {
     as: "nav",
     className: "bg-transparent"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "md:hidden mr-4"
+    className: "lg:hidden"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "bg-transparent inline-flex items-center justify-center",
     onClick: () => setMobileExpand(!mobileExpand)
@@ -82,7 +81,7 @@ var SiteNav = _ref => {
   }, "Open main menu"), mobileExpand ? /*#__PURE__*/_react.default.createElement(_outline.XIcon, {
     className: "text-gray-300 w-5 h-5"
   }) : /*#__PURE__*/_react.default.createElement(_outline.MenuIcon, {
-    className: "h-5 w-5\n                                    ".concat(styles === "black" && "text-gray-300", "\n                                    ").concat(styles === "transWhite" && "text-gray-300", "\n                                ")
+    className: "h-6 w-6 ".concat(styles === "black" && "text-gray-300", " ").concat(styles === "transWhite" && "text-gray-300")
   }))))), mobileExpand ? /*#__PURE__*/_react.default.createElement(_MobileMenu.MobileMenu, {
     demoButtonText: demoButtonText,
     demoUrl: demoUrl,

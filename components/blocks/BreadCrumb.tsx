@@ -9,7 +9,7 @@ export interface BreadCrumbProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * breadcrumb data list
    */
-  crumbs: Array<BreadCrumbType>
+  crumbs: BreadCrumbType[]
 
   /**
    * Additional space-separated class names to append

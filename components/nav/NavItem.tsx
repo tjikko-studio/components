@@ -15,11 +15,11 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * url to go when menu clicked
    */
-  link?: string | null
+  link?: string
   /**
    * sub menu json object same as list nav
    */
-  submenu?: Array<MenuType>
+  submenu?: MenuType[]
   /**
    * Additional space-separated class names to append
    */
@@ -60,24 +60,13 @@ export const NavItem: FC<NavItemProps> = ({
         type={(styles == "default/white") ? "special" : "default"}
         caption={caption}
         href={link}
-        className={`flex items-center
-                    ${mouseIn && styles == "default" ? "text-brand-600" : ""}
-                    ${mouseIn && styles == "default/white" ? "text-brand-300" : ""}
-                    ${mouseIn && styles == "flat" ? "text-brand-100 dark:text-brand-300" : ""}
-                `}
+        className={`flex items-center ${mouseIn && styles == "default" ? "text-brand-600" : ""} ${mouseIn && styles == "default/white" ? "text-brand-300" : ""} ${mouseIn && styles == "flat" ? "text-brand-100 dark:text-brand-300" : ""}`}
       >
         {(keys.length > 0) && (
           <span className='ml-2.5'>
             <ArrowDown
-              color={`
-                                ${!mouseIn && styles == "default" ? "text-gray-800" : ""}
-                                ${!mouseIn && styles == "default/white" ? "text-gray-100" : ""}
-                                ${!mouseIn && styles == "flat" ? "text-gray-100 dark:text-gray-100" : ""}
-                                ${mouseIn && styles == "default" ? "text-brand-600" : ""}
-                                ${mouseIn && styles == "default/white" ? "text-brand-300" : ""}
-                                ${mouseIn && styles == "flat" ? "text-brand-300 dark:text-brand-300" : ""}
-                            `}
-              darkColor="text-gray-50"
+              width='18'
+              height='18'
             />
           </span>
         )

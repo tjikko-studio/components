@@ -28,10 +28,10 @@ var Secondary = _ref => {
 
   var Image = () => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: "\n          ".concat(type === 'vertical' && 'pb-6', "\n        ")
+      className: type === 'vertical' && 'pb-6'
     }, /*#__PURE__*/_react.default.createElement("img", {
       src: imageUrl,
-      className: "rounded-lg\n            ".concat(type === 'default' && 'w-auto', "\n          ")
+      className: "rounded-lg ".concat(type === 'default' && 'w-auto')
     }));
   };
 

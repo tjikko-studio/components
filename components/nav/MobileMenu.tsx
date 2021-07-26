@@ -14,12 +14,10 @@ export const MobileMenu: FC<SiteNavProps> = ({
 }) => {
   return (
     <div
-      className={`bg-gray-900
-                ${styles == 'transWhite' && 'bg-opacity-10'}
-            `}
+      className={`bg-gray-900 ${styles === 'transWhite' && 'bg-opacity-10'}`}
     >
-      <div className='flex justify-between pb-5 pt-6'>
-        <div className='ml-2'>
+      <div className='flex justify-between p-5 p-6'>
+        <div>
           <a
             href={demoUrl}
             className='py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold'
@@ -49,16 +47,18 @@ export const MobileMenu: FC<SiteNavProps> = ({
               )}
             </div>
             <div>
-              {menu.submenu == null ? (
-                <></>
+              {menu.submenu === null ? (
+                null
               ) : (
                 <div className='grid grid-cols-2'>
                   {menu.submenu.map((group, groupIndex) => {
                     return (
                       <div key={groupIndex}>
-                        <div className='text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5'>
-                          {group.groupCaption}
-                        </div>
+                        {group.groupCaption && (
+                          <div className='text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5'>
+                            {group.groupCaption}
+                          </div>
+                        )}
                         {group.groups.map((item, itemIndex) => {
                           return (
                             <div
@@ -66,12 +66,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                               key={itemIndex}
                             >
                               <a
-                                className={`
-                                                                                ${item.type ==
-                                  'button' &&
-                                  'text-brand-300 hover:text-brand-600'
-                                  }
-                                                                            `}
+                                className={item.type === 'button' ? 'text-brand-300 hover:text-brand-600' : ''}
                                 href={item.url}
                               >
                                 {item.name}

@@ -9,11 +9,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _PopUpNavItem = require("./PopUpNavItem");
 
-var _ArrowDown = require("../svg/ArrowDown");
+var _arrowDownSLine = _interopRequireDefault(require("../../assets/icons/arrow-down-s-line.svg"));
 
 var _ListNav = require("./ListNav");
 
 var _excluded = ["caption", "link", "styles"];
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -62,12 +64,12 @@ var NavItem = _ref => {
     type: styles == "default/white" ? "special" : "default",
     caption: caption,
     href: link,
-    className: "flex items-center\n                    ".concat(mouseIn && styles == "default" ? "text-brand-600" : "", "\n                    ").concat(mouseIn && styles == "default/white" ? "text-brand-300" : "", "\n                    ").concat(mouseIn && styles == "flat" ? "text-brand-100 dark:text-brand-300" : "", "\n                ")
+    className: "flex items-center ".concat(mouseIn && styles == "default" ? "text-brand-600" : "", " ").concat(mouseIn && styles == "default/white" ? "text-brand-300" : "", " ").concat(mouseIn && styles == "flat" ? "text-brand-100 dark:text-brand-300" : "")
   }, keys.length > 0 && /*#__PURE__*/_react.default.createElement("span", {
     className: "ml-2.5"
-  }, /*#__PURE__*/_react.default.createElement(_ArrowDown.ArrowDown, {
-    color: "\n                                ".concat(!mouseIn && styles == "default" ? "text-gray-800" : "", "\n                                ").concat(!mouseIn && styles == "default/white" ? "text-gray-100" : "", "\n                                ").concat(!mouseIn && styles == "flat" ? "text-gray-100 dark:text-gray-100" : "", "\n                                ").concat(mouseIn && styles == "default" ? "text-brand-600" : "", "\n                                ").concat(mouseIn && styles == "default/white" ? "text-brand-300" : "", "\n                                ").concat(mouseIn && styles == "flat" ? "text-brand-300 dark:text-brand-300" : "", "\n                            "),
-    darkColor: "text-gray-50"
+  }, /*#__PURE__*/_react.default.createElement(_arrowDownSLine.default, {
+    width: "18",
+    height: "18"
   }))), mouseIn && mouseClick && keys.length > 0 && /*#__PURE__*/_react.default.createElement("div", {
     className: "absolute left-0 top-full pt-3.5 w-max"
   }, /*#__PURE__*/_react.default.createElement(_ListNav.ListNav, {

@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import ErrorIcon from '../../assets/icons/information-fill.svg'
 import ValidatingIcon from '../../assets/icons/loader-2-fill.svg'
 import TickIcon from '../../assets/icons/checkbox-circle-fill.svg'
-import focusClasses from "../../utilities/focusClasses"
+import focusClasses from '../../utilities/focusClasses'
 import addDisabledClasses from '../../snippets/addDisabledClasses'
 import addErrorClasses from '../../snippets/addErrorClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
@@ -56,7 +56,6 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-
 export const Input: FC<InputProps> = ({
   label,
   isError = false,
@@ -84,7 +83,7 @@ export const Input: FC<InputProps> = ({
 
   return (
     <div
-      className="flex flex-col gap-y-1 w-72"
+      className='flex flex-col gap-y-1 w-72'
     >
       {label &&
         <div
@@ -93,12 +92,12 @@ export const Input: FC<InputProps> = ({
         <p>
           {label}
         </p>
-          {(isError) && <ErrorIcon color="text-red-600" darkColor="dark:text-red-500" />}
-          {(isValidating) && <ValidatingIcon color="text-blue-600" darkColor="dark:text-blue-500" />}
-          {(isSuccess) && <TickIcon color="text-green-600" darkColor="dark:text-green-500" />}
+        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-500' />}
+        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-500' />}
+        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-500' />}
         </div>
       }
-      <div className="col-span-2">
+      <div className='col-span-2'>
         <input
           className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
           defaultValue={text}
@@ -107,11 +106,11 @@ export const Input: FC<InputProps> = ({
         />
       </div>
       <div
-        className={`text-sm ont-normal dark:text-gray-300 ${isDisabled && "text-gray-500 dark:text-gray-600"}`}
+        className={`text-sm ont-normal dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         {information}
       </div>
-      {isError && (<div className="text-sm font-normal text-red-700">{error}</div>)}
+      {isError && (<div className='text-sm font-normal text-red-700'>{error}</div>)}
     </div>
   )
 }

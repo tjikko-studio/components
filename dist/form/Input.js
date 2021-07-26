@@ -7,11 +7,11 @@ exports.Input = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Error = require("../svg/Error");
+var _informationFill = _interopRequireDefault(require("../../assets/icons/information-fill.svg"));
 
-var _Validating = require("../svg/Validating");
+var _loader2Fill = _interopRequireDefault(require("../../assets/icons/loader-2-fill.svg"));
 
-var _Tick = require("../svg/Tick");
+var _checkboxCircleFill = _interopRequireDefault(require("../../assets/icons/checkbox-circle-fill.svg"));
 
 var _focusClasses = _interopRequireDefault(require("../../utilities/focusClasses"));
 
@@ -61,15 +61,12 @@ var Input = _ref => {
     className: "flex flex-col gap-y-1 w-72"
   }, label && /*#__PURE__*/_react.default.createElement("div", {
     className: labelContainerClasses.join(' ')
-  }, /*#__PURE__*/_react.default.createElement("p", null, label), isError && /*#__PURE__*/_react.default.createElement(_Error.ErrorIcon, {
-    color: "text-red-600",
-    darkColor: "dark:text-red-500"
-  }), isValidating && /*#__PURE__*/_react.default.createElement(_Validating.ValidatingIcon, {
-    color: "text-blue-600",
-    darkColor: "dark:text-blue-500"
-  }), isSuccess && /*#__PURE__*/_react.default.createElement(_Tick.TickIcon, {
-    color: "text-green-600",
-    darkColor: "dark:text-green-500"
+  }, /*#__PURE__*/_react.default.createElement("p", null, label), isError && /*#__PURE__*/_react.default.createElement(_informationFill.default, {
+    className: "text-red-600 dark:text-red-500"
+  }), isValidating && /*#__PURE__*/_react.default.createElement(_loader2Fill.default, {
+    className: "text-blue-600 dark:text-blue-500"
+  }), isSuccess && /*#__PURE__*/_react.default.createElement(_checkboxCircleFill.default, {
+    className: "text-green-600 dark:text-green-500"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-span-2"
   }, /*#__PURE__*/_react.default.createElement("input", {
@@ -78,7 +75,7 @@ var Input = _ref => {
     placeholder: placeholder,
     disabled: isDisabled
   })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm ont-normal dark:text-gray-300 ".concat(isDisabled && "text-gray-500 dark:text-gray-600")
+    className: "text-sm ont-normal dark:text-gray-300 ".concat(isDisabled && 'text-gray-500 dark:text-gray-600')
   }, information), isError && /*#__PURE__*/_react.default.createElement("div", {
     className: "text-sm font-normal text-red-700"
   }, error));

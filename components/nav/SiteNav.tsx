@@ -2,26 +2,26 @@ import React, {FC, HTMLAttributes, useState} from 'react'
 import {useMediaPredicate} from "react-media-hook"
 import {MenuIcon, XIcon} from '@heroicons/react/outline'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
-import Logo from '../../assets/images/company_logo_placeholder.svg'
+import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
 import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
 
 export interface LanguageType {
   current?: string | null
-  submenu?: Array<MenuType>
+  submenu?: MenuType[]
 }
 export interface MenuItemType {
   caption: string
   captionLink?: string
-  submenu?: Array<MenuType>
+  submenu?: MenuType[]
 }
 
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
    */
-  menuData: Array<MenuItemType>
+  menuData: MenuItemType[]
   /**
    * demo button text
    */
@@ -62,22 +62,14 @@ export const SiteNav: FC<SiteNavProps> = ({
   return (
     <>
       <div
-        className={`bg-gray-900 flex items-center justify-between md:justify-Start
-                ${(styles === "transWhite") && "bg-opacity-10"}
-                ${className}
-            `}
+        className={`bg-gray-900 flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === "transWhite") && "bg-opacity-10"} ${className}`}
       >
-        <p className="fontStyle-xl">Hello</p>
+        <CompanyLogo
+          width='' height=''
+          className='h-3 lg:h-4 text-gray-50 w-auto'
+        />
         <div
-          className="pt-6 pb-7 lg:pt-10 lg:pb-9 lg:pl-10 sm:pl-6 pl-6 md:py-8 sm:pt-6 sm:pb-7"
-        >
-          <Logo
-            width={large ? "269" : medium ? "215" : mobile ? "161" : "269"}
-            height={large ? "20" : medium ? "16" : mobile ? "12" : "20"}
-          />
-        </div>
-        <div
-          className="hidden md:flex m-auto items-center"
+          className="hidden lg:flex m-auto items-center lg:space-x-6"
         >
           {
             menuData.map((menuitem, index) => {
@@ -95,7 +87,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           }
         </div>
         <div
-          className="hidden md:flex items-center"
+          className="hidden lg:flex items-center"
         >
           <a
             href={demoUrl}
@@ -104,7 +96,7 @@ export const SiteNav: FC<SiteNavProps> = ({
             {demoButtonText}
           </a>
           <NavItem
-            className='pl-6 lg:mr-11 sm:mr-9'
+            className='space-x-2'
             styles="default/white"
             caption={languageList.current ? languageList.current : "En"}
             submenu={languageList.submenu}
@@ -113,7 +105,7 @@ export const SiteNav: FC<SiteNavProps> = ({
         <Disclosure as="nav"
           className="bg-transparent"
         >
-          <div className="md:hidden mr-4">
+          <div className="lg:hidden">
             <button
               className="bg-transparent inline-flex items-center justify-center"
               onClick={() => setMobileExpand(!mobileExpand)}
@@ -125,10 +117,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 />
               ) : (
                 <MenuIcon
-                  className={`h-5 w-5
-                                    ${styles === "black" && "text-gray-300"}
-                                    ${styles === "transWhite" && "text-gray-300"}
-                                `}
+                    className={`h-6 w-6 ${styles === "black" && "text-gray-300"} ${styles === "transWhite" && "text-gray-300"}`}
                 />
               )}
             </button>

@@ -13,7 +13,7 @@ var _Input = require("../form/Input");
 
 var _Button = require("../Button");
 
-var _SP = require("../svg/SP");
+var _logo_placeholder_square = _interopRequireDefault(require("../../assets/images/logo_placeholder_square.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,7 +33,7 @@ var Header = _ref => {
     caseText
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: " flex flex-col\n                ".concat(className ? className : '', "\n            ")
+    className: " flex flex-col ".concat(className ? className : '')
   }, /*#__PURE__*/_react.default.createElement(_BreadCrumb.BreadCrumb, {
     crumbs: breadcrumb,
     className: "text-gray-50 pb-3"
@@ -58,10 +58,11 @@ var Header = _ref => {
     icon: "none",
     size: "large"
   })), type === "case" && /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex items-center"
-  }, /*#__PURE__*/_react.default.createElement(_SP.SP, {
-    width: "48",
-    height: "48"
+    className: "flex items-center space-x-6"
+  }, /*#__PURE__*/_react.default.createElement(_logo_placeholder_square.default, {
+    width: "",
+    height: "48",
+    className: "w-auto"
   }), /*#__PURE__*/_react.default.createElement("a", {
     className: "text-gray-50 ml-7",
     href: url

@@ -28,7 +28,7 @@ var BigHeader = _ref => {
   } = _ref;
   var desktop = (0, _reactMediaHook.useMediaPredicate)("(min-width: 640px)");
   return /*#__PURE__*/_react.default.createElement("header", {
-    className: "min-h-568 lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative\n                ".concat(className ? className : '', "\n            "),
+    className: "min-h-568 lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative ".concat(className ? className : ''),
     style: {
       backgroundImage: "url(".concat(bgImage, ")")
     }

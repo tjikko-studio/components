@@ -7,7 +7,7 @@ exports.SearchBar = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Search = require("../svg/Search");
+var _searchLine = _interopRequireDefault(require("../../assets/icons/search-line.svg"));
 
 var _focusClasses = _interopRequireDefault(require("../../utilities/focusClasses"));
 
@@ -30,18 +30,20 @@ var SearchBar = _ref => {
     placeHolder
   } = _ref;
   var [autoFocus, setInputFocus] = (0, _react.useState)(false);
-  var classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200'];
+  var classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200'];
   (0, _addDisabledClasses.default)(isDisabled, classes);
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "".concat(classes.join(' '), " ").concat((0, _focusClasses.default)('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)),
+    className: "relative",
     defaultValue: text
   }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "absolute top-1/2 -mt-2 ml-4",
     disabled: isDisabled
-  }, /*#__PURE__*/_react.default.createElement(_Search.SearchIcon, {
-    color: "text-gray-600"
+  }, /*#__PURE__*/_react.default.createElement(_searchLine.default, {
+    width: "",
+    className: "w-4 h-4"
   })), /*#__PURE__*/_react.default.createElement("input", {
     disabled: isDisabled,
-    className: "border-none ml-3.5 focus:outline-none dark:bg-gray-800 bg-white dark:text-white",
+    className: "".concat(classes.join(' '), " ").concat((0, _focusClasses.default)('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)),
     defaultValue: text,
     placeholder: placeHolder,
     onFocus: () => setInputFocus(true),

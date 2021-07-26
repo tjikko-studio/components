@@ -15,7 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var FAQ = _ref => {
   var {
     question,
-    answer = "",
+    answer = '',
     className
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {

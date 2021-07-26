@@ -7,7 +7,7 @@ exports.Footer = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _Logo = require("../svg/Logo");
+var _company_logo_placeholder = _interopRequireDefault(require("../../assets/images/company_logo_placeholder.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24,9 +24,10 @@ var Footer = _ref => {
     className: "bg-gray-800"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "pl-6 pt-6 lg:pt-9 md:pt-9 pb-6 lg:pb-7 md:pb-7"
-  }, /*#__PURE__*/_react.default.createElement(_Logo.Logo, {
+  }, /*#__PURE__*/_react.default.createElement(_company_logo_placeholder.default, {
     width: "210",
-    height: "16"
+    height: "16",
+    className: "text-gray-50"
   })), /*#__PURE__*/_react.default.createElement("hr", {
     className: "mx-6 bg-opacity-30 border-gray-500"
   }), /*#__PURE__*/_react.default.createElement("nav", {

@@ -42,15 +42,11 @@ export const Secondary: FC<SecondaryProps> = ({
   const Image = () => {
     return (
       <div
-        className={`
-          ${type === 'vertical' && 'pb-6'}
-        `}
+        className={type === 'vertical' && 'pb-6'}
       >
         <img
           src={imageUrl}
-          className={`rounded-lg
-            ${type === 'default' && 'w-auto'}
-          `}
+          className={`rounded-lg ${type === 'default' && 'w-auto'}`}
         />
       </div>
     )

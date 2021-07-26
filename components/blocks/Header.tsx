@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import {BreadCrumb, BreadCrumbType} from './BreadCrumb'
 import {Input} from '../form/Input'
 import {Button} from '../Button'
-import SP from '../../assets/images/logo_placeholder_square.svg'
+import ClientLogo from '../../assets/images/logo_placeholder_square.svg'
 
 export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -16,7 +16,7 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   /**
    * breadcrumb
    */
-  breadcrumb?: Array<BreadCrumbType>
+  breadcrumb?: BreadCrumbType[]
   /**
    * text to show as title
    */
@@ -48,9 +48,7 @@ export const Header: FC<HeaderProps> = ({
 
   return (
     <div
-      className={` flex flex-col
-                ${className ? className : ''}
-            `}
+      className={` flex flex-col ${className ? className : ''}`}
     >
       <BreadCrumb
         crumbs={breadcrumb}
@@ -98,9 +96,9 @@ export const Header: FC<HeaderProps> = ({
         {
           (type === "case") && (
             <div
-              className='flex items-center'
+              className='flex items-center space-x-6'
             >
-              <SP width='48' height='48' />
+              <ClientLogo width='' height='48' className='w-auto' />
               <a
                 className='text-gray-50 ml-7'
                 href={url}
