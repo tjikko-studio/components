@@ -69,7 +69,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           className='h-3 lg:h-4 text-gray-50 w-auto'
         />
         <div
-          className="hidden lg:flex m-auto items-center lg:space-x-6"
+          className='hidden lg:flex m-auto items-center lg:space-x-6'
         >
           {
             menuData.map((menuitem, index) => {
@@ -80,14 +80,13 @@ export const SiteNav: FC<SiteNavProps> = ({
                   styles="default/white"
                   caption={menuitem.caption}
                   submenu={menuitem.submenu}
-                  className="mr-9"
                 />
               )
             })
           }
         </div>
         <div
-          className="hidden lg:flex items-center"
+          className='hidden lg:flex items-center'
         >
           <a
             href={demoUrl}
@@ -117,7 +116,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 />
               ) : (
                 <MenuIcon
-                    className={`h-6 w-6 ${styles === "black" && "text-gray-300"} ${styles === "transWhite" && "text-gray-300"}`}
+                  className={`h-6 w-6 ${styles === "black" && "text-gray-300"} ${styles === "transWhite" && "text-gray-300"}`}
                 />
               )}
             </button>
