@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import {BreadCrumb, BreadCrumbType} from './BreadCrumb'
 import {Input} from '../form/Input'
 import {Button} from '../Button'
-import {SP} from '../svg/SP'
+import SP from '../../assets/images/logo_placeholder_square.svg'
 
 export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   /**

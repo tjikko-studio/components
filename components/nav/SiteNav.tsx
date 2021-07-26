@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes, useState} from 'react'
 import {useMediaPredicate} from "react-media-hook"
 import {MenuIcon, XIcon} from '@heroicons/react/outline'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
-import {Logo} from '../svg/Logo'
+import Logo from '../../assets/images/company_logo_placeholder.svg'
 import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'

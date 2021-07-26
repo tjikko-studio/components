@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
-import {ArrowDown} from '../svg/ArrowDown'
+import ArrowDown from '../../assets/icons/arrow-down-s-line.svg'
 import {ListNav, MenuType} from './ListNav'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
