@@ -15,12 +15,12 @@ const tailwind = resolveConfig(tailwindConfig)
 
 export interface LanguageType {
   current?: string | null
-  submenu?: MenuType[]
+  subMenu?: MenuType[]
 }
 export interface MenuItemType {
   caption: string
   captionLink?: string
-  submenu?: MenuType[]
+  subMenu?: MenuType[]
 }
 
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,6 +48,10 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * Additional space-separated class names to append
    */
   className?: string
+  /**
+   * Set to true to have the mobile menu expanded by default
+   */
+  mobileExpandDefault: boolean
 }
 
 /**
@@ -59,9 +63,10 @@ export const SiteNav: FC<SiteNavProps> = ({
   menuData = [],
   styles = "opaque",
   languageList = {},
-  className
+  className,
+  mobileExpandDefault = false
 }) => {
-  const [mobileExpand, setMobileExpand] = useState(false)
+  const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
   const largeScreen = useMediaPredicate(`(max-width: ${tailwind.theme.screens.lg})`)
   return (
     <>
@@ -83,7 +88,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   link={menuitem.captionLink ? menuitem.captionLink : ""}
                   styles="default/white"
                   caption={menuitem.caption}
-                  submenu={menuitem.submenu}
+                  subMenu={menuitem.subMenu}
                 />
               )
             })
@@ -103,7 +108,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           <NavItem
             styles="default/white"
             caption={languageList.current ? languageList.current : "En"}
-            submenu={languageList.submenu}
+            subMenu={languageList.subMenu}
           />
         </div>
         <Disclosure as="nav"

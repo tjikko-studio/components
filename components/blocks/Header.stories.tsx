@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/Header',
   component: Header,
   argTypes: {
-    type: {control: {type: 'select', options: ['default', 'form', 'case']}},
+    type: {options: ['default', 'form', 'case'], control: {type: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Header',

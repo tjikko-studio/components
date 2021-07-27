@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/nav/ListNav',
   component: ListNav,
   argTypes: {
-    styles: {control: {type: "select", options: ["flat", "elevated"]}},
+    styles: {options: ["flat", "elevated"], control: {type: "select"}},
   },
   parameters: {
     componentSubtitle: 'The Buttons ListNav'

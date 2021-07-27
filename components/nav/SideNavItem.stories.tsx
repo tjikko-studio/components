@@ -5,8 +5,8 @@ export default {
   title: 'Tjikko/nav/SideNavItem',
   component: SideNavItem,
   argTypes: {
-    type: {control: {type: "select", options: ["linkheader", "link", "header"]}},
-    status: {control: {type: "select", options: ["default", "active", "hover"]}},
+    type: {options: ["linkheader", "link", "header"], control: {type: "select"}},
+    status: {options: ["default", "active", "hover"], control: {type: "select"}},
     spacer: {contro: {type: "boolean"}},
   },
   parameters: {

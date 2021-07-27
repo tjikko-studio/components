@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/nav/NavItem',
   component: NavItem,
   argTypes: {
-    styles: {control: {type: "select", options: ["default", "default/white", "flat"]}},
+    styles: {options: ["default", "default/white", "flat"], control: {type: "select"}},
   },
   parameters: {
     componentSubtitle: 'The Buttons NavItem'
@@ -17,12 +17,12 @@ const Template: Story<NavItemProps> = (args) => <NavItem {...args} />
 export const None = Template.bind({})
 None.args = {
   styles: "default",
-  submenu: null
+  subMenu: null
 }
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  submenu:
+  subMenu:
     [
       {
         groupCaption: "Group 01",
@@ -47,7 +47,7 @@ SingleData.args = {
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  submenu: [
+  subMenu: [
     {
       groupCaption: "Group 01",
       groups: [
