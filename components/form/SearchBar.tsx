@@ -43,7 +43,7 @@ export const SearchBar: FC<SearchBarProps> = ({
         className="absolute top-1/2 -mt-2 ml-4"
         disabled={isDisabled}
       >
-        <SearchIcon width="" className="w-4 h-4"/>
+        <SearchIcon className="w-4 h-4"/>
       </button>
       <input
         disabled={isDisabled}

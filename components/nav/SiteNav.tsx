@@ -15,12 +15,12 @@ const tailwind = resolveConfig(tailwindConfig)
 
 export interface LanguageType {
   current?: string | null
-  submenu?: MenuType[]
+  subMenu?: MenuType[]
 }
 export interface MenuItemType {
   caption: string
   captionLink?: string
-  submenu?: MenuType[]
+  subMenu?: MenuType[]
 }
 
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -69,7 +69,8 @@ export const SiteNav: FC<SiteNavProps> = ({
         className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === "opaque") && "bg-gray-900"} ${className}`}
       >
         <CompanyLogo
-          width='' height=''
+          width='269px'
+          height='20px'
           className='h-3 lg:h-4 text-gray-50 w-auto'
         />
         <div
@@ -83,7 +84,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   link={menuitem.captionLink ? menuitem.captionLink : ""}
                   styles="default/white"
                   caption={menuitem.caption}
-                  submenu={menuitem.submenu}
+                  subMenu={menuitem.subMenu}
                 />
               )
             })
@@ -103,7 +104,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           <NavItem
             styles="default/white"
             caption={languageList.current ? languageList.current : "En"}
-            submenu={languageList.submenu}
+            subMenu={languageList.subMenu}
           />
         </div>
         <Disclosure as="nav"

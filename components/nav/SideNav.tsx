@@ -7,27 +7,27 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   /**
    * SideNav data object
    */
-  navObj?: SideNavItemProps[]
-  classNames?: string
+  items?: SideNavItemProps[]
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const SideNav: FC<SideNavProps> = ({
-  navObj = [],
-  ...props
+  items = [],
+  className
 }) => {
   const desktop = useMediaPredicate("(min-width: 640px)")
 
   return (
     <ul
-      {...props}
-      className={`${props.classNames ? props.classNames : ""}`}
+      className={`${className ? className : ""}`}
     >
-      {navObj.map((navItem, index) => (
+      {items.map((item) => (
         <SideNavItem
-          {...navItem}
+          key={`${item.text}_${item.url}`}
+          {...item}
         />
       ))}
     </ul>

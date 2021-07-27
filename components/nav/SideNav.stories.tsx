@@ -15,9 +15,9 @@ const Template: Story<SideNavProps> = (args) => <SideNav {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  navObj: [
+  items: [
     {
-      type: "linkheader",
+      type: "linkHeader",
       status: "active",
       text: "All",
       url: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`,

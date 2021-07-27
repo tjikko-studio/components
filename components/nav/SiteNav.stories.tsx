@@ -26,7 +26,7 @@ Default.args = {
   styles: "opaque",
   languageList: {
     current: "En",
-    submenu: [
+    subMenu: [
       {
         groupCaption: null,
         groups: [
@@ -45,7 +45,7 @@ Default.args = {
   menuData: [
     {
       caption: "Why SmartPixel",
-      submenu: [
+      subMenu: [
         {
           groupCaption: null,
           groups: [
@@ -72,7 +72,7 @@ Default.args = {
     },
     {
       caption: "Solutions",
-      submenu: [
+      subMenu: [
         {
           groupCaption: "BY INDUSTRY",
           groups: [
@@ -112,8 +112,7 @@ Default.args = {
     },
     {
       caption: "Portfolio",
-      captionLink: "/portfolio",
-      submenu: null
+      captionLink: "/portfolio"
     }
   ]
 }

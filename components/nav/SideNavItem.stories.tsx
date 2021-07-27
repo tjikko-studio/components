@@ -1,13 +1,13 @@
-import {SideNavItem, SideNavItemProps} from "./SideNavItem"
+import {SideNavItem, SideNavItemProps} from './SideNavItem'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/nav/SideNavItem',
   component: SideNavItem,
   argTypes: {
-    type: {control: {type: "select", options: ["linkheader", "link", "header"]}},
-    status: {control: {type: "select", options: ["default", "active", "hover"]}},
-    spacer: {contro: {type: "boolean"}},
+    type: {options: ['linkHeader', 'link', 'header'], control: {type: 'select'}},
+    status: {options: ['default', 'active', 'hover'], control: {type: 'select'}},
+    spacer: {contro: {type: 'boolean'}},
   },
   parameters: {
     componentSubtitle: 'The SideNavItem'
@@ -18,8 +18,8 @@ const Template: Story<SideNavItemProps> = (args) => <SideNavItem {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: "linkheader",
-  status: "default",
+  type: 'linkHeader',
+  status: 'default',
   spacer: false,
-  text: "Link Header",
+  text: 'Link Header',
 }

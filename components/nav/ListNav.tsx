@@ -4,7 +4,7 @@ import {PopUpNavItem, PopUpNavItemProps} from './PopUpNavItem'
 export interface MenuItem {
   name: string
   url: string
-  type?: "default" | "header" | "button"
+  type?: 'default' | 'header' | 'button'
 }
 
 export interface MenuType {
@@ -17,7 +17,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * style
    */
-  styles: "elevated" | "flat"
+  styles: 'elevated' | 'flat'
   /**
    * If data contains one, it will be single. If data contains more than one, it will be multi. At this time, last element will be tertiary  button.
    */
@@ -30,21 +30,21 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const ListNav: FC<ListNavProps> = ({
-  styles = "elevated",
+  styles = 'elevated',
   linkList = [],
-  ...props
+  className
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
-  const classes = [props.className]
-  var wmax = "";
+  const classes = [className]
+  var wMax = '';
   switch (styles) {
     case 'elevated':
       classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:gray-800')
-      wmax = "w-max"
+      wMax = 'w-max'
       break
     case 'flat':
       classes.push('grid', 'sm:grid-cols-2', 'justify-items-stretch', 'gap-6')
-      wmax = ""
+      wMax = ''
     default:
       break
   }
@@ -54,19 +54,19 @@ export const ListNav: FC<ListNavProps> = ({
     >
       {
         linkList.map((menu, index) => {
-          return <div className={`${wmax}`} key={index} >
+          return <div className={`${wMax}`} key={index} >
             {
               (linkList.length > 1) && (
-                <PopUpNavItem 
-                  caption={menu.groupCaption} 
-                  type={"header"} 
-                  className='py-2.5' >  
-                </PopUpNavItem>                
+                <PopUpNavItem
+                  caption={menu.groupCaption}
+                  type={'header'}
+                  className='py-2.5' >
+                </PopUpNavItem>
               )
             }
             {
               menu.groups.map((menuItem, subIndex) => {
-                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : "default"} key={subIndex} className='py-2.5' href={menuItem.url} ></PopUpNavItem>)
+                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : 'default'} key={subIndex} className='py-2.5' href={menuItem.url} ></PopUpNavItem>)
               })
             }
           </div>

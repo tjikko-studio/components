@@ -42,7 +42,7 @@ export const Secondary: FC<SecondaryProps> = ({
   const Image = () => {
     return (
       <div
-        className={type === 'vertical' && 'pb-6'}
+        className={type === 'vertical' ? 'pb-6' : ''}
       >
         <img
           src={imageUrl}
@@ -55,12 +55,12 @@ export const Secondary: FC<SecondaryProps> = ({
     return (
       <div
         className={`
-          ${type != 'vertical' && 'flex justify-center'}
+          ${type !== 'vertical' && 'flex justify-center'}
         `}
       >
         <div
           className={`
-              ${type != 'vertical' && 'pl-12'}
+              ${type !== 'vertical' && 'pl-12'}
           `}
         >
           <h2 className='fontStyle-4xl'>{head}</h2>

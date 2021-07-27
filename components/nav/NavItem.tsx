@@ -7,7 +7,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * set nav item type
    */
-  styles: "default" | "default/white" | "flat"
+  styles: 'default' | 'default/white' | 'flat'
   /**
    * text to show as menu
    */
@@ -19,7 +19,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * sub menu json object same as list nav
    */
-  submenu?: MenuType[]
+  subMenu?: MenuType[]
   /**
    * Additional space-separated class names to append
    */
@@ -31,38 +31,29 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const NavItem: FC<NavItemProps> = ({
-  caption = "Label",
+  caption = 'Label',
   link = null,
-  styles = "default/white",
-  ...props
+  styles = 'default/white',
+  subMenu = [],
+  className = ''
 }) => {
   const [mouseIn, setMouseIn] = useState(false)
   const [mouseClick, setMouseClick] = useState(false)
-  let keys = []
-  try {
-    keys = (props.submenu === undefined || props.submenu === null) ? [] : Object.keys(props.submenu)
-  } catch (error) {
-    console.log("sub menu structure error")
-    keys = []
-  }
   return (
     <div
-      {...props}
-      className={`w-max relative
-                ${props.className ? props.className : ""}
-            `}
+      className={`w-max relative ${className}`}
       style={{width: 'fit-content'}}
       onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}}
       onMouseLeave={() => setMouseIn(false)}
     >
       <PopUpNavItem
         onClick={() => setMouseClick(!mouseClick)}
-        type={(styles == "default/white") ? "special" : "default"}
+        type={(styles === 'default/white') ? 'special' : 'default'}
         caption={caption}
         href={link}
-        className={`flex items-center ${mouseIn && styles == "default" ? "text-brand-600" : ""} ${mouseIn && styles == "default/white" ? "text-brand-300" : ""} ${mouseIn && styles == "flat" ? "text-brand-100 dark:text-brand-300" : ""}`}
+        className={`flex items-center ${mouseIn && styles === 'default' ? 'text-brand-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-brand-300' : ''} ${mouseIn && styles === 'flat' ? 'text-brand-100 dark:text-brand-300' : ''}`}
       >
-        {(keys.length > 0) && (
+        {(subMenu.length > 0) && (
           <span className='ml-2.5'>
             <ArrowDown
               width='18'
@@ -72,11 +63,11 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (keys.length > 0) && (
+      {(mouseIn && mouseClick) && (subMenu.length > 0) && (
         <div
           className='absolute left-0 top-full pt-1 w-max'
         >
-          <ListNav styles={styles == "flat" ? "flat" : "elevated"} linkList={props.submenu} />
+          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} linkList={subMenu} />
         </div>
       )
       }

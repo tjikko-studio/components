@@ -33,7 +33,7 @@ export const TextStyles: FC<TextStylesProps> = ({
 
       <div
         className={`mb-16
-                ${(type != "all" && type != "heading") && "display: hidden"}
+                ${(type !== "all" && type !== "heading") && "display: hidden"}
               `}
       >
         <p className="fontStyle-lg uppercase strong mb-6">Headings : </p>
@@ -130,7 +130,7 @@ export const TextStyles: FC<TextStylesProps> = ({
 
       <div
         className={`mb-16
-                ${(type != "all" && type != "body") && "display: hidden"}
+                ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
         <p className="fontStyle-lg uppercase strong mb-6">Body large : </p>
@@ -179,7 +179,7 @@ export const TextStyles: FC<TextStylesProps> = ({
 
       <div
         className={`mb-16
-                ${(type != "all" && type != "body") && "display: hidden"}
+                ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
         <p className="fontStyle-body uppercase  mb-6">Body : </p>
@@ -228,7 +228,7 @@ export const TextStyles: FC<TextStylesProps> = ({
 
       <div
         className={`mb-16
-                ${(type != "all" && type != "body") && "display: hidden"}
+                ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
         <p className="fontStyle-sm uppercase strong mb-6">Body small : </p>
@@ -277,7 +277,7 @@ export const TextStyles: FC<TextStylesProps> = ({
 
       <div
         className={`mb-16
-                ${(type != "all" && type != "body") && "display: hidden"}
+                ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
         <p className="fontStyle-xs uppercase strong mb-6">Body xsmall : </p>

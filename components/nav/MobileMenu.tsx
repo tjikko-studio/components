@@ -12,7 +12,6 @@ export const MobileMenu: FC<SiteNavProps> = ({
   demoButtonText = 'Free Demo',
   demoUrl = '#',
   menuData = [],
-  styles = 'black',
   languageList = {}
 }) => {
   return (
@@ -20,11 +19,11 @@ export const MobileMenu: FC<SiteNavProps> = ({
       className={`bg-gray-900 p-4`}
     >
       <div className='flex justify-between p-2'>
-        <div className="dark">
+        <div className='dark'>
           <Button
             text={demoButtonText}
             url={demoUrl}
-            type="primary"
+            type='primary'
             icon='none'
           />
         </div>
@@ -33,39 +32,40 @@ export const MobileMenu: FC<SiteNavProps> = ({
           caption={
             languageList.current ? languageList.current : 'En'
           }
-          submenu={languageList.submenu}
+          subMenu={languageList.subMenu}
         />
       </div>
-      <div className="dark">
-        <Divider className="my-8" />
+      <div className='dark'>
+        <Divider className='my-8' />
       </div>
 
       {menuData.map((menu, menuIndex) => {
+        const hasSubMenu = menu.subMenu && menu.subMenu.length > 0
         return (
-          <div 
+          <div
             className='dark p-2'
             key={menuIndex}>
             <div className='fontStyle-xl text-gray-50 mb-6'>
-              {menu.submenu == null ? (
+              {!hasSubMenu ? (
                 <a href={menu.captionLink}>{menu.caption}</a>
               ) : (
                 menu.caption
               )}
             </div>
             <div>
-              {menu.submenu === null ? (
+              {!hasSubMenu ? (
                 null
               ) : (
                 <div>
-                  <ListNav 
-                    styles="flat"
-                    linkList= {menu.submenu}
+                  <ListNav
+                    styles='flat'
+                    linkList={menu.subMenu}
                   />
                 </div>
               )}
             </div>
             {menuData.length - 1 > menuIndex && (
-              <Divider className="my-8" />
+              <Divider className='my-8' />
             )}
           </div>
         )

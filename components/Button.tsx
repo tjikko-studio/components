@@ -4,7 +4,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * button type
    */
-  type: "primary" | "secondary" | "tertiary"
+  type: 'primary' | 'secondary' | 'tertiary'
   /**
    * text to display on button
    */
@@ -13,11 +13,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
    * icon position
    * only: show only icon with rounded button
    */
-  icon: "right" | "left" | "only" | "none"
+  icon?: 'right' | 'left' | 'only' | 'none'
   /**
    * icon size
    */
-  size: "small" | "default" | "large"
+  size?: 'small' | 'default' | 'large'
   /**
    * button link
    */
@@ -34,7 +34,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
 export const Button: FC<ButtonProps> = ({
   type = 'primary',
   text = 'LABEL',
-  icon = 'none',
   size = 'default',
   url = '',
   forceDark = false

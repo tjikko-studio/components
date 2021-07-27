@@ -21,7 +21,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    * content text
    */
   text?: string
-  classNames?: string
+  className?: string
 }
 
 /**
