@@ -8,9 +8,45 @@ export default {
   },
   parameters: {
     componentSubtitle: 'The Divider'
-  }
+  },
+  decorators : [
+    (Story) => (
+      <div className='max-w-screen-sm h-96'>
+        <Story />
+        <Story />
+        <Story />
+      </div>
+    ),
+  ]
 } as Meta
 
 const Template: Story<DividerProps> = (args) => <Divider {...args} />
 
-export const Default = Template.bind({})
+export const Horizontal = Template.bind({})
+
+Horizontal.args = {
+  direction : "horizontal"
+}
+
+export const HorizontalDark = Template.bind({})
+HorizontalDark.args = {
+  direction : "horizontal",
+  dark : true
+}
+HorizontalDark.parameters = {
+  themes: { default: "Dark" }
+}
+
+export const Vertical = Template.bind({})
+Vertical.args = {
+  direction : "vertical"
+}
+
+export const VerticalDark = Template.bind({})
+VerticalDark.args = {
+  direction : "vertical",
+  dark : true
+}
+VerticalDark.parameters = {
+  themes: { default: "Dark" }
+}
