@@ -12,9 +12,9 @@ var _default = {
   component: _Icon.Icon,
   argTypes: {
     type: {
+      options: ["horizontal", "vertical"],
       control: {
-        type: "select",
-        options: ["horizontal", "vertical"]
+        type: "select"
       }
     }
   },

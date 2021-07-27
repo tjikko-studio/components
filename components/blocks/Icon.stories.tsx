@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/Icon',
   component: Icon,
   argTypes: {
-    type: {control: {type: "select", options: ["horizontal", "vertical"]}},
+    type: {options: ["horizontal", "vertical"], control: {type: "select"}},
   },
   parameters: {
     componentSubtitle: 'The Icon'

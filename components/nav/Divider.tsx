@@ -11,11 +11,11 @@ export interface DividerProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Divider: FC<DividerProps> = ({
-  ...props
+  className
 }) => {
   return (
     <hr
-      className={`border-0 border-t my-2 border-gray-300 dark:border-gray-600 ${props.className}`}
+      className={`border-0 border-t my-2 border-gray-300 dark:border-gray-600 ${className}`}
     />
   )
 }

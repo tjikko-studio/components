@@ -12,15 +12,15 @@ var _default = {
   component: _SideNavItem.SideNavItem,
   argTypes: {
     type: {
+      options: ["linkheader", "link", "header"],
       control: {
-        type: "select",
-        options: ["linkheader", "link", "header"]
+        type: "select"
       }
     },
     status: {
+      options: ["default", "active", "hover"],
       control: {
-        type: "select",
-        options: ["default", "active", "hover"]
+        type: "select"
       }
     },
     spacer: {

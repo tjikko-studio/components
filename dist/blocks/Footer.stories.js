@@ -10,7 +10,7 @@ var _Footer = require("./Footer");
 var _default = {
   title: 'Tjikko/blocks/Footer',
   component: _Footer.Footer,
-  argTypes: {// type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
+  argTypes: {// type: { options: ["default", "header", "button", "special"], control: { type: "select" }},
   },
   parameters: {
     componentSubtitle: 'The Footer'

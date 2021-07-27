@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/Primary',
   component: Primary,
   argTypes: {
-    type: {control: {type: "select", options: ["default", "vertical"]}},
+    type: {options: ["default", "vertical"], control: {type: "select"}},
     mirror: {control: {type: "boolean"}},
   },
   parameters: {

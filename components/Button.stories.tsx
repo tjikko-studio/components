@@ -5,8 +5,8 @@ export default {
   title: 'Tjikko/Buttons',
   component: Button,
   argTypes: {
-    type: { control: { type: "select", options: ["primary", "tertiary"] }},
-    size: { control: { type: "select", options: ["small", "default", "large"] }},
+    type: { options: ["primary", "tertiary"], control: { type: "select" }},
+    size: { options: ["small", "default", "large"], control: { type: "select" }},
     forceDark: { control: { type: "boolean" }}
   },
   parameters: {

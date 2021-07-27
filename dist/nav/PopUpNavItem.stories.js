@@ -12,9 +12,9 @@ var _default = {
   component: _PopUpNavItem.PopUpNavItem,
   argTypes: {
     type: {
+      options: ["default", "header", "button", "special"],
       control: {
-        type: "select",
-        options: ["default", "header", "button", "special"]
+        type: "select"
       }
     }
   },

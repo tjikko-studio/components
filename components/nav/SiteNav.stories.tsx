@@ -1,4 +1,4 @@
-import {SiteNav, SiteNavProps} from "./SiteNav"
+import {SiteNav, SiteNavProps} from './SiteNav'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -13,20 +13,20 @@ const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 
 export const Desktop = Template.bind({})
 Desktop.args = {
-  styles: "opaque",
+  styles: 'opaque',
   languageList: {
-    current: "En",
-    submenu: [
+    current: 'En',
+    subMenu: [
       {
         groupCaption: null,
         groups: [
           {
-            name: "De",
-            url: "/de",
+            name: 'De',
+            url: '/de',
           },
           {
-            name: "Afr",
-            url: "/afr",
+            name: 'Afr',
+            url: '/afr',
           }
         ]
       }
@@ -34,76 +34,76 @@ Desktop.args = {
   },
   menuData: [
     {
-      caption: "Why SmartPixel",
-      submenu: [
+      caption: 'Why SmartPixel',
+      subMenu: [
         {
           groupCaption: null,
           groups: [
             {
-              name: "Features",
-              url: "/features",
+              name: 'Features',
+              url: '/features',
             },
             {
-              name: "Customer Success Stories",
-              url: "/customer",
+              name: 'Customer Success Stories',
+              url: '/customer',
             },
             {
-              name: "Quality and reliability",
-              url: "/quality"
+              name: 'Quality and reliability',
+              url: '/quality'
             },
             {
-              name: "Contact Sales team",
-              url: "/contact",
-              type: "button"
+              name: 'Contact Sales team',
+              url: '/contact',
+              type: 'button'
             }
           ]
         }
       ]
     },
     {
-      caption: "Solutions",
-      submenu: [
+      caption: 'Solutions',
+      subMenu: [
         {
-          groupCaption: "BY INDUSTRY",
+          groupCaption: 'BY INDUSTRY',
           groups: [
             {
-              name: "Real estate",
-              url: "/real",
+              name: 'Real estate',
+              url: '/real',
             },
             {
-              name: "Others",
-              url: "/others",
+              name: 'Others',
+              url: '/others',
             }
           ]
         },
         {
-          groupCaption: "BY USE CASE",
+          groupCaption: 'BY USE CASE',
           groups: [
             {
-              name: "Sales Office",
-              url: "/sale",
+              name: 'Sales Office',
+              url: '/sale',
             },
             {
-              name: "Presentation",
-              url: "/presentation"
+              name: 'Presentation',
+              url: '/presentation'
             },
             {
-              name: "Remote",
-              url: "/remote"
+              name: 'Remote',
+              url: '/remote'
             },
             {
-              name: "Contact Sales team",
-              url: "/contact",
-              type: "button"
+              name: 'Contact Sales team',
+              url: '/contact',
+              type: 'button'
             }
           ]
         }
       ]
     },
     {
-      caption: "Portfolio",
-      captionLink: "/portfolio",
-      submenu: null
+      caption: 'Portfolio',
+      captionLink: '/portfolio',
+      subMenu: null
     }
   ]
 }
@@ -111,7 +111,7 @@ Desktop.args = {
 export const DesktopTransparent = Template.bind({})
 DesktopTransparent.args = {
   ...Desktop.args,
-  styles: "transparent"
+  styles: 'transparent'
 }
 DesktopTransparent.parameters = {
   backgrounds: { default: 'dark' },
@@ -119,7 +119,8 @@ DesktopTransparent.parameters = {
 
 export const Mobile = Template.bind({})
 Mobile.args = {
-  ...Desktop.args
+  ...Desktop.args,
+  mobileExpandDefault: true
 }
 Mobile.parameters = {
   viewport: {
@@ -130,7 +131,7 @@ Mobile.parameters = {
 export const MobileTransparent = Template.bind({})
 MobileTransparent.args = {
   ...Mobile.args,
-  styles: "transparent"
+  styles: 'transparent'
 }
 MobileTransparent.parameters = {
   ...Mobile.parameters,
