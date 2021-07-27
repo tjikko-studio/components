@@ -12,9 +12,9 @@ var _default = {
   component: _ListNav.ListNav,
   argTypes: {
     styles: {
+      options: ["flat", "elevated"],
       control: {
-        type: "select",
-        options: ["flat", "elevated"]
+        type: "select"
       }
     }
   },

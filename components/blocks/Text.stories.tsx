@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/Text',
   component: Text,
   argTypes: {
-    // type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
+    // type: { options: ["default", "header", "button", "special"], control: { type: "select" }},
   },
   parameters: {
     componentSubtitle: 'The Text block',

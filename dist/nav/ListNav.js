@@ -17,46 +17,43 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ListNav = _ref => {
   var {
     styles = "elevated",
-    linkList = []
+    linkList = [],
+    className
   } = _ref;
   linkList = linkList === null || linkList === undefined ? [] : linkList;
-  var classes = ['rounded-lg', 'bg-gray-50', 'dark:bg-transparent', 'px-3', 'py-2.5', 'w-max'];
+  var classes = [className];
+  var wmax = "";
 
-  if (styles === 'elevated') {
-    classes.push('shadow-lg');
-  }
+  switch (styles) {
+    case 'elevated':
+      classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:gray-800');
+      wmax = "w-max";
+      break;
 
-  if (linkList.length > 1) {
-    switch (styles) {
-      case 'elevated':
-        classes.push('flex');
-        break;
+    case 'flat':
+      classes.push('grid', 'sm:grid-cols-2', 'justify-items-stretch', 'gap-6');
+      wmax = "";
 
-      case 'flat':
-        classes.push('grid', 'grid-cols-2');
-
-      default:
-        break;
-    }
+    default:
+      break;
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: classes.join(' '),
-    style: {
-      width: 'fit-content'
-    }
+    className: classes.join(' ')
   }, linkList.map((menu, index) => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: "m-1.5 w-max",
+      className: "".concat(wmax),
       key: index
-    }, linkList.length > 1 && /*#__PURE__*/_react.default.createElement("div", {
-      className: "font-semibold text-sm leading-5 uppercase px-3 py-2.5 dark:text-gray-100 text-gray-800"
-    }, menu.groupCaption), menu.groups.map((menuItem, subIndex) => {
+    }, linkList.length > 1 && /*#__PURE__*/_react.default.createElement(_PopUpNavItem.PopUpNavItem, {
+      caption: menu.groupCaption,
+      type: "header",
+      className: "py-2.5"
+    }), menu.groups.map((menuItem, subIndex) => {
       return /*#__PURE__*/_react.default.createElement(_PopUpNavItem.PopUpNavItem, {
         caption: menuItem.name,
         type: menuItem.type ? menuItem.type : "default",
         key: subIndex,
-        className: "px-3 py-2.5",
+        className: "py-2.5",
         href: menuItem.url
       });
     }));

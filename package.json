@@ -33,6 +33,7 @@
     "concurrently": "6.2.0",
     "postcss": "8.3.6",
     "postcss-preset-env": "6.7.0",
+    "storybook-addon-themes": "6.1.0",
     "storybook-tailwind-dark-mode": "1.0.9"
   },
   "dependencies": {

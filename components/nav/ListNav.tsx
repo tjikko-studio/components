@@ -32,10 +32,10 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
 export const ListNav: FC<ListNavProps> = ({
   styles = "elevated",
   linkList = [],
-  ...props
+  className
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
-  const classes = [props.className]
+  const classes = [className]
   var wmax = "";
   switch (styles) {
     case 'elevated':
@@ -57,16 +57,16 @@ export const ListNav: FC<ListNavProps> = ({
           return <div className={`${wmax}`} key={index} >
             {
               (linkList.length > 1) && (
-                <PopUpNavItem 
-                  caption={menu.groupCaption} 
-                  type={"header"} 
-                  className='py-2.5' >  
-                </PopUpNavItem>                
+                <PopUpNavItem
+                  caption={menu.groupCaption}
+                  type={"header"}
+                  className='py-2.5'
+                />
               )
             }
             {
               menu.groups.map((menuItem, subIndex) => {
-                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : "default"} key={subIndex} className='py-2.5' href={menuItem.url} ></PopUpNavItem>)
+                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : "default"} key={subIndex} className='py-2.5' href={menuItem.url} />)
               })
             }
           </div>

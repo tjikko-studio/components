@@ -13,11 +13,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
    * icon position
    * only: show only icon with rounded button
    */
-  icon: "right" | "left" | "only" | "none"
+  icon?: "right" | "left" | "only" | "none"
   /**
    * icon size
    */
-  size: "small" | "default" | "large"
+  size?: "small" | "default" | "large"
   /**
    * button link
    */
@@ -83,7 +83,7 @@ export const Button: FC<ButtonProps> = ({
       >{text}</span>
     )
   }
-  if (url)
+  if (url) {
     return (
       <a
         href={url}
@@ -92,8 +92,7 @@ export const Button: FC<ButtonProps> = ({
         <Content />
       </a>
     )
-
-  if (!url)
+  } else {
     return (
       <button
         className={buttonClassesJoined}
@@ -101,5 +100,5 @@ export const Button: FC<ButtonProps> = ({
         <Content />
       </button>
     )
-
+  }
 }

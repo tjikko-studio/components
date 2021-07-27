@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/BigHeader',
   component: BigHeader,
   argTypes: {
-    bgtype: {control: {type: "select", options: ["image", "video"]}},
+    bgtype: {options: ["image", "video"], control: {type: "select"}},
   },
   parameters: {
     componentSubtitle: 'The BigHeader'
