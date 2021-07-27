@@ -12,20 +12,20 @@ var _default = {
   component: _SideNavItem.SideNavItem,
   argTypes: {
     type: {
+      options: ['linkHeader', 'link', 'header'],
       control: {
-        type: "select",
-        options: ["linkheader", "link", "header"]
+        type: 'select'
       }
     },
     status: {
+      options: ['default', 'active', 'hover'],
       control: {
-        type: "select",
-        options: ["default", "active", "hover"]
+        type: 'select'
       }
     },
     spacer: {
       contro: {
-        type: "boolean"
+        type: 'boolean'
       }
     }
   },
@@ -40,8 +40,8 @@ var Template = args => /*#__PURE__*/React.createElement(_SideNavItem.SideNavItem
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  type: "linkheader",
-  status: "default",
+  type: 'linkHeader',
+  status: 'default',
   spacer: false,
-  text: "Link Header"
+  text: 'Link Header'
 };

@@ -28,7 +28,7 @@ var Secondary = _ref => {
 
   var Image = () => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: type === 'vertical' && 'pb-6'
+      className: type === 'vertical' ? 'pb-6' : ''
     }, /*#__PURE__*/_react.default.createElement("img", {
       src: imageUrl,
       className: "rounded-lg ".concat(type === 'default' && 'w-auto')
@@ -37,9 +37,9 @@ var Secondary = _ref => {
 
   var Text = () => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: "\n          ".concat(type != 'vertical' && 'flex justify-center', "\n        ")
+      className: "\n          ".concat(type !== 'vertical' && 'flex justify-center', "\n        ")
     }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "\n              ".concat(type != 'vertical' && 'pl-12', "\n          ")
+      className: "\n              ".concat(type !== 'vertical' && 'pl-12', "\n          ")
     }, /*#__PURE__*/_react.default.createElement("h2", {
       className: "fontStyle-4xl"
     }, head), /*#__PURE__*/_react.default.createElement("p", {

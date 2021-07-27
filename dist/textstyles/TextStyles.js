@@ -20,7 +20,7 @@ var TextStyles = _ref => {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full ".concat(className)
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type != "all" && type != "heading" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== "all" && type !== "heading" && "display: hidden", "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-lg uppercase strong mb-6"
   }, "Headings : "), /*#__PURE__*/_react.default.createElement("div", {
@@ -78,7 +78,7 @@ var TextStyles = _ref => {
   }, "Heading x"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
   }, "className='fontStyle-xl'"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type != "all" && type != "body" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-lg uppercase strong mb-6"
   }, "Body large : "), /*#__PURE__*/_react.default.createElement("div", {
@@ -106,7 +106,7 @@ var TextStyles = _ref => {
   }, "Body Large uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
   }, "className=\"fontStyle-lg uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type != "all" && type != "body" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body uppercase  mb-6"
   }, "Body : "), /*#__PURE__*/_react.default.createElement("div", {
@@ -134,7 +134,7 @@ var TextStyles = _ref => {
   }, "Body uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
   }, "className=\"fontStyle-body uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type != "all" && type != "body" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-sm uppercase strong mb-6"
   }, "Body small : "), /*#__PURE__*/_react.default.createElement("div", {
@@ -162,7 +162,7 @@ var TextStyles = _ref => {
   }, "Body small uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
   }, "className=\"fontStyle-sm uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type != "all" && type != "body" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-xs uppercase strong mb-6"
   }, "Body xsmall : "), /*#__PURE__*/_react.default.createElement("div", {

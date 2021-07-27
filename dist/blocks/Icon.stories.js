@@ -12,9 +12,9 @@ var _default = {
   component: _Icon.Icon,
   argTypes: {
     type: {
+      options: ['horizontal', 'vertical'],
       control: {
-        type: "select",
-        options: ["horizontal", "vertical"]
+        type: 'select'
       }
     }
   },
@@ -29,8 +29,8 @@ var Template = args => /*#__PURE__*/React.createElement(_Icon.Icon, args);
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  type: "horizontal",
-  imageUrl: "https://via.placeholder.com/56x56",
-  heading: "Heading",
-  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+  type: 'horizontal',
+  imageUrl: 'https://via.placeholder.com/56x56',
+  heading: 'Heading',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.'
 };

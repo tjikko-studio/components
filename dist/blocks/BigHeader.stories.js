@@ -12,9 +12,9 @@ var _default = {
   component: _BigHeader.BigHeader,
   argTypes: {
     bgtype: {
+      options: ['image', 'video'],
       control: {
-        type: "select",
-        options: ["image", "video"]
+        type: 'select'
       }
     }
   },
@@ -29,24 +29,24 @@ var Template = args => /*#__PURE__*/React.createElement(_BigHeader.BigHeader, ar
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  bgtype: "video",
+  bgtype: 'video',
   bgVideo: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
   headerInfo: {
     styles: {
-      type: "default",
-      buttonText: "Book a demo",
-      formPlaceholder: "Work email",
-      caseText: "SP Architectutes",
-      url: "/headertext"
+      type: 'default',
+      buttonText: 'Book a demo',
+      formPlaceholder: 'Work email',
+      caseText: 'SP Architectutes',
+      url: '/headertext'
     },
-    title: "Real-time 3D experiences enabling decision-makers",
+    title: 'Real-time 3D experiences enabling decision-makers',
     breadcrumb: [{
-      name: "breadcrumb",
-      url: "/bread1"
+      name: 'breadcrumb',
+      url: '/bread1'
     }, {
-      name: "breadcrumb",
-      url: "/bread2"
+      name: 'breadcrumb',
+      url: '/bread2'
     }],
-    text: "Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+    text: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
   }
 };

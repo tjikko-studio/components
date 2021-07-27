@@ -12,9 +12,9 @@ var _default = {
   component: _NavItem.NavItem,
   argTypes: {
     styles: {
+      options: ['default', 'default/white', 'flat'],
       control: {
-        type: "select",
-        options: ["default", "default/white", "flat"]
+        type: 'select'
       }
     }
   },
@@ -29,72 +29,72 @@ var Template = args => /*#__PURE__*/React.createElement(_NavItem.NavItem, args);
 var None = Template.bind({});
 exports.None = None;
 None.args = {
-  styles: "default",
-  submenu: null
+  styles: 'default',
+  subMenu: []
 };
 var SingleData = Template.bind({});
 exports.SingleData = SingleData;
 SingleData.args = {
-  submenu: [{
-    groupCaption: "Group 01",
+  subMenu: [{
+    groupCaption: 'Group 01',
     groups: [{
-      name: "Link 01",
-      url: "/linkURL",
-      type: "link"
+      name: 'Link 01',
+      url: '/linkURL',
+      type: 'link'
     }, {
-      name: "Link 02",
-      url: "/linkURL",
-      type: "button"
+      name: 'Link 02',
+      url: '/linkURL',
+      type: 'button'
     }, {
-      name: "Link 03",
-      url: "/linkURL",
-      type: "button"
+      name: 'Link 03',
+      url: '/linkURL',
+      type: 'button'
     }]
   }]
 };
 var MultiData = Template.bind({});
 exports.MultiData = MultiData;
 MultiData.args = {
-  submenu: [{
-    groupCaption: "Group 01",
+  subMenu: [{
+    groupCaption: 'Group 01',
     groups: [{
-      name: "Link 01",
-      url: "/linkURL",
-      type: "link"
+      name: 'Link 01',
+      url: '/linkURL',
+      type: 'link'
     }, {
-      name: "Link 02",
-      url: "/linkURL"
+      name: 'Link 02',
+      url: '/linkURL'
     }, {
-      name: "Link 03",
-      url: "/linkURL",
-      type: "button"
+      name: 'Link 03',
+      url: '/linkURL',
+      type: 'button'
     }]
   }, {
-    groupCaption: "Group 02",
+    groupCaption: 'Group 02',
     groups: [{
-      name: "Link 01",
-      url: "/linkURL",
-      type: "link"
+      name: 'Link 01',
+      url: '/linkURL',
+      type: 'link'
     }, {
-      name: "Link 02",
-      url: "/linkURL"
+      name: 'Link 02',
+      url: '/linkURL'
     }, {
-      name: "Link 03",
-      url: "/linkURL",
-      type: "link"
+      name: 'Link 03',
+      url: '/linkURL',
+      type: 'link'
     }]
   }, {
-    groupCaption: "Group 03",
+    groupCaption: 'Group 03',
     groups: [{
-      name: "Link 01",
-      url: "/linkURL",
-      type: "button"
+      name: 'Link 01',
+      url: '/linkURL',
+      type: 'button'
     }, {
-      name: "Link 02",
-      url: "/linkURL"
+      name: 'Link 02',
+      url: '/linkURL'
     }, {
-      name: "Link 03",
-      url: "/linkURL"
+      name: 'Link 03',
+      url: '/linkURL'
     }]
   }]
 };

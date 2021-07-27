@@ -39,7 +39,6 @@ var SearchBar = _ref => {
     className: "absolute top-1/2 -mt-2 ml-4",
     disabled: isDisabled
   }, /*#__PURE__*/_react.default.createElement(_searchLine.default, {
-    width: "",
     className: "w-4 h-4"
   })), /*#__PURE__*/_react.default.createElement("input", {
     disabled: isDisabled,

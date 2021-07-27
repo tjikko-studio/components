@@ -16,7 +16,6 @@ var Button = _ref => {
   var {
     type = 'primary',
     text = 'LABEL',
-    icon = 'none',
     size = 'default',
     url = '',
     forceDark = false

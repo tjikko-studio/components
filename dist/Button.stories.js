@@ -12,20 +12,20 @@ var _default = {
   component: _Button.Button,
   argTypes: {
     type: {
+      options: ['primary', 'tertiary'],
       control: {
-        type: "select",
-        options: ["primary", "tertiary"]
+        type: 'select'
       }
     },
     size: {
+      options: ['small', 'default', 'large'],
       control: {
-        type: "select",
-        options: ["small", "default", "large"]
+        type: 'select'
       }
     },
     forceDark: {
       control: {
-        type: "boolean"
+        type: 'boolean'
       }
     }
   },
@@ -40,10 +40,10 @@ var Template = args => /*#__PURE__*/React.createElement(_Button.Button, args);
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  type: "primary",
+  type: 'primary',
   text: 'LABEL',
   url: '',
   icon: 'none',
-  size: "default",
+  size: 'default',
   forceDark: false
 };

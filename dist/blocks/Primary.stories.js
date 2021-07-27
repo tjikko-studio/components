@@ -18,14 +18,14 @@ var _default = {
   component: _Primary.Primary,
   argTypes: {
     type: {
+      options: ['default', 'vertical'],
       control: {
-        type: "select",
-        options: ["default", "vertical"]
+        type: 'select'
       }
     },
     mirror: {
       control: {
-        type: "boolean"
+        type: 'boolean'
       }
     }
   },
@@ -40,16 +40,16 @@ var Template = args => /*#__PURE__*/React.createElement(_Primary.Primary, args);
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  type: "default",
+  type: 'default',
   mirror: false,
-  imageUrl: "https://source.unsplash.com/random",
-  head: "Heading",
-  text: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.",
+  imageUrl: 'https://source.unsplash.com/random',
+  head: 'Heading',
+  text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
   cta_name: 'cta text',
   cta_url: '/ctatext'
 };
 var WidthControl = Template.bind({});
 exports.WidthControl = WidthControl;
 WidthControl.args = _objectSpread({
-  className: "w-full"
+  className: 'w-full'
 }, Default.args);

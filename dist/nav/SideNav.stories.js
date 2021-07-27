@@ -22,8 +22,8 @@ var Template = args => /*#__PURE__*/React.createElement(_SideNav.SideNav, args);
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  navObj: [{
-    type: "linkheader",
+  items: [{
+    type: "linkHeader",
     status: "active",
     text: "All",
     url: "https://i.pravatar.cc/".concat(Math.ceil(1000 * Math.random()))

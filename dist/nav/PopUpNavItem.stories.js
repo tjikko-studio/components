@@ -12,9 +12,9 @@ var _default = {
   component: _PopUpNavItem.PopUpNavItem,
   argTypes: {
     type: {
+      options: ['default', 'header', 'button', 'special'],
       control: {
-        type: "select",
-        options: ["default", "header", "button", "special"]
+        type: 'select'
       }
     }
   },
@@ -29,7 +29,7 @@ var Template = args => /*#__PURE__*/React.createElement(_PopUpNavItem.PopUpNavIt
 var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
-  caption: "Link"
+  caption: 'Link'
 };
 var Active = Template.bind({});
 exports.Active = Active;

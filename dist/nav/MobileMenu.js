@@ -9,6 +9,12 @@ var _react = _interopRequireDefault(require("react"));
 
 var _NavItem = require("./NavItem");
 
+var _Divider = require("./Divider");
+
+var _Button = require("../Button");
+
+var _ListNav = require("./ListNav");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -19,48 +25,41 @@ var MobileMenu = _ref => {
     demoButtonText = 'Free Demo',
     demoUrl = '#',
     menuData = [],
-    styles = 'black',
     languageList = {}
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "bg-gray-900 ".concat(styles === 'transWhite' && 'bg-opacity-10')
+    className: "bg-gray-900 p-4"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex justify-between p-5 p-6"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("a", {
-    href: demoUrl,
-    className: "py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold"
-  }, demoButtonText)), /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
-    className: "mr-7",
+    className: "flex justify-between p-2"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "dark"
+  }, /*#__PURE__*/_react.default.createElement(_Button.Button, {
+    text: demoButtonText,
+    url: demoUrl,
+    type: "primary",
+    icon: "none"
+  })), /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
     styles: "default/white",
     caption: languageList.current ? languageList.current : 'En',
-    submenu: languageList.submenu
-  })), /*#__PURE__*/_react.default.createElement("hr", {
-    className: "mx-2 bg-opacity-10 mt-6 text-gray-400"
-  }), menuData.map((menu, menuIndex) => {
+    subMenu: languageList.subMenu
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "dark"
+  }, /*#__PURE__*/_react.default.createElement(_Divider.Divider, {
+    className: "my-8"
+  })), menuData.map((menu, menuIndex) => {
+    var hasSubMenu = menu.subMenu && menu.subMenu.length > 0;
     return /*#__PURE__*/_react.default.createElement("div", {
+      className: "dark p-2",
       key: menuIndex
     }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "font-borda uppercase text-gray-50 text-lg tracking-widest pl-6 pt-6 "
-    }, menu.submenu == null ? /*#__PURE__*/_react.default.createElement("a", {
+      className: "fontStyle-xl text-gray-50 mb-6"
+    }, !hasSubMenu ? /*#__PURE__*/_react.default.createElement("a", {
       href: menu.captionLink
-    }, menu.caption) : menu.caption), /*#__PURE__*/_react.default.createElement("div", null, menu.submenu === null ? null : /*#__PURE__*/_react.default.createElement("div", {
-      className: "grid grid-cols-2"
-    }, menu.submenu.map((group, groupIndex) => {
-      return /*#__PURE__*/_react.default.createElement("div", {
-        key: groupIndex
-      }, group.groupCaption && /*#__PURE__*/_react.default.createElement("div", {
-        className: "text-gray-100 font-semibold tracking-wider text-sm pl-6 pt-5"
-      }, group.groupCaption), group.groups.map((item, itemIndex) => {
-        return /*#__PURE__*/_react.default.createElement("div", {
-          className: "px-6 pt-5 text-gray-100",
-          key: itemIndex
-        }, /*#__PURE__*/_react.default.createElement("a", {
-          className: item.type === 'button' ? 'text-brand-300 hover:text-brand-600' : '',
-          href: item.url
-        }, item.name));
-      }));
-    }))), menuData.length - 1 > menuIndex && /*#__PURE__*/_react.default.createElement("hr", {
-      className: "mx-2 bg-opacity-10 mt-6 text-gray-400"
+    }, menu.caption) : menu.caption), /*#__PURE__*/_react.default.createElement("div", null, !hasSubMenu ? null : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_ListNav.ListNav, {
+      styles: "flat",
+      linkList: menu.subMenu
+    }))), menuData.length - 1 > menuIndex && /*#__PURE__*/_react.default.createElement(_Divider.Divider, {
+      className: "my-8"
     }));
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "pb-20"
