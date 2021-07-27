@@ -4,7 +4,7 @@ module.exports = {
     '../components/**/*.stories.mdx',
     '../components/**/*.stories.@(js|jsx|ts|tsx)'
   ],
-  addons: ['@storybook/addon-postcss', '@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-controls', 'storybook-tailwind-dark-mode'],
+  addons: ['@storybook/addon-postcss', '@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-controls', 'storybook-addon-themes'],
   webpackFinal: async config => {
     const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
     fileLoaderRule.exclude = /\.svg$/; 
