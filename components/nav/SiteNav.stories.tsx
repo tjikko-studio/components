@@ -114,8 +114,8 @@ DesktopTransparent.args = {
   styles: 'transparent'
 }
 DesktopTransparent.parameters = {
-  backgrounds: { default: 'dark' },
-};
+  themes: { default: "Dark" }
+}
 
 export const Mobile = Template.bind({})
 Mobile.args = {
@@ -123,9 +123,7 @@ Mobile.args = {
   mobileExpandDefault: true
 }
 Mobile.parameters = {
-  viewport: {
-    defaultViewport: 'tablet'
-  },
+  viewport: { defaultViewport: 'tablet' }
 };
 
 export const MobileTransparent = Template.bind({})
@@ -135,5 +133,5 @@ MobileTransparent.args = {
 }
 MobileTransparent.parameters = {
   ...Mobile.parameters,
-  backgrounds: { default: 'dark' },
+  themes: { default: "Dark" }
 };
