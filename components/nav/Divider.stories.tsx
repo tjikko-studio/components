@@ -14,5 +14,3 @@ export default {
 const Template: Story<DividerProps> = (args) => <Divider {...args} />
 
 export const Default = Template.bind({})
-Default.args = {
-}

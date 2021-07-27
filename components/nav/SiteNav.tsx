@@ -61,7 +61,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   languageList = {},
   className
 }) => {
-  const [mobileExpand, setMobileExpand] = useState(true)
+  const [mobileExpand, setMobileExpand] = useState(false)
   const largeScreen = useMediaPredicate(`(max-width: ${tailwind.theme.screens.lg})`)
   return (
     <>

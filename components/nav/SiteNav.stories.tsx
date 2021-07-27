@@ -6,23 +6,13 @@ export default {
   component: SiteNav,
   parameters: {
     componentSubtitle: 'The Buttons SiteNav',
-    argTypes: {
-      backgrounds: { control: { disable: true } },
-    },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#fff' },
-        { name: 'dark', value: '#000' },
-      ],
-    },
   }
 } as Meta
 
 const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
+export const Desktop = Template.bind({})
+Desktop.args = {
   styles: "opaque",
   languageList: {
     current: "En",
@@ -118,11 +108,31 @@ Default.args = {
   ]
 }
 
-export const transparent = Template.bind({})
-transparent.args = {
-  ...Default.args,
+export const DesktopTransparent = Template.bind({})
+DesktopTransparent.args = {
+  ...Desktop.args,
   styles: "transparent"
 }
-transparent.parameters = {
-  backgrounds: { default: 'dark' }
+DesktopTransparent.parameters = {
+  backgrounds: { default: 'dark' },
+};
+
+export const Mobile = Template.bind({})
+Mobile.args = {
+  ...Desktop.args
+}
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'tablet'
+  },
+};
+
+export const MobileTransparent = Template.bind({})
+MobileTransparent.args = {
+  ...Mobile.args,
+  styles: "transparent"
+}
+MobileTransparent.parameters = {
+  ...Mobile.parameters,
+  backgrounds: { default: 'dark' },
 };
