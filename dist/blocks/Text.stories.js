@@ -10,7 +10,7 @@ var _Text = require("./Text");
 var _default = {
   title: 'Tjikko/blocks/Text',
   component: _Text.Text,
-  argTypes: {// type: { control: { type: "select", options: ["default", "header", "button", "special"] }},
+  argTypes: {// type: { options: ["default", "header", "button", "special"], control: { type: "select" }},
   },
   parameters: {
     componentSubtitle: 'The Text block',

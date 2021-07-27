@@ -48,6 +48,10 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * Additional space-separated class names to append
    */
   className?: string
+  /**
+   * Set to true to have the mobile menu expanded by default
+   */
+  mobileExpandDefault: boolean
 }
 
 /**
@@ -59,9 +63,10 @@ export const SiteNav: FC<SiteNavProps> = ({
   menuData = [],
   styles = "opaque",
   languageList = {},
-  className
+  className,
+  mobileExpandDefault = false
 }) => {
-  const [mobileExpand, setMobileExpand] = useState(true)
+  const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
   const largeScreen = useMediaPredicate(`(max-width: ${tailwind.theme.screens.lg})`)
   return (
     <>

@@ -1,4 +1,4 @@
-import {SiteNav, SiteNavProps} from "./SiteNav"
+import {SiteNav, SiteNavProps} from './SiteNav'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -6,37 +6,27 @@ export default {
   component: SiteNav,
   parameters: {
     componentSubtitle: 'The Buttons SiteNav',
-    argTypes: {
-      backgrounds: { control: { disable: true } },
-    },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#fff' },
-        { name: 'dark', value: '#000' },
-      ],
-    },
   }
 } as Meta
 
 const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
-  styles: "opaque",
+export const Desktop = Template.bind({})
+Desktop.args = {
+  styles: 'opaque',
   languageList: {
-    current: "En",
+    current: 'En',
     subMenu: [
       {
-        groupCaption: null,
+        groupCaption: [],
         groups: [
           {
-            name: "De",
-            url: "/de",
+            name: 'De',
+            url: '/de',
           },
           {
-            name: "Afr",
-            url: "/afr",
+            name: 'Afr',
+            url: '/afr',
           }
         ]
       }
@@ -44,84 +34,104 @@ Default.args = {
   },
   menuData: [
     {
-      caption: "Why SmartPixel",
+      caption: 'Why SmartPixel',
       subMenu: [
         {
-          groupCaption: null,
+          groupCaption: [],
           groups: [
             {
-              name: "Features",
-              url: "/features",
+              name: 'Features',
+              url: '/features',
             },
             {
-              name: "Customer Success Stories",
-              url: "/customer",
+              name: 'Customer Success Stories',
+              url: '/customer',
             },
             {
-              name: "Quality and reliability",
-              url: "/quality"
+              name: 'Quality and reliability',
+              url: '/quality'
             },
             {
-              name: "Contact Sales team",
-              url: "/contact",
-              type: "button"
+              name: 'Contact Sales team',
+              url: '/contact',
+              type: 'button'
             }
           ]
         }
       ]
     },
     {
-      caption: "Solutions",
+      caption: 'Solutions',
       subMenu: [
         {
-          groupCaption: "BY INDUSTRY",
+          groupCaption: 'BY INDUSTRY',
           groups: [
             {
-              name: "Real estate",
-              url: "/real",
+              name: 'Real estate',
+              url: '/real',
             },
             {
-              name: "Others",
-              url: "/others",
+              name: 'Others',
+              url: '/others',
             }
           ]
         },
         {
-          groupCaption: "BY USE CASE",
+          groupCaption: 'BY USE CASE',
           groups: [
             {
-              name: "Sales Office",
-              url: "/sale",
+              name: 'Sales Office',
+              url: '/sale',
             },
             {
-              name: "Presentation",
-              url: "/presentation"
+              name: 'Presentation',
+              url: '/presentation'
             },
             {
-              name: "Remote",
-              url: "/remote"
+              name: 'Remote',
+              url: '/remote'
             },
             {
-              name: "Contact Sales team",
-              url: "/contact",
-              type: "button"
+              name: 'Contact Sales team',
+              url: '/contact',
+              type: 'button'
             }
           ]
         }
       ]
     },
     {
-      caption: "Portfolio",
-      captionLink: "/portfolio"
+      caption: 'Portfolio',
+      captionLink: '/portfolio',
+      subMenu: []
     }
   ]
 }
 
-export const transparent = Template.bind({})
-transparent.args = {
-  ...Default.args,
-  styles: "transparent"
+export const DesktopTransparent = Template.bind({})
+DesktopTransparent.args = {
+  ...Desktop.args,
+  styles: 'transparent'
 }
-transparent.parameters = {
-  backgrounds: { default: 'dark' }
+DesktopTransparent.parameters = {
+  themes: { default: "Dark Background" }
+}
+
+export const Mobile = Template.bind({})
+Mobile.args = {
+  ...Desktop.args,
+  mobileExpandDefault: true
+}
+Mobile.parameters = {
+  viewport: { defaultViewport: 'tablet' }
+};
+
+export const MobileTransparent = Template.bind({})
+MobileTransparent.args = {
+  ...Mobile.args,
+  styles: 'transparent'
+}
+MobileTransparent.parameters = {
+  ...Mobile.parameters,
+  themes: { default: 'Dark Background' }
 };

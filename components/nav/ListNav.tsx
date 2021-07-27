@@ -60,13 +60,13 @@ export const ListNav: FC<ListNavProps> = ({
                 <PopUpNavItem
                   caption={menu.groupCaption}
                   type={'header'}
-                  className='py-2.5' >
-                </PopUpNavItem>
+                  className='py-2.5'
+                />
               )
             }
             {
               menu.groups.map((menuItem, subIndex) => {
-                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : 'default'} key={subIndex} className='py-2.5' href={menuItem.url} ></PopUpNavItem>)
+                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : 'default'} key={subIndex} className='py-2.5' href={menuItem.url} />)
               })
             }
           </div>

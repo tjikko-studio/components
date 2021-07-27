@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.transparent = exports.Default = exports.default = void 0;
+exports.MobileTransparent = exports.Mobile = exports.DesktopTransparent = exports.Desktop = exports.default = void 0;
 
 var _SiteNav = require("./SiteNav");
 
@@ -17,106 +17,110 @@ var _default = {
   title: 'Tjikko/nav/SiteNav',
   component: _SiteNav.SiteNav,
   parameters: {
-    componentSubtitle: 'The Buttons SiteNav',
-    argTypes: {
-      backgrounds: {
-        control: {
-          disable: true
-        }
-      }
-    },
-    backgrounds: {
-      default: 'light',
-      values: [{
-        name: 'light',
-        value: '#fff'
-      }, {
-        name: 'dark',
-        value: '#000'
-      }]
-    }
+    componentSubtitle: 'The Buttons SiteNav'
   }
 };
 exports.default = _default;
 
 var Template = args => /*#__PURE__*/React.createElement(_SiteNav.SiteNav, args);
 
-var Default = Template.bind({});
-exports.Default = Default;
-Default.args = {
-  styles: "opaque",
+var Desktop = Template.bind({});
+exports.Desktop = Desktop;
+Desktop.args = {
+  styles: 'opaque',
   languageList: {
-    current: "En",
+    current: 'En',
     subMenu: [{
-      groupCaption: null,
+      groupCaption: [],
       groups: [{
-        name: "De",
-        url: "/de"
+        name: 'De',
+        url: '/de'
       }, {
-        name: "Afr",
-        url: "/afr"
+        name: 'Afr',
+        url: '/afr'
       }]
     }]
   },
   menuData: [{
-    caption: "Why SmartPixel",
+    caption: 'Why SmartPixel',
     subMenu: [{
-      groupCaption: null,
+      groupCaption: [],
       groups: [{
-        name: "Features",
-        url: "/features"
+        name: 'Features',
+        url: '/features'
       }, {
-        name: "Customer Success Stories",
-        url: "/customer"
+        name: 'Customer Success Stories',
+        url: '/customer'
       }, {
-        name: "Quality and reliability",
-        url: "/quality"
+        name: 'Quality and reliability',
+        url: '/quality'
       }, {
-        name: "Contact Sales team",
-        url: "/contact",
-        type: "button"
+        name: 'Contact Sales team',
+        url: '/contact',
+        type: 'button'
       }]
     }]
   }, {
-    caption: "Solutions",
+    caption: 'Solutions',
     subMenu: [{
-      groupCaption: "BY INDUSTRY",
+      groupCaption: 'BY INDUSTRY',
       groups: [{
-        name: "Real estate",
-        url: "/real"
+        name: 'Real estate',
+        url: '/real'
       }, {
-        name: "Others",
-        url: "/others"
+        name: 'Others',
+        url: '/others'
       }]
     }, {
-      groupCaption: "BY USE CASE",
+      groupCaption: 'BY USE CASE',
       groups: [{
-        name: "Sales Office",
-        url: "/sale"
+        name: 'Sales Office',
+        url: '/sale'
       }, {
-        name: "Presentation",
-        url: "/presentation"
+        name: 'Presentation',
+        url: '/presentation'
       }, {
-        name: "Remote",
-        url: "/remote"
+        name: 'Remote',
+        url: '/remote'
       }, {
-        name: "Contact Sales team",
-        url: "/contact",
-        type: "button"
+        name: 'Contact Sales team',
+        url: '/contact',
+        type: 'button'
       }]
     }]
   }, {
-    caption: "Portfolio",
-    captionLink: "/portfolio"
+    caption: 'Portfolio',
+    captionLink: '/portfolio',
+    subMenu: []
   }]
 };
-var transparent = Template.bind({});
-exports.transparent = transparent;
-transparent.args = _objectSpread(_objectSpread({}, Default.args), {}, {
-  styles: "transparent"
+var DesktopTransparent = Template.bind({});
+exports.DesktopTransparent = DesktopTransparent;
+DesktopTransparent.args = _objectSpread(_objectSpread({}, Desktop.args), {}, {
+  styles: 'transparent'
 });
-transparent.parameters = {
-  backgrounds: {
-    default: 'dark'
+DesktopTransparent.parameters = {
+  themes: {
+    default: "Dark Background"
   }
 };
+var Mobile = Template.bind({});
+exports.Mobile = Mobile;
+Mobile.args = _objectSpread(_objectSpread({}, Desktop.args), {}, {
+  mobileExpandDefault: true
+});
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'tablet'
+  }
+};
+var MobileTransparent = Template.bind({});
+exports.MobileTransparent = MobileTransparent;
+MobileTransparent.args = _objectSpread(_objectSpread({}, Mobile.args), {}, {
+  styles: 'transparent'
+});
+MobileTransparent.parameters = _objectSpread(_objectSpread({}, Mobile.parameters), {}, {
+  themes: {
+    default: 'Dark Background'
+  }
+});

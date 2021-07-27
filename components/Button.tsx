@@ -82,7 +82,7 @@ export const Button: FC<ButtonProps> = ({
       >{text}</span>
     )
   }
-  if (url)
+  if (url) {
     return (
       <a
         href={url}
@@ -91,8 +91,7 @@ export const Button: FC<ButtonProps> = ({
         <Content />
       </a>
     )
-
-  if (!url)
+  } else {
     return (
       <button
         className={buttonClassesJoined}
@@ -100,5 +99,5 @@ export const Button: FC<ButtonProps> = ({
         <Content />
       </button>
     )
-
+  }
 }

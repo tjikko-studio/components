@@ -24,7 +24,6 @@ export const MobileMenu: FC<SiteNavProps> = ({
             text={demoButtonText}
             url={demoUrl}
             type='primary'
-            icon='none'
           />
         </div>
         <NavItem
@@ -59,7 +58,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                 <div>
                   <ListNav
                     styles='flat'
-                    linkList={menu.subMenu}
+                    linkList={menu.subMenu || []}
                   />
                 </div>
               )}

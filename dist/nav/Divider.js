@@ -14,10 +14,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var Divider = _ref => {
   var {
-    className
+    className = '',
+    dark = false,
+    direction = "horizontal"
   } = _ref;
+  var dividerClasses = ['border-0 border-gray-300 dark:border-gray-600'];
+
+  switch (direction) {
+    case 'horizontal':
+      dividerClasses.push('border-t w-full h-px my-4 inline-table');
+      break;
+
+    case 'vertical':
+      dividerClasses.push('border-l w-px h-full mx-4 inline-block');
+      break;
+  }
+
+  dark && dividerClasses.push('border-gray-600');
+  className && dividerClasses.push(className);
   return /*#__PURE__*/_react.default.createElement("hr", {
-    className: "border-0 border-t my-2 border-gray-300 dark:border-gray-600 ".concat(className)
+    className: dividerClasses.join(' ')
   });
 };
 

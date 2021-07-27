@@ -36,8 +36,7 @@ var MobileMenu = _ref => {
   }, /*#__PURE__*/_react.default.createElement(_Button.Button, {
     text: demoButtonText,
     url: demoUrl,
-    type: "primary",
-    icon: "none"
+    type: "primary"
   })), /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
     styles: "default/white",
     caption: languageList.current ? languageList.current : 'En',
@@ -57,7 +56,7 @@ var MobileMenu = _ref => {
       href: menu.captionLink
     }, menu.caption) : menu.caption), /*#__PURE__*/_react.default.createElement("div", null, !hasSubMenu ? null : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_ListNav.ListNav, {
       styles: "flat",
-      linkList: menu.subMenu
+      linkList: menu.subMenu || []
     }))), menuData.length - 1 > menuIndex && /*#__PURE__*/_react.default.createElement(_Divider.Divider, {
       className: "my-8"
     }));

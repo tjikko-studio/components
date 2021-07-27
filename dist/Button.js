@@ -74,13 +74,16 @@ var Button = _ref => {
     }, text);
   };
 
-  if (url) return /*#__PURE__*/_react.default.createElement("a", {
-    href: url,
-    className: buttonClassesJoined
-  }, /*#__PURE__*/_react.default.createElement(Content, null));
-  if (!url) return /*#__PURE__*/_react.default.createElement("button", {
-    className: buttonClassesJoined
-  }, /*#__PURE__*/_react.default.createElement(Content, null));
+  if (url) {
+    return /*#__PURE__*/_react.default.createElement("a", {
+      href: url,
+      className: buttonClassesJoined
+    }, /*#__PURE__*/_react.default.createElement(Content, null));
+  } else {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      className: buttonClassesJoined
+    }, /*#__PURE__*/_react.default.createElement(Content, null));
+  }
 };
 
 exports.Button = Button;

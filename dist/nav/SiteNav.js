@@ -45,9 +45,10 @@ var SiteNav = _ref => {
     menuData = [],
     styles = "opaque",
     languageList = {},
-    className
+    className,
+    mobileExpandDefault = false
   } = _ref;
-  var [mobileExpand, setMobileExpand] = (0, _react.useState)(true);
+  var [mobileExpand, setMobileExpand] = (0, _react.useState)(mobileExpandDefault);
   var largeScreen = (0, _reactMediaHook.useMediaPredicate)("(max-width: ".concat(tailwind.theme.screens.lg, ")"));
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ".concat(styles === "opaque" && "bg-gray-900", " ").concat(className)
