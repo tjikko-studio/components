@@ -18,7 +18,7 @@ Desktop.args = {
     current: 'En',
     subMenu: [
       {
-        groupCaption: null,
+        groupCaption: [],
         groups: [
           {
             name: 'De',
@@ -37,7 +37,7 @@ Desktop.args = {
       caption: 'Why SmartPixel',
       subMenu: [
         {
-          groupCaption: null,
+          groupCaption: [],
           groups: [
             {
               name: 'Features',
@@ -103,7 +103,7 @@ Desktop.args = {
     {
       caption: 'Portfolio',
       captionLink: '/portfolio',
-      subMenu: null
+      subMenu: []
     }
   ]
 }
@@ -114,7 +114,7 @@ DesktopTransparent.args = {
   styles: 'transparent'
 }
 DesktopTransparent.parameters = {
-  themes: { default: "Dark" }
+  themes: { default: "Dark Background" }
 }
 
 export const Mobile = Template.bind({})
@@ -133,5 +133,5 @@ MobileTransparent.args = {
 }
 MobileTransparent.parameters = {
   ...Mobile.parameters,
-  themes: { default: "Dark" }
+  themes: { default: "Dark Background" }
 };

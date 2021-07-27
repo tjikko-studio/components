@@ -17,7 +17,7 @@ const Template: Story<NavItemProps> = (args) => <NavItem {...args} />
 export const None = Template.bind({})
 None.args = {
   styles: "default",
-  subMenu: null
+  subMenu: []
 }
 
 export const SingleData = Template.bind({})

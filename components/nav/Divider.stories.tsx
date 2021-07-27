@@ -34,7 +34,7 @@ HorizontalDark.args = {
   dark : true
 }
 HorizontalDark.parameters = {
-  themes: { default: "Dark" }
+  themes: { default: "Dark Mode" }
 }
 
 export const Vertical = Template.bind({})
@@ -48,5 +48,5 @@ VerticalDark.args = {
   dark : true
 }
 VerticalDark.parameters = {
-  themes: { default: "Dark" }
+  themes: { default: "Dark Mode" }
 }
