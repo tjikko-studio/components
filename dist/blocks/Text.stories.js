@@ -31,6 +31,6 @@ var Default = Template.bind({});
 exports.Default = Default;
 Default.args = {
   className: 'w-80 h-52',
-  headerText: '01. HEADING',
-  paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscig elit ed do elusmod tempor incidedunt ut laborre et dolore magna aliqua'
+  title: '01. HEADING',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscig elit ed do elusmod tempor incidedunt ut laborre et dolore magna aliqua'
 };
