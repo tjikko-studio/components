@@ -12,15 +12,15 @@ var _default = {
   component: _Button.Button,
   argTypes: {
     type: {
+      options: ["primary", "tertiary"],
       control: {
-        type: "select",
-        options: ["primary", "tertiary"]
+        type: "select"
       }
     },
     size: {
+      options: ["small", "default", "large"],
       control: {
-        type: "select",
-        options: ["small", "default", "large"]
+        type: "select"
       }
     },
     forceDark: {

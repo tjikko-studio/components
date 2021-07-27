@@ -12,9 +12,9 @@ var _default = {
   component: _BigHeader.BigHeader,
   argTypes: {
     bgtype: {
+      options: ["image", "video"],
       control: {
-        type: "select",
-        options: ["image", "video"]
+        type: "select"
       }
     }
   },

@@ -18,9 +18,9 @@ var _default = {
   component: _Secondary.Secondary,
   argTypes: {
     type: {
+      options: ['default', 'vertical'],
       control: {
-        type: 'select',
-        options: ['default', 'vertical']
+        type: 'select'
       }
     },
     mirror: {

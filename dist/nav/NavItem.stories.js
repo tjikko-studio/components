@@ -12,9 +12,9 @@ var _default = {
   component: _NavItem.NavItem,
   argTypes: {
     styles: {
+      options: ["default", "default/white", "flat"],
       control: {
-        type: "select",
-        options: ["default", "default/white", "flat"]
+        type: "select"
       }
     }
   },
@@ -30,12 +30,12 @@ var None = Template.bind({});
 exports.None = None;
 None.args = {
   styles: "default",
-  submenu: null
+  subMenu: null
 };
 var SingleData = Template.bind({});
 exports.SingleData = SingleData;
 SingleData.args = {
-  submenu: [{
+  subMenu: [{
     groupCaption: "Group 01",
     groups: [{
       name: "Link 01",
@@ -55,7 +55,7 @@ SingleData.args = {
 var MultiData = Template.bind({});
 exports.MultiData = MultiData;
 MultiData.args = {
-  submenu: [{
+  subMenu: [{
     groupCaption: "Group 01",
     groups: [{
       name: "Link 01",

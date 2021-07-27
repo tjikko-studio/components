@@ -24,7 +24,7 @@ var PopUpNavItem = _ref => {
 
   switch (type) {
     case 'special':
-      classes.push('px-3', 'py-2.5', 'fontStyle-bold', 'text-gray-100');
+      classes.push('py-2.5', 'fontStyle-base', 'text-gray-100');
 
       if (isActive) {
         classes.push('text-brand-300', 'dark:text-brand-300');
@@ -35,11 +35,11 @@ var PopUpNavItem = _ref => {
       break;
 
     case 'header':
-      classes.push('uppercase', 'px-3', 'py-2.5', 'font-semibold', 'tracking-wider', 'text-gray-800', 'text-sm', 'dark:text-gray-100');
+      classes.push('fontStyle-sm', 'uppercase', 'strong', 'py-2.5', 'text-gray-800', 'dark:text-gray-100');
       break;
 
     case 'button':
-      classes.push('px-3', 'py-3.5', 'tracking-wider', 'text-xs', 'font-semibold');
+      classes.push('py-3.5', 'fontStyle-xs', 'uppercase', 'strong');
 
       if (isActive) {
         classes.push('text-brand-700', 'dark:text-brand-100');
@@ -51,7 +51,7 @@ var PopUpNavItem = _ref => {
 
     case 'default':
     default:
-      classes.push('px-3', 'py-2.5', 'text-sm');
+      classes.push('py-2.5', 'fontStyle-sm');
 
       if (isActive) {
         classes.push('text-brand-600', 'dark:text-brand-300');
@@ -63,10 +63,7 @@ var PopUpNavItem = _ref => {
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: classes.join(' '),
-    style: {
-      width: 'fit-content'
-    }
+    className: classes.join(' ')
   }, /*#__PURE__*/_react.default.createElement("a", {
     href: href
   }, caption), children ? children : '');

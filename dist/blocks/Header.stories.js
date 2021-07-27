@@ -18,9 +18,9 @@ var _default = {
   component: _Header.Header,
   argTypes: {
     type: {
+      options: ['default', 'form', 'case'],
       control: {
-        type: 'select',
-        options: ['default', 'form', 'case']
+        type: 'select'
       }
     }
   },
