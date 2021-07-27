@@ -1,11 +1,17 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import {useMediaPredicate} from "react-media-hook"
-import {MenuIcon, XIcon} from '@heroicons/react/outline'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
+import MenuIcon from '../../assets/icons/menu-line.svg'
+import CloseIcon from '../../assets/icons/close-line.svg'
 import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
+import {Button} from '../Button'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+
+const tailwind = resolveConfig(tailwindConfig)
 
 export interface LanguageType {
   current?: string | null
@@ -37,7 +43,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * nav background color style
    */
-  styles: "black" | "transWhite"
+  styles: "opaque" | "transparent"
   /**
    * Additional space-separated class names to append
    */
@@ -51,18 +57,16 @@ export const SiteNav: FC<SiteNavProps> = ({
   demoButtonText = "Free Demo",
   demoUrl = "#",
   menuData = [],
-  styles = "black",
+  styles = "opaque",
   languageList = {},
   className
 }) => {
-  const [mobileExpand, setMobileExpand] = useState(false)
-  const large = useMediaPredicate("(min-width: 1024px)")
-  const medium = useMediaPredicate("(max-width: 1023px)")
-  const mobile = useMediaPredicate("(max-width: 640px)")
+  const [mobileExpand, setMobileExpand] = useState(true)
+  const largeScreen = useMediaPredicate(`(max-width: ${tailwind.theme.screens.lg})`)
   return (
     <>
       <div
-        className={`bg-gray-900 flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === "transWhite") && "bg-opacity-10"} ${className}`}
+        className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === "opaque") && "bg-gray-900"} ${className}`}
       >
         <CompanyLogo
           width='' height=''
@@ -86,16 +90,17 @@ export const SiteNav: FC<SiteNavProps> = ({
           }
         </div>
         <div
-          className='hidden lg:flex items-center'
+          className='hidden lg:flex items-center space-x-6'
         >
-          <a
-            href={demoUrl}
-            className="py-3.5 px-3.5 uppercase bg-brand-400 rounded-lg tracking-wider leading-3 text-sm font-semibold"
-          >
-            {demoButtonText}
-          </a>
+          <Button
+            text={demoButtonText}
+            url={demoUrl}
+            type="primary"
+            icon='none'
+            size = 'default'
+            forceDark={true}
+          />
           <NavItem
-            className='space-x-2'
             styles="default/white"
             caption={languageList.current ? languageList.current : "En"}
             submenu={languageList.submenu}
@@ -106,24 +111,24 @@ export const SiteNav: FC<SiteNavProps> = ({
         >
           <div className="lg:hidden">
             <button
-              className="bg-transparent inline-flex items-center justify-center"
+              className="bg-transparent inline-flex items-center justify-center text-gray-300 "
               onClick={() => setMobileExpand(!mobileExpand)}
             >
               <span className="sr-only">Open main menu</span>
               {mobileExpand ? (
-                <XIcon
-                  className="text-gray-300 w-5 h-5"
+                <CloseIcon
+                  className="tw-6 h-6"
                 />
               ) : (
                 <MenuIcon
-                  className={`h-6 w-6 ${styles === "black" && "text-gray-300"} ${styles === "transWhite" && "text-gray-300"}`}
+                  className={`h-6 w-6`}
                 />
               )}
             </button>
           </div>
         </Disclosure>
       </div>
-      {mobileExpand ? (
+      {(mobileExpand && largeScreen) ? (
         <MobileMenu
           demoButtonText={demoButtonText}
           demoUrl={demoUrl}
