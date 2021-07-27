@@ -4,18 +4,11 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 export default {
   title: 'Tjikko/nav/SiteNav',
   component: SiteNav,
+  argTypes: {
+    styles: {control: {type: "select", options: ["black", "transWhite"]}},
+  },
   parameters: {
-    componentSubtitle: 'The Buttons SiteNav',
-    argTypes: {
-      backgrounds: { control: { disable: true } },
-    },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#fff' },
-        { name: 'dark', value: '#000' },
-      ],
-    },
+    componentSubtitle: 'The Buttons SiteNav'
   }
 } as Meta
 
@@ -23,7 +16,7 @@ const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  styles: "opaque",
+  styles: "black",
   languageList: {
     current: "En",
     submenu: [
@@ -117,12 +110,3 @@ Default.args = {
     }
   ]
 }
-
-export const transparent = Template.bind({})
-transparent.args = {
-  ...Default.args,
-  styles: "transparent"
-}
-transparent.parameters = {
-  backgrounds: { default: 'dark' }
-};

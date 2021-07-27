@@ -74,7 +74,7 @@ export const NavItem: FC<NavItemProps> = ({
       </PopUpNavItem>
       {(mouseIn && mouseClick) && (keys.length > 0) && (
         <div
-          className='absolute left-0 top-full pt-1 w-max'
+          className='absolute left-0 top-full pt-3.5 w-max'
         >
           <ListNav styles={styles == "flat" ? "flat" : "elevated"} linkList={props.submenu} />
         </div>

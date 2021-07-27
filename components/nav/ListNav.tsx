@@ -21,9 +21,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * If data contains one, it will be single. If data contains more than one, it will be multi. At this time, last element will be tertiary  button.
    */
-  linkList: MenuType[],
-
-  className?: string
+  linkList: MenuType[]
 }
 
 /**
@@ -31,42 +29,44 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
   styles = "elevated",
-  linkList = [],
-  ...props
+  linkList = []
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
-  const classes = [props.className]
-  var wmax = "";
-  switch (styles) {
-    case 'elevated':
-      classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:gray-800')
-      wmax = "w-max"
-      break
-    case 'flat':
-      classes.push('grid', 'sm:grid-cols-2', 'justify-items-stretch', 'gap-6')
-      wmax = ""
-    default:
-      break
+  const classes = ['rounded-lg', 'bg-gray-50', 'dark:bg-transparent', 'px-3', 'py-2.5', 'w-max']
+  if (styles === 'elevated') {
+    classes.push('shadow-lg')
+  }
+  if (linkList.length > 1) {
+    switch (styles) {
+      case 'elevated':
+        classes.push('flex')
+        break
+      case 'flat':
+        classes.push('grid', 'grid-cols-2')
+      default:
+        break
+    }
   }
   return (
     <div
       className={classes.join(' ')}
+      style={{width: 'fit-content'}}
     >
       {
         linkList.map((menu, index) => {
-          return <div className={`${wmax}`} key={index} >
+          return <div className="m-1.5 w-max" key={index} >
             {
               (linkList.length > 1) && (
-                <PopUpNavItem 
-                  caption={menu.groupCaption} 
-                  type={"header"} 
-                  className='py-2.5' >  
-                </PopUpNavItem>                
+                <div
+                  className={`font-semibold text-sm leading-5 uppercase px-3 py-2.5 dark:text-gray-100 text-gray-800`}
+                >
+                  {menu.groupCaption}
+                </div>
               )
             }
             {
               menu.groups.map((menuItem, subIndex) => {
-                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : "default"} key={subIndex} className='py-2.5' href={menuItem.url} ></PopUpNavItem>)
+                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : "default"} key={subIndex} className='px-3 py-2.5' href={menuItem.url} ></PopUpNavItem>)
               })
             }
           </div>

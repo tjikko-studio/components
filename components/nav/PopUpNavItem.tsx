@@ -36,7 +36,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   const classes = ['flex', 'items-center']
   switch (type) {
     case 'special':
-      classes.push('py-2.5', 'fontStyle-base', 'text-gray-100')
+      classes.push('px-3', 'py-2.5', 'fontStyle-bold', 'text-gray-100')
       if (isActive) {
         classes.push('text-brand-300', 'dark:text-brand-300')
       } else {
@@ -45,10 +45,10 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
 
       break
     case 'header':
-      classes.push('fontStyle-sm', 'uppercase', 'strong', 'py-2.5', 'text-gray-800', 'dark:text-gray-100')
+      classes.push('uppercase', 'px-3', 'py-2.5', 'font-semibold', 'tracking-wider', 'text-gray-800', 'text-sm', 'dark:text-gray-100')
       break
     case 'button':
-      classes.push('py-3.5', 'fontStyle-xs', 'uppercase', 'strong')
+      classes.push('px-3', 'py-3.5', 'tracking-wider', 'text-xs', 'font-semibold')
       if (isActive) {
         classes.push('text-brand-700', 'dark:text-brand-100')
       } else {
@@ -57,7 +57,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       break
     case 'default':
     default:
-      classes.push('py-2.5', 'fontStyle-sm')
+      classes.push('px-3', 'py-2.5', 'text-sm')
       if (isActive) {
         classes.push('text-brand-600', 'dark:text-brand-300')
       } else {
@@ -68,6 +68,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   return (
     <div
       className={classes.join(' ')}
+      style={{width: 'fit-content'}}
     >
       <a href={href}>
         {caption}
