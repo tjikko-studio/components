@@ -72,7 +72,10 @@ export const Tertiary: FC<TertiaryProps> = ({
 
   return (
     <div
-      className={`${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''} ${className}`}
+      className={`
+      text-gray-900 dark:text-gray-50
+        ${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''} ${className}
+      `}
     >
       {
         (type === 'default' || type === 'vertical') && (

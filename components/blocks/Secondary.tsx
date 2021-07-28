@@ -55,6 +55,7 @@ export const Secondary: FC<SecondaryProps> = ({
     return (
       <div
         className={`
+        text-gray-900 dark:text-gray-50  
           ${type !== 'vertical' && 'flex justify-center'}
         `}
       >

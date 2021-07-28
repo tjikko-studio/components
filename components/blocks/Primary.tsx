@@ -78,7 +78,10 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''}`}
+      className={`
+        text-gray-900 dark:text-gray-50 
+        ${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''}
+      `}
     >
       {
         (type === "default" || type === "vertical") && (

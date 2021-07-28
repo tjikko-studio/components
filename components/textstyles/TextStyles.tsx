@@ -23,20 +23,12 @@ export const TextStyles: FC<TextStylesProps> = ({
     <div
       className={`w-full ${className}`}
     >
-      {/*
-        <h5 className = "text-gray-100 text-lg tracking-wider uppercase font-semibold">{headerText}</h5>
-        <hr className = "border-brand-600 mt-4"/>
-        <p className = "text-gray-100 text-base mt-8">
-          {paragraph}
-        </p>
-      */}
-
       <div
         className={`mb-16
                 ${(type !== "all" && type !== "heading") && "display: hidden"}
               `}
       >
-        <p className="fontStyle-lg uppercase strong mb-6">Headings : </p>
+        <p className="fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6">Headings : </p>
         <div
           className='bg-gray-50 p-8 mb-4 rounded-2xl'
         >
@@ -133,7 +125,7 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
-        <p className="fontStyle-lg uppercase strong mb-6">Body large : </p>
+        <p className="fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6">Body large : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
@@ -182,7 +174,7 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
-        <p className="fontStyle-body uppercase  mb-6">Body : </p>
+        <p className="fontStyle-body uppercase text-gray-900 dark:text-gray-50 mb-6">Body : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
@@ -231,7 +223,7 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
-        <p className="fontStyle-sm uppercase strong mb-6">Body small : </p>
+        <p className="fontStyle-sm uppercase strong text-gray-900 dark:text-gray-50 mb-6">Body small : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
@@ -280,7 +272,7 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== "all" && type !== "body") && "display: hidden"}
               `}
       >
-        <p className="fontStyle-xs uppercase strong mb-6">Body xsmall : </p>
+        <p className="fontStyle-xs uppercase strong text-gray-900 dark:text-gray-50 mb-6">Body xsmall : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
