@@ -20,9 +20,9 @@ var BlockQuote = _ref => {
     customerName = 'Maria Lopez, VP of Design at Meshery'
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex flex-col space-y-6"
+    className: "flex flex-col space-y-6 text-gray-900 dark:text-gray-50"
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "font-normal text-lg text-center text-brand-900"
+    className: "font-normal text-lg text-center text-brand-900 dark:text-brand-50"
   }, "\u201C", speech, "\u201D"), /*#__PURE__*/_react.default.createElement("img", {
     className: "w-20 h-20 mx-auto rounded-full",
     src: avatarUrl,

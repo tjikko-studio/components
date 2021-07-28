@@ -20,7 +20,7 @@ var BreadCrumb = _ref => {
   var spanClasses = ['fontStyle-xl hover:text-brand-300 dark:hover:text-brand-300'];
   return /*#__PURE__*/_react.default.createElement("nav", {
     "aria-label": "Breadcrumb",
-    className: className
+    className: "text-gray-900 dark:text-gray-50  ".concat(className)
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "flex flex-wrap"
   }, crumbs.map((item, index) => {

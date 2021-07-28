@@ -26,7 +26,7 @@ var ListNav = _ref => {
 
   switch (styles) {
     case 'elevated':
-      classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:gray-800');
+      classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:bg-gray-800', 'text-gray-900', 'dark:text-gray-50');
       wMax = 'w-max';
       break;
 

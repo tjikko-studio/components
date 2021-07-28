@@ -23,7 +23,7 @@ var Secondary = _ref => {
     cta_name,
     cta_url,
     mirror = 'false',
-    className
+    className = ''
   } = _ref;
 
   var Image = () => {
@@ -37,7 +37,7 @@ var Secondary = _ref => {
 
   var Text = () => {
     return /*#__PURE__*/_react.default.createElement("div", {
-      className: "\n          ".concat(type !== 'vertical' && 'flex justify-center', "\n        ")
+      className: "text-gray-900 dark:text-gray-50 ".concat(type !== 'vertical' && 'flex justify-center')
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "\n              ".concat(type !== 'vertical' && 'pl-12', "\n          ")
     }, /*#__PURE__*/_react.default.createElement("h2", {
@@ -56,7 +56,7 @@ var Secondary = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "\n        ".concat(type === 'default' && 'flex', "\n        ").concat(mirror && 'flex-row-reverse', "\n        ").concat(className ? className : '', "\n      ")
+    className: "".concat(type === 'default' && 'flex', " ").concat(mirror && 'flex-row-reverse', " ").concat(className)
   }, (type === 'default' || type === 'vertical') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Image, null), /*#__PURE__*/_react.default.createElement(Text, null)));
 };
 

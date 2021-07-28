@@ -23,7 +23,7 @@ var Icon = _ref => {
   } = _ref;
   var desktop = (0, _reactMediaHook.useMediaPredicate)("(min-width: 640px)");
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: type === 'horizontal' ? 'flex' : ''
+    className: "text-gray-900 dark:text-gray-50 ".concat(type === 'horizontal' ? 'flex' : '')
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: type === 'horizontal' ? 'px-6 pb-14' : 'py-2'
   }, /*#__PURE__*/_react.default.createElement("img", {

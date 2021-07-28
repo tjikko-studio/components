@@ -19,7 +19,7 @@ var FAQ = _ref => {
     className
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-gray-900 ".concat(className)
+    className: "text-gray-900 dark:text-gray-50 ".concat(className)
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "font-semibold text-lg leading-7"
   }, question), /*#__PURE__*/_react.default.createElement("div", {

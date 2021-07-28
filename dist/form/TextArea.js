@@ -41,7 +41,7 @@ var TextArea = _ref => {
     information,
     error
   } = _ref;
-  var textareaClasses = ['dark:bg-gray-800', 'dark:text-white', 'text-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200', 'w-72'];
+  var textareaClasses = ['text-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600'];
   (0, _addDisabledClasses.default)(isDisabled, textareaClasses);
   (0, _addErrorClasses.default)(isError, textareaClasses);
   (0, _addValidatingClasses.default)(isValidating, textareaClasses);
@@ -61,11 +61,11 @@ var TextArea = _ref => {
   }, label && /*#__PURE__*/_react.default.createElement("div", {
     className: "text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ".concat(isDisabled && 'text-gray-500 dark:text-gray-600')
   }, /*#__PURE__*/_react.default.createElement("p", null, label), isError && /*#__PURE__*/_react.default.createElement(_informationFill.default, {
-    className: "text-red-600 dark:text-red-500"
+    className: "text-red-600 dark:text-red-400"
   }), isValidating && /*#__PURE__*/_react.default.createElement(_loader2Fill.default, {
-    className: "text-blue-600 dark:text-blue-500"
+    className: "text-blue-600 dark:text-blue-400"
   }), isSuccess && /*#__PURE__*/_react.default.createElement(_checkboxCircleFill.default, {
-    className: "text-green-600 dark:text-green-500"
+    className: "text-green-600 dark:text-green-400"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-span-2"
   }, /*#__PURE__*/_react.default.createElement("textarea", {
@@ -76,7 +76,7 @@ var TextArea = _ref => {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "text-sm font-normal dark:text-gray-300 ".concat(isDisabled && 'text-gray-500 dark:text-gray-600', " ")
   }, information), isError && /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-sm font-normal text-red-700"
+    className: "text-sm font-normal text-red-600 dark:text-red-400"
   }, error));
 };
 

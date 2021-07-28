@@ -30,10 +30,10 @@ var SearchBar = _ref => {
     placeHolder
   } = _ref;
   var [autoFocus, setInputFocus] = (0, _react.useState)(false);
-  var classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200'];
+  var classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600'];
   (0, _addDisabledClasses.default)(isDisabled, classes);
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "relative",
+    className: "text-gray-900 dark:text-gray-50 relative",
     defaultValue: text
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "absolute top-1/2 -mt-2 ml-4",

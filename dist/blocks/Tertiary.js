@@ -44,7 +44,7 @@ var Tertiary = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "".concat(type === 'default' ? 'flex' : '').concat(mirror ? ' flex-row-reverse' : '', " ").concat(className)
+    className: "text-gray-900 dark:text-gray-50 ".concat(type === 'default' ? 'flex' : '', " ").concat(mirror ? 'flex-row-reverse' : '', " ").concat(className)
   }, (type === 'default' || type === 'vertical') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(Image, null), /*#__PURE__*/_react.default.createElement(Text, null)));
 };
 
