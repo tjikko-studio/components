@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import SearchIcon from '../../assets/icons/search-line.svg'
-import {focusClasses} from "../../utilities/focusClasses"
+import focusClasses from "../../utilities/focusClasses"
 import addDisabledClasses from "../../snippets/addDisabledClasses"
 
 export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
