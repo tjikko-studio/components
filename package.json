@@ -1,5 +1,5 @@
 {
-  "name": "tjikko-components",
+  "name": "@tjikko/components",
   "version": "2.0.0",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
@@ -51,6 +51,6 @@
     "tailwindcss": "2.2.7"
   },
   "files": [
-    "/dist"
+    "/dist/"
   ]
 }
