@@ -14,15 +14,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var TextStyles = _ref => {
   var {
-    type = "all",
+    type = 'all',
     className = ''
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "w-full ".concat(className)
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type !== "all" && type !== "heading" && "display: hidden", "\n              ")
+    className: "mb-16 ".concat(type !== 'all' && type !== 'heading' && 'display: hidden')
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-lg uppercase strong mb-6"
+    className: "fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6"
   }, "Headings : "), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 p-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("h1", {
@@ -78,118 +78,118 @@ var TextStyles = _ref => {
   }, "Heading x"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
   }, "className='fontStyle-xl'"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
+    className: "mb-16\n                ".concat(type !== 'all' && type !== 'body' && 'display: hidden', "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-lg uppercase strong mb-6"
+    className: "fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6"
   }, "Body large : "), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-lg"
   }, "Body large"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-lg\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-lg'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body uppercase strong"
   }, "Body large strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-lg strong\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-lg strong'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-lg uppercase"
   }, "Body large uppercase"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-lg uppercase\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-lg uppercase'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-lg uppercase strong"
   }, "Body Large uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-lg uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
+  }, "className='fontStyle-lg uppercase strong'"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "mb-16\n                ".concat(type !== 'all' && type !== 'body' && 'display: hidden', "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-body uppercase  mb-6"
+    className: "fontStyle-body uppercase text-gray-900 dark:text-gray-50 mb-6"
   }, "Body : "), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body"
   }, "Body"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-body\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-body'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body strong"
   }, "Body strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-body strong\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-body strong'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body uppercase"
   }, "Body uppercase"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-body uppercase\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-body uppercase'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-body uppercase strong"
   }, "Body uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-body uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
+  }, "className='fontStyle-body uppercase strong'"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "mb-16\n                ".concat(type !== 'all' && type !== 'body' && 'display: hidden', "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-sm uppercase strong mb-6"
+    className: "fontStyle-sm uppercase strong text-gray-900 dark:text-gray-50 mb-6"
   }, "Body small : "), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-sm"
   }, "Body small"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-sm\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-sm'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-sm strong"
   }, "Body small strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-sm strong\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-sm strong'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-sm uppercase"
   }, "Body small uppercase"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-sm uppercase\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-sm uppercase'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-sm uppercase strong"
   }, "Body small uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-sm uppercase strong\""))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "mb-16\n                ".concat(type !== "all" && type !== "body" && "display: hidden", "\n              ")
+  }, "className='fontStyle-sm uppercase strong'"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "mb-16\n                ".concat(type !== 'all' && type !== 'body' && 'display: hidden', "\n              ")
   }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "fontStyle-xs uppercase strong mb-6"
+    className: "fontStyle-xs uppercase strong text-gray-900 dark:text-gray-50 mb-6"
   }, "Body xsmall : "), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-xs"
   }, "Body xsmall"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-xs\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-xs'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-xs strong"
   }, "Body xsmall strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-xs strong\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-xs strong'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-xs uppercase mb-6"
   }, "Body xsmall uppercase"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-xs uppercase\"")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "className='fontStyle-xs uppercase'")), /*#__PURE__*/_react.default.createElement("div", {
     className: "bg-gray-50 py-4 px-8 mb-4 rounded-2xl"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "fontStyle-xs uppercase strong"
   }, "Body xsmall uppercase strong"), /*#__PURE__*/_react.default.createElement("pre", {
     className: "inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600"
-  }, "className=\"fontStyle-xs uppercase strong\""))));
+  }, "className='fontStyle-xs uppercase strong'"))));
 };
 
 exports.TextStyles = TextStyles;

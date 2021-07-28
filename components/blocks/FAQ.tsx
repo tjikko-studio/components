@@ -27,7 +27,7 @@ export const FAQ: FC<FAQProps> = ({
 }) => {
   return (
     <div
-      className={`text-gray-900 ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${className}`}
     >
       <div
         className='font-semibold text-lg leading-7'

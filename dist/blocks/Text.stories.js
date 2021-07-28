@@ -34,3 +34,8 @@ Default.args = {
   title: '01. HEADING',
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscig elit ed do elusmod tempor incidedunt ut laborre et dolore magna aliqua'
 };
+Default.parameters = {
+  themes: {
+    default: "Dark Mode"
+  }
+};

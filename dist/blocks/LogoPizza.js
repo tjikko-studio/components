@@ -20,7 +20,7 @@ var LogoPizza = _ref => {
     mode = "Default"
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "logo-pizza"
+    className: "text-gray-900 dark:text-gray-50 logo-pizza"
   }, /*#__PURE__*/_react.default.createElement("h3", {
     className: "".concat(mode === "Compact" ? "text-2xl" : "text-4xl", " text-center mb-16")
   }, "Trusted by"), /*#__PURE__*/_react.default.createElement(_reactFastMarquee.default, {

@@ -60,6 +60,11 @@ Default.args = {
   }],
   text: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
 };
+Default.parameters = {
+  themes: {
+    default: "Dark Mode"
+  }
+};
 var NoURL = Template.bind({});
 exports.NoURL = NoURL;
 NoURL.args = _objectSpread(_objectSpread({}, Default.args), {}, {
@@ -67,3 +72,4 @@ NoURL.args = _objectSpread(_objectSpread({}, Default.args), {}, {
     url: null
   })
 });
+NoURL.parameters = _objectSpread({}, Default.parameters);

@@ -37,7 +37,7 @@ export const Icon: FC<IconProps> = ({
 
   return (
     <div
-      className={type === 'horizontal' ? 'flex' : ''}
+      className={`text-gray-900 dark:text-gray-50 ${type === 'horizontal' ? 'flex' : ''}`}
     >
       <div
         className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}

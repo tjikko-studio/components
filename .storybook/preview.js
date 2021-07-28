@@ -8,8 +8,8 @@ export const parameters = {
     default: 'Light Mode',
     list: [
       { name: 'Light Mode', class: ['bg-gray-50'], color: '#fff' },
-      { name: 'Dark Mode', class: ['dark', 'bg-gray-800'], color: '#000' },
-      { name: 'Dark Background', class: ['bg-gray-800'], color: '#000' }
+      { name: 'Dark Mode', class: ['dark', 'bg-gray-900'], color: '#000' },
+      { name: 'Dark Background', class: ['bg-gray-900'], color: '#000' }
     ],
   },
 }

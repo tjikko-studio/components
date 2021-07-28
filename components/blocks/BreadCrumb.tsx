@@ -30,7 +30,7 @@ export const BreadCrumb: FC<BreadCrumbProps> = ({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={className}
+      className={`text-gray-900 dark:text-gray-50  ${className}`}
     >
       <ul className="flex flex-wrap">
         {

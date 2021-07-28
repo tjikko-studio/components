@@ -32,11 +32,11 @@ export const SearchBar: FC<SearchBarProps> = ({
   placeHolder
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
-  const classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'dark:bg-gray-800', 'dark:text-white', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200']
+  const classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600' ]
   addDisabledClasses(isDisabled, classes)
   return (
     <div
-      className='relative'
+      className='text-gray-900 dark:text-gray-50 relative'
       defaultValue={text}
     >
       <button

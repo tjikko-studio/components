@@ -66,7 +66,7 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error
 }) => {
-  const textareaClasses = ['dark:bg-gray-800', 'dark:text-white', 'text-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'border-gray-200', 'w-72']
+  const textareaClasses = ['text-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -88,9 +88,9 @@ export const TextArea: FC<TextAreaProps> = ({
         <p>
           {label}
         </p>
-        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-500' />}
-        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-500' />}
-        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-500' />}
+        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
+        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
       }
       <div
@@ -108,7 +108,7 @@ export const TextArea: FC<TextAreaProps> = ({
       >
         {information}
       </div>
-      {isError && (<div className='text-sm font-normal text-red-700'>{error}</div>)}
+      {isError && (<div className='text-sm font-normal text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
   )
 }

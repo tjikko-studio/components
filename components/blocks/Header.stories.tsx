@@ -47,6 +47,9 @@ Default.args = {
   ],
   text: 'Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.'
 }
+Default.parameters = {
+  themes: { default: "Dark Mode" }
+}
 
 export const NoURL = Template.bind({})
 NoURL.args = {
@@ -55,4 +58,7 @@ NoURL.args = {
     ...Default.args.styles,
     url: null
   }
+}
+NoURL.parameters = {
+  ...Default.parameters
 }

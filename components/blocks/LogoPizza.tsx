@@ -27,7 +27,7 @@ export const LogoPizza: FC<LogoPizzaProps> = ({
 
   return (
     <div
-      className={`logo-pizza`}
+      className={`text-gray-900 dark:text-gray-50 logo-pizza`}
     >
       <h3 className={`${mode === "Compact" ? "text-2xl" : "text-4xl"} text-center mb-16`}>Trusted by</h3>
       <Marquee
