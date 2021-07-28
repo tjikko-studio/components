@@ -41,14 +41,10 @@ export const Primary: FC<PrimaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`
-          ${type !== "vertical" && "flex items-center justify-center"}
-        `}
+        className={type !== 'vertical' ? 'flex items-center justify-center' : ''}
       >
         <div
-          className={`
-            ${type !== 'vertical' && 'pl-12'}
-        `} >
+          className={type !== 'vertical' ? 'pl-12' : ''} >
           <h2
             className='fontStyle-4xl'
           >
@@ -62,13 +58,13 @@ export const Primary: FC<PrimaryProps> = ({
           {
             cta_name && cta_url &&
             <div
-              className="pt-6">
+              className='pt-6'>
               <Button
                 text={cta_name}
                 url={cta_url}
-                type="primary"
+                type='primary'
                 icon='none'
-                size="large"
+                size='large'
               />
             </div>
           }
@@ -78,13 +74,10 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`
-        text-gray-900 dark:text-gray-50 
-        ${type === 'default' ? 'flex' : ''}${mirror ? ' flex-row-reverse' : ''}
-      `}
+      className={`text-gray-900 dark:text-gray-50 ${type === 'default' ? 'flex' : ''} ${mirror ? 'flex-row-reverse' : ''}`}
     >
       {
-        (type === "default" || type === "vertical") && (
+        (type === 'default' || type === 'vertical') && (
           <>
             {imageUrl && (
               <div

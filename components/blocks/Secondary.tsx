@@ -36,7 +36,7 @@ export const Secondary: FC<SecondaryProps> = ({
   cta_name,
   cta_url,
   mirror = 'false',
-  className,
+  className = '',
 
 }) => {
   const Image = () => {
@@ -54,10 +54,7 @@ export const Secondary: FC<SecondaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`
-        text-gray-900 dark:text-gray-50  
-          ${type !== 'vertical' && 'flex justify-center'}
-        `}
+        className={`text-gray-900 dark:text-gray-50 ${type !== 'vertical' && 'flex justify-center'}`}
       >
         <div
           className={`
@@ -85,11 +82,7 @@ export const Secondary: FC<SecondaryProps> = ({
   }
   return (
     <div
-      className={`
-        ${type === 'default' && 'flex'}
-        ${mirror && 'flex-row-reverse'}
-        ${className ? className : ''}
-      `}
+      className={`${type === 'default' && 'flex'} ${mirror && 'flex-row-reverse'} ${className}`}
     >
       {(type === 'default' || type === 'vertical') && (
         <>

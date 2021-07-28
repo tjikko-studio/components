@@ -40,7 +40,7 @@ export const SearchBar: FC<SearchBarProps> = ({
       defaultValue={text}
     >
       <button
-        className="absolute top-1/2 -mt-2 ml-4 "
+        className="absolute top-1/2 -mt-2 ml-4"
         disabled={isDisabled}
       >
         <SearchIcon className="w-4 h-4"/>
