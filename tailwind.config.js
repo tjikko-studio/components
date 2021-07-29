@@ -7,19 +7,19 @@ module.exports = {
     // Read more about this here: https://tailwindcss.com/docs/installation#building-your-css
     './stories/components/**/*.@(js|jsx|ts|tsx)'
   ],
-  darkMode: "class",
-  theme: {    
+  darkMode: 'class',
+  theme: {
     fontFamily: {
       Inter: ['Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'],
       Borda: ['Borda, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif']
     },
     extend: {
       height: {
-        "90vh": "90vh",
-        "568": "568px",
+        '90vh': '90vh',
+        '568': '568px',
       },
       minHeight: {
-        "568": "568px",
+        '568': '568px',
       },
       inset: {
         '1/6': '16.666667%',
@@ -36,49 +36,49 @@ module.exports = {
         '-6/6': '-100%',
       },
       fontSize: {
-        "xxs":  ".625rem",
-        "xl":  "1.25rem",
-        "2xl": "1.5rem",
-        "3xl": "1.875rem",
-        "4xl": "2.25rem",
-        "5xl": "3rem",
-        "6xl": "3.75rem",
-        "7xl": "4.5rem",
-        "8xl": "6rem",
-        "9xl": "8rem"
+        'xxs':  '.625rem',
+        'xl':  '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+        '7xl': '4.5rem',
+        '8xl': '6rem',
+        '9xl': '8rem'
       },
       lineHeight:{
-        "xl":  "1.33333em",
-        "2xl": "1.16667em",
-        "3xl": "1.2em",
-        "4xl": "1.1111em",
-        "5xl": "1em",
-        "6xl": "1em",
-        "7xl": "1em",
-        "8xl": "1em",
-        "9xl": "1em"
+        'xl':  '1.33333em',
+        '2xl': '1.16667em',
+        '3xl': '1.2em',
+        '4xl': '1.1111em',
+        '5xl': '1em',
+        '6xl': '1em',
+        '7xl': '1em',
+        '8xl': '1em',
+        '9xl': '1em'
       },
       space: {
-        "xl":  "0.09em",
-        "2xl": "0.09em",
-        "3xl": "0.08em",
-        "4xl": "0.08em",
-        "5xl": "0.06em",
-        "6xl": "0.06em",
-        "7xl": "0.05em",
-        "8xl": "0.05em",
-        "9xl": "0.05em"
+        'xl':  '0.09em',
+        '2xl': '0.09em',
+        '3xl': '0.08em',
+        '4xl': '0.08em',
+        '5xl': '0.06em',
+        '6xl': '0.06em',
+        '7xl': '0.05em',
+        '8xl': '0.05em',
+        '9xl': '0.05em'
       },
       fontWeight: {
-        "xl":  "500",
-        "2xl": "600",
-        "3xl": "600",
-        "4xl": "600",
-        "5xl": "500",
-        "6xl": "500",
-        "7xl": "500",
-        "8xl": "400",
-        "9xl": "400"
+        'xl':  '500',
+        '2xl': '600',
+        '3xl': '600',
+        '4xl': '600',
+        '5xl': '500',
+        '6xl': '500',
+        '7xl': '500',
+        '8xl': '400',
+        '9xl': '400'
       },
       colors: {
         gray: {
@@ -168,7 +168,7 @@ module.exports = {
           lineHeight: theme('lineHeight.6'),
         },
         '.fontStyle-body.strong, .fontStyle-body strong': {
-          fontWeight: theme("fontWeight.semibold")
+          fontWeight: theme('fontWeight.semibold')
         },
         '.fontStyle-body.uppercase, .fontStyle-body uppercase': {
           letterSpacing: theme('letterSpacing.wider'),
@@ -185,7 +185,7 @@ module.exports = {
           lineHeight: theme('lineHeight.7'),
         },
         '.fontStyle-lg.strong, .fontStyle-lg strong': {
-          fontWeight: theme("fontWeight.semibold")
+          fontWeight: theme('fontWeight.semibold')
         },
         '.fontStyle-lg.uppercase, .fontStyle-lg uppercase': {
           letterSpacing: theme('letterSpacing.wider'),
@@ -202,7 +202,7 @@ module.exports = {
           lineHeight: theme('lineHeight.5'),
         },
         '.fontStyle-sm.strong, .fontStyle-sm strong': {
-          fontWeight: theme("fontWeight.semibold")
+          fontWeight: theme('fontWeight.semibold')
         },
         '.fontStyle-sm.uppercase, .fontStyle-sm uppercase': {
           letterSpacing: theme('letterSpacing.wider'),
@@ -217,10 +217,10 @@ module.exports = {
         '.fontStyle-xs': {
           fontSize: theme('fontSize.xs'),
           lineHeight: theme('lineHeight.4'),
-          fontWeight: theme("fontWeight.medium")
+          fontWeight: theme('fontWeight.medium')
         },
         '.fontStyle-xs.strong, .fontStyle-xs strong': {
-          fontWeight: theme("fontWeight.bold")
+          fontWeight: theme('fontWeight.bold')
         },
         '.fontStyle-xs.uppercase, .fontStyle-xs uppercase': {
           letterSpacing: theme('letterSpacing.wider'),
@@ -238,7 +238,7 @@ module.exports = {
           lineHeight: theme('lineHeight.xl'),
           letterSpacing: theme('space.xl'),
           fontWeight: theme('fontWeight.xl'),
-          textTransform: "uppercase"
+          textTransform: 'uppercase'
         },
         '.fontStyle-2xl': {
           fontFamily: theme('fontFamily.Borda'),
