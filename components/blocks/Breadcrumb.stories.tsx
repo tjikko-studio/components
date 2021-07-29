@@ -15,16 +15,16 @@ export const Default = Template.bind({})
 Default.args = {
   crumbs: [
     {
-      name: 'Breadcrumb',
-      url: '/bread1'
+      name: 'Home',
+      url: '/'
     },
     {
-      name: 'Breadcrumb',
-      url: '/bread2'
+      name: 'Settings',
+      url: '/settings'
     },
     {
-      name: 'Breadcrumb',
-      url: '/bread3'
+      name: 'Privacy settings',
+      url: '/settings/privacy'
     }
   ]
 }
