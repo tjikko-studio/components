@@ -99,7 +99,7 @@ export const Input: FC<InputProps> = ({
       }
       <div className='col-span-2'>
         <input
-          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}

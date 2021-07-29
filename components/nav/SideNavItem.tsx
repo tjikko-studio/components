@@ -39,7 +39,7 @@ export const SideNavItem: FC<SideNavItemProps> = ({
 
   return (
     <li
-      className={`list-none border-l-2 pr-3 ${spacer ? 'py-1.5' : 'py-2.5'} ${type === 'link' ? 'pl-7' : 'pl-5'} ${status === 'default' ? 'border-gray-200 dark:border-gray-700' : 'border-brand-600 dark:border-brand-300 text-brand-700 dark:text-brand-200'} hover:border-brand-600 dark:hover:border-brand-300 hover:text-brand-700 dark:hover:text-brand-200 text-gray-600 dark:text-gray-300 cursor-pointer`}
+      className={`list-none border-l-2 pr-3 ${spacer ? 'py-1.5' : 'py-2.5'} ${type === 'link' ? 'pl-7' : 'pl-5'} ${status === 'default' ? 'border-gray-200 dark:border-gray-700' : 'border-primary-600 dark:border-primary-300 text-primary-700 dark:text-primary-200'} hover:border-primary-600 dark:hover:border-primary-300 hover:text-primary-700 dark:hover:text-primary-200 text-gray-600 dark:text-gray-300 cursor-pointer`}
     >
       {spacer ? '' :
         <a

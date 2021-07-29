@@ -14,6 +14,7 @@ module.exports = {
   plugins: [
     require('./tailwind/styles/sizes'),
     require('./tailwind/styles/colors'),
+    require('./tailwind/styles/fonts'),
     require('./tailwind/styles/text'),
     require('./tailwind/utils/selectors'),
   ]

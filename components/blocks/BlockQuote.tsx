@@ -33,7 +33,7 @@ export const BlockQuote: FC<BlockQuoteProps> = ({
     <div className='flex flex-col space-y-6 text-gray-900 dark:text-gray-50'
     >
       <p
-        className={`font-normal text-lg text-center text-brand-900 dark:text-brand-50`}
+        className={`font-normal text-lg text-center text-primary-900 dark:text-primary-50`}
 
       >“{speech}”</p>
       <img

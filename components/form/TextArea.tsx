@@ -97,7 +97,7 @@ export const TextArea: FC<TextAreaProps> = ({
         className='col-span-2'
       >
         <textarea
-          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}

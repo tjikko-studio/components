@@ -47,7 +47,7 @@ export const SearchBar: FC<SearchBarProps> = ({
       </button>
       <input
         disabled={isDisabled}
-        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
         defaultValue={text}
         placeholder={placeHolder}
         onFocus={() => setInputFocus(true)}

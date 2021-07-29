@@ -25,7 +25,7 @@ export const BreadCrumb: FC<BreadCrumbProps> = ({
   className
 }) => {
 
-  const spanClasses = ['fontStyle-xl hover:text-brand-300 dark:hover:text-brand-300']
+  const spanClasses = ['fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300']
 
   return (
     <nav

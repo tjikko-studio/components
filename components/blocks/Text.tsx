@@ -24,7 +24,7 @@ export const Text: FC<TextProps> = ({ title = '', body = '', className }) => {
       <h5 className='text-gray-900 text-lg tracking-wider uppercase font-semibold'>
         {title}
       </h5>
-      <hr className='border-brand-500 mt-4' />
+      <hr className='border-primary-500 mt-4' />
       <p className='text-gray-500 text-base mt-8'>{body}</p>
     </div>
   )

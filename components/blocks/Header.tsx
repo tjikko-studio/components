@@ -71,7 +71,7 @@ export const Header: FC<HeaderProps> = ({
           (type === "default") && (
             <a
               href={url}
-              className='bg-brand-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-brand-900 hover:bg-brand-300'
+              className='bg-primary-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-primary-900 hover:bg-primary-300'
             >
               {buttonText}
             </a>

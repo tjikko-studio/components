@@ -68,7 +68,7 @@ export const Footer: FC<FooterProps> = ({
                     return (
                       <li
                         key={itemIndex}
-                        className='text-gray-50 hover:text-brand-300 text-sm pt-3'
+                        className='text-gray-50 hover:text-primary-300 text-sm pt-3'
                       >
                         <a
                           href={menuItem.url}
@@ -93,13 +93,13 @@ export const Footer: FC<FooterProps> = ({
           <div className='flex-1 flex justify-end md:justify-start'><span>© {year ? year : new Date().getFullYear()}</span></div>
           <ul className='flex flex-1 space-x-2'>
             <li>
-              <a href='#' className="text-gray-50 hover:text-brand-300">
+              <a href='#' className="text-gray-50 hover:text-primary-300">
                 {privacy ? privacy : "Privacy"}
               </a>
             </li>
             <li>-</li>
             <li>
-              <a href='#' className="text-gray-50 hover:text-brand-300">
+              <a href='#' className="text-gray-50 hover:text-primary-300">
                 {privacy ? privacy : "Terms"}
               </a>
             </li>
@@ -110,25 +110,25 @@ export const Footer: FC<FooterProps> = ({
           className='flex flex-1 md:-ml-20 space-x-2'
         >
           <li>
-            <a className='text-gray-50 hover:text-brand-300' href=''>
+            <a className='text-gray-50 hover:text-primary-300' href=''>
               Facebook
             </a>
           </li>
           <li>-</li>
           <li>
-            <a className='text-gray-50 hover:text-brand-300' href=''>
+            <a className='text-gray-50 hover:text-primary-300' href=''>
               YouTube
             </a>
           </li>
           <li>-</li>
           <li>
-            <a className='text-gray-50 hover:text-brand-300' href=''>
+            <a className='text-gray-50 hover:text-primary-300' href=''>
               Twitter
             </a>
           </li>
           <li>-</li>
           <li>
-            <a className='text-gray-50 hover:text-brand-300' href=''>
+            <a className='text-gray-50 hover:text-primary-300' href=''>
               LinkedIn
             </a>
           </li>

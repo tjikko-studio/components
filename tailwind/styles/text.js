@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(function({ addBase, addUtilities, theme }) {
   addBase({
-    'body': { fontFamily: theme('fontFamily.Inter') }
+    'body': { fontFamily: theme('fontFamily.Secondary') }
   });
 
   addUtilities(
@@ -77,7 +77,7 @@ module.exports = plugin(function({ addBase, addUtilities, theme }) {
         fontWeight: theme('fontWeight.bold')
       },
       '.fontStyle-xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.xl'),
         lineHeight: theme('lineHeight.xl'),
         letterSpacing: theme('space.xl'),
@@ -85,56 +85,56 @@ module.exports = plugin(function({ addBase, addUtilities, theme }) {
         textTransform: "uppercase"
       },
       '.fontStyle-2xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.2xl'),
         lineHeight: theme('lineHeight.2xl'),
         letterSpacing: theme('space.2xl'),
         fontWeight: theme('fontWeight.2xl')
       },
       '.fontStyle-3xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.3xl'),
         lineHeight: theme('lineHeight.3xl'),
         letterSpacing: theme('space.3xl'),
         fontWeight: theme('fontWeight.3xl')
       },
       '.fontStyle-4xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.4xl'),
         lineHeight: theme('lineHeight.4xl'),
         letterSpacing: theme('space.4xl'),
         fontWeight: theme('fontWeight.4xl')
       },
       '.fontStyle-5xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.5xl'),
         lineHeight: theme('lineHeight.5xl'),
         letterSpacing: theme('space.5xl'),
         fontWeight: theme('fontWeight.5xl')
       },
       '.fontStyle-6xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.6xl'),
         lineHeight: theme('lineHeight.6xl'),
         letterSpacing: theme('space.6xl'),
         fontWeight: theme('fontWeight.6xl')
       },
       '.fontStyle-7xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.7xl'),
         lineHeight: theme('lineHeight.7xl'),
         letterSpacing: theme('space.7xl'),
         fontWeight: theme('fontWeight.7xl')
       },
       '.fontStyle-8xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.8xl'),
         lineHeight: theme('lineHeight.8xl'),
         letterSpacing: theme('space.8xl'),
         fontWeight: theme('fontWeight.8xl')
       },
       '.fontStyle-9xl': {
-        fontFamily: theme('fontFamily.Borda'),
+        fontFamily: theme('fontFamily.Primary'),
         fontSize: theme('fontSize.9xl'),
         lineHeight: theme('lineHeight.9xl'),
         letterSpacing: theme('space.9xl'),
@@ -146,10 +146,6 @@ module.exports = plugin(function({ addBase, addUtilities, theme }) {
 }, {
   theme: {
     extend: {
-      fontFamily: {
-        Inter: ['Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'],
-        Borda: ['Borda, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif']
-      },
       fontSize: {
         "xxs":  ".625rem",
         "xl":  "1.25rem",

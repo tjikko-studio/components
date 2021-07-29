@@ -51,7 +51,7 @@ export const NavItem: FC<NavItemProps> = ({
         type={(styles === 'default/white') ? 'special' : 'default'}
         caption={caption}
         href={link}
-        className={`flex items-center ${mouseIn && styles === 'default' ? 'text-brand-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-brand-300' : ''} ${mouseIn && styles === 'flat' ? 'text-brand-100 dark:text-brand-300' : ''}`}
+        className={`flex items-center ${mouseIn && styles === 'default' ? 'text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'text-primary-100 dark:text-primary-300' : ''}`}
       >
         {(subMenu.length > 0) && (
           <span className='ml-2.5'>
