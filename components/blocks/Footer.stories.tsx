@@ -16,7 +16,7 @@ const Template: Story<FooterProps> = (args) => <Footer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  footermenu: [
+  footerMenu: [
     {
       caption: 'Why Smart Pixel',
       menuList: [
@@ -51,7 +51,7 @@ Default.args = {
       caption: 'Solutions BY USE CASE',
       menuList: [
         {
-          name: "Sales Officee",
+          name: "Sales Office",
           url: "/sale"
         },
         {

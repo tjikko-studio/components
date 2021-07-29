@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
-import {useMediaPredicate} from "react-media-hook"
+import {useMediaPredicate} from 'react-media-hook'
 
-import {SideNavItemProps, SideNavItem} from "./SideNavItem"
+import {SideNavItemProps, SideNavItem} from './SideNavItem'
 
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -18,11 +18,11 @@ export const SideNav: FC<SideNavProps> = ({
   items = [],
   className
 }) => {
-  const desktop = useMediaPredicate("(min-width: 640px)")
+  const desktop = useMediaPredicate('(min-width: 640px)')
 
   return (
     <ul
-      className={`${className ? className : ""}`}
+      className={`${className ? className : ''}`}
     >
       {items.map((item) => (
         <SideNavItem

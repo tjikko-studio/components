@@ -1,14 +1,14 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
-import {useMediaPredicate} from "react-media-hook"
+import {useMediaPredicate} from 'react-media-hook'
 /*
 * In production mode, show dynamic image and video with url
 */
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
-   * type of Icon ("horizontal" | "vertical")
+   * type of Icon ('horizontal' | 'vertical')
    */
-  type?: "horizontal" | "vertical"
+  type?: 'horizontal' | 'vertical'
   /**
    *  image url to show
    */
@@ -28,12 +28,12 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Icon: FC<IconProps> = ({
-  type = "horizontal",
-  heading = "Heading",
-  text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+  type = 'horizontal',
+  heading = 'Heading',
+  text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   imageUrl
 }) => {
-  const desktop = useMediaPredicate("(min-width: 640px)")
+  const desktop = useMediaPredicate('(min-width: 640px)')
 
   return (
     <div
@@ -51,7 +51,7 @@ export const Icon: FC<IconProps> = ({
         className={type === 'horizontal' ? 'ml-6' : 'mt-6'}
         style={
           {
-            width: type === "horizontal" ? "310px" : "290px"
+            width: type === 'horizontal' ? '310px' : '290px'
           }
         }
       >
@@ -59,14 +59,14 @@ export const Icon: FC<IconProps> = ({
           className='fontStyle-2xl'
         >
           {
-            heading && heading === "" ? heading : "Heading"
+            heading && heading === '' ? heading : 'Heading'
           }
         </h2>
         <p
           className='text-base pt-2'
         >
           {
-            text && text === "" ? text : "Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+            text && text === '' ? text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
           }
         </p>
       </div>

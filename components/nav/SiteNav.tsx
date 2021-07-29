@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
-import {useMediaPredicate} from "react-media-hook"
+import {useMediaPredicate} from 'react-media-hook'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
 import MenuIcon from '../../assets/icons/menu-line.svg'
@@ -43,7 +43,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * nav background color style
    */
-  styles: "opaque" | "transparent"
+  styles: 'opaque' | 'transparent'
   /**
    * Additional space-separated class names to append
    */
@@ -58,10 +58,10 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  demoButtonText = "Free Demo",
-  demoUrl = "#",
+  demoButtonText = 'Free Demo',
+  demoUrl = '#',
   menuData = [],
-  styles = "opaque",
+  styles = 'opaque',
   languageList = {},
   className,
   mobileExpandDefault = false
@@ -71,7 +71,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   return (
     <>
       <div
-        className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === "opaque") && "bg-gray-900"} ${className}`}
+        className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
       >
         <CompanyLogo
           width='269px'
@@ -86,8 +86,8 @@ export const SiteNav: FC<SiteNavProps> = ({
               return (
                 <NavItem
                   key={index}
-                  link={menuitem.captionLink ? menuitem.captionLink : ""}
-                  styles="default/white"
+                  link={menuitem.captionLink ? menuitem.captionLink : ''}
+                  styles='default/white'
                   caption={menuitem.caption}
                   subMenu={menuitem.subMenu}
                 />
@@ -101,29 +101,29 @@ export const SiteNav: FC<SiteNavProps> = ({
           <Button
             text={demoButtonText}
             url={demoUrl}
-            type="primary"
+            type='primary'
             icon='none'
             size = 'default'
             forceDark={true}
           />
           <NavItem
-            styles="default/white"
-            caption={languageList.current ? languageList.current : "En"}
+            styles='default/white'
+            caption={languageList.current ? languageList.current : 'En'}
             subMenu={languageList.subMenu}
           />
         </div>
-        <Disclosure as="nav"
-          className="bg-transparent"
+        <Disclosure as='nav'
+          className='bg-transparent'
         >
-          <div className="lg:hidden">
+          <div className='lg:hidden'>
             <button
-              className="bg-transparent inline-flex items-center justify-center text-gray-300 "
+              className='bg-transparent inline-flex items-center justify-center text-gray-300 '
               onClick={() => setMobileExpand(!mobileExpand)}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className='sr-only'>Open main menu</span>
               {mobileExpand ? (
                 <CloseIcon
-                  className="tw-6 h-6"
+                  className='tw-6 h-6'
                 />
               ) : (
                 <MenuIcon

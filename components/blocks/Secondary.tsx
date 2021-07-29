@@ -66,13 +66,13 @@ export const Secondary: FC<SecondaryProps> = ({
           {
             (cta_name && cta_url) &&
             <div
-              className="pt-6">
+              className='pt-6'>
               <Button
                 text={cta_name}
                 url={cta_url}
-                type="tertiary"
+                type='tertiary'
                 icon='none'
-                size="large"
+                size='large'
               />
             </div>
           }

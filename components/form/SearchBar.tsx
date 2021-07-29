@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import SearchIcon from '../../assets/icons/search-line.svg'
-import focusClasses from "../../utilities/focusClasses"
-import addDisabledClasses from "../../snippets/addDisabledClasses"
+import focusClasses from '../../utilities/focusClasses'
+import addDisabledClasses from '../../snippets/addDisabledClasses'
 
 export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -40,10 +40,10 @@ export const SearchBar: FC<SearchBarProps> = ({
       defaultValue={text}
     >
       <button
-        className="absolute top-1/2 -mt-2 ml-4"
+        className='absolute top-1/2 -mt-2 ml-4'
         disabled={isDisabled}
       >
-        <SearchIcon className="w-4 h-4"/>
+        <SearchIcon className='w-4 h-4'/>
       </button>
       <input
         disabled={isDisabled}

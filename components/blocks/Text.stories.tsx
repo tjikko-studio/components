@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/blocks/Text',
   component: Text,
   argTypes: {
-    // type: { options: ["default", "header", "button", "special"], control: { type: "select" }},
+    // type: { options: ['default', 'header', 'button', 'special'], control: { type: 'select' }},
   },
   parameters: {
     componentSubtitle: 'The Text block',
@@ -31,5 +31,5 @@ Default.args = {
     'Lorem ipsum dolor sit amet, consectetur adipiscig elit ed do elusmod tempor incidedunt ut laborre et dolore magna aliqua'
 }
 Default.parameters = {
-  themes: { default: "Dark Mode" }
+  themes: { default: 'Dark Mode' }
 }

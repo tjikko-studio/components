@@ -14,7 +14,7 @@ export interface BlockQuoteProps extends HTMLAttributes<HTMLDivElement> {
    */
   avatarAlt?: string
   /**
-   * cusomter name to display on BlockQuote
+   * customer name to display on BlockQuote
    */
   customerName?: string
 }
