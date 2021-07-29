@@ -1,18 +1,18 @@
-import {BigHeader, BigHeaderProps} from './BigHeader'
+import {HeroBlock, HeroBlockProps} from './HeroBlock'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/BigHeader',
-  component: BigHeader,
+  title: 'Tjikko/blocks/Hero Block',
+  component: HeroBlock,
   argTypes: {
     bgType: {options: ['image', 'video'], control: {type: 'select'}},
   },
   parameters: {
-    componentSubtitle: 'The BigHeader'
+    componentSubtitle: 'The Hero Block'
   }
 } as Meta
 
-const Template: Story<BigHeaderProps> = (args) => <BigHeader {...args} />
+const Template: Story<HeroBlockProps> = (args) => <HeroBlock {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

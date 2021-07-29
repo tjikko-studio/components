@@ -1,17 +1,17 @@
-import {LogoPizza, LogoPizzaProps} from './LogoPizza'
+import {ClientsLogos, ClientsLogosProps} from './ClientsLogos'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/LogoPizza',
-  component: LogoPizza,
+  title: 'Tjikko/blocks/Clients Logos',
+  component: ClientsLogos,
   argTypes: {
   },
   parameters: {
-    componentSubtitle: 'The LogoPizza'
+    componentSubtitle: 'The Clients Logos'
   }
 } as Meta
 
-const Template: Story<LogoPizzaProps> = (args) => <LogoPizza {...args} />
+const Template: Story<ClientsLogosProps> = (args) => <ClientsLogos {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
