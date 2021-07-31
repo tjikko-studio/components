@@ -30,7 +30,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 p-8 mb-4 rounded-2xl'
         >
-          <h1 className='fontStyle-9xl'>Heading 9x</h1>
+          <h1 className='fontStyle-9xl text-xxs'>Heading 9x</h1>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-9xl'
