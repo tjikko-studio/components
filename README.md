@@ -7,10 +7,21 @@ npm i @tjikko/components
 ```
 
 ## Usage
-Import the component you want and use it how the docs describe!
+```js
+import CTA from '@tjikko/components/dist/blocks/CTA'
 
-## Docs and Playground
-You can play around with the components in Storybook and that's also where you'll find documentation for the components, until we host them somewhere more accessible. Not that there are a lot of docs…
+export default function ReactComponent () {
+  return (
+    <CTA {...ctaProps} />
+  )
+}
+```
+
+## Docs coming soon
+For now, the best way to get documentation is to clone the (also private) [repo](https://github.com/tjikko-studio/components) and launch Storybook
+
+## Storybook
+You can play around with the components in Storybook and that's also where you'll find documentation for the components, until we host them somewhere more accessible. Not that there are a lot of docs yet…
 
 To launch Storybook:
 ```
@@ -19,3 +30,8 @@ cd components
 npm i
 npm run dev
 ```
+
+## Publishing
+Publishing a release on GitHub will automatically publish the component library to npm as @tjikko/components (see .github/workflows/publish.yml)
+
+For `npm publish` to succeed, you need a different version every time, so don't forget to use `npm version patch`, `npm version minor` or `npm version major`.
