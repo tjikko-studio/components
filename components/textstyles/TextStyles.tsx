@@ -123,11 +123,11 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== 'all' && type !== 'body') && 'display: hidden'}
               `}
       >
-        <p className='fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Body large : </p>
+        <p className='fontStyle-lg uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Base large : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-lg'>Body large</p>
+          <p className='fontStyle-lg'>Base large</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-lg'
@@ -138,7 +138,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-body uppercase strong'>Body large strong</p>
+          <p className='fontStyle-base uppercase strong'>Base large strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-lg strong'
@@ -149,7 +149,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-lg uppercase'>Body large uppercase</p>
+          <p className='fontStyle-lg uppercase'>Base large uppercase</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-lg uppercase'
@@ -159,7 +159,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-lg uppercase strong'>Body Large uppercase strong</p>
+          <p className='fontStyle-lg uppercase strong'>Base Large uppercase strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-lg uppercase strong'
@@ -172,14 +172,14 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== 'all' && type !== 'body') && 'display: hidden'}
               `}
       >
-        <p className='fontStyle-body uppercase text-gray-900 dark:text-gray-50 mb-6'>Body : </p>
+        <p className='fontStyle-base uppercase text-gray-900 dark:text-gray-50 mb-6'>Base : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-body'>Body</p>
+          <p className='fontStyle-base'>Base</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
-            className='fontStyle-body'
+            className='fontStyle-base'
           </pre>
         </div>
 
@@ -187,10 +187,10 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-body strong'>Body strong</p>
+          <p className='fontStyle-base strong'>Base strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
-            className='fontStyle-body strong'
+            className='fontStyle-base strong'
           </pre>
         </div>
 
@@ -198,20 +198,20 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-body uppercase'>Body uppercase</p>
+          <p className='fontStyle-base uppercase'>Base uppercase</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
-            className='fontStyle-body uppercase'
+            className='fontStyle-base uppercase'
           </pre>
         </div>
 
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-body uppercase strong'>Body uppercase strong</p>
+          <p className='fontStyle-base uppercase strong'>Base uppercase strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
-            className='fontStyle-body uppercase strong'
+            className='fontStyle-base uppercase strong'
           </pre>
         </div>
       </div>
@@ -221,11 +221,11 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== 'all' && type !== 'body') && 'display: hidden'}
               `}
       >
-        <p className='fontStyle-sm uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Body small : </p>
+        <p className='fontStyle-sm uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Base small : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-sm'>Body small</p>
+          <p className='fontStyle-sm'>Base small</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-sm'
@@ -236,7 +236,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-sm strong'>Body small strong</p>
+          <p className='fontStyle-sm strong'>Base small strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-sm strong'
@@ -247,7 +247,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-sm uppercase'>Body small uppercase</p>
+          <p className='fontStyle-sm uppercase'>Base small uppercase</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-sm uppercase'
@@ -257,7 +257,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-sm uppercase strong'>Body small uppercase strong</p>
+          <p className='fontStyle-sm uppercase strong'>Base small uppercase strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-sm uppercase strong'
@@ -270,11 +270,11 @@ export const TextStyles: FC<TextStylesProps> = ({
                 ${(type !== 'all' && type !== 'body') && 'display: hidden'}
               `}
       >
-        <p className='fontStyle-xs uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Body xsmall : </p>
+        <p className='fontStyle-xs uppercase strong text-gray-900 dark:text-gray-50 mb-6'>Base xsmall : </p>
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-xs'>Body xsmall</p>
+          <p className='fontStyle-xs'>Base xsmall</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-xs'
@@ -285,7 +285,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-xs strong'>Body xsmall strong</p>
+          <p className='fontStyle-xs strong'>Base xsmall strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-xs strong'
@@ -296,7 +296,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-xs uppercase mb-6'>Body xsmall uppercase</p>
+          <p className='fontStyle-xs uppercase mb-6'>Base xsmall uppercase</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-xs uppercase'
@@ -306,7 +306,7 @@ export const TextStyles: FC<TextStylesProps> = ({
         <div
           className='bg-gray-50 py-4 px-8 mb-4 rounded-2xl'
         >
-          <p className='fontStyle-xs uppercase strong'>Body xsmall uppercase strong</p>
+          <p className='fontStyle-xs uppercase strong'>Base xsmall uppercase strong</p>
           <pre
             className='inline-block px-2 py-1.5 mt-2 text-xs font-mono bg-gray-100 text-gray-600'>
             className='fontStyle-xs uppercase strong'

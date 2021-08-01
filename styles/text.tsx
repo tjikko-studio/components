@@ -9,7 +9,7 @@ export const textOptions = {
     "sm":   ".875rem",
     "base": "1rem",
     "lg":   "1.125rem",
-    "xl":   "1.25rem",
+    "xl":   "1.125rem",
     "2xl":  "1.5rem",
     "3xl":  "1.875rem",
     "4xl":  "2.25rem",
@@ -22,8 +22,8 @@ export const textOptions = {
   lineHeight:{
     "xs":   "1em",
     "sm":   "1.25em",
-    "base": "1.33333em",
-    "lg":   "1.5em",
+    "base": "1.5em",
+    "lg":   "1.33333em",
     "xl":   "1.33333em",
     "2xl":  "1.16667em",
     "3xl":  "1.2em",
@@ -39,10 +39,10 @@ export const textOptions = {
     "sm":   "0",
     "base": "0",
     "lg":   "0",
-    "xl":   "0.09em",
-    "2xl":  "0.09em",
-    "3xl":  "0.08em",
-    "4xl":  "0.08em",
+    "xl":   "0.08em",
+    "2xl":  "0.08em",
+    "3xl":  "0.07em",
+    "4xl":  "0.07em",
     "5xl":  "0.06em",
     "6xl":  "0.06em",
     "7xl":  "0.05em",
@@ -104,8 +104,11 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       Font styles large
      */
     '.fontStyle-lg': {
+      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.lg'),
-      lineHeight: theme('lineHeight.7'),
+      lineHeight: theme('lineHeight.lg'),
+      letterSpacing: theme('space.lg'),
+      fontWeight: theme('fontWeight.lg')
     },
     '.fontStyle-lg.strong, .fontStyle-lg strong': {
       fontWeight: theme('fontWeight.semibold')
@@ -118,8 +121,11 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       Font styles small
      */
     '.fontStyle-sm': {
+      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.sm'),
-      lineHeight: theme('lineHeight.5'),
+      lineHeight: theme('lineHeight.sm'),
+      letterSpacing: theme('space.sm'),
+      fontWeight: theme('fontWeight.sm')
     },
     '.fontStyle-sm.strong, .fontStyle-sm strong': {
       fontWeight: theme('fontWeight.semibold')
@@ -132,9 +138,11 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       Font styles xsmall
      */
     '.fontStyle-xs': {
+      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.xs'),
-      lineHeight: theme('lineHeight.4'),
-      fontWeight: theme('fontWeight.medium')
+      lineHeight: theme('lineHeight.xs'),
+      letterSpacing: theme('space.xs'),
+      fontWeight: theme('fontWeight.xs')
     },
     '.fontStyle-xs.strong, .fontStyle-xs strong': {
       fontWeight: theme('fontWeight.bold')
@@ -151,7 +159,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
 
     '.fontStyle-button-base': {
@@ -159,14 +167,14 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
     '.fontStyle-button-sm': {
       fontSize: theme('fontSize.xs'),
       lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
 
     '.fontStyle-button-xs': {
@@ -174,7 +182,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.bold')
+      fontWeight: theme('fontWeight.semibold')
     },
 
     /* 

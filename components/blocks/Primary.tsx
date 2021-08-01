@@ -51,7 +51,7 @@ export const Primary: FC<PrimaryProps> = ({
             {head}
           </h2>
           <p
-            className='text-base pt-4'
+            className='fontStyle-base pt-4'
           >
             {text}
           </p>

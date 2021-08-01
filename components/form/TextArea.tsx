@@ -66,7 +66,7 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error
 }) => {
-  const textareaClasses = ['text-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600']
+  const textareaClasses = ['fontStyle-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -83,7 +83,7 @@ export const TextArea: FC<TextAreaProps> = ({
     >
       {label &&
         <div
-        className={`text-sm font-semibold flex flex-row justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        className={`fontStyle-sm strong flex flex-row justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         <p>
           {label}
@@ -104,11 +104,11 @@ export const TextArea: FC<TextAreaProps> = ({
         />
       </div>
       <div
-        className={`text-sm font-normal dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} `}
+        className={`fontStyle-sm dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} `}
       >
         {information}
       </div>
-      {isError && (<div className='text-sm font-normal text-red-600 dark:text-red-400'>{error}</div>)}
+      {isError && (<div className='fontStyle-sm text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
   )
 }

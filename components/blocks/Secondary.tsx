@@ -62,7 +62,7 @@ export const Secondary: FC<SecondaryProps> = ({
           `}
         >
           <h2 className='fontStyle-4xl'>{head}</h2>
-          <p className='text-base pt-2'>{text}</p>
+          <p className='fontStyle-base pt-2'>{text}</p>
           {
             (cta_name && cta_url) &&
             <div

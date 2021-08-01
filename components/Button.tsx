@@ -17,7 +17,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * icon size
    */
-  size?: 'small' | 'default' | 'large'
+  size?: 'default' | 'large' | 'small'
   /**
    * button link
    */
@@ -38,8 +38,8 @@ export const Button: FC<ButtonProps> = ({
   url = '',
   forceDark = false
 }) => {
-  const buttonClasses = ['inline-flex', 'items-center', 'space-x-3', 'leading-0']
-  const contentClasses = ['font-semibold', 'tracking-wide', 'uppercase']
+  const buttonClasses = ['inline-flex', 'items-center', 'space-x-3']
+  const contentClasses = ['']
   switch (type) {
     case 'primary':
       buttonClasses.push('rounded-lg')
@@ -63,16 +63,16 @@ export const Button: FC<ButtonProps> = ({
   switch (size) {
     case 'small':
       buttonClasses.push('h-8', 'max-h-8', 'px-3.5', 'py-2.5')
-      contentClasses.push('text-xxs')
+      contentClasses.push('fontStyle-button-sm')
       break
     case 'large':
       buttonClasses.push('h-12', 'max-h-12', 'py-4', 'px-5')
-      contentClasses.push('text-sm')
+      contentClasses.push('fontStyle-button-lg')
       break
     case 'default':
     default:
       buttonClasses.push('h-10', 'max-h-10', 'px-4', 'py-3.5')
-      contentClasses.push('text-xs')
+      contentClasses.push('fontStyle-button-base')
   }
   const buttonClassesJoined = buttonClasses.join(' ')
   const Content = () => {

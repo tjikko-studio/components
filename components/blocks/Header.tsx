@@ -55,12 +55,12 @@ export const Header: FC<HeaderProps> = ({
         className="text-gray-50 pb-3"
       />
       <h1
-        className='text-gray-50 fontStyle-5xl '// lg:fontStyle-6xl md:fontStyle-5xl sm:fontStyle-5xl'
+        className='fontStyle-5xl text-gray-50 '// lg:fontStyle-6xl md:fontStyle-5xl sm:fontStyle-5xl'
       >
         {title}
       </h1>
       <p
-        className='text-gray-50 text-base break-words pt-4'
+        className='fontStyle-base text-gray-50 break-words pt-4'
       >
         {text}
       </p>
@@ -71,7 +71,7 @@ export const Header: FC<HeaderProps> = ({
           (type === "default") && (
             <a
               href={url}
-              className='bg-primary-400 rounded-lg py-4 px-5 text-base font-semibold uppercase text-primary-900 hover:bg-primary-300'
+              className='fontStyle-base strong uppercase bg-primary-400 rounded-lg py-4 px-5 text-primary-900 hover:bg-primary-300'
             >
               {buttonText}
             </a>

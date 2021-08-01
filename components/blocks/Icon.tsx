@@ -63,7 +63,7 @@ export const Icon: FC<IconProps> = ({
           }
         </h2>
         <p
-          className='text-base pt-2'
+          className='fontStyle-base pt-2'
         >
           {
             text && text === '' ? text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'

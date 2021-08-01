@@ -61,7 +61,7 @@ export const Tertiary: FC<TertiaryProps> = ({
             {head}
           </h2>
           <p
-            className='text-base pt-2'
+            className='fontStyle-base pt-2'
           >
             {text}
           </p>

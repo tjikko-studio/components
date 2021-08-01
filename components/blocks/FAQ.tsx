@@ -30,12 +30,12 @@ export const FAQ: FC<FAQProps> = ({
       className={`text-gray-900 dark:text-gray-50 ${className}`}
     >
       <div
-        className='font-semibold text-lg leading-7'
+        className='fontStyle-lg strong'
       >
         {question}
       </div>
       <div
-        className='pt-2 text-base leading-6'
+        className='pt-2 fontStyle-base'
       >
         {answer}
       </div>
