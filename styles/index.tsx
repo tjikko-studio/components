@@ -1,5 +1,4 @@
 import plugin from 'tailwindcss/plugin'
-import { _ } from 'lodash';
 import { textOptions, textFunctions } from './text';
 import { sizeOptions } from './sizes';
 import { colorsOptions } from './colors';
