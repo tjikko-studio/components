@@ -66,16 +66,16 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error
 }) => {
-  const textareaClasses = ['fontStyle-base', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600']
+  const textareaClasses = ['fontStyle-base py-3 px-4 rounded-lg border w-72 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
   if (isValidating) {
-    textareaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
+    textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
   }
   addSuccessClasses(isSuccess, textareaClasses)
   if (isSuccess) {
-    textareaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
+    textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
   }
   return (
     <div
