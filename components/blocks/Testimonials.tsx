@@ -1,12 +1,12 @@
 import React, {FC, HTMLAttributes} from 'react'
 
-export interface BlockQuoteProps extends HTMLAttributes<HTMLDivElement> {
+export interface TestimonialsProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * speech to display on BlockQuote
+   * speech to display on Testimonials
    */
   speech?: string
   /**
-   * avatar to display on BlockQuote
+   * avatar to display on Testimonials
    */
   avatarUrl?: string
   /**
@@ -14,7 +14,7 @@ export interface BlockQuoteProps extends HTMLAttributes<HTMLDivElement> {
    */
   avatarAlt?: string
   /**
-   * customer name to display on BlockQuote
+   * customer name to display on Testimonials
    */
   customerName?: string
 }
@@ -22,7 +22,7 @@ export interface BlockQuoteProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const BlockQuote: FC<BlockQuoteProps> = ({
+export const Testimonials: FC<TestimonialsProps> = ({
   speech = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   avatarUrl = '',
   avatarAlt = '',

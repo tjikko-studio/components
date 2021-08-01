@@ -1,16 +1,16 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 import Marquee from 'react-fast-marquee'
 
-export interface LogoPizzaInterface {
+export interface ClientsLogosInterface {
   imgUrl: string
   href?: string
 }
 
-export interface LogoPizzaProps extends HTMLAttributes<HTMLDivElement> {
+export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * speech to display on LogoPizza
+   * speech to display on ClientsLogos
    */
-  companyArr?: LogoPizzaInterface[]
+  companyArr?: ClientsLogosInterface[]
   /**
    * mode : 'Default' | 'Compact'
    */
@@ -20,7 +20,7 @@ export interface LogoPizzaProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const LogoPizza: FC<LogoPizzaProps> = ({
+export const ClientsLogos: FC<ClientsLogosProps> = ({
   companyArr = [],
   mode = 'Default'
 }) => {

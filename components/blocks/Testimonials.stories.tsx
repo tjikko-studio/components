@@ -1,18 +1,18 @@
-import {BlockQuote, BlockQuoteProps} from "./BlockQuote"
+import {Testimonials, TestimonialsProps} from "./Testimonials"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/BlockQuote',
-  component: BlockQuote,
+  title: 'Tjikko/blocks/Testimonials',
+  component: Testimonials,
   argTypes: {
 
   },
   parameters: {
-    componentSubtitle: 'The BlockQuote'
+    componentSubtitle: 'The Testimonials'
   }
 } as Meta
 
-const Template: Story<BlockQuoteProps> = (args) => <BlockQuote {...args} />
+const Template: Story<TestimonialsProps> = (args) => <Testimonials {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
