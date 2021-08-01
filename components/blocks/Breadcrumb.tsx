@@ -1,15 +1,15 @@
 import React, {FC, HTMLAttributes} from 'react'
 
-export interface BreadCrumbType {
+export interface BreadcrumbType {
   name: string
   url: string
 }
 
-export interface BreadCrumbProps extends HTMLAttributes<HTMLDivElement> {
+export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * breadcrumb data list
+   * Breadcrumb data list
    */
-  crumbs: BreadCrumbType[]
+  crumbs: BreadcrumbType[]
 
   /**
    * Additional space-separated class names to append
@@ -20,7 +20,7 @@ export interface BreadCrumbProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const BreadCrumb: FC<BreadCrumbProps> = ({
+export const Breadcrumb: FC<BreadcrumbProps> = ({
   crumbs = [],
   className
 }) => {

@@ -2,17 +2,17 @@ import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 import {Header, HeaderProps} from './Header'
 import {useMediaPredicate} from "react-media-hook"
 
-export interface BigHeaderProps extends HTMLAttributes<HTMLElement> {
+export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * image or video
    */
-  bgtype: "image" | "video"
+  bgType: "image" | "video"
   /**
-   * background image url in assets folder
+   * background image url
    */
   bgImage?: string
   /**
-   * background video url in assets folder
+   * background video url
    */
   bgVideo?: string
   /**
@@ -29,12 +29,12 @@ export interface BigHeaderProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const BigHeader: FC<BigHeaderProps> = ({
+export const Hero: FC<HeroProps> = ({
   bgImage,
   bgVideo,
   headerInfo,
   className,
-  bgtype
+  bgType
 }) => {
   const desktop = useMediaPredicate("(min-width: 640px)")
 
@@ -49,7 +49,7 @@ export const BigHeader: FC<BigHeaderProps> = ({
 
     >
       {
-        (bgtype === "video" && desktop) && (
+        (bgType === "video" && desktop) && (
           <video id="videoBG" poster={bgImage} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
             <source src={bgVideo} type="video/mp4" />
             {/* <source src={bgImage} type="video/mp4" /> */}

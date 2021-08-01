@@ -16,7 +16,7 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
   /**
    * footer menu data
    */
-  footermenu?: FooterDataType[]
+  footerMenu?: FooterDataType[]
   /**
    * year to show on bottom
    */
@@ -31,7 +31,7 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
-  footermenu = [],
+  footerMenu = [],
   year,
   privacy
 }) => {
@@ -52,7 +52,7 @@ export const Footer: FC<FooterProps> = ({
         className='px-6 pt-8 lg:flex md:grid md:grid-cols-2'
       >
         {
-          footermenu.map((menu, menuIndex) => {
+          footerMenu.map((menu, menuIndex) => {
             return (
               <ul
                 key={menuIndex}

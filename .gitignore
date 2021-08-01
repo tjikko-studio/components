@@ -6,7 +6,7 @@ node_modules
 .DS_Store
 
 # Built files
-dev
+dist
 
 # dist
 storybook-static

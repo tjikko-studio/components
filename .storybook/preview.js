@@ -10,6 +10,6 @@ export const parameters = {
       { name: 'Light Mode', class: ['bg-gray-50'], color: '#fff' },
       { name: 'Dark Mode', class: ['dark', 'bg-gray-900'], color: '#000' },
       { name: 'Dark Background', class: ['bg-gray-900'], color: '#000' }
-    ],
-  },
+    ]
+  }
 }

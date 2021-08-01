@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {BreadCrumb, BreadCrumbType} from './BreadCrumb'
+import {Breadcrumb, BreadcrumbType} from './Breadcrumb'
 import {Input} from '../form/Input'
 import {Button} from '../Button'
 import ClientLogo from '../../assets/images/logo_placeholder_square.svg'
@@ -16,7 +16,7 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   /**
    * breadcrumb
    */
-  breadcrumb?: BreadCrumbType[]
+  breadcrumb?: BreadcrumbType[]
   /**
    * text to show as title
    */
@@ -50,7 +50,7 @@ export const Header: FC<HeaderProps> = ({
     <div
       className={` flex flex-col ${className ? className : ''}`}
     >
-      <BreadCrumb
+      <Breadcrumb
         crumbs={breadcrumb}
         className="text-gray-50 pb-3"
       />
