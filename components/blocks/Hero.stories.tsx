@@ -1,9 +1,9 @@
-import {HeroBlock, HeroBlockProps} from './HeroBlock'
+import {Hero, HeroProps} from './Hero'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Hero Block',
-  component: HeroBlock,
+  title: 'Tjikko/blocks/Hero',
+  component: Hero,
   argTypes: {
     bgType: {options: ['image', 'video'], control: {type: 'select'}},
   },
@@ -12,7 +12,7 @@ export default {
   }
 } as Meta
 
-const Template: Story<HeroBlockProps> = (args) => <HeroBlock {...args} />
+const Template: Story<HeroProps> = (args) => <Hero {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

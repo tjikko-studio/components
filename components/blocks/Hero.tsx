@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 import {Header, HeaderProps} from './Header'
 import {useMediaPredicate} from "react-media-hook"
 
-export interface HeroBlockProps extends HTMLAttributes<HTMLElement> {
+export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * image or video
    */
@@ -29,7 +29,7 @@ export interface HeroBlockProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const HeroBlock: FC<HeroBlockProps> = ({
+export const Hero: FC<HeroProps> = ({
   bgImage,
   bgVideo,
   headerInfo,
