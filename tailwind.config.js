@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
-    require('./dist/styles/')()
+    require('@tailwindcss/forms'),
+    require('./dist/styles/')
   ]
 }

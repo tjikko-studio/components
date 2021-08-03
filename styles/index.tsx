@@ -5,12 +5,12 @@ import { colorsOptions } from './colors';
 import { variants } from './variants';
 
 module.exports = plugin.withOptions(
-  function (){
+  function (options = {}){
     return function (args) {
       textFunctions(args);
     }
   },
-  function (options) {
+  function (options = {}) {
     const theme = {...textOptions, ...sizeOptions, ...colorsOptions};
     return {
       darkMode: 'class',
@@ -32,5 +32,3 @@ module.exports = plugin.withOptions(
     } 
   }
 )
-
-

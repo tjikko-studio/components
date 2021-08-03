@@ -3,5 +3,12 @@ export const variants = {
   visibility: ['disabled'],
   borderColor: ['disabled'],
   textColor: ['disabled'],
-  backgroundColor: ['disabled']
+  backgroundColor: ['disabled'],
+  mixBlendMode: ['responsive'],
+  backgroundBlendMode: ['responsive'],
+  isolation: ['responsive'],
+
+  extend: {
+    backgroundColor: ['active']
+  },
 };
