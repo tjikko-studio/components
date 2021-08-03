@@ -11,7 +11,7 @@
     "dev:babel:components": "npm run build:dev:styles -- --watch",
     "dev:babel:styles": "npm run build:dev:styles -- --watch",
     "dev": "concurrently npm:dev:babel:components npm:dev:babel:styles npm:dev:storybook",
-    "build": "npm run build:prod",
+    "build": "concurrently npm:build:prod:components npm:build:prod:styles",
     "test": "echo 'No tests yet'",
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "build:storybook": "build-storybook"
