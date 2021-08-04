@@ -9,24 +9,3 @@
   font-weight: 100 900;
   font-display: fallback;
 }
-
-@font-face {
-  font-family: 'Borda';
-  src: url(./fonts/Borda.woff2) format('woff2');
-  font-weight: 400;
-  font-display: fallback;
-}
-
-@font-face {
-  font-family: 'Borda';
-  src: url(./fonts/Borda-Medium.woff2) format('woff2');
-  font-weight: 500;
-  font-display: fallback;
-}
-
-@font-face {
-  font-family: 'Borda';
-  src: url(./fonts/Borda-DemiBold.woff2) format('woff2');
-  font-weight: 600;
-  font-display: fallback;
-}

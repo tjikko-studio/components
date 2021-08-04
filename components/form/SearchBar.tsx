@@ -32,7 +32,7 @@ export const SearchBar: FC<SearchBarProps> = ({
   placeHolder
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
-  const classes = ['w-72', 'flex', 'rounded-lg', 'items-center', 'overflow-hidden', 'pl-11', 'text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600' ]
+  const classes = ['w-72 flex rounded-lg items-center overflow-hidden pl-11 fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600' ]
   addDisabledClasses(isDisabled, classes)
   return (
     <div
@@ -47,7 +47,7 @@ export const SearchBar: FC<SearchBarProps> = ({
       </button>
       <input
         disabled={isDisabled}
-        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
         defaultValue={text}
         placeholder={placeHolder}
         onFocus={() => setInputFocus(true)}

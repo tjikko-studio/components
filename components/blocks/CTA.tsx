@@ -32,7 +32,7 @@ export const CTA: FC<CTAProps> = ({
   return (
     <div className="w-full py-24 text-center bg-gray-900">
       <h2 className='fontStyle-4xl text-gray-50'>{ title }</h2>
-      <p className="text-lg text-gray-50 mt-4 leading-7 mb-7">{ body }</p>
+      <p className="fontStyle-lg text-gray-50 mt-4 mb-7">{ body }</p>
       <div className="inline-flex space-x-4">
       { ctas.map((cta, index) => (
         <Button

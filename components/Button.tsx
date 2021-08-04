@@ -17,7 +17,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * icon size
    */
-  size?: 'small' | 'default' | 'large'
+  size?: 'default' | 'large' | 'small'
   /**
    * button link
    */
@@ -38,41 +38,41 @@ export const Button: FC<ButtonProps> = ({
   url = '',
   forceDark = false
 }) => {
-  const buttonClasses = ['inline-flex', 'items-center', 'space-x-3', 'leading-0']
-  const contentClasses = ['font-semibold', 'tracking-wide', 'uppercase']
+  const buttonClasses = ['inline-flex items-center space-x-3']
+  const contentClasses = ['']
   switch (type) {
     case 'primary':
       buttonClasses.push('rounded-lg')
       if (forceDark) {
-        buttonClasses.push('bg-brand-400', 'hover:bg-brand-200')
-        contentClasses.push('text-brand-900')
+        buttonClasses.push('bg-primary-400 hover:bg-primary-200')
+        contentClasses.push('text-primary-900')
       } else {
-        buttonClasses.push('bg-brand-600', 'hover:bg-brand-700', 'dark:bg-brand-400', 'dark:hover:bg-brand-200')
-        contentClasses.push('text-white', 'dark:text-brand-900')
+        buttonClasses.push('bg-primary-600 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-200')
+        contentClasses.push('text-white dark:text-primary-900')
       }
       break
     case 'tertiary':
       buttonClasses.push('bg-none')
       if (forceDark) {
-        contentClasses.push('text-brand-400', 'hover:text-brand-200')
+        contentClasses.push('text-primary-400 hover:text-primary-200')
       } else {
-        contentClasses.push('text-brand-600', 'hover:text-brand-700', 'dark:text-brand-400', 'dark:hover:text-brand-200')
+        contentClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
       }
       break
   }
   switch (size) {
     case 'small':
-      buttonClasses.push('h-8', 'max-h-8', 'px-3.5', 'py-2.5')
-      contentClasses.push('text-xxs')
+      buttonClasses.push('h-8 max-h-8 px-3.5 py-2.5')
+      contentClasses.push('fontStyle-button-sm')
       break
     case 'large':
-      buttonClasses.push('h-12', 'max-h-12', 'py-4', 'px-5')
-      contentClasses.push('text-sm')
+      buttonClasses.push('h-12 max-h-12 py-4 px-5')
+      contentClasses.push('fontStyle-button-lg')
       break
     case 'default':
     default:
-      buttonClasses.push('h-10', 'max-h-10', 'px-4', 'py-3.5')
-      contentClasses.push('text-xs')
+      buttonClasses.push('h-10 max-h-10 px-4 py-3.5')
+      contentClasses.push('fontStyle-button-base')
   }
   const buttonClassesJoined = buttonClasses.join(' ')
   const Content = () => {

@@ -21,11 +21,11 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 export const Text: FC<TextProps> = ({ title = '', body = '', className }) => {
   return (
     <div className={`p-6 ${className}`}>
-      <h5 className='text-gray-900 text-lg tracking-wider uppercase font-semibold'>
+      <h5 className='fontStyle-lg strong uppercase text-gray-900'>
         {title}
       </h5>
-      <hr className='border-brand-500 mt-4' />
-      <p className='text-gray-500 text-base mt-8'>{body}</p>
+      <hr className='border-primary-500 mt-4' />
+      <p className='fontStyle-base text-gray-500 mt-8'>{body}</p>
     </div>
   )
 }

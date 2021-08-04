@@ -29,7 +29,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
     <div
       className={`text-gray-900 dark:text-gray-50 logo-pizza`}
     >
-      <h3 className={`${mode === 'Compact' ? 'text-2xl' : 'text-4xl'} text-center mb-16`}>Trusted by</h3>
+      <h3 className={`${mode === 'Compact' ? 'fontStyle-2xl' : 'fontStyle-4xl'} text-center mb-16`}>Trusted by</h3>
       <Marquee
         gradientWidth='0'
       >

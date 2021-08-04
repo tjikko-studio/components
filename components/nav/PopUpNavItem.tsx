@@ -33,35 +33,35 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   isActive = false,
   children
 }) => {
-  const classes = ['flex', 'items-center']
+  const classes = ['flex items-center']
   switch (type) {
     case 'special':
-      classes.push('py-2.5', 'fontStyle-base', 'text-gray-100')
+      classes.push('py-2.5 fontStyle-base text-gray-100')
       if (isActive) {
-        classes.push('text-brand-300', 'dark:text-brand-300')
+        classes.push('text-primary-300 dark:text-primary-300')
       } else {
-        classes.push('hover:text-brand-300', 'dark:text-gray-100', 'dark:hover:text-brand-300')
+        classes.push('hover:text-primary-300 dark:text-gray-100 dark:hover:text-primary-300')
       }
 
       break
     case 'header':
-      classes.push('fontStyle-sm', 'uppercase', 'strong', 'py-2.5', 'text-gray-800', 'dark:text-gray-100')
+      classes.push('fontStyle-sm uppercase strong py-2.5 text-gray-800 dark:text-gray-100')
       break
     case 'button':
-      classes.push('py-3.5', 'fontStyle-xs', 'uppercase', 'strong')
+      classes.push('py-3.5 fontStyle-xs uppercase strong')
       if (isActive) {
-        classes.push('text-brand-700', 'dark:text-brand-100')
+        classes.push('text-primary-700 dark:text-primary-100')
       } else {
-        classes.push('text-brand-600', 'hover:text-brand-700', 'dark:text-brand-300', 'dark:hover:text-brand-100')
+        classes.push('text-primary-600 hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-100')
       }
       break
     case 'default':
     default:
-      classes.push('py-2.5', 'fontStyle-sm')
+      classes.push('py-2.5 fontStyle-sm')
       if (isActive) {
-        classes.push('text-brand-600', 'dark:text-brand-300')
+        classes.push('text-primary-600 dark:text-primary-300')
       } else {
-        classes.push('text-gray-800', 'hover:text-brand-600', 'dark:text-gray-100', 'dark:hover:text-brand-300')
+        classes.push('text-gray-800 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-300')
       }
       break
   }

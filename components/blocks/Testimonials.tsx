@@ -33,7 +33,7 @@ export const Testimonials: FC<TestimonialsProps> = ({
     <div className='flex flex-col space-y-6 text-gray-900 dark:text-gray-50'
     >
       <p
-        className={`font-normal text-lg text-center text-brand-900 dark:text-brand-50`}
+        className={`fontStyle-lg text-center text-brand-900 dark:text-brand-50`}
 
       >“{speech}”</p>
       <img
@@ -41,7 +41,7 @@ export const Testimonials: FC<TestimonialsProps> = ({
         src={avatarUrl}
         alt={avatarAlt}
       />
-      <p className={`text-xs text-center uppercase`}>{customerName}</p>
+      <p className={`fontStyle-xs uppercase text-center`}>{customerName}</p>
     </div>
   )
 }

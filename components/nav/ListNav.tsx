@@ -39,11 +39,11 @@ export const ListNav: FC<ListNavProps> = ({
   var wMax = '';
   switch (styles) {
     case 'elevated':
-      classes.push('flex', 'w-max', 'space-x-6', 'px-6', 'py-2.5', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'dark:bg-gray-800', 'text-gray-900', 'dark:text-gray-50')
+      classes.push('flex w-max space-x-6 px-6 py-2.5 shadow-lg rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50')
       wMax = 'w-max'
       break
     case 'flat':
-      classes.push('grid', 'sm:grid-cols-2', 'justify-items-stretch', 'gap-6')
+      classes.push('grid sm:grid-cols-2 justify-items-stretch gap-6')
       wMax = ''
     default:
       break

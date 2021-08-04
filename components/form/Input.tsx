@@ -68,15 +68,15 @@ export const Input: FC<InputProps> = ({
   information,
   error
 }) => {
-  const labelContainerClasses = ['text-sm', 'font-semibold', 'flex', 'flex-row', 'justify-between', 'dark:text-gray-300']
-  const inputClasses = ['text-base', 'h-12', 'max-h-12', 'py-3', 'px-4', 'rounded-lg', 'border', 'w-72', 'bg-gray-50', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-100', 'border-gray-300', 'dark:border-gray-600']
+  const labelContainerClasses = ['fontStyle-sm strong flex flex-row justify-between dark:text-gray-300']
+  const inputClasses = ['fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-72 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
-    labelContainerClasses.push('text-gray-500', 'dark:text-gray-600')
+    labelContainerClasses.push('text-gray-500 dark:text-gray-600')
   }
   addErrorClasses(isError || isValidating || isSuccess, inputClasses)
   if (isError || isValidating || isSuccess) {
-    inputClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'dark:ring-red-500', 'ring-red-600', 'border-transparent')
+    inputClasses.push('drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent')
   }
   addValidatingClasses(isValidating, inputClasses)
   addSuccessClasses(isSuccess, inputClasses)
@@ -99,18 +99,18 @@ export const Input: FC<InputProps> = ({
       }
       <div className='col-span-2'>
         <input
-          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-brand-500 border-transparent', isFocussed)}`}
+          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
         />
       </div>
       <div
-        className={`text-sm ont-normal dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        className={`fontStyle-sm dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         {information}
       </div>
-      {isError && (<div className='text-sm font-normal text-red-600 dark:text-red-400'>{error}</div>)}
+      {isError && (<div className='fontStyle-sm text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
   )
 }

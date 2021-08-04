@@ -25,12 +25,12 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
   className
 }) => {
 
-  const spanClasses = ['fontStyle-xl hover:text-brand-300 dark:hover:text-brand-300']
+  const spanClasses = ['fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300']
 
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`text-gray-900 dark:text-gray-50  ${className}`}
+      className={`dark:text-gray-50  ${className}`}
     >
       <ul className="flex flex-wrap">
         {

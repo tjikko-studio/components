@@ -4,11 +4,14 @@
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
-    "build:dev": "babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\" --source-maps inline",
-    "build:prod": "cross-env BABEL_ENV=production babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\"",
-    "dev:babel": "npm run build:dev -- --watch",
-    "dev": "concurrently npm:dev:babel npm:dev:storybook",
-    "build": "npm run build:prod",
+    "build:dev:components": "babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\" --source-maps inline",
+    "build:dev:styles": "babel styles --out-dir dist/styles --extensions \".tsx\" --source-maps inline",
+    "build:prod:components": "cross-env BABEL_ENV=production babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\"",
+    "build:prod:styles": "cross-env BABEL_ENV=production babel styles --out-dir dist/styles --extensions \".tsx\" ",
+    "dev:babel:components": "npm run build:dev:styles -- --watch",
+    "dev:babel:styles": "npm run build:dev:styles -- --watch",
+    "dev": "concurrently npm:dev:babel:components npm:dev:babel:styles npm:dev:storybook",
+    "build": "concurrently npm:build:prod:components npm:build:prod:styles",
     "test": "echo 'No tests yet'",
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "build:storybook": "build-storybook"
@@ -39,6 +42,7 @@
   "dependencies": {
     "@headlessui/react": "1.3.0",
     "@heroicons/react": "1.0.3",
+    "@tailwindcss/forms": "0.3.3",
     "@types/react-slick": "0.23.5",
     "cross-env": "7.0.3",
     "hammerjs": "2.0.8",
