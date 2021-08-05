@@ -13,9 +13,9 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  image url to show
   */
-  imageUrl?: string
-  head?: string
-  text?: string
+  image?: string
+  title?: string
+  body?: string
   cta_name: string
   cta_url: string
 
@@ -32,9 +32,9 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Primary: FC<PrimaryProps> = ({
   type = 'vertical',
   mirror = false,
-  imageUrl = '',
-  head,
-  text,
+  image = '',
+  title,
+  body,
   cta_name,
   cta_url
 }) => {
@@ -48,12 +48,12 @@ export const Primary: FC<PrimaryProps> = ({
           <h2
             className='fontStyle-4xl'
           >
-            {head}
+            {title}
           </h2>
           <p
             className='fontStyle-base pt-4'
           >
-            {text}
+            {body}
           </p>
           {
             cta_name && cta_url &&
@@ -79,12 +79,12 @@ export const Primary: FC<PrimaryProps> = ({
       {
         (type === 'default' || type === 'vertical') && (
           <>
-            {imageUrl && (
+            {image && (
               <div
                 className={`${type === 'vertical' ? 'pb-8' : 'px-12 py-6'}`}
               >
                 <img
-                  src={imageUrl}
+                  src={image}
                   className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
                 />
               </div>

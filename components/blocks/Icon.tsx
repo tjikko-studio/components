@@ -1,5 +1,4 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
-import {useMediaPredicate} from 'react-media-hook'
 /*
 * In production mode, show dynamic image and video with url
 */
@@ -33,7 +32,6 @@ export const Icon: FC<IconProps> = ({
   text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   imageUrl
 }) => {
-  const desktop = useMediaPredicate('(min-width: 640px)')
 
   return (
     <div
