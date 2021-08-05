@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
-import {useMediaPredicate} from 'react-media-hook'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
+import {lg} from '../../utilities/breakpoints'
 import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
 import MenuIcon from '../../assets/icons/menu-line.svg'
 import CloseIcon from '../../assets/icons/close-line.svg'
@@ -8,10 +8,6 @@ import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config.js'
-
-const tailwind = resolveConfig(tailwindConfig)
 
 export interface LanguageType {
   current?: string | null
@@ -67,7 +63,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   mobileExpandDefault = false
 }) => {
   const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
-  const largeScreen = useMediaPredicate(`(max-width: ${tailwind.theme.screens.lg})`)
   return (
     <>
       <div
@@ -134,7 +129,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           </div>
         </Disclosure>
       </div>
-      {(mobileExpand && largeScreen) ? (
+      {(mobileExpand && lg) ? (
         <MobileMenu
           demoButtonText={demoButtonText}
           demoUrl={demoUrl}

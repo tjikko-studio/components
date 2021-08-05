@@ -8,7 +8,7 @@
     "build:dev:styles": "babel styles --out-dir dist/styles --extensions \".tsx\" --source-maps inline",
     "build:prod:components": "cross-env BABEL_ENV=production babel components --out-dir dist --extensions \".tsx\" --ignore \"components/**/*.stories.*\"",
     "build:prod:styles": "cross-env BABEL_ENV=production babel styles --out-dir dist/styles --extensions \".tsx\" ",
-    "dev:babel:components": "npm run build:dev:styles -- --watch",
+    "dev:babel:components": "npm run build:dev:components -- --watch",
     "dev:babel:styles": "npm run build:dev:styles -- --watch",
     "dev": "concurrently npm:dev:babel:components npm:dev:babel:styles npm:dev:storybook",
     "build": "concurrently npm:build:prod:components npm:build:prod:styles",

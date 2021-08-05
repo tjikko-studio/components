@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 import {Header, HeaderProps} from './Header'
-import {useMediaPredicate} from "react-media-hook"
+import {sm} from '../../utilities/breakpoints'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -36,7 +36,6 @@ export const Hero: FC<HeroProps> = ({
   className,
   bgType
 }) => {
-  const desktop = useMediaPredicate("(min-width: 640px)")
 
   return (
     <header
@@ -49,7 +48,7 @@ export const Hero: FC<HeroProps> = ({
 
     >
       {
-        (bgType === "video" && desktop) && (
+        (bgType === "video" && sm) && (
           <video id="videoBG" poster={bgImage} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
             <source src={bgVideo} type="video/mp4" />
           </video>
