@@ -26,7 +26,9 @@ module.exports = plugin.withOptions(
       theme: {
         extend: theme
       },
-      variants: variants
+      variants: {
+        extend: variants
+      }
     } 
   }
 )
