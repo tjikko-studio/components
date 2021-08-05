@@ -36,7 +36,6 @@ export const Hero: FC<HeroProps> = ({
   className,
   bgType
 }) => {
-  /* const desktop = useMediaPredicate(`(max-width: ${tailwind.theme.screens.sm})`) */
 
   return (
     <header
