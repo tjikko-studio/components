@@ -68,22 +68,22 @@ export const textOptions = {
 
 export const textFunctions = function({ theme, addBase, addUtilities }) {
   const fontBase = {
-    'body': { 
+    'body': {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.base'),
       lineHeight: theme('lineHeight.base'),
       letterSpacing: theme('space.base'),
       fontWeight: theme('fontWeight.base')
     },
-    'strong': { 
+    'strong': {
       fontWeight: theme('fontWeight.semibold')
     },
-    'uppercase': { 
+    'uppercase': {
       letterSpacing: theme('letterSpacing.wider'),
     }
   }
   const fontStyles = {
-    /* 
+    /*
       Font styles base modifiers
      */
     '.fontStyle-base': {
@@ -100,7 +100,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       letterSpacing: theme('letterSpacing.wider'),
     },
 
-    /* 
+    /*
       Font styles large
      */
     '.fontStyle-lg': {
@@ -117,7 +117,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       letterSpacing: theme('letterSpacing.wider'),
     },
 
-    /* 
+    /*
       Font styles small
      */
     '.fontStyle-sm': {
@@ -134,7 +134,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       letterSpacing: theme('letterSpacing.wider'),
     },
 
-    /* 
+    /*
       Font styles xsmall
      */
     '.fontStyle-xs': {
@@ -151,7 +151,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       letterSpacing: theme('letterSpacing.wider'),
     },
 
-    /* 
+    /*
       Font styles buttons
      */
     '.fontStyle-button-lg': {
@@ -185,7 +185,7 @@ export const textFunctions = function({ theme, addBase, addUtilities }) {
       fontWeight: theme('fontWeight.semibold')
     },
 
-    /* 
+    /*
       Font styles xl to 9xl
      */
     '.fontStyle-xl': {
