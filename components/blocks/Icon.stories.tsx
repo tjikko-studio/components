@@ -17,7 +17,7 @@ const Template: Story<IconProps> = (args) => <Icon {...args} />
 export const Default = Template.bind({})
 Default.args = {
   type: 'horizontal',
-  imageUrl: 'https://via.placeholder.com/56x56',
-  heading: 'Heading',
-  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  image: 'https://via.placeholder.com/56x56',
+  title: 'Heading',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
 }

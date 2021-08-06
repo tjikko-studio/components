@@ -9,9 +9,9 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  image url to show
    */
-  imageUrl?: string
-  head?: string
-  text?: string
+  image?: string
+  title?: string
+  body?: string
   button_name: string
   button_url: string
 
@@ -30,9 +30,9 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Secondary: FC<SecondaryProps> = ({
   type = 'vertical',
-  imageUrl,
-  head,
-  text,
+  image,
+  title,
+  body,
   button_name,
   button_url,
   mirror = 'false',
@@ -45,7 +45,7 @@ export const Secondary: FC<SecondaryProps> = ({
         className={type === 'vertical' ? 'pb-6' : ''}
       >
         <img
-          src={imageUrl}
+          src={image}
           className={`rounded-lg ${type === 'default' && 'w-auto'}`}
         />
       </div>
@@ -61,17 +61,16 @@ export const Secondary: FC<SecondaryProps> = ({
               ${type !== 'vertical' && 'pl-12'}
           `}
         >
-          <h2 className='fontStyle-4xl'>{head}</h2>
-          <p className='fontStyle-base pt-2'>{text}</p>
+          <h2 className='fontStyle-4xl'>{title}</h2>
+          <p className='fontStyle-base pt-2'>{body}</p>
           {
             (button_name && button_url) &&
             <div
               className='pt-6'>
               <Button
-                text={button_name}
-                url={button_url}
+                label={button_name}
+                link={button_url}
                 type='tertiary'
-                icon='none'
                 size='large'
               />
             </div>

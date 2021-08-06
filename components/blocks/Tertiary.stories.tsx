@@ -19,9 +19,9 @@ export const Default = Template.bind({})
 Default.args = {
   type: 'default',
   mirror: false,
-  imageUrl: 'https://source.unsplash.com/random',
-  head: 'Heading',
-  text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+  image: 'https://source.unsplash.com/random',
+  title: 'Heading',
+  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

@@ -14,9 +14,9 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    *
    *  image url to show
    */
-  imageUrl?: string
-  head: string
-  text: string
+  image?: string
+  title: string
+  body: string
   /**
    * Additional space-separated class names to append
    */
@@ -30,9 +30,9 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Tertiary: FC<TertiaryProps> = ({
   type = 'vertical',
   mirror = false,
-  imageUrl,
-  head,
-  text,
+  image,
+  title,
+  body,
   className = ''
 }) => {
   const Image = () => {
@@ -41,7 +41,7 @@ export const Tertiary: FC<TertiaryProps> = ({
         className={(type === 'vertical' ? 'pb-6' : '')}
       >
         <img
-          src={imageUrl}
+          src={image}
           className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
         />
       </div>
@@ -58,12 +58,12 @@ export const Tertiary: FC<TertiaryProps> = ({
           <h2
             className='fontStyle-2xl'
           >
-            {head}
+            {title}
           </h2>
           <p
             className='fontStyle-base pt-2'
           >
-            {text}
+            {body}
           </p>
         </div>
       </div>

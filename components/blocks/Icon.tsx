@@ -11,15 +11,15 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    *  image url to show
    */
-  imageUrl?: string
+  image?: string
   /**
-   * heading text
+   * title text
    */
-  heading?: string
+  title?: string
   /**
    * content text
    */
-  text?: string
+  body?: string
   className?: string
 }
 
@@ -28,9 +28,9 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  */
 export const Icon: FC<IconProps> = ({
   type = 'horizontal',
-  heading = 'Heading',
-  text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-  imageUrl
+  title = 'title',
+  body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  image
 }) => {
 
   return (
@@ -41,7 +41,7 @@ export const Icon: FC<IconProps> = ({
         className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
       >
         <img
-          src={imageUrl}
+          src={image}
           className={`w-14 h-14`}
         />
       </div>
@@ -57,14 +57,14 @@ export const Icon: FC<IconProps> = ({
           className='fontStyle-2xl'
         >
           {
-            heading && heading === '' ? heading : 'Heading'
+            title && title === '' ? title : 'title'
           }
         </h2>
         <p
           className='fontStyle-base pt-2'
         >
           {
-            text && text === '' ? text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+            body && body === '' ? body : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
           }
         </p>
       </div>
