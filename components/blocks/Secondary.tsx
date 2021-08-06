@@ -12,8 +12,8 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   imageUrl?: string
   head?: string
   text?: string
-  cta_name: string
-  cta_url: string
+  button_name: string
+  button_url: string
 
   /**
    * Is mirror
@@ -33,8 +33,8 @@ export const Secondary: FC<SecondaryProps> = ({
   imageUrl,
   head,
   text,
-  cta_name,
-  cta_url,
+  button_name,
+  button_url,
   mirror = 'false',
   className = '',
 
@@ -64,12 +64,12 @@ export const Secondary: FC<SecondaryProps> = ({
           <h2 className='fontStyle-4xl'>{head}</h2>
           <p className='fontStyle-base pt-2'>{text}</p>
           {
-            (cta_name && cta_url) &&
+            (button_name && button_url) &&
             <div
               className='pt-6'>
               <Button
-                text={cta_name}
-                url={cta_url}
+                text={button_name}
+                url={button_url}
                 type='tertiary'
                 icon='none'
                 size='large'

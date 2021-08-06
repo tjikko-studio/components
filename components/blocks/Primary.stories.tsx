@@ -21,9 +21,9 @@ Default.args = {
   mirror: false,
   image: 'https://source.unsplash.com/random',
   title: 'Heading',
-  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-  cta_name: 'cta text',
-  cta_url: '/ctatext'
+  text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+  button_name: 'button text',
+  button_url: '/buttontext'
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

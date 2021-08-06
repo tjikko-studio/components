@@ -4,16 +4,19 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * button type
    */
-  type: 'primary' | 'secondary' | 'tertiary'
+  type?: 'primary' | 'secondary' | 'tertiary'
   /**
    * text to display on button
    */
-  text?: string
-  /**
-   * icon position
-   * only: show only icon with rounded button
-   */
-  icon?: 'right' | 'left' | 'only' | 'none'
+   label?: string
+   /**
+    * icon position
+    */
+   iconPos?: 'right' | 'left'
+   /**
+    * icon image
+    */
+   icon?: string
   /**
    * icon size
    */
@@ -21,7 +24,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * button link
    */
-  url?: string
+  link?: string
   /**
    * force dark mode
    */
@@ -33,9 +36,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Button: FC<ButtonProps> = ({
   type = 'primary',
-  text = 'LABEL',
+  label = 'LABEL',
   size = 'default',
-  url = '',
+  icon = '',
+  link = '',
   forceDark = false
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
@@ -45,18 +49,28 @@ export const Button: FC<ButtonProps> = ({
       buttonClasses.push('rounded-lg')
       if (forceDark) {
         buttonClasses.push('bg-primary-400 hover:bg-primary-200')
-        contentClasses.push('text-primary-900')
+        buttonClasses.push('text-primary-900')
       } else {
         buttonClasses.push('bg-primary-600 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-200')
-        contentClasses.push('text-white dark:text-primary-900')
+        buttonClasses.push('text-white dark:text-primary-900')
+      }
+      break
+    case 'secondary':
+      buttonClasses.push('bg-none rounded-lg border')
+      if (forceDark) {
+        buttonClasses.push('border-primary-400 hover:border-primary-200')
+        buttonClasses.push('text-primary-400 hover:text-primary-200')
+      } else {
+        buttonClasses.push('border-primary-600 hover:border-primary-800 dark:border-primary-300  dark:hover:border-primary-100')
+        buttonClasses.push('text-primary-600 hover:text-primary-800 dark:text-primary-300 dark:hover:text-primary-100')
       }
       break
     case 'tertiary':
       buttonClasses.push('bg-none')
       if (forceDark) {
-        contentClasses.push('text-primary-400 hover:text-primary-200')
+        buttonClasses.push('text-primary-400 hover:text-primary-200')
       } else {
-        contentClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
+        buttonClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
       }
       break
   }
@@ -76,16 +90,27 @@ export const Button: FC<ButtonProps> = ({
   }
   const buttonClassesJoined = buttonClasses.join(' ')
   const Content = () => {
-    return (
-      <span
-        className={contentClasses.join(' ')}
-      >{text}</span>
-    )
+    if (label) {
+      return ( 
+        <span
+          className={contentClasses.join(' ')}
+        >{label}</span>
+      )
+    }
   }
-  if (url) {
+  /* const Icon = () => {
+    if (icon) {
+      return ( 
+        <span />
+      )
+    } else {
+      return ''
+    }
+  } */
+  if (link) {
     return (
       <a
-        href={url}
+        href={link}
         className={buttonClassesJoined}
       >
         <Content />

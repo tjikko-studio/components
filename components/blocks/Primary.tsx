@@ -16,8 +16,8 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   image?: string
   title?: string
   body?: string
-  cta_name: string
-  cta_url: string
+  button_name: string
+  button_url: string
 
   /**
    * Additional space-separated class names to append
@@ -35,8 +35,8 @@ export const Primary: FC<PrimaryProps> = ({
   image = '',
   title,
   body,
-  cta_name,
-  cta_url
+  button_name,
+  button_url
 }) => {
   const Text = () => {
     return (
@@ -56,12 +56,12 @@ export const Primary: FC<PrimaryProps> = ({
             {body}
           </p>
           {
-            cta_name && cta_url &&
+            button_name && button_url &&
             <div
               className='pt-6'>
               <Button
-                text={cta_name}
-                url={cta_url}
+                body={button_name}
+                url={button_url}
                 type='primary'
                 icon='none'
                 size='large'
@@ -74,7 +74,7 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${type === 'default' ? 'flex' : ''} ${mirror ? 'flex-row-reverse' : ''}`}
+      className={`body-gray-900 dark:body-gray-50 ${type === 'default' ? 'flex' : ''} ${mirror ? 'flex-row-reverse' : ''}`}
     >
       {
         (type === 'default' || type === 'vertical') && (

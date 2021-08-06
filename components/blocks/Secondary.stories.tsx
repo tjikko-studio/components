@@ -22,8 +22,8 @@ Default.args = {
   imageUrl: 'https://source.unsplash.com/random',
   head: 'Heading',
   text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-  cta_name: 'cta text',
-  cta_url: 'https://perdu.com'
+  button_name: 'button text',
+  button_url: 'https://perdu.com'
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/Buttons',
   component: Button,
   argTypes: {
-    type: {options: ['primary', 'tertiary'], control: {type: 'select'}},
+    type: {options: ['primary', 'secondary', 'tertiary'], control: {type: 'select'}},
     size: {options: ['small', 'default', 'large'], control: {type: 'select'}},
     forceDark: {control: {type: 'boolean'}}
   },
@@ -16,12 +16,26 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
+export const Primary = Template.bind({})
+Primary.args = {
   type: 'primary',
-  text: 'LABEL',
+  text: 'Primary Button',
   url: '',
   icon: 'none',
   size: 'default',
   forceDark: false
+}
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+  ...Primary.args,
+  type: 'secondary',
+  text: 'Secondary Button'
+}
+
+export const Tertiart = Template.bind({})
+Tertiart.args = {
+  ...Primary.args,
+  type: 'tertiary',
+  text: 'Tertiary Button'
 }

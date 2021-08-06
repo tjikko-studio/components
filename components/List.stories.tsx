@@ -1,6 +1,6 @@
 import {List} from './List'
 import {FAQ, FAQProps} from "./blocks/FAQ"
-import {CTA, CTAProps} from "./blocks/CTA"
+import {ButtonsGroup, ButtonsGroupProps} from "./blocks/ButtonsGroup"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -28,21 +28,15 @@ FAQList.args = {
   }]
 }
 
-export const CTAList = Template.bind({})
-CTAList.args = {
-  Component: CTA,
+export const ButtonsGroupList = Template.bind({})
+ButtonsGroupList.args = {
+  Component: ButtonsGroup,
   items: [{
-    title: 'CTA title',
-    body: 'CTA body',
-    ctas: [{
-      label: 'link label',
+    buttons: [{
+      label: 'First Button',
       link: 'https://perdu.com'
-    }]
-  }, {
-    title: 'Second CTA',
-    body: 'Description',
-    ctas: [{
-      label: 'Call To Action',
+    },{
+      label: 'Second Button',
       link: 'https://perdu.com'
     }]
   }]
