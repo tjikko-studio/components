@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
-import {lg} from '../../utilities/breakpoints'
+import useBreakpoint from '../../utilities/useBreakpoint'
 import CompanyLogo from '../../assets/images/company_logo_placeholder.svg'
 import MenuIcon from '../../assets/icons/menu-line.svg'
 import CloseIcon from '../../assets/icons/close-line.svg'
@@ -63,6 +63,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   mobileExpandDefault = false
 }) => {
   const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
+  const lg = useBreakpoint('lg')
   return (
     <>
       <div

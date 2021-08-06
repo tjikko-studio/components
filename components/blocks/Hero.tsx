@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 import {Header, HeaderProps} from './Header'
-import {sm} from '../../utilities/breakpoints'
+import useBreakpoint from '../../utilities/useBreakpoint'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -36,6 +36,7 @@ export const Hero: FC<HeroProps> = ({
   className,
   bgType
 }) => {
+  const sm = useBreakpoint('sm')
 
   return (
     <header
