@@ -1,10 +1,10 @@
 import {List} from './List'
-import {FAQ, FAQProps} from "./blocks/FAQ"
-import {ButtonsGroup, ButtonsGroupProps} from "./blocks/ButtonsGroup"
+import {FAQ, FAQProps} from "../blocks/FAQ"
+import {ButtonsGroup, ButtonsGroupProps} from "../blocks/ButtonsGroup"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/List',
+  title: 'Tjikko/Collections/List',
   component: List,
   argTypes: {
 
