@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {Button} from '../Button'
+import {ButtonsGroup} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -12,13 +12,12 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   image?: string
   title?: string
   body?: string
-  button_name: string
-  button_url: string
+  buttons?: {}
 
   /**
-   * Is mirror
+   * Image position
    */
-  mirror?: boolean
+   imagePosition?: 'automatic' | 'left' | 'right'
   /**
    * Additional space-separated class names to append
    */
@@ -33,9 +32,8 @@ export const Secondary: FC<SecondaryProps> = ({
   image,
   title,
   body,
-  button_name,
-  button_url,
-  mirror = 'false',
+  buttons,
+  imagePosition = 'left',
   className = '',
 
 }) => {
@@ -64,16 +62,8 @@ export const Secondary: FC<SecondaryProps> = ({
           <h2 className='fontStyle-4xl'>{title}</h2>
           <p className='fontStyle-base pt-2'>{body}</p>
           {
-            (button_name && button_url) &&
-            <div
-              className='pt-6'>
-              <Button
-                label={button_name}
-                link={button_url}
-                type='tertiary'
-                size='large'
-              />
-            </div>
+            buttons &&
+            <ButtonsGroup key={JSON.stringify(buttons)} {...buttons} />
           }
         </div>
       </div>
@@ -81,7 +71,7 @@ export const Secondary: FC<SecondaryProps> = ({
   }
   return (
     <div
-      className={`${type === 'default' && 'flex'} ${mirror && 'flex-row-reverse'} ${className}`}
+      className={`${type === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
     >
       {(type === 'default' || type === 'vertical') && (
         <>

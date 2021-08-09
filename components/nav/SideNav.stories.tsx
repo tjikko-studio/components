@@ -2,7 +2,7 @@ import {SideNav, SideNavProps} from "./SideNav"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/SideNav',
+  title: 'Tjikko/Nav Elements/SideNav',
   component: SideNav,
   argTypes: {
   },

@@ -2,7 +2,7 @@ import {SideNavItem, SideNavItemProps} from './SideNavItem'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/SideNavItem',
+  title: 'Tjikko/Nav Elements/SideNavItem',
   component: SideNavItem,
   argTypes: {
     type: {options: ['linkHeader', 'link', 'header'], control: {type: 'select'}},

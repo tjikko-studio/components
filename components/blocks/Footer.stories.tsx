@@ -2,7 +2,7 @@ import {Footer, FooterProps} from "./Footer"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Footer',
+  title: 'Tjikko/Blocks/Footer',
   component: Footer,
   argTypes: {
     // type: { options: ["default", "header", "button", "special"], control: { type: "select" }},

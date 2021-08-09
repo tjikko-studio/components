@@ -2,7 +2,7 @@ import {Testimonials, TestimonialsProps} from "./Testimonials"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Testimonials',
+  title: 'Tjikko/Blocks/Testimonials',
   component: Testimonials,
   argTypes: {
 

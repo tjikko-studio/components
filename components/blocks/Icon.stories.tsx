@@ -2,7 +2,7 @@ import {Icon, IconProps} from './Icon'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Icon',
+  title: 'Tjikko/Blocks/Icon',
   component: Icon,
   argTypes: {
     type: {options: ['horizontal', 'vertical'], control: {type: 'select'}},

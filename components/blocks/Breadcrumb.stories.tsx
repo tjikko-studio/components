@@ -2,7 +2,7 @@ import {Breadcrumb, BreadcrumbProps} from './Breadcrumb'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Breadcrumb',
+  title: 'Tjikko/Blocks/Breadcrumb',
   component: Breadcrumb,
   parameters: {
     componentSubtitle: 'The Breadcrumb'

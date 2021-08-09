@@ -3,7 +3,7 @@ import {ButtonsGroup, ButtonsGroupProps} from './ButtonsGroup'
 
 
 export default {
-  title: 'Tjikko/blocks/Buttons Group',
+  title: 'Tjikko/Blocks/Buttons Group',
   component: ButtonsGroup,
   argTypes: {
 
@@ -18,14 +18,12 @@ const Template: Story<ButtonsGroupProps> = (args) => <ButtonsGroup {...args} />
 export const Default = Template.bind({})
 
 Default.args = {
-  buttons: [
-    {
+  buttons: [{
       label: 'Primary button',
       link: '#'
     },
     {
       label: 'Secondary button',
       link: '#',
-    }
-  ]
+  }]
 }

@@ -2,7 +2,7 @@ import {Divider, DividerProps} from "./Divider"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/Divider',
+  title: 'Tjikko/Nav Elements/Divider',
   component: Divider,
   argTypes: {
   },

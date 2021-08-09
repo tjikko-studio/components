@@ -1,5 +1,9 @@
 import React, { FC, HTMLAttributes } from 'react'
-import {Button} from '../Button'
+import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import {useMediaPredicate} from 'react-media-hook'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+const tailwind = resolveConfig(tailwindConfig);
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -7,17 +11,16 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    */
   type?: 'default' | 'vertical'
   /**
-   * Is mirror
+   * Image position
    */
-  mirror?: boolean
+   imagePosition?: 'automatic' | 'left' | 'right'
   /**
   *  image url to show
   */
   image?: string
   title?: string
   body?: string
-  button_name: string
-  button_url: string
+  buttons?: {}
 
   /**
    * Additional space-separated class names to append
@@ -31,42 +34,35 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Primary: FC<PrimaryProps> = ({
   type = 'vertical',
-  mirror = false,
+  imagePosition = 'left',
   image = '',
   title,
   body,
-  button_name,
-  button_url
+  buttons,
 }) => {
+  //const sm = useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`)
+
   const Text = () => {
     return (
       <div
-        className={type !== 'vertical' ? 'flex items-center justify-center' : ''}
+        className={`mt-4 sm:mt-0 ${type !== 'vertical' && 'sm:flex sm:items-center sm:justify-center'} `} 
       >
         <div
-          className={type !== 'vertical' ? 'pl-12' : ''} >
+          className={`${type !== 'vertical' ? 'sm:pl-12' : ''} `}
+        >
           <h2
             className='fontStyle-4xl'
           >
             {title}
           </h2>
           <p
-            className='fontStyle-base pt-4'
+            className='fontStyle-base mt-2'
           >
             {body}
           </p>
           {
-            button_name && button_url &&
-            <div
-              className='pt-6'>
-              <Button
-                body={button_name}
-                url={button_url}
-                type='primary'
-                icon='none'
-                size='large'
-              />
-            </div>
+            Object.keys(buttons).length >= 1 &&
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} />
           }
         </div>
       </div>
@@ -74,14 +70,14 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`body-gray-900 dark:body-gray-50 ${type === 'default' ? 'flex' : ''} ${mirror ? 'flex-row-reverse' : ''}`}
+      className={`body-gray-900 dark:body-gray-50 ${type === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
       {
         (type === 'default' || type === 'vertical') && (
           <>
             {image && (
               <div
-                className={`${type === 'vertical' ? 'pb-8' : 'px-12 py-6'}`}
+                className={`${type === 'vertical' ? 'sm:pb-8' : 'sm:px-12 sm:py-6'}`}
               >
                 <img
                   src={image}

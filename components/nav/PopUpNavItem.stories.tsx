@@ -2,7 +2,7 @@ import {PopUpNavItem, PopUpNavItemProps} from './PopUpNavItem'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/PopUpNavItem',
+  title: 'Tjikko/Nav Elements/PopUpNavItem',
   component: PopUpNavItem,
   argTypes: {
     type: {options: ['default', 'header', 'button', 'special'], control: {type: 'select'}},

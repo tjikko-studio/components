@@ -2,7 +2,7 @@ import {ClientsLogos, ClientsLogosProps} from './ClientsLogos'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Clients Logos',
+  title: 'Tjikko/Blocks/Clients Logos',
   component: ClientsLogos,
   argTypes: {
   },
@@ -26,11 +26,11 @@ Default.args = {
     {imgUrl: './images/test_logo_08.png', href: '#'},
     { imgUrl: './images/test_logo_09.png', href: '#' }
   ],
-  mode: 'Default'
+  size: 'Default'
 }
 
 export const Compact = Template.bind({})
 Compact.args = {
   ...Default.args,
-  mode: 'Compact'
+  size: 'Compact'
 }

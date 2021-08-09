@@ -2,7 +2,7 @@ import { Text, TextProps } from './Text'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/Text',
+  title: 'Tjikko/Blocks/Text',
   component: Text,
   argTypes: {
     // type: { options: ['default', 'header', 'button', 'special'], control: { type: 'select' }},

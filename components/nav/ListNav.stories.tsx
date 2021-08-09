@@ -2,7 +2,7 @@ import {ListNav, ListNavProps} from './ListNav'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/ListNav',
+  title: 'Tjikko/Nav Elements/ListNav',
   component: ListNav,
   argTypes: {
     styles: {options: ['flat', 'elevated'], control: {type: 'select'}},

@@ -1,21 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react'
 import { Button } from '../Button'
 
-export interface ButtonsGroupType {
-  type?:  'primary' | 'secondary' | 'tertiary'
-  label?: string
-  iconPos?: 'right' | 'left' | 'only' | 'none'
-  icon?: string
-  size?: 'default' | 'large' | 'small'
-  link?:  string
-  forceDark?: boolean
-}
-
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * Action buttons / links
-   */
-  buttons?: ButtonsGroupType[]
+  buttons?: {}
 }
 
 /**
@@ -38,3 +25,4 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
     </div>
   )
 }
+

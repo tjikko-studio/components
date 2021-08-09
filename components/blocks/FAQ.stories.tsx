@@ -2,7 +2,7 @@ import {FAQ, FAQProps} from "./FAQ"
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/blocks/FAQ',
+  title: 'Tjikko/Blocks/FAQ',
   component: FAQ,
   argTypes: {
 
