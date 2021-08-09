@@ -1,34 +1,29 @@
-import plugin from 'tailwindcss/plugin'
-import { textOptions, textFunctions } from './text';
-import { sizeOptions } from './sizes';
-import { colorsOptions } from './colors';
-import { variants } from './variants';
+import { textOptions } from './text'
+import { sizeOptions } from './sizes'
+import { colorsOptions } from './colors'
+import { variants } from './variants'
 
-module.exports = plugin.withOptions(
-  function (options = {}){
-    return function (args) {
-      textFunctions(args);
+const theme = {...textOptions, ...sizeOptions, ...colorsOptions}
+
+const conf = {
+  darkMode: 'class',
+  purge: {
+    enabled: true,
+    content: [
+      './**/*.(t|j)sx?',
+      '.css'
+    ],
+    options: {
+      rejected: true,
+      printRejected: true
     }
   },
-  function (options = {}) {
-    const theme = {...textOptions, ...sizeOptions, ...colorsOptions};
-    return {
-      darkMode: 'class',
-      purge: {
-        content: [
-          './stories/components/**/*.@(js|jsx|ts|tsx)',
-        ],
-        options: {
-          rejected: true,
-          printRejected: true,
-        },
-      },
-      theme: {
-        extend: theme
-      },
-      variants: {
-        extend: variants
-      }
-    } 
+  theme: {
+    extend: theme
+  },
+  variants: {
+    extend: variants
   }
-)
+}
+
+export default conf
