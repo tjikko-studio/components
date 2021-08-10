@@ -14,6 +14,7 @@ module.exports = plugin.withOptions(
     const theme = {...textOptions, ...sizeOptions, ...colorsOptions};
     return {
       darkMode: 'class',
+      important: true,
       purge: {
         content: [
           './stories/components/**/*.@(js|jsx|ts|tsx)',
