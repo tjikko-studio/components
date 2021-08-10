@@ -3,6 +3,9 @@
 /tmp/
 /.htaccess
 
+# Used to provide npm with secrets on A2Hosting
+.env
+
 # Dependencies
 node_modules
 
