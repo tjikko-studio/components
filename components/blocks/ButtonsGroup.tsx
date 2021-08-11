@@ -29,6 +29,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
         type={(index === 0  ) ? buttonData.type ? buttonData.type : 'primary' : buttonData.type ? buttonData.type : 'tertiary'}
         iconPos={buttonData.iconPos ? buttonData.iconPos : 'none'}
         size={buttonData.size ? buttonData.size : 'default'}
+        className={`${buttonData.width === 'full' && 'w-full justify-center'}`}
       />
     )) }
     </div>

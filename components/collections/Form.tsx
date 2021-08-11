@@ -2,64 +2,62 @@ import React, { FC, HTMLAttributes } from 'react'
 import {Input} from '../form/Input'
 import {TextArea} from '../form/TextArea'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import keyExists from '../../utilities/keyExists'
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
-   * Background datas
+   * What is the width of the form?
    */
-  layout ?: 'compact' | 'columns'
+   width ?: 'string'
+  
   /**
-   * background video url
+   * Form object that will be parsed through to build the component
    */
   content?: {}
 }
 
 export const Form: FC<FormProps> = ({
   layout = 'compact',
+  width = 'full',
   content
 }) => {
-  const formClasses = []
-  const inputClasses = []
-
+  const formClasses = [`grid sm:grid-cols-12 gap-4 w-${width}`]
+  let columnInputLabel : boolean;
   const getWidth = (args, length = 12) => {
-    return length / Number(args[1]) *  Number(args[0])
+    return length / args[1] * args[0]
   }
   
   // Syntax With Camelcases (Used in components)
-  const getComponent = (component) => {
+  const getComponent = (component, columnInputLabel) => {
+    /* columnInputLabel = ${component.type}: ${keyExists(component.content, "label")} */
     switch (component.type) {
       case 'Input':
-        return <Input key={JSON.stringify(component.content)} {...component.content} className={`${inputClasses}`} />
+        return <Input key={JSON.stringify(component.content)} {...component.content} className='w-full' />
       case 'TextArea':
-        return <TextArea key={JSON.stringify(component.content)} {...component.content} className={`${inputClasses}`} />
+        return <TextArea key={JSON.stringify(component.content)} {...component.content} className='w-full' />
       case 'ButtonsGroup':
-        return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} />
+        return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} className={`w-full ${columnInputLabel && 'sm:pt-7' }`} />
       default:
         return ('')
     }
   }
 
-  switch (layout){
-    case 'compact':
-      formClasses.push('flex space-x-4')
-      break
-    case 'columns':
-      formClasses.push('grid grid-cols-12 gap-x-4')
-      inputClasses.push('w-full')
-      break
-  }
-  console.log(content);
   return (
-    <>
+    <form className='grid gap-4'>
       {
         content.map((section) => (
           <section className={`${formClasses.join(' ')}`}>
+            {columnInputLabel = false}
             {
               section.columns.map((column) => (
-                <div className={`col-span-${getWidth(column.width.split('/'))}`}>
+                <div className={`sm:col-span-${getWidth(column.width.split('/'))}`}>
                   {
                     column.blocks.map((block) => {
-                      return getComponent(block);
+                      
+                      if (block.type != 'ButtonsGroup')
+                        columnInputLabel = keyExists(block.content, "label")
+                      
+                      return getComponent(block, columnInputLabel);
                     })
                   }
                 </div>
@@ -68,6 +66,6 @@ export const Form: FC<FormProps> = ({
           </section>
         ))
       }
-    </>
+    </form>
   )
 }

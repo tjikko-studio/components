@@ -14,9 +14,10 @@ export default {
 
 const Template: Story<FormProps> = (args) => <Form {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
-  layout: 'compact',
+export const SimpleFormFullPage = Template.bind({})
+SimpleFormFullPage.args = {
+  layout: 'Simple form',
+  width: "full",
   content: [
     {
       columns: [
@@ -26,7 +27,7 @@ Default.args = {
             {
               type: 'Input',
               content: {
-                label: 'Name',
+                label: 'First Name',
                 placeholder: ''
               }
             }
@@ -34,6 +35,18 @@ Default.args = {
         },
         {
           width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'Last Name',
+                placeholder: ''
+              }
+            }
+          ]
+        },
+        {
+          width: "1/1",
           blocks: [
             {
               type: 'Input',
@@ -58,7 +71,51 @@ Default.args = {
                   {
                     label: 'Send',
                     link: '#',
-                    type: 'primary'
+                    type: 'primary',
+                    size: 'large'
+                  },
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+export const InlineForm = Template.bind({})
+InlineForm.args = {
+  layout: 'Simple form',
+  width: "1/2",
+  content: [
+    {
+      columns: [
+        {
+          width: "2/3",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'Email',
+                placeholder: 'Enter your email here',
+              }
+            }
+          ]
+        },
+        {
+          width: "1/3",
+          blocks: [
+            {
+              type: 'ButtonsGroup',
+              content: {
+                buttons: [
+                  {
+                    label: 'Send',
+                    link: '#',
+                    width: 'auto',
+                    type: 'primary',
+                    size: 'large'
                   },
                 ]
               }
