@@ -7,23 +7,37 @@ const tailwind = resolveConfig(tailwindConfig);
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Block type
+   * Is the composent direction  default/horizontasl (left to right) or vertical (image above)
    */
-  type?: 'default' | 'vertical'
+  layout?: 'default' | 'vertical'
+  
   /**
    * Image position
    */
    imagePosition?: 'automatic' | 'left' | 'right'
-  /**
-  *  image url to show
-  */
-  image?: string
-  title?: string
-  body?: string
-  buttons?: {}
 
   /**
-   * Additional space-separated class names to append
+  *  Block image
+  */
+  image?: {}
+  
+  /**
+   * text to display for heading
+   */
+  title: string
+  
+  /**
+   * text to display for paragraph
+   */
+  body: string
+
+  /**
+  *  Block buttons list
+  */
+  buttons?: {}
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -33,8 +47,8 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Primary: FC<PrimaryProps> = ({
-  type = 'default',
-  imagePosition = 'left',
+  layout = 'default',
+  imagePosition = 'automatic',
   image,
   title,
   body,
@@ -44,10 +58,10 @@ export const Primary: FC<PrimaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${type !== 'vertical' && 'sm:flex sm:items-center sm:justify-center'} `} 
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:flex sm:items-center sm:justify-center'} `} 
       >
         <div
-          className={`${type !== 'vertical' ? 'sm:pl-12' : ''} `}
+          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
         >
           <h2
             className='fontStyle-4xl'
@@ -69,18 +83,18 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`body-gray-900 dark:body-gray-50 ${type === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`body-gray-900 dark:body-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
       {
-        (type === 'default' || type === 'vertical') && (
+        (layout === 'default' || layout === 'vertical') && (
           <>
             {image && (
               <div
-                className={`${type === 'vertical' ? 'sm:pb-8' : 'sm:px-12 sm:py-6'}`}
+                className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:px-12 sm:py-6'}`}
               >
                 <img
                   src={image.url}
-                  className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
+                  className={`rounded-lg${layout === 'default' ? ' w-auto' : ''}`}
                 />
               </div>
             )}

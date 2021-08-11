@@ -5,21 +5,28 @@ import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
-   * type of Icon ('horizontal' | 'vertical')
+   * layout of Icon ('horizontal' | 'vertical')
    */
-  type?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical'
+  
   /**
    *  image url to show
    */
-  image?: string
+  image?: {}
+  
   /**
    * title text
    */
   title?: string
+  
   /**
    * content text
    */
   body?: string
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
   className?: string
 }
 
@@ -27,18 +34,19 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Icon: FC<IconProps> = ({
-  type = 'horizontal',
+  layout = 'horizontal',
+  image,
   title,
   body,
-  image
+  className
 }) => {
   image = image[0]
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${type === 'horizontal' ? 'flex' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'flex' : ''}`}
     >
       <div
-        className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
+        className={layout === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
       >
          {image && (
           <img
@@ -48,10 +56,10 @@ export const Icon: FC<IconProps> = ({
         )}
       </div>
       <div
-        className={type === 'horizontal' ? 'ml-6' : 'mt-6'}
+        className={layout === 'horizontal' ? 'ml-6' : 'mt-6'}
         style={
           {
-            width: type === 'horizontal' ? '310px' : '290px'
+            width: layout === 'horizontal' ? '310px' : '290px'
           }
         }
       >

@@ -8,7 +8,7 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * avatar to display on Testimonial
    */
-  image?: string
+  image?: {}
   /**
    * alternate string for avatar
    */

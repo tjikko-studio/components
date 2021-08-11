@@ -5,12 +5,14 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    * text to display for heading
    */
   title: string
+  
   /**
    * text to display for paragraph
    */
   body: string
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }

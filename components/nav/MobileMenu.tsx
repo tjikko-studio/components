@@ -9,10 +9,23 @@ import {ListNav} from './ListNav'
  * Primary UI component for user interaction
  */
 export const MobileMenu: FC<SiteNavProps> = ({
+  /**
+   * Demo Button consts
+   * Developer note: we will remove this and add it using the wip menu builder
+   */
   demoButtonText = 'Free Demo',
   demoUrl = '#',
+  
+  /**
+   * language list
+   * Developer note: we will remove this and add it using the wip menu builder
+   */
+  languageList = {},
+  
+  /**
+   * menu json data same as NavItem
+   */
   menuData = [],
-  languageList = {}
 }) => {
   return (
     <div

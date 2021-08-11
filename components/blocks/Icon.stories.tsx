@@ -5,7 +5,7 @@ export default {
   title: 'Tjikko/Blocks/Icon',
   component: Icon,
   argTypes: {
-    type: {options: ['horizontal', 'vertical'], control: {type: 'select'}},
+    layout: {options: ['horizontal', 'vertical'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Icon'
@@ -16,7 +16,7 @@ const Template: Story<IconProps> = (args) => <Icon {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'horizontal',
+  layout: 'horizontal',
   image: [{
     url: 'https://via.placeholder.com/56x56'
   }],

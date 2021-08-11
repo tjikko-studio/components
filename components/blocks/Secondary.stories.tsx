@@ -5,8 +5,8 @@ export default {
   title: 'Tjikko/Blocks/Secondary',
   component: Secondary,
   argTypes: {
-    type: {options: ['default', 'vertical'], control: {type: 'select'}},
-    imagePosition: {options: ['automatic', 'left', 'right'], control: {type: 'select'}},
+    layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
+    imagePosition: {options: ['automatic', 'left', 'right'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Secondary'
@@ -17,7 +17,7 @@ const Template: Story<SecondaryProps> = (args) => <Secondary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'default',
+  layout: 'default',
   imagePosition: 'left',
   image: [{
     url: 'https://source.unsplash.com/random'
@@ -27,7 +27,7 @@ Default.args = {
   buttons: [{
     label: 'First Button',
     link: 'https://perdu.com',
-    type: 'tertiary'
+    layout: 'tertiary'
   }]
 }
 export const WidthControl = Template.bind({})

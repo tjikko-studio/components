@@ -31,7 +31,7 @@ Horizontal.args = {
 export const HorizontalDark = Template.bind({})
 HorizontalDark.args = {
   direction : "horizontal",
-  dark : true
+  forceDark : true
 }
 HorizontalDark.parameters = {
   themes: { default: "Dark Mode" }
@@ -45,7 +45,7 @@ Vertical.args = {
 export const VerticalDark = Template.bind({})
 VerticalDark.args = {
   direction : "vertical",
-  dark : true
+  forceDark : true
 }
 VerticalDark.parameters = {
   themes: { default: "Dark Mode" }

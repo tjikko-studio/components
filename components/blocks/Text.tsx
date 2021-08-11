@@ -5,13 +5,14 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
    * text to show as question
    */
   tag?: 'p' | 'pre' | 'span' | 'div'
+  
   /**
    * text to show as question
    */
   text?: string
-
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -20,8 +21,9 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Text: FC<TextProps> = ({
+  tag = 'p',
   text,
-  className
+  className = ''
 }) => {
   return (
     <div className={`${className}`} dangerouslySetInnerHTML={{ __html: text }} />

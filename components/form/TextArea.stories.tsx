@@ -2,7 +2,7 @@ import { TextArea, TextAreaProps } from './TextArea'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/Form Elementss/TextArea',
+  title: 'Tjikko/Form Elements/TextArea',
   component: TextArea,
   parameters: {
     componentSubtitle: 'The Forms/TextArea'

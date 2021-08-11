@@ -13,45 +13,56 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
+  
   /**
-    * Label text
-    */
+   * Label text
+   */
   label?: string
+  
   /**
-    * filled text
-    */
+   * filled text
+   */
   text?: string
+  
+  
   /**
    * placeholder text
    */
   placeholder?: string
+  
   /**
-    * information text
-    */
+   * information text
+   */
   information?: string
+  
   /**
-    * error text
-    */
+   * error text
+   */
   error?: string
+  
   /**
-    * error
-    */
+   * error
+   */
   isError?: boolean
+  
   /**
-    * checking...
-    */
+   * checking...
+   */
   isValidating?: boolean
+  
   /**
-    * success
-    */
+   * success
+   */
   isSuccess?: boolean
+  
   /**
-    * disabled
-    */
+   * disabled
+   */
   isDisabled?: boolean
+  
   /**
-    * Custom Classes
-    */
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
   className?: string
 }
 
@@ -69,9 +80,9 @@ export const TextArea: FC<TextAreaProps> = ({
   placeholder,
   information,
   error,
-  className
+  className = ''
 }) => {
-  const textareaClasses = ['fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)

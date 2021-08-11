@@ -8,25 +8,35 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * text to display on button
    */
-   label?: string
-   /**
-    * icon position
-    */
-   iconPos?: 'right' | 'left'
-   /**
-    * icon image
-    */
-   icon?: string
+  label?: string
+ 
+  /**
+   * icon position
+   */
+  iconPos?: 'right' | 'left'
+ 
+  /**
+   * icon image
+   */
+  icon?: string
+  
   /**
    * icon size
    */
   size?: 'default' | 'large' | 'small'
+  
   /**
    * button link
    */
   link?: string
+  
   /**
-   * force dark mode
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+   className?: string
+
+  /**
+   * force dark mode (This will bypass dark mode and apply the darkmode on the composant even in light mode
    */
   forceDark?: boolean
 }
@@ -36,10 +46,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Button: FC<ButtonProps> = ({
   type = 'primary',
-  label = 'LABEL',
+  label = 'Button',
   size = 'default',
-  icon = '',
-  link = '',
+  icon,
+  link,
+  className = '',
   forceDark = false
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
@@ -91,6 +102,7 @@ export const Button: FC<ButtonProps> = ({
       type != 'tertiary' && buttonClasses.push('px-4')
       contentClasses.push('fontStyle-button-base')
   }
+  buttonClasses.push(`${className}`)
   const buttonClassesJoined = buttonClasses.join(' ')
   const Content = () => {
     if (label) {

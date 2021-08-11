@@ -4,7 +4,6 @@ export const List = ({
   items = [],
   Component
 }) => {
-  console.log(items)
   return (
     <>
       {items.map((props) => {

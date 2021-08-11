@@ -62,11 +62,11 @@ Default.args = {
       }],
       company: 'Company 09' }
   ],
-  size: 'Default'
+  size: 'default'
 }
 
 export const Compact = Template.bind({})
 Compact.args = {
   ...Default.args,
-  size: 'Compact'
+  size: 'compact'
 }

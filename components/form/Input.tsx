@@ -14,64 +14,73 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
+  
   /**
    * Label text
    */
   label?: string
+  
   /**
    * filled text
    */
   text?: string
+  
   /**
    * placeholder text
    */
   placeholder?: string
+  
   /**
    * information text
    */
   information?: string
+  
   /**
    * error text
    */
   error?: string
+  
   /**
    * error
    */
   isError?: boolean
+  
   /**
    * checking...
    */
   isValidating?: boolean
+  
   /**
    * success
    */
   isSuccess?: boolean
+  
   /**
    * disabled
    */
   isDisabled?: boolean
+  
   /**
     * Custom Classes
     */
   className?: string
-
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Input: FC<InputProps> = ({
-  label,
-  isError = false,
+  isError,
   isDisabled,
   isValidating,
   isSuccess,
   isFocussed,
+  label,
   text,
   placeholder,
   information,
   error,
-  className
+  className = ''
 }) => {
   const labelContainerClasses = ['fontStyle-sm strong flex flex-row justify-between dark:text-gray-300']
   const inputClasses = ['fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']

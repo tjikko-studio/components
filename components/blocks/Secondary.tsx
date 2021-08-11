@@ -3,23 +3,37 @@ import {ButtonsGroup} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Block type
+   * Is the composent direction  default/horizontasl (left to right) or vertical (image above)
    */
-  type?: 'default' | 'vertical'
-  /**
-   *  image url to show
-   */
-  image?: string
-  title?: string
-  body?: string
-  buttons?: {}
+  layout?: 'default' | 'vertical'
 
+  /**
+  *  Block image
+  */
+  image?: {}
+  
+  /**
+   * text to display for heading
+   */
+  title: string
+  
+  /**
+   * text to display for paragraph
+   */
+  body: string
+
+  /**
+  *  Block buttons list
+  */
+  buttons?: {}
+  
   /**
    * Image position
    */
    imagePosition?: 'automatic' | 'left' | 'right'
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -28,12 +42,12 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Secondary: FC<SecondaryProps> = ({
-  type = 'default',
+  layout = 'default',
+  imagePosition = 'automatic',
   image,
   title,
   body,
   buttons,
-  imagePosition = 'left',
   className = '',
 
 }) => {
@@ -41,12 +55,12 @@ export const Secondary: FC<SecondaryProps> = ({
   const Image = () => {
     return (
       <div
-        className={type === 'vertical' ? 'pb-6' : ''}
+        className={layout === 'vertical' ? 'pb-6' : ''}
       >
         {image && (
           <img
             src={image.url}
-            className={`rounded-lg ${type === 'default' && 'w-auto'}`}
+            className={`rounded-lg ${layout === 'default' && 'w-auto'}`}
           />
         )}
       </div>
@@ -55,11 +69,11 @@ export const Secondary: FC<SecondaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`text-gray-900 dark:text-gray-50 ${type !== 'vertical' && 'flex justify-center'}`}
+        className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' && 'flex justify-center'}`}
       >
         <div
           className={`
-              ${type !== 'vertical' && 'pl-12'}
+              ${layout !== 'vertical' && 'pl-12'}
           `}
         >
           <h2 className='fontStyle-4xl'>{title}</h2>
@@ -74,9 +88,9 @@ export const Secondary: FC<SecondaryProps> = ({
   }
   return (
     <div
-      className={`${type === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
+      className={`${layout === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
     >
-      {(type === 'default' || type === 'vertical') && (
+      {(layout === 'default' || layout === 'vertical') && (
         <>
           <Image />
           <Text />

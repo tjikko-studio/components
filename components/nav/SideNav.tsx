@@ -3,9 +3,13 @@ import {SideNavItemProps, SideNavItem} from './SideNavItem'
 
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   /**
-   * SideNav data object
+   * Sidenav items list array that will be parsed through to build the component
    */
   items?: SideNavItemProps[]
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
   className?: string
 }
 
@@ -14,7 +18,7 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
  */
 export const SideNav: FC<SideNavProps> = ({
   items = [],
-  className
+  className = ''
 }) => {
 
   return (

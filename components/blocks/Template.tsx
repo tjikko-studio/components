@@ -3,13 +3,13 @@ import React, { FC, HTMLAttributes } from 'react'
 
 export interface TemplateProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to show as question
+   * Slug and local to get access to the template
    */
-   slug?: string
-   locale?: string
-
+  slug?: string
+  locale?: string
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -47,7 +47,7 @@ const getContent = async (slug: string, locale: string = '') => {
 export const Template: FC<TemplateProps> = ({
   slug,
   locale,
-  className
+  className = ''
 }) => {
   return (
     <div>

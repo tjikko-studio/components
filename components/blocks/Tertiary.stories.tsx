@@ -5,9 +5,9 @@ export default {
   title: 'Tjikko/Blocks/Tertiary',
   component: Tertiary,
   argTypes: {
-    type: {options: ['default', 'vertical'], control: {type: 'select'}},
-    mirror: {control: {type: 'boolean'}},
-    imagePosition: {options: ['automatic', 'left', 'right'], control: {type: 'select'}},
+    layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
+    mirror: {control: {layout: 'boolean'}},
+    imagePosition: {options: ['automatic', 'left', 'right'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Tertiary'
@@ -18,7 +18,7 @@ const Template: Story<TertiaryProps> = (args) => <Tertiary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'default',
+  layout: 'default',
   imagePosition: 'left',
   image: [{
     url: 'https://source.unsplash.com/random'

@@ -18,7 +18,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgImage ?: string
   bgVideo ?: string
   /**
-   * background video url
+   * Hero object that will be parsed through to build the component
    */
   content?: {}
 }
@@ -40,8 +40,8 @@ const getComponent = (component) => {
 
 export const Hero: FC<HeroProps> = ({
   bgColor,
-  bgHasImage,
-  bgHasVideo,
+  bgHasImage = false,
+  bgHasVideo = false,
   bgImage,
   bgVideo,
   content

@@ -3,21 +3,23 @@ import Marquee from 'react-fast-marquee'
 
 export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * speech to display on ClientsLogos
+   * The size and spacing of the logos 
+   * (Dev note: Maybe should we get rid of this  to favorise consistency )
+   */
+  size?: 'default' | 'compact'
+  
+  /**
+   * Buttons object that will be parsed through to build the component
    */
   content?: {}
-  /**
-   * Size : 'Default' | 'Compact'
-   */
-  size?: 'Default' | 'Compact'
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const ClientsLogos: FC<ClientsLogosProps> = ({
-  content,
-  size,
+  size = 'default',
+  content
 }) => {
   
   {/* <Marquee gradientWidth='0' > */}

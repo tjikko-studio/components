@@ -5,21 +5,25 @@ import {ListNav, MenuType} from './ListNav'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * set nav item type
+   * Visual style
    */
   styles: 'default' | 'default/white' | 'flat'
+  
   /**
    * text to show as menu
    */
   caption: string
+  
   /**
    * url to go when menu clicked
    */
   link?: string
+  
   /**
-   * sub menu json object same as list nav
+   * Sub menu items list array that will be parsed through to build the component
    */
   subMenu?: MenuType[]
+  
   /**
    * Additional space-separated class names to append
    */
@@ -32,8 +36,8 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const NavItem: FC<NavItemProps> = ({
   caption = 'Label',
-  link = null,
   styles = 'default/white',
+  link = null,
   subMenu = [],
   className = ''
 }) => {

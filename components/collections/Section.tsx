@@ -17,8 +17,9 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * Background datas
    */
   bgColor ?: string
+  
   /**
-   * background video url
+   * Sections object that will be parsed through to build the component
    */
   content?: {}
 }

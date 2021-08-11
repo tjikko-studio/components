@@ -2,8 +2,15 @@ import React, { FC, HTMLAttributes } from 'react'
 import { Button } from '../Button'
 
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Buttons object that will be parsed through to build the component
+   */
   buttons?: {}
-  className?: string
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+   className?: string
 }
 
 /**
@@ -11,10 +18,9 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   buttons,
-  className
+  className = ''
 }) => {
   return (
-    
     <div className={`inline-flex space-x-4  ${className}`}>
     { buttons.map((buttonData, index) => (
       <Button

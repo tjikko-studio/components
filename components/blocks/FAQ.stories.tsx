@@ -1,4 +1,4 @@
-import {Faq, FaqProps} from "./Faq"
+import {Faq, FaqProps} from './Faq'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -8,7 +8,7 @@ export default {
 
   },
   parameters: {
-    componentSubtitle: 'The Faq'
+    componentSubtitle: 'Faq'
   }
 } as Meta
 

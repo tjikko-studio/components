@@ -14,8 +14,14 @@ export default {
 
 const Template: Story<HeadingProps> = (args) => <Heading {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
+export const UnformatedHeading = Template.bind({})
+UnformatedHeading.args = {
+  text: 'Simple unformated heading',
+}
+
+export const FormatedHeading = Template.bind({})
+FormatedHeading.args = {
   level: 'h1',
-  text: 'Hello',
+  className: 'fontStyle-8xl',
+  text: 'Big formated heading',
 }

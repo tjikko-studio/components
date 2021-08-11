@@ -2,7 +2,7 @@ import { Input, InputProps } from './Input'
 import { Story, Meta } from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/Form Elementss/Input',
+  title: 'Tjikko/Form Elements/Input',
   component: Input,
   parameters: {
     componentSubtitle: 'The Forms/Input',

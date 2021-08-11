@@ -7,14 +7,14 @@ export interface BreadcrumbType {
 
 export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Breadcrumb data list
+   * Breadcrumb items list that will be parsed through to build the component
    */
   crumbs: BreadcrumbType[]
-
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
-  className?: string
+   className?: string
 }
 
 /**
@@ -22,7 +22,7 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Breadcrumb: FC<BreadcrumbProps> = ({
   crumbs = [],
-  className
+  className = ''
 }) => {
 
   const spanClasses = ['fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300']

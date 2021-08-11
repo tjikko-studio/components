@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes } from 'react'
 
 export interface FaqProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to show as question
+   * Questions object that will be parsed through to build the component
    */
   content?: {}
 
@@ -18,7 +18,7 @@ export interface FaqProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Faq: FC<FaqProps> = ({
   content,
-  className
+  className = ''
 }) => {
   return (
     <div

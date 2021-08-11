@@ -2,9 +2,11 @@ import React, { FC, HTMLAttributes } from 'react'
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to show as question
+   * Text semantic tag 
+   * (It won't be the same for a hero as for section)
    */
   level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  
   /**
    * text to show as question
    */
@@ -20,9 +22,9 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Heading: FC<HeadingProps> = ({
-  level,
+  level = 'h3',
   text,
-  className
+  className = ''
 }) => {
   const Content = () => {
     switch(level){
