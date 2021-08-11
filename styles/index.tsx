@@ -1,23 +1,15 @@
-import { textOptions } from './text'
-import { sizeOptions } from './sizes'
-import { colorsOptions } from './colors'
+import { text } from './text'
+import { sizes } from './sizes'
+import { colors } from './colors'
 import { variants } from './variants'
 
-const theme = {...textOptions, ...sizeOptions, ...colorsOptions}
+const theme = {...text, ...sizes, ...colors}
 
-const conf = {
+const styles = {
   darkMode: 'class',
-  purge: {
-    enabled: true,
-    content: [
-      './**/*.(t|j)sx?',
-      '.css'
-    ],
-    options: {
-      rejected: true,
-      printRejected: true
-    }
-  },
+  purge: [
+    './stories/components/**/*.@(js|jsx|ts|tsx)'
+  ],
   theme: {
     extend: theme
   },
@@ -26,4 +18,4 @@ const conf = {
   }
 }
 
-export default conf
+export default styles
