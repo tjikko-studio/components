@@ -99,7 +99,7 @@ export const TextArea: FC<TextAreaProps> = ({
     >
       {label &&
         <div
-        className={`fontStyle-sm strong flex flex-row justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        className={`fontStyle-sm min-h-6 strong flex flex-row items-center  justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         <p>
           {label}
@@ -109,22 +109,22 @@ export const TextArea: FC<TextAreaProps> = ({
         {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
       }
-      <div
-        className='col-span-2'
-      >
-        <textarea
-          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
-          defaultValue={text}
-          placeholder={placeholder}
-          disabled={isDisabled}
-        />
-      </div>
-      <div
-        className={`fontStyle-sm dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} `}
-      >
-        {information}
-      </div>
-      {isError && (<div className='fontStyle-sm text-red-600 dark:text-red-400'>{error}</div>)}
+      <textarea
+        className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+        defaultValue={text}
+        placeholder={placeholder}
+        disabled={isDisabled}
+      />
+      {
+        (information) && 
+          <div
+            className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+            dangerouslySetInnerHTML={{ __html: information }}
+          >
+          </div>
+          
+      }
+      {isError && (<div className='fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
   )
 }
