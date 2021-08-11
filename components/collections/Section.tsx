@@ -54,7 +54,7 @@ const getComponent = (component) => {
     case 'Heading':
       return <Heading key={JSON.stringify(component.content)} {...component.content} level="h2" className='fontStyle-4xl' />
     case 'Text':
-      return <Text key={JSON.stringify(component.content)} {...component.content} className='fontStyle-lg' />
+      return <Text key={JSON.stringify(component.content)} {...component.content} className='fontStyle-lg' tag='div' />
     default:
       return ('')
   }

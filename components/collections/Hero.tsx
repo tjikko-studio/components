@@ -17,6 +17,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgHasVideo ?: boolean
   bgImage ?: string
   bgVideo ?: string
+  
   /**
    * Hero object that will be parsed through to build the component
    */
@@ -28,7 +29,7 @@ const getComponent = (component) => {
     case 'Heading':
       return <Heading key={JSON.stringify(component.content)} {...component.content} level="h1" className='fontStyle-6xl' />
     case 'Text':
-      return <Text key={JSON.stringify(component.content)} {...component.content} />
+      return <Text key={JSON.stringify(component.content)} {...component.content} tag='div' />
     case 'ButtonsGroup':
       return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} />
     case 'Form':
