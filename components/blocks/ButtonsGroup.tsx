@@ -3,16 +3,19 @@ import { Button } from '../Button'
 
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   buttons?: {}
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
-  buttons = []
+  buttons,
+  className
 }) => {
   return (
-    <div className="inline-flex space-x-4">
+    
+    <div className={`inline-flex space-x-4  ${className}`}>
     { buttons.map((buttonData, index) => (
       <Button
         link={buttonData.link}

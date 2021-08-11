@@ -28,7 +28,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Secondary: FC<SecondaryProps> = ({
-  type = 'vertical',
+  type = 'default',
   image,
   title,
   body,
@@ -37,15 +37,18 @@ export const Secondary: FC<SecondaryProps> = ({
   className = '',
 
 }) => {
+  image = image[0];
   const Image = () => {
     return (
       <div
         className={type === 'vertical' ? 'pb-6' : ''}
       >
-        <img
-          src={image}
-          className={`rounded-lg ${type === 'default' && 'w-auto'}`}
-        />
+        {image && (
+          <img
+            src={image.url}
+            className={`rounded-lg ${type === 'default' && 'w-auto'}`}
+          />
+        )}
       </div>
     )
   }
@@ -62,8 +65,8 @@ export const Secondary: FC<SecondaryProps> = ({
           <h2 className='fontStyle-4xl'>{title}</h2>
           <p className='fontStyle-base pt-2'>{body}</p>
           {
-            buttons &&
-            <ButtonsGroup key={JSON.stringify(buttons)} {...buttons} />
+            Object.keys(buttons).length >= 1 &&
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='mt-6' />
           }
         </div>
       </div>

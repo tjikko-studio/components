@@ -19,16 +19,15 @@ export const Default = Template.bind({})
 Default.args = {
   type: 'default',
   imagePosition: 'left',
-  image: 'https://source.unsplash.com/random',
+  image: [{
+    url: 'https://source.unsplash.com/random'
+  }],
   title: 'Heading',
   body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
   buttons: [{
-      label: 'Primary button',
-      link: '#'
-    },
-    {
-      label: 'Secondary button',
-      link: '#',
+    label: 'First Button',
+    link: 'https://perdu.com',
+    type: 'tertiary'
   }]
 }
 export const WidthControl = Template.bind({})

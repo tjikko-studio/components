@@ -33,8 +33,8 @@ Secondary.args = {
   text: 'Secondary Button'
 }
 
-export const Tertiart = Template.bind({})
-Tertiart.args = {
+export const Tertiary = Template.bind({})
+Tertiary.args = {
   ...Primary.args,
   type: 'tertiary',
   text: 'Tertiary Button'

@@ -33,15 +33,14 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Primary: FC<PrimaryProps> = ({
-  type = 'vertical',
+  type = 'default',
   imagePosition = 'left',
-  image = '',
+  image,
   title,
   body,
   buttons,
 }) => {
-  //const sm = useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`)
-
+  image = image[0];
   const Text = () => {
     return (
       <div
@@ -62,7 +61,7 @@ export const Primary: FC<PrimaryProps> = ({
           </p>
           {
             Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} />
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4mt-6' />
           }
         </div>
       </div>
@@ -80,7 +79,7 @@ export const Primary: FC<PrimaryProps> = ({
                 className={`${type === 'vertical' ? 'sm:pb-8' : 'sm:px-12 sm:py-6'}`}
               >
                 <img
-                  src={image}
+                  src={image.url}
                   className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
                 />
               </div>

@@ -18,42 +18,32 @@ export const Default = Template.bind({})
 Default.args = {
   bgColor: '#000',
   bgType: 'video',
-  bgImage: 'https://source.unsplash.com/random',
-  bgVideo: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+  bgImage:[{
+    url: 'https://source.unsplash.com/random'
+  }],
+  bgVideo:[{
+    url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+  }],
   content: [
     {
-      component: 'Form',
-      items: [
-        {
-          component: 'Input',
-          props: {
-            label: 'My input text',
-            placeholder: 'Enter some text'
-          }
-        },
-        {
-          component: 'ButtonsGroup',
-          items: {
-            buttons: [{
-              label: 'First Button',
-              link: 'https://perdu.com'
-            },{
-              label: 'Second Button',
-              link: 'https://perdu.com'
-            }]
-          }
-        }
-      ]
+      type: 'Heading',
+      content: {
+        level: 'h1',
+        text: 'Hello you',
+      }
     },
     {
-      component: 'ButtonsGroup',
-      items: {
+      type: 'Text',
+      content: {
+        text: 'wonderful people',
+      }
+    },
+    {
+      type: 'ButtonsGroup',
+      content: {
         buttons: [{
-          label: 'First Button',
-          link: 'https://perdu.com'
-        },{
-          label: 'Second Button',
-          link: 'https://perdu.com'
+          label: 'Book a demo',
+          link: '#'
         }]
       }
     }

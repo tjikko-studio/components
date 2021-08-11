@@ -76,16 +76,19 @@ export const Button: FC<ButtonProps> = ({
   }
   switch (size) {
     case 'small':
-      buttonClasses.push('h-8 max-h-8 px-3.5 py-2.5')
+      buttonClasses.push('h-8 max-h-8 py-2.5')
       contentClasses.push('fontStyle-button-sm')
+      type != 'tertiary' && buttonClasses.push('px-3.5')
       break
     case 'large':
-      buttonClasses.push('h-12 max-h-12 py-4 px-5')
+      buttonClasses.push('h-12 max-h-12 py-4')
+      type != 'tertiary' && buttonClasses.push('px-5')
       contentClasses.push('fontStyle-button-lg')
       break
     case 'default':
     default:
-      buttonClasses.push('h-10 max-h-10 px-4 py-3.5')
+      buttonClasses.push('h-10 max-h-10 py-3.5')
+      type != 'tertiary' && buttonClasses.push('px-4')
       contentClasses.push('fontStyle-button-base')
   }
   const buttonClassesJoined = buttonClasses.join(' ')

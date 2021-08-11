@@ -28,22 +28,25 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Tertiary: FC<TertiaryProps> = ({
-  type = 'vertical',
+  type = 'default',
   imagePosition = 'left',
   image,
   title,
   body,
   className = ''
 }) => {
+  image = image[0];
   const Image = () => {
     return (
       <div
         className={(type === 'vertical' ? 'pb-6' : '')}
       >
-        <img
-          src={image}
-          className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
-        />
+         {image && (
+          <img
+            src={image.url}
+            className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
       </div>
     )
   }

@@ -1,4 +1,4 @@
-import {Form} from './Form'
+import {Form, FormProps} from './Form'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -12,29 +12,60 @@ export default {
   }
 } as Meta
 
-const Template = ({Component, items}) => <Form Component={Component} items={items} />
+const Template: Story<FormProps> = (args) => <Form {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  items: [
+  layout: 'compact',
+  content: [
     {
-      component: 'Input',
-      items: {
-        label: 'My input text',
-        placeholder: 'Enter some text'
-      }
+      columns: [
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'Name',
+                placeholder: ''
+              }
+            }
+          ]
+        },
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'Email',
+                placeholder: ''
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      component: 'ButtonsGroup',
-      items: {
-        buttons: [{
-          label: 'First Button',
-          link: 'https://perdu.com'
-        },{
-          label: 'Second Button',
-          link: 'https://perdu.com'
-        }]
-      }
+      columns: [
+        {
+          width: "1/1",
+          blocks: [
+            {
+              type: 'ButtonsGroup',
+              content: {
+                buttons: [
+                  {
+                    label: 'Send',
+                    link: '#',
+                    type: 'primary'
+                  },
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

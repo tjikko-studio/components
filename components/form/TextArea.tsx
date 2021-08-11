@@ -49,6 +49,10 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
     * disabled
     */
   isDisabled?: boolean
+  /**
+    * Custom Classes
+    */
+  className?: string
 }
 
 /**
@@ -64,9 +68,10 @@ export const TextArea: FC<TextAreaProps> = ({
   text,
   placeholder,
   information,
-  error
+  error,
+  className
 }) => {
-  const textareaClasses = ['fontStyle-base py-3 px-4 rounded-lg border w-72 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = ['fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -79,7 +84,7 @@ export const TextArea: FC<TextAreaProps> = ({
   }
   return (
     <div
-      className='flex flex-col gap-y-1 w-72'
+      className={`flex flex-col gap-y-1 w-72 ${className}`}
     >
       {label &&
         <div

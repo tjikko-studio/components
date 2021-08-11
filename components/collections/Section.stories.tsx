@@ -25,20 +25,21 @@ Default.args = {
           blocks: [
             {
               type: 'Primary',
-                content: {
+              content: {
                 type: 'default',
                 imagePosition: 'automatic',
-                image: 'https://source.unsplash.com/random',
+                image: [{
+                  url: 'https://source.unsplash.com/random'
+                }],
                 title: 'Heading',
                 body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-                buttons: [{
-                    label: 'Primary button',
-                    link: '#'
-                  },
+                buttons: [
                   {
-                    label: 'Secondary button',
+                    label: 'Primary button',
                     link: '#',
-                }]
+                    type: 'tertiary'
+                  },
+                ]
               }
             },
             {
@@ -46,17 +47,18 @@ Default.args = {
               content: {
                 type: 'default',
                 imagePosition: 'automatic',
-                image: 'https://source.unsplash.com/random',
+                image: [{
+                  url: 'https://source.unsplash.com/random'
+                }],
                 title: 'Heading',
                 body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-                buttons: [{
-                    label: 'Primary button',
-                    link: '#'
-                  },
+                buttons: [
                   {
-                    label: 'Secondary button',
+                    label: 'Primary button',
                     link: '#',
-                }]
+                    type: 'tertiary'
+                  },
+                ]
               }
             }
           ]

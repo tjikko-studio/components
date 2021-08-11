@@ -28,11 +28,11 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  */
 export const Icon: FC<IconProps> = ({
   type = 'horizontal',
-  title = 'title',
-  body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  title,
+  body,
   image
 }) => {
-
+  image = image[0]
   return (
     <div
       className={`text-gray-900 dark:text-gray-50 ${type === 'horizontal' ? 'flex' : ''}`}
@@ -40,10 +40,12 @@ export const Icon: FC<IconProps> = ({
       <div
         className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
       >
-        <img
-          src={image}
-          className={`w-14 h-14`}
-        />
+         {image && (
+          <img
+            src={image.url}
+            className={`w-14 h-14`}
+          />
+        )}
       </div>
       <div
         className={type === 'horizontal' ? 'ml-6' : 'mt-6'}
@@ -57,7 +59,7 @@ export const Icon: FC<IconProps> = ({
           className='fontStyle-2xl'
         >
           {
-            title && title === '' ? title : 'title'
+            title && title !== '' ? title : 'title'
           }
         </h2>
         <p

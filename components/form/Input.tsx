@@ -50,6 +50,10 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
    * disabled
    */
   isDisabled?: boolean
+  /**
+    * Custom Classes
+    */
+  className?: string
 
 }
 
@@ -66,10 +70,11 @@ export const Input: FC<InputProps> = ({
   text,
   placeholder,
   information,
-  error
+  error,
+  className
 }) => {
   const labelContainerClasses = ['fontStyle-sm strong flex flex-row justify-between dark:text-gray-300']
-  const inputClasses = ['fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-72 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const inputClasses = ['fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
     labelContainerClasses.push('text-gray-500 dark:text-gray-600')
@@ -83,7 +88,7 @@ export const Input: FC<InputProps> = ({
 
   return (
     <div
-      className='flex flex-col gap-y-1 w-72'
+      className={`flex flex-col gap-y-1 w-72 ${className}`}
     >
       {label &&
         <div
