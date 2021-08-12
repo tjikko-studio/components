@@ -1,4 +1,4 @@
-module.exports = ({theme, addBase, addUtilities}) => {
+module.exports = exports = function ({theme, addBase, addUtilities}) {
   const fontBase = {
     'body': {
       fontFamily: theme('fontFamily.body'),

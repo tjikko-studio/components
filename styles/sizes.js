@@ -1,4 +1,4 @@
-export let sizeOptions = {
+const sizeOptions = {
   height: {
     "1/3vh": "33.333vh",
     "2/3vh": "66.666vh",
@@ -19,7 +19,7 @@ export let sizeOptions = {
     "3/5vw": "60vw",
     "4/5vw": "80vw",
     "1/2vw": "50vw",
-    "100vw": "100vw",
+    "100vw": "100vw"
   },
   screens: {
     'xxs': '375px',
@@ -28,6 +28,8 @@ export let sizeOptions = {
     'md': '768px',
     'lg': '1024px',
     'xl': '1280px',
-    '2xl': '1536px',
-  },
-};
+    '2xl': '1536px'
+  }
+}
+
+module.exports = exports = sizeOptions

@@ -1,7 +1,7 @@
-import { textOptions } from './text'
-import { sizeOptions } from './sizes'
-import { colorsOptions } from './colors'
-import { variants } from './variants'
+const textOptions = require('./text')
+const sizeOptions = require('./sizes')
+const colorsOptions = require('./colors')
+const variants = require('./variants')
 
 const theme = {...textOptions, ...sizeOptions, ...colorsOptions}
 
@@ -26,4 +26,4 @@ const conf = {
   }
 }
 
-export default conf
+module.exports = exports = conf
