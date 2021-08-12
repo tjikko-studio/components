@@ -43,7 +43,12 @@ const stylesConfig = {
   entry: path.resolve(__dirname, './styles/index.tsx'),
   output: {
     path: path.resolve(__dirname),
-    filename: 'styles.js'
+    filename: 'styles.js',
+    libraryTarget: 'commonjs',
+    library: {
+      type: 'var',
+      export: 'default',
+    },
   }
 }
 

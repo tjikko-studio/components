@@ -1,23 +1,15 @@
-const textOptions = require('./text')
-const sizeOptions = require('./sizes')
-const colorsOptions = require('./colors')
+const text = require('./text')
+const sizes = require('./sizes')
+const colors = require('./colors')
 const variants = require('./variants')
 
-const theme = {...textOptions, ...sizeOptions, ...colorsOptions}
+const theme = {...text, ...sizes, ...colors}
 
-const conf = {
+const styles = {
   darkMode: 'class',
-  purge: {
-    enabled: true,
-    content: [
-      './**/*.(t|j)sx?',
-      '.css'
-    ],
-    options: {
-      rejected: true,
-      printRejected: true
-    }
-  },
+  purge: [
+    './stories/components/**/*.@(js|jsx|ts|tsx)'
+  ],
   theme: {
     extend: theme
   },
@@ -26,4 +18,4 @@ const conf = {
   }
 }
 
-module.exports = exports = conf
+module.exports = exports = styles
