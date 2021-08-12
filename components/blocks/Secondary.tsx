@@ -30,7 +30,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Image position
    */
-   imagePosition?: 'automatic' | 'left' | 'right'
+   imagePosition?: 'auto' | 'left' | 'right'
   
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -43,7 +43,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Secondary: FC<SecondaryProps> = ({
   layout = 'default',
-  imagePosition = 'automatic',
+  imagePosition = 'auto',
   image,
   title,
   body,

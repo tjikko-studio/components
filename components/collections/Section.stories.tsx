@@ -27,7 +27,7 @@ Default.args = {
               type: 'Primary',
               content: {
                 type: 'default',
-                imagePosition: 'automatic',
+                imagePosition: 'auto',
                 image: {
                   url: 'https://source.unsplash.com/random'
                 },
@@ -46,7 +46,7 @@ Default.args = {
               type: 'Primary',
               content: {
                 type: 'default',
-                imagePosition: 'automatic',
+                imagePosition: 'auto',
                 image: {
                   url: 'https://source.unsplash.com/random'
                 },

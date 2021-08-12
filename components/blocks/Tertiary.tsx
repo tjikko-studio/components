@@ -10,7 +10,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Is mirror
    */
-  imagePosition?: 'automatic' | 'left' | 'right'
+  imagePosition?: 'auto' | 'left' | 'right'
 
   /**
   *  Block image
@@ -39,7 +39,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Tertiary: FC<TertiaryProps> = ({
   layout = 'default',
-  imagePosition = 'automatic',
+  imagePosition = 'auto',
   image,
   title,
   body,

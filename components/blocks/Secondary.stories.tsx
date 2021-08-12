@@ -6,7 +6,7 @@ export default {
   component: Secondary,
   argTypes: {
     layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
-    imagePosition: {options: ['automatic', 'left', 'right'], control: {layout: 'select'}},
+    imagePosition: {options: ['auto', 'left', 'right'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Secondary'

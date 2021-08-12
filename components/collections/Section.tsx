@@ -28,6 +28,22 @@ const getWidth = (args, length = 12) => {
  return length / Number(args[1]) *  Number(args[0])
 }
 
+let imagePosPrimary = 'undefined';
+let imagePosSecondary = 'undefined';
+let imagePosTertiary = 'undefined';
+const getNewPos = (prevPos, newPos) =>{
+  switch (`${prevPos} | ${newPos}`){
+    case 'undefined | auto':
+      return 'left'
+    case 'left | auto':
+      return 'right'
+    case 'right | auto':
+      return 'left'
+    default:
+      return newPos
+  }
+}
+
 // Syntax With Camelcases (Used in components)
 const getComponent = (component) => {
   switch (component.type) {
@@ -38,11 +54,11 @@ const getComponent = (component) => {
     case 'ClientsLogos':
       return <ClientsLogos key={JSON.stringify(component.content)} {...component.content} />
     case 'Primary':
-      return <Primary key={JSON.stringify(component.content)} {...component.content}  />
+      return <Primary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosPrimary} />
     case 'Secondary':
-      return <Secondary key={JSON.stringify(component.content)} {...component.content} />
+      return <Secondary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosSecondary} />
     case 'Tertiary':
-      return <Tertiary key={JSON.stringify(component.content)} {...component.content} />
+      return <Tertiary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosTertiary} />
     case 'Testimonial':
       return <Testimonial key={JSON.stringify(component.content)} {...component.content} />
     case 'TextGroup':
@@ -64,10 +80,7 @@ export const Section: FC<SectionProps> = ({
   bgColor,
   content
 }) => {
-  /* console.log(content); */
-  /* return (
-    <div>Section</div>
-  ) */
+
   return (
     <div
     className={`
@@ -85,6 +98,12 @@ export const Section: FC<SectionProps> = ({
                 <div className={`col-span-${getWidth(column.width.split('/'))}`}>
                   {
                     column.blocks.map((block) => {
+                      if (block.type === 'Primary')
+                        imagePosPrimary = getNewPos(imagePosPrimary, block.content.imageposition);
+                      if (block.type === 'Secondary')
+                        imagePosSecondary = getNewPos(imagePosSecondary, block.content.imageposition);
+                      if (block.type === 'Tertiary')
+                        imagePosTertiary = getNewPos(imagePosTertiary, block.content.imageposition);                     
                       return getComponent(block);
                     })
                   }

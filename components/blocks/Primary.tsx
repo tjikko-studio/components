@@ -14,7 +14,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Image position
    */
-   imagePosition?: 'automatic' | 'left' | 'right'
+  imagePosition?: 'auto' | 'left' | 'right'
 
   /**
   *  Block image
@@ -48,7 +48,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Primary: FC<PrimaryProps> = ({
   layout = 'default',
-  imagePosition = 'automatic',
+  imagePosition = 'auto',
   image,
   title,
   body,
