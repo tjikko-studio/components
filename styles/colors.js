@@ -1,4 +1,4 @@
-const colorOptions = {
+export const colors = {
   colors: {
     primary: {
       50: '#F3FCFE',
@@ -50,5 +50,3 @@ const colorOptions = {
     }
   }
 }
-
-module.exports = exports = colorOptions

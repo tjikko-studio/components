@@ -1,4 +1,4 @@
-const sizes = {
+export const sizes = {
   height: {
     '1/3vh': '33.333vh',
     '2/3vh': '66.666vh',
@@ -31,5 +31,3 @@ const sizes = {
     '2xl': '1536px'
   }
 }
-
-module.exports = exports = sizes
