@@ -64,6 +64,10 @@ export const Section: FC<SectionProps> = ({
   bgColor,
   content
 }) => {
+  /* console.log(content); */
+  /* return (
+    <div>Section</div>
+  ) */
   return (
     <div
     className={`

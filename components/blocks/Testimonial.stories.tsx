@@ -17,8 +17,8 @@ const Template: Story<TestimonialProps> = (args) => <Testimonial {...args} />
 export const Default = Template.bind({})
 Default.args = {
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-  image: [{
+  image: {
     url: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`
-  }],
+  },
   title: "Maria Lopez, VP of Design at Meshery",
 }

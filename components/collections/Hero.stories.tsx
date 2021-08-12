@@ -18,12 +18,12 @@ export const Default = Template.bind({})
 Default.args = {
   bgColor: '#000',
   bgType: 'video',
-  bgImage:[{
+  bgImage:{
     url: 'https://source.unsplash.com/random'
-  }],
-  bgVideo:[{
+  },
+  bgVideo:{
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-  }],
+  },
   content: [
     {
       type: 'Heading',

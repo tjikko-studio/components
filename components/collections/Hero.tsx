@@ -48,15 +48,13 @@ export const Hero: FC<HeroProps> = ({
   content
 }) => {
   const sm = false;/* useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`) */
-  const image = bgImage[0];
-  const video = bgVideo[0];
   
   return (
     <header
       className={`min-h-hero lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative text-gray-50 `}
       style={{
         backgroundColor: `${ bgColor ? bgColor : '' }`,
-        backgroundImage: `url(${image ? image.url : '' })`,
+        backgroundImage: `url(${bgImage ? bgImage.url : '' })`,
       }}
     >
       {

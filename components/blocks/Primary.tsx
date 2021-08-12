@@ -54,7 +54,6 @@ export const Primary: FC<PrimaryProps> = ({
   body,
   buttons,
 }) => {
-  image = image[0];
   const Text = () => {
     return (
       <div

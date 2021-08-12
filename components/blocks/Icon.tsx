@@ -40,7 +40,6 @@ export const Icon: FC<IconProps> = ({
   body,
   className
 }) => {
-  image = image[0]
   return (
     <div
       className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'flex' : ''}`}

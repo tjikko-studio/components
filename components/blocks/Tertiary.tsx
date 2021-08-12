@@ -45,7 +45,6 @@ export const Tertiary: FC<TertiaryProps> = ({
   body,
   className = ''
 }) => {
-  image = image[0];
   const Image = () => {
     return (
       <div

@@ -27,7 +27,6 @@ export const Testimonial: FC<TestimonialProps> = ({
   image,
   title,
 }) => {
-  image = image[0];
   return (
     <div className='flex flex-col space-y-6 text-gray-900 dark:text-gray-50'
     >

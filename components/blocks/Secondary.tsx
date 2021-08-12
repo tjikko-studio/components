@@ -51,7 +51,6 @@ export const Secondary: FC<SecondaryProps> = ({
   className = '',
 
 }) => {
-  image = image[0];
   const Image = () => {
     return (
       <div
