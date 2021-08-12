@@ -14,14 +14,14 @@ export interface TemplateProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-type KirbyApiResponse = {
+/* type KirbyApiResponse = {
   code: number,
   data: any,
   status: string,
   type: string
 }
 
-/* async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
+async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
   const path = `${process.env.KIRBY_API_URL}/${slug}`
   const access =  btoa(process.env.KIRBY_API_EMAIL + ':' + process.env.KIRBY_API_PASSWORD)
 

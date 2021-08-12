@@ -29,7 +29,6 @@ export const Form: FC<FormProps> = ({
   
   // Syntax With Camelcases (Used in components)
   const getComponent = (component, columnInputLabel) => {
-    /* columnInputLabel = ${component.type}: ${keyExists(component.content, "label")} */
     switch (component.type) {
       case 'Input':
         return <Input key={JSON.stringify(component.content)} {...component.content} className='w-full' />
@@ -53,10 +52,8 @@ export const Form: FC<FormProps> = ({
                 <div className={`sm:col-span-${getWidth(column.width.split('/'))}`}>
                   {
                     column.blocks.map((block) => {
-                      
                       if (block.type != 'ButtonsGroup')
                         columnInputLabel = keyExists(block.content, "label")
-                      
                       return getComponent(block, columnInputLabel);
                     })
                   }
