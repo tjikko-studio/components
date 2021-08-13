@@ -1,4 +1,4 @@
-name: Test tjikko-studio/components
+name: Deploy the tjikko-studio/components library
 on:
   release:
     types: [published]
@@ -25,7 +25,8 @@ jobs:
       - name: 'Build Storybook'
         run: npm run build:storybook
 
-      - name: npm test
+      - name: 'Run tests'
+        run: npm test
 
   publish:
     needs: test
