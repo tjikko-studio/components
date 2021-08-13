@@ -15,6 +15,7 @@ node_modules
 
 # Built files
 index.js
+index.js.LICENSE.txt
 styles.js
 
 # dist
