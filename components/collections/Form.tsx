@@ -4,7 +4,7 @@ import {TextArea} from '../form/TextArea'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import keyExists from '../../utilities/keyExists'
 
-export interface SectionProps extends HTMLAttributes<HTMLElement> {
+export interface FormProps extends HTMLAttributes<HTMLElement> {
   /**
    * What is the width of the form?
    */

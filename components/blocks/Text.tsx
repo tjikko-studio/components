@@ -25,7 +25,7 @@ export const Text: FC<TextProps> = ({
   text,
   className = ''
 }) => {
-  const TextTag = `${tag}`;
+  const TextTag = tag;
   return (
     <TextTag className={`${className}`} dangerouslySetInnerHTML={{ __html: text }} />
   )

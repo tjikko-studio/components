@@ -1,4 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
+import {Media} from '../parts/Media'
 import Marquee from 'react-fast-marquee'
 
 export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
@@ -9,7 +10,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'default' | 'compact'
   
   /**
-   * Buttons object that will be parsed through to build the component
+   * Clients logos object that will be parsed through to build the component
    */
   content?: {}
 }

@@ -27,12 +27,10 @@ export const Heading: FC<HeadingProps> = ({
   className = ''
 }) => {
   const Content = () => {
-    const HeaderTag = `${level}`;
+    const HeaderTag = level
     return <HeaderTag className={`${className}`} >{text}</HeaderTag>
   }
   return (
-    <>
-      <Content />
-    </>
+    <Content />
   )
 }
