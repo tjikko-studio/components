@@ -1,30 +1,19 @@
 module.exports = {
+  core: {
+    builder: 'webpack5'
+  },
   stories: [
-    // Paths to the story files
-    '../components/**/*.stories.mdx',
-    '../components/**/*.stories.@(js|jsx|ts|tsx)'
+    '../src/**/*.stories.tsx'
   ],
   addons: ['@storybook/addon-postcss', '@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-controls', 'storybook-addon-themes'],
-  webpackFinal: async config => {
+  webpackFinal: async (config) => {
     const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
-    fileLoaderRule.exclude = /\.svg$/; 
+    fileLoaderRule.exclude = /\.svg$/;
 
-    config.module.rules.push(
-    {
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-    },
-    {
+    config.module.rules.push({
       test: /\.svg$/,
       enforce: 'pre',
-      loader: require.resolve('@svgr/webpack'),
-      options: {
-        svgoConfig: {
-          plugins: {
-            removeViewBox: false
-          }
-        }
-      }
+      loader: require.resolve('react-svg-loader')
     })
     return config
   }

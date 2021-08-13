@@ -1,4 +1,4 @@
-export default function addDisabledClasses (isDisabled, classes) {
+export default function addDisabledClasses (isDisabled: boolean, classes: string[]) {
   if (isDisabled) {
     classes.push('dark:border-gray-500')
   } else {

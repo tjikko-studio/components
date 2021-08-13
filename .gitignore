@@ -14,7 +14,8 @@ node_modules
 .DS_Store
 
 # Built files
-dist
+index.js
+styles.js
 
 # dist
 storybook-static

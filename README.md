@@ -8,7 +8,7 @@ npm i @tjikko/components
 
 ## Usage
 ```js
-import CTA from '@tjikko/components/dist/blocks/CTA'
+import {CTA} from '@tjikko/components'
 
 export default function ReactComponent () {
   return (
