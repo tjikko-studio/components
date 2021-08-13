@@ -12,7 +12,8 @@
     "start": "concurrently npm:dev npm:dev:storybook",
     "build": "npm run build:prod",
     "test": "echo 'No tests yet'",
-    "build:storybook": "build-storybook"
+    "build:css": "postcss ./assets/globals.css -o ./assets/app.css",
+    "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
@@ -34,6 +35,7 @@
     "babel-loader": "8.2.2",
     "concurrently": "6.2.1",
     "postcss": "8.3.6",
+    "postcss-cli": "8.3.1",
     "postcss-preset-env": "6.7.0",
     "react-svg-loader": "3.0.3",
     "storybook-addon-themes": "6.1.0",
