@@ -17,6 +17,7 @@ node_modules
 index.js
 index.js.LICENSE.txt
 styles.js
+assets/app.css
 
 # dist
 storybook-static
