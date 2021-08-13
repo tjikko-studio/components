@@ -22,9 +22,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 'Build'
-        run: |
-          ls -la node_modules/.bin/
-          npm run build
+        run: npm run build
         env:
           CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
