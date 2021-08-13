@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-
+import {Media} from '../parts/Media'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -16,6 +16,15 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   *  Block image
   */
   image?: {}
+
+  /**
+  *  Video properties
+  */
+  autoplay ?: boolean
+  muted ?: boolean
+  controls ?: boolean
+  loop ?: boolean
+  
   
   /**
    * text to display for heading
@@ -41,6 +50,10 @@ export const Tertiary: FC<TertiaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
   image,
+  autoplay,
+  muted,
+  controls,
+  loop,
   title,
   body,
   className = ''
@@ -51,9 +64,10 @@ export const Tertiary: FC<TertiaryProps> = ({
         className={(layout === 'vertical' ? 'pb-6' : '')}
       >
          {image && (
-          <img
-            src={image.url}
-            className={`rounded-lg${layout === 'default' ? ' w-auto' : ''}`}
+          <Media 
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
           />
         )}
       </div>

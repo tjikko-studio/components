@@ -1,4 +1,6 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import {Media} from '../parts/Media'
+
 /*
 * In production mode, show dynamic image and video with url
 */
@@ -48,8 +50,8 @@ export const Icon: FC<IconProps> = ({
         className={layout === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
       >
          {image && (
-          <img
-            src={image.url}
+          <Media 
+            media={image}
             className={`w-14 h-14`}
           />
         )}

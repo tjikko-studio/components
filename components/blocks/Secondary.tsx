@@ -1,4 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
+import {Media} from '../parts/Media'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
@@ -11,6 +12,14 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   *  Block image
   */
   image?: {}
+
+  /**
+  *  Video properties
+  */
+  autoplay ?: boolean
+  muted ?: boolean
+  controls ?: boolean
+  loop ?: boolean  
   
   /**
    * text to display for heading
@@ -45,6 +54,10 @@ export const Secondary: FC<SecondaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
   image,
+  autoplay,
+  muted,
+  controls,
+  loop,
   title,
   body,
   buttons,
@@ -57,9 +70,10 @@ export const Secondary: FC<SecondaryProps> = ({
         className={layout === 'vertical' ? 'pb-6' : ''}
       >
         {image && (
-          <img
-            src={image.url}
-            className={`rounded-lg ${layout === 'default' && 'w-auto'}`}
+          <Media 
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
           />
         )}
       </div>
