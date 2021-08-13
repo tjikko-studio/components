@@ -21,7 +21,12 @@ const componentsConfig = {
   entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
     path: path.resolve(__dirname),
-    filename: 'index.js'
+    filename: 'index.js',
+    libraryTarget: 'commonjs-module',
+    library: {
+      type: 'var',
+      export: 'default',
+    },
   }
 }
 
@@ -44,7 +49,7 @@ const stylesConfig = {
   output: {
     path: path.resolve(__dirname),
     filename: 'styles.js',
-    libraryTarget: 'commonjs',
+    libraryTarget: 'commonjs-module',
     library: {
       type: 'var',
       export: 'default',
