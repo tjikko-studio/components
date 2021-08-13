@@ -1,3 +1,11 @@
+# Added by A2Hosting.com
+/public/
+/tmp/
+/.htaccess
+
+# Used to provide npm with secrets on A2Hosting
+.env
+
 # Dependencies
 node_modules
 
@@ -6,7 +14,8 @@ node_modules
 .DS_Store
 
 # Built files
-dist
+index.js
+styles.js
 
 # dist
 storybook-static

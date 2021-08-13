@@ -1,4 +1,4 @@
-export default function keyExists (obj, key) {
+export default function keyExists (obj: any, key: string): boolean {
   if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
     return false;
   }
