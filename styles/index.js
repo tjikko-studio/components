@@ -1,7 +1,7 @@
-import {text} from'./text'
-import {sizes} from'./sizes'
-import {colors} from'./colors'
-import {variants} from'./variants'
+const text = require('./text');
+const sizes = require('./sizes');
+const colors = require('./colors');
+const variants = require('./variants');
 
 const theme = {...text, ...sizes, ...colors}
 
@@ -18,4 +18,4 @@ const styles = {
   }
 }
 
-export default styles
+module.exports = styles;

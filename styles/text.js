@@ -1,4 +1,4 @@
-export const text = {
+const text = {
   fontFamily: {
     display: ['Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'],
     body: ['Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif']
@@ -65,3 +65,5 @@ export const text = {
     '9xl': '400'
   }
 }
+
+module.exports = text;

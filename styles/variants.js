@@ -1,4 +1,4 @@
-export const variants = {
+const variants = {
   mixBlendMode: ['responsive'],
   backgroundBlendMode: ['responsive'],
   isolation: ['responsive'],
@@ -8,3 +8,5 @@ export const variants = {
   borderColor: ['disabled'],
   textColor: ['disabled']
 }
+
+module.exports = variants;

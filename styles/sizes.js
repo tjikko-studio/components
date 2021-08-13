@@ -78,7 +78,7 @@ const newHeightValues = {
 
 const heightValues = {...defaultHeightValues, ...newHeightValues}
 
-export const sizes = {
+const sizes = {
   height: heightValues,
   minHeight: heightValues,
   maxHeight: heightValues,
@@ -92,3 +92,5 @@ export const sizes = {
     '2xl': '1536px'
   }
 }
+
+module.exports = sizes;
