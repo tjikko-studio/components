@@ -29,7 +29,8 @@ Default.args = {
                 type: 'default',
                 imagePosition: 'auto',
                 image: {
-                  url: 'https://source.unsplash.com/random'
+                  url: 'https://source.unsplash.com/random',
+                  type: 'image'
                 },
                 title: 'Heading',
                 body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
@@ -48,7 +49,8 @@ Default.args = {
                 type: 'default',
                 imagePosition: 'auto',
                 image: {
-                  url: 'https://source.unsplash.com/random'
+                  url: 'https://source.unsplash.com/random',
+                  type: 'image'
                 },
                 title: 'Heading',
                 body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',

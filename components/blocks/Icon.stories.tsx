@@ -18,7 +18,8 @@ export const Default = Template.bind({})
 Default.args = {
   layout: 'horizontal',
   image: {
-    url: 'https://via.placeholder.com/56x56'
+    url: 'https://via.placeholder.com/56x56',
+    type: 'image'
   },
   title: 'Heading',
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
