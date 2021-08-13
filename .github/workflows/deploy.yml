@@ -23,7 +23,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 'Postinstall'
-      - run: npm rebuild && npm run prepare --if-present
+        run: npm rebuild && npm run prepare --if-present
 
       - name: 'Build'
         run: npm run build
