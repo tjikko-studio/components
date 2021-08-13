@@ -1,6 +1,6 @@
 {
   "name": "@tjikko/components",
-  "version": "3.0.0",
+  "version": "3.0.16",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
@@ -10,10 +10,11 @@
     "dev": "npm run build:dev -- --watch",
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "start": "concurrently npm:dev npm:dev:storybook",
-    "build": "npm run build:prod",
+    "build": "concurrently npm:build:prod npm:build:css",
     "test": "echo 'No tests yet'",
     "build:css": "postcss ./assets/globals.css -o ./assets/app.css",
-    "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets"
+    "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets",
+    "build:all": "concurrently npm:build npm:build:storybook"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
