@@ -1,6 +1,6 @@
 {
   "name": "@tjikko/components",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
