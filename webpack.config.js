@@ -40,7 +40,7 @@ const stylesConfig = {
     extensions: ['.ts', '.tsx', '.js']
   },
   name: 'styles',
-  entry: path.resolve(__dirname, './styles/index.js'),
+  entry: path.resolve(__dirname, './styles/index.tsx'),
   output: {
     path: path.resolve(__dirname),
     filename: 'styles.js',

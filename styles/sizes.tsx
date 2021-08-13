@@ -78,7 +78,7 @@ const newHeightValues = {
 
 const heightValues = {...defaultHeightValues, ...newHeightValues}
 
-const sizes = {
+export default {
   height: heightValues,
   minHeight: heightValues,
   maxHeight: heightValues,
@@ -93,4 +93,4 @@ const sizes = {
   }
 }
 
-module.exports = sizes;
+/* module.exports = sizes; */
