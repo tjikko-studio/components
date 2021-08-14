@@ -4,7 +4,7 @@ import {Form} from './Form'
 import {FAQ} from '../blocks/FAQ'
 import {Icon} from '../blocks/Icon'
 import {ClientsLogos} from '../blocks/ClientsLogos'
-import {Primary, PrimaryProps} from '../blocks/Primary'
+import {Primary} from '../blocks/Primary'
 import {Secondary} from '../blocks/Secondary'
 import {Tertiary} from '../blocks/Tertiary'
 import {Testimonial} from '../blocks/Testimonial'
@@ -58,13 +58,13 @@ export const Section: FC<SectionProps> = ({
     >
       {
         content.map(({columns}) => (
-          <section className="grid grid-cols-12">
+          <section key={JSON.stringify(columns)} className="grid grid-cols-12">
             {
               columns.map(({
                 width,
                 blocks
               }) => (
-                <div className={`col-span-${getWidth(width)}`}>
+                <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)}`}>
                   {
                     blocks.map(getComponent)
                   }
@@ -104,10 +104,11 @@ function getComponent (component: {
     case 'Form':
       return <Form key={JSON.stringify(component.content)} {...component.content} />
     case 'Heading':
-      return <Heading key={JSON.stringify(component.content)} {...component.content} level="h2" className='fontStyle-4xl' />
+      return <Heading key={JSON.stringify(component.content)} {...component.content} level='h2' className='fontStyle-4xl' />
     case 'Text':
       return <Text key={JSON.stringify(component.content)} {...component.content} className='fontStyle-lg' tag='div' />
     default:
-      return ('')
+      console.error('Unrecognized section item type', component)
+      return null
   }
 }
