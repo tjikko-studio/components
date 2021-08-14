@@ -67,6 +67,7 @@
     "index.js",
     "styles.js",
     "/README.md",
-    "/assets/"
+    "/assets/",
+    "applyFontConfig.js"
   ]
 }
