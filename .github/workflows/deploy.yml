@@ -73,7 +73,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   deploy-storybook:
-    needs: publish
+    needs: npm-publish
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
