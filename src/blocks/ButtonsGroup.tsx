@@ -27,6 +27,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
     <div className={`inline-flex space-x-4  ${className}`}>
       {buttons.map(({link, label, type, iconPos, size, fullWidth}, index) => (
         <Button
+          key={`[${label}](${link})`}
           link={link}
           label={label}
           type={(index === 0) ? type ? type : 'primary' : type ? type : 'tertiary'}
