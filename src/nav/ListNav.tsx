@@ -13,16 +13,19 @@ export interface MenuType {
 }
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
-
   /**
-   * style
+   * Visual style
    */
   styles: 'elevated' | 'flat'
+  
   /**
-   * If data contains one, it will be single. If data contains more than one, it will be multi. At this time, last element will be tertiary  button.
+   * Links items list array that will be parsed through to build the component
    */
   linkList: MenuType[],
-
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
   className?: string
 }
 
@@ -32,7 +35,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
   linkList = [],
-  className
+  className = ''
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
   const classes = [className]

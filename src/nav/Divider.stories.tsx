@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Divider, DividerProps} from './Divider'
 
 export default {
-  title: 'Tjikko/nav/Divider',
+  title: 'Tjikko/Nav Elements/Divider',
   component: Divider,
   argTypes: {
   },
@@ -31,8 +31,8 @@ Horizontal.args = {
 
 export const HorizontalDark = Template.bind({})
 HorizontalDark.args = {
-  direction: 'horizontal',
-  dark: true
+  direction : "horizontal",
+  forceDark : true
 }
 HorizontalDark.parameters = {
   themes: {default: 'Dark Mode'}
@@ -45,8 +45,8 @@ Vertical.args = {
 
 export const VerticalDark = Template.bind({})
 VerticalDark.args = {
-  direction: 'vertical',
-  dark: true
+  direction : "vertical",
+  forceDark : true
 }
 VerticalDark.parameters = {
   themes: {default: 'Dark Mode'}

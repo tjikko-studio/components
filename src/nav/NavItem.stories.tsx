@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {NavItem, NavItemProps} from './NavItem'
 
 export default {
-  title: 'Tjikko/nav/NavItem',
+  title: 'Tjikko/Nav Elements/NavItem',
   component: NavItem,
   argTypes: {
     styles: {options: ['default', 'default/white', 'flat'], control: {type: 'select'}},

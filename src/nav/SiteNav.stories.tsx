@@ -3,7 +3,7 @@ import {SiteNav, SiteNavProps} from './SiteNav'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/nav/SiteNav',
+  title: 'Tjikko/Nav Elements/SiteNav',
   component: SiteNav,
   parameters: {
     componentSubtitle: 'The Buttons SiteNav',

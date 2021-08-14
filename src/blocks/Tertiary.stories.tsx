@@ -3,11 +3,12 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Tertiary, TertiaryProps} from './Tertiary'
 
 export default {
-  title: 'Tjikko/blocks/Tertiary',
+  title: 'Tjikko/Blocks/Tertiary',
   component: Tertiary,
   argTypes: {
-    type: {options: ['default', 'vertical'], control: {type: 'select'}},
-    mirror: {control: {type: 'boolean'}},
+    layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
+    mirror: {control: {layout: 'boolean'}},
+    imagePosition: {options: ['auto', 'left', 'right'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Tertiary'
@@ -18,11 +19,14 @@ const Template: Story<TertiaryProps> = (args) => <Tertiary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'default',
-  mirror: false,
-  imageUrl: 'https://source.unsplash.com/random',
-  head: 'Heading',
-  text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+  layout: 'default',
+  imagePosition: 'left',
+  image: {
+    url: 'https://source.unsplash.com/random',
+    type: 'image'
+  },
+  title: 'Heading',
+  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

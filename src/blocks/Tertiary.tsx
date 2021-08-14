@@ -1,24 +1,43 @@
 import React, {FC, HTMLAttributes} from 'react'
-
+import {Media} from '../parts/Media'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Block type
+   * Is the composent direction  default/horizontasl (left to right) or vertical (image above)
    */
-  type?: 'default' | 'vertical'
+  layout?: 'default' | 'vertical'
+
   /**
    * Is mirror
    */
-  mirror?: boolean
+  imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
+
   /**
-   *
-   *  image url to show
+  *  Block image
+  */
+  image?: {}
+
+  /**
+  *  Video properties
+  */
+  autoplay ?: boolean
+  muted ?: boolean
+  controls ?: boolean
+  loop ?: boolean
+
+
+  /**
+   * text to display for heading
    */
-  imageUrl?: string
-  head: string
-  text: string
+  title: string
+
   /**
-   * Additional space-separated class names to append
+   * text to display for paragraph
+   */
+  body: string
+
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -28,42 +47,49 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Tertiary: FC<TertiaryProps> = ({
-  type = 'vertical',
-  mirror = false,
-  imageUrl,
-  head,
-  text,
+  layout = 'default',
+  imagePosition = 'auto',
+  image,
+  autoplay,
+  muted,
+  controls,
+  loop,
+  title,
+  body,
   className = ''
 }) => {
   const Image = () => {
     return (
       <div
-        className={(type === 'vertical' ? 'pb-6' : '')}
+        className={(layout === 'vertical' ? 'pb-6' : '')}
       >
-        <img
-          src={imageUrl}
-          className={`rounded-lg${type === 'default' ? ' w-auto' : ''}`}
-        />
+        {image && (
+          <Media
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
       </div>
     )
   }
   const Text = () => {
     return (
       <div
-        className={type !== 'vertical' ? 'flex justify-center' : ''}
+        className={layout !== 'vertical' ? 'flex justify-center' : ''}
       >
         <div
-          className={type !== 'vertical' ? 'pl-12' : ''}
+          className={layout !== 'vertical' ? 'pl-12' : ''}
         >
           <h2
             className='fontStyle-2xl'
           >
-            {head}
+            {title}
           </h2>
           <p
             className='fontStyle-base pt-2'
           >
-            {text}
+            {body}
           </p>
         </div>
       </div>
@@ -72,10 +98,10 @@ export const Tertiary: FC<TertiaryProps> = ({
 
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${type === 'default' ? 'flex' : ''} ${mirror ? 'flex-row-reverse' : ''} ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'flex' : ''} ${imagePosition === 'right' ? 'flex-row-reverse' : ''} ${className}`}
     >
       {
-        (type === 'default' || type === 'vertical') && (
+        (layout === 'default' || layout === 'vertical') && (
           <>
             <Image />
             <Text />

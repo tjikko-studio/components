@@ -9,10 +9,23 @@ import {ListNav} from './ListNav'
  * Primary UI component for user interaction
  */
 export const MobileMenu: FC<SiteNavProps> = ({
+  /**
+   * Demo Button consts
+   * Developer note: we will remove this and add it using the wip menu builder
+   */
   demoButtonText = 'Free Demo',
   demoUrl = '#',
+
+  /**
+   * language list
+   * Developer note: we will remove this and add it using the wip menu builder
+   */
+  languageList = {},
+
+  /**
+   * menu json data same as NavItem
+   */
   menuData = [],
-  languageList = {}
 }) => {
   return (
     <div
@@ -21,8 +34,8 @@ export const MobileMenu: FC<SiteNavProps> = ({
       <div className='flex justify-between p-2'>
         <div className='dark'>
           <Button
-            text={demoButtonText}
-            url={demoUrl}
+            label={demoButtonText}
+            link={demoUrl}
             type='primary'
           />
         </div>

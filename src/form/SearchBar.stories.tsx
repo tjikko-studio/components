@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import {SearchBar, SearchBarProps} from './SearchBar'
 
 export default {
-  title: 'Tjikko/Forms/SearchBar',
+  title: 'Tjikko/Form Elements/SearchBar',
   component: SearchBar,
   parameters: {
     componentSubtitle: 'The Forms/SearchBar'

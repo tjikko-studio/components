@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Input, InputProps} from './Input'
 
 export default {
-  title: 'Tjikko/Forms/Input',
+  title: 'Tjikko/Form Elements/Input',
   component: Input,
   parameters: {
     componentSubtitle: 'The Forms/Input',

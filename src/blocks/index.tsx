@@ -1,31 +1,29 @@
 import {Breadcrumb} from './Breadcrumb'
 import {ClientsLogos} from './ClientsLogos'
-import {CTA} from './CTA'
+import {ButtonsGroup} from './ButtonsGroup'
 import {FAQ} from './FAQ'
 import {FeaturesShow} from './FeaturesShow'
 import {Footer} from './Footer'
-import {Header} from './Header'
-import {Hero} from './Hero'
+import {Heading} from './Heading'
 import {Icon} from './Icon'
 import {Primary} from './Primary'
 import {Secondary} from './Secondary'
 import {Tertiary} from './Tertiary'
-import {Testimonials} from './Testimonials'
+import {Testimonial} from './Testimonial'
 import {Text} from './Text'
 
 export default {
   Breadcrumb,
   ClientsLogos,
-  CTA,
+  ButtonsGroup,
   FAQ,
   FeaturesShow,
   Footer,
-  Header,
-  Hero,
+  Heading,
   Icon,
   Primary,
   Secondary,
   Tertiary,
-  Testimonials,
+  Testimonial,
   Text
 }

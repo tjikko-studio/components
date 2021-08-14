@@ -1,5 +1,7 @@
 import blocks from './blocks'
 
+import collections from './collections'
+
 import form from './form'
 
 import nav from './nav'
@@ -7,12 +9,11 @@ import nav from './nav'
 import textStyles from './textStyles'
 
 import {Button} from './Button'
-import {List} from './List'
 
 export default {
   Button,
-  List,
   ...blocks,
+  ...collections,
   ...form,
   ...nav,
   ...textStyles

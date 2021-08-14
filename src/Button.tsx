@@ -4,26 +4,39 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * button type
    */
-  type: 'primary' | 'secondary' | 'tertiary'
+  type?: 'primary' | 'secondary' | 'tertiary'
   /**
    * text to display on button
    */
-  text?: string
+  label?: string
+
   /**
    * icon position
-   * only: show only icon with rounded button
    */
-  icon?: 'right' | 'left' | 'only' | 'none'
+  iconPos?: 'right' | 'left'
+
+  /**
+   * icon image
+   */
+  icon?: string
+
   /**
    * icon size
    */
   size?: 'default' | 'large' | 'small'
+
   /**
    * button link
    */
-  url?: string
+  link?: string
+
   /**
-   * force dark mode
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+  className?: string
+
+  /**
+   * force dark mode (This will bypass dark mode and apply the darkmode on the composant even in light mode
    */
   forceDark?: boolean
 }
@@ -33,9 +46,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Button: FC<ButtonProps> = ({
   type = 'primary',
-  text = 'LABEL',
+  label = 'Button',
   size = 'default',
-  url = '',
+  icon,
+  link,
+  className = '',
   forceDark = false
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
@@ -45,47 +60,72 @@ export const Button: FC<ButtonProps> = ({
       buttonClasses.push('rounded-lg')
       if (forceDark) {
         buttonClasses.push('bg-primary-400 hover:bg-primary-200')
-        contentClasses.push('text-primary-900')
+        buttonClasses.push('text-primary-900')
       } else {
         buttonClasses.push('bg-primary-600 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-200')
-        contentClasses.push('text-white dark:text-primary-900')
+        buttonClasses.push('text-white dark:text-primary-900')
+      }
+      break
+    case 'secondary':
+      buttonClasses.push('bg-none rounded-lg border')
+      if (forceDark) {
+        buttonClasses.push('border-primary-400 hover:border-primary-200')
+        buttonClasses.push('text-primary-400 hover:text-primary-200')
+      } else {
+        buttonClasses.push('border-primary-600 hover:border-primary-800 dark:border-primary-300  dark:hover:border-primary-100')
+        buttonClasses.push('text-primary-600 hover:text-primary-800 dark:text-primary-300 dark:hover:text-primary-100')
       }
       break
     case 'tertiary':
       buttonClasses.push('bg-none')
       if (forceDark) {
-        contentClasses.push('text-primary-400 hover:text-primary-200')
+        buttonClasses.push('text-primary-400 hover:text-primary-200')
       } else {
-        contentClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
+        buttonClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
       }
       break
   }
   switch (size) {
     case 'small':
-      buttonClasses.push('h-8 max-h-8 px-3.5 py-2.5')
+      buttonClasses.push('h-8 max-h-8 py-2.5')
       contentClasses.push('fontStyle-button-sm')
+      type !== 'tertiary' && buttonClasses.push('px-3.5')
       break
     case 'large':
-      buttonClasses.push('h-12 max-h-12 py-4 px-5')
+      buttonClasses.push('h-12 max-h-12 py-4')
+      type !== 'tertiary' && buttonClasses.push('px-5')
       contentClasses.push('fontStyle-button-lg')
       break
     case 'default':
     default:
-      buttonClasses.push('h-10 max-h-10 px-4 py-3.5')
+      buttonClasses.push('h-10 max-h-10 py-3.5')
+      type !== 'tertiary' && buttonClasses.push('px-4')
       contentClasses.push('fontStyle-button-base')
   }
+  buttonClasses.push(`${className}`)
   const buttonClassesJoined = buttonClasses.join(' ')
   const Content = () => {
-    return (
-      <span
-        className={contentClasses.join(' ')}
-      >{text}</span>
-    )
+    if (label) {
+      return (
+        <span
+          className={contentClasses.join(' ')}
+        >{label}</span>
+      )
+    }
   }
-  if (url) {
+  /* const Icon = () => {
+    if (icon) {
+      return (
+        <span />
+      )
+    } else {
+      return ''
+    }
+  } */
+  if (link) {
     return (
       <a
-        href={url}
+        href={link}
         className={buttonClassesJoined}
       >
         <Content />

@@ -13,42 +13,57 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
+  
   /**
-    * Label text
-    */
+   * Label text
+   */
   label?: string
+  
   /**
-    * filled text
-    */
+   * filled text
+   */
   text?: string
+  
+  
   /**
    * placeholder text
    */
   placeholder?: string
+  
   /**
-    * information text
-    */
+   * information text
+   */
   information?: string
+  
   /**
-    * error text
-    */
+   * error text
+   */
   error?: string
+  
   /**
-    * error
-    */
+   * error
+   */
   isError?: boolean
+  
   /**
-    * checking...
-    */
+   * checking...
+   */
   isValidating?: boolean
+  
   /**
-    * success
-    */
+   * success
+   */
   isSuccess?: boolean
+  
   /**
-    * disabled
-    */
+   * disabled
+   */
   isDisabled?: boolean
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+  className?: string
 }
 
 /**
@@ -64,9 +79,10 @@ export const TextArea: FC<TextAreaProps> = ({
   text,
   placeholder,
   information,
-  error
+  error,
+  className = ''
 }) => {
-  const textareaClasses = ['fontStyle-base py-3 px-4 rounded-lg border w-72 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -79,11 +95,11 @@ export const TextArea: FC<TextAreaProps> = ({
   }
   return (
     <div
-      className='flex flex-col gap-y-1 w-72'
+      className={`flex flex-col gap-y-1 w-72 ${className}`}
     >
       {label &&
         <div
-        className={`fontStyle-sm strong flex flex-row justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        className={`fontStyle-sm min-h-6 strong flex flex-row items-center  justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         <p>
           {label}
@@ -93,22 +109,22 @@ export const TextArea: FC<TextAreaProps> = ({
         {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
       }
-      <div
-        className='col-span-2'
-      >
-        <textarea
-          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
-          defaultValue={text}
-          placeholder={placeholder}
-          disabled={isDisabled}
-        />
-      </div>
-      <div
-        className={`fontStyle-sm dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} `}
-      >
-        {information}
-      </div>
-      {isError && (<div className='fontStyle-sm text-red-600 dark:text-red-400'>{error}</div>)}
+      <textarea
+        className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+        defaultValue={text}
+        placeholder={placeholder}
+        disabled={isDisabled}
+      />
+      {
+        (information) && 
+          <div
+            className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+            dangerouslySetInnerHTML={{ __html: information }}
+          >
+          </div>
+          
+      }
+      {isError && (<div className='fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
   )
 }

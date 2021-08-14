@@ -1,25 +1,34 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import {Media} from '../parts/Media'
+
 /*
 * In production mode, show dynamic image and video with url
 */
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
-   * type of Icon ('horizontal' | 'vertical')
+   * layout of Icon ('horizontal' | 'vertical')
    */
-  type?: 'horizontal' | 'vertical'
+  layout?: 'horizontal' | 'vertical'
+
   /**
    *  image url to show
    */
-  imageUrl?: string
+  image?: {}
+
   /**
-   * heading text
+   * title text
    */
-  heading?: string
+  title?: string
+
   /**
    * content text
    */
-  text?: string
+  body?: string
+
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
   className?: string
 }
 
@@ -27,29 +36,31 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Icon: FC<IconProps> = ({
-  type = 'horizontal',
-  heading = 'Heading',
-  text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-  imageUrl
+  layout = 'horizontal',
+  image,
+  title,
+  body,
+  className
 }) => {
-
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${type === 'horizontal' ? 'flex' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'flex' : ''}`}
     >
       <div
-        className={type === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
+        className={layout === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
       >
-        <img
-          src={imageUrl}
-          className={`w-14 h-14`}
-        />
+        {image && (
+          <Media
+            media={image}
+            className={`w-14 h-14`}
+          />
+        )}
       </div>
       <div
-        className={type === 'horizontal' ? 'ml-6' : 'mt-6'}
+        className={layout === 'horizontal' ? 'ml-6' : 'mt-6'}
         style={
           {
-            width: type === 'horizontal' ? '310px' : '290px'
+            width: layout === 'horizontal' ? '310px' : '290px'
           }
         }
       >
@@ -57,14 +68,14 @@ export const Icon: FC<IconProps> = ({
           className='fontStyle-2xl'
         >
           {
-            heading && heading === '' ? heading : 'Heading'
+            title && title !== '' ? title : 'title'
           }
         </h2>
         <p
           className='fontStyle-base pt-2'
         >
           {
-            text && text === '' ? text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+            body && body === '' ? body : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
           }
         </p>
       </div>

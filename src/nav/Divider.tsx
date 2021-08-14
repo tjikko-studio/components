@@ -2,20 +2,28 @@ import React, {FC, HTMLAttributes} from 'react'
 
 export interface DividerProps extends HTMLAttributes<HTMLElement> {
   /**
-   * Divider data object
+   * Is the composent direction vertical or horizontasl
+   */
+  direction?: 'vertical' | 'horizontal'
+
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
-  dark?: boolean
-  direction?: 'vertical' | 'horizontal'
+
+  /**
+   * force dark mode (This will bypass dark mode and apply the darkmode on the composant even in light mode
+   */
+  forceDark?: boolean
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Divider: FC<DividerProps> = ({
+  direction = "horizontal",
   className = '',
-  dark = false,
-  direction = "horizontal"
+  forceDark = false
 }) => {
   const dividerClasses = ['border-0 border-gray-300 dark:border-gray-600']
   switch (direction) {
@@ -26,7 +34,7 @@ export const Divider: FC<DividerProps> = ({
       dividerClasses.push('border-l w-px h-full mx-4 inline-block')
       break
   }
-  dark && dividerClasses.push('border-gray-600')
+  forceDark &&  dividerClasses.push('border-gray-600')
   className && dividerClasses.push(className)
   return (
     <hr

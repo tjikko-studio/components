@@ -2,11 +2,12 @@ import React, {FC, HTMLAttributes} from 'react'
 
 export interface TextStylesProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to display for heading
+   * Type of heading to display
    */
   type?: 'all' | 'heading' | 'body'
+  
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }

@@ -1,26 +1,48 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {Button} from '../Button'
+import {Media} from '../parts/Media'
+import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Block type
+   * Is the component direction  default/horizontal (left to right) or vertical (image above)
    */
-  type?: 'default' | 'vertical'
-  /**
-   *  image url to show
-   */
-  imageUrl?: string
-  head?: string
-  text?: string
-  cta_name: string
-  cta_url: string
+  layout?: 'default' | 'vertical'
 
   /**
-   * Is mirror
-   */
-  mirror?: boolean
+  *  Block image
+  */
+  image?: {}
+
   /**
-   * Additional space-separated class names to append
+  *  Video properties
+  */
+  autoplay ?: boolean
+  muted ?: boolean
+  controls ?: boolean
+  loop ?: boolean
+
+  /**
+   * text to display for heading
+   */
+  title: string
+
+  /**
+   * text to display for paragraph
+   */
+  body: string
+
+  /**
+  *  Block buttons list
+  */
+  buttons?: GroupButtonProps[]
+
+  /**
+   * Image position
+   */
+  imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
+
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -29,52 +51,48 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Secondary: FC<SecondaryProps> = ({
-  type = 'vertical',
-  imageUrl,
-  head,
-  text,
-  cta_name,
-  cta_url,
-  mirror = 'false',
+  layout = 'default',
+  imagePosition = 'auto',
+  image,
+  autoplay,
+  muted,
+  controls,
+  loop,
+  title,
+  body,
+  buttons,
   className = '',
 
 }) => {
   const Image = () => {
     return (
       <div
-        className={type === 'vertical' ? 'pb-6' : ''}
+        className={layout === 'vertical' ? 'pb-6' : ''}
       >
-        <img
-          src={imageUrl}
-          className={`rounded-lg ${type === 'default' && 'w-auto'}`}
-        />
+        {image && (
+          <Media
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
       </div>
     )
   }
   const Text = () => {
     return (
       <div
-        className={`text-gray-900 dark:text-gray-50 ${type !== 'vertical' && 'flex justify-center'}`}
+        className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' && 'flex justify-center'}`}
       >
         <div
           className={`
-              ${type !== 'vertical' && 'pl-12'}
+              ${layout !== 'vertical' && 'pl-12'}
           `}
         >
-          <h2 className='fontStyle-4xl'>{head}</h2>
-          <p className='fontStyle-base pt-2'>{text}</p>
+          <h2 className='fontStyle-4xl'>{title}</h2>
+          <p className='fontStyle-base pt-2'>{body}</p>
           {
-            (cta_name && cta_url) &&
-            <div
-              className='pt-6'>
-              <Button
-                text={cta_name}
-                url={cta_url}
-                type='tertiary'
-                icon='none'
-                size='large'
-              />
-            </div>
+            Object.keys(buttons).length >= 1 && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='mt-6' />
           }
         </div>
       </div>
@@ -82,9 +100,9 @@ export const Secondary: FC<SecondaryProps> = ({
   }
   return (
     <div
-      className={`${type === 'default' && 'flex'} ${mirror && 'flex-row-reverse'} ${className}`}
+      className={`${layout === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
     >
-      {(type === 'default' || type === 'vertical') && (
+      {(layout === 'default' || layout === 'vertical') && (
         <>
           <Image />
           <Text />

@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import {TextArea, TextAreaProps} from './TextArea'
 
 export default {
-  title: 'Tjikko/Forms/TextArea',
+  title: 'Tjikko/Form Elements/TextArea',
   component: TextArea,
   parameters: {
     componentSubtitle: 'The Forms/TextArea'

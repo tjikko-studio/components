@@ -3,10 +3,10 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Icon, IconProps} from './Icon'
 
 export default {
-  title: 'Tjikko/blocks/Icon',
+  title: 'Tjikko/Blocks/Icon',
   component: Icon,
   argTypes: {
-    type: {options: ['horizontal', 'vertical'], control: {type: 'select'}},
+    layout: {options: ['horizontal', 'vertical'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Icon'
@@ -17,8 +17,11 @@ const Template: Story<IconProps> = (args) => <Icon {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'horizontal',
-  imageUrl: 'https://via.placeholder.com/56x56',
-  heading: 'Heading',
-  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  layout: 'horizontal',
+  image: {
+    url: 'https://via.placeholder.com/56x56',
+    type: 'image'
+  },
+  title: 'Heading',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
 }

@@ -8,6 +8,10 @@ import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
+import {useMediaPredicate} from 'react-media-hook'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+const tailwind = resolveConfig(tailwindConfig);
 
 export interface LanguageType {
   current?: string | null
@@ -24,30 +28,34 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * menu json data same as NavItem
    */
   menuData: MenuItemType[]
+
   /**
-   * demo button text
+   * Demo Button consts
+   * Developer note: we will remove this and add it using the wip menu builder
    */
   demoButtonText?: string
-  /**
-   * url to go when click demo button
-   */
   demoUrl?: string
+
   /**
    * language list
+   * Developer note: we will remove this and add it using the wip menu builder
    */
   languageList?: LanguageType
+
   /**
    * nav background color style
    */
   styles: 'opaque' | 'transparent'
-  /**
-   * Additional space-separated class names to append
-   */
-  className?: string
+
   /**
    * Set to true to have the mobile menu expanded by default
    */
   mobileExpandDefault?: boolean
+
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+  className?: string
 }
 
 /**
@@ -59,9 +67,10 @@ export const SiteNav: FC<SiteNavProps> = ({
   menuData = [],
   styles = 'opaque',
   languageList = {},
-  className,
-  mobileExpandDefault = false
+  mobileExpandDefault = false,
+  className
 }) => {
+  const sm = useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`)
   const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
   const lg = useBreakpoint('lg')
   return (
@@ -95,8 +104,8 @@ export const SiteNav: FC<SiteNavProps> = ({
           className='hidden lg:flex items-center space-x-6'
         >
           <Button
-            text={demoButtonText}
-            url={demoUrl}
+            label={demoButtonText}
+            link={demoUrl}
             type='primary'
             icon='none'
             size='default'
@@ -130,7 +139,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           </div>
         </Disclosure>
       </div>
-      {(mobileExpand && lg) ? (
+      {(mobileExpand && !sm) ? (
         <MobileMenu
           demoButtonText={demoButtonText}
           demoUrl={demoUrl}

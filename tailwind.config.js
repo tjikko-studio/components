@@ -11,5 +11,5 @@ module.exports = {
     plugin.withOptions(
       function(){ return applyFontConfig },
       function(){ return styles })
-  ],
+  ]
 }

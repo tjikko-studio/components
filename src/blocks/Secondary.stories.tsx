@@ -3,11 +3,11 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Secondary, SecondaryProps} from './Secondary'
 
 export default {
-  title: 'Tjikko/blocks/Secondary',
+  title: 'Tjikko/Blocks/Secondary',
   component: Secondary,
   argTypes: {
-    type: {options: ['default', 'vertical'], control: {type: 'select'}},
-    mirror: {control: {type: 'boolean'}},
+    layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
+    imagePosition: {options: ['auto', 'left', 'right'], control: {layout: 'select'}},
   },
   parameters: {
     componentSubtitle: 'The Secondary'
@@ -18,13 +18,19 @@ const Template: Story<SecondaryProps> = (args) => <Secondary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: 'default',
-  mirror: false,
-  imageUrl: 'https://source.unsplash.com/random',
-  head: 'Heading',
-  text: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
-  cta_name: 'cta text',
-  cta_url: 'https://perdu.com'
+  layout: 'default',
+  imagePosition: 'left',
+  image: {
+    url: 'https://source.unsplash.com/random',
+    type: 'image'
+  },
+  title: 'Heading',
+  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+  buttons: [{
+    label: 'First Button',
+    link: 'https://perdu.com',
+    layout: 'tertiary'
+  }]
 }
 export const WidthControl = Template.bind({})
 WidthControl.args = {

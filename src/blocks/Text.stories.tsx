@@ -3,34 +3,37 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Text, TextProps} from './Text'
 
 export default {
-  title: 'Tjikko/blocks/Text',
+  title: 'Tjikko/Blocks/Text',
   component: Text,
   argTypes: {
-    // type: { options: ['default', 'header', 'button', 'special'], control: { type: 'select' }},
+
   },
   parameters: {
-    componentSubtitle: 'The Text block',
-    backgrounds: {
-      default: 'dark background',
-      values: [
-        {
-          name: 'dark background',
-          value: '#000'
-        }
-      ]
-    }
+    componentSubtitle: 'Simple text'
   }
 } as Meta
 
 const Template: Story<TextProps> = (args) => <Text {...args} />
 
-export const Default = Template.bind({})
-Default.args = {
-  className: 'w-80 h-52',
-  title: '01. HEADING',
-  body:
-    'Lorem ipsum dolor sit amet, consectetur adipiscig elit ed do elusmod tempor incidedunt ut laborre et dolore magna aliqua'
+export const SimpleParagraph = Template.bind({})
+SimpleParagraph.args = {
+  tag: 'p',
+  text: 'I am some text in a p tag',
 }
-Default.parameters = {
-  themes: {default: 'Dark Mode'}
+export const PreCode = Template.bind({})
+PreCode.args = {
+  tag: 'pre',
+  text: 'I am some code in a pre tag',
+}
+
+export const FormattedParagraph = Template.bind({})
+FormattedParagraph.args = {
+  tag: 'p',
+  text: 'I am some <span class="underline bg-red-200" >formatted text</span > in a p tag',
+}
+
+export const RenderedHtml = Template.bind({})
+RenderedHtml.args = {
+  tag: 'div',
+  text: '<p>I am some <strong>formated html text</strong></p> <p>in a div tag</p>',
 }

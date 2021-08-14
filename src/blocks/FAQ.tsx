@@ -1,14 +1,14 @@
 import React, {FC, HTMLAttributes} from 'react'
 
+export interface QAProps {
+  question: string
+  answer: string
+}
 export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to show as question
+   * Questions object that will be parsed through to build the component
    */
-  question: string
-  /**
-   * text to show as answer
-   */
-  answer?: string
+  content?: QAProps[]
 
   /**
    * Additional space-separated class names to append
@@ -21,24 +21,31 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const FAQ: FC<FAQProps> = ({
-  question,
-  answer = '',
-  className
+  content,
+  className = ''
 }) => {
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${className}`}
+      className={`text-gray-900 dark:text-gray-50 flex flex-col space-y-12 ${className}`}
     >
-      <div
-        className='fontStyle-lg strong'
-      >
-        {question}
-      </div>
-      <div
-        className='pt-2 fontStyle-base'
-      >
-        {answer}
-      </div>
+      {
+        content.map((question) => {
+          return (
+            <div>
+              <div
+                className='fontStyle-lg strong'
+              >
+                {question.question}
+              </div>
+              <div
+                className='pt-2 fontStyle-base'
+              >
+                {question.answer}
+              </div>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }

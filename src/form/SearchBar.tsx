@@ -8,18 +8,26 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
+  
   /**
    * filled text
    */
   text?: string
+  
   /**
    * place holder string
    */
   placeHolder?: string
+  
   /**
    * disabled
    */
   isDisabled?: boolean
+  
+  /**
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   */
+  className?: string
 }
 
 /**
@@ -29,14 +37,15 @@ export const SearchBar: FC<SearchBarProps> = ({
   isDisabled,
   isFocussed,
   text,
-  placeHolder
+  placeHolder,
+  className = ''
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
-  const classes = ['w-72 flex rounded-lg items-center overflow-hidden pl-11 fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600' ]
+  const classes = ['form-input w-72 flex rounded-lg items-center overflow-hidden w-full pl-11 fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600' ]
   addDisabledClasses(isDisabled, classes)
   return (
     <div
-      className='text-gray-900 dark:text-gray-50 relative'
+      className={`text-gray-900 dark:text-gray-50 relative w-72 ${className}`}
       defaultValue={text}
     >
       <button

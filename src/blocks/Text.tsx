@@ -2,15 +2,17 @@ import React, {FC, HTMLAttributes} from 'react'
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to display for heading
+   * text to show as question
    */
-  title: string
+  tag?: 'p' | 'pre' | 'span' | 'div'
+
   /**
-   * text to display for paragraph
+   * text to show as question
    */
-  body: string
+  text?: string
+
   /**
-   * Additional space-separated class names to append
+   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
 }
@@ -18,14 +20,13 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Text: FC<TextProps> = ({title = '', body = '', className}) => {
+export const Text: FC<TextProps> = ({
+  tag = 'p',
+  text,
+  className = ''
+}) => {
+  const TextTag = tag
   return (
-    <div className={`p-6 ${className}`}>
-      <h5 className='fontStyle-lg strong uppercase text-gray-900'>
-        {title}
-      </h5>
-      <hr className='border-primary-500 mt-4' />
-      <p className='fontStyle-base text-gray-500 mt-8'>{body}</p>
-    </div>
+    <TextTag className={`${className}`} dangerouslySetInnerHTML={{ __html: text }} />
   )
 }

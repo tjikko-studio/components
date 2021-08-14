@@ -13,13 +13,15 @@ export interface FooterDataType {
 
 export interface FooterProps extends HTMLAttributes<HTMLElement> {
   /**
-   * footer menu data
+   * Footer object that will be parsed through to build the component
    */
   footerMenu?: FooterDataType[]
+  
   /**
    * year to show on bottom
    */
   year?: string
+  
   /**
    * privacy policy text
    */
@@ -30,9 +32,9 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
-  footerMenu = [],
   year,
-  privacy
+  privacy,
+  footerMenu = []
 }) => {
 
   return (
