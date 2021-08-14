@@ -83,4 +83,9 @@ jobs:
         run: git remote add production ssh://tjikkost@tjikko-studio.a2hosted.com:7822/home/tjikkost/repositories/SMPX-Backend
 
       - name: 'Push to production remote'
-        run: git push production
+        run: |
+          git --version
+          git status
+          git remote -v
+          git branch
+          git push production main
