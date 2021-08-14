@@ -10,6 +10,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     plugin.withOptions(
       function(){ return applyFontConfig },
-      function(){ return styles })
+      function(){ return styles }
+    )
   ]
 }
