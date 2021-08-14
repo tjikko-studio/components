@@ -41,7 +41,7 @@ jobs:
           CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  publish:
+  npm-publish:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -83,4 +83,4 @@ jobs:
         run: git remote add production ssh://tjikkost@tjikko-studio.a2hosted.com:7822/home/tjikkost/repositories/components
 
       - name: 'Push to production remote'
-        run: git push production main
+        run: git push production HEAD:main
