@@ -71,7 +71,6 @@ export const Media: FC<MediaProps> = ({
     case 'video':
       return <RenderVideo />
     default:
-      break;
+      return null
   }
-
 }
