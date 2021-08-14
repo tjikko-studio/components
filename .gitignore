@@ -2,6 +2,7 @@
 /public/
 /tmp/
 /.htaccess
+./robots.txt
 
 # Used to provide npm with secrets on A2Hosting
 .env
