@@ -80,7 +80,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Add production remote'
-        run: git remote add production ssh://tjikkost@tjikko-studio.a2hosted.com:7822/home/tjikkost/repositories/SMPX-Backend
+        run: git remote add production ssh://tjikkost@tjikko-studio.a2hosted.com:7822/home/tjikkost/repositories/components
 
       - name: 'Push to production remote'
         run: |
