@@ -72,7 +72,7 @@ jobs:
           CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  deploy-storybook:
+  cPanel-deploy-storybook:
     needs: npm-publish
     runs-on: ubuntu-latest
     steps:
