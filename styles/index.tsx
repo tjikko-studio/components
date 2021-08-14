@@ -17,5 +17,3 @@ export default {
     extend: variants
   }
 }
-
-/* module.exports = styles; */
