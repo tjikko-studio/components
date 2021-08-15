@@ -1,6 +1,5 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import {Disclosure} from '@headlessui/react'
-import useBreakpoint from '../../utilities/useBreakpoint'
 import CompanyLogo from '/assets/images/company_logo_placeholder.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
 import CloseIcon from '/assets/icons/close-line.svg'
@@ -30,7 +29,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   menuData: MenuItemType[]
 
   /**
-   * Demo Button consts
+   * Demo Button constants
    * Developer note: we will remove this and add it using the wip menu builder
    */
   demoButtonText?: string
@@ -72,7 +71,6 @@ export const SiteNav: FC<SiteNavProps> = ({
 }) => {
   const sm = useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`)
   const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
-  const lg = useBreakpoint('lg')
   return (
     <>
       <div
