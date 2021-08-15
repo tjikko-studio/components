@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import Marquee from 'react-fast-marquee'
+// import Marquee from 'react-fast-marquee'
 
 export interface ClientProps {
   image: {
@@ -45,6 +45,6 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         }
       </div>
     {/* </Marquee> */}
-   </>
+    </>
   )
 }
