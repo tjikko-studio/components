@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
 
 /*
