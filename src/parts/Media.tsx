@@ -61,7 +61,6 @@ export const MediaVideo: FC<VideoProps> = ({
   loop,
   className
 }) => {
-  console.log(autoplay, muted, controls)
   return (
     <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop}
       className={`${className}`}>
@@ -90,7 +89,6 @@ export const Media: FC<GenericMediaProps> = ({
   loop = false,
   className = ''
 }) => {
-  console.log({media, autoplay, muted, controls, loop, className})
   switch (media.type) {
     case 'image':
       return <MediaImage key={media.url} {...media} className={className} />
