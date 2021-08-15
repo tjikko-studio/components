@@ -4,6 +4,7 @@ deployment:
     - export DEPLOY_PATH='/home/tjikkost/smpx-storybook.tjikko-studio.a2hosted.com'
     - source /home/tjikkost/nodevenv/smpx-storybook.tjikko-studio.a2hosted.com/14/bin/activate && cd $DEPLOY_PATH
     - git pull
+    - source .env
     - npm ci
     - npm run build
     - npm run build:storybook
