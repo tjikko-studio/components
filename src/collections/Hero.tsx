@@ -27,6 +27,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
 
 export const Hero: FC<HeroProps> = ({
   bgColor,
+  bgHasImage = false,
   bgHasVideo = false,
   bgImage,
   bgVideo,
@@ -39,7 +40,7 @@ export const Hero: FC<HeroProps> = ({
       className={`min-h-hero lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative text-gray-50 `}
       style={{
         backgroundColor: `${ bgColor ? bgColor : '' }`,
-        backgroundImage: `url(${bgImage ? bgImage.url : '' })`,
+        backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
       }}
     >
       {
@@ -81,6 +82,6 @@ function getComponent (component: {
     case 'Form':
       return <Form key={JSON.stringify(component.content)} {...component.content} />
     default:
-      return ('')
+      return null
   }
 }
