@@ -15,7 +15,7 @@ const componentsConfig = {
     roots: [
       __dirname
     ],
-    extensions: ['.ts', '.tsx', '.js', '.svg']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg']
   },
   name: 'components',
   entry: path.resolve(__dirname, './src/index.tsx'),
