@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Heading} from '../blocks/Heading'
 import {Text} from '../blocks/Text'
