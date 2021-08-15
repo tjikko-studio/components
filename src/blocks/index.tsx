@@ -11,6 +11,7 @@ import {Secondary} from './Secondary'
 import {Tertiary} from './Tertiary'
 import {Testimonial} from './Testimonial'
 import {Text} from './Text'
+import {TextGroup} from './TextGroup'
 
 export default {
   Breadcrumb,
@@ -25,5 +26,6 @@ export default {
   Secondary,
   Tertiary,
   Testimonial,
-  Text
+  Text,
+  TextGroup
 }
