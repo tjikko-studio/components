@@ -32,11 +32,11 @@ export const Form: FC<FormProps> = ({
     <form className='grid gap-4'>
       {
         content.map(({ columns }) => (
-          <section className={`${formClasses.join(' ')}`}>
+          <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
             {columnInputLabel = false}
             {
               columns.map((column) => (
-                <div className={`sm:col-span-${getWidth(column.width)}`}>
+                <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
                       if (block.type !== 'ButtonsGroup') {

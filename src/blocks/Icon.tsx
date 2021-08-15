@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
-import {Media} from '../parts/Media'
+import {Media, ImageProps} from '../parts/Media'
 
 /*
 * In production mode, show dynamic image and video with url
@@ -14,7 +14,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    *  image url to show
    */
-  image?: {}
+  image?: ImageProps
 
   /**
    * title text

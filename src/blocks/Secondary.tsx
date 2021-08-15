@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {Media} from '../parts/Media'
+import {Media, ImageProps} from '../parts/Media'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
@@ -11,7 +11,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: {}
+  image?: ImageProps
 
   /**
   *  Video properties

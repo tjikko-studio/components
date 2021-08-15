@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
-import {Media} from '../parts/Media'
+import {Media, ImageProps} from '../parts/Media'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../../tailwind.config.js'
 
@@ -20,7 +20,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: {}
+  image?: ImageProps
 
   /**
   *  Video properties

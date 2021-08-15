@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {Media} from '../parts/Media'
+import {Media, ImageProps} from '../parts/Media'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -15,7 +15,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: {}
+  image?: ImageProps
 
   /**
   *  Video properties

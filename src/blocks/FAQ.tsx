@@ -29,18 +29,18 @@ export const FAQ: FC<FAQProps> = ({
       className={`text-gray-900 dark:text-gray-50 flex flex-col space-y-12 ${className}`}
     >
       {
-        content.map((question) => {
+        content.map((qa) => {
           return (
-            <div>
+            <div key={qa.question}>
               <div
                 className='fontStyle-lg strong'
               >
-                {question.question}
+                {qa.question}
               </div>
               <div
                 className='pt-2 fontStyle-base'
               >
-                {question.answer}
+                {qa.answer}
               </div>
             </div>
           )
