@@ -1,31 +1,31 @@
-import React, {FC, HTMLAttributes, useState, useEffect} from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 
 export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * type of SideNavItem ('linkHeader' | 'link' | 'header')
    */
   type?: 'linkHeader' | 'link' | 'header'
-  
+
   /**
    *  nav text
    */
   text?: string
-  
+
   /**
    *  nav url
    */
   url?: string
-  
+
   /**
    * status of item
    */
   status?: 'default' | 'active' | 'hover'
-  
+
   /**
    * space bar ? if spacer, true else false
    */
   spacer?: boolean
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
@@ -54,6 +54,6 @@ export const SideNavItem: FC<SideNavItemProps> = ({
           className={`fontStyle-sm ${type === 'header' ? 'strong' : ''}`}
         >{text}</a>}
     </li>
-    
+
   )
 }
