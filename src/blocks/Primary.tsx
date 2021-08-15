@@ -8,7 +8,7 @@ const tailwind = resolveConfig(tailwindConfig)
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Is the composent direction  default/horizontasl (left to right) or vertical (image above)
+   * Is the component direction  default/horizontal (left to right) or vertical (image above)
    */
   layout?: 'default' | 'vertical'
 
@@ -52,32 +52,32 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 
-type KirbyApiResponse = {
-  code: number,
-  data: any,
-  status: string,
-  type: string
-}
+// type KirbyApiResponse = {
+//   code: number,
+//   data: any,
+//   status: string,
+//   type: string
+// }
 
-async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
-  const path = `http://0.0.0.0:8000/api/${slug}`
-  const access =  btoa('test@tjikko.studio' + ':' + 'passw0rd')
+// async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
+//   const path = `http://0.0.0.0:8000/api/${slug}`
+//   const access =  btoa('test@tjikko.studio' + ':' + 'passw0rd')
 
-  const res = await fetch(path, {
-    headers: {
-      'Authorization': `Basic ${access}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'X-Language': locale
-    }
-  })
-  return res.json()
-}
+//   const res = await fetch(path, {
+//     headers: {
+//       'Authorization': `Basic ${access}`,
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//       'X-Language': locale
+//     }
+//   })
+//   return res.json()
+// }
 
-const getContent = async (slug: string, locale: string = '') => {
-  const a = await kirbyApiCall(slug, locale);
-  console.log(a.data);
-};
+// const getContent = async (slug: string, locale: string = '') => {
+//   const a = await kirbyApiCall(slug, locale);
+//   console.log(a.data);
+// };
 
 
 /**
