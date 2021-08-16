@@ -112,7 +112,6 @@ export const Primary: FC<PrimaryProps> = ({
     <div
       className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
-      {console.log(layout)}
       {
         (layout === 'default' || layout === 'vertical') && (
           <>

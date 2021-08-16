@@ -27,15 +27,13 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Heading: FC<HeadingProps> = ({
-  level = '',
+  level = 'h3',
   alignment = 'left',
   text,
   className = ''
 }) => {
   const Content = () => {
-    let HeaderTag = 'h3';
-    if ((level !== '' ))
-      HeaderTag = level;
+    const HeaderTag = level;
       
     return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
   }
