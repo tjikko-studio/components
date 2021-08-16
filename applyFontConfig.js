@@ -12,6 +12,48 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
     },
     'uppercase': {
       letterSpacing: theme('letterSpacing.wider'),
+    },
+    'h1': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.6xl'),
+      lineHeight: theme('lineHeight.6xl'),
+      letterSpacing: theme('letterSpacing.wider'),
+      fontWeight: theme('fontWeight.6xl')
+    },
+    'h2': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.5xl'),
+      lineHeight: theme('lineHeight.5xl'),
+      letterSpacing: theme('letterSpacing.wider'),
+      fontWeight: theme('fontWeight.5xl')
+    },
+    'h3': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.4xl'),
+      lineHeight: theme('lineHeight.4xl'),
+      letterSpacing: theme('letterSpacing.wider'),
+      fontWeight: theme('fontWeight.4xl')
+    },
+    'h4': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.3xl'),
+      lineHeight: theme('lineHeight.3xl'),
+      letterSpacing: theme('letterSpacing.widest'),
+      fontWeight: theme('fontWeight.3xl')
+    },
+    'h5': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.2xl'),
+      lineHeight: theme('lineHeight.2xl'),
+      letterSpacing: theme('letterSpacing.widest'),
+      fontWeight: theme('fontWeight.2xl')
+    },
+    'h6': {
+      fontFamily: theme('fontFamily.display'),
+      fontSize: theme('fontSize.xl'),
+      lineHeight: theme('lineHeight.xl'),
+      letterSpacing: theme('letterSpacing.widest'),
+      fontWeight: theme('fontWeight.xl')
     }
   }
   const fontStyles = {
@@ -124,7 +166,7 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.xl'),
       lineHeight: theme('lineHeight.xl'),
-      letterSpacing: theme('letterSpacing.xl'),
+      letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.xl'),
       textTransform: 'uppercase'
     },
@@ -132,56 +174,56 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.2xl'),
       lineHeight: theme('lineHeight.2xl'),
-      letterSpacing: theme('letterSpacing.2xl'),
+      letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.2xl')
     },
     '.fontStyle-3xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.3xl'),
       lineHeight: theme('lineHeight.3xl'),
-      letterSpacing: theme('letterSpacing.3xl'),
+      letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.3xl')
     },
     '.fontStyle-4xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.4xl'),
       lineHeight: theme('lineHeight.4xl'),
-      letterSpacing: theme('letterSpacing.4xl'),
+      letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.4xl')
     },
     '.fontStyle-5xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.5xl'),
       lineHeight: theme('lineHeight.5xl'),
-      letterSpacing: theme('letterSpacing.5xl'),
+      letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.5xl')
     },
     '.fontStyle-6xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.6xl'),
       lineHeight: theme('lineHeight.6xl'),
-      letterSpacing: theme('letterSpacing.6xl'),
+      letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.6xl')
     },
     '.fontStyle-7xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.7xl'),
       lineHeight: theme('lineHeight.7xl'),
-      letterSpacing: theme('letterSpacing.7xl'),
+      letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.7xl')
     },
     '.fontStyle-8xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.8xl'),
       lineHeight: theme('lineHeight.8xl'),
-      letterSpacing: theme('letterSpacing.8xl'),
+      letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.8xl')
     },
     '.fontStyle-9xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.9xl'),
       lineHeight: theme('lineHeight.9xl'),
-      letterSpacing: theme('letterSpacing.9xl'),
+      letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.9xl')
     },
   }
