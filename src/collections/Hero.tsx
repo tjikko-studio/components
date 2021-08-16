@@ -40,7 +40,6 @@ export const Hero: FC<HeroProps> = ({
   contentPosition,
   content
 }) => {
-  console.log(bgImage)
   const sm = false;/* useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`) */
 
   return (
