@@ -29,7 +29,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
   content
 }) => {
   return (
-    <>
+    <marquee>
     {/* <Marquee gradientWidth='0'> */}
       <div className={`flex flex-nowrap w-max  space-x-14 lg:space-x-32 md:space-x-16`}>
         {content.map(({image, company}) => {
@@ -45,6 +45,6 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         }
       </div>
     {/* </Marquee> */}
-    </>
+    </marquee>
   )
 }
