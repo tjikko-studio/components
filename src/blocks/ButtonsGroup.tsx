@@ -24,7 +24,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`inline-flex space-x-4  ${className}`}>
+    <div className={`inline-flex space-x-4 w-max ${className}`}>
       {buttons.map(({link, label, type, iconPos, size, fullWidth}, index) => (
         <Button
           key={`[${label}](${link})`}

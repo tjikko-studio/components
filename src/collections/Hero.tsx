@@ -17,7 +17,13 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgImage ?: {
     url: string
   }
-  bgVideo ?: string
+  bgVideo ?: string,
+
+  /**
+   * Content Position
+   */
+  contentPosition?: string,
+  
 
   /**
    * Hero object that will be parsed through to build the component
@@ -31,8 +37,10 @@ export const Hero: FC<HeroProps> = ({
   bgHasVideo = false,
   bgImage,
   bgVideo,
+  contentPosition,
   content
 }) => {
+
   const sm = false;/* useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`) */
 
   return (
@@ -74,7 +82,7 @@ function getComponent (component: {
 }) {
   switch (component.type) {
     case 'Heading':
-      return <Heading key={JSON.stringify(component.content)} {...component.content} level="h1" className='fontStyle-6xl' />
+      return <Heading key={JSON.stringify(component.content)} {...component.content} level="h1" />
     case 'Text':
       return <Text key={JSON.stringify(component.content)} {...component.content} tag='div' />
     case 'ButtonsGroup':

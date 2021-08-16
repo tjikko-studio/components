@@ -6,6 +6,11 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
    * (It won't be the same for a hero as for section)
    */
   level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+  /**
+   * text alignment
+   */
+  alignment?: 'left' | 'center' | 'right'
   
   /**
    * text to show as question
@@ -22,13 +27,17 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Heading: FC<HeadingProps> = ({
-  level = 'h3',
+  level = '',
+  alignment = 'left',
   text,
   className = ''
 }) => {
   const Content = () => {
-    const HeaderTag = level
-    return <HeaderTag className={`${className}`} >{text}</HeaderTag>
+    let HeaderTag = 'h3';
+    if ((level !== '' ))
+      HeaderTag = level;
+      
+    return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
   }
   return (
     <Content />

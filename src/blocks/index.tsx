@@ -10,6 +10,7 @@ import {Primary} from './Primary'
 import {Secondary} from './Secondary'
 import {Tertiary} from './Tertiary'
 import {Testimonial} from './Testimonial'
+import {Template} from './Template'
 import {Text} from './Text'
 import {TextGroup} from './TextGroup'
 
@@ -26,6 +27,7 @@ export default {
   Secondary,
   Tertiary,
   Testimonial,
+  Template,
   Text,
   TextGroup
 }

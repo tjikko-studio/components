@@ -73,40 +73,51 @@ export const Tertiary: FC<TertiaryProps> = ({
       </div>
     )
   }
+  
   const Text = () => {
     return (
       <div
-        className={layout !== 'vertical' ? 'flex justify-center' : ''}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'w-1/2 sm:flex '} `}
       >
         <div
-          className={layout !== 'vertical' ? 'pl-12' : ''}
+          className={`
+            ${layout !== 'vertical' && imagePosition === 'right' ? 'sm:pr-6' : ''}
+            ${layout !== 'vertical' && imagePosition === 'left' ? 'sm:pl-6' : ''}
+          `}
         >
           <h2
-            className='fontStyle-2xl'
+            className='fontStyle-2xl mb-2'
           >
             {title}
           </h2>
           <p
-            className='fontStyle-base pt-2'
+            className='fontStyle-base'
+            dangerouslySetInnerHTML={{ __html: body }}
           >
-            {body}
           </p>
         </div>
       </div>
     )
   }
-
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'flex' : ''} ${imagePosition === 'right' ? 'flex-row-reverse' : ''} ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
       {
-        (layout === 'default' || layout === 'vertical') && (
-          <>
-            <Image />
-            <Text />
-          </>
-        )
+        <>
+          <div
+            className={`${layout === 'vertical' ? 'sm:pb-8' : 'w-1/2'}`}
+          >
+            {image && (
+              <Media
+                media={image}
+                autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+                className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+              />
+            )}
+          </div>
+          <Text />
+        </>
       }
     </div>
   )

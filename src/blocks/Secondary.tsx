@@ -37,9 +37,9 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   buttons?: GroupButtonProps[]
 
   /**
-   * Image position
+   * Image Position
    */
-  imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
+  imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -64,10 +64,11 @@ export const Secondary: FC<SecondaryProps> = ({
   className = '',
 
 }) => {
+  /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
   const Image = () => {
     return (
       <div
-        className={layout === 'vertical' ? 'pb-6' : ''}
+        className={(layout === 'vertical' ? 'pb-6' : '')}
       >
         {image && (
           <Media
@@ -79,35 +80,50 @@ export const Secondary: FC<SecondaryProps> = ({
       </div>
     )
   }
+
   const Text = () => {
     return (
       <div
-        className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' && 'flex justify-center'}`}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'w-1/2 sm:flex '} `}
       >
         <div
-          className={`
-              ${layout !== 'vertical' && 'pl-12'}
-          `}
+          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
         >
-          <h2 className='fontStyle-4xl'>{title}</h2>
-          <p className='fontStyle-base pt-2'>{body}</p>
-          {
-            Object.keys(buttons).length >= 1 && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='mt-6' />
-          }
+          <h2
+            className='fontStyle-4xl mb-4'
+          >
+            {title}
+          </h2>
+          <p
+            className='fontStyle-base'
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </div>
       </div>
     )
   }
   return (
     <div
-      className={`${layout === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
-      {(layout === 'default' || layout === 'vertical') && (
-        <>
-          <Image />
-          <Text />
-        </>
-      )}
+      {
+        (layout === 'default' || layout === 'vertical') && (
+          <>
+            <div
+              className={`${layout === 'vertical' ? 'sm:pb-8' : 'w-1/2 sm:p-4'}`}
+            >
+              {image && (
+                <Media
+                  media={image}
+                  autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+                  className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+                />
+              )}
+            </div>
+            <Text />
+          </>
+        )
+      }
     </div>
   )
 }

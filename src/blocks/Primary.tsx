@@ -13,9 +13,9 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   layout?: 'default' | 'vertical'
 
   /**
-   * Image position
+   * Image Position
    */
-  imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
+  imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
   /**
   *  Block image
@@ -51,35 +51,6 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-
-// type KirbyApiResponse = {
-//   code: number,
-//   data: any,
-//   status: string,
-//   type: string
-// }
-
-// async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
-//   const path = `http://0.0.0.0:8000/api/${slug}`
-//   const access =  btoa('test@tjikko.studio' + ':' + 'passw0rd')
-
-//   const res = await fetch(path, {
-//     headers: {
-//       'Authorization': `Basic ${access}`,
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//       'X-Language': locale
-//     }
-//   })
-//   return res.json()
-// }
-
-// const getContent = async (slug: string, locale: string = '') => {
-//   const a = await kirbyApiCall(slug, locale);
-//   console.log(a.data);
-// };
-
-
 /**
  * Primary UI component for user interaction
  */
@@ -96,24 +67,39 @@ export const Primary: FC<PrimaryProps> = ({
   buttons,
 }) => {
   /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
+  const Image = () => {
+    return (
+      <div
+        className={(layout === 'vertical' ? 'pb-6' : '')}
+      >
+        {image && (
+          <Media
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
+      </div>
+    )
+  }
+
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:flex sm:items-center sm:justify-center'} `}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'w-1/2 sm:flex sm:items-center sm:justify-center'} `}
       >
         <div
           className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
         >
           <h2
-            className='fontStyle-4xl'
+            className='fontStyle-4xl mb-4'
           >
             {title}
           </h2>
           <p
-            className='fontStyle-base mt-2'
-          >
-            {body}
-          </p>
+            className='fontStyle-base'
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
           {
             Object.keys(buttons).length >= 1 &&
             <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4mt-6' />
@@ -124,19 +110,20 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`body-gray-900 dark:body-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
+      {console.log(layout)}
       {
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:px-12 sm:py-6'}`}
+              className={`${layout === 'vertical' ? 'sm:pb-8' : 'w-1/2 sm:p-4'}`}
             >
               {image && (
                 <Media
                   media={image}
                   autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-                  className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
+                  className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
                 />
               )}
             </div>

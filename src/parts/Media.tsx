@@ -93,7 +93,7 @@ export const Media: FC<GenericMediaProps> = ({
     case 'image':
       return <MediaImage key={media.url} {...media} className={className} />
     case 'video':
-      return <MediaVideo key={media.url} {...media} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+      return <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
     default:
       return null
   }
