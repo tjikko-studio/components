@@ -44,17 +44,23 @@
     "typescript": "4.3.5"
   },
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "11.2.0",
+    "@emotion/react": "11.4.1",
     "@headlessui/react": "1.4.0",
     "@heroicons/react": "1.0.3",
     "@tailwindcss/forms": "0.3.3",
     "@types/react-slick": "0.23.5",
+    "babel-preset-react-app": "10.0.0",
     "http-server": "13.0.0",
+    "os-browserify": "0.3.0",
+    "path-browserify": "0.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-fast-marquee": "1.2.1",
     "react-inlinesvg": "2.3.0",
     "react-media-hook": "0.4.9",
     "tailwindcss": "2.2.7",
+    "twin.macro": "2.6.2",
     "webpack": "5.49.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "4.7.2"
