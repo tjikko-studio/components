@@ -1,4 +1,5 @@
-import tw, { css } from 'twin.macro'
+import tw from 'twin.macro'
+import css from 'twin.macro'
 
 import React, { FC, HTMLAttributes } from 'react'
 
@@ -19,12 +20,12 @@ export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const TestComponent: FC<TestComponentProps> = ({
-  text,
-  className
+  text = 'I am a component with linked css style',
+  className = ''
 }) => {
   return (
     <div css={[tw`inline-block bg-red-200 p-12 rounded-xl text-2xl`]} >
-      I am a component with linked css style
+      {text}
     </div>
   )
 }
