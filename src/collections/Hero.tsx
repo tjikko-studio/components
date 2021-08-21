@@ -26,7 +26,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   contentPosition?: 'center|center' | 'bottom|left',
   heroHeight?: '90vh' | 'full',
-  
+
 
   /**
    * Hero object that will be parsed through to build the component
@@ -39,7 +39,7 @@ export const Hero: FC<HeroProps> = ({
   bgHasImage = false,
   bgHasVideo = false,
   bgImage = {},
-  bgVideo = {},
+  bgVideo = {url: ''},
   contentPosition = 'bottom|left',
   heroHeight = '90vh',
   content = []
@@ -57,7 +57,7 @@ export const Hero: FC<HeroProps> = ({
       {
         (bgHasVideo && sm) && (
           <video id="videoBG" poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full'>
-            <source src={bgVideo} type="video/mp4" />
+            <source src={bgVideo.url} type="video/mp4" />
           </video>
         )
       }
