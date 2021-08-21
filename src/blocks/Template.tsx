@@ -46,9 +46,9 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  pageId,
-  content,
-  fetchedContent
+  pageId = '',
+  content = [],
+  fetchedContent = []
 }) => {
   return (
     <div>

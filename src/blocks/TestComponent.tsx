@@ -1,3 +1,4 @@
+
 import tw from 'twin.macro'
 import css from 'twin.macro'
 
@@ -21,7 +22,7 @@ export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const TestComponent: FC<TestComponentProps> = ({
   text = 'I am a component with linked css style',
-  className = ''
+  className = '',
 }) => {
   return (
     <div css={[tw`inline-block bg-red-200 p-12 rounded-xl text-2xl`]} >

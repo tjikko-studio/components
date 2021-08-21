@@ -34,22 +34,22 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Background color
    */
-  bgColor?: string
+  bgColor?: 'transparent' | 'light|#F3F4F6' | 'dark|#171A22'
 
   /**
    * Content Position
    */
-  contentPosition?: string
+  contentPosition?: 'center|center' | 'bottom|left'
 
   /**
    * Layout width
    */
-   layoutWidth?: string
+   layoutWidth?: 'default' | 'tight'
 
    /**
     * Layout vertical spacing
     */
-    layoutSpacing?: string
+    layoutSpacing?: 'default' | 'tight'
 
   /**
    * Sections object that will be parsed through to build the component
@@ -58,18 +58,21 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const Section: FC<SectionProps> = ({
-  bgColor,
-  layoutWidth,
-  layoutSpacing,
-  contentPosition,
-  content
+  bgColor = 'transparent',
+  layoutWidth = 'default',
+  layoutSpacing = 'default',
+  contentPosition = 'center|center',
+  content = []
 }) => {
-  const verAlign = contentPosition.split('|')[0];
-  const horAlign = contentPosition.split('|')[1];
-  const theme = bgColor.split('|')[0]
-  const background = bgColor.split('|')[1];
-  let align = '';
-  let spacing = '';
+  const verAlign = contentPosition ? contentPosition.split('|')[0] : null
+  const horAlign = contentPosition ? contentPosition.split('|')[1] : null
+  const theme = bgColor ? bgColor.split('|')[0] : null
+  const background = bgColor ? bgColor.split('|')[1] : null
+  let layoutSpacingSection,;
+  let layoutSpacingBlock,;
+  let layoutSpacingOutside,;
+  let align,;
+  let spacing,;
 
   if (layoutWidth === 'full' || layoutWidth === ''){
     layoutWidth = `px-4 xs:px-8 md:px-12`

@@ -29,16 +29,10 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
 export const Heading: FC<HeadingProps> = ({
   level = 'h3',
   alignment = 'left',
-  text,
-  className = ''
+  text = '',
+  className = '',
 }) => {
-  const Content = () => {
-    let HeaderTag = 'h3';
-    if (level !== '' )
-      HeaderTag = level;
-      
-    return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
-  }
+  
   return (
     <Content />
   )

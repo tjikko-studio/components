@@ -31,11 +31,11 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const PopUpNavItem: FC<PopUpNavItemProps> = ({
-  caption = 'Link',
+  caption = 'link',
   type = 'default',
   href = '#',
   isActive = false,
-  children
+  children = []
 }) => {
   const classes = ['flex items-center']
   switch (type) {

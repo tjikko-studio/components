@@ -17,7 +17,7 @@ export interface TextStylesProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const TextStyles: FC<TextStylesProps> = ({
   type = 'all',
-  className = ''
+  className,
 }) => {
 
   return (

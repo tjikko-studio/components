@@ -6,7 +6,6 @@ export interface ClientProps {
     url: string
   },
   company: string,
-  id: string
 }
 export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -26,7 +25,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ClientsLogos: FC<ClientsLogosProps> = ({
   size = 'default',
-  content
+  content = []
 }) => {
   return (
     <marquee>

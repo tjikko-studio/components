@@ -32,8 +32,8 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
-  year,
-  privacy,
+  year = '',
+  privacy = '',
   footerMenu = []
 }) => {
 

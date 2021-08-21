@@ -11,14 +11,15 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     height: number
     ratio: number
     orientation: string
-  }
+  },
   content?: {
-    alt?: string,
-    caption?: string,
-    creator?: string,
-    license?: string,
-    link?: string,
-  }
+    alt?: string
+    caption?: string
+    creator?: string
+    license?: string
+    link?: string
+  },
+  className : string
 }
 
 export interface ImageProps extends MediaProps {
@@ -26,9 +27,14 @@ export interface ImageProps extends MediaProps {
 }
 
 export const MediaImage: FC<ImageProps> = ({
+  type,
+  id,
+  link,
   url,
-  content,
-  className
+  extension,
+  dimensions = {},
+  content = {},
+  className,
 }) => {
   return (
     <figure role='group'>
@@ -87,7 +93,7 @@ export const Media: FC<GenericMediaProps> = ({
   muted = true,
   controls = false,
   loop = false,
-  className = ''
+  className,
 }) => {
   switch (media.type) {
     case 'image':

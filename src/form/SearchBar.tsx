@@ -34,11 +34,11 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const SearchBar: FC<SearchBarProps> = ({
-  isDisabled,
-  isFocussed,
+  isDisabled = false,
+  isFocussed = false,
   text,
   placeHolder,
-  className = ''
+  className,
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
   const classes = ['form-input w-72 flex rounded-lg items-center overflow-hidden w-full pl-11 fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600' ]

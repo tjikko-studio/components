@@ -57,14 +57,15 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Primary: FC<PrimaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  title,
-  body,
-  buttons,
+  image = [],
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = true,
+  title = '',
+  body = '',
+  buttons = [],
+  className = '',
 }) => {
   /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
   const Image = () => {

@@ -12,10 +12,6 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
     url: string
   }
   /**
-   * alternate string for avatar
-   */
-  avatarAlt?: string
-  /**
    * customer name to display on Testimonial
    */
   title?: string
@@ -25,9 +21,9 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Testimonial: FC<TestimonialProps> = ({
-  body,
-  image,
-  title,
+  body = '',
+  image = {},
+  title = '',
 }) => {
   return (
     <div className='flex flex-col space-y-6 text-gray-900 dark:text-gray-50'

@@ -19,24 +19,26 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  type: 'primary',
-  text: 'Primary Button',
-  url: '',
-  icon: 'none',
-  size: 'default',
-  forceDark: false
+  type : 'primary',
+  label : 'Primary Button',
+  size : 'default',
+  icon : '',
+  iconPos : 'left',
+  link : '',
+  className : '',
+  forceDark : false
 }
 
 export const Secondary = Template.bind({})
 Secondary.args = {
   ...Primary.args,
   type: 'secondary',
-  text: 'Secondary Button'
+  label: 'Secondary Button'
 }
 
 export const Tertiary = Template.bind({})
 Tertiary.args = {
   ...Primary.args,
   type: 'tertiary',
-  text: 'Tertiary Button'
+  label: 'Tertiary Button'
 }

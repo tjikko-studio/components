@@ -11,18 +11,21 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Background datas
    */
-  bgColor ?: string
+  bgColor?: 'transparent' | 'light|#F3F4F6' | 'dark|#171A22'
   bgHasImage ?: boolean
   bgHasVideo ?: boolean
   bgImage ?: {
     url: string
   }
-  bgVideo ?: string,
+  bgVideo ?: {
+    url: string
+  },
 
   /**
    * Content Position
    */
-  contentPosition?: string,
+  contentPosition?: 'center|center' | 'bottom|left',
+  heroHeight?: '90vh' | 'full',
   
 
   /**
@@ -32,13 +35,14 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const Hero: FC<HeroProps> = ({
-  bgColor,
+  bgColor = 'transparent',
   bgHasImage = false,
   bgHasVideo = false,
-  bgImage,
-  bgVideo,
-  contentPosition,
-  content
+  bgImage = {},
+  bgVideo = {},
+  contentPosition = 'bottom|left',
+  heroHeight = '90vh',
+  content = []
 }) => {
   const sm = false;/* useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`) */
 

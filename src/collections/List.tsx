@@ -5,7 +5,10 @@ export interface ListProps<ItemType extends FC> {
   Component: (item: ItemType) => React.ReactNode
 }
 
-export const List: FC<ListProps<any>> = ({ items, Component}) => {
+export const List: FC<ListProps<any>> = ({
+  Component,
+  items = [],
+}) => {
   return (
     <>
       {items.map((itemProps) => {

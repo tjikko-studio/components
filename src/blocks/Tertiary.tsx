@@ -49,14 +49,14 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Tertiary: FC<TertiaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  title,
-  body,
-  className = ''
+  image = {},
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = true,
+  title = '',
+  body = '',
+  className = '',
 }) => {
   const Image = () => {
     return (

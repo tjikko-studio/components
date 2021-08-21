@@ -70,17 +70,17 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Input: FC<InputProps> = ({
-  isError,
-  isDisabled,
-  isValidating,
-  isSuccess,
-  isFocussed,
+  isError = false,
+  isDisabled = false,
+  isValidating = false,
+  isSuccess = false,
+  isFocussed = false,
   label,
   text,
   placeholder,
   information,
   error,
-  className = ''
+  className,
 }) => {
   const labelContainerClasses = ['fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300']
   const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']

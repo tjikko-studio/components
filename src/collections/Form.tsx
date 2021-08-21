@@ -23,7 +23,7 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
 
 export const Form: FC<FormProps> = ({
   width = 'full',
-  content
+  content = []
 }) => {
   const formClasses = [`grid sm:grid-cols-12 gap-4 w-${width}`]
   let columnInputLabel : boolean;

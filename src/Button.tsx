@@ -45,13 +45,14 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Button: FC<ButtonProps> = ({
-  type = 'primary',
-  label = 'Button',
-  size = 'default',
-  icon,
-  link,
-  className = '',
-  forceDark = false
+type = 'primary',
+label = 'Button',
+size = 'default',
+icon = '',
+iconPos = 'left',
+link = '',
+className = '',
+forceDark = false
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']

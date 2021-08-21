@@ -39,7 +39,7 @@ export const NavItem: FC<NavItemProps> = ({
   styles = 'default/white',
   link = null,
   subMenu = [],
-  className = ''
+  className,
 }) => {
   const [mouseIn, setMouseIn] = useState(false)
   const [mouseClick, setMouseClick] = useState(false)

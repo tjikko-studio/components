@@ -53,14 +53,14 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Secondary: FC<SecondaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  title,
-  body,
-  buttons,
+  image = [],
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = true,
+  title = '',
+  body = '',
+  buttons = [],
   className = '',
 
 }) => {

@@ -21,8 +21,8 @@ export interface DividerProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Divider: FC<DividerProps> = ({
-  direction = "horizontal",
-  className = '',
+  direction = 'horizontal',
+  className,
   forceDark = false
 }) => {
   const dividerClasses = ['border-0 border-gray-300 dark:border-gray-600']

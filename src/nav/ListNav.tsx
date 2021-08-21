@@ -35,7 +35,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
   linkList = [],
-  className = ''
+  className,
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
   const classes = [className]

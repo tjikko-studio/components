@@ -70,17 +70,17 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const TextArea: FC<TextAreaProps> = ({
-  isDisabled,
-  isError,
-  isValidating,
-  isSuccess,
+  isError = false,
+  isDisabled = false,
+  isValidating = false,
+  isSuccess = false,
+  isFocussed = false,
   label,
-  isFocussed,
   text,
   placeholder,
   information,
   error,
-  className = ''
+  className,
 }) => {
   const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)

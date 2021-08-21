@@ -28,10 +28,11 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 export const Text: FC<TextProps> = ({
   tag = 'p',
   alignment = 'left',
-  text,
+  text = '',
   className = ''
 }) => {
   const TextTag = tag
+
   return (
     <TextTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} dangerouslySetInnerHTML={{ __html: text }} />
   )

@@ -18,7 +18,7 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
  */
 export const SideNav: FC<SideNavProps> = ({
   items = [],
-  className = ''
+  className,
 }) => {
 
   return (
