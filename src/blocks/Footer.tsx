@@ -16,12 +16,12 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
    * Footer object that will be parsed through to build the component
    */
   footerMenu?: FooterDataType[]
-  
+
   /**
    * year to show on bottom
    */
   year?: string
-  
+
   /**
    * privacy policy text
    */
@@ -53,10 +53,10 @@ export const Footer: FC<FooterProps> = ({
         className='px-6 pt-8 lg:flex md:grid md:grid-cols-2'
       >
         {
-          footerMenu.map((menu, menuIndex) => {
+          footerMenu.map((menu) => {
             return (
               <ul
-                key={menuIndex}
+                key={menu.caption}
                 className={`flex-1 pb-12 lg:mb-0`}
               >
                 <li
@@ -65,10 +65,10 @@ export const Footer: FC<FooterProps> = ({
                   {menu.caption}
                 </li>
                 {
-                  menu.menuList.map((menuItem, itemIndex) => {
+                  menu.menuList.map((menuItem) => {
                     return (
                       <li
-                        key={itemIndex}
+                        key={menuItem.name}
                         className='fontStyle-sm text-gray-50 hover:text-primary-300 pt-3'
                       >
                         <a
