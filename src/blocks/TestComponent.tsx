@@ -25,7 +25,7 @@ export const TestComponent: FC<TestComponentProps> = ({
   className = '',
 }) => {
   return (
-    <div css={[tw`inline-block bg-red-200 p-12 rounded-xl text-2xl`]} >
+    <div css={tw`inline-block bg-red-200 p-12 rounded-xl text-2xl`} >
       {text}
     </div>
   )
