@@ -20,7 +20,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
   *  Video properties
@@ -57,7 +57,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Primary: FC<PrimaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image = [],
+  image = null,
   autoplay = true,
   muted = true,
   controls = false,

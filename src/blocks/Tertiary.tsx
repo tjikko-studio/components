@@ -15,7 +15,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
   *  Video properties
@@ -49,7 +49,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Tertiary: FC<TertiaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image = {},
+  image = null,
   autoplay = true,
   muted = true,
   controls = false,
@@ -73,7 +73,7 @@ export const Tertiary: FC<TertiaryProps> = ({
       </div>
     )
   }
-  
+
   const Text = () => {
     return (
       <div

@@ -11,7 +11,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
   *  Video properties
@@ -53,7 +53,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Secondary: FC<SecondaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image = [],
+  image = null,
   autoplay = true,
   muted = true,
   controls = false,
