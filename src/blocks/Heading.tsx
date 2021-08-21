@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes } from 'react'
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Text semantic tag 
+   * Text semantic tag
    * (It won't be the same for a hero as for section)
    */
   level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -11,7 +11,7 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
    * text alignment
    */
   alignment?: 'left' | 'center' | 'right'
-  
+
   /**
    * text to show as question
    */
@@ -33,10 +33,10 @@ export const Heading: FC<HeadingProps> = ({
   className = '',
 }) => {
   const Content = () => {
-    let HeaderTag = 'h3';
+    let HeaderTag: keyof JSX.IntrinsicElements = 'h3';
     if (level)
       HeaderTag = level;
-      
+
     return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
   }
   return (
