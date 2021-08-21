@@ -44,12 +44,12 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Layout width
    */
-   layoutWidth?: 'default' | 'tight'
+  layoutWidth?: 'default' | 'tight'
 
-   /**
-    * Layout vertical spacing
-    */
-    layoutSpacing?: 'default' | 'tight'
+  /**
+   * Layout vertical spacing
+   */
+  layoutSpacing?: 'default' | 'tight'
 
   /**
    * Sections object that will be parsed through to build the component
@@ -68,37 +68,16 @@ export const Section: FC<SectionProps> = ({
   const horAlign = contentPosition ? contentPosition.split('|')[1] : null
   const theme = bgColor ? bgColor.split('|')[0] : null
   const background = bgColor ? bgColor.split('|')[1] : null
-  let layoutSpacingSection,;
-  let layoutSpacingBlock,;
-  let layoutSpacingOutside,;
-  let align,;
-  let spacing,;
+  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
 
-  if (layoutWidth === 'full' || layoutWidth === ''){
-    layoutWidth = `px-4 xs:px-8 md:px-12`
-  } else if  (layoutWidth === 'tight'){
-    layoutWidth = `px-4 xs:px-24 md:px-32`
-  }
-
-  if (layoutSpacing === 'full' || layoutSpacing === ''){
-    layoutSpacing = `py-16 sm:py-20 md:py-32
-               space-y-12 sm:space-y-24 md:space-y-24`
-  } else if  (layoutSpacing === 'tight'){
-    layoutSpacing = `py-8 sm:py-10 md:py-16
-               space-y-6 sm:space-y-12 md:space-y-12`
-  }
-  
-  if (horAlign && verAlign)
-    align = `justify-${horAlign} items-${verAlign}`;
-  
   return (
     <div
       className={`
       flex flex-col
-      ${layoutWidth}
-      ${layoutSpacing}
+      ${layoutWidth === 'tight' ? 'px-4 xs:px-24 md:px-32' : 'px-4 xs:px-8 md:px-12'}
+      ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'}
       ${align}
-      ${theme} 
+      ${theme}
     `}
       style={{backgroundColor: `${ background }`}}
     >
@@ -153,7 +132,7 @@ function getComponent (component: {
   if (component.type === 'Secondary')
     imagePosSecondary = getNewPos(imagePosSecondary, component.content.imageposition);
   if (component.type === 'Tertiary')
-    imagePosTertiary = getNewPos(imagePosTertiary, component.content.imageposition);   
+    imagePosTertiary = getNewPos(imagePosTertiary, component.content.imageposition);
   switch (component.type) {
     case 'FAQ':
       return <FAQ key={JSON.stringify(component.content)} {...component.content} />
