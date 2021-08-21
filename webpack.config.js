@@ -3,10 +3,6 @@ const path = require('path')
 const componentsConfig = {
   module: {
     rules: [{
-      test: /\.tsx$/,
-      exclude: /\/node_modules\//,
-      use: 'ts-loader',
-    }, {
       test: /\.svg$/,
       use: 'react-svg-loader'
     },{
