@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -30,16 +30,13 @@ export const Heading: FC<HeadingProps> = ({
   level = 'h3',
   alignment = 'left',
   text = '',
-  className = '',
+  className = ''
 }) => {
-  const Content = () => {
-    let HeaderTag: keyof JSX.IntrinsicElements = 'h3';
-    if (level)
-      HeaderTag = level;
+  const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
 
-    return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
-  }
   return (
-    <Content />
+    <HeaderTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >
+      {text}
+    </HeaderTag>
   )
 }
