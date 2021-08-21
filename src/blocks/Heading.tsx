@@ -32,7 +32,13 @@ export const Heading: FC<HeadingProps> = ({
   text = '',
   className = '',
 }) => {
-  
+  const Content = () => {
+    let HeaderTag = 'h3';
+    if (level)
+      HeaderTag = level;
+      
+    return <HeaderTag  className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >{text}</HeaderTag>
+  }
   return (
     <Content />
   )
