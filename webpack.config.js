@@ -11,11 +11,11 @@ const componentsConfig = {
       use: 'react-svg-loader'
     },{
       test: /\.(ts|tsx)$/,
-      loader: require.resolve("babel-loader"),
+      loader: require.resolve('babel-loader'),
       options: {
         presets: [
-          ["react-app", { flow: false, typescript: true }],
-          require.resolve("@emotion/babel-preset-css-prop")
+          ['react-app', { flow: false, typescript: true }],
+          require.resolve('@emotion/babel-preset-css-prop')
         ]
       }
     }]
@@ -26,7 +26,7 @@ const componentsConfig = {
     ],
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
     fallback: {
-      path: require.resolve("path-browserify"),
+      path: require.resolve('path-browserify'),
       os: require.resolve('os-browserify/browser')
     }
   },
