@@ -17,12 +17,12 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
    * Visual style
    */
   styles: 'elevated' | 'flat'
-  
+
   /**
    * Links items list array that will be parsed through to build the component
    */
   linkList: MenuType[],
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
@@ -56,23 +56,33 @@ export const ListNav: FC<ListNavProps> = ({
       className={classes.join(' ')}
     >
       {
-        linkList.map((menu, index) => {
-          return <div className={`${wMax}`} key={index} >
-            {
-              (linkList.length > 1) && (
-                <PopUpNavItem
-                  caption={menu.groupCaption}
-                  type={'header'}
-                  className='py-2.5'
-                />
-              )
-            }
-            {
-              menu.groups.map((menuItem, subIndex) => {
-                return (<PopUpNavItem caption={menuItem.name} type={menuItem.type ? menuItem.type : 'default'} key={subIndex} className='py-2.5' href={menuItem.url} />)
-              })
-            }
-          </div>
+        linkList.map((menu) => {
+          return (
+            <div className={`${wMax}`} key={menu.groupCaption} >
+              {
+                (linkList.length > 1) && (
+                  <PopUpNavItem
+                    caption={menu.groupCaption}
+                    type={'header'}
+                    className='py-2.5'
+                  />
+                )
+              }
+              {
+                menu.groups.map((menuItem) => {
+                  return (
+                    <PopUpNavItem
+                      key={menuItem.name}
+                      caption={menuItem.name}
+                      type={menuItem.type ? menuItem.type : 'default'}
+                      className='py-2.5'
+                      href={menuItem.url}
+                    />
+                  )
+                })
+              }
+            </div>
+          )
         })
       }
     </div>
