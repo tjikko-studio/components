@@ -10,11 +10,11 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
    * Breadcrumb items list that will be parsed through to build the component
    */
   crumbs: BreadcrumbType[]
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
-   className?: string
+  className?: string
 }
 
 /**
