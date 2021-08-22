@@ -1,4 +1,5 @@
 {
+  "files": ["twin.d.ts"],
   "compilerOptions": {
     "noImplicitAny": true,
     "module": "es6",

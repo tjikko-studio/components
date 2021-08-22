@@ -1,9 +1,11 @@
-
-import tw from 'twin.macro'
-import css from 'twin.macro'
-
 import React, { FC, HTMLAttributes } from 'react'
+import tw, { styled } from 'twin.macro';
 
+const StyledInput = styled.input(({ hasBorder = null }) => [
+  `color: black;`,
+  hasBorder && tw`border-purple-500`,
+])
+const Input = () => <StyledInput hasBorder />
 
 export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -23,10 +25,11 @@ export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
 export const TestComponent: FC<TestComponentProps> = ({
   text = 'I am a component with linked css style',
   className = '',
-}) => {
+}) => { 
+
   return (
-    <div css={tw`inline-block bg-red-200 p-12 rounded-xl text-2xl`} >
-      {text}
+    <div>
+      <StyledInput hasBorder />
     </div>
   )
 }

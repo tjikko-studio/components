@@ -20,11 +20,7 @@ const componentsConfig = {
     roots: [
       __dirname
     ],
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
-    fallback: {
-      path: require.resolve('path-browserify'),
-      os: require.resolve('os-browserify/browser')
-    }
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg']
   },
   name: 'components',
   entry: path.resolve(__dirname, './src/index.tsx'),
