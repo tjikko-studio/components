@@ -1,8 +1,14 @@
 import React, { FC, HTMLAttributes } from 'react'
-import tw, { styled } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 
 
 export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Text semantic tag
+   * (It won't be the same for a hero as for section)
+   */
+  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
   /**
    * text to show as question
    */
@@ -21,31 +27,33 @@ export interface TestComponentProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const TestComponent: FC<TestComponentProps> = ({
+  level = 'h3',
   text = 'I am a component with linked css style',
-  className = '',
-  hasBorder,
-  alignment
+  hasBorder = false,
+  alignment = 'left',
+  className = 'underline' // classnames don't work with twin macro
 }) => { 
-  const HeaderTag: keyof JSX.IntrinsicElements = 'h3'
-
-  const Text = styled(HeaderTag)(({ 
+  
+  const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
+  const Header = styled(HeaderTag)(({ 
     AlignmentTextMaps = {
-      default: tw`opacity-40`,
-      left: tw`text-left`,
+      left: tw`w-max`,
       center: tw`text-center`,
       right: tw`text-right`,
     }}: TestComponentProps) => [
       tw`w-full`,
-      hasBorder && tw`border border-red-500`,
-      alignment &&  AlignmentTextMaps[alignment]
+      alignment && AlignmentTextMaps[alignment],
     ]
   )
 
+  const Input = tw.input`border border-black`
+
   return (
     <div>
-      <Text>
+      <Header tw="border hover:border-black" >
         {text}
-      </Text>
+      </Header>
+      <Input />
     </div>
   )
 }
