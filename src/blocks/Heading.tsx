@@ -1,4 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
+import tw, { styled } from 'twin.macro';
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -11,6 +12,7 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
    * text alignment
    */
   alignment?: 'left' | 'center' | 'right'
+  AlignmentTextMaps ?: any
 
   /**
    * text to show as question
@@ -32,11 +34,24 @@ export const Heading: FC<HeadingProps> = ({
   text = '',
   className = ''
 }) => {
+
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
 
+  const Header = styled(HeaderTag)(({ 
+    AlignmentTextMaps = {
+      left: tw`w-max`,
+      center: tw`text-center`,
+      right: tw`text-right`,
+    }}: HeadingProps) => [
+      tw`w-full`,
+      alignment && AlignmentTextMaps[alignment],
+      className
+    ]
+  )
+
   return (
-    <HeaderTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >
+    <Header className={className} >
       {text}
-    </HeaderTag>
+    </Header>
   )
 }
