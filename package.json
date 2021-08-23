@@ -45,9 +45,6 @@
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "11.2.0",
-    "@emotion/core": "11.0.0",
-    "@emotion/react": "11.4.1",
-    "@emotion/styled": "11.3.0",
     "@headlessui/react": "1.4.0",
     "@heroicons/react": "1.0.3",
     "@tailwindcss/forms": "0.3.3",
@@ -60,7 +57,6 @@
     "react-inlinesvg": "2.3.0",
     "react-media-hook": "0.4.9",
     "tailwindcss": "2.2.7",
-    "twin.macro": "2.7.0",
     "webpack": "5.49.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "4.7.2"

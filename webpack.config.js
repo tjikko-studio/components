@@ -6,14 +6,9 @@ const componentsConfig = {
       test: /\.svg$/,
       use: 'react-svg-loader'
     },{
-      test: /\.(ts|tsx)$/,
-      loader: require.resolve('babel-loader'),
-      options: {
-        presets: [
-          ['react-app', { flow: false, typescript: true }],
-          require.resolve('@emotion/babel-preset-css-prop')
-        ]
-      }
+      test: /\.tsx$/,
+      exclude: /\/node_modules\//,
+      use: 'ts-loader',
     }]
   },
   resolve: {
