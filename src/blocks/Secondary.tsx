@@ -65,32 +65,17 @@ export const Secondary: FC<SecondaryProps> = ({
 
 }) => {
   /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
-  const Image = () => {
-    return (
-      <div
-        className={(layout === 'vertical' ? 'pb-6' : '')}
-      >
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
-          />
-        )}
-      </div>
-    )
-  }
 
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'w-1/2 sm:flex '} `}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
       >
         <div
           className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
         >
           <h2
-            className='fontStyle-4xl mb-4'
+            className='fontStyle-4xl mb-4 break-words'
           >
             {title}
           </h2>
@@ -110,7 +95,7 @@ export const Secondary: FC<SecondaryProps> = ({
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'sm:pb-8' : 'w-1/2 sm:p-4'}`}
+              className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2 sm:p-4'}`}
             >
               {image && (
                 <Media

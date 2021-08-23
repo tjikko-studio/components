@@ -56,7 +56,7 @@ export const Template: FC<TemplateProps> = ({
       {
         !fetchedContent ? <div>No template yet</div> : (
           fetchedContent.map(({columns}) => (
-            <section key={JSON.stringify(columns)} className="grid grid-cols-12">
+            <section key={JSON.stringify(columns)} className="sm:grid sm:grid-cols-12">
               {
                 columns.map(({
                   width,

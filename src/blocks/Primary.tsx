@@ -67,33 +67,16 @@ export const Primary: FC<PrimaryProps> = ({
   buttons = [],
   className = '',
 }) => {
-  /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
-  const Image = () => {
-    return (
-      <div
-        className={(layout === 'vertical' ? 'pb-6' : '')}
-      >
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
-          />
-        )}
-      </div>
-    )
-  }
-
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'w-1/2 sm:flex sm:items-center sm:justify-center'} `}
+        className={`mt-4 lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `}
       >
         <div
-          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
+          className={`${layout !== 'vertical' ? 'lg:pl-12' : ''} `}
         >
           <h2
-            className='fontStyle-4xl mb-4'
+            className='fontStyle-4xl mb-4 break-words'
           >
             {title}
           </h2>
@@ -111,13 +94,13 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'lg:flex' : ''} ${imagePosition === 'right' ? 'lg:flex-row-reverse' : ''}`}
     >
       {
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'sm:pb-8' : 'w-1/2 sm:p-4'}`}
+              className={`${layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4'}`}
             >
               {image && (
                 <Media

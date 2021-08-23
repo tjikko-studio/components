@@ -64,18 +64,28 @@ export const Section: FC<SectionProps> = ({
   contentPosition = 'center|center',
   content = []
 }) => {
+  /* const [verAlign, horAlign] = contentPosition ? contentPosition.split('|') : null
+  const [theme, background] = bgColor ? bgColor.split('|') : null */
+
+  
   const verAlign = contentPosition ? contentPosition.split('|')[0] : null
   const horAlign = contentPosition ? contentPosition.split('|')[1] : null
   const theme = bgColor ? bgColor.split('|')[0] : null
   const background = bgColor ? bgColor.split('|')[1] : null
+
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
+
+
+  /* ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'} */
+
+  /* grid grid-cols-12 gap-12 xs:gap-14 md:gap-24 w-full */
+  /* col-span-${getWidth(width)} flex flex-col ${align} */
 
   return (
     <div
       className={`
-      flex flex-col
+      grid gap-y-8 p-16 w-full h-full min-h-full
       ${layoutWidth === 'tight' ? 'px-4 xs:px-24 md:px-32' : 'px-4 xs:px-8 md:px-12'}
-      ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'}
       ${align}
       ${theme}
     `}
@@ -83,13 +93,13 @@ export const Section: FC<SectionProps> = ({
     >
       {
         content.map(({columns}) => (
-          <section key={JSON.stringify(columns)} className="grid grid-cols-12 gap-12 xs:gap-14 md:gap-24 w-full">
+          <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-12 sm:gap-x-8 w-full h-full min-h-full">
             {
               columns.map(({
                 width,
                 blocks
               }) => (
-                <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align}`}>
+                <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-4 h-full min-h-full`}>
                   {
                     blocks.map(getComponent)
                   }

@@ -35,7 +35,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
   linkList = [],
-  className,
+  className = ''
 }) => {
   linkList = (linkList === null || linkList === undefined) ? [] : linkList
   const classes = [className]
@@ -46,7 +46,7 @@ export const ListNav: FC<ListNavProps> = ({
       wMax = 'w-max'
       break
     case 'flat':
-      classes.push('grid sm:grid-cols-2 justify-items-stretch gap-6')
+      classes.push('sm:grid sm:grid-cols-2 xs:gap-6 justify-items-stretch ')
       wMax = ''
     default:
       break
