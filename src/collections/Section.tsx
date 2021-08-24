@@ -57,6 +57,10 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   content?: SectionItemProps[]
 }
 
+function extractCombo (thing: string) {
+  return thing ? thing.split('|') : [null, null]
+}
+
 export const Section: FC<SectionProps> = ({
   bgColor = 'transparent',
   layoutWidth = 'default',
@@ -64,14 +68,8 @@ export const Section: FC<SectionProps> = ({
   contentPosition = 'center|center',
   content = []
 }) => {
-  /* const [verAlign, horAlign] = contentPosition ? contentPosition.split('|') : null
-  const [theme, background] = bgColor ? bgColor.split('|') : null */
-
-  
-  const verAlign = contentPosition ? contentPosition.split('|')[0] : null
-  const horAlign = contentPosition ? contentPosition.split('|')[1] : null
-  const theme = bgColor ? bgColor.split('|')[0] : null
-  const background = bgColor ? bgColor.split('|')[1] : null
+  const [verAlign, horAlign] = extractCombo(contentPosition)
+  const [theme, background] = extractCombo(bgColor)
 
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
 
