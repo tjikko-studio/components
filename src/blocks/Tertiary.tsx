@@ -35,11 +35,6 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    * text to display for paragraph
    */
   body: string
-
-  /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
-   */
-  className?: string
 }
 
 
@@ -55,25 +50,8 @@ export const Tertiary: FC<TertiaryProps> = ({
   controls = false,
   loop = true,
   title = '',
-  body = '',
-  className = '',
+  body = ''
 }) => {
-  const Image = () => {
-    return (
-      <div
-        className={(layout === 'vertical' ? 'pb-6' : '')}
-      >
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
-          />
-        )}
-      </div>
-    )
-  }
-
   const Text = () => {
     return (
       <div
@@ -103,22 +81,18 @@ export const Tertiary: FC<TertiaryProps> = ({
     <div
       className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
-      {
-        <>
-          <div
-            className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}
-          >
-            {image && (
-              <Media
-                media={image}
-                autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-                className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
-              />
-            )}
-          </div>
-          <Text />
-        </>
-      }
+      <div
+        className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}
+      >
+        {image && (
+          <Media
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
+      </div>
+      <Text />
     </div>
   )
 }
