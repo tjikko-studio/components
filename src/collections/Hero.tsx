@@ -56,8 +56,8 @@ export const Hero: FC<HeroProps> = ({
     >
       {
         (bgHasVideo && sm) && (
-          <video id="videoBG" poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full'>
-            <source src={bgVideo.url} type="video/mp4" />
+          <video id='videoBG' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full'>
+            <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
       }
