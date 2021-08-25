@@ -14,52 +14,52 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
-  
+
   /**
    * Label text
    */
   label?: string
-  
+
   /**
    * filled text
    */
   text?: string
-  
+
   /**
    * placeholder text
    */
   placeholder?: string
-  
+
   /**
    * information text
    */
   information?: string
-  
+
   /**
    * error text
    */
   error?: string
-  
+
   /**
    * error
    */
   isError?: boolean
-  
+
   /**
    * checking...
    */
   isValidating?: boolean
-  
+
   /**
    * success
    */
   isSuccess?: boolean
-  
+
   /**
    * disabled
    */
   isDisabled?: boolean
-  
+
   /**
     * Custom Classes
     */
@@ -80,7 +80,7 @@ export const Input: FC<InputProps> = ({
   placeholder,
   information,
   error,
-  className,
+  className = ''
 }) => {
   const labelContainerClasses = ['fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300']
   const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
@@ -118,13 +118,13 @@ export const Input: FC<InputProps> = ({
         disabled={isDisabled}
       />
       {
-        (information) && 
+        (information) &&
           <div
             className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
             dangerouslySetInnerHTML={{ __html: information }}
           >
           </div>
-          
+
       }
       {isError && (<div className='fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400'>{error}</div>)}
     </div>
