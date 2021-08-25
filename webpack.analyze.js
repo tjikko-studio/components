@@ -1,7 +1,7 @@
-const devConfig = require('./webpack.dev.js')
+const prodConfig = require('./webpack.prod.js')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-module.exports = devConfig.map(({ plugins = [], ...config}) => {
+module.exports = prodConfig.map(({ plugins = [], ...config}) => {
   return {
     ...config,
     plugins: plugins.concat([

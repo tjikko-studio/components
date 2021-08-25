@@ -24,24 +24,20 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
   crumbs = [],
   className = ''
 }) => {
-
-  const spanClasses = ['fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300']
-
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label='Breadcrumb'
       className={`dark:text-gray-50  ${className}`}
     >
-      <ul className="flex flex-wrap">
+      <ul className='flex flex-wrap'>
         {
           crumbs.map((item, index) => {
             return (
               <li
-                key={index}
+                key={item.name}
               >
                 <span
-                  className={spanClasses.join(' ')}
-                  key={index}
+                  className='fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300'
                 >
                   <a
                     href={item.url}
