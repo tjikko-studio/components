@@ -29,7 +29,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
 }) => {
   return (
     <div
-      className={`bg-gray-900 p-4`}
+      className={`bg-gray-900 p-4 block lg:hidden`}
     >
       <div className='flex justify-between p-2'>
         <div className='dark'>

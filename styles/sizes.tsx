@@ -78,19 +78,37 @@ const newHeightValues = {
 
 const heightValues = {...defaultHeightValues, ...newHeightValues}
 
+export interface MediaQueryProps {
+  [key: string]: string
+}
+
+const screens: MediaQueryProps = {
+  'xxs': '375px',
+  'xs': '414px',
+  'sm': '640px',
+  'md': '768px',
+  'lg': '1024px',
+  'xl': '1280px',
+  '2xl': '1536px'
+}
+
+/**
+ * These screenSizes have string values, which result in `min-width: value` in tailwind.
+ * This function just adds a `not`-prefixed version for `max-width`, with capitalization.
+ * So things like `notXxs`, `notLg`, `not2xl`, etc.
+ **/
+// const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
+//   const screenSize = screenSizes[key]
+//   return {
+//     ...all,
+//     [key]: screenSize,
+//     [`max-${key}`]: {max: screenSize}
+//   }
+// }, {})
+
 export default {
   height: heightValues,
   minHeight: heightValues,
   maxHeight: heightValues,
-  screens: {
-    'xxs': '375px',
-    'xs': '414px',
-    'sm': '640px',
-    'md': '768px',
-    'lg': '1024px',
-    'xl': '1280px',
-    '2xl': '1536px'
-  }
+  screens
 }
-
-/* module.exports = sizes; */

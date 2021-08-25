@@ -1,10 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 import {Media, ImageProps} from '../parts/Media'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config.js'
-
-const tailwind = resolveConfig(tailwindConfig)
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -51,35 +47,6 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-
-// type KirbyApiResponse = {
-//   code: number,
-//   data: any,
-//   status: string,
-//   type: string
-// }
-
-// async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
-//   const path = `http://0.0.0.0:8000/api/${slug}`
-//   const access =  btoa('test@tjikko.studio' + ':' + 'passw0rd')
-
-//   const res = await fetch(path, {
-//     headers: {
-//       'Authorization': `Basic ${access}`,
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//       'X-Language': locale
-//     }
-//   })
-//   return res.json()
-// }
-
-// const getContent = async (slug: string, locale: string = '') => {
-//   const a = await kirbyApiCall(slug, locale);
-//   console.log(a.data);
-// };
-
-
 /**
  * Primary UI component for user interaction
  */
@@ -95,7 +62,6 @@ export const Primary: FC<PrimaryProps> = ({
   body,
   buttons,
 }) => {
-  /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
   const Text = () => {
     return (
       <div
