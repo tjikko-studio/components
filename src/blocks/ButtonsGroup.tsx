@@ -21,7 +21,7 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   buttons = [],
-  className = '',
+  className = ''
 }) => {
   return (
     <div className={`inline-flex space-x-4 w-max ${className}`}>
