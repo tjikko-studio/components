@@ -7,10 +7,6 @@ import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
-import {useMediaPredicate} from 'react-media-hook'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config.js'
-const tailwind = resolveConfig(tailwindConfig);
 
 export interface LanguageType {
   current?: string | null
@@ -69,7 +65,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   mobileExpandDefault = false,
   className
 }) => {
-  const sm = useMediaPredicate(`(min-width: ${tailwind.theme.screens.sm})`)
   const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
   return (
     <>
@@ -137,7 +132,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           </div>
         </Disclosure>
       </div>
-      {(mobileExpand && !sm) ? (
+      {(mobileExpand) ? (
         <MobileMenu
           demoButtonText={demoButtonText}
           demoUrl={demoUrl}

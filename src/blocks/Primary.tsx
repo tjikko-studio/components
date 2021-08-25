@@ -1,10 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 import {Media, ImageProps} from '../parts/Media'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config.js'
-
-const tailwind = resolveConfig(tailwindConfig)
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
