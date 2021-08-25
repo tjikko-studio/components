@@ -36,7 +36,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 
   /**
-   * force dark mode (This will bypass dark mode and apply the darkmode on the composant even in light mode
+   * force dark mode (This will bypass dark mode and apply the dark mode on the component even in light mode
    */
   forceDark?: boolean
 }
@@ -45,14 +45,14 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Button: FC<ButtonProps> = ({
-type = 'primary',
-label = 'Button',
-size = 'default',
-icon = '',
-iconPos = 'left',
-link = '',
-className = '',
-forceDark = false
+  type = 'primary',
+  label = 'Button',
+  size = 'default',
+  icon = '',
+  iconPos = 'left',
+  link = '',
+  className = '',
+  forceDark = false
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']
@@ -114,15 +114,6 @@ forceDark = false
       )
     }
   }
-  /* const Icon = () => {
-    if (icon) {
-      return (
-        <span />
-      )
-    } else {
-      return ''
-    }
-  } */
   if (link) {
     return (
       <a
