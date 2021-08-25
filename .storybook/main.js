@@ -2,8 +2,6 @@ module.exports = {
   core: {
     builder: 'webpack5'
   },
-
-
   stories: [
     '../src/**/*.stories.tsx'
   ],
@@ -11,14 +9,13 @@ module.exports = {
   webpackFinal: async (config) => {
     const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
     fileLoaderRule.exclude = /\.svg$/;
-
     config.module.rules.push({
       test: /\.svg$/,
       enforce: 'pre',
       loader: require.resolve('react-svg-loader')
     });
     config.resolve.extensions.push(".ts", ".tsx");
-    
+
     return config
   }
 }
