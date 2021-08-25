@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
-import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
+import {GroupButtonProps} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -64,8 +64,6 @@ export const Secondary: FC<SecondaryProps> = ({
   className = '',
 
 }) => {
-  /* getContent('pages/solutions+remote-presentations/files/file.mp4', 'en') */
-
   const Text = () => {
     return (
       <div
