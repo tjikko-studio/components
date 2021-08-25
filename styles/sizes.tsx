@@ -82,7 +82,7 @@ export interface MediaQueryProps {
   [key: string]: string
 }
 
-const screenSizes: MediaQueryProps = {
+const screens: MediaQueryProps = {
   'xxs': '375px',
   'xs': '414px',
   'sm': '640px',
@@ -97,14 +97,14 @@ const screenSizes: MediaQueryProps = {
  * This function just adds a `not`-prefixed version for `max-width`, with capitalization.
  * So things like `notXxs`, `notLg`, `not2xl`, etc.
  **/
-const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
-  const screenSize = screenSizes[key]
-  all[key] = screenSize
-  const [firstLetter, ...remainingLetters] = key.split('')
-  const notKey = `not${firstLetter.toUpperCase()}${remainingLetters.join()}`
-  all[notKey] = {max: screenSize}
-  return all
-}, {})
+// const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
+//   const screenSize = screenSizes[key]
+//   return {
+//     ...all,
+//     [key]: screenSize,
+//     [`max-${key}`]: {max: screenSize}
+//   }
+// }, {})
 
 export default {
   height: heightValues,
