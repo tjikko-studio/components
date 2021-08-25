@@ -1,24 +1,24 @@
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
-  type: string,
-  id: string,
-  link: string,
-  url: string,
-  extension: string,
+  type: string
+  id: string
+  link: string
+  url: string
+  extension: string
   dimensions?: {
     width: number
     height: number
     ratio: number
     orientation: string
-  },
+  }
   content?: {
     alt?: string
     caption?: string
     creator?: string
     license?: string
     link?: string
-  },
+  }
   className : string
 }
 
