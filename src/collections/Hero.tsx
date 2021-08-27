@@ -3,6 +3,7 @@ import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Heading} from '../blocks/Heading'
 import {Text} from '../blocks/Text'
 import {Form} from './Form'
+import {ImageProps} from '../parts/Media'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -11,12 +12,8 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgColor?: 'transparent' | 'light|#F3F4F6' | 'dark|#171A22'
   bgHasImage ?: boolean
   bgHasVideo ?: boolean
-  bgImage ?: {
-    url: string
-  }
-  bgVideo ?: {
-    url: string
-  },
+  bgImage ?: ImageProps | null
+  bgVideo ?: ImageProps | null
 
   /**
    * Content Position
@@ -35,8 +32,8 @@ export const Hero: FC<HeroProps> = ({
   bgColor = 'transparent',
   bgHasImage = false,
   bgHasVideo = false,
-  bgImage = {},
-  bgVideo = {url: ''},
+  bgImage = null,
+  bgVideo = null,
   contentPosition = 'bottom|left',
   heroHeight = '90vh',
   content = []
@@ -49,10 +46,11 @@ export const Hero: FC<HeroProps> = ({
         backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
       }}
     >
+      {console.log(bgVideo)}
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='hidden sm:block absolute z-0 top-0 left-0 object-cover w-full h-full'>
+          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full'>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
