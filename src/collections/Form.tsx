@@ -29,7 +29,7 @@ export const Form: FC<FormProps> = ({
   let columnInputLabel : boolean;
 
   return (
-    <form className='grid gap-4'>
+    <form className='grid gap-4 max-w-screen-xl mx-auto'>
       {
         content.map(({ columns }) => (
           <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>

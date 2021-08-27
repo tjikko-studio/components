@@ -10,12 +10,12 @@ export const List: FC<ListProps<any>> = ({
   items = [],
 }) => {
   return (
-    <>
+    <div className='max-w-screen-xl mx-auto'>
       {items.map((itemProps) => {
         return (
           <div key={JSON.stringify(itemProps)}>{Component(itemProps)}</div>
         )
       })}
-    </>
+    </div>
   )
 }
