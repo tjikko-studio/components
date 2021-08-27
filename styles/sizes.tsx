@@ -49,7 +49,9 @@ const defaultHeightValues = {
   '2/6': '33.333333%',
   '3/6': '50%',
   '4/6': '66.666667%',
-  '5/6': '83.333333%'
+  '5/6': '83.333333%',
+  'full': '100%',
+  'screen': '100vh',
 }
 
 const newHeightValues = {
@@ -62,7 +64,7 @@ const newHeightValues = {
   '3/5vh': '60vh',
   '4/5vh': '80vh',
   '1/2vh': '50vh',
-  '100vh': '100vh',
+  '90vh': '90vh',
   '1/3vw': '33.333vw',
   '2/3vw': '66.666vw',
   '1/4vw': '25vw',
@@ -73,9 +75,7 @@ const newHeightValues = {
   '4/5vw': '80vw',
   '1/2vw': '50vw',
   '100vw': '100vw',
-  'hero': '600px'
 }
-
 const heightValues = {...defaultHeightValues, ...newHeightValues}
 
 export interface MediaQueryProps {

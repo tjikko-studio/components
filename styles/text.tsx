@@ -23,7 +23,7 @@ export default {
     'xs': '1em',
     'sm': '1.25em',
     'base': '1.5em',
-    'lg': '1.33333em',
+    'lg': '1.7625em',
     'xl': '1.33333em',
     '2xl': '1.16667em',
     '3xl': '1.2em',
