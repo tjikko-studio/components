@@ -70,46 +70,68 @@ export const Section: FC<SectionProps> = ({
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
-
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
-
-
+  
+  let isHeader = true;
+  let headerClass = ''
+  const testHeader = (blocks ?: {type: string}[] ) => {
+    isHeader = true
+    blocks.forEach( (value) => {
+      if (value.type != "Heading" && value.type != "Text"){
+        isHeader = false;
+      }
+    })
+    return isHeader;
+  }
+  
   /* ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'} */
 
   /* grid grid-cols-12 gap-12 xs:gap-14 md:gap-24 w-full */
   /* col-span-${getWidth(width)} flex flex-col ${align} */
 
   return (
-    <div
-      className={`
-      grid gap-y-8 p-16 w-full h-full min-h-full
-      ${layoutWidth === 'tight' ? 'px-4 xs:px-24 md:px-32' : 'px-4 xs:px-8 md:px-12'}
-      ${align}
+    <div className={`
+      overflow-hidden
       ${theme}
     `}
-      style={{backgroundColor: `${ background }`}}
+    style={{backgroundColor: `${ background }`}}
     >
+      <div
+      className={`
+      grid gap-y-8 p-16 w-full h-full min-h-full max-w-screen-xl mx-auto
+      ${layoutWidth === 'tight' ? 'px-4 xs:px-24 md:px-32' : 'px-4 xs:px-8 md:px-12'}
+      ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32 '}
+      ${align}
+    `}>
       {
-        content.map(({columns}) => (
-          <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-12 sm:gap-x-8 w-full h-full min-h-full">
-            {
-              columns.map(({
-                width,
-                blocks
-              }) => (
-                <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-4 h-full min-h-full`}>
-                  {
-                    blocks.map(getComponent)
-                  }
-                </div>
-              ))
-            }
-          </section>
-        ))
+        content.map(({columns}) => {
+          headerClass = content.length >= 2 && testHeader(columns[0].blocks) ? 'mb-4' : ''
+          return(
+              <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-12 sm:gap-x-12 w-full h-full min-h-full">
+                {
+                  columns.map(({
+                    width,
+                    blocks
+                  }) => (
+                    <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full min-h-full ${headerClass}`}>
+                      {
+                        blocks.map(getComponent)
+                      }
+                    </div>
+                  ))
+                }
+              </section>
+            )
+          }
+        )
       }
+    </div>
     </div>
   )
 }
+
+let isHeading = 'undefined';
+
 
 let imagePosPrimary = 'undefined';
 let imagePosSecondary = 'undefined';
@@ -163,7 +185,7 @@ function getComponent (component: {
     case 'Form':
       return <Form key={JSON.stringify(component.content)} {...component.content} />
     case 'Heading':
-      return <Heading key={JSON.stringify(component.content)} {...component.content} className='text-gray-900 dark:text-gray-50 mb-4' level={!component.content.level ? 'h2' : component.content.level}
+      return <Heading key={JSON.stringify(component.content)} {...component.content} className='text-gray-900 dark:text-gray-50' level={!component.content.level ? 'h2' : component.content.level}
     />
     case 'Text':
       return <Text key={JSON.stringify(component.content)} {...component.content} className='text-gray-900 dark:text-gray-50 fontStyle-lg' tag='div' />
