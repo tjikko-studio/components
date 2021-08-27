@@ -43,7 +43,7 @@ export const Hero: FC<HeroProps> = ({
 }) => {
   return (
     <header
-      className={`min-h-hero lg:h-90vh md:h-90vh sm:h-90vh overflow-hidden bg-cover relative text-gray-50 `}
+      className={`overflow-hidden bg-cover relative text-gray-50 `}
       style={{
         backgroundColor: `${ bgColor ? bgColor : '' }`,
         backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
@@ -52,7 +52,7 @@ export const Hero: FC<HeroProps> = ({
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='videoBG' poster={bgImage.url} autoPlay muted loop className='hidden sm:block absolute z-0 top-0 left-0 object-cover w-full h-full'>
+          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='hidden sm:block absolute z-0 top-0 left-0 object-cover w-full h-full'>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
@@ -63,12 +63,14 @@ export const Hero: FC<HeroProps> = ({
       <div
         className='absolute z-1 h-full -bottom-1/6 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-60'
       />
-      <div
-          className='absolute z-20 bottom-0 left-0 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5'
-      >
-        {
-          content.map(getComponent)
-        }
+      <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
+        <div
+            className='absolute z-20 bottom-0 left-0 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5'
+        >
+          {
+            content.map(getComponent)
+          }
+        </div>
       </div>
     </header>
   )
