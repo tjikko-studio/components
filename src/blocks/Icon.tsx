@@ -14,7 +14,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    *  image url to show
    */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
    * title text
@@ -47,7 +47,7 @@ export const Icon: FC<IconProps> = ({
       className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'sm:flex' : ''}`}
     >
       <div
-        className={`flex-shrink-0  w-32 ${layout === 'horizontal' ? 'sm:pb-14 pb-6' : 'py-2'}`}
+        className={`flex-shrink-0  w-32 ${layout !== 'horizontal' && 'sm:pb-14 pb-6'}`}
       >
         {image && (
           <Media
