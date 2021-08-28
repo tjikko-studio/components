@@ -49,7 +49,7 @@ export const Hero: FC<HeroProps> = ({
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full'>
+          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
