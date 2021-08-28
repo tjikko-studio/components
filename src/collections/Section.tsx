@@ -72,48 +72,41 @@ export const Section: FC<SectionProps> = ({
   const [theme, background] = extractCombo(bgColor)
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
   
-  let isHeader = true;
-  let headerClass = ''
-  const testHeader = (blocks ?: {type: string}[] ) => {
-    isHeader = true
-    blocks.forEach( (value) => {
-      if (value.type != "Heading" && value.type != "Text"){
-        isHeader = false;
-      }
-    })
-    return isHeader;
+  const sectionContent = (blocks ?: {type: string}[], conditions ?: string[] ) => {
+    let types = blocks.map( (v) => { return v.type})
+    return types.some(i => conditions.includes(i));
   }
   
   /* ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'} */
 
   /* grid grid-cols-12 gap-12 xs:gap-14 md:gap-24 w-full */
   /* col-span-${getWidth(width)} flex flex-col ${align} */
-
+  
   return (
     <div className={`
       overflow-hidden
-      ${theme}
+      ${theme ? theme : ''}
     `}
     style={{backgroundColor: `${ background }`}}
     >
       <div
       className={`
-      grid gap-y-8 p-16 w-full h-full min-h-full max-w-screen-xl mx-auto
-      ${layoutWidth === 'tight' ? 'px-4 xs:px-24 md:px-32' : 'px-4 xs:px-8 md:px-12'}
-      ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32 '}
-      ${align}
+      grid gap-y-8 sm:gap-y-12 md:gap-y-16 w-full h-full max-w-screen-xl mx-auto
+      ${layoutWidth === 'tight' ? 'px-4 sm:px-8 md:px-24' : 'px-4 sm:px-8 md:px-12'}
+      ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32'}
+      ${align ? align : ''}
     `}>
       {
         content.map(({columns}) => {
-          headerClass = content.length >= 2 && testHeader(columns[0].blocks) ? 'mb-4' : ''
+          let headerClass = content.length >= 2 && sectionContent(columns[0].blocks, ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
           return(
-              <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-12 sm:gap-x-12 w-full h-full min-h-full">
+              <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full">
                 {
                   columns.map(({
                     width,
                     blocks
                   }) => (
-                    <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full min-h-full ${headerClass}`}>
+                    <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full ${headerClass}`}>
                       {
                         blocks.map(getComponent)
                       }
