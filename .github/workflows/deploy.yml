@@ -56,16 +56,3 @@ jobs:
 
       - name: 'Publish to npm'
         run: npm publish
-
-  cPanel-deploy-storybook:
-    needs: npm-publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-
-      - name: 'Add production remote'
-        run: git remote add production ssh://tjikkost@tjikko-studio.a2hosted.com:7822/home/tjikkost/repositories/components
-
-      - name: 'Push to production remote'
-        run: git push production HEAD:main
