@@ -26,22 +26,20 @@ export const Form: FC<FormProps> = ({
   content = []
 }) => {
   const formClasses = [`grid sm:grid-cols-12 gap-4 w-${width}`]
-  let columnInputLabel : boolean;
 
   return (
-    <form className='grid gap-4 max-w-screen-xl mx-auto'>
+    <form className='grid gap-4'>
       {
-        content.map(({ columns }) => (
+        content.map(({ columns }) => {
+          let hasLabel = keyExists(columns, 'label', ['type', 'Input'])
+          return(
           <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
-            {columnInputLabel = false}
             {
               columns.map((column) => (
                 <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
-                      if (block.type !== 'ButtonsGroup') {
-                        columnInputLabel = keyExists(block.content, 'label')
-                      }
+                      let columnInputLabel = ((hasLabel && block.type === 'ButtonsGroup') || (hasLabel && !block.content['label'] ))
                       return getComponent(block, columnInputLabel);
                     })
                   }
@@ -49,7 +47,7 @@ export const Form: FC<FormProps> = ({
               ))
             }
           </section>
-        ))
+        )})
       }
     </form>
   )
@@ -62,13 +60,14 @@ function getComponent (
   },
   columnInputLabel: boolean
 ) {
+  let spacingTop = columnInputLabel ? 'sm:pt-7' : ''
   switch (component.type) {
     case 'Input':
-      return <Input key={JSON.stringify(component.content)} {...component.content} className='w-full' />
+      return <Input key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
     case 'TextArea':
-      return <TextArea key={JSON.stringify(component.content)} {...component.content} className='w-full' />
+      return <TextArea key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
     case 'ButtonsGroup':
-      return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} className={`w-full ${columnInputLabel && 'sm:pt-7'}`} />
+      return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
     default:
       return ('')
   }
