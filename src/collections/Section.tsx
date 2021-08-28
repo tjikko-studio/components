@@ -72,9 +72,9 @@ export const Section: FC<SectionProps> = ({
   const [theme, background] = extractCombo(bgColor)
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
   
-  const sectionContent = (blocks ?: {type: string}[], conditions ?: string[] ) => {
-    let types = blocks.map( (v) => { return v.type})
-    return types.some(i => conditions.includes(i));
+  const containVal = (obj ?: any[], key?: string, vals ?: string[] ) => {
+    let keys = obj.map( (v) => { return v.key})
+    return keys.some(i => vals.includes(i));
   }
   
   /* ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'} */
@@ -98,7 +98,7 @@ export const Section: FC<SectionProps> = ({
     `}>
       {
         content.map(({columns}) => {
-          let headerClass = content.length >= 2 && sectionContent(columns[0].blocks, ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
+          let headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
           return(
               <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full">
                 {
