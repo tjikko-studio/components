@@ -46,7 +46,6 @@ export const Hero: FC<HeroProps> = ({
         backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
       }}
     >
-      {console.log(bgVideo)}
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
