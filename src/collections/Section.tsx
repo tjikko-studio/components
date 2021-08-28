@@ -15,6 +15,7 @@ import {Heading} from '../blocks/Heading'
 import {Text} from '../blocks/Text'
 
 import getWidth from '../../utilities/getWidth'
+import containVal from '../../utilities/containVal'
 
 export interface BlockProps {
   type: string
@@ -71,16 +72,6 @@ export const Section: FC<SectionProps> = ({
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
-  
-  const containVal = (obj ?: any[], key?: string, vals ?: string[] ) => {
-    let keys = obj.map( (v) => { return v.key})
-    return keys.some(i => vals.includes(i));
-  }
-  
-  /* ${layoutSpacing === 'tight' ? 'py-8 sm:py-10 md:py-16 space-y-6 sm:space-y-12 md:space-y-12' : 'py-16 sm:py-20 md:py-32 space-y-12 sm:space-y-24 md:space-y-24'} */
-
-  /* grid grid-cols-12 gap-12 xs:gap-14 md:gap-24 w-full */
-  /* col-span-${getWidth(width)} flex flex-col ${align} */
   
   return (
     <div className={`
