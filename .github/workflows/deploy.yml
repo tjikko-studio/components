@@ -58,7 +58,7 @@ jobs:
         run: npm publish
 
   deploy-to-gh-pages:
-    needs: test
+    needs: npm-publish
     runs-on: ubuntu-latest
     env:
       CI: true
