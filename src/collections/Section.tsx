@@ -35,7 +35,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Background color
    */
-  bgColor?: 'transparent' | 'light|#F3F4F6' | 'dark|#171A22'
+  bgColor?: string
 
   /**
    * Content Position
@@ -78,7 +78,7 @@ export const Section: FC<SectionProps> = ({
       overflow-hidden
       ${theme ? theme : ''}
     `}
-    style={{backgroundColor: `${ background }`}}
+    style={{ backgroundColor: background}}
     >
       <div
       className={`
@@ -114,9 +114,6 @@ export const Section: FC<SectionProps> = ({
   )
 }
 
-let isHeading = 'undefined';
-
-
 let imagePosPrimary = 'undefined';
 let imagePosSecondary = 'undefined';
 let imagePosTertiary = 'undefined';
@@ -141,12 +138,6 @@ function getComponent (component: {
   type: string,
   content: any
 }) {
-  if (component.type === 'Primary')
-    imagePosPrimary = getNewPos(imagePosPrimary, component.content.imageposition);
-  if (component.type === 'Secondary')
-    imagePosSecondary = getNewPos(imagePosSecondary, component.content.imageposition);
-  if (component.type === 'Tertiary')
-    imagePosTertiary = getNewPos(imagePosTertiary, component.content.imageposition);
   switch (component.type) {
     case 'FAQ':
       return <FAQ key={JSON.stringify(component.content)} {...component.content} />
@@ -155,10 +146,13 @@ function getComponent (component: {
     case 'ClientsLogos':
       return <ClientsLogos key={JSON.stringify(component.content)} {...component.content} />
     case 'Primary':
+      imagePosPrimary = getNewPos(imagePosPrimary, component.content.imageposition);
       return <Primary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosPrimary} layout={component.content.cardlayout} />
     case 'Secondary':
+      imagePosSecondary = getNewPos(imagePosSecondary, component.content.imageposition);
       return <Secondary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosSecondary} layout={component.content.cardlayout} />
     case 'Tertiary':
+      imagePosTertiary = getNewPos(imagePosTertiary, component.content.imageposition);
       return <Tertiary key={JSON.stringify(component.content)} {...component.content} imagePosition={imagePosTertiary} layout={component.content.cardlayout} />
     case 'Testimonial':
       return <Testimonial key={JSON.stringify(component.content)} {...component.content} />

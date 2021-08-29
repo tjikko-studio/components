@@ -17,7 +17,7 @@ const Template: Story<HeroProps> = (args) => <Hero {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  bgColor: '#000',
+  bgColor: 'dark|#171A22',
   bgType: 'video',
   bgHasImage: true,
   bgImage:{

@@ -31,7 +31,7 @@ export const Form: FC<FormProps> = ({
     <form className='grid gap-4'>
       {
         content.map(({ columns }) => {
-          let hasLabel = keyExists(columns, 'label', ['type', 'Input'])
+          const hasLabel = keyExists(columns, 'label', ['type', 'Input'])
           return(
           <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
             {
@@ -60,7 +60,7 @@ function getComponent (
   },
   columnInputLabel: boolean
 ) {
-  let spacingTop = columnInputLabel ? 'sm:pt-7' : ''
+  const spacingTop = columnInputLabel ? 'sm:pt-7' : ''
   switch (component.type) {
     case 'Input':
       return <Input key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />

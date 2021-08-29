@@ -14,8 +14,6 @@ module.exports = {
       enforce: 'pre',
       loader: require.resolve('react-svg-loader')
     });
-    config.resolve.extensions.push(".ts", ".tsx");
-
     return config
   }
 }

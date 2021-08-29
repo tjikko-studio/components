@@ -9,7 +9,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Background data
    */
-  bgColor?: 'transparent' | 'light|#F3F4F6' | 'dark|#171A22'
+  bgColor?: string
   bgHasImage ?: boolean
   bgHasVideo ?: boolean
   bgImage ?: ImageProps | null
@@ -19,7 +19,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Content Position
    */
   contentPosition ?: 'top|left' | 'top|center' | 'top|right' | 'center|left' | 'center|center' | 'center|right' | 'bottom|left' | 'bottom|center' | 'bottom|right'
-  heroHeight?: '90vh' | 'full',
+  heroHeight?: string,
 
 
   /**
@@ -36,6 +36,8 @@ const getHorPos = (v: string) => {
       return 'left-1/2 transform -translate-x-1/2'
     case 'right' :
       return 'right-0'
+    default :
+      return  ''
   }
 } 
 
@@ -47,9 +49,14 @@ const getVerPos = (v: string) => {
       return 'top-1/2 transform -translate-y-1/2'
     case 'bottom' :
       return 'bottom-0'
+    default :
+      return  ''
   }
 } 
 
+function extractCombo (thing: string) {
+  return thing ? thing.split('|') : [null, null]
+}
 
 export const Hero: FC<HeroProps> = ({
   bgColor = 'transparent',
@@ -63,22 +70,25 @@ export const Hero: FC<HeroProps> = ({
 }) => {
 
   contentPosition = 'bottom|left';
-  const [verPosVal, horPosVal] = contentPosition.split('|');
+  const [verPosVal, horPosVal] = extractCombo(contentPosition)
+  const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
-  const horHor = getHorPos(horPosVal)
-    
+  const horHor = getHorPos(horPosVal);
   return (
     <header
-      className={`overflow-hidden bg-cover relative text-gray-50 `}
+      className={`
+        overflow-hidden bg-cover relative text-gray-50
+        ${theme ? theme : ''}
+      `}
       style={{
-        backgroundColor: `${ bgColor ? bgColor : '' }`,
+        backgroundColor: background,
         backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
       }}
     >
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className={`absolute z-0 top-0 left-0 bject-cover w-full h-full hidden sm:block`}>
+          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
