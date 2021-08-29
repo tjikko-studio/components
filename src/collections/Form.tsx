@@ -1,6 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
 import getComponent from '../../utilities/getComponent'
-import keyExists from '../../utilities/keyExists'
 import getWidth from '../../utilities/getWidth'
 import { ColumnProps } from './Section'
 
@@ -23,13 +22,12 @@ export const Form: FC<FormProps> = ({
   width = 'full',
   content = []
 }) => {
-  const formClasses = [`grid sm:grid-cols-12 gap-4 w-${width}`]
+  const formClasses = [`grid sm:grid-cols-12 gap-4 items-end w-${width}`]
 
   return (
     <form className='grid gap-4'>
       {
         content.map(({ columns }) => {
-          const hasLabel = keyExists(columns, 'label', ['type', 'Input'])
           return(
           <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
             {
@@ -37,22 +35,20 @@ export const Form: FC<FormProps> = ({
                 <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
-                      const columnInputLabel = ((hasLabel && block.type === 'ButtonsGroup') || (hasLabel && !block.content['label'] ))
-                      const spacingTop = columnInputLabel ? 'sm:pt-7' : ''
                       return getComponent(block, {
                         Input: (baseProps:any) => {
                           return {
-                            className: `${baseProps.className} w-full ${spacingTop}`
+                            className: `${baseProps.className} w-full`
                           }
                         },
                         TextArea: (baseProps: any) => {
                           return {
-                            className: `${baseProps.className} w-full ${spacingTop}`
+                            className: `${baseProps.className} w-full`
                           }
                         },
                         ButtonsGroup: (baseProps: any) => {
                           return {
-                            className: `${baseProps.className} w-full ${spacingTop}`
+                            className: `${baseProps.className} w-full`
                           }
                         }
                       });

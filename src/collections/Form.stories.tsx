@@ -47,13 +47,24 @@ SimpleFormFullPage.args = {
           ]
         },
         {
-          width: "1/1",
+          width: "1/2",
           blocks: [
             {
               type: 'Input',
               content: {
                 label: 'Email',
                 placeholder: ''
+              }
+            }
+          ]
+        },
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                placeholder: 'Email label (personal, work…)'
               }
             }
           ]
