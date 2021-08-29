@@ -18,7 +18,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Content Position
    */
-  contentPosition?: 'center|center' | 'bottom|left',
+  contentPosition ?: 'top|left' | 'top|center' | 'top|right' | 'center|left' | 'center|center' | 'center|right' | 'bottom|left' | 'bottom|center' | 'bottom|right'
   heroHeight?: '90vh' | 'full',
 
 
@@ -27,6 +27,29 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   content?: []
 }
+
+const getHorPos = (v: string) => {
+  switch(v) {
+    case 'left' :
+      return 'left-0'
+    case 'center' :
+      return 'left-1/2 transform -translate-x-1/2'
+    case 'right' :
+      return 'right-0'
+  }
+} 
+
+const getVerPos = (v: string) => {
+  switch(v) {
+    case 'top' :
+      return 'top-0'
+    case 'center' :
+      return 'top-1/2 transform -translate-y-1/2'
+    case 'bottom' :
+      return 'bottom-0'
+  }
+} 
+
 
 export const Hero: FC<HeroProps> = ({
   bgColor = 'transparent',
@@ -38,6 +61,12 @@ export const Hero: FC<HeroProps> = ({
   heroHeight = '90vh',
   content = []
 }) => {
+
+  contentPosition = 'bottom|left';
+  const [verPosVal, horPosVal] = contentPosition.split('|');
+  const verPos = getVerPos(verPosVal)
+  const horHor = getHorPos(horPosVal)
+    
   return (
     <header
       className={`overflow-hidden bg-cover relative text-gray-50 `}
@@ -49,7 +78,7 @@ export const Hero: FC<HeroProps> = ({
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
+          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className={`absolute z-0 top-0 left-0 bject-cover w-full h-full hidden sm:block`}>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
@@ -62,7 +91,7 @@ export const Hero: FC<HeroProps> = ({
       />
       <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
         <div
-            className='absolute z-20 bottom-0 left-0 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5'
+            className={`absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
         >
           {
             content.map(getComponent)
