@@ -1,4 +1,4 @@
-export default function keyExists (obj: any, key: string, condition ?: [key : any, val : any] ): boolean {
+export default function keyExists (obj: any, key: string, condition: [key : any, val : any] ): boolean {
   if (obj[condition[0]] && obj[condition[0]] !== condition[1]){
     return false;
   }
