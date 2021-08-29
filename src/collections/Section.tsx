@@ -72,7 +72,7 @@ export const Section: FC<SectionProps> = ({
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
-  
+
   return (
     <div
       className={`overflow-hidden ${theme ? theme : ''}`}
@@ -87,7 +87,7 @@ export const Section: FC<SectionProps> = ({
     `}>
       {
         content.map(({columns}) => {
-          let headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
+          const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
           return(
               <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full">
                 {

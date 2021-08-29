@@ -39,7 +39,7 @@ export const Form: FC<FormProps> = ({
                 <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
-                      let columnInputLabel = ((hasLabel && block.type === 'ButtonsGroup') || (hasLabel && !block.content['label'] ))
+                      const columnInputLabel = ((hasLabel && block.type === 'ButtonsGroup') || (hasLabel && !block.content['label'] ))
                       return getComponent(block, columnInputLabel);
                     })
                   }
