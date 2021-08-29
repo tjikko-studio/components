@@ -76,14 +76,8 @@ export const Hero: FC<HeroProps> = ({
   const horHor = getHorPos(horPosVal);
   return (
     <header
-      className={`
-        overflow-hidden bg-cover relative text-gray-50
-        ${theme ? theme : ''}
-      `}
-      style={{
-        backgroundColor: background,
-        backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`
-      }}
+      className={`overflow-hidden bg-cover relative text-gray-50 ${theme ? theme : ''}`}
+      style={{ backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`}}
     >
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */

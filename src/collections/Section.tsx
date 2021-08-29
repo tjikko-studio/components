@@ -74,11 +74,9 @@ export const Section: FC<SectionProps> = ({
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
   
   return (
-    <div className={`
-      overflow-hidden
-      ${theme ? theme : ''}
-    `}
-    style={{ backgroundColor: background}}
+    <div
+      className={`overflow-hidden ${theme ? theme : ''}`}
+      style={{ backgroundColor: background}}
     >
       <div
       className={`
@@ -118,19 +116,15 @@ let imagePosPrimary = 'undefined';
 let imagePosSecondary = 'undefined';
 let imagePosTertiary = 'undefined';
 const getNewPos = (prevPos: string, newPos: string) =>{
-  if (newPos === 'top') {
-    return 'top'
-  } else {
-    switch (`${prevPos} | ${newPos}`){
-      case 'undefined | auto':
-        return 'left'
-      case 'left | auto':
-        return 'right'
-      case 'right | auto':
-        return 'left'
-      default:
-        return newPos
-    }
+  switch (`${prevPos} | ${newPos}`){
+    case 'undefined | auto':
+      return 'left'
+    case 'left | auto':
+      return 'right'
+    case 'right | auto':
+      return 'left'
+    default:
+      return newPos
   }
 }
 
