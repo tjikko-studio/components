@@ -23,6 +23,7 @@ let imagePosSecondary = 'undefined'
 let imagePosTertiary = 'undefined'
 
 function getNewPos (prevPos: string, newPos: string) {
+  newPos = (newPos === '' || newPos === undefined)  ? 'auto' : newPos
   switch (`${prevPos} | ${newPos}`) {
     case 'undefined | auto':
       return 'left'
