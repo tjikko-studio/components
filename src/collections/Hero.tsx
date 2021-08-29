@@ -1,8 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import {ButtonsGroup} from '../blocks/ButtonsGroup'
-import {Heading} from '../blocks/Heading'
-import {Text} from '../blocks/Text'
-import {Form} from './Form'
+import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
@@ -39,7 +36,7 @@ const getHorPos = (v: string) => {
     default :
       return  ''
   }
-} 
+}
 
 const getVerPos = (v: string) => {
   switch(v) {
@@ -52,7 +49,7 @@ const getVerPos = (v: string) => {
     default :
       return  ''
   }
-} 
+}
 
 function extractCombo (thing: string) {
   return thing ? thing.split('|') : [null, null]
@@ -98,28 +95,18 @@ export const Hero: FC<HeroProps> = ({
             className={`absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
         >
           {
-            content.map(getComponent)
+            content.map((block) => {
+              return getComponent(block, {
+                Heading: (baseProps: any) => {
+                  return {
+                    level: 'h1'
+                  }
+                }
+              })
+            })
           }
         </div>
       </div>
     </header>
   )
-}
-
-function getComponent (component: {
-  type: string,
-  content: any
-}) {
-  switch (component.type) {
-    case 'Heading':
-      return <Heading key={JSON.stringify(component.content)} {...component.content} level='h1' />
-    case 'Text':
-      return <Text key={JSON.stringify(component.content)} {...component.content} tag='div' />
-    case 'ButtonsGroup':
-      return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} />
-    case 'Form':
-      return <Form key={JSON.stringify(component.content)} {...component.content} />
-    default:
-      return null
-  }
 }

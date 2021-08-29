@@ -1,7 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
-import {Input} from '../form/Input'
-import {TextArea} from '../form/TextArea'
-import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import getComponent from '../../utilities/getComponent'
 import keyExists from '../../utilities/keyExists'
 import getWidth from '../../utilities/getWidth'
 import { ColumnProps } from './Section'
@@ -40,7 +38,24 @@ export const Form: FC<FormProps> = ({
                   {
                     column.blocks.map((block) => {
                       const columnInputLabel = ((hasLabel && block.type === 'ButtonsGroup') || (hasLabel && !block.content['label'] ))
-                      return getComponent(block, columnInputLabel);
+                      const spacingTop = columnInputLabel ? 'sm:pt-7' : ''
+                      return getComponent(block, {
+                        Input: (baseProps:any) => {
+                          return {
+                            className: `${baseProps.className} w-full ${spacingTop}`
+                          }
+                        },
+                        TextArea: (baseProps: any) => {
+                          return {
+                            className: `${baseProps.className} w-full ${spacingTop}`
+                          }
+                        },
+                        ButtonsGroup: (baseProps: any) => {
+                          return {
+                            className: `${baseProps.className} w-full ${spacingTop}`
+                          }
+                        }
+                      });
                     })
                   }
                 </div>
@@ -51,24 +66,4 @@ export const Form: FC<FormProps> = ({
       }
     </form>
   )
-}
-
-function getComponent (
-  component: {
-    type: string,
-    content: any
-  },
-  columnInputLabel: boolean
-) {
-  const spacingTop = columnInputLabel ? 'sm:pt-7' : ''
-  switch (component.type) {
-    case 'Input':
-      return <Input key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
-    case 'TextArea':
-      return <TextArea key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
-    case 'ButtonsGroup':
-      return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} className={`w-full ${spacingTop}`} />
-    default:
-      return ('')
-  }
 }
