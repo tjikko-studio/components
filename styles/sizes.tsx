@@ -94,8 +94,8 @@ const screens: MediaQueryProps = {
 
 /**
  * These screenSizes have string values, which result in `min-width: value` in tailwind.
- * This function just adds a `not`-prefixed version for `max-width`, with capitalization.
- * So things like `notXxs`, `notLg`, `not2xl`, etc.
+ * This function just adds a `!`-prefixed version for `max-width`.
+ * So things like `!xxs`, `!lg`, `!2xl`, etc.
  **/
  // const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
  //   const screenSize = screenSizes[key]
@@ -112,5 +112,3 @@ export default {
   maxHeight: heightValues,
   screens
 }
-
-console.log(screens)
