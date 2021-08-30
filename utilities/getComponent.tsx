@@ -60,7 +60,7 @@ const propsByType: any = {
     }
   },
   Primary: (content: any) => {
-    imagePosPrimary = getNewPos(imagePosPrimary, content.imagePosition)
+    imagePosPrimary = getNewPos(imagePosPrimary, content.imageposition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosPrimary,
@@ -68,7 +68,7 @@ const propsByType: any = {
     }
   },
   Secondary: (content: any) => {
-    imagePosSecondary = getNewPos(imagePosSecondary, content.imagePosition)
+    imagePosSecondary = getNewPos(imagePosSecondary, content.imageposition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosSecondary,
@@ -76,7 +76,7 @@ const propsByType: any = {
     }
   },
   Tertiary: (content: any) => {
-    imagePosTertiary = getNewPos(imagePosTertiary, content.imagePosition)
+    imagePosTertiary = getNewPos(imagePosTertiary, content.imageposition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosTertiary,
