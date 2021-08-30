@@ -64,7 +64,7 @@ const propsByType: any = {
     return {
       ...getCommonProps(content),
       imagePosition: imagePosPrimary,
-      layout: content.cardlayout
+      layout: content.layout
     }
   },
   Secondary: (content: any) => {
@@ -72,7 +72,7 @@ const propsByType: any = {
     return {
       ...getCommonProps(content),
       imagePosition: imagePosSecondary,
-      layout: content.cardlayout
+      layout: content.layout
     }
   },
   Tertiary: (content: any) => {
@@ -80,7 +80,7 @@ const propsByType: any = {
     return {
       ...getCommonProps(content),
       imagePosition: imagePosTertiary,
-      layout: content.cardlayout
+      layout: content.layout
     }
   },
   Text: (content: any) => {
