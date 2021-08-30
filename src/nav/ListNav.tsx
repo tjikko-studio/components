@@ -58,7 +58,7 @@ export const ListNav: FC<ListNavProps> = ({
       {
         linkList.map((menu) => {
           return (
-            <div className={`${wMax}`} key={menu.groupCaption} >
+            <div className={wMax} key={menu.groupCaption} >
               {
                 (linkList.length > 1) && (
                   <PopUpNavItem

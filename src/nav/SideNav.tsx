@@ -6,7 +6,7 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
    * Sidenav items list array that will be parsed through to build the component
    */
   items?: SideNavItemProps[]
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
@@ -18,12 +18,12 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
  */
 export const SideNav: FC<SideNavProps> = ({
   items = [],
-  className,
+  className = '',
 }) => {
 
   return (
     <ul
-      className={`${className ? className : ''}`}
+      className={className}
     >
       {items.map((item) => (
         <SideNavItem

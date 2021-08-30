@@ -88,20 +88,20 @@ export const Footer: FC<FooterProps> = ({
         }
       </nav>
       <nav
-        className="fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6"
+        className='fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6'
       >
         <div className='flex flex-1 flex-row-reverse md:flex-row pt-4 md:pt-0'>
           <div className='flex-1 flex justify-end md:justify-start'><span>© {year ? year : new Date().getFullYear()}</span></div>
           <ul className='flex flex-1 space-x-2'>
             <li>
-              <a href='#' className="text-gray-50 hover:text-primary-300">
-                {privacy ? privacy : "Privacy"}
+              <a href='#' className='text-gray-50 hover:text-primary-300'>
+                {privacy ? privacy : 'Privacy'}
               </a>
             </li>
             <li>-</li>
             <li>
-              <a href='#' className="text-gray-50 hover:text-primary-300">
-                {privacy ? privacy : "Terms"}
+              <a href='#' className='text-gray-50 hover:text-primary-300'>
+                {privacy ? privacy : 'Terms'}
               </a>
             </li>
           </ul>
