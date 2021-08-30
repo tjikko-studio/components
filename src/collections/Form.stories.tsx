@@ -96,6 +96,90 @@ SimpleFormFullPage.args = {
   ]
 }
 
+export const FormWithErrors = Template.bind({})
+FormWithErrors.args = {
+  layout: 'Simple form',
+  width: "full",
+  content: [
+    {
+      columns: [
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'First and last name',
+                placeholder: 'First Name',
+                text: 'Joan'
+              }
+            }
+          ]
+        },
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                //label: 'Last Name',
+                placeholder: 'Last name',
+                isError: true,
+                error: 'Please enter your last name'
+              }
+            }
+          ]
+        },
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                label: 'Email',
+                placeholder: ''
+              }
+            }
+          ]
+        },
+        {
+          width: "1/2",
+          blocks: [
+            {
+              type: 'Input',
+              content: {
+                placeholder: 'Email label (personal, work…)'
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      columns: [
+        {
+          width: "1/1",
+          blocks: [
+            {
+              type: 'ButtonsGroup',
+              content: {
+                buttons: [
+                  {
+                    label: 'Send',
+                    link: '#',
+                    type: 'primary',
+                    size: 'large'
+                  },
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
 export const InlineForm = Template.bind({})
 InlineForm.args = {
   layout: 'Simple form',
