@@ -101,14 +101,14 @@ export const Input: FC<InputProps> = ({
     >
       {label &&
         <div
-        className={labelContainerClasses.join(' ')}
-      >
-        <p>
-          {label}
-        </p>
-        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
-        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
+          className={labelContainerClasses.join(' ')}
+        >
+          <p>
+            {label}
+          </p>
+          {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
+          {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+          {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
       }
       <input
@@ -119,14 +119,12 @@ export const Input: FC<InputProps> = ({
       />
       {
         (information) &&
-          <div
-            className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-            dangerouslySetInnerHTML={{ __html: information }}
-          >
-          </div>
-
+        <div
+          className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+          dangerouslySetInnerHTML={{__html: information}}
+        />
       }
-      {isError && (<div className='fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400'>{error}</div>)}
+      <div className={`opacity-0 ${isError ? 'opacity-100' : ''} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
     </div>
   )
 }
