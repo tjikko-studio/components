@@ -59,7 +59,6 @@ export const Section: FC<SectionProps> = ({
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
-
   return (
     <div
       className={`overflow-hidden ${theme ? theme : ''}`}
@@ -67,7 +66,7 @@ export const Section: FC<SectionProps> = ({
     >
       <div
       className={`
-      grid gap-y-8 sm:gap-y-12 md:gap-y-16 w-full h-full max-w-screen-xl mx-auto
+      text-gray-900 dark:text-gray-50  grid gap-y-8 sm:gap-y-12 md:gap-y-16 w-full h-full max-w-screen-xl mx-auto
       ${layoutWidth === 'tight' ? 'px-4 sm:px-8 md:px-24' : 'px-4 sm:px-8 md:px-12'}
       ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32'}
       ${align ? align : ''}

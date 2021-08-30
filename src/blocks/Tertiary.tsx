@@ -79,7 +79,7 @@ export const Tertiary: FC<TertiaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
       <div
         className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}

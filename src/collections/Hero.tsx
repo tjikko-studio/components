@@ -65,7 +65,6 @@ export const Hero: FC<HeroProps> = ({
   heroHeight = '90vh',
   content = []
 }) => {
-
   contentPosition = 'bottom|left';
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
@@ -73,7 +72,7 @@ export const Hero: FC<HeroProps> = ({
   const horHor = getHorPos(horPosVal);
   return (
     <header
-      className={`overflow-hidden bg-cover relative text-gray-50 ${theme ? theme : ''}`}
+      className={`overflow-hidden bg-cover relative text-gray-50 ${theme ? theme : 'dark'}`}
       style={{ backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`}}
     >
       {
@@ -92,7 +91,7 @@ export const Hero: FC<HeroProps> = ({
       />
       <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
         <div
-            className={`absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
+            className={`text-gray-900 dark:text-gray-50 absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
         >
           {
             content.map((block) => {
