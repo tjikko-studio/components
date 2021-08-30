@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
@@ -60,7 +60,7 @@ const propsByType: any = {
     }
   },
   Primary: (content: any) => {
-    imagePosPrimary = getNewPos(imagePosPrimary, content.imageposition)
+    imagePosPrimary = getNewPos(imagePosPrimary, content.imagePosition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosPrimary,
@@ -68,7 +68,7 @@ const propsByType: any = {
     }
   },
   Secondary: (content: any) => {
-    imagePosSecondary = getNewPos(imagePosSecondary, content.imageposition)
+    imagePosSecondary = getNewPos(imagePosSecondary, content.imagePosition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosSecondary,
@@ -76,7 +76,7 @@ const propsByType: any = {
     }
   },
   Tertiary: (content: any) => {
-    imagePosTertiary = getNewPos(imagePosTertiary, content.imageposition)
+    imagePosTertiary = getNewPos(imagePosTertiary, content.imagePosition)
     return {
       ...getCommonProps(content),
       imagePosition: imagePosTertiary,
@@ -108,6 +108,24 @@ function getProps (
   }
 }
 
+const ValidComponents:Record<string, FC> = {
+  ButtonsGroup,
+  ClientsLogos,
+  FAQ,
+  Form,
+  Heading,
+  Hero,
+  Icon,
+  Input,
+  Primary,
+  Secondary,
+  Section,
+  Tertiary,
+  Testimonial,
+  TextGroup,
+  Text
+}
+
 export default function getComponent (
   component: {
     type: string,
@@ -115,40 +133,12 @@ export default function getComponent (
   },
   extraProps: any
 ) {
-
-  switch (component.type) {
-    case 'ButtonsGroup':
-      return <ButtonsGroup {...getProps('ButtonsGroup', component, extraProps)} />
-    case 'ClientsLogos':
-      return <ClientsLogos {...getProps('ClientsLogos', component, extraProps)} />
-    case 'FAQ':
-      return <FAQ {...getProps('FAQ', component, extraProps)} />
-    case 'Form':
-      return <Form {...getProps('Form', component, extraProps)} />
-    case 'Heading':
-      return <Heading {...getProps('Heading', component, extraProps)} />
-    case 'Hero':
-      return <Hero {...getProps('Hero', component, extraProps)} />
-    case 'Icon':
-      return <Icon {...getProps('Icon', component, extraProps)} />
-    case 'Input':
-      return <Input {...getProps('Input', component, extraProps)} />
-    case 'Primary':
-      return <Primary {...getProps('Primary', component, extraProps)} />
-    case 'Secondary':
-      return <Secondary {...getProps('Secondary', component, extraProps)} />
-    case 'Section':
-      return <Section {...getProps('Section', component, extraProps)} />
-    case 'Tertiary':
-      return <Tertiary {...getProps('Tertiary', component, extraProps)} />
-    case 'Testimonial':
-      return <Testimonial {...getProps('Testimonial', component, extraProps)} />
-    case 'TextGroup':
-      return <TextGroup {...getProps('TextGroup', component, extraProps)} />
-    case 'Text':
-      return <Text {...getProps('Text', component, extraProps)} />
-    default:
-      console.error('Unrecognized component type', component)
-      return null
+  const Component = ValidComponents[component.type]
+  try {
+    return <Component {...getProps(component.type, component, extraProps)} />
+  } catch (ex) {
+    console.error('Unrecognized component type', component)
+    console.error(ex)
+    return null
   }
 }
