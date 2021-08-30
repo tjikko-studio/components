@@ -13,53 +13,53 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
-  
+
   /**
    * Label text
    */
   label?: string
-  
+
   /**
    * filled text
    */
   text?: string
-  
-  
+
+
   /**
    * placeholder text
    */
   placeholder?: string
-  
+
   /**
    * information text
    */
   information?: string
-  
+
   /**
    * error text
    */
   error?: string
-  
+
   /**
    * error
    */
   isError?: boolean
-  
+
   /**
    * checking...
    */
   isValidating?: boolean
-  
+
   /**
    * success
    */
   isSuccess?: boolean
-  
+
   /**
    * disabled
    */
   isDisabled?: boolean
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
@@ -116,15 +116,15 @@ export const TextArea: FC<TextAreaProps> = ({
         disabled={isDisabled}
       />
       {
-        (information) && 
+        information &&
           <div
             className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
             dangerouslySetInnerHTML={{ __html: information }}
           >
           </div>
-          
+
       }
-      {isError && (<div className='fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400'>{error}</div>)}
+      <div className={`${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
     </div>
   )
 }

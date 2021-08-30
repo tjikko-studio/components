@@ -118,13 +118,13 @@ export const Input: FC<InputProps> = ({
         disabled={isDisabled}
       />
       {
-        (information) &&
+        information &&
         <div
           className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
           dangerouslySetInnerHTML={{__html: information}}
         />
       }
-      <div className={`opacity-0 ${isError ? 'opacity-100' : ''} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+      <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
     </div>
   )
 }
