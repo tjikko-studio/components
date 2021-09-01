@@ -4,8 +4,8 @@
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
-    "build:analyze": "webpack --config ./webpack.analyze.js",
-    "build:dev": "NODE_ENV=development webpack --config ./webpack.dev.js",
+    "build:analyze": "webpack --config ./webpack.analyze.js --node-env production",
+    "build:dev": "webpack --config ./webpack.dev.js --node-env development",
     "build:prod": "webpack --config ./webpack.prod.js --node-env production",
     "build:css": "postcss ./assets/globals.css -o ./assets/app.css",
     "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets",
@@ -13,6 +13,7 @@
     "build": "npm run build:prod && npm run build:css",
     "dev": "npm run build:dev -- --watch",
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
+    "start:storybook": "node launchStorybook.js",
     "start": "concurrently npm:dev npm:dev:storybook",
     "test": "jest"
   },
@@ -38,6 +39,7 @@
     "jest": "27.1.0",
     "postcss": "8.3.6",
     "postcss-cli": "8.3.1",
+    "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "6.7.0",
     "react-svg-loader": "3.0.3",
     "storybook-addon-themes": "6.1.0",
