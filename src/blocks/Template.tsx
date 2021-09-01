@@ -21,22 +21,19 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  pageId ?: "string"
   fetchedContent?: TemplateItemProps[]
-  content?: {}
+  content?: TemplateItemProps[]
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  pageId = '',
-  content = [],
-  fetchedContent = []
+  content = null,
+  fetchedContent = null
 }) => {
   return (
     <div>
-    {pageId}
       {
         !fetchedContent ? <div>No template yet</div> : (
           fetchedContent.map(({columns}) => (

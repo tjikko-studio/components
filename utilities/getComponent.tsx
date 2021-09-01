@@ -14,6 +14,7 @@ import {Section} from '../src/collections/Section'
 import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
 import {TextGroup} from '../src/blocks/TextGroup'
+import {Template} from '../src/blocks/Template'
 import {Text} from '../src/blocks/Text'
 
 
@@ -123,6 +124,7 @@ const ValidComponents:Record<string, FC> = {
   Tertiary,
   Testimonial,
   TextGroup,
+  Template,
   Text
 }
 
