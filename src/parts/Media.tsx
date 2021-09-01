@@ -40,7 +40,7 @@ export const MediaImage: FC<ImageProps> = ({
     <figure role='group'>
       <img src={url}
         alt={content && content.alt ? content.alt : ''}
-        className={`${className}`}
+        className={className}
       />
       {content && content.caption && (
         <figcaption>
@@ -69,7 +69,7 @@ export const MediaVideo: FC<VideoProps> = ({
 }) => {
   return (
     <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop}
-      className={`${className}`}>
+      className={className}>
       <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
     </video>
   )
