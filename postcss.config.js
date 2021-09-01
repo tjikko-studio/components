@@ -1,8 +1,8 @@
 module.exports = {
-  plugins: {
-    'tailwindcss': {},
-    'postcss-flexbugs-fixes': {},
-    'postcss-preset-env': {
+  plugins: [
+    require('tailwindcss'),
+    require('postcss-flexbugs-fixes'),
+    require('postcss-preset-env')({
       autoprefixer: {
         flexbox: 'no-2009',
       },
@@ -10,6 +10,9 @@ module.exports = {
       features: {
         'custom-properties': false,
       },
-    },
-  },
+    }),
+    process.env.NODE_ENV === 'production'
+      ? require('cssnano')({preset: 'default'})
+      : null
+  ]
 }
