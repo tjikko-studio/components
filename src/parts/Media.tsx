@@ -1,11 +1,11 @@
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
-  type: string,
-  id: string,
-  link: string,
-  url: string,
-  extension: string,
+  type: string
+  id: string
+  link: string
+  url: string
+  extension: string
   dimensions?: {
     width: number
     height: number
@@ -13,12 +13,13 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     orientation: string
   }
   content?: {
-    alt?: string,
-    caption?: string,
-    creator?: string,
-    license?: string,
-    link?: string,
+    alt?: string
+    caption?: string
+    creator?: string
+    license?: string
+    link?: string
   }
+  className : string
 }
 
 export interface ImageProps extends MediaProps {
@@ -26,9 +27,14 @@ export interface ImageProps extends MediaProps {
 }
 
 export const MediaImage: FC<ImageProps> = ({
+  type,
+  id,
+  link,
   url,
-  content,
-  className
+  extension,
+  dimensions = {},
+  content = {},
+  className,
 }) => {
   return (
     <figure role='group'>
@@ -87,13 +93,13 @@ export const Media: FC<GenericMediaProps> = ({
   muted = true,
   controls = false,
   loop = false,
-  className = ''
+  className,
 }) => {
   switch (media.type) {
     case 'image':
       return <MediaImage key={media.url} {...media} className={className} />
     case 'video':
-      return <MediaVideo key={media.url} {...media} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+      return <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
     default:
       return null
   }

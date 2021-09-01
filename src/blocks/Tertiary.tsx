@@ -15,7 +15,7 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
   *  Video properties
@@ -35,11 +35,6 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    * text to display for paragraph
    */
   body: string
-
-  /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
-   */
-  className?: string
 }
 
 
@@ -49,65 +44,53 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Tertiary: FC<TertiaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  title,
-  body,
-  className = ''
+  image = null,
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = true,
+  title = '',
+  body = ''
 }) => {
-  const Image = () => {
-    return (
-      <div
-        className={(layout === 'vertical' ? 'pb-6' : '')}
-      >
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
-          />
-        )}
-      </div>
-    )
-  }
+  layout = !layout ? 'default' : layout
   const Text = () => {
     return (
       <div
-        className={layout !== 'vertical' ? 'flex justify-center' : ''}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
       >
-        <div
-          className={layout !== 'vertical' ? 'pl-12' : ''}
-        >
+        <div>
           <h2
-            className='fontStyle-2xl'
+            className='fontStyle-2xl mb-2 break-words block w-full'
           >
             {title}
           </h2>
           <p
-            className='fontStyle-base pt-2'
+            className='fontStyle-base break-words'
+            dangerouslySetInnerHTML={{ __html: body }}
           >
-            {body}
           </p>
         </div>
       </div>
     )
   }
-
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'flex' : ''} ${imagePosition === 'right' ? 'flex-row-reverse' : ''} ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' ? 'sm:flex' : ''} 
+      ${layout !== 'vertical' && imagePosition === 'right' ? 'sm:space-x-6' : ''}
+      ${layout !== 'vertical' && imagePosition === 'left' ? '-sm:space-x-6' : ''}`}
     >
-      {
-        (layout === 'default' || layout === 'vertical') && (
-          <>
-            <Image />
-            <Text />
-          </>
-        )
-      }
+      <div
+        className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}
+      >
+        {image && (
+          <Media
+            media={image}
+            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+          />
+        )}
+      </div>
+      <Text />
     </div>
   )
 }

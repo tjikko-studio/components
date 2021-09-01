@@ -14,7 +14,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    *  image url to show
    */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
    * title text
@@ -37,35 +37,30 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  */
 export const Icon: FC<IconProps> = ({
   layout = 'horizontal',
-  image,
-  title,
-  body,
-  className
+  image = null,
+  title = '',
+  body = '',
+  className = ''
 }) => {
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'flex' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'sm:flex' : ''}`}
     >
       <div
-        className={layout === 'horizontal' ? 'px-6 pb-14' : 'py-2'}
+        className={`flex-shrink-0  w-32 ${layout !== 'horizontal' && 'sm:pb-14 pb-6'}`}
       >
         {image && (
           <Media
             media={image}
-            className={`w-14 h-14`}
+            className={`w-32 h-32`}
           />
         )}
       </div>
       <div
-        className={layout === 'horizontal' ? 'ml-6' : 'mt-6'}
-        style={
-          {
-            width: layout === 'horizontal' ? '310px' : '290px'
-          }
-        }
+        className={layout === 'horizontal' ? 'sm:ml-6' : 'mt-6'}
       >
         <h2
-          className='fontStyle-2xl'
+          className='fontStyle-2xl break-words'
         >
           {
             title && title !== '' ? title : 'title'

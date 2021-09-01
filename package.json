@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:analyze": "webpack --config ./webpack.analyze.js",
-    "build:dev": "webpack --config ./webpack.dev.js",
+    "build:dev": "NODE_ENV=development webpack --config ./webpack.dev.js",
     "build:prod": "webpack --config ./webpack.prod.js --node-env production",
     "build:css": "postcss ./assets/globals.css -o ./assets/app.css",
     "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets",
@@ -14,7 +14,7 @@
     "dev": "npm run build:dev -- --watch",
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "start": "concurrently npm:dev npm:dev:storybook",
-    "test": "echo 'No tests yet'"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
@@ -30,16 +30,19 @@
     "@storybook/builder-webpack5": "6.4.0-alpha.25",
     "@storybook/manager-webpack5": "6.4.0-alpha.25",
     "@storybook/react": "6.4.0-alpha.25",
+    "@types/jest": "27.0.1",
     "@types/tailwindcss": "2.2.1",
     "autoprefixer": "10.3.1",
     "babel-loader": "8.2.2",
     "concurrently": "6.2.1",
+    "jest": "27.1.0",
     "postcss": "8.3.6",
     "postcss-cli": "8.3.1",
     "postcss-preset-env": "6.7.0",
     "react-svg-loader": "3.0.3",
     "storybook-addon-themes": "6.1.0",
     "storybook-tailwind-dark-mode": "1.0.9",
+    "ts-jest": "27.0.5",
     "ts-loader": "9.2.5",
     "typescript": "4.3.5"
   },

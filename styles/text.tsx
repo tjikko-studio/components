@@ -10,20 +10,20 @@ export default {
     'base': '1rem',
     'lg': '1.125rem',
     'xl': '1.125rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '3.75rem',
-    '7xl': '4.5rem',
-    '8xl': '6rem',
-    '9xl': '9rem'
+    '2xl': '1.375rem',
+    '3xl': '1.625rem',
+    '4xl': '2rem',
+    '5xl': '2.5rem',
+    '6xl': '3rem',
+    '7xl': '3.5rem',
+    '8xl': '4rem',
+    '9xl': '4.5rem'
   },
   lineHeight: {
     'xs': '1em',
     'sm': '1.25em',
     'base': '1.5em',
-    'lg': '1.33333em',
+    'lg': '1.7625em',
     'xl': '1.33333em',
     '2xl': '1.16667em',
     '3xl': '1.2em',
@@ -34,8 +34,8 @@ export default {
     '8xl': '1em',
     '9xl': '1em'
   },
-  space: {
-    'xs': '0',
+  letterSpacing: {
+    /* 'xs': '0',
     'sm': '0',
     'base': '0',
     'lg': '0',
@@ -47,7 +47,10 @@ export default {
     '6xl': '0.06em',
     '7xl': '0.05em',
     '8xl': '0.05em',
-    '9xl': '0.05em'
+    '9xl': '0.05em',*/
+    wide: '.03em',
+    wider: '.06em',
+    widest: '.09em',
   },
   fontWeight: {
     'xs': '500',

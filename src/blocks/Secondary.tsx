@@ -1,6 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
-import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
+import {GroupButtonProps} from '../blocks/ButtonsGroup'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -11,7 +11,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
   *  Block image
   */
-  image?: ImageProps
+  image?: ImageProps | null
 
   /**
   *  Video properties
@@ -37,9 +37,9 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   buttons?: GroupButtonProps[]
 
   /**
-   * Image position
+   * Image Position
    */
-  imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
+  imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -53,61 +53,62 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Secondary: FC<SecondaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
-  image,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  title,
-  body,
-  buttons,
+  image = null,
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = true,
+  title = '',
+  body = '',
+  buttons = [],
   className = '',
 
 }) => {
-  const Image = () => {
-    return (
-      <div
-        className={layout === 'vertical' ? 'pb-6' : ''}
-      >
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg ${layout === 'default' ? ' w-auto' : ''}`}
-          />
-        )}
-      </div>
-    )
-  }
+  layout = !layout ? 'default' : layout
+
   const Text = () => {
     return (
       <div
-        className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' && 'flex justify-center'}`}
+        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
       >
         <div
-          className={`
-              ${layout !== 'vertical' && 'pl-12'}
-          `}
+          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
         >
-          <h2 className='fontStyle-4xl'>{title}</h2>
-          <p className='fontStyle-base pt-2'>{body}</p>
-          {
-            Object.keys(buttons).length >= 1 && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='mt-6' />
-          }
+          <h2
+            className='fontStyle-4xl mb-4 break-words'
+          >
+            {title}
+          </h2>
+          <p
+            className='fontStyle-base'
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </div>
       </div>
     )
   }
   return (
     <div
-      className={`${layout === 'default' && 'flex'} ${imagePosition === 'right' && 'flex-row-reverse'} ${className}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
     >
-      {(layout === 'default' || layout === 'vertical') && (
-        <>
-          <Image />
-          <Text />
-        </>
-      )}
+      {
+        (layout === 'default' || layout === 'vertical') && (
+          <>
+            <div
+              className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2 sm:p-4'}`}
+            >
+              {image && (
+                <Media
+                  media={image}
+                  autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+                  className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+                />
+              )}
+            </div>
+            <Text />
+          </>
+        )
+      }
     </div>
   )
 }

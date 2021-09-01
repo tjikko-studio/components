@@ -5,14 +5,17 @@ export interface ListProps<ItemType extends FC> {
   Component: (item: ItemType) => React.ReactNode
 }
 
-export const List: FC<ListProps<any>> = ({ items, Component}) => {
+export const List: FC<ListProps<any>> = ({
+  Component,
+  items = [],
+}) => {
   return (
-    <>
+    <div className='max-w-screen-xl mx-auto'>
       {items.map((itemProps) => {
         return (
           <div key={JSON.stringify(itemProps)}>{Component(itemProps)}</div>
         )
       })}
-    </>
+    </div>
   )
 }

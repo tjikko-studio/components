@@ -20,7 +20,11 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const TextGroup: FC<TextGroupProps> = ({ title = '', body = '', className }) => {
+export const TextGroup: FC<TextGroupProps> = ({
+  title = '',
+  body = '',
+  className = '',
+}) => {
   return (
     <div className={`p-6 ${className}`}>
       <h5 className='fontStyle-lg strong uppercase text-gray-900 dark:text-gray-50 '>

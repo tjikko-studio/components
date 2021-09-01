@@ -36,7 +36,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 
   /**
-   * force dark mode (This will bypass dark mode and apply the darkmode on the composant even in light mode
+   * force dark mode (This will bypass dark mode and apply the dark mode on the component even in light mode
    */
   forceDark?: boolean
 }
@@ -48,8 +48,9 @@ export const Button: FC<ButtonProps> = ({
   type = 'primary',
   label = 'Button',
   size = 'default',
-  icon,
-  link,
+  icon = '',
+  iconPos = 'left',
+  link = '',
   className = '',
   forceDark = false
 }) => {
@@ -113,15 +114,6 @@ export const Button: FC<ButtonProps> = ({
       )
     }
   }
-  /* const Icon = () => {
-    if (icon) {
-      return (
-        <span />
-      )
-    } else {
-      return ''
-    }
-  } */
   if (link) {
     return (
       <a

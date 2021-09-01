@@ -1,8 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
-import {Input} from '../form/Input'
-import {TextArea} from '../form/TextArea'
-import {ButtonsGroup} from '../blocks/ButtonsGroup'
-import keyExists from '../../utilities/keyExists'
+import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 import { ColumnProps } from './Section'
 
@@ -23,53 +20,46 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
 
 export const Form: FC<FormProps> = ({
   width = 'full',
-  content
+  content = []
 }) => {
-  const formClasses = [`grid sm:grid-cols-12 gap-4 w-${width}`]
-  let columnInputLabel : boolean;
+  const formClasses = [`grid sm:grid-cols-12 gap-4 items-end w-${width}`]
 
   return (
     <form className='grid gap-4'>
       {
-        content.map(({ columns }) => (
+        content.map(({ columns }) => {
+          return(
           <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
-            {columnInputLabel = false}
             {
               columns.map((column) => (
                 <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
-                      if (block.type !== 'ButtonsGroup') {
-                        columnInputLabel = keyExists(block.content, 'label')
-                      }
-                      return getComponent(block, columnInputLabel);
+                      return getComponent(block, {
+                        Input: (baseProps:any) => {
+                          return {
+                            className: `${baseProps.className} w-full`
+                          }
+                        },
+                        TextArea: (baseProps: any) => {
+                          return {
+                            className: `${baseProps.className} w-full`
+                          }
+                        },
+                        ButtonsGroup: (baseProps: any) => {
+                          return {
+                            className: `${baseProps.className} w-full`
+                          }
+                        }
+                      });
                     })
                   }
                 </div>
               ))
             }
           </section>
-        ))
+        )})
       }
     </form>
   )
-}
-
-function getComponent (
-  component: {
-    type: string,
-    content: any
-  },
-  columnInputLabel: boolean
-) {
-  switch (component.type) {
-    case 'Input':
-      return <Input key={JSON.stringify(component.content)} {...component.content} className='w-full' />
-    case 'TextArea':
-      return <TextArea key={JSON.stringify(component.content)} {...component.content} className='w-full' />
-    case 'ButtonsGroup':
-      return <ButtonsGroup key={JSON.stringify(component.content)} {...component.content} className={`w-full ${columnInputLabel && 'sm:pt-7'}`} />
-    default:
-      return ('')
-  }
 }

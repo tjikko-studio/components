@@ -16,12 +16,12 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
    * Footer object that will be parsed through to build the component
    */
   footerMenu?: FooterDataType[]
-  
+
   /**
    * year to show on bottom
    */
   year?: string
-  
+
   /**
    * privacy policy text
    */
@@ -32,8 +32,8 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
-  year,
-  privacy,
+  year = '',
+  privacy = '',
   footerMenu = []
 }) => {
 
@@ -53,10 +53,10 @@ export const Footer: FC<FooterProps> = ({
         className='px-6 pt-8 lg:flex md:grid md:grid-cols-2'
       >
         {
-          footerMenu.map((menu, menuIndex) => {
+          footerMenu.map((menu) => {
             return (
               <ul
-                key={menuIndex}
+                key={menu.caption}
                 className={`flex-1 pb-12 lg:mb-0`}
               >
                 <li
@@ -65,10 +65,10 @@ export const Footer: FC<FooterProps> = ({
                   {menu.caption}
                 </li>
                 {
-                  menu.menuList.map((menuItem, itemIndex) => {
+                  menu.menuList.map((menuItem) => {
                     return (
                       <li
-                        key={itemIndex}
+                        key={menuItem.name}
                         className='fontStyle-sm text-gray-50 hover:text-primary-300 pt-3'
                       >
                         <a
@@ -88,20 +88,20 @@ export const Footer: FC<FooterProps> = ({
         }
       </nav>
       <nav
-        className="fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6"
+        className='fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6'
       >
         <div className='flex flex-1 flex-row-reverse md:flex-row pt-4 md:pt-0'>
           <div className='flex-1 flex justify-end md:justify-start'><span>© {year ? year : new Date().getFullYear()}</span></div>
           <ul className='flex flex-1 space-x-2'>
             <li>
-              <a href='#' className="text-gray-50 hover:text-primary-300">
-                {privacy ? privacy : "Privacy"}
+              <a href='#' className='text-gray-50 hover:text-primary-300'>
+                {privacy ? privacy : 'Privacy'}
               </a>
             </li>
             <li>-</li>
             <li>
-              <a href='#' className="text-gray-50 hover:text-primary-300">
-                {privacy ? privacy : "Terms"}
+              <a href='#' className='text-gray-50 hover:text-primary-300'>
+                {privacy ? privacy : 'Terms'}
               </a>
             </li>
           </ul>

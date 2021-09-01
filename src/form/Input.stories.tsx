@@ -7,7 +7,14 @@ export default {
   component: Input,
   parameters: {
     componentSubtitle: 'The Forms/Input',
-  }
+  },
+  decorators: [(Story) => {
+    return (
+      <div className='border'>
+        <Story />
+      </div>
+    )
+  }]
 } as Meta
 
 const Template: Story<InputProps> = (args) => <Input {...args} />

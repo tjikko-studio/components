@@ -6,7 +6,6 @@ export interface ClientProps {
     url: string
   },
   company: string,
-  id: string
 }
 export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -26,10 +25,10 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ClientsLogos: FC<ClientsLogosProps> = ({
   size = 'default',
-  content
+  content = []
 }) => {
   return (
-    <>
+    <div>
     {/* <Marquee gradientWidth='0'> */}
       <div className={`flex flex-nowrap w-max  space-x-14 lg:space-x-32 md:space-x-16`}>
         {content.map(({image, company}) => {
@@ -45,6 +44,6 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         }
       </div>
     {/* </Marquee> */}
-    </>
+    </div>
   )
 }

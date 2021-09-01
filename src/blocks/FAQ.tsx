@@ -21,8 +21,8 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const FAQ: FC<FAQProps> = ({
-  content,
-  className = ''
+  content = [],
+  className = '',
 }) => {
   return (
     <div

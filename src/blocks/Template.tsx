@@ -1,57 +1,59 @@
 import React, { FC, HTMLAttributes } from 'react'
-/* import kirbyApiCall from './apiCall' */
 
-export interface TemplateProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * Slug and local to get access to the template
-   */
-  slug?: string
-  locale?: string
-  
-  /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
-   */
-  className?: string
-}
+import getComponent from '../../utilities/getComponent'
+import getWidth from '../../utilities/getWidth'
 
-/* type KirbyApiResponse = {
-  code: number,
-  data: any,
-  status: string,
+export interface BlockProps {
   type: string
+  content: any
 }
 
-async function kirbyApiCall (slug: string, locale: string = ''): Promise<KirbyApiResponse> {
-  const path = `${process.env.KIRBY_API_URL}/${slug}`
-  const access =  btoa(process.env.KIRBY_API_EMAIL + ':' + process.env.KIRBY_API_PASSWORD)
+export interface ColumnProps {
+  width: string
+  blocks: BlockProps[]
+}
 
-  const res = await fetch(path, {
-    headers: {
-      'Authorization': `Basic ${access}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'X-Language': locale
-    }
-  })
-  return res.json()
-} 
+export interface TemplateItemProps {
+  columns: ColumnProps[]
+}
 
-const getContent = async (slug: string, locale: string = '') => {
-  const a = await kirbyApiCall(slug, locale);
-  console.log(a.data.content.content);
-}; */
+export interface TemplateProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * Sections object that will be parsed through to build the component
+   */
+  fetchedContent?: TemplateItemProps[]
+  content?: TemplateItemProps[]
+}
 
 /**
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  slug,
-  locale,
-  className = ''
+  content = null,
+  fetchedContent = null
 }) => {
   return (
     <div>
-      Template
+      {
+        !fetchedContent ? <div>No template yet</div> : (
+          fetchedContent.map(({columns}) => (
+            <section key={JSON.stringify(columns)} className="sm:grid sm:grid-cols-12">
+              {
+                columns.map(({
+                  width,
+                  blocks
+                }) => (
+                  <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)}`}>
+                    {
+                      blocks.map(getComponent)
+                    }
+                  </div>
+                ))
+              }
+            </section>
+          ))
+        )
+      }
     </div>
-  )
+  );
 }

@@ -6,7 +6,7 @@ const componentsConfig = {
       test: /\.tsx$/,
       exclude: /\/node_modules\//,
       use: 'ts-loader',
-    }, {
+    },{
       test: /\.svg$/,
       use: 'react-svg-loader'
     }]

@@ -23,6 +23,6 @@ UnformattedHeading.args = {
 export const FormattedHeading = Template.bind({})
 FormattedHeading.args = {
   level: 'h1',
-  className: 'fontStyle-8xl',
+  className: 'fontStyle-8xl underline',
   text: 'Big formatted heading',
 }
