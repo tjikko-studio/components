@@ -7,9 +7,6 @@ const theme = {...text, ...sizes, ...colors}
 
 export default {
   darkMode: 'class',
-  purge: [
-    './stories/components/**/*.@(js|jsx|ts|tsx)'
-  ],
   theme: {
     extend: theme
   },
