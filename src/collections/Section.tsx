@@ -58,6 +58,7 @@ export const Section: FC<SectionProps> = ({
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
+  // See the tailwind hacks in src/index.tsx
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
   return (
     <div
@@ -65,43 +66,45 @@ export const Section: FC<SectionProps> = ({
       style={{ backgroundColor: background}}
     >
       <div
-      className={`
-      text-gray-900 dark:text-gray-50  grid gap-y-8 sm:gap-y-12 md:gap-y-16 w-full h-full max-w-screen-xl mx-auto
-      ${layoutWidth === 'tight' ? 'px-4 sm:px-8 md:px-24' : 'px-4 sm:px-8 md:px-12'}
-      ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32'}
-      ${align ? align : ''}
-    `}>
-      {
-        content.map(({columns}) => {
-          const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
-          return(
-              <section key={JSON.stringify(columns)} className="grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full">
-                {
-                  columns.map(({
-                    width,
-                    blocks
-                  }) => (
-                    <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full ${headerClass}`}>
-                      {
-                        blocks.map((block) => {
-                          return getComponent(block, {
-                            Text: (baseProps: any) => {
-                              return {
-                                className: `${baseProps.className} text-gray-900 dark:text-gray-50`
+        className={`
+          text-gray-900 dark:text-gray-50 grid gap-y-8 sm:gap-y-12 md:gap-y-16 w-full h-full max-w-screen-xl mx-auto
+          ${layoutWidth === 'tight' ? 'px-4 sm:px-8 md:px-24' : 'px-4 sm:px-8 md:px-12'}
+          ${layoutSpacing === 'tight' ? 'py-8 sm:py-12 md:py-16' : 'py-16 sm:py-24 md:py-32'}
+          ${align ? align : ''}
+        `}
+      >
+        {
+          content.map(({columns}) => {
+            const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
+            return(
+                <section key={JSON.stringify(columns)} className='grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full'>
+                  {
+                    columns.map(({
+                      width,
+                      blocks
+                    }) => (
+                      // See the tailwind hacks in src/index.tsx
+                      <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full ${headerClass}`}>
+                        {
+                          blocks.map((block) => {
+                            return getComponent(block, {
+                              Text: (baseProps: any) => {
+                                return {
+                                  className: `${baseProps.className} text-gray-900 dark:text-gray-50`
+                                }
                               }
-                            }
+                            })
                           })
-                        })
-                      }
-                    </div>
-                  ))
-                }
-              </section>
-            )
-          }
-        )
-      }
-    </div>
+                        }
+                      </div>
+                    ))
+                  }
+                </section>
+              )
+            }
+          )
+        }
+      </div>
     </div>
   )
 }

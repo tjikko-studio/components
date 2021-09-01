@@ -89,9 +89,10 @@ export const Hero: FC<HeroProps> = ({
       <div
         className='absolute z-1 h-full -bottom-1/6 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-60'
       />
+      {/* See the tailwind hacks in src/index.tsx */}
       <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
         <div
-            className={`text-gray-900 dark:text-gray-50 absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
+          className={`text-gray-900 dark:text-gray-50 absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
         >
           {
             content.map((block) => {

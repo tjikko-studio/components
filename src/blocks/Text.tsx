@@ -33,6 +33,7 @@ export const Text: FC<TextProps> = ({
 }) => {
   const TextTag = tag
 
+  // See the tailwind hacks in src/index.tsx
   return (
     <TextTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} dangerouslySetInnerHTML={{ __html: text }} />
   )

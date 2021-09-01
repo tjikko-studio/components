@@ -37,12 +37,13 @@ export const Template: FC<TemplateProps> = ({
       {
         !fetchedContent ? <div>No template yet</div> : (
           fetchedContent.map(({columns}) => (
-            <section key={JSON.stringify(columns)} className="sm:grid sm:grid-cols-12">
+            <section key={JSON.stringify(columns)} className='sm:grid sm:grid-cols-12'>
               {
                 columns.map(({
                   width,
                   blocks
                 }) => (
+                  // See the tailwind hacks in src/index.tsx
                   <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)}`}>
                     {
                       blocks.map(getComponent)
