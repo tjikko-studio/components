@@ -64,6 +64,8 @@ export const Secondary: FC<SecondaryProps> = ({
   className = '',
 
 }) => {
+  layout = !layout ? 'default' : layout
+
   const Text = () => {
     return (
       <div

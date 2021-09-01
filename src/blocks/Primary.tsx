@@ -63,6 +63,8 @@ export const Primary: FC<PrimaryProps> = ({
   buttons = [],
   className = '',
 }) => {
+  layout = !layout ? 'default' : layout
+  console.log(`${layout} && ${imagePosition}`)
   const Text = () => {
     return (
       <div

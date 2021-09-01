@@ -52,17 +52,13 @@ export const Tertiary: FC<TertiaryProps> = ({
   title = '',
   body = ''
 }) => {
+  layout = !layout ? 'default' : layout
   const Text = () => {
     return (
       <div
         className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
       >
-        <div
-          className={`
-            ${layout !== 'vertical' && imagePosition === 'right' ? 'sm:pr-6' : ''}
-            ${layout !== 'vertical' && imagePosition === 'left' ? 'sm:pl-6' : ''}
-          `}
-        >
+        <div>
           <h2
             className='fontStyle-2xl mb-2 break-words block w-full'
           >
@@ -79,7 +75,9 @@ export const Tertiary: FC<TertiaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' ? 'sm:flex' : ''} 
+      ${layout !== 'vertical' && imagePosition === 'right' ? 'sm:space-x-6' : ''}
+      ${layout !== 'vertical' && imagePosition === 'left' ? '-sm:space-x-6' : ''}`}
     >
       <div
         className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}

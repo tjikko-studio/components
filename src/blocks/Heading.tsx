@@ -32,8 +32,9 @@ export const Heading: FC<HeadingProps> = ({
   text = '',
   className = ''
 }) => {
+  alignment = !alignment ? 'left' : alignment
+  
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
-
   return (
     <HeaderTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} >
       {text}
