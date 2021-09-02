@@ -82,7 +82,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           localDir: 'storybook-static'
           remoteDir: '.'
-          options: "--delete --ascii"
+          options: "--delete --transfer-all"
 
 #  deploy-to-gh-pages:
 #    needs: npm-publish
