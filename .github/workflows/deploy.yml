@@ -2,8 +2,6 @@ name: Deploy the tjikko-studio/components library
 on:
   release:
     types: [ published ]
-  push:
-    branches: [ ci-cd ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -38,34 +36,33 @@ jobs:
           name: storybook-static
           path: storybook-static
 
-#  npm-publish:
-#    needs: test
-#    runs-on: ubuntu-latest
-#    env:
-#      CI: true
-#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-#    steps:
-#      - name: 'Checkout'
-#        uses: actions/checkout@v2
-#
-#      - name: 'Setup'
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: '14.x'
-#          registry-url: 'https://registry.npmjs.org'
-#
-#      - name: 'Install'
-#        run: npm ci
-#
-#      - name: 'Build'
-#        run: npm run build
-#
-#      - name: 'Publish to npm'
-#        run: npm publish
+  npm-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Setup'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Install'
+        run: npm ci
+
+      - name: 'Build'
+        run: npm run build
+
+      - name: 'Publish to npm'
+        run: npm publish
 
   deploy-to-ftp:
-#    needs: npm-publish
-    needs: test
+    needs: npm-publish
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
