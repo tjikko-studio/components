@@ -2,6 +2,8 @@ name: Deploy the tjikko-studio/components library
 on:
   release:
     types: [ published ]
+  push:
+    branches: [ ci-cd ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -30,55 +32,85 @@ jobs:
       - name: 'Run tests'
         run: npm test
 
-  npm-publish:
+      - name: 'Keep static storybook'
+        uses: actions/upload-artifact@master
+        with:
+          name: storybook-static
+          path: storybook-static
+
+#  npm-publish:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    env:
+#      CI: true
+#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#    steps:
+#      - name: 'Checkout'
+#        uses: actions/checkout@v2
+#
+#      - name: 'Setup'
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '14.x'
+#          registry-url: 'https://registry.npmjs.org'
+#
+#      - name: 'Install'
+#        run: npm ci
+#
+#      - name: 'Build'
+#        run: npm run build
+#
+#      - name: 'Publish to npm'
+#        run: npm publish
+
+  deploy-to-ftp:
+#    needs: npm-publish
     needs: test
     runs-on: ubuntu-latest
-    env:
-      CI: true
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-      - name: 'Setup'
-        uses: actions/setup-node@v2
+      - name: 'Retrieve static storybook'
+        uses: actions/download-artifact@master
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
+          name: storybook-static
+          path: storybook-static
 
-      - name: 'Install'
-        run: npm ci
-
-      - name: 'Build'
-        run: npm run build
-
-      - name: 'Publish to npm'
-        run: npm publish
-
-  deploy-to-gh-pages:
-    needs: npm-publish
-    runs-on: ubuntu-latest
-    env:
-      CI: true
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-
-      - name: 'Setup'
-        uses: actions/setup-node@v2
+      - name: 'Upload to the server'
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: 'storybook-static'
+          remoteDir: '.'
+          options: "--delete --ascii"
 
-      - name: 'Install'
-        run: npm ci
-
-      - name: 'Build'
-        run: npm run build:all
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: demo
-          folder: storybook-static
+#  deploy-to-gh-pages:
+#    needs: npm-publish
+#    runs-on: ubuntu-latest
+#    env:
+#      CI: true
+#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#    steps:
+#      - name: 'Checkout'
+#        uses: actions/checkout@v2
+#
+#      - name: 'Setup'
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '14.x'
+#          registry-url: 'https://registry.npmjs.org'
+#
+#      - name: 'Install'
+#        run: npm ci
+#
+#      - name: 'Build'
+#        run: npm run build:all
+#
+#      - name: Deploy 🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.4
+#        with:
+#          branch: demo
+#          folder: storybook-static
