@@ -22,15 +22,14 @@ export const Form: FC<FormProps> = ({
   width = 'full',
   content = []
 }) => {
-  // See the tailwind hacks in src/index.tsx
-  const formClasses = [`grid sm:grid-cols-12 gap-4 items-end w-${width}`]
 
   return (
     <form className='grid gap-4'>
       {
         content.map(({ columns }) => {
           return(
-          <section key={JSON.stringify(columns)} className={`${formClasses.join(' ')}`}>
+            // See the tailwind hacks in src/index.tsx
+            <section key={JSON.stringify(columns)} className={`grid sm:grid-cols-12 gap-4 items-center items-end w-${width}`}>
             {
               columns.map((column) => (
                 // See the tailwind hacks in src/index.tsx
