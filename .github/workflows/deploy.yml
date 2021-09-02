@@ -7,16 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-      - name: 'Setup'
+      - name: 'Setup NPM'
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Setup npmrc'
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 
       - name: 'Install'
         run: npm ci
@@ -41,16 +43,18 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-      - name: 'Setup'
+      - name: 'Setup NPM'
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Setup npmrc'
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 
       - name: 'Install'
         run: npm ci
@@ -89,16 +93,18 @@ jobs:
 #    runs-on: ubuntu-latest
 #    env:
 #      CI: true
-#      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 #    steps:
 #      - name: 'Checkout'
 #        uses: actions/checkout@v2
 #
-#      - name: 'Setup'
+#      - name: 'Setup NPM'
 #        uses: actions/setup-node@v2
 #        with:
 #          node-version: '14.x'
 #          registry-url: 'https://registry.npmjs.org'
+#
+#      - name: 'Setup npmrc'
+#        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 #
 #      - name: 'Install'
 #        run: npm ci
