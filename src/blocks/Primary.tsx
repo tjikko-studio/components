@@ -64,7 +64,6 @@ export const Primary: FC<PrimaryProps> = ({
   className = '',
 }) => {
   layout = !layout ? 'default' : layout
-  console.log(`${layout} && ${imagePosition}`)
   const Text = () => {
     return (
       <div
