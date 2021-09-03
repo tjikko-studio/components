@@ -18,29 +18,29 @@ const Template: Story<NavItemProps> = (args) => <NavItem {...args} />
 export const None = Template.bind({})
 None.args = {
   styles: 'default',
-  subMenu: []
+  dropdown: []
 }
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  subMenu:
+  dropdown:
     [
       {
-        groupCaption: 'Group 01',
-        groups: [
+        columnLabel: 'Group 01',
+        columnContent: [
           {
-            name: 'Link 01',
-            url: '/linkURL',
+            label: 'Link 01',
+            link: '/linkURL',
             type: 'link'
           },
           {
-            name: 'Link 02',
-            url: '/linkURL',
+            label: 'Link 02',
+            link: '/linkURL',
             type: 'button'
           },
           {
-            name: 'Link 03',
-            url: '/linkURL',
+            label: 'Link 03',
+            link: '/linkURL',
             type: 'button'
           }
         ]
@@ -48,60 +48,60 @@ SingleData.args = {
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  subMenu: [
+  dropdown: [
     {
-      groupCaption: 'Group 01',
-      groups: [
+      columnLabel: 'Group 01',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
           type: 'link'
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL',
+          label: 'Link 03',
+          link: '/linkURL',
           type: 'button'
         }
       ]
     },
     {
-      groupCaption: 'Group 02',
-      groups: [
+      columnLabel: 'Group 02',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
           type: 'link'
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL',
+          label: 'Link 03',
+          link: '/linkURL',
           type: 'link'
         }
       ]
     },
     {
-      groupCaption: 'Group 03',
-      groups: [
+      columnLabel: 'Group 03',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
           type: 'button'
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL'
+          label: 'Link 03',
+          link: '/linkURL'
         }
       ]
     }

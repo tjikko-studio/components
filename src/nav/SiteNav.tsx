@@ -13,7 +13,7 @@ export interface LanguageType {
   subMenu?: MenuType[]
 }
 export interface MenuItemType {
-  caption: string
+  label: string
   captionLink?: string
   subMenu?: MenuType[]
 }
@@ -86,7 +86,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   key={index}
                   link={menuitem.captionLink ? menuitem.captionLink : ''}
                   styles='default/white'
-                  caption={menuitem.caption}
+                  label={menuitem.label}
                   subMenu={menuitem.subMenu}
                 />
               )
@@ -106,7 +106,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           />
           <NavItem
             styles='default/white'
-            caption={languageList.current ? languageList.current : 'En'}
+            label={languageList.current ? languageList.current : 'En'}
             subMenu={languageList.subMenu}
           />
         </div>

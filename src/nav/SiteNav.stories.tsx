@@ -19,15 +19,15 @@ Desktop.args = {
     current: 'En',
     subMenu: [
       {
-        groupCaption: [],
-        groups: [
+        columnLabel: [],
+        columnContent: [
           {
-            name: 'De',
-            url: '/de',
+            label: 'De',
+            link: '/de',
           },
           {
-            name: 'Afr',
-            url: '/afr',
+            label: 'Afr',
+            link: '/afr',
           }
         ]
       }
@@ -35,26 +35,26 @@ Desktop.args = {
   },
   menuData: [
     {
-      caption: 'Why SmartPixel',
+      label: 'Why SmartPixel',
       subMenu: [
         {
-          groupCaption: [],
-          groups: [
+          columnLabel: [],
+          columnContent: [
             {
-              name: 'Features',
-              url: '/features',
+              label: 'Features',
+              link: '/features',
             },
             {
-              name: 'Customer Success Stories',
-              url: '/customer',
+              label: 'Customer Success Stories',
+              link: '/customer',
             },
             {
-              name: 'Quality and reliability',
-              url: '/quality'
+              label: 'Quality and reliability',
+              link: '/quality'
             },
             {
-              name: 'Contact Sales team',
-              url: '/contact',
+              label: 'Contact Sales team',
+              link: '/contact',
               type: 'button'
             }
           ]
@@ -62,39 +62,39 @@ Desktop.args = {
       ]
     },
     {
-      caption: 'Solutions',
+      label: 'Solutions',
       subMenu: [
         {
-          groupCaption: 'BY INDUSTRY',
-          groups: [
+          columnLabel: 'BY INDUSTRY',
+          columnContent: [
             {
-              name: 'Real estate',
-              url: '/real',
+              label: 'Real estate',
+              link: '/real',
             },
             {
-              name: 'Others',
-              url: '/others',
+              label: 'Others',
+              link: '/others',
             }
           ]
         },
         {
-          groupCaption: 'BY USE CASE',
-          groups: [
+          columnLabel: 'BY USE CASE',
+          columnContent: [
             {
-              name: 'Sales Office',
-              url: '/sale',
+              label: 'Sales Office',
+              link: '/sale',
             },
             {
-              name: 'Presentation',
-              url: '/presentation'
+              label: 'Presentation',
+              link: '/presentation'
             },
             {
-              name: 'Remote',
-              url: '/remote'
+              label: 'Remote',
+              link: '/remote'
             },
             {
-              name: 'Contact Sales team',
-              url: '/contact',
+              label: 'Contact Sales team',
+              link: '/contact',
               type: 'button'
             }
           ]
@@ -102,7 +102,7 @@ Desktop.args = {
       ]
     },
     {
-      caption: 'Portfolio',
+      label: 'Portfolio',
       captionLink: '/portfolio',
       subMenu: []
     }

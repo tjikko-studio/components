@@ -41,7 +41,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
         </div>
         <NavItem
           styles='default/white'
-          caption={
+          label={
             languageList.current ? languageList.current : 'En'
           }
           subMenu={languageList.subMenu}
@@ -59,9 +59,9 @@ export const MobileMenu: FC<SiteNavProps> = ({
             key={menuIndex}>
             <div className='fontStyle-xl text-gray-50 mb-6'>
               {!hasSubMenu ? (
-                <a href={menu.captionLink}>{menu.caption}</a>
+                <a href={menu.captionLink}>{menu.label}</a>
               ) : (
-                menu.caption
+                menu.label
               )}
             </div>
             <div>
@@ -71,7 +71,7 @@ export const MobileMenu: FC<SiteNavProps> = ({
                 <div>
                   <ListNav
                     styles='flat'
-                    linkList={menu.subMenu || []}
+                    listnavContent={menu.subMenu || []}
                   />
                 </div>
               )}

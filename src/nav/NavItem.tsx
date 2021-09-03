@@ -12,17 +12,17 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * text to show as menu
    */
-  caption: string
+  label: string
   
   /**
-   * url to go when menu clicked
+   * link to go when menu clicked
    */
   link?: string
   
   /**
    * Sub menu items list array that will be parsed through to build the component
    */
-  subMenu?: MenuType[]
+  dropdown?: MenuType[]
   
   /**
    * Additional space-separated class names to append
@@ -35,15 +35,19 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const NavItem: FC<NavItemProps> = ({
-  caption = 'Label',
+  label = 'Label',
   styles = 'default/white',
   link = null,
-  subMenu = [],
+  dropdown = [],
   className,
 }) => {
   const [mouseIn, setMouseIn] = useState(false)
   const [mouseClick, setMouseClick] = useState(false)
+  console.log()
   return (
+    <></>
+  )
+  /* return (
     <div
       className={`w-max relative ${className}`}
       style={{width: 'fit-content'}}
@@ -53,11 +57,11 @@ export const NavItem: FC<NavItemProps> = ({
       <PopUpNavItem
         onClick={() => setMouseClick(!mouseClick)}
         type={(styles === 'default/white') ? 'special' : 'default'}
-        caption={caption}
+        label={label}
         href={link}
         className={`flex items-center ${mouseIn && styles === 'default' ? 'text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'text-primary-100 dark:text-primary-300' : ''}`}
       >
-        {(subMenu.length > 0) && (
+        {(dropdown.length > 0) && (
           <span className='ml-2.5'>
             <ArrowDown
               width='18'
@@ -67,14 +71,14 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (subMenu.length > 0) && (
+      {(mouseIn && mouseClick) && (dropdown.length > 0) && (
         <div
           className='absolute left-0 top-full pt-1 w-max'
         >
-          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} linkList={subMenu} />
+          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={dropdown} />
         </div>
       )
       }
     </div>
-  )
+  ) */
 }

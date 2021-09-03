@@ -17,22 +17,22 @@ const Template: Story<ListNavProps> = (args) => <ListNav {...args} />
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  linkList:
+  listnavContent:
     [
       {
-        groupCaption: 'Group 01',
-        groups: [
+        columnLabel: 'Group 01',
+        columnContent: [
           {
-            name: 'Link 01',
-            url: '/linkURL',
+            label: 'Link 01',
+            link: '/linkURL',
           },
           {
-            name: 'Link 02',
-            url: '/linkURL',
+            label: 'Link 02',
+            link: '/linkURL',
           },
           {
-            name: 'Link 03',
-            url: '/linkURL',
+            label: 'Link 03',
+            link: '/linkURL',
             type: 'button'
           }
         ]
@@ -40,56 +40,56 @@ SingleData.args = {
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  linkList: [
+  listnavContent: [
     {
-      groupCaption: 'Group 01',
-      groups: [
+      columnLabel: 'Group 01',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL',
+          label: 'Link 03',
+          link: '/linkURL',
           type: 'button'
         }
       ]
     },
     {
-      groupCaption: 'Group 02',
-      groups: [
+      columnLabel: 'Group 02',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL',
+          label: 'Link 03',
+          link: '/linkURL',
         }
       ]
     },
     {
-      groupCaption: 'Group 03',
-      groups: [
+      columnLabel: 'Group 03',
+      columnContent: [
         {
-          name: 'Link 01',
-          url: '/linkURL',
+          label: 'Link 01',
+          link: '/linkURL',
         },
         {
-          name: 'Link 02',
-          url: '/linkURL'
+          label: 'Link 02',
+          link: '/linkURL'
         },
         {
-          name: 'Link 03',
-          url: '/linkURL',
+          label: 'Link 03',
+          link: '/linkURL',
         }
       ]
     }

@@ -2,14 +2,14 @@ import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
 
 export interface MenuItem {
-  name: string
-  url: string
+  label: string
+  link: string
   type?: 'default' | 'header' | 'button'
 }
 
 export interface MenuType {
-  groupCaption: string
-  groups: MenuItem[]
+  columnLabel: string
+  columnContent: MenuItem[]
 }
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +21,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Links items list array that will be parsed through to build the component
    */
-  linkList: MenuType[],
+  listnavContent: MenuType[],
 
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -34,10 +34,10 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
-  linkList = [],
+  listnavContent = null,
   className = ''
 }) => {
-  linkList = (linkList === null || linkList === undefined) ? [] : linkList
+
   const classes = [className]
   var wMax = ''
   switch (styles) {
@@ -56,27 +56,27 @@ export const ListNav: FC<ListNavProps> = ({
       className={classes.join(' ')}
     >
       {
-        linkList.map((menu) => {
+        listnavContent.map((menu) => {
           return (
-            <div className={wMax} key={menu.groupCaption} >
+            <div className={wMax} key={menu.columnLabel} >
               {
-                (linkList.length > 1) && (
+                (listnavContent.length > 1) && (
                   <PopUpNavItem
-                    caption={menu.groupCaption}
+                    label={menu.columnLabel}
                     type={'header'}
                     className='py-2.5'
                   />
                 )
               }
               {
-                menu.groups.map((menuItem) => {
+                menu.columnContent.map((menuItem) => {
                   return (
                     <PopUpNavItem
-                      key={menuItem.name}
-                      caption={menuItem.name}
+                      key={menuItem.label}
+                      label={menuItem.label}
                       type={menuItem.type ? menuItem.type : 'default'}
                       className='py-2.5'
-                      href={menuItem.url}
+                      href={menuItem.link}
                     />
                   )
                 })

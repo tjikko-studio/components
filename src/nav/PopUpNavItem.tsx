@@ -14,10 +14,10 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * text to show
    */
-  caption: string
+  label: string
   
   /**
-   * url to show
+   * link to show
    */
   href?: string
   
@@ -31,7 +31,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const PopUpNavItem: FC<PopUpNavItemProps> = ({
-  caption = 'link',
+  label = 'link',
   type = 'default',
   href = '#',
   isActive = false,
@@ -74,7 +74,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       className={classes.join(' ')}
     >
       <a href={href}>
-        {caption}
+        {label}
       </a>
       {
         children ? children : ''
