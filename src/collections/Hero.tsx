@@ -22,7 +22,8 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Hero object that will be parsed through to build the component
    */
-  content?: []
+  content?: [],
+  templatesContent?: any
 }
 
 const getHorPos = (v: string) => {
@@ -63,9 +64,10 @@ export const Hero: FC<HeroProps> = ({
   bgVideo = null,
   contentPosition = 'bottom|left',
   heroHeight = '90vh',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
-  contentPosition = 'bottom|left';
+  const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
@@ -96,7 +98,7 @@ export const Hero: FC<HeroProps> = ({
         >
           {
             content.map((block) => {
-              return getComponent(block, {
+              return toComponent(block, {
                 Heading: (baseProps: any) => {
                   return {
                     level: 'h1'

@@ -23,6 +23,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
    */
   fetchedContent?: TemplateItemProps[]
   content?: TemplateItemProps[]
+  templatesContent: any
 }
 
 /**
@@ -30,7 +31,8 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
  */
 export const Template: FC<TemplateProps> = ({
   content = null,
-  fetchedContent = null
+  fetchedContent = null,
+  templatesContent = {}
 }) => {
   return (
     <div>
@@ -46,7 +48,7 @@ export const Template: FC<TemplateProps> = ({
                   // See the tailwind hacks in src/index.tsx
                   <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)}`}>
                     {
-                      blocks.map(getComponent)
+                      blocks.map(getComponent(templatesContent))
                     }
                   </div>
                 ))

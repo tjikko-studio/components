@@ -16,13 +16,15 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
    * Form object that will be parsed through to build the component
    */
   content?: FormItemProps[]
+  templatesContent?: any
 }
 
 export const Form: FC<FormProps> = ({
   width = 'full',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
-
+  const toComponent = getComponent(templatesContent)
   return (
     <form className='grid gap-4'>
       {
@@ -36,7 +38,7 @@ export const Form: FC<FormProps> = ({
                 <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
                   {
                     column.blocks.map((block) => {
-                      return getComponent(block, {
+                      return toComponent(block, {
                         Input: (baseProps:any) => {
                           return {
                             className: `${baseProps.className} w-full`

@@ -42,7 +42,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content?: SectionItemProps[]
+  content?: SectionItemProps[],
+  templatesContent?: any
 }
 
 function extractCombo (thing: string) {
@@ -54,8 +55,10 @@ export const Section: FC<SectionProps> = ({
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
+  const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   // See the tailwind hacks in src/index.tsx
@@ -87,7 +90,7 @@ export const Section: FC<SectionProps> = ({
                       <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full ${headerClass}`}>
                         {
                           blocks.map((block) => {
-                            return getComponent(block, {
+                            return toComponent(block, {
                               Text: (baseProps: any) => {
                                 return {
                                   className: `${baseProps.className} text-gray-900 dark:text-gray-50`
