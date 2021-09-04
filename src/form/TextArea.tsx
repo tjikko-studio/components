@@ -64,6 +64,10 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
+
+  columnIndex?: number
+
+  controlStyle?: any
 }
 
 /**
@@ -81,8 +85,10 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
+  columnIndex = 1,
+  controlStyle = {}
 }) => {
-  const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = ['sm:grid-in-control form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -94,12 +100,9 @@ export const TextArea: FC<TextAreaProps> = ({
     textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
   }
   return (
-    <div
-      className={`flex flex-col gap-y-1 w-72 ${className}`}
-    >
-      {label &&
-        <div
-        className={`fontStyle-sm min-h-6 strong flex flex-row items-center  justify-between dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+    <>
+      <div
+        className={`sm:grid-in-label-${columnIndex} fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
       >
         <p>
           {label}
@@ -107,24 +110,22 @@ export const TextArea: FC<TextAreaProps> = ({
         {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
         {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
         {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
-        </div>
-      }
-      <textarea
-        className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
-        defaultValue={text}
-        placeholder={placeholder}
-        disabled={isDisabled}
-      />
-      {
-        information &&
-          <div
-            className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-            dangerouslySetInnerHTML={{ __html: information }}
-          >
-          </div>
+      </div>
+      <div className={`sm:grid-in-control-${columnIndex}`} style={controlStyle}>
+        <textarea
+          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+          defaultValue={text}
+          placeholder={placeholder}
+          disabled={isDisabled}
+        />
+      </div>
 
-      }
-      <div className={`${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
-    </div>
+      <div
+        className={`sm:grid-in-info-${columnIndex} fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        dangerouslySetInnerHTML={{ __html: information }}
+      >
+      </div>
+      <div className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+    </>
   )
 }

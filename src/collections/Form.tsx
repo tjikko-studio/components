@@ -24,43 +24,63 @@ export const Form: FC<FormProps> = ({
 }) => {
 
   return (
-    <form className='grid gap-4'>
-      {
-        content.map(({ columns }) => {
-          return(
-            // See the tailwind hacks in src/index.tsx
-            <section key={JSON.stringify(columns)} className={`grid sm:grid-cols-12 gap-4 items-center items-end w-${width}`}>
-            {
-              columns.map((column) => (
-                // See the tailwind hacks in src/index.tsx
-                <div key={JSON.stringify(column)} className={`sm:col-span-${getWidth(column.width)}`}>
-                  {
-                    column.blocks.map((block) => {
-                      return getComponent(block, {
-                        Input: (baseProps:any) => {
-                          return {
-                            className: `${baseProps.className} w-full`
-                          }
-                        },
-                        TextArea: (baseProps: any) => {
-                          return {
-                            className: `${baseProps.className} w-full`
-                          }
-                        },
-                        ButtonsGroup: (baseProps: any) => {
-                          return {
-                            className: `${baseProps.className} w-full`
-                          }
-                        }
-                      });
-                    })
+    <form className='grid gap-4'>{
+      content.map((hmm) => {
+        const nbColumns = hmm.columns.length
+        const colWidth = getWidth(`1/${nbColumns}`)
+        console.log({nbColumns, colWidth, sectionKey: JSON.stringify(hmm.columns)})
+        return (
+          <section
+            key={JSON.stringify(hmm.columns)}
+            className={'sm:grid sm:gap-4 grid-areas-form grid-cols-form grid-rows-form'}
+            style={{
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: '1fr 1fr 1fr 1fr',
+              gridTemplateAreas: `
+                "  label-1   label-2"
+                "control-1 control-2"
+                "   info-1    info-2"
+                "  error-1   error-2"
+              `
+            }}
+          >{
+            hmm.columns.reduce((acc, column, columnIndex) => {
+              acc = acc.concat(column.blocks.map((block) => {
+                return getComponent(block, {
+                  Input: (baseProps:any) => {
+                    return {
+                      className: `${baseProps.className} w-full sm:grid-in-control-${columnIndex}`,
+                      columnIndex,
+                      style: {
+                        gridArea: `control-${columnIndex}`
+                      }
+                    }
+                  },
+                  TextArea: (baseProps: any) => {
+                    return {
+                      className: `${baseProps.className} w-full sm:grid-in-control-${columnIndex}`,
+                      columnIndex,
+                      style: {
+                        gridArea: `control-${columnIndex}`
+                      }
+                    }
+                  },
+                  ButtonsGroup: (baseProps: any) => {
+                    return {
+                      className: `${baseProps.className} w-full sm:grid-in-control-${columnIndex}`,
+                      columnIndex,
+                      style: {
+                        gridArea: `control-${columnIndex}`
+                      }
+                    }
                   }
-                </div>
-              ))
-            }
-          </section>
-        )})
-      }
-    </form>
+                })
+              }))
+              return acc
+            }, [])
+          }</section>
+        )
+      })
+    }</form>
   )
 }

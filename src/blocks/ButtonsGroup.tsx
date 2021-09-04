@@ -14,6 +14,10 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
+
+  columnIndex?: number
+
+  controlStyle?: any
 }
 
 /**
@@ -21,10 +25,12 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   buttons = [],
-  className = ''
+  className = '',
+  columnIndex = 1,
+  controlStyle = {}
 }) => {
   return (
-    <div className={`inline-flex space-x-4 w-max ${className}`}>
+    <div className={`sm:grid-in-control-${columnIndex} inline-flex space-x-4 w-max ${className}`} style={controlStyle}>
       {buttons.map(({link, label, type, iconPos, size, fullWidth}, index) => (
         <Button
           key={`[${label}](${link})`}

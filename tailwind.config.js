@@ -12,12 +12,13 @@ module.exports = {
     ]
   },
   plugins: [
-    require("@tailwindcss/forms")({
+    require('@tailwindcss/forms')({
       strategy: 'class',
     }),
     plugin.withOptions(
       function(){ return applyFontConfig },
       function(){ return styles }
-    )
+    ),
+    require('@savvywombat/tailwindcss-grid-areas')
   ]
 }

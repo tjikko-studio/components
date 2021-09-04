@@ -2,10 +2,11 @@ import text from './text';
 import sizes from './sizes';
 import colors from './colors';
 import variants from './variants';
+import gridAreas from './gridAreas';
 
-const theme = {...text, ...sizes, ...colors}
+const theme = {...text, ...sizes, ...colors, ...gridAreas}
 
-export default {
+const obj = {
   darkMode: 'class',
   theme: {
     extend: theme
@@ -14,3 +15,5 @@ export default {
     extend: variants
   }
 }
+
+export default obj
