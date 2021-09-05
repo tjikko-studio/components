@@ -1,17 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-import getComponent from '../../utilities/getComponent'
-import getWidth from '../../utilities/getWidth'
-
-export interface BlockProps {
-  type: string
-  content: any
-}
-
-export interface ColumnProps {
-  width: string
-  blocks: BlockProps[]
-}
+import { ContentColumns } from '../layouts';
+import { ColumnProps } from '../../shared/types';
 
 export interface TemplateItemProps {
   columns: ColumnProps[]
@@ -36,23 +26,7 @@ export const Template: FC<TemplateProps> = ({
     <div>
       {
         !fetchedContent ? <div>No template yet</div> : (
-          fetchedContent.map(({columns}) => (
-            <section key={JSON.stringify(columns)} className='sm:grid sm:grid-cols-12'>
-              {
-                columns.map(({
-                  width,
-                  blocks
-                }) => (
-                  // See the tailwind hacks in src/index.tsx
-                  <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)}`}>
-                    {
-                      blocks.map(getComponent)
-                    }
-                  </div>
-                ))
-              }
-            </section>
-          ))
+          <ContentColumns content={fetchedContent} contentSectionClasses='sm:grid sm:grid-cols-12' />
         )
       }
     </div>

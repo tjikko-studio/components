@@ -68,7 +68,13 @@ export const Section: FC<SectionProps> = ({
         `}
       >
         {
-          content && <ContentColumns content={content} contentPosition={contentPosition} componentsExtraProps={columnComponentExtraProps} />
+          content && (
+            <ContentColumns
+              content={content}
+              contentPosition={contentPosition}
+              componentsExtraProps={columnComponentExtraProps}
+              columnClasses="flex flex-col space-y-8 h-full" />
+          )
         }
       </div>
     </div>
