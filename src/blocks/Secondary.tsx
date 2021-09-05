@@ -1,7 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
-import {GroupButtonProps} from '../blocks/ButtonsGroup'
-
+import {GroupButtonProps, ButtonsGroup} from '../blocks/ButtonsGroup'
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Is the component direction  default/horizontal (left to right) or vertical (image above)
@@ -83,6 +82,10 @@ export const Secondary: FC<SecondaryProps> = ({
             className='fontStyle-base'
             dangerouslySetInnerHTML={{ __html: body }}
           />
+          {
+            Object.keys(buttons).length >= 1 &&
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+          }
         </div>
       </div>
     )

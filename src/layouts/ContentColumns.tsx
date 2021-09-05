@@ -73,11 +73,12 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                             {
                                 columns.map(({
                                     width,
-                                    blocks
+                                    blocks,
+                                    id
                                 }) => (
                                     // See the tailwind hacks in src/index.tsx
                                     <div
-                                        key={JSON.stringify(blocks)}
+                                        key={JSON.stringify(id)}
                                         className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
                                         style={{ ...columnStyles }}
                                     >

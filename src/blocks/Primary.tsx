@@ -84,7 +84,7 @@ export const Primary: FC<PrimaryProps> = ({
           />
           {
             Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4mt-6' />
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
           }
         </div>
       </div>
