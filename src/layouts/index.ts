@@ -1,1 +1,1 @@
-export { ColumnsContent } from './ColumnsContent';
+export { ContentColumns } from './ContentColumns';

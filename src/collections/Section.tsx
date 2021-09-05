@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-import { ColumnsContent } from '../layouts';
-import { extractCombo } from '../../utilities/stringUtils';
+import { ContentColumns } from '../layouts';
+import extractCombo from '../../utilities/stringUtils';
 import { ColumnProps } from '../../shared/types';
 
 export interface SectionItemProps {
@@ -68,7 +68,7 @@ export const Section: FC<SectionProps> = ({
         `}
       >
         {
-          content && <ColumnsContent content={content} contentPosition={contentPosition} componentsExtraProps={columnComponentExtraProps} />
+          content && <ContentColumns content={content} contentPosition={contentPosition} componentsExtraProps={columnComponentExtraProps} />
         }
       </div>
     </div>

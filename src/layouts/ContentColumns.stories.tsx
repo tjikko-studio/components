@@ -1,19 +1,19 @@
 import React from 'react'
-import { ColumnsContent, ColumnsContentProps } from './ColumnsContent'
+import { ContentColumns, ContentColumnsProps } from './ContentColumns'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
-  title: 'Tjikko/Layouts/ColumnsContent',
-  component: ColumnsContent,
+  title: 'Tjikko/Layouts/ContentColumns',
+  component: ContentColumns,
   argTypes: {
 
   },
   parameters: {
-    componentSubtitle: 'ColumnsContent'
+    componentSubtitle: 'ContentColumns'
   }
 } as Meta
 
-const Template: Story<ColumnsContentProps> = (args) => <ColumnsContent {...args} />
+const Template: Story<ContentColumnsProps> = (args) => <ContentColumns {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
