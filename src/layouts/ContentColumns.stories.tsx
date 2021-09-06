@@ -38,8 +38,8 @@ Default.args = {
                   {
                     label: 'Primary button',
                     link: '#',
-                    type: 'tertiary'
-                  },
+                    type: 'primary'
+                  }
                 ]
               }
             },
@@ -58,8 +58,8 @@ Default.args = {
                   {
                     label: 'Primary button',
                     link: '#',
-                    type: 'tertiary'
-                  },
+                    type: 'primary'
+                  }
                 ]
               }
             }

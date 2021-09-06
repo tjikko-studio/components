@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-import { ContentColumns } from '../layouts';
-import { ColumnProps } from '../../shared/types';
+import { ContentColumns } from '../layouts'
+import { ColumnProps } from '../../shared/types'
 
 export interface TemplateItemProps {
   columns: ColumnProps[]
@@ -30,5 +30,5 @@ export const Template: FC<TemplateProps> = ({
         )
       }
     </div>
-  );
+  )
 }

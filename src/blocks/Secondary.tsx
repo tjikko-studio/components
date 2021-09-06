@@ -65,31 +65,6 @@ export const Secondary: FC<SecondaryProps> = ({
 }) => {
   layout = !layout ? 'default' : layout
 
-  const Text = () => {
-    return (
-      <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
-      >
-        <div
-          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
-        >
-          <h2
-            className='fontStyle-4xl mb-4 break-words'
-          >
-            {title}
-          </h2>
-          <p
-            className='fontStyle-base'
-            dangerouslySetInnerHTML={{ __html: body }}
-          />
-          {
-            Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
-          }
-        </div>
-      </div>
-    )
-  }
   return (
     <div
       className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
@@ -108,7 +83,27 @@ export const Secondary: FC<SecondaryProps> = ({
                 />
               )}
             </div>
-            <Text />
+            <div
+              className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
+            >
+              <div
+                className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
+              >
+                <h2
+                  className='fontStyle-4xl mb-4 break-words'
+                >
+                  {title}
+                </h2>
+                <p
+                  className='fontStyle-base'
+                  dangerouslySetInnerHTML={{__html: body}}
+                />
+                {
+                  Object.keys(buttons).length >= 1 &&
+                  <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+                }
+              </div>
+            </div>
           </>
         )
       }
