@@ -9,8 +9,8 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgColor?: string
   bgHasImage ?: boolean
   bgHasVideo ?: boolean
-  bgImage ?: ImageProps | null
-  bgVideo ?: ImageProps | null
+  bgImage ?: ImageProps
+  bgVideo ?: ImageProps
 
   /**
    * Content Position
@@ -60,8 +60,8 @@ export const Hero: FC<HeroProps> = ({
   bgColor = 'transparent',
   bgHasImage = false,
   bgHasVideo = false,
-  bgImage = null,
-  bgVideo = null,
+  bgImage = {},
+  bgVideo = {},
   contentPosition = 'bottom|left',
   heroHeight = '90vh',
   content = [],
@@ -71,7 +71,7 @@ export const Hero: FC<HeroProps> = ({
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
-  const horHor = getHorPos(horPosVal);
+  const horHor = getHorPos(horPosVal)
   return (
     <header
       className={`overflow-hidden bg-cover relative text-gray-50 ${theme ? theme : 'dark'}`}
@@ -80,7 +80,7 @@ export const Hero: FC<HeroProps> = ({
       {
         /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={bgImage.url} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
+          <video id='heroVideo' poster={(bgHasImage && bgImage) ? bgImage.url : ''} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )

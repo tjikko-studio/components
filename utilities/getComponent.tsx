@@ -38,7 +38,6 @@ function getNewPos (prevPos: string, newPos: string) {
 }
 
 function getCommonProps (content: any) {
-  console.log({ getCommonPropsKey: JSON.stringify(content) })
   return {
     key: JSON.stringify(content), // TODO: find shorter, better key for each component
   }

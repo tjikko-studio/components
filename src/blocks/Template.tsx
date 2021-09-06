@@ -21,9 +21,8 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  fetchedContent?: TemplateItemProps[]
   content?: TemplateItemProps[]
-  templatesContent: any
+  templatesContent?: TemplateItemProps[]
 }
 
 /**
@@ -31,14 +30,15 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
  */
 export const Template: FC<TemplateProps> = ({
   content = null,
-  fetchedContent = null,
-  templatesContent = {}
+  templatesContent = []
 }) => {
   return (
     <div>
       {
-        !fetchedContent ? <div>No template yet</div> : (
-          fetchedContent.map(({columns}) => (
+        !templatesContent ? (
+          <div>No template yet</div>
+        ) : (
+          templatesContent.map(({columns}) => (
             <section key={JSON.stringify(columns)} className='sm:grid sm:grid-cols-12'>
               {
                 columns.map(({
