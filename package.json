@@ -36,6 +36,7 @@
     "autoprefixer": "10.3.1",
     "babel-loader": "8.2.2",
     "concurrently": "6.2.1",
+    "cssnano": "5.0.8",
     "jest": "27.1.0",
     "postcss": "8.3.6",
     "postcss-cli": "8.3.1",
