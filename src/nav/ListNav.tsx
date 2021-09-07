@@ -8,8 +8,8 @@ export interface MenuItem {
 }
 
 export interface MenuType {
-  columnLabel: string
-  columnContent: MenuItem[]
+  label: string
+  content: MenuItem[]
 }
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -37,7 +37,6 @@ export const ListNav: FC<ListNavProps> = ({
   listnavContent = null,
   className = ''
 }) => {
-
   const classes = [className]
   var wMax = ''
   switch (styles) {
@@ -58,18 +57,18 @@ export const ListNav: FC<ListNavProps> = ({
       {
         listnavContent.map((menu) => {
           return (
-            <div className={wMax} key={menu.columnLabel} >
+            <div className={wMax} key={menu.label} >
               {
                 (listnavContent.length > 1) && (
                   <PopUpNavItem
-                    label={menu.columnLabel}
+                    label={menu.label}
                     type={'header'}
                     className='py-2.5'
                   />
                 )
               }
               {
-                menu.columnContent.map((menuItem) => {
+                menu.content.map((menuItem) => {
                   return (
                     <PopUpNavItem
                       key={menuItem.label}

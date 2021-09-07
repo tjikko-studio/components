@@ -1,4 +1,5 @@
-import React, {FC, HTMLAttributes, useState} from 'react'
+/* import React, {FC, HTMLAttributes, useState} from 'react' */
+import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
 import {ListNav, MenuType} from './ListNav'
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
@@ -22,7 +23,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Sub menu items list array that will be parsed through to build the component
    */
-  dropdown?: MenuType[]
+  listnavContent?: MenuType[]
   
   /**
    * Additional space-separated class names to append
@@ -38,15 +39,41 @@ export const NavItem: FC<NavItemProps> = ({
   label = 'Label',
   styles = 'default/white',
   link = null,
-  dropdown = [],
+  listnavContent = null,
   className,
 }) => {
-  const [mouseIn, setMouseIn] = useState(false)
-  const [mouseClick, setMouseClick] = useState(false)
-  console.log()
   return (
-    <></>
+    <div
+      className={`w-max relative ${className}`}
+      style={{width: 'fit-content'}}
+    >
+      <PopUpNavItem
+        type={(styles === 'default/white') ? 'special' : 'default'}
+        label={label}
+        href={link}
+        className={`flex items-center ${styles === 'default' ? 'hover:text-primary-600' : ''} ${styles === 'default/white' ? 'hover:text-primary-300' : ''} ${styles === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
+      >
+        {(listnavContent) && (
+          <span className='ml-2.5'>
+            <ArrowDown
+              width='18'
+              height='18'
+            />
+          </span>
+        )
+        }
+      </PopUpNavItem>
+      {listnavContent && (
+        <div
+          className='_absolute left-0 top-full pt-1 w-max'
+        >
+          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
+        </div>
+      )
+      }
+    </div>
   )
+  // Version with React useState (that is not working inside Kirby)
   /* return (
     <div
       className={`w-max relative ${className}`}
@@ -61,7 +88,7 @@ export const NavItem: FC<NavItemProps> = ({
         href={link}
         className={`flex items-center ${mouseIn && styles === 'default' ? 'text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'text-primary-100 dark:text-primary-300' : ''}`}
       >
-        {(dropdown.length > 0) && (
+        {(listnavContent.length > 0) && (
           <span className='ml-2.5'>
             <ArrowDown
               width='18'
@@ -71,11 +98,12 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (dropdown.length > 0) && (
+      {(mouseIn && mouseClick) && (listnavContent.length > 0) && (
         <div
           className='absolute left-0 top-full pt-1 w-max'
         >
-          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={dropdown} />
+          Hello wonderful people
+          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
         </div>
       )
       }
