@@ -14,7 +14,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content: SectionItemProps[]
+  content?: SectionItemProps[]
 
   /**
    * Content Position
@@ -50,7 +50,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
-  content,
+  content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
   contentSectionClasses = 'gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full',
@@ -66,7 +66,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   return (
     <>
       {
-        content.map(({ columns }) => {
+        content && content.map(({ columns }) => {
           const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
           return (
             <section
