@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
-import { ColumnProps } from './Section'
+import { ColumnProps } from '../../shared/types'
 
 export interface FormItemProps {
   columns: ColumnProps[]
@@ -10,7 +10,7 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
   /**
    * What is the width of the form?
    */
-  width ?: 'string'
+  width?: 'string'
 
   /**
    * Form object that will be parsed through to build the component
