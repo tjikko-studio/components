@@ -26,7 +26,7 @@ export const Template: FC<TemplateProps> = ({
     <div>
       {
         !templatesContent ? <div>No template yet</div> : (
-          <ContentColumns content={templatesContent} templatesContent={templatesContent} contentSectionClasses='sm:grid sm:grid-cols-12' />
+          <ContentColumns content={content} templatesContent={templatesContent} contentSectionClasses='sm:grid sm:grid-cols-12' />
         )
       }
     </div>
