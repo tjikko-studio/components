@@ -31,7 +31,7 @@ export const Form: FC<FormProps> = ({
         return (
           <section
             key={JSON.stringify(columns)}
-            className={'sm:grid sm:gap-4'}
+            className={'sm:grid sm:gap-x-4'}
             style={{
               gridTemplateColumns: 'repeat(12, minmax(0, auto))',
               gridTemplateRows: 'repeat(4, minmax(0, auto))',

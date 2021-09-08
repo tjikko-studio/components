@@ -85,7 +85,7 @@ export const Input: FC<InputProps> = ({
   className = '',
   columnIndex = 1
 }) => {
-  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300`]
+  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300 mb-2`]
   const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
@@ -100,17 +100,20 @@ export const Input: FC<InputProps> = ({
   addSuccessClasses(isSuccess, inputClasses)
   return (
     <>
-      <div
-        className={labelContainerClasses.join(' ')}
-        style={{gridArea: `label-${columnIndex}`}}
-      >
-        <p>
-          {label}
-        </p>
-        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
-        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
-      </div>
+      {
+        label &&
+        <div
+          className={labelContainerClasses.join('')}
+          style={{gridArea: `label-${columnIndex}`}}
+        >
+          <p>
+            {label}
+          </p>
+          {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
+          {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+          {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
+        </div>
+      }      
       <div
         className={`sm:grid-in-control-${columnIndex}`}
         style={{gridArea: `control-${columnIndex}`}}
@@ -122,24 +125,27 @@ export const Input: FC<InputProps> = ({
           disabled={isDisabled}
         />
       </div>
-      <div
-        className={`sm:grid-in-info-${columnIndex}`}
-        style={{gridArea: `info-${columnIndex}`}}
-      >
-        {
-          information &&
-          <div
-            className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-            dangerouslySetInnerHTML={{__html: information}}
-          />
-        }
-      </div>
-      <div
-        className={`grid-in-error-${columnIndex}`}
-        style={{gridArea: `error-${columnIndex}`}}
-      >
-        <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
-      </div>
+      {
+        information &&
+        <div
+          className={`sm:grid-in-info-${columnIndex} mt-2`}
+          style={{gridArea: `info-${columnIndex}`}}
+        >
+            <div
+              className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+              dangerouslySetInnerHTML={{__html: information}}
+            />
+        </div>
+      }
+      {
+        isError &&
+        <div
+          className={`grid-in-error-${columnIndex} mt-2`}
+          style={{gridArea: `error-${columnIndex}`}}
+        >
+          <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+        </div>
+      }
     </>
   )
 }

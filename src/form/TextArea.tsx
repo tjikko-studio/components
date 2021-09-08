@@ -100,17 +100,20 @@ export const TextArea: FC<TextAreaProps> = ({
   }
   return (
     <>
-      <div
-        className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-        style={{gridArea: `label-${columnIndex}`}}
-      >
-        <p>
-          {label}
-        </p>
-        {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
-        {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-        {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
-      </div>
+      {
+        label &&
+        <div
+          className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} mb-2`}
+          style={{gridArea: `label-${columnIndex}`}}
+        >
+          <p>
+            {label}
+          </p>
+          {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
+          {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+          {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
+        </div> 
+      }
       <div
         className={`sm:grid-in-control-${columnIndex}`}
         style={{gridArea: `control-${columnIndex}`}}
@@ -122,19 +125,24 @@ export const TextArea: FC<TextAreaProps> = ({
           disabled={isDisabled}
         />
       </div>
-
-      <div
-        className={`sm:grid-in-info-${columnIndex} fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-        style={{gridArea: `info-${columnIndex}`}}
-        dangerouslySetInnerHTML={{__html: information}}
-      >
-      </div>
-      <div
-        className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}
-        style={{gridArea: `error-${columnIndex}`}}
-      >
-        {error}
-      </div>
+      {
+        information &&
+        <div
+          className={`sm:grid-in-info-${columnIndex} fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600 mt-2'}`}
+          style={{gridArea: `info-${columnIndex}`}}
+          dangerouslySetInnerHTML={{__html: information}}
+        >
+        </div>
+      }
+      {
+        isError &&
+        <div
+          className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400 mt-2`}
+          style={{gridArea: `error-${columnIndex}`}}
+        >
+          {error}
+        </div>
+      }      
     </>
   )
 }
