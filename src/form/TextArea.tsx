@@ -85,10 +85,9 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
-  columnIndex = 1,
-  controlStyle = {}
+  columnIndex = 1
 }) => {
-  const textareaClasses = ['sm:grid-in-control form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
@@ -102,7 +101,8 @@ export const TextArea: FC<TextAreaProps> = ({
   return (
     <>
       <div
-        className={`sm:grid-in-label-${columnIndex} fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+        style={{gridArea: `label-${columnIndex}`}}
       >
         <p>
           {label}
@@ -111,7 +111,10 @@ export const TextArea: FC<TextAreaProps> = ({
         {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
         {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
       </div>
-      <div className={`sm:grid-in-control-${columnIndex}`} style={controlStyle}>
+      <div
+        className={`sm:grid-in-control-${columnIndex}`}
+        style={{gridArea: `control-${columnIndex}`}}
+      >
         <textarea
           className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
           defaultValue={text}
@@ -122,10 +125,16 @@ export const TextArea: FC<TextAreaProps> = ({
 
       <div
         className={`sm:grid-in-info-${columnIndex} fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-        dangerouslySetInnerHTML={{ __html: information }}
+        style={{gridArea: `info-${columnIndex}`}}
+        dangerouslySetInnerHTML={{__html: information}}
       >
       </div>
-      <div className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+      <div
+        className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}
+        style={{gridArea: `error-${columnIndex}`}}
+      >
+        {error}
+      </div>
     </>
   )
 }

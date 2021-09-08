@@ -65,8 +65,7 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
     */
   className?: string
 
-  columnIndex?: number,
-  controlStyle?: any
+  columnIndex?: number
 }
 
 /**
@@ -84,10 +83,9 @@ export const Input: FC<InputProps> = ({
   information,
   error,
   className = '',
-  columnIndex = 1,
-  controlStyle = {}
+  columnIndex = 1
 }) => {
-  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300 sm:grid-in-label-${columnIndex}`]
+  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300`]
   const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
@@ -104,6 +102,7 @@ export const Input: FC<InputProps> = ({
     <>
       <div
         className={labelContainerClasses.join(' ')}
+        style={{gridArea: `label-${columnIndex}`}}
       >
         <p>
           {label}
@@ -112,7 +111,10 @@ export const Input: FC<InputProps> = ({
         {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
         {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
       </div>
-      <div className={`sm:grid-in-control-${columnIndex}`} style={controlStyle}>
+      <div
+        className={`sm:grid-in-control-${columnIndex}`}
+        style={{gridArea: `control-${columnIndex}`}}
+      >
         <input
           className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
           defaultValue={text}
@@ -120,7 +122,10 @@ export const Input: FC<InputProps> = ({
           disabled={isDisabled}
         />
       </div>
-      <div className={`sm:grid-in-info-${columnIndex}`}>
+      <div
+        className={`sm:grid-in-info-${columnIndex}`}
+        style={{gridArea: `info-${columnIndex}`}}
+      >
         {
           information &&
           <div
@@ -129,7 +134,10 @@ export const Input: FC<InputProps> = ({
           />
         }
       </div>
-      <div className={`grid-in-error-${columnIndex}`}>
+      <div
+        className={`grid-in-error-${columnIndex}`}
+        style={{gridArea: `error-${columnIndex}`}}
+      >
         <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
       </div>
     </>

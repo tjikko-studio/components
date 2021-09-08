@@ -16,8 +16,6 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 
   columnIndex?: number
-
-  controlStyle?: any
 }
 
 /**
@@ -26,11 +24,13 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   buttons = [],
   className = '',
-  columnIndex = 1,
-  controlStyle = {}
+  columnIndex = 1
 }) => {
   return (
-    <div className={`sm:grid-in-control-${columnIndex} inline-flex space-x-4 w-max ${className}`} style={controlStyle}>
+    <div
+      className={`inline-flex space-x-4 w-max ${className}`}
+      style={{gridArea: `control-${columnIndex}`}}
+    >
       {buttons.map(({link, label, type, iconPos, size, fullWidth}, index) => (
         <Button
           key={`[${label}](${link})`}

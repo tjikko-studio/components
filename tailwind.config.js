@@ -18,7 +18,6 @@ module.exports = {
     plugin.withOptions(
       function(){ return applyFontConfig },
       function(){ return styles }
-    ),
-    require('@savvywombat/tailwindcss-grid-areas')
+    )
   ]
 }
