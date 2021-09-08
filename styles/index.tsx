@@ -1,10 +1,9 @@
-import text from './text';
-import sizes from './sizes';
-import colors from './colors';
-import variants from './variants';
-import gridAreas from './gridAreas';
+import text from './text'
+import sizes from './sizes'
+import colors from './colors'
+import variants from './variants'
 
-const theme = {...text, ...sizes, ...colors, ...gridAreas}
+const theme = {...text, ...sizes, ...colors}
 
 const obj = {
   darkMode: 'class',

@@ -6,6 +6,5 @@ export default {
   opacity: ['disabled'],
   visibility: ['disabled'],
   borderColor: ['disabled'],
-  textColor: ['disabled'],
-  gridTemplateAreas: ['responsive']
+  textColor: ['disabled']
 }

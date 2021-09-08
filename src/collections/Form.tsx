@@ -25,13 +25,12 @@ export const Form: FC<FormProps> = ({
 
   return (
     <form className='grid gap-4'>{
-      content.map((hmm) => {
-        const nbColumns = hmm.columns.length
+      content.map(({columns}) => {
+        const nbColumns = columns.length
         const colWidth = getWidth(`1/${nbColumns}`)
-        console.log({nbColumns, colWidth, sectionKey: JSON.stringify(hmm.columns)})
         return (
           <section
-            key={JSON.stringify(hmm.columns)}
+            key={JSON.stringify(columns)}
             className={'sm:grid sm:gap-4'}
             style={{
               gridTemplateColumns: 'repeat(12, minmax(0, auto))',
@@ -44,7 +43,7 @@ export const Form: FC<FormProps> = ({
               `
             }}
           >{
-            hmm.columns.reduce((acc, column, columnIndex) => {
+            columns.reduce((acc, column, columnIndex) => {
               acc = acc.concat(column.blocks.map((block) => {
                 return getComponent(block, {
                   Input: (baseProps:any) => {
