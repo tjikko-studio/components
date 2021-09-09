@@ -5,7 +5,7 @@ import variants from './variants'
 
 const theme = {...text, ...sizes, ...colors}
 
-const obj = {
+export default {
   darkMode: 'class',
   theme: {
     extend: theme
@@ -14,5 +14,3 @@ const obj = {
     extend: variants
   }
 }
-
-export default obj
