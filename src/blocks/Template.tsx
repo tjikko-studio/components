@@ -1,7 +1,7 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 
-import { ContentColumns } from '../layouts'
-import { ColumnProps } from '../../shared/types'
+import {ContentColumns} from '../layouts/ContentColumns'
+import {ColumnProps} from '../../shared/types'
 
 export interface TemplateItemProps {
   columns: ColumnProps[]

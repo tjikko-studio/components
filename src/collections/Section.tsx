@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-import { ContentColumns } from '../layouts';
-import extractCombo from '../../utilities/stringUtils';
-import { ColumnProps } from '../../shared/types';
+import { ContentColumns } from '../layouts/ContentColumns'
+import extractCombo from '../../utilities/stringUtils'
+import { ColumnProps } from '../../shared/types'
 
 export interface SectionItemProps {
   columns: ColumnProps[]
@@ -47,7 +47,7 @@ export const Section: FC<SectionProps> = ({
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   // See the tailwind hacks in src/index.tsx
-  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : '';
+  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
 
   const columnComponentExtraProps = {
     Text: (baseProps: any) => {
