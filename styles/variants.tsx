@@ -8,5 +8,3 @@ export default {
   borderColor: ['disabled'],
   textColor: ['disabled']
 }
-
-/* module.exports = variants; */
