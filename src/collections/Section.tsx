@@ -5,6 +5,7 @@ import extractCombo from '../../utilities/stringUtils';
 import { ColumnProps } from '../../shared/types';
 
 export interface SectionItemProps {
+  id: string;
   columns: ColumnProps[]
 }
 
@@ -47,10 +48,46 @@ export const Section: FC<SectionProps> = ({
   // See the tailwind hacks in src/index.tsx
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : '';
 
+  let imagePosPrimary = 'undefined'
+  let imagePosSecondary = 'undefined'
+  let imagePosTertiary = 'undefined'
+  
+  function getNewPos (prevPos: string, newPos: string) {
+    newPos = (newPos === '' || newPos === undefined)  ? 'auto' : newPos
+    switch (`${prevPos} | ${newPos}`) {
+      case 'undefined | auto':
+        return 'left'
+      case 'left | auto':
+        return 'right'
+      case 'right | auto':
+        return 'left'
+      default:
+        return newPos
+    }
+  }
+
   const columnComponentExtraProps = {
     Text: (baseProps: any) => {
       return {
         className: `${baseProps.className} text-gray-900 dark:text-gray-50`
+      }
+    },
+    Primary: (baseProps: any) => {
+      imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosPrimary
+      }
+    },
+    Secondary: (baseProps: any) => {
+      imagePosSecondary = getNewPos(imagePosSecondary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosSecondary
+      }
+    },
+    Tertiary: (baseProps: any) => {
+      imagePosTertiary = getNewPos(imagePosTertiary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosTertiary
       }
     }
   };
