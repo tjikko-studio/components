@@ -66,39 +66,46 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   return (
     <>
       {
-        content && content.map(({ columns }) => {
-          const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
-          return (
-            <section
-              key={JSON.stringify(columns)}
-              className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
-              style={{ ...contentSectionStyles }}
-            >
-              {
-                columns.map(({
-                  width,
-                  blocks,
-                  id
-                }) => (
-                  // See the tailwind hacks in src/index.tsx
-                  <div
-                    key={JSON.stringify(id)}
-                    className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
-                    style={{ ...columnStyles }}
-                  >
-                    {
-                      blocks.map((block) => {
-                        return toComponent(block, {
-                          ...componentsExtraProps
-                        })
-                      })
-                    }
-                  </div>
-                ))
-              }
-            </section>
-          )
-        })
+        content
+          ? content.map(({ columns }) => {
+            const headerClass = (
+              content.length > 1 &&
+              containVal(columns[0].blocks, 'type', ['Heading', 'Text'])
+            ) ? 'mb-4 sm: mb-8' : ''
+            return (
+              <section
+                key={JSON.stringify(columns)}
+                className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
+                style={{ ...contentSectionStyles }}
+              >
+                {
+                  columns.map(({
+                    width,
+                    blocks,
+                    id
+                  }) => {
+                    return (
+                      // See the tailwind hacks in src/index.tsx
+                      <div
+                        key={JSON.stringify(id)}
+                        className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
+                        style={{ ...columnStyles }}
+                      >
+                        {
+                          blocks.map((block) => {
+                            return toComponent(block, {
+                              ...componentsExtraProps
+                            })
+                          })
+                        }
+                      </div>
+                    )
+                  })
+                }
+              </section>
+            )
+          })
+        : null
       }
     </>
   )

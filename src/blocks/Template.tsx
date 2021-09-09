@@ -19,15 +19,22 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  content = null,
+  content = [],
   templatesContent = []
 }) => {
   return (
     <div>
       {
-        !templatesContent ? <div>No template yet</div> : (
-          <ContentColumns content={content} templatesContent={templatesContent} contentSectionClasses='sm:grid sm:grid-cols-12' />
-        )
+        templatesContent
+          ? (
+            <ContentColumns
+              content={content}
+              templatesContent={templatesContent}
+              contentSectionClasses='sm:grid sm:grid-cols-12'
+            />
+          ) : (
+            <div>No template yet</div>
+          )
       }
     </div>
   )
