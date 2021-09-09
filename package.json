@@ -1,6 +1,6 @@
 {
   "name": "@tjikko/components",
-  "version": "3.4.11",
+  "version": "3.4.14",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "start:storybook": "node launchStorybook.js",
     "start": "concurrently npm:dev npm:dev:storybook",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
@@ -36,6 +36,7 @@
     "autoprefixer": "10.3.1",
     "babel-loader": "8.2.2",
     "concurrently": "6.2.1",
+    "cssnano": "5.0.8",
     "jest": "27.1.0",
     "postcss": "8.3.6",
     "postcss-cli": "8.3.1",

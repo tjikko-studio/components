@@ -52,11 +52,11 @@ export const Tertiary: FC<TertiaryProps> = ({
   title = '',
   body = ''
 }) => {
-  layout = !layout ? 'default' : layout
+  const layoutTypeStaged = !layout ? 'default' : layout
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
+        className={`mt-4 sm:mt-0 ${layoutTypeStaged !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`}
       >
         <div>
           <h2

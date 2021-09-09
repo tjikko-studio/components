@@ -1,7 +1,7 @@
-import text from './text';
-import sizes from './sizes';
-import colors from './colors';
-import variants from './variants';
+import text from './text'
+import sizes from './sizes'
+import colors from './colors'
+import variants from './variants'
 
 const theme = {...text, ...sizes, ...colors}
 
