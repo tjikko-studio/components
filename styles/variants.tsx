@@ -6,7 +6,8 @@ export default {
   opacity: ['disabled'],
   visibility: ['disabled'],
   borderColor: ['disabled'],
-  textColor: ['disabled']
+  textColor: ['disabled'],
+  justifyContent: ['first', 'last'],
 }
 
 /* module.exports = variants; */
