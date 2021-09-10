@@ -4,6 +4,7 @@ import { ContentColumns } from '../layouts'
 import { ColumnProps } from '../../shared/types'
 
 export interface TemplateItemProps {
+  id: string;
   columns: ColumnProps[]
 }
 
