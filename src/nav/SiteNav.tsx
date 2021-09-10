@@ -1,4 +1,5 @@
-import React, {FC, HTMLAttributes, useState} from 'react'
+import React, {FC, HTMLAttributes} from 'react'
+import getWidth from '../../utilities/getWidth'
 import {Disclosure} from '@headlessui/react'
 import CompanyLogo from '/assets/images/company_logo_placeholder.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
@@ -10,19 +11,31 @@ import {Button} from '../Button'
 
 export interface LanguageType {
   current?: string | null
-  subMenu?: MenuType[]
+  content?: MenuType[]
 }
+
 export interface MenuItemType {
   label: string
-  captionLink?: string
-  subMenu?: MenuType[]
+  link : string
+  type: string
+  content?: MenuType[]
+}
+
+export interface NavColumn {
+  width: string
+  content: MenuItemType[]
+}
+
+export interface NavColumns {
+  columns: NavColumn[]
 }
 
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
    */
-  menuData: MenuItemType[]
+  menuData: NavColumns[]
+  
 
   /**
    * Demo Button constants
@@ -57,16 +70,48 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  demoButtonText = 'Free Demo',
-  demoUrl = '#',
-  menuData = [],
+  menuData = null,
   styles = 'opaque',
-  languageList = {},
   mobileExpandDefault = false,
-  className
+  className,
+  // demoButtonText = 'Free Demo',
+  // demoUrl = '#',
+  // languageList = {},
 }) => {
-  const [mobileExpand, setMobileExpand] = useState(mobileExpandDefault)
   return (
+    <nav>
+      { menuData.length >=1 && menuData.map(row => {
+          return (
+            <section
+              key={JSON.stringify(row.columns)}
+              className={`flex items-center justify-between md:justify-start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
+            >
+              { row.columns.length >=1 && row.columns.map(({width, content}) => {
+                return (
+                  <div 
+                    key={JSON.stringify(content)}
+                    className={`hidden lg:flex lg:flex-auto items-center justify-center first:justify-start last:justify-end `}
+                  >
+                    { content && content.map(({label, link, type, content}) => {
+                      switch (type){
+                        case 'default':
+                        case 'NavigationDropdown':
+                          return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='default/white' label={label} listnavContent={content} className='lg:ml-6 lg:first:ml-0' />
+                        case 'button':
+                          return <Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' />
+                      }
+                    })}
+                  </div>
+                )    
+              })}
+            </section>
+          )
+        })
+      }
+    </nav>
+  )
+
+  /* return (
     <>
       <div
         className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
@@ -84,10 +129,10 @@ export const SiteNav: FC<SiteNavProps> = ({
               return (
                 <NavItem
                   key={index}
-                  link={menuitem.captionLink ? menuitem.captionLink : ''}
+                  link={menuitem.label ? menuitem.label : ''}
                   styles='default/white'
                   label={menuitem.label}
-                  subMenu={menuitem.subMenu}
+                  content={menuitem.content}
                 />
               )
             })
@@ -107,7 +152,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           <NavItem
             styles='default/white'
             label={languageList.current ? languageList.current : 'En'}
-            subMenu={languageList.subMenu}
+            content={languageList.content}
           />
         </div>
         <Disclosure as='nav'
@@ -142,5 +187,5 @@ export const SiteNav: FC<SiteNavProps> = ({
         />
       ) : ''}
     </>
-  )
+  ) */
 }

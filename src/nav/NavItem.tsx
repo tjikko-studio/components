@@ -42,16 +42,22 @@ export const NavItem: FC<NavItemProps> = ({
   listnavContent = null,
   className,
 }) => {
+  const mouseIn = true; // [mouseIn, setMouseIn] = useState(false)
+  const mouseClick = true; // [mouseClick, setMouseClick] = useState(false)
+
   return (
     <div
       className={`w-max relative ${className}`}
       style={{width: 'fit-content'}}
+      /* onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}} */
+      /* onMouseLeave={() => setMouseIn(false)} */
     >
       <PopUpNavItem
+        /* onClick={() => setMouseClick(!mouseClick)} */
         type={(styles === 'default/white') ? 'special' : 'default'}
         label={label}
         href={link}
-        className={`flex items-center ${styles === 'default' ? 'hover:text-primary-600' : ''} ${styles === 'default/white' ? 'hover:text-primary-300' : ''} ${styles === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
+        className={`flex items-center ${mouseIn && styles === 'default' ? 'hover:text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'hover:text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
       >
         {(listnavContent) && (
           <span className='ml-2.5'>
@@ -63,9 +69,9 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {listnavContent && (
+      {(mouseIn && mouseClick) && (listnavContent ) && (
         <div
-          className='_absolute left-0 top-full pt-1 w-max'
+          className='absolute left-0 top-full pt-1 w-max'
         >
           <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
         </div>
