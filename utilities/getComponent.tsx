@@ -17,42 +17,22 @@ import {TextGroup} from '../src/blocks/TextGroup'
 import {Template} from '../src/blocks/Template'
 import {Text} from '../src/blocks/Text'
 
-
-
-let imagePosPrimary = 'undefined'
-let imagePosSecondary = 'undefined'
-let imagePosTertiary = 'undefined'
-
-function getNewPos (prevPos: string, newPos: string) {
-  newPos = (newPos === '' || newPos === undefined) ? 'auto' : newPos
-  switch (`${prevPos} | ${newPos}`) {
-    case 'undefined | auto':
-      return 'left'
-    case 'left | auto':
-      return 'right'
-    case 'right | auto':
-      return 'left'
-    default:
-      return newPos
-  }
-}
-
-function getCommonProps (content: any) {
+function getCommonProps (content: any, id?: string) {
   return {
-    key: JSON.stringify(content), // TODO: find shorter, better key for each component
+    key: id || JSON.stringify(content), // TODO: find shorter, better key for each component
   }
 }
 
 const propsByType: any = {
-  ButtonsGroups: (content: any) => {
+  ButtonsGroups: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
+      ...getCommonProps(content, id),
       className: 'mt-8'
     }
   },
-  Hero: (content: any) => {
+  Hero: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
+      ...getCommonProps(content, id),
       bgColor: content.bg_color,
       bgHasImage: content.bg_has_image,
       bgHasVideo: content.bg_has_video,
@@ -60,33 +40,30 @@ const propsByType: any = {
       bgVideo: content.bg_video[0]
     }
   },
-  Primary: (content: any) => {
-    imagePosPrimary = getNewPos(imagePosPrimary, content.imagePosition)
+  Primary: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
-      imagePosition: imagePosPrimary,
+      ...getCommonProps(content, id),
+      imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Secondary: (content: any) => {
-    imagePosSecondary = getNewPos(imagePosSecondary, content.imagePosition)
+  Secondary: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
-      imagePosition: imagePosSecondary,
+      ...getCommonProps(content, id),
+      imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Tertiary: (content: any) => {
-    imagePosTertiary = getNewPos(imagePosTertiary, content.imagePosition)
+  Tertiary: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
-      imagePosition: imagePosTertiary,
+      ...getCommonProps(content, id),
+      imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Text: (content: any) => {
+  Text: (content: any, id?: string) => {
     return {
-      ...getCommonProps(content),
+      ...getCommonProps(content, id),
       className: 'fontStyle-lg',
       tag: 'div'
     }
@@ -95,11 +72,11 @@ const propsByType: any = {
 
 function getProps (
   type: string,
-  {content}: {content: object},
+  {content, id}: {content:object, id?:string},
   extraProps: Record<string, Function> = {},
   templatesContent: any = {}
 ) {
-  const specificProps = propsByType[type] ? propsByType[type](content) : getCommonProps(content)
+  const specificProps = propsByType[type] ? propsByType[type](content, id) : getCommonProps(content, id)
   const baseProps = {
     ...content,
     templatesContent,
