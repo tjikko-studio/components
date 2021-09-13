@@ -102,7 +102,7 @@ export const SiteNav: FC<SiteNavProps> = ({
             return (
               <section
                 key={JSON.stringify(row.columns)}
-                className={`flex items-center justify-between md:justify-start h-24 px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
+                className={`flex items-center justify-between md:justify-start h-24 px-10 ${(styles === 'opaque') && 'bg-gray-900 text-gray-50'} ${className}`}
               >
                 <div className='flex-auto'>
                   company logo
@@ -166,7 +166,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                   key={JSON.stringify(mobileNavContent)}
                   className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
                 >
-                  {console.log(mobileNavContent)}
                   { 
                     mobileNavContent.length >=1 && mobileNavContent.map(({content, mobile_layout, mobile_position}) => {
                       const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'

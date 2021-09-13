@@ -35,6 +35,7 @@ export interface NavColumn {
 }
 
 export interface NavColumns {
+  attrs: {no_gap: string}
   columns: NavColumn[]
 }
 
@@ -80,7 +81,7 @@ export const Footer: FC<FooterProps> = ({
   const border = 'border-b border-gray-600 last:border-b-0'
   
   return (
-    <div className='lg:flex flex-col bg-gray-900 text-gray-50 px-4 pb-4 space-y-12'>
+    <div className='lg:flex flex-col bg-gray-900 text-gray-50 px-4 pb-4 sp_ace-y-12'>
       <section className={`flex items-center h-16 ${border}`}>
         <div>Company Logo</div>
       </section>
@@ -91,11 +92,11 @@ export const Footer: FC<FooterProps> = ({
             <>
               <section
                 key={JSON.stringify(row.columns)}
-                className={`grid grid-flow-row grid-cols-12`}
+                className={`grid grid-flow-row grid-cols-12 gap-x-4 mt-12 ${row.attrs.no_gap ? 'gap-y-6' : 'gap-y-12' }`}
               >
                 { 
                   row.columns.length >=1 && row.columns.map(({content, layout, width, rtl, mobile_position, mobile_width, mobile_rtl}, i) => {
-                    const layoutLayout = layout === 'horizontal' ? 'flex items-start mt-4 lg:mt-0' : 'lg:flex flex-col mt-12 first:mt-0 lg:mb-0'
+                    const contentLayout = layout === 'horizontal' ? 'flex items-start mt_-4 lg:mt-0' : 'lg:flex flex-col first:mt-0 lg:mt-0'
                     const mobilePosition = mobile_position === 'start' ? 'order-first lg:order-none' : mobile_position === 'end' ? 'order-last lg:order-none' : ''
                     const horAlign = rtl ? 'lg:justify-end' : ''
                     const horAlignMobile = mobile_rtl ? '!lg:justify-end' : ''
@@ -103,7 +104,7 @@ export const Footer: FC<FooterProps> = ({
                     return (
                       <div 
                         key={JSON.stringify(content)}
-                        className={`${layoutLayout} ${horAlign} ${horAlignMobile} col-span-${getWidth(mobile_width)} lg:col-span-${getWidth(width)} ${mobilePosition} `}
+                        className={`${contentLayout} ${horAlign} ${horAlignMobile} col-span-${getWidth(mobile_width)} lg:col-span-${getWidth(width)} ${mobilePosition} `}
                       >
                         {
                           content && content.map(({label, link, type, content}, i) => {
