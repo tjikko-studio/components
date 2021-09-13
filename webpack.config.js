@@ -1,21 +1,25 @@
 const path = require('path')
 
+/**
+ * @type import('webpack').Configuration
+ */
 const componentsConfig = {
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      exclude: /\/node_modules\//,
-      use: 'ts-loader',
-    },{
-      test: /\.svg$/,
-      use: 'react-svg-loader'
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /\/node_modules\//,
+        use: 'ts-loader',
+      },
+      {
+        test: /\.svg$/,
+        use: 'react-svg-loader',
+      },
+    ],
   },
   resolve: {
-    roots: [
-      __dirname
-    ],
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg']
+    roots: [__dirname],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
   },
   name: 'components',
   entry: path.resolve(__dirname, './src/index.tsx'),
@@ -27,9 +31,17 @@ const componentsConfig = {
       type: 'var',
       export: 'default',
     },
-  }
-}
+  },
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+    vue: 'vue',
+  },
+};
 
+/**
+ * @type import('webpack').Configuration
+ */
 const stylesConfig = {
   module: {
     rules: [{
