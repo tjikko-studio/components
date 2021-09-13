@@ -15,7 +15,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content: SectionItemProps[]
+  content?: SectionItemProps[]
 
   /**
    * Content Position
@@ -46,56 +46,67 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
    * Custom styles for columns
    */
   columnStyles?: CSSProperties
+
+  templatesContent?: Record<string, ColumnProps>
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
-  content,
+  content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
   contentSectionClasses = 'gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full',
   contentSectionStyles = {},
   columnClasses = '',
-  columnStyles = {}
+  columnStyles = {},
+  templatesContent = {}
 }) => {
+  const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See the tailwind hacks in src/index.tsx
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
   return (
     <>
       {
-        content.map(({ columns, id }) => {
-          const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
-          return (
-            <section
-              key={id}
-              className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
-              style={{ ...contentSectionStyles }}
-            >
-              {
-                columns.map(({
-                  width,
-                  blocks,
-                  id
-                }) => (
-                  // See the tailwind hacks in src/index.tsx
-                  <div
-                    key={id}
-                    className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
-                    style={{ ...columnStyles }}
-                  >
-                    {
-                      blocks.map((block) => {
-                        return getComponent(block, {
-                          ...componentsExtraProps
-                        })
-                      })
-                    }
-                  </div>
-                ))
-              }
-            </section>
-          )
-        })
+        content
+          ? content.map(({ columns, id }) => {
+            const headerClass = (
+              content.length > 1 &&
+              containVal(columns[0].blocks, 'type', ['Heading', 'Text'])
+            ) ? 'mb-4 sm: mb-8' : ''
+            return (
+              <section
+                key={id}
+                className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
+                style={{ ...contentSectionStyles }}
+              >
+                {
+                  columns.map(({
+                    width,
+                    blocks,
+                    id
+                  }) => {
+                    return (
+                      // See the tailwind hacks in src/index.tsx
+                      <div
+                        key={id}
+                        className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
+                        style={{ ...columnStyles }}
+                      >
+                        {
+                          blocks.map((block) => {
+                            return toComponent(block, {
+                              ...componentsExtraProps
+                            })
+                          })
+                        }
+                      </div>
+                    )
+                  })
+                }
+              </section>
+            )
+          })
+        : null
       }
     </>
   )

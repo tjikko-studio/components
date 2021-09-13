@@ -1,6 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react'
 import getComponent from '../../utilities/getComponent'
-import getWidth from '../../utilities/getWidth'
 import { ColumnProps } from '../../shared/types'
 
 export interface FormItemProps {
@@ -16,18 +15,18 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
    * Form object that will be parsed through to build the component
    */
   content?: FormItemProps[]
+  templatesContent?: Record<string,ColumnProps>
 }
 
 export const Form: FC<FormProps> = ({
   width = 'full',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
-
+  const toComponent = getComponent(templatesContent)
   return (
     <form className='grid gap-4'>{
       content.map(({columns}) => {
-        const nbColumns = columns.length
-        const colWidth = getWidth(`1/${nbColumns}`)
         return (
           <section
             key={JSON.stringify(columns)}
@@ -45,7 +44,7 @@ export const Form: FC<FormProps> = ({
           >{
             columns.reduce((acc, column, columnIndex) => {
               acc = acc.concat(column.blocks.map((block) => {
-                return getComponent(block, {
+                return toComponent(block, {
                   Input: (baseProps:any) => {
                     return {
                       className: `${baseProps.className} w-full`,

@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react'
 
-import { ContentColumns } from '../layouts';
-import extractCombo from '../../utilities/stringUtils';
-import { ColumnProps } from '../../shared/types';
+import { ContentColumns } from '../layouts/ContentColumns'
+import extractCombo from '../../utilities/stringUtils'
+import { ColumnProps } from '../../shared/types'
 
 export interface SectionItemProps {
   id: string;
@@ -33,7 +33,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content?: SectionItemProps[]
+  content?: SectionItemProps[],
+  templatesContent?: Record<string, ColumnProps>
 }
 
 export const Section: FC<SectionProps> = ({
@@ -41,17 +42,18 @@ export const Section: FC<SectionProps> = ({
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   // See the tailwind hacks in src/index.tsx
-  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : '';
+  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
 
   let imagePosPrimary = 'undefined'
   let imagePosSecondary = 'undefined'
   let imagePosTertiary = 'undefined'
-  
+
   function getNewPos (prevPos: string, newPos: string) {
     newPos = (newPos === '' || newPos === undefined)  ? 'auto' : newPos
     switch (`${prevPos} | ${newPos}`) {
@@ -110,7 +112,9 @@ export const Section: FC<SectionProps> = ({
               content={content}
               contentPosition={contentPosition}
               componentsExtraProps={columnComponentExtraProps}
-              columnClasses="flex flex-col space-y-8 h-full" />
+              columnClasses='flex flex-col space-y-8 h-full'
+              templatesContent={templatesContent}
+            />
           )
         }
       </div>

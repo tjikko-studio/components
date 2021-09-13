@@ -1,7 +1,7 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 
-import { ContentColumns } from '../layouts'
-import { ColumnProps } from '../../shared/types'
+import {ContentColumns} from '../layouts/ContentColumns'
+import {ColumnProps} from '../../shared/types'
 
 export interface TemplateItemProps {
   id: string;
@@ -12,7 +12,6 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  fetchedContent?: TemplateItemProps[]
   content?: TemplateItemProps[]
 }
 
@@ -20,15 +19,20 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  content = null,
-  fetchedContent = null
+  content = []
 }) => {
   return (
     <div>
       {
-        !fetchedContent ? <div>No template yet</div> : (
-          <ContentColumns content={fetchedContent} contentSectionClasses='sm:grid sm:grid-cols-12' />
-        )
+        content
+          ? (
+            <ContentColumns
+              content={content}
+              contentSectionClasses='sm:grid sm:grid-cols-12'
+            />
+          ) : (
+            <div>No template yet</div>
+          )
       }
     </div>
   )
