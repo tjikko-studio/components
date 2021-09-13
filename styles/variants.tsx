@@ -12,5 +12,3 @@ export default {
   padding: ['first', 'last', 'before', 'after'],
   margin: ['first', 'last', 'before', 'after'],
 }
-
-/* module.exports = variants; */

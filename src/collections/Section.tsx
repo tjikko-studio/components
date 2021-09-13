@@ -1,20 +1,11 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, { FC, HTMLAttributes } from 'react'
 
-import getComponent from '../../utilities/getComponent'
-import getWidth from '../../utilities/getWidth'
-import containVal from '../../utilities/containVal'
-
-export interface BlockProps {
-  type: string
-  content: any
-}
-
-export interface ColumnProps {
-  width: string
-  blocks: BlockProps[]
-}
+import { ContentColumns } from '../layouts/ContentColumns'
+import extractCombo from '../../utilities/stringUtils'
+import { ColumnProps } from '../../shared/types'
 
 export interface SectionItemProps {
+  id: string;
   columns: ColumnProps[]
 }
 
@@ -42,11 +33,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content?: SectionItemProps[]
-}
-
-function extractCombo (thing: string) {
-  return thing ? thing.split('|') : [null, null]
+  content?: SectionItemProps[],
+  templatesContent?: Record<string, ColumnProps>
 }
 
 export const Section: FC<SectionProps> = ({
@@ -54,16 +42,61 @@ export const Section: FC<SectionProps> = ({
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
-  content = []
+  content = [],
+  templatesContent = {}
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   // See the tailwind hacks in src/index.tsx
   const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
+
+  let imagePosPrimary = 'undefined'
+  let imagePosSecondary = 'undefined'
+  let imagePosTertiary = 'undefined'
+
+  function getNewPos (prevPos: string, newPos: string) {
+    newPos = (newPos === '' || newPos === undefined)  ? 'auto' : newPos
+    switch (`${prevPos} | ${newPos}`) {
+      case 'undefined | auto':
+        return 'left'
+      case 'left | auto':
+        return 'right'
+      case 'right | auto':
+        return 'left'
+      default:
+        return newPos
+    }
+  }
+
+  const columnComponentExtraProps = {
+    Text: (baseProps: any) => {
+      return {
+        className: `${baseProps.className} text-gray-900 dark:text-gray-50`
+      }
+    },
+    Primary: (baseProps: any) => {
+      imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosPrimary
+      }
+    },
+    Secondary: (baseProps: any) => {
+      imagePosSecondary = getNewPos(imagePosSecondary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosSecondary
+      }
+    },
+    Tertiary: (baseProps: any) => {
+      imagePosTertiary = getNewPos(imagePosTertiary, baseProps.imagePosition)
+      return {
+        imagePosition: imagePosTertiary
+      }
+    }
+  };
   return (
     <div
       className={`overflow-hidden ${theme ? theme : ''}`}
-      style={{ backgroundColor: background}}
+      style={{ backgroundColor: background }}
     >
       <div
         className={`
@@ -74,34 +107,14 @@ export const Section: FC<SectionProps> = ({
         `}
       >
         {
-          content.map(({columns}) => {
-            const headerClass = content.length >= 2 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
-            return(
-                <section key={JSON.stringify(columns)} className='grid sm:grid-cols-12 gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full'>
-                  {
-                    columns.map(({
-                      width,
-                      blocks
-                    }) => (
-                      // See the tailwind hacks in src/index.tsx
-                      <div key={JSON.stringify(blocks)} className={`col-span-${getWidth(width)} flex flex-col ${align} space-y-8 h-full ${headerClass}`}>
-                        {
-                          blocks.map((block) => {
-                            return getComponent(block, {
-                              Text: (baseProps: any) => {
-                                return {
-                                  className: `${baseProps.className} text-gray-900 dark:text-gray-50`
-                                }
-                              }
-                            })
-                          })
-                        }
-                      </div>
-                    ))
-                  }
-                </section>
-              )
-            }
+          content && (
+            <ContentColumns
+              content={content}
+              contentPosition={contentPosition}
+              componentsExtraProps={columnComponentExtraProps}
+              columnClasses='flex flex-col space-y-8 h-full'
+              templatesContent={templatesContent}
+            />
           )
         }
       </div>

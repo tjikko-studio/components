@@ -8,22 +8,22 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
    * focussed type
    */
   isFocussed?: boolean
-  
+
   /**
    * filled text
    */
   text?: string
-  
+
   /**
    * place holder string
    */
   placeHolder?: string
-  
+
   /**
    * disabled
    */
   isDisabled?: boolean
-  
+
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
@@ -46,7 +46,6 @@ export const SearchBar: FC<SearchBarProps> = ({
   return (
     <div
       className={`text-gray-900 dark:text-gray-50 relative w-72 ${className}`}
-      defaultValue={text}
     >
       <button
         className='absolute top-1/2 -mt-2 ml-4'

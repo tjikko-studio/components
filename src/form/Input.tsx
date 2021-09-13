@@ -64,6 +64,8 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
     * Custom Classes
     */
   className?: string
+
+  columnIndex?: number
 }
 
 /**
@@ -80,12 +82,14 @@ export const Input: FC<InputProps> = ({
   placeholder,
   information,
   error,
-  className = ''
+  className = '',
+  columnIndex = 1
 }) => {
-  const labelContainerClasses = ['fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300']
+  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300 mb-2`]
   const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
+    // See the tailwind hacks in src/index.tsx
     labelContainerClasses.push('text-gray-500 dark:text-gray-600')
   }
   addErrorClasses(isError || isValidating || isSuccess, inputClasses)
@@ -94,14 +98,13 @@ export const Input: FC<InputProps> = ({
   }
   addValidatingClasses(isValidating, inputClasses)
   addSuccessClasses(isSuccess, inputClasses)
-
   return (
-    <div
-      className={`flex flex-col gap-y-1 w-72 ${className}`}
-    >
-      {label &&
+    <>
+      {
+        label &&
         <div
-          className={labelContainerClasses.join(' ')}
+          className={labelContainerClasses.join('')}
+          style={{gridArea: `label-${columnIndex}`}}
         >
           <p>
             {label}
@@ -110,21 +113,39 @@ export const Input: FC<InputProps> = ({
           {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
           {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
-      }
-      <input
-        className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
-        defaultValue={text}
-        placeholder={placeholder}
-        disabled={isDisabled}
-      />
+      }      
+      <div
+        className={`sm:grid-in-control-${columnIndex}`}
+        style={{gridArea: `control-${columnIndex}`}}
+      >
+        <input
+          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+          defaultValue={text}
+          placeholder={placeholder}
+          disabled={isDisabled}
+        />
+      </div>
       {
         information &&
         <div
-          className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-          dangerouslySetInnerHTML={{__html: information}}
-        />
+          className={`sm:grid-in-info-${columnIndex} mt-2`}
+          style={{gridArea: `info-${columnIndex}`}}
+        >
+            <div
+              className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
+              dangerouslySetInnerHTML={{__html: information}}
+            />
+        </div>
       }
-      <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
-    </div>
+      {
+        isError &&
+        <div
+          className={`grid-in-error-${columnIndex} mt-2`}
+          style={{gridArea: `error-${columnIndex}`}}
+        >
+          <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+        </div>
+      }
+    </>
   )
 }
