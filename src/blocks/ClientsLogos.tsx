@@ -1,5 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import Marquee from 'react-fast-marquee'
+// import Marquee from 'react-fast-marquee'
 
 export interface ClientProps {
   image: {
@@ -28,7 +28,8 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
   content = []
 }) => {
   return (
-    <Marquee gradientWidth='0'>
+    <div>
+    {/* <Marquee gradientWidth='0'> */}
       <div className={`flex flex-nowrap w-max  space-x-14 lg:space-x-32 md:space-x-16`}>
         {content.map(({image, company}) => {
           return (
@@ -42,6 +43,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         })
         }
       </div>
-    </Marquee>
+    {/* </Marquee> */}
+    </div>
   )
 }
