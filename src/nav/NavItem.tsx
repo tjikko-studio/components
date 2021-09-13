@@ -8,7 +8,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Visual style
    */
-  styles: 'default' | 'default/white' | 'flat'
+  styles?: 'default' | 'default/white' | 'flat'
   
   /**
    * text to show as menu
@@ -26,6 +26,11 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   listnavContent?: MenuType[]
   
   /**
+   * Dropdown on the right
+   */
+  dropdownRight?: boolean
+  
+  /**
    * Additional space-separated class names to append
    */
   className?: string
@@ -40,6 +45,7 @@ export const NavItem: FC<NavItemProps> = ({
   styles = 'default/white',
   link = null,
   listnavContent = null,
+  dropdownRight= false,
   className,
 }) => {
   const mouseIn = true; // [mouseIn, setMouseIn] = useState(false)
@@ -71,7 +77,7 @@ export const NavItem: FC<NavItemProps> = ({
       </PopUpNavItem>
       {(mouseIn && mouseClick) && (listnavContent ) && (
         <div
-          className='absolute left-0 top-full pt-1 w-max'
+          className={`absolute top-full pt-1 w-max ${ dropdownRight === false ? 'left-0' : 'right-0' }`}
         >
           <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
         </div>

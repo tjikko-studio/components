@@ -15,12 +15,12 @@ const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 export const Desktop = Template.bind({})
 Desktop.args = {
   styles: 'opaque',
-  languageList: {
+  locales: {
     current: 'En',
-    subMenu: [
+    content: [
       {
-        columnLabel: [],
-        columnContent: [
+        label: [],
+        content: [
           {
             label: 'De',
             link: '/de',
@@ -36,10 +36,10 @@ Desktop.args = {
   menuData: [
     {
       label: 'Why SmartPixel',
-      subMenu: [
+      content: [
         {
-          columnLabel: [],
-          columnContent: [
+          label: [],
+          content: [
             {
               label: 'Features',
               link: '/features',
@@ -63,10 +63,10 @@ Desktop.args = {
     },
     {
       label: 'Solutions',
-      subMenu: [
+      content: [
         {
-          columnLabel: 'BY INDUSTRY',
-          columnContent: [
+          label: 'BY INDUSTRY',
+          content: [
             {
               label: 'Real estate',
               link: '/real',
@@ -78,8 +78,8 @@ Desktop.args = {
           ]
         },
         {
-          columnLabel: 'BY USE CASE',
-          columnContent: [
+          label: 'BY USE CASE',
+          content: [
             {
               label: 'Sales Office',
               link: '/sale',
@@ -103,8 +103,8 @@ Desktop.args = {
     },
     {
       label: 'Portfolio',
-      captionLink: '/portfolio',
-      subMenu: []
+      link: '/portfolio',
+      content: []
     }
   ]
 }

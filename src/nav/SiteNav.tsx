@@ -5,7 +5,7 @@ import CompanyLogo from '/assets/images/company_logo_placeholder.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
 import CloseIcon from '/assets/icons/close-line.svg'
 import {NavItem} from './NavItem'
-import {MobileMenu} from './MobileMenu'
+import {ListNav} from './ListNav'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
 
@@ -18,11 +18,18 @@ export interface MenuItemType {
   label: string
   link : string
   type: string
-  content?: MenuType[]
+
+  /* 
+  Catherine: Because of the case 'NavigationDynamicList' which the content does not have the same structure as MenuType (datas)), 
+  I am using an any type which is not ideal I know, but i don't know how to solve this…
+   */
+  content?: any // MenuType[]
 }
 
 export interface NavColumn {
-  width: string
+  mobile_layout: string
+  mobile_position: string
+  mobile_width: string
   content: MenuItemType[]
 }
 
@@ -48,7 +55,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * language list
    * Developer note: we will remove this and add it using the wip menu builder
    */
-  languageList?: LanguageType
+  locales?: LanguageType
 
   /**
    * nav background color style
@@ -76,116 +83,146 @@ export const SiteNav: FC<SiteNavProps> = ({
   className,
   // demoButtonText = 'Free Demo',
   // demoUrl = '#',
-  // languageList = {},
+  locales = null,
 }) => {
+
+  const moveElement = (arr: any, x: number, pos: 'start'|'end') => {
+    let el = arr.splice(x, 1);
+    return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
+  }
+
+  /* 
+   Desktop Nav
+   */
+  const DesktopNav = () =>{
+    return (
+      <div className='hidden lg:block'>
+        {
+          menuData.map(row => {
+            return (
+              <section
+                key={JSON.stringify(row.columns)}
+                className={`flex items-center justify-between md:justify-start h-24 px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
+              >
+                <div className='flex-auto'>
+                  company logo
+                </div>
+                { row.columns.length >=1 && row.columns.map(({content}) => {
+                  return (
+                    <div 
+                      key={JSON.stringify(content)}
+                      className={`flex flex-auto items-center justify-center first:justify-start last:justify-end space-x-6`}
+                    >
+    
+                      { content && content.map(({label, link, type, content}) => {                        
+                        switch (type){
+                          case 'default':
+                          case 'NavigationDropdown':
+                            return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='default/white' label={label} listnavContent={content} className='ml-6 first:ml-0' />
+                          case 'button':
+                            return <Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='ml-6 first:ml-0' />
+                          case 'NavigationDynamicList':
+                            return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} />
+                        }
+                      })}
+                    </div>
+                  )    
+                })}
+              </section>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  /* 
+   Mobile Nav
+   */
+  const MobileNav = () => {
+    const border = 'border-b border-gray-600 last:border-b-0'
+    const dividerSm = `pb-4 last:pb-0`
+    const dividerMd = `pb-8 last:pb-0`
+    return (
+      <div className='flex lg:hidden flex-col bg-gray-900 text-gray-50 px-4 pb-4 space-y-8'>
+        <div className='flex justify-between items-center h-16'>
+          <div>Company Logo</div>
+          <div>Toggle</div>
+        </div>
+        {
+          menuData.map((row) => {
+            
+            let mobileNavContent = [...row.columns];
+            mobileNavContent.length >=1 && mobileNavContent.map(({mobile_position}, i) => {
+              if (mobile_position === 'start')
+                mobileNavContent = moveElement(mobileNavContent,i, 'start')
+              if (mobile_position === 'end')
+                mobileNavContent = moveElement(mobileNavContent,i, 'end')
+            })
+
+            return (
+              <>
+                <section
+                  key={JSON.stringify(mobileNavContent)}
+                  className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
+                >
+                  {console.log(mobileNavContent)}
+                  { 
+                    mobileNavContent.length >=1 && mobileNavContent.map(({content, mobile_layout, mobile_position}) => {
+                      const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
+                      const columnsLength = content ? content.length : 0
+                      return (
+                        <div 
+                          key={JSON.stringify(content)}
+                          className={`flex ${border} ${dividerSm} ${layout}`}
+                        >
+                          {
+                            content && content.map(({label, link, type, content}, i) => {
+                              const isLast = i+1 >= columnsLength ? true : false ;
+                              switch (type){
+                                case 'NavigationDropdown':
+                                  return <div
+                                      className={`dark ${border} ${dividerSm}`}
+                                    >
+                                      { label && <div className='fontStyle-xl mb-3'> {label} </div> }
+                                      <ListNav styles='flat' listnavContent={content} />
+                                    </div>
+                                    
+                                case 'default':
+                                  return <a href={link} className='fontStyle-xl'> {label} </a>
+                                
+                                case 'button':
+                                  return <div className='dark'><Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' /></div>
+                                
+                                case 'NavigationDynamicList':
+                                  if (content.datas === 'language')
+                                    return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
+                              }
+                            }
+                          )}
+                        </div>
+                      )  
+                    })
+                  }
+                </section>
+              </>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   return (
     <nav>
-      { menuData.length >=1 && menuData.map(row => {
-          return (
-            <section
-              key={JSON.stringify(row.columns)}
-              className={`flex items-center justify-between md:justify-start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
-            >
-              { row.columns.length >=1 && row.columns.map(({width, content}) => {
-                return (
-                  <div 
-                    key={JSON.stringify(content)}
-                    className={`hidden lg:flex lg:flex-auto items-center justify-center first:justify-start last:justify-end `}
-                  >
-                    { content && content.map(({label, link, type, content}) => {
-                      switch (type){
-                        case 'default':
-                        case 'NavigationDropdown':
-                          return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='default/white' label={label} listnavContent={content} className='lg:ml-6 lg:first:ml-0' />
-                        case 'button':
-                          return <Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' />
-                      }
-                    })}
-                  </div>
-                )    
-              })}
-            </section>
-          )
-        })
+      { menuData.length >= 1 && 
+        <>
+          <DesktopNav />
+          <MobileNav />
+        </>
       }
     </nav>
   )
 
-  /* return (
-    <>
-      <div
-        className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
-      >
-        <CompanyLogo
-          width='269px'
-          height='20px'
-          className='h-3 lg:h-4 text-gray-50 w-auto'
-        />
-        <div
-          className='hidden lg:flex m-auto items-center lg:space-x-6'
-        >
-          {
-            menuData.map((menuitem, index) => {
-              return (
-                <NavItem
-                  key={index}
-                  link={menuitem.label ? menuitem.label : ''}
-                  styles='default/white'
-                  label={menuitem.label}
-                  content={menuitem.content}
-                />
-              )
-            })
-          }
-        </div>
-        <div
-          className='hidden lg:flex items-center space-x-6'
-        >
-          <Button
-            label={demoButtonText}
-            link={demoUrl}
-            type='primary'
-            icon='none'
-            size='default'
-            forceDark={true}
-          />
-          <NavItem
-            styles='default/white'
-            label={languageList.current ? languageList.current : 'En'}
-            content={languageList.content}
-          />
-        </div>
-        <Disclosure as='nav'
-          className='bg-transparent'
-        >
-          <div className='lg:hidden'>
-            <button
-              className='bg-transparent inline-flex items-center justify-center text-gray-300 '
-              onClick={() => setMobileExpand(!mobileExpand)}
-            >
-              <span className='sr-only'>Open main menu</span>
-              {mobileExpand ? (
-                <CloseIcon
-                  className='tw-6 h-6'
-                />
-              ) : (
-                <MenuIcon
-                  className={`h-6 w-6`}
-                />
-              )}
-            </button>
-          </div>
-        </Disclosure>
-      </div>
-      {(mobileExpand) ? (
-        <MobileMenu
-          demoButtonText={demoButtonText}
-          demoUrl={demoUrl}
-          menuData={menuData}
-          styles={styles}
-          languageList={languageList}
-        />
-      ) : ''}
-    </>
-  ) */
+  
 }
