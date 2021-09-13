@@ -15,7 +15,7 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
    * Form object that will be parsed through to build the component
    */
   content?: FormItemProps[]
-  templatesContent?: any
+  templatesContent?: Record<string,ColumnProps>
 }
 
 export const Form: FC<FormProps> = ({

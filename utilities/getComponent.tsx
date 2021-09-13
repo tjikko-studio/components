@@ -17,6 +17,8 @@ import {TextGroup} from '../src/blocks/TextGroup'
 import {Template} from '../src/blocks/Template'
 import {Text} from '../src/blocks/Text'
 
+import {ColumnProps} from '../shared/types'
+
 function getCommonProps (content: any, id?: string) {
   return {
     key: id || JSON.stringify(content), // TODO: find shorter, better key for each component
@@ -74,7 +76,7 @@ function getProps (
   type: string,
   {content, id}: {content:object, id?:string},
   extraProps: Record<string, Function> = {},
-  templatesContent: any = {}
+  templatesContent: Record<string, ColumnProps> = {}
 ) {
   const specificProps = propsByType[type] ? propsByType[type](content, id) : getCommonProps(content, id)
   const baseProps = {
@@ -107,7 +109,7 @@ const ValidComponents: Record<string, FC> = {
   Text
 }
 
-export default function getComponent (templatesContent: any) {
+export default function getComponent (templatesContent: Record<string, ColumnProps> = {}) {
   return (
     component: {
       type: string,

@@ -34,7 +34,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * Sections object that will be parsed through to build the component
    */
   content?: SectionItemProps[],
-  templatesContent?: any
+  templatesContent?: Record<string, ColumnProps>
 }
 
 export const Section: FC<SectionProps> = ({
@@ -53,7 +53,7 @@ export const Section: FC<SectionProps> = ({
   let imagePosPrimary = 'undefined'
   let imagePosSecondary = 'undefined'
   let imagePosTertiary = 'undefined'
-  
+
   function getNewPos (prevPos: string, newPos: string) {
     newPos = (newPos === '' || newPos === undefined)  ? 'auto' : newPos
     switch (`${prevPos} | ${newPos}`) {

@@ -47,7 +47,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
    */
   columnStyles?: CSSProperties
 
-  templatesContent?: any
+  templatesContent?: Record<string, ColumnProps>
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({

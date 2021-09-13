@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
+import {ColumnProps} from '../../shared/types'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -23,7 +24,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Hero object that will be parsed through to build the component
    */
   content?: [],
-  templatesContent?: any
+  templatesContent?: Record<string, ColumnProps>
 }
 
 const getHorPos = (v: string) => {
