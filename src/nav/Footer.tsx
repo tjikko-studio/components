@@ -3,8 +3,13 @@ import getWidth from '../../utilities/getWidth'
 import {Disclosure} from '@headlessui/react'
 import MenuIcon from '/assets/icons/menu-line.svg'
 import CloseIcon from '/assets/icons/close-line.svg'
-import {NavItem} from './NavItem'
+import {MenuType} from './ListNav'
 import {Button} from '../Button'
+
+export interface LocalesType {
+  current?: string | null
+  content?: MenuType[]
+}
 
 export interface FooterMenuType {
   label: string

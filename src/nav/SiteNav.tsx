@@ -1,7 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
-import getWidth from '../../utilities/getWidth'
 import {Disclosure} from '@headlessui/react'
-import CompanyLogo from '/assets/images/company_logo_placeholder.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
 import CloseIcon from '/assets/icons/close-line.svg'
 import {NavItem} from './NavItem'
@@ -9,7 +7,7 @@ import {ListNav} from './ListNav'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
 
-export interface LanguageType {
+export interface LocalesType {
   current?: string | null
   content?: MenuType[]
 }
@@ -23,7 +21,7 @@ export interface MenuItemType {
   Catherine: Because of the case 'NavigationDynamicList' which the content does not have the same structure as MenuType (datas)), 
   I am using an any type which is not ideal I know, but i don't know how to solve this…
    */
-  content?: any // MenuType[]
+  content?: any //MenuType[]
 }
 
 export interface NavColumn {
@@ -55,12 +53,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * language list
    * Developer note: we will remove this and add it using the wip menu builder
    */
-  locales?: LanguageType
+  locales?: LocalesType
 
   /**
    * nav background color style
    */
-  styles: 'opaque' | 'transparent'
+  styles?: 'opaque' | 'transparent'
 
   /**
    * Set to true to have the mobile menu expanded by default
@@ -161,50 +159,49 @@ export const SiteNav: FC<SiteNavProps> = ({
             })
 
             return (
-              <>
-                <section
-                  key={JSON.stringify(mobileNavContent)}
-                  className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
-                >
-                  { 
-                    mobileNavContent.length >=1 && mobileNavContent.map(({content, mobile_layout, mobile_position}) => {
-                      const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
-                      const columnsLength = content ? content.length : 0
-                      return (
-                        <div 
-                          key={JSON.stringify(content)}
-                          className={`flex ${border} ${dividerSm} ${layout}`}
-                        >
-                          {
-                            content && content.map(({label, link, type, content}, i) => {
-                              const isLast = i+1 >= columnsLength ? true : false ;
-                              switch (type){
-                                case 'NavigationDropdown':
-                                  return <div
-                                      className={`dark ${border} ${dividerSm}`}
-                                    >
-                                      { label && <div className='fontStyle-xl mb-3'> {label} </div> }
-                                      <ListNav styles='flat' listnavContent={content} />
-                                    </div>
-                                    
-                                case 'default':
-                                  return <a href={link} className='fontStyle-xl'> {label} </a>
-                                
-                                case 'button':
-                                  return <div className='dark'><Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' /></div>
-                                
-                                case 'NavigationDynamicList':
-                                  if (content.datas === 'language')
-                                    return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
-                              }
+              <section
+                key={JSON.stringify(mobileNavContent)}
+                className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
+              >
+                { 
+                  mobileNavContent.length >=1 && mobileNavContent.map(({content, mobile_layout, mobile_position}) => {
+                    const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
+                    const columnsLength = content ? content.length : 0
+                    return (
+                      <div 
+                        key={JSON.stringify(content)}
+                        className={`flex ${border} ${dividerSm} ${layout}`}
+                      >
+                        {console.log(content)}
+                        {
+                          content && content.map(({label, link, type, content}, i) => {
+                            const isLast = i+1 >= columnsLength ? true : false ;
+                            switch (type){
+                              case 'NavigationDropdown':
+                                return <div
+                                    className={`dark ${border} ${dividerSm}`}
+                                  >
+                                    { label && <div className='fontStyle-xl mb-3'> {label} </div> }
+                                    <ListNav styles='flat' listnavContent={content} />
+                                  </div>
+                                  
+                              case 'default':
+                                return <a href={link} className='fontStyle-xl'> {label} </a>
+                              
+                              case 'button':
+                                return <div className='dark'><Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' /></div>
+                              
+                              case 'NavigationDynamicList':
+                                if (content.datas === 'language')
+                                  return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
                             }
-                          )}
-                        </div>
-                      )  
-                    })
-                  }
-                </section>
-              </>
+                          }
+                        )}
+                      </div>
+                    )  
+                  })
+                }
+              </section>
             )
           })
         }

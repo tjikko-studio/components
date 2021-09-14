@@ -9,6 +9,7 @@ export interface MenuItem {
 
 export interface MenuType {
   label: string
+  datas?: string
   content: MenuItem[]
 }
 
