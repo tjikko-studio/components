@@ -1,6 +1,6 @@
 {
   "name": "@tjikko/components",
-  "version": "3.4.16",
+  "version": "3.4.14",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
@@ -68,8 +68,8 @@
     "webpack-cli": "4.7.2"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x",
+    "react": "^16.0.0 || ^17.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0",
     "vue": ">= 2.2"
   },
   "files": [
