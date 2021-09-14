@@ -101,7 +101,7 @@ export const Footer: FC<FooterProps> = ({
               >
                 { 
                   row.columns.length >=1 && row.columns.map(({content, layout, width, rtl, mobile_position, mobile_width, mobile_rtl}, i) => {
-                    const contentLayout = layout === 'horizontal' ? 'flex items-start mt_-4 lg:mt-0' : 'lg:flex flex-col first:mt-0 lg:mt-0'
+                    const contentLayout = layout === 'horizontal' ? 'flex items-start lg:mt-0' : 'lg:flex flex-col first:mt-0 lg:mt-0 space-y-4'
                     const mobilePosition = mobile_position === 'start' ? 'order-first lg:order-none' : mobile_position === 'end' ? 'order-last lg:order-none' : ''
                     const horAlign = rtl ? 'lg:justify-end' : ''
                     const horAlignMobile = mobile_rtl ? '!lg:justify-end' : ''
