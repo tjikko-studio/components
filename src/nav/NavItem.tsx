@@ -8,7 +8,17 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Visual style
    */
-  styles?: 'default' | 'default/white' | 'flat'
+  styles?: 'default' | 'special'
+
+  /**
+   * Popup Style
+   */
+  popup?: 'elevated' | 'flat'
+
+  /**
+   * Padding
+   */
+  padding?: boolean
   
   /**
    * text to show as menu
@@ -26,9 +36,10 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   listnavContent?: MenuType[]
   
   /**
-   * Dropdown on the right
+   * Dropdown on the right or top
    */
   dropdownRight?: boolean
+  dropdownTop?: boolean
   
   /**
    * Additional space-separated class names to append
@@ -42,11 +53,14 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const NavItem: FC<NavItemProps> = ({
   label = 'Label',
-  styles = 'default/white',
+  styles = 'default',
+  popup = 'white',
+  padding = true,
   link = null,
   listnavContent = null,
   dropdownRight= false,
-  className,
+  dropdownTop= false,
+  className = '',
 }) => {
   const mouseIn = true; // [mouseIn, setMouseIn] = useState(false)
   const mouseClick = true; // [mouseClick, setMouseClick] = useState(false)
@@ -60,10 +74,11 @@ export const NavItem: FC<NavItemProps> = ({
     >
       <PopUpNavItem
         /* onClick={() => setMouseClick(!mouseClick)} */
-        type={(styles === 'default/white') ? 'special' : 'default'}
+        type={styles}
         label={label}
         href={link}
-        className={`flex items-center ${mouseIn && styles === 'default' ? 'hover:text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'hover:text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
+        padding={padding}
+        className={`flex items-center ${mouseIn && styles === 'default' ? 'hover:text-primary-600' : ''} ${mouseIn && styles === 'special' ? 'hover:text-primary-300' : ''} ${mouseIn && popup === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
       >
         {(listnavContent) && (
           <span className='ml-2.5'>
@@ -75,11 +90,12 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
+      {console.log(dropdownTop)}
       {(mouseIn && mouseClick) && (listnavContent ) && (
         <div
-          className={`absolute top-full pt-1 w-max ${ dropdownRight === false ? 'left-0' : 'right-0' }`}
+          className={`absolute w-max ${ dropdownRight === false ? 'left-0' : 'right-0' } ${ dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3' }`}
         >
-          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
+          <ListNav  styles={popup === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
         </div>
       )
       }

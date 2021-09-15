@@ -40,18 +40,9 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * menu json data same as NavItem
    */
   menuData: NavColumns[]
-  
-
-  /**
-   * Demo Button constants
-   * Developer note: we will remove this and add it using the wip menu builder
-   */
-  demoButtonText?: string
-  demoUrl?: string
 
   /**
    * language list
-   * Developer note: we will remove this and add it using the wip menu builder
    */
   locales?: LocalesType
 
@@ -116,11 +107,11 @@ export const SiteNav: FC<SiteNavProps> = ({
                         switch (type){
                           case 'default':
                           case 'NavigationDropdown':
-                            return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='default/white' label={label} listnavContent={content} className='ml-6 first:ml-0' />
+                            return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='special' label={label} listnavContent={content} className='ml-6 first:ml-0' />
                           case 'button':
                             return <Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='ml-6 first:ml-0' />
                           case 'NavigationDynamicList':
-                            return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} />
+                            return <NavItem key={JSON.stringify(locales.content)} styles='special' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} />
                         }
                       })}
                     </div>
@@ -172,7 +163,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                         key={JSON.stringify(content)}
                         className={`flex ${border} ${dividerSm} ${layout}`}
                       >
-                        {console.log(content)}
                         {
                           content && content.map(({label, link, type, content}, i) => {
                             const isLast = i+1 >= columnsLength ? true : false ;
@@ -193,7 +183,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                               
                               case 'NavigationDynamicList':
                                 if (content.datas === 'language')
-                                  return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
+                                  return <NavItem styles='special' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
                             }
                           }
                         )}
