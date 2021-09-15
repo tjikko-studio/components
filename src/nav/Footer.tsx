@@ -68,7 +68,6 @@ export const Footer: FC<FooterProps> = ({
                       key={id || JSON.stringify(blocks)}
                       className={`lg:col-span-${getWidth(width)} h-full`}
                     >
-                      {console.log(blocks)}
                       {
                         blocks.length >= 1 && blocks.map(({content, layout, rtl, id}) => {
                           const contentLayout = layout === 'horizontal' ? 'flex lg:mt-0 items-center h-full' : 'lg:flex items-start  flex-col first:mt-0 lg:mt-0 space-y-4'
