@@ -38,8 +38,8 @@ const propsByType: any = {
       bgColor: content.bg_color,
       bgHasImage: content.bg_has_image,
       bgHasVideo: content.bg_has_video,
-      bgImage: content.bg_image[0],
-      bgVideo: content.bg_video[0]
+      bgImage: content.bg_image?.[0],
+      bgVideo: content.bg_video?.[0]
     }
   },
   Primary: (content: any, id?: string) => {
