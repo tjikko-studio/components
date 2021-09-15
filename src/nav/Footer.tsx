@@ -1,40 +1,40 @@
 import React, {FC, HTMLAttributes} from 'react'
 import getWidth from '../../utilities/getWidth'
-import {Disclosure} from '@headlessui/react'
-import MenuIcon from '/assets/icons/menu-line.svg'
-import CloseIcon from '/assets/icons/close-line.svg'
+import {MenuType} from './ListNav'
 import {NavItem} from './NavItem'
 import {Button} from '../Button'
 
-export interface FooterMenuType {
-  label: string
-  link : string
-  datas: any
-}
-
-export interface LanguageType {
+export interface LocalesType {
   current?: string | null
-  content?: FooterMenuType[]
+  content?: MenuType[]
 }
 
 export interface MenuItemType {
   label: string
-  link : string
+  link: string
   type: string
-  content?: FooterMenuType[]
+
+  /*
+    Catherine: Because of the cases 'NavigationDropdownChild' and 'NavigationDropdownChild'
+    which the content does not have the same structure as MenuType (datas)),
+    I am using an any type which is not ideal I know, but i don't know how to solve this…
+   */
+  content?: any // MenuType[]
 }
 
-export interface NavColumn {
+export interface NavBlock {
   layout: string
-  width: string
   rtl: boolean
-  mobile_position: string
-  mobile_width: string
-  mobile_rtl: boolean
   content: MenuItemType[]
 }
 
+export interface NavColumn {
+  width: string
+  blocks: NavBlock[]
+}
+
 export interface NavColumns {
+  attrs: {no_gap: string}
   columns: NavColumn[]
 }
 
@@ -43,18 +43,11 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
    * menu json data same as NavItem
    */
   menuData: NavColumns[]
-  
 
   /**
    * language list
-   * Developer note: we will remove this and add it using the wip menu builder
    */
-  locales?: LanguageType
-
-  /**
-   * nav background color style
-   */
-  styles: 'opaque' | 'transparent'
+  locales?: LocalesType
 
   /**
    * Set to true to have the mobile menu expanded by default
@@ -72,78 +65,82 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Footer: FC<FooterProps> = ({
   menuData = null,
-  styles = 'opaque',
   mobileExpandDefault = false,
   className,
   locales = null,
 }) => {
   const border = 'border-b border-gray-600 last:border-b-0'
-  
+
   return (
-    <div className='lg:flex flex-col bg-gray-900 text-gray-50 px-4 pb-4 space-y-12'>
+    <div className='lg:flex flex-col bg-gray-900 text-gray-50 px-4 pb-4 sp_ace-y-12'>
       <section className={`flex items-center h-16 ${border}`}>
         <div>Company Logo</div>
       </section>
       {
-        menuData.map((row, i) => {
-          
+        menuData.map((row) => {
           return (
             <>
               <section
                 key={JSON.stringify(row.columns)}
-                className={`grid grid-flow-row grid-cols-12`}
+                className={`grid grid-flow-row lg:grid-cols-12 gap-x-4 mt-12 ${row.attrs.no_gap ? 'gap-y-4' : 'gap-y-12'}`}
               >
-                { 
-                  row.columns.length >=1 && row.columns.map(({content, layout, width, rtl, mobile_position, mobile_width, mobile_rtl}, i) => {
-                    const layoutLayout = layout === 'horizontal' ? 'flex items-start mt-4 lg:mt-0' : 'lg:flex flex-col mt-12 first:mt-0 lg:mb-0'
-                    const mobilePosition = mobile_position === 'start' ? 'order-first lg:order-none' : mobile_position === 'end' ? 'order-last lg:order-none' : ''
-                    const horAlign = rtl ? 'lg:justify-end' : ''
-                    const horAlignMobile = mobile_rtl ? '!lg:justify-end' : ''
-                    const columnsLength = content ? content.length : 0
+                {
+                  row.columns.length >= 1 && row.columns.map(({width, blocks}) => {
                     return (
-                      <div 
-                        key={JSON.stringify(content)}
-                        className={`${layoutLayout} ${horAlign} ${horAlignMobile} col-span-${getWidth(mobile_width)} lg:col-span-${getWidth(width)} ${mobilePosition} `}
+                      <div
+                        key={JSON.stringify(blocks)}
+                        className={`lg:col-span-${getWidth(width)} h-full`}
                       >
                         {
-                          content && content.map(({label, link, type, content}, i) => {
-                            const isLast = i+1 >= columnsLength ? true : false ;
-                            switch (type){
-                              case 'NavigationDropdownChild':
-                                return <div
-                                    className={`dark flex flex-col space-y-4`}
-                                  >
-                                    { label && <div className='fontStyle-xs uppercase text-gray-300'> {label} </div> }
-                                    {
-                                      content.map(({label, link}) => {
-                                        return <a href={link} className='fontStyle-sm'> {label} </a>
-                                      })
-                                    }
-                                  </div>
-                                                       
-                              case 'default':
+                          blocks.length >= 1 && blocks.map(({content, layout, rtl}) => {
+                            const contentLayout = layout === 'horizontal' ? 'flex lg:mt-0 items-center h-full' : 'lg:flex items-start  flex-col first:mt-0 lg:mt-0 space-y-4'
+                            const justify = rtl ? 'lg:justify-end' : ''
+                            const contentLength = content.length
+                            return (
+                              <div
+                                key={JSON.stringify(content)}
+                                className={`${contentLayout}  lg:col-span-${getWidth(width)} ${layout === 'horizontal' && 'flex flex-end h-full'} ${justify}`}
+                              >
                                 {
-                                  const Alink  = () => { return(<><a href={link} className='fontStyle-sm'> {label} </a></>)}
-                                  if (layout === 'horizontal'){
-                                    return isLast  ? <div><Alink /></div> : <div className='after-content after:mr-2 after:ml-2' data-content-after='-'><Alink /></div>
-                                  }
-                                  if (layout === 'vertical')
-                                    return (
-                                      <Alink />
-                                    )
+                                  content.length >= 1 && content.map(({label, link, type, content}, i) => {
+                                    const isLast = i + 1 >= contentLength ? true : false
+                                    switch (type) {
+                                      case 'NavigationDropdownChild':
+                                        return (
+                                          <div className={`dark flex flex-col space-y-4`}>
+                                            {label && <div className='fontStyle-xs uppercase text-gray-300'> {label} </div>}
+                                            {
+                                              content.map(({label, link}: {label:string, link: string}) => {
+                                                return <a href={link} className='fontStyle-sm'> {label} </a>
+                                              })
+                                            }
+                                          </div>
+                                        )
+                                      case 'default':
+                                        {
+                                          const Alink = () => {return (<><a href={link} className='fontStyle-sm'> {label} </a></>)}
+                                          if (layout === 'horizontal') {
+                                            return isLast ? <div><Alink /></div> : <div className='after-content after:mr-2 after:ml-2' data-content-after='-'><Alink /></div>
+                                          }
+                                          if (layout === 'vertical')
+                                            return (
+                                              <Alink />
+                                            )
+                                        }
+                                      case 'button':
+                                        return <div className='dark'><Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' /></div>
+                                      case 'NavigationDynamicList':
+                                        if (content.datas === 'language')
+                                          return <NavItem styles='default' popup='elevated' padding={false} label={locales.current ? locales.current : 'English'} listNavContent={locales.content} dropdownTop={true} />
+                                    }
+                                  })
                                 }
-                              
-                              case 'button':
-                                return <div className='dark'><Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='lg:ml-6 lg:first:ml-0' /></div>
-                              
-                              // case 'NavigationDynamicList':
-                              //   if (content.datas === 'language')
-                              //     return <NavItem styles='default/white' label={locales.current ? locales.current : 'English'} listnavContent={locales.content} dropdownRight={isLast} />
-                            }
-                          }
-                        )}
+                              </div>
+                            )
+                          })
+                        }
                       </div>
-                    )  
+                    )
                   })
                 }
               </section>
@@ -153,5 +150,5 @@ export const Footer: FC<FooterProps> = ({
       }
     </div>
   )
-  
+
 }

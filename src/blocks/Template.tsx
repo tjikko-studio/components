@@ -1,39 +1,57 @@
 import React, {FC, HTMLAttributes} from 'react'
 
 import {ContentColumns} from '../layouts/ContentColumns'
-import {ColumnProps} from '../../shared/types'
+import {SiteNav} from '../nav/SiteNav'
+import {Footer} from '../nav/Footer'
+import {MenuType} from '../nav/ListNav'
 
-export interface TemplateItemProps {
-  id: string;
-  columns: ColumnProps[]
+export interface LocalesType {
+  current?: string | null
+  content?: MenuType[]
 }
 
 export interface TemplateProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * Sections object that will be parsed through to build the component
+  /*
+    Fetch content have a different structure for pages templates & navigation templates (obviously)
+    I don't have any solution for this at the moment
    */
-  content?: TemplateItemProps[]
+  locales?: LocalesType
+  templateType?: string
+  content?: any
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Template: FC<TemplateProps> = ({
-  content = []
+  content = [],
+  locales = null,
+  templateType = null
 }) => {
-  return (
-    <div>
-      {
-        content
-          ? (
-            <ContentColumns
-              content={content}
-              contentSectionClasses='sm:grid sm:grid-cols-12'
-            />
-          ) : (
-            <div>No template yet</div>
-          )
-      }
-    </div>
-  )
+  switch (templateType) {
+    case 'template':
+      return (
+        <div>
+          {
+            content
+              ? (
+                <ContentColumns
+                  content={content}
+                  contentSectionClasses='sm:grid sm:grid-cols-12'
+                />
+              ) : (
+                <div>No template yet</div>
+              )
+          }
+        </div>
+      )
+    case 'navigation':
+      return (
+        <SiteNav menuData={content} locales={locales} />
+      )
+    case 'footer':
+      return (
+        <Footer menuData={content} locales={locales} />
+      )
+  }
 }

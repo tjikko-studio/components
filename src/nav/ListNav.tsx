@@ -9,6 +9,7 @@ export interface MenuItem {
 
 export interface MenuType {
   label: string
+  datas?: string
   content: MenuItem[]
 }
 
@@ -21,7 +22,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Links items list array that will be parsed through to build the component
    */
-  listnavContent: MenuType[],
+  listNavContent: MenuType[],
 
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -34,7 +35,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
-  listnavContent = null,
+  listNavContent = null,
   className = ''
 }) => {
   const classes = [className]
@@ -55,11 +56,11 @@ export const ListNav: FC<ListNavProps> = ({
       className={classes.join(' ')}
     >
       {
-        listnavContent.map((menu) => {
+        listNavContent.map((menu) => {
           return (
             <div className={wMax} key={menu.label} >
               {
-                (listnavContent.length > 1) && (
+                (listNavContent.length > 1) && (
                   <PopUpNavItem
                     label={menu.label}
                     type={'header'}

@@ -8,28 +8,39 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Visual style
    */
-  styles?: 'default' | 'default/white' | 'flat'
-  
+  styles?: 'default' | 'special'
+
+  /**
+   * Popup Style
+   */
+  popup?: 'elevated' | 'flat'
+
+  /**
+   * Padding
+   */
+  padding?: boolean
+
   /**
    * text to show as menu
    */
   label: string
-  
+
   /**
    * link to go when menu clicked
    */
   link?: string
-  
+
   /**
    * Sub menu items list array that will be parsed through to build the component
    */
-  listnavContent?: MenuType[]
-  
+  listNavContent?: MenuType[]
+
   /**
-   * Dropdown on the right
+   * Dropdown on the right or top
    */
   dropdownRight?: boolean
-  
+  dropdownTop?: boolean
+
   /**
    * Additional space-separated class names to append
    */
@@ -42,11 +53,14 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const NavItem: FC<NavItemProps> = ({
   label = 'Label',
-  styles = 'default/white',
+  styles = 'default',
+  popup = 'white',
+  padding = true,
   link = null,
-  listnavContent = null,
+  listNavContent = null,
   dropdownRight= false,
-  className,
+  dropdownTop= false,
+  className = '',
 }) => {
   const mouseIn = true; // [mouseIn, setMouseIn] = useState(false)
   const mouseClick = true; // [mouseClick, setMouseClick] = useState(false)
@@ -60,12 +74,13 @@ export const NavItem: FC<NavItemProps> = ({
     >
       <PopUpNavItem
         /* onClick={() => setMouseClick(!mouseClick)} */
-        type={(styles === 'default/white') ? 'special' : 'default'}
+        type={styles}
         label={label}
         href={link}
-        className={`flex items-center ${mouseIn && styles === 'default' ? 'hover:text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'hover:text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
+        padding={padding}
+        className={`flex items-center ${mouseIn && styles === 'default' ? 'hover:text-primary-600' : ''} ${mouseIn && styles === 'special' ? 'hover:text-primary-300' : ''} ${mouseIn && popup === 'flat' ? 'hover:text-primary-100 hover:dark:text-primary-300' : ''}`}
       >
-        {(listnavContent) && (
+        {(listNavContent) && (
           <span className='ml-2.5'>
             <ArrowDown
               width='18'
@@ -75,11 +90,12 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (listnavContent ) && (
+      {console.log(dropdownTop)}
+      {(mouseIn && mouseClick) && (listNavContent ) && (
         <div
-          className={`absolute top-full pt-1 w-max ${ dropdownRight === false ? 'left-0' : 'right-0' }`}
+          className={`absolute w-max ${ dropdownRight === false ? 'left-0' : 'right-0' } ${ dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3' }`}
         >
-          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
+          <ListNav  styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>
       )
       }
@@ -100,7 +116,7 @@ export const NavItem: FC<NavItemProps> = ({
         href={link}
         className={`flex items-center ${mouseIn && styles === 'default' ? 'text-primary-600' : ''} ${mouseIn && styles === 'default/white' ? 'text-primary-300' : ''} ${mouseIn && styles === 'flat' ? 'text-primary-100 dark:text-primary-300' : ''}`}
       >
-        {(listnavContent.length > 0) && (
+        {(listNavContent.length > 0) && (
           <span className='ml-2.5'>
             <ArrowDown
               width='18'
@@ -110,12 +126,12 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (listnavContent.length > 0) && (
+      {(mouseIn && mouseClick) && (listNavContent.length > 0) && (
         <div
           className='absolute left-0 top-full pt-1 w-max'
         >
           Hello wonderful people
-          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listnavContent={listnavContent} />
+          <ListNav styles={styles === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>
       )
       }

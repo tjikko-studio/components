@@ -17,7 +17,7 @@ const Template: Story<ListNavProps> = (args) => <ListNav {...args} />
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  listnavContent:
+  listNavContent:
     [
       {
         columnLabel: 'Group 01',
@@ -40,7 +40,7 @@ SingleData.args = {
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  listnavContent: [
+  listNavContent: [
     {
       columnLabel: 'Group 01',
       columnContent: [

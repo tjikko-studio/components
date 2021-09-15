@@ -6,7 +6,7 @@ import containVal from '../../utilities/containVal'
 import { ColumnProps, ContentPosition } from '../../shared/types'
 import extractCombo from '../../utilities/stringUtils'
 
-interface SectionItemProps {
+export interface SectionItemProps {
   id: string;
   columns: ColumnProps[]
 }
