@@ -34,6 +34,21 @@ Default.args = {
     layout: 'tertiary'
   }]
 }
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+  ...Default.args,
+  type: 'secondary',
+  label: 'Secondary Block'
+}
+
+export const Tertiary = Template.bind({})
+Tertiary.args = {
+  ...Default.args,
+  type: 'tertiary',
+  label: 'Tertiary Block'
+}
+
 export const WidthControl = Template.bind({})
 WidthControl.args = {
   className: 'w-full',

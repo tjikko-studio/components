@@ -5,7 +5,7 @@ import {Media, ImageProps} from '../parts/Media'
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 
   /**
-   * Is the component direction  default/horizontal (left to right) or vertical (image above)
+   * Block Type
    */
   type?: 'primary' | 'secondary' | 'tertiary'
 
@@ -57,7 +57,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Primary: FC<PrimaryProps> = ({
-  type = "primary",
+  type = 'primary',
   layout = 'default',
   imagePosition = 'auto',
   image = null,
@@ -72,103 +72,51 @@ export const Primary: FC<PrimaryProps> = ({
 }) => {
   layout = !layout ? 'default' : layout
 
-  let BlockType;
+  let outerDivClasses = '';
+  let innerDivClasses = '';
+  let headerClasses = 'fontStyle-4xl mb-4 break-words';
+  let textClasses = '';
+
   switch(type) {
-    case "primary": 
-      BlockType = 
-      <div
-        className={`mt-4 lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `}
-      >
-        <div
-          className={`${layout !== 'vertical' ? 'lg:pl-12' : ''} `}
-        >
-          <h2
-            className='fontStyle-4xl mb-4 break-words'
-          >
-            {title}
-          </h2>
-          <p
-          className='fontStyle-base'
-          dangerouslySetInnerHTML={{ __html: body }}
-          />
-            {
-              Object.keys(buttons).length >= 1 &&
-              <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
-            }
-        </div>
-      </div>;
+    case 'secondary':
+      outerDivClasses = ` sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex'} `;
+      innerDivClasses = `${layout !== 'vertical' ? 'sm:pl-12' : ''} `;
       break;
-
-    case "secondary":
-      BlockType = 
-      <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
-      >
-        <div
-          className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
-        >
-          <h2
-            className='fontStyle-4xl mb-4 break-words'
-          >
-            {title}
-          </h2>
-          <p
-            className='fontStyle-base'
-            dangerouslySetInnerHTML={{__html: body}}
-          />
-            {
-              Object.keys(buttons).length >= 1 &&
-              <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
-            }
-        </div>
-      </div>;
+    case 'tertiary':
+      outerDivClasses = ` sm:mt-0 ${layout !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`
+      headerClasses = `fontStyle-2xl mb-2 break-words block w-full`;
+      textClasses = 'break-words'
       break;
-
-    case "tertiary":
-      BlockType = 
-      <div
-        className={`mt-4 sm:mt-0 ${layout !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`}
-      >
-        <div>
-          <h2
-            className='fontStyle-2xl mb-2 break-words block w-full'
-          >
-            {title}
-          </h2>
-          <p
-            className='fontStyle-base break-words'
-            dangerouslySetInnerHTML={{ __html: body }}
-          >
-          </p>
-        </div>
-      </div>;
-      break;
-
     default:
-      BlockType = 
-      // Primary Style
-      <div
-        className={`mt-4 lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `}
+      // Primary is Default
+      outerDivClasses = ` lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `;
+      innerDivClasses = `${layout !== 'vertical' ? 'lg:pl-12' : ''} `;
+      break;
+}
+    
+let BlockType = (
+  <div
+    className={'mt-4' + outerDivClasses}
+  >
+    <div
+      className={innerDivClasses}
+    >
+      <h2
+        className={headerClasses}
       >
-      <div
-        className={`${layout !== 'vertical' ? 'lg:pl-12' : ''} `}
-      >
-        <h2
-          className='fontStyle-4xl mb-4 break-words'
-        >
-          {title}
-        </h2>
-        <p
-          className='fontStyle-base'
-          dangerouslySetInnerHTML={{ __html: body }}
+        {title}
+      </h2>
+      <p
+        className={'fontStyle-base ' + textClasses}
+        dangerouslySetInnerHTML={{ __html: body }}
         />
-        {
-          Object.keys(buttons).length >= 1 &&
-          <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
-        }
-      </div>
-    </div>;
-  }
+          {
+          (type === 'primary' || type === 'secondary') && Object.keys(buttons).length >= 1 &&
+            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+          }
+    </div>
+  </div>
+)
 
 
   return (
