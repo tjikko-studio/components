@@ -47,20 +47,6 @@ const propsByType: any = {
       layout: content.layout
     }
   },
-  Secondary: (content: any, id?: string) => {
-    return {
-      ...getCommonProps(content, id),
-      imagePosition: content.imageposition,
-      layout: content.layout
-    }
-  },
-  Tertiary: (content: any, id?: string) => {
-    return {
-      ...getCommonProps(content, id),
-      imagePosition: content.imageposition,
-      layout: content.layout
-    }
-  },
   Text: (content: any, id?: string) => {
     return {
       ...getCommonProps(content, id),
