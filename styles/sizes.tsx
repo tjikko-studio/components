@@ -82,7 +82,7 @@ export interface MediaQueryProps {
   [key: string]: string
 }
 
-const screenSizes: MediaQueryProps = {
+const screens: MediaQueryProps = {
   'xxs': '375px',
   'xs': '414px',
   'sm': '640px',
@@ -97,14 +97,14 @@ const screenSizes: MediaQueryProps = {
  * This function just adds a `!`-prefixed version for `max-width`.
  * So things like `!xxs`, `!lg`, `!2xl`, etc.
  **/
- const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
-   const screenSize = screenSizes[key]
-   return {
-     ...all,
-     [key]: {min: screenSize},
-     [`\!${key}`]: {max: screenSize}
-   }
- }, {})
+// const screens = Object.keys(screenSizes).reduce<Record<string, any>>((all, key) => {
+//   const screenSize = screenSizes[key]
+//   return {
+//     ...all,
+//     [key]: {min: screenSize},
+//     [`\!${key}`]: {max: screenSize}
+//   }
+// }, {})
 
 export default {
   height: heightValues,

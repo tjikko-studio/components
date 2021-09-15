@@ -95,15 +95,43 @@ export const SiteNav: FC<SiteNavProps> = ({
                       className={`flex flex-auto items-center justify-center first:justify-start last:justify-end space-x-6`}
                     >
 
-                      {content && content.map(({label, link, type, content}) => {
+                      {content && content.map(({label, link, type, content, id}) => {
                         switch (type) {
-                          case 'default':
+                          case 'link':
                           case 'NavigationDropdown':
-                            return <NavItem key={JSON.stringify([type, content, link, label])} link={link} styles='special' label={label} listNavContent={content} className='ml-6 first:ml-0' />
+                            return (
+                              <NavItem 
+                                key={id || JSON.stringify(content)}
+                                link={link}
+                                styles='special' label={label}
+                                listNavContent={content}
+                                className='ml-6 first:ml-0'
+                              />
+                            )
                           case 'button':
-                            return <Button key={JSON.stringify([type, content, link, label])} label={label} link={link} type='primary' icon='none' size='default' forceDark={true} className='ml-6 first:ml-0' />
+                            return (
+                              <Button 
+                                key={id || JSON.stringify(content)}
+                                label={label}
+                                link={link}
+                                type='primary'
+                                icon='none'
+                                size='default'
+                                forceDark={true}
+                                className='ml-6 first:ml-0'
+                              />
+                            )
                           case 'NavigationDynamicList':
-                            return <NavItem key={JSON.stringify(locales.content)} styles='special' label={locales.current ? locales.current : 'English'} listNavContent={locales.content} />
+                            return (
+                              <NavItem 
+                                key={id || JSON.stringify(content)}
+                                styles='special'
+                                label={locales.current ? locales.current : 'English'}
+                                listNavContent={locales.content}
+                              />
+                            )
+                          default:
+                            break
                         }
                       })}
                     </div>
@@ -171,17 +199,23 @@ export const SiteNav: FC<SiteNavProps> = ({
                                 )
                               }
 
-                              case 'default': {
+                              case 'link': {
                                 return (
-                                  <a key={id || `[${label}](${link})`} href={link} className='fontStyle-xl'> {label} </a>
+                                  <a
+                                    key={id || `[${label}](${link})`}
+                                    href={link}
+                                    className='fontStyle-xl'
+                                  >
+                                    {label}
+                                  </a>
                                 )
                               }
 
                               case 'button': {
                                 return (
                                   <div
+                                    key={id || `[${label}](${link})`}
                                     className='dark'
-                                    key={id || JSON.stringify([type, content, link, label])}
                                   >
                                     <Button
                                       label={label}
@@ -200,7 +234,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                 if (content.datas === 'language') {
                                   return (
                                     <NavItem
-                                      key='languageSwitcher'
+                                      key={id || JSON.stringify(content)}
                                       styles='special'
                                       label={locales.current ? locales.current : 'English'}
                                       listNavContent={locales.content}
@@ -208,6 +242,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                                     />
                                   )
                                 }
+                              default:
+                                break
                             }
                           }
                           )}

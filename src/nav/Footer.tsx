@@ -68,6 +68,7 @@ export const Footer: FC<FooterProps> = ({
                       key={id || JSON.stringify(blocks)}
                       className={`lg:col-span-${getWidth(width)} h-full`}
                     >
+                      {console.log(blocks)}
                       {
                         blocks.length >= 1 && blocks.map(({content, layout, rtl, id}) => {
                           const contentLayout = layout === 'horizontal' ? 'flex lg:mt-0 items-center h-full' : 'lg:flex items-start  flex-col first:mt-0 lg:mt-0 space-y-4'
@@ -90,27 +91,40 @@ export const Footer: FC<FooterProps> = ({
                                                 {label && <div className='fontStyle-xs uppercase text-gray-300'> {label} </div>}
                                                 {
                                                   content.map(({label, link}) => {
-                                                    return <a key={`[${label}](${link})`} href={link} className='fontStyle-sm'> {label} </a>
+                                                    return (
+                                                      <a key={`[${label}](${link})`} href={link} className='fontStyle-sm'>
+                                                        {label}
+                                                      </a>
+                                                    )
                                                   })
                                                 }
                                               </div>
                                             )
-                                          case 'default':
+                                          case 'link':
                                             {
-                                              const Alink = () => {return (<a href={link} className='fontStyle-sm'> {label} </a>)}
+                                              const Alink = () => {
+                                                return (
+                                                  <a href={link} className='fontStyle-sm'> {label} </a>
+                                                )
+                                              }
                                               if (layout === 'horizontal') {
-                                                return (i + 1 >= contentLength) ? <div><Alink /></div> : <div className='after-content after:mr-2 after:ml-2' data-content-after='-'><Alink /></div>
+                                                const linkClass = (i + 1 < contentLength) ? 'after-content after:mr-2 after:ml-2' : '';
+                                                return (
+                                                  <div  key={id || JSON.stringify(content)} className={linkClass} data-content-after='-' >
+                                                    <Alink />
+                                                  </div>
+                                                )
                                               }
                                               if (layout === 'vertical')
                                                 return (
-                                                  <Alink />
+                                                  <Alink key={id || JSON.stringify(content)} />
                                                 )
                                             }
                                           case 'button':
                                             return (
                                               <div className='dark'>
                                                 <Button
-                                                  key={JSON.stringify([type, content, link, label])}
+                                                  key={id || JSON.stringify(content)}
                                                   label={label}
                                                   link={link}
                                                   type='primary'
@@ -125,6 +139,7 @@ export const Footer: FC<FooterProps> = ({
                                             if (content.datas === 'language') {
                                               return (
                                                 <NavItem
+                                                  key={id || JSON.stringify(locales.content)}
                                                   styles='default'
                                                   popup='elevated'
                                                   padding={false}
@@ -134,6 +149,8 @@ export const Footer: FC<FooterProps> = ({
                                                 />
                                               )
                                             }
+                                          default:
+                                            break
                                         }
                                       })()
                                     }</div>
