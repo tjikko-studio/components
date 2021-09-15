@@ -7,8 +7,6 @@ import {Footer} from './Footer'
 import {Heading} from './Heading'
 import {Icon} from './Icon'
 import {Primary} from './Primary'
-import {Secondary} from './Secondary'
-import {Tertiary} from './Tertiary'
 import {Testimonial} from './Testimonial'
 import {Template} from './Template'
 import {Text} from './Text'
@@ -24,8 +22,6 @@ export default {
   Heading,
   Icon,
   Primary,
-  Secondary,
-  Tertiary,
   Testimonial,
   Template,
   Text,

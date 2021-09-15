@@ -9,9 +9,7 @@ import {Hero} from '../src/collections/Hero'
 import {Icon} from '../src/blocks/Icon'
 import {Input} from '../src/form/Input'
 import {Primary} from '../src/blocks/Primary'
-import {Secondary} from '../src/blocks/Secondary'
 import {Section} from '../src/collections/Section'
-import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
 import {TextGroup} from '../src/blocks/TextGroup'
 import {Template} from '../src/blocks/Template'
@@ -100,9 +98,7 @@ const ValidComponents: Record<string, FC> = {
   Icon,
   Input,
   Primary,
-  Secondary,
   Section,
-  Tertiary,
   Testimonial,
   TextGroup,
   Template,

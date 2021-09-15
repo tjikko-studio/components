@@ -6,6 +6,7 @@ export default {
   title: 'Tjikko/Blocks/Primary',
   component: Primary,
   argTypes: {
+    type: {options: ['primary', 'secondary', 'tertiary'], control: {type: 'select'}},
     layout: {options: ['default', 'vertical'], control: {layout: 'select'}},
     imagePosition: {options: ['auto', 'left', 'right'], control: {layout: 'select'}},
   },
@@ -18,6 +19,7 @@ const Template: Story<PrimaryProps> = (args) => <Primary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
+  type: "primary",
   layout: 'default',
   imagePosition: 'left',
   image: {
