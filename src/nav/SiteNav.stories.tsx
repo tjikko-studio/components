@@ -35,76 +35,125 @@ Desktop.args = {
   },
   menuData: [
     {
-      label: 'Why SmartPixel',
-      content: [
+      "attrs": [],
+      "columns": [
         {
-          label: [],
-          content: [
+          "type": "NavigationSection",
+          "content": [
             {
-              label: 'Features',
-              link: '/features',
+              "type": "NavigationDropdown",
+              "label": "Why SmartPixel",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Features",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Customer Success Stories",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Quality and reliability",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "button",
+                      "label": "Contact Sales team",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
             },
             {
-              label: 'Customer Success Stories',
-              link: '/customer',
+              "type": "NavigationDropdown",
+              "label": "Solution",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "By Industry",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Real estate",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Others",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "By use case",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Sales Office",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Presentation",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Remote",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
             },
             {
-              label: 'Quality and reliability',
-              link: '/quality'
-            },
-            {
-              label: 'Contact Sales team',
-              link: '/contact',
-              type: 'button'
+              "type": "default",
+              "label": "Portfolio",
+              "location": "internal",
+              "link": ""
             }
-          ]
-        }
-      ]
-    },
-    {
-      label: 'Solutions',
-      content: [
-        {
-          label: 'BY INDUSTRY',
-          content: [
-            {
-              label: 'Real estate',
-              link: '/real',
-            },
-            {
-              label: 'Others',
-              link: '/others',
-            }
-          ]
+          ],
+          "mobile_position": "default",
+          "mobile_layout": "vertical"
         },
         {
-          label: 'BY USE CASE',
-          content: [
+          "type": "NavigationSection",
+          "content": [
             {
-              label: 'Sales Office',
-              link: '/sale',
+              "type": "button",
+              "label": "Free demo",
+              "location": "internal",
+              "link": ""
             },
             {
-              label: 'Presentation',
-              link: '/presentation'
-            },
-            {
-              label: 'Remote',
-              link: '/remote'
-            },
-            {
-              label: 'Contact Sales team',
-              link: '/contact',
-              type: 'button'
+              "content": {
+                "datas": "language"
+              },
+              "type": "NavigationDynamicList"
             }
-          ]
+          ],
+          "mobile_position": "start",
+          "mobile_layout": "horizontal"
         }
       ]
-    },
-    {
-      label: 'Portfolio',
-      link: '/portfolio',
-      content: []
     }
   ]
 }

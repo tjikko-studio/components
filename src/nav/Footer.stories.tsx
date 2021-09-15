@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/react/types-6-0'
 import {Footer, FooterProps} from './Footer'
 
 export default {
-  title: 'Tjikko/Blocks/Footer',
+  title: 'Tjikko/Nav Elements/Footer',
   component: Footer,
   argTypes: {
     // type: { options: ['default', 'header', 'button', 'special'], control: { type: 'select' }},
@@ -17,72 +17,264 @@ const Template: Story<FooterProps> = (args) => <Footer {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  footerMenu: [
+  locales: {
+    current: 'En',
+    content: [
+      {
+        label: [],
+        content: [
+          {
+            label: 'De',
+            link: '/de',
+          },
+          {
+            label: 'Afr',
+            link: '/afr',
+          }
+        ]
+      }
+    ]
+  },
+  menuData: [
     {
-      caption: 'Why Smart Pixel',
-      menuList: [
+      "attrs": {
+        "no_gap": false
+      },
+      "columns": [
         {
-          name: 'Features',
-          url: '/Features'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "Why Smart Pixel",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Features",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Customers Success Stories",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Quality & Reliability",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ],
+              "layout": "vertical",
+              "rtl": false
+            }
+          ],
+          "width": "1/4"
         },
         {
-          name: 'Customers Success Stories',
-          url: '/customers'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "Solutions by Industry",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Real Estate",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Others",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ],
+              "layout": "vertical",
+              "rtl": false
+            }
+          ],
+          "width": "1/4"
         },
         {
-          name: 'Quality & Reliability',
-          url: '/quality'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "Solutions by Use Case",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Sales Office",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Presentation",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Remote",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ],
+              "layout": "vertical",
+              "rtl": false
+            }
+          ],
+          "width": "1/4"
+        },
+        {
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "Other Links",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Portfolio",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Company",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Contact us",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Career",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ],
+              "layout": "vertical",
+              "rtl": false
+            }
+          ],
+          "width": "1/4"
         }
-      ]
+      ],
     },
     {
-      caption: 'Solutions by INDUSTRY',
-      menuList: [
+      "attrs": {
+        "no_gap": true
+      },
+      "columns": [
         {
-          name: 'Real estate',
-          url: '/real'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "default",
+                  "label": "© 2021",
+                  "location": "internal",
+                  "link": ""
+                },
+                {
+                  "type": "default",
+                  "label": "Privacy",
+                  "location": "internal",
+                  "link": ""
+                },
+                {
+                  "type": "default",
+                  "label": "Terms",
+                  "location": "internal",
+                  "link": ""
+                }
+              ],
+              "layout": "horizontal",
+              "rtl": false
+            }
+          ],
+          "width": "3/12"
         },
         {
-          name: 'Others',
-          url: '/others'
-        }
-      ]
-    },
-    {
-      caption: 'Solutions BY USE CASE',
-      menuList: [
-        {
-          name: 'Sales Office',
-          url: '/sale'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "type": "default",
+                  "label": "Facebook",
+                  "location": "internal",
+                  "link": ""
+                },
+                {
+                  "type": "default",
+                  "label": "YouTube",
+                  "location": "internal",
+                  "link": ""
+                },
+                {
+                  "type": "default",
+                  "label": "Twitter",
+                  "location": "internal",
+                  "link": ""
+                },
+                {
+                  "type": "default",
+                  "label": "LinkedIn",
+                  "location": "internal",
+                  "link": ""
+                }
+              ],
+              "layout": "horizontal",
+              "rtl": false
+            }
+          ],
+          "width": "6/12"
         },
         {
-          name: 'Presentation',
-          url: '/presentation'
-        },
-        {
-          name: 'Remote',
-          url: '/remote'
-        }
-      ]
-    },
-    {
-      caption: 'Other links',
-      menuList: [
-        {
-          name: 'Portfolio',
-          url: '/portfolio'
-        },
-        {
-          name: 'Company',
-          url: '/company'
-        },
-        {
-          name: 'Contact us',
-          url: '/contact'
-        },
-        {
-          name: 'Career',
-          url: '/career'
+          "blocks": [
+            {
+              "type": "FooterSection",
+              "content": [
+                {
+                  "content": {
+                    "datas": "language"
+                  },
+                  "type": "NavigationDynamicList"
+                }
+              ],
+              "layout": "horizontal",
+              "rtl": false
+            }
+          ],
+          "width": "3/12"
         }
       ]
     }
