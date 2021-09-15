@@ -21,7 +21,7 @@ SingleData.args = {
     [
       {
         columnLabel: 'Group 01',
-        columnContent: [
+        content: [
           {
             label: 'Link 01',
             link: '/linkURL',
@@ -43,7 +43,7 @@ MultiData.args = {
   listNavContent: [
     {
       columnLabel: 'Group 01',
-      columnContent: [
+      content: [
         {
           label: 'Link 01',
           link: '/linkURL',
@@ -61,7 +61,7 @@ MultiData.args = {
     },
     {
       columnLabel: 'Group 02',
-      columnContent: [
+      content: [
         {
           label: 'Link 01',
           link: '/linkURL',
@@ -78,7 +78,7 @@ MultiData.args = {
     },
     {
       columnLabel: 'Group 03',
-      columnContent: [
+      content: [
         {
           label: 'Link 01',
           link: '/linkURL',

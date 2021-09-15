@@ -1,7 +1,8 @@
 /* import React, {FC, HTMLAttributes, useState} from 'react' */
 import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
-import {ListNav, MenuType} from './ListNav'
+import {ListNav} from './ListNav'
+import {MenuType} from '../../shared/types'
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
@@ -90,7 +91,6 @@ export const NavItem: FC<NavItemProps> = ({
         )
         }
       </PopUpNavItem>
-      {console.log(dropdownTop)}
       {(mouseIn && mouseClick) && (listNavContent ) && (
         <div
           className={`absolute w-max ${ dropdownRight === false ? 'left-0' : 'right-0' } ${ dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3' }`}

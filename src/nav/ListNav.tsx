@@ -1,17 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
-
-export interface MenuItem {
-  label: string
-  link: string
-  type?: 'default' | 'header' | 'button'
-}
-
-export interface MenuType {
-  label: string
-  datas?: string
-  content: MenuItem[]
-}
+import {MenuType} from '../../shared/types'
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -35,7 +24,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
-  listNavContent = null,
+  listNavContent = [],
   className = ''
 }) => {
   const classes = [className]

@@ -3,7 +3,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import {ContentColumns} from '../layouts/ContentColumns'
 import {SiteNav} from '../nav/SiteNav'
 import {Footer} from '../nav/Footer'
-import {MenuType} from '../nav/ListNav'
+import {MenuType} from '../../shared/types'
 
 export interface LocalesType {
   current?: string | null
@@ -53,5 +53,9 @@ export const Template: FC<TemplateProps> = ({
       return (
         <Footer menuData={content} locales={locales} />
       )
+    default:
+      console.error(new Error(`Unhandled type ${templateType}!!!`))
+      console.error('Above error appeared with Template props:', {content, locales, templateType})
+      return null
   }
 }
