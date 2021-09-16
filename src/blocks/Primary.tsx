@@ -120,13 +120,13 @@ let BlockType = (
 
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'lg:flex' : ''} ${imagePosition === 'right' ? 'lg:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 grid ${layout === 'default' ? 'lg:grid-cols-2 lg:grid-flow-row lg:gap-x-4' : 'lg:gap-y-8'} `}
     >
       {
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4'}`}
+              className={`${imagePosition === 'right' && layout === 'default' ? 'order-last' : ''}`}
             >
               {image && (
                 <Media
