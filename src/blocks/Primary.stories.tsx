@@ -19,7 +19,7 @@ const Template: Story<PrimaryProps> = (args) => <Primary {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  type: "primary",
+  type: 'primary',
   layout: 'default',
   imagePosition: 'left',
   image: {

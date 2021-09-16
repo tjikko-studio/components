@@ -76,27 +76,27 @@ export const Primary: FC<PrimaryProps> = ({
   let innerDivClasses = '';
   let headerClasses = 'fontStyle-4xl mb-4 break-words';
   let textClasses = '';
+  const hasButtons = type !== 'tertiary' && Object.keys(buttons).length >= 1;
 
   switch(type) {
+    case 'primary':
+      outerDivClasses = `lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `;
+      innerDivClasses = `${layout !== 'vertical' ? 'lg:pl-12' : ''} `;
+      break;
     case 'secondary':
-      outerDivClasses = ` sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex'} `;
+      outerDivClasses = `sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex'} `;
       innerDivClasses = `${layout !== 'vertical' ? 'sm:pl-12' : ''} `;
       break;
     case 'tertiary':
-      outerDivClasses = ` sm:mt-0 ${layout !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`
+      outerDivClasses = `sm:mt-0 ${layout !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`
       headerClasses = `fontStyle-2xl mb-2 break-words block w-full`;
-      textClasses = 'break-words'
-      break;
-    default:
-      // Primary is Default
-      outerDivClasses = ` lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `;
-      innerDivClasses = `${layout !== 'vertical' ? 'lg:pl-12' : ''} `;
+      textClasses = `break-words`
       break;
 }
     
 let BlockType = (
   <div
-    className={'mt-4' + outerDivClasses}
+    className={`mt-4 ${outerDivClasses}`}
   >
     <div
       className={innerDivClasses}
@@ -107,12 +107,11 @@ let BlockType = (
         {title}
       </h2>
       <p
-        className={'fontStyle-base ' + textClasses}
+        className={`fontStyle-base ${textClasses}`}
         dangerouslySetInnerHTML={{ __html: body }}
         />
           {
-          (type === 'primary' || type === 'secondary') && Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+            hasButtons && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
           }
     </div>
   </div>
