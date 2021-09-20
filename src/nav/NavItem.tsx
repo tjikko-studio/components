@@ -68,7 +68,7 @@ export const NavItem: FC<NavItemProps> = ({
 
   return (
     <div
-      className={`w-max relative ${className}`}
+      className={`w-max relative ${className} z-10`}
       style={{width: 'fit-content'}}
       /* onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}} */
       /* onMouseLeave={() => setMouseIn(false)} */

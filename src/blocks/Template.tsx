@@ -16,7 +16,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
     I don't have any solution for this at the moment
    */
   locales?: LocalesType
-  templateType?: string
+  templateType?: 'template' | 'navigation' | 'footer'
   content?: any
 }
 
@@ -26,36 +26,36 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
 export const Template: FC<TemplateProps> = ({
   content = [],
   locales = null,
-  templateType = null
+  templateType = 'template'
 }) => {
-  switch (templateType) {
-    case 'template':
-      return (
-        <div>
-          {
-            content
-              ? (
-                <ContentColumns
-                  content={content}
-                  contentSectionClasses='sm:grid sm:grid-cols-12'
-                />
-              ) : (
-                <div>No template yet</div>
-              )
-          }
-        </div>
-      )
-    case 'navigation':
-      return (
-        <SiteNav menuData={content} locales={locales} />
-      )
-    case 'footer':
-      return (
-        <Footer menuData={content} locales={locales} />
-      )
-    default:
-      console.error(new Error(`Unhandled type ${templateType}!!!`))
-      console.error('Above error appeared with Template props:', {content, locales, templateType})
-      return null
+  const AvailableTemplates = {
+    template: () => (
+      <div>
+        {
+          content
+            ? (
+              <ContentColumns
+                content={content}
+                contentSectionClasses='sm:grid sm:grid-cols-12'
+              />
+            ) : (
+              <div>No template yet</div>
+            )
+        }
+      </div>
+    ),
+    navigation: () => (
+      <SiteNav menuData={content} locales={locales} />
+    ),
+    footer: () => (
+      <Footer menuData={content} locales={locales} />
+    )
   }
+  const Chosen = AvailableTemplates[templateType]
+  if (!Chosen) {
+    console.error(new Error(`Unhandled type ${templateType}!!!`))
+    console.error('Above error appeared with Template props:', JSON.stringify({content, locales, templateType}))
+    return null
+  }
+  return Chosen()
 }
