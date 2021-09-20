@@ -27,7 +27,7 @@ export const SideNav: FC<SideNavProps> = ({
     >
       {items.map((item) => (
         <SideNavItem
-          key={`${item.text}_${item.url}`}
+          key={`${item.text}_${item.link}`}
           {...item}
         />
       ))}

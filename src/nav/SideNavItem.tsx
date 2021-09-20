@@ -12,9 +12,9 @@ export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
   text?: string
 
   /**
-   *  nav url
+   *  nav link
    */
-  url?: string
+  link?: string
 
   /**
    * status of item
@@ -36,7 +36,7 @@ export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const SideNavItem: FC<SideNavItemProps> = ({
-  url = '#',
+  link = '#',
   type = 'linkHeader',
   text = 'Link Header',
   status = 'default',
@@ -50,7 +50,7 @@ export const SideNavItem: FC<SideNavItemProps> = ({
 
       {spacer ? '' :
         <a
-          href={url ? url : '#'}
+          href={link ? link : '#'}
           className={`fontStyle-sm ${type === 'header' ? 'strong' : ''}`}
         >{text}</a>}
     </li>

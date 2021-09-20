@@ -6,7 +6,7 @@ import containVal from '../../utilities/containVal'
 import { ColumnProps, ContentPosition } from '../../shared/types'
 import extractCombo from '../../utilities/stringUtils'
 
-interface SectionItemProps {
+export interface SectionItemProps {
   id: string;
   columns: ColumnProps[]
 }
@@ -75,7 +75,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
             ) ? 'mb-4 sm: mb-8' : ''
             return (
               <section
-                key={id}
+                key={id || JSON.stringify(columns)}
                 className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
                 style={{ ...contentSectionStyles }}
               >
@@ -88,7 +88,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                     return (
                       // See the tailwind hacks in src/index.tsx
                       <div
-                        key={id}
+                        key={id || JSON.stringify(blocks)}
                         className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
                         style={{ ...columnStyles }}
                       >

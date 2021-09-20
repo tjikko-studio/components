@@ -17,7 +17,7 @@ const Template: Story<PopUpNavItemProps> = (args) => <PopUpNavItem {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  caption: 'Link'
+  label: 'Link'
 }
 
 export const Active = Template.bind({})

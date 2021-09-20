@@ -12,7 +12,8 @@ module.exports = {
     ]
   },
   plugins: [
-    require('@tailwindcss/forms')({
+    require('tailwind-pseudo-elements'),
+    require("@tailwindcss/forms")({
       strategy: 'class',
     }),
     plugin.withOptions(
