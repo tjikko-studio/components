@@ -1,5 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import CompanyLogo from '/assets/images/company_logo_placeholder.svg'
+import {Media, ImageProps} from '../parts/Media'
 
 export interface FooterMenuItem {
   name: string
@@ -11,6 +12,11 @@ export interface FooterDataType {
   menuList: FooterMenuItem[]
 }
 
+export interface FooterSocialItem {
+  url: string;
+  title: string;
+}
+
 export interface FooterProps extends HTMLAttributes<HTMLElement> {
   /**
    * Footer object that will be parsed through to build the component
@@ -18,123 +24,126 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
   footerMenu?: FooterDataType[]
 
   /**
+   * Footer social items
+   */
+  socials?: FooterSocialItem[]
+
+  /**
    * year to show on bottom
    */
   year?: string
 
   /**
+   *  logo url to show
+   */
+  logo?: ImageProps | null
+
+  /**
    * privacy policy text
    */
   privacy?: string
+
+  /**
+   * privacy policy url
+   */
+  privacyUrl?: string
+
+  /**
+   * terms policy text
+   */
+  terms?: string
+
+  /**
+   * terms policy url
+   */
+  termsUrl?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
+  logo,
   year = '',
   privacy = '',
-  footerMenu = []
+  privacyUrl = '#',
+  terms = '',
+  termsUrl = '#',
+  footerMenu = [],
+  socials = [],
 }) => {
 
   return (
-    <footer
-      className='bg-gray-800'
-    >
-      <div
-        className='pl-6 pt-6 lg:pt-9 md:pt-9 pb-6 lg:pb-7 md:pb-7'
-      >
-        <CompanyLogo width='210' height='16' className='text-gray-50' />
+    <footer className="bg-gray-800">
+      <div className="pl-6 pt-6 lg:pt-9 md:pt-9 pb-6 lg:pb-7 md:pb-7">
+        {logo ? (
+          <Media media={logo} className={`w-52 h-4`} />
+        ) : (
+          <CompanyLogo className="w-52 h-4 text-gray-50" />
+        )}
       </div>
-      <hr
-        className='mx-6 bg-opacity-30 border-gray-500'
-      />
-      <nav
-        className='px-6 pt-8 lg:flex md:grid md:grid-cols-2'
-      >
-        {
-          footerMenu.map((menu) => {
-            return (
-              <ul
-                key={menu.caption}
-                className={`flex-1 pb-12 lg:mb-0`}
-              >
+      <hr className="mx-6 bg-opacity-30 border-gray-500" />
+      <nav className="px-6 pt-8 lg:flex md:grid md:grid-cols-2">
+        {footerMenu.map((menu) => {
+          return (
+            <ul key={menu.caption} className={`flex-1 pb-12 lg:mb-0`}>
+              <li className="fontStyle-xs uppercase text-gray-300">
+                {menu.caption}
+              </li>
+              {menu.menuList.map((menuItem) => (
                 <li
-                  className='fontStyle-xs uppercase text-gray-300'
+                  key={menuItem.name}
+                  className="fontStyle-sm text-gray-50 hover:text-primary-300 pt-3"
                 >
-                  {menu.caption}
+                  <a href={menuItem.url}>{menuItem.name}</a>
                 </li>
-                {
-                  menu.menuList.map((menuItem) => {
-                    return (
-                      <li
-                        key={menuItem.name}
-                        className='fontStyle-sm text-gray-50 hover:text-primary-300 pt-3'
-                      >
-                        <a
-                          href={menuItem.url}
-                        >
-                          {
-                            menuItem.name
-                          }
-                        </a>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            )
-          })
-        }
+              ))}
+            </ul>
+          );
+        })}
       </nav>
-      <nav
-        className='fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6'
-      >
-        <div className='flex flex-1 flex-row-reverse md:flex-row pt-4 md:pt-0'>
-          <div className='flex-1 flex justify-end md:justify-start'><span>© {year ? year : new Date().getFullYear()}</span></div>
-          <ul className='flex flex-1 space-x-2'>
+      <nav className="fontStyle-sm text-gray-50 flex flex-col-reverse md:flex-row pt-32 lg:pt-8 md:pt-3 px-6 pb-6 md:pb-4 lg:pb-6">
+        <div className="flex flex-1 flex-row-reverse md:flex-row pt-4 md:pt-0">
+          <div className="flex-1 flex justify-end md:justify-start">
+            <span>© {year ? year : new Date().getFullYear()}</span>
+          </div>
+          <ul className="flex flex-1 space-x-2">
             <li>
-              <a href='#' className='text-gray-50 hover:text-primary-300'>
-                {privacy ? privacy : 'Privacy'}
+              <a
+                href={privacyUrl || "#"}
+                className="text-gray-50 hover:text-primary-300"
+              >
+                {privacy ? privacy : "Privacy"}
               </a>
             </li>
             <li>-</li>
             <li>
-              <a href='#' className='text-gray-50 hover:text-primary-300'>
-                {privacy ? privacy : 'Terms'}
+              <a
+                href={termsUrl || "#"}
+                className="text-gray-50 hover:text-primary-300"
+              >
+                {terms ? terms : "Terms"}
               </a>
             </li>
           </ul>
         </div>
-        <div className='flex-1'></div>
-        <ul
-          className='flex flex-1 md:-ml-20 space-x-2'
-        >
-          <li>
-            <a className='text-gray-50 hover:text-primary-300' href=''>
-              Facebook
-            </a>
-          </li>
-          <li>-</li>
-          <li>
-            <a className='text-gray-50 hover:text-primary-300' href=''>
-              YouTube
-            </a>
-          </li>
-          <li>-</li>
-          <li>
-            <a className='text-gray-50 hover:text-primary-300' href=''>
-              Twitter
-            </a>
-          </li>
-          <li>-</li>
-          <li>
-            <a className='text-gray-50 hover:text-primary-300' href=''>
-              LinkedIn
-            </a>
-          </li>
+        <div className="flex-1"></div>
+        <ul className="flex flex-1 md:-ml-20 space-x-2">
+          {socials.map((social, idx) => (
+            <React.Fragment key={idx}>
+              {idx > 0 && <li>-</li>}
+              <li>
+                <a
+                  className="text-gray-50 hover:text-primary-300"
+                  href={social.url}
+                >
+                  {social.title}
+                </a>
+              </li>
+            </React.Fragment>
+          ))}
         </ul>
       </nav>
     </footer>
-  )
+  );
 }

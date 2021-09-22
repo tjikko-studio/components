@@ -86,5 +86,19 @@ Default.args = {
         }
       ]
     }
-  ]
+  ],
+  
+  socials: [{
+    url: 'https://www.facebook.com/',
+    title: 'Facebook'
+  }, {
+    url: 'https://www.twitter.com/',
+    title: 'Twitter'
+  }, {
+    url: 'https://www.linkedin.com/',
+    title: 'LinkedIn'
+  }, {
+    url: 'https://www.instagram.com/',
+    title: 'Instagram'
+  }]
 }

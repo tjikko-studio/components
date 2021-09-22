@@ -7,6 +7,7 @@ import {NavItem} from './NavItem'
 import {MobileMenu} from './MobileMenu'
 import {MenuType} from './ListNav'
 import {Button} from '../Button'
+import {Media, ImageProps} from '../parts/Media'
 
 export interface LanguageType {
   current?: string | null
@@ -23,6 +24,10 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * menu json data same as NavItem
    */
   menuData: MenuItemType[]
+  /**
+   *  logo url to show
+   */
+  logo?: ImageProps | null
 
   /**
    * Demo Button constants
@@ -30,6 +35,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    */
   demoButtonText?: string
   demoUrl?: string
+
+  /**
+   * Text to open main menu
+   * Developer note: we will remove this and add it using the wip menu builder
+   */
+  openMenuText?: string;
 
   /**
    * language list
@@ -58,7 +69,9 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const SiteNav: FC<SiteNavProps> = ({
   demoButtonText = 'Free Demo',
+  openMenuText = 'Open main menu',
   demoUrl = '#',
+  logo,
   menuData = [],
   styles = 'opaque',
   languageList = {},
@@ -71,11 +84,11 @@ export const SiteNav: FC<SiteNavProps> = ({
       <div
         className={`flex items-center justify-between md:justify-Start h-16 lg:h-24 px-6 lg:px-10 ${(styles === 'opaque') && 'bg-gray-900'} ${className}`}
       >
-        <CompanyLogo
-          width='269px'
-          height='20px'
-          className='h-3 lg:h-4 text-gray-50 w-auto'
-        />
+        {logo ? (
+          <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
+        ) : (
+          <CompanyLogo className='h-3 lg:h-4 w-auto text-gray-50' />
+        )}
         <div
           className='hidden lg:flex m-auto items-center lg:space-x-6'
         >
@@ -118,7 +131,7 @@ export const SiteNav: FC<SiteNavProps> = ({
               className='bg-transparent inline-flex items-center justify-center text-gray-300 '
               onClick={() => setMobileExpand(!mobileExpand)}
             >
-              <span className='sr-only'>Open main menu</span>
+              <span className='sr-only'>{openMenuText}</span>
               {mobileExpand ? (
                 <CloseIcon
                   className='tw-6 h-6'
