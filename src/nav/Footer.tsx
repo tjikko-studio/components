@@ -79,7 +79,7 @@ export const Footer: FC<FooterProps> = ({
                               className={`${contentLayout}  lg:col-span-${getWidth(width)} ${layout === 'horizontal' && 'flex flex-end h-full'} ${justify}`}
                             >
                               {
-                                content.length >= 1 && content.map(({label, link, type, content, id}, i) => {
+                                content.length && content.map(({label, link, type, content, dataSource, id}, i) => {
                                   return (
                                     <div key={id || JSON.stringify(content)}>{
                                       (() => {
@@ -135,7 +135,7 @@ export const Footer: FC<FooterProps> = ({
                                               </div>
                                             )
                                           case 'NavigationDynamicList':
-                                            if (content.datas === 'language') {
+                                            if (dataSource === 'language') {
                                               return (
                                                 <NavItem
                                                   key={id || JSON.stringify(locales.content)}
@@ -148,8 +148,11 @@ export const Footer: FC<FooterProps> = ({
                                                 />
                                               )
                                             }
+                                            console.error('unrecognized NavigationDynamicList dataSource', dataSource, typeof dataSource)
+                                            return null
                                           default:
-                                            break
+                                            console.error('Unrecognized footer type', type)
+                                            return null
                                         }
                                       })()
                                     }</div>

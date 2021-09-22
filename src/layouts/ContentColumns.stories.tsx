@@ -52,11 +52,11 @@ Default.args = {
                   url: 'https://source.unsplash.com/random',
                   type: 'image'
                 },
-                title: 'Heading',
-                body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
+                title: 'Heading 2',
+                body: 'Different!',
                 buttons: [
                   {
-                    label: 'Primary button',
+                    label: 'Primary button but different',
                     link: '#',
                     type: 'primary'
                   }
