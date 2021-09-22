@@ -6,6 +6,7 @@ import layouts from './layouts'
 import nav from './nav'
 import textStyles from './textStyles'
 import {Button} from './Button'
+import flattenNav, {languageParser} from '../flattenNav'
 
 export default {
   ReactInVue,
@@ -15,7 +16,9 @@ export default {
   ...form,
   ...layouts,
   ...nav,
-  ...textStyles
+  ...textStyles,
+  flattenNav,
+  languageParser
 }
 
 /**
