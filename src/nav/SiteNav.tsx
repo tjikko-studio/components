@@ -1,11 +1,9 @@
 import React, {FC, HTMLAttributes} from 'react'
-// import {Disclosure} from '@headlessui/react'
-// import MenuIcon from '/assets/icons/menu-line.svg'
-// import CloseIcon from '/assets/icons/close-line.svg'
 import {NavItem} from './NavItem'
 import {ListNav} from './ListNav'
 import {MenuType} from '../../shared/types'
 import {Button} from '../Button'
+import {Media, ImageProps} from '../parts/Media'
 import {MenuItemType} from '../../shared/types'
 
 export interface LocalesType {
@@ -30,7 +28,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
    */
+  // menuData: MenuItemType[]
   menuData: NavColumns[]
+  /**
+   *  logo url to show
+   */
+  logo?: ImageProps | null
 
   /**
    * language list
@@ -43,30 +46,23 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   styles?: 'opaque' | 'transparent'
 
   /**
-   * Set to true to have the mobile menu expanded by default
-   */
-  mobileExpandDefault?: boolean
-
-  /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
+  openMenuText?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  menuData = null,
+  logo,
+  menuData = [],
   styles = 'opaque',
-  mobileExpandDefault = false,
   className,
-  // demoButtonText = 'Free Demo',
-  // demoUrl = '#',
   locales = null,
-  id
+  openMenuText = 'Open main menu'
 }) => {
-
   const moveElement = (arr: any, x: number, pos: 'start' | 'end') => {
     let el = arr.splice(x, 1)
     return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
@@ -86,7 +82,9 @@ export const SiteNav: FC<SiteNavProps> = ({
                 className={`flex items-center justify-between md:justify-start h-24 px-10 ${(styles === 'opaque') && 'bg-gray-900 text-gray-50'} ${className}`}
               >
                 <div className='flex-auto'>
-                  company logo
+                  {logo ? (
+                    <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
+                  ) : null}
                 </div>
                 {columns.length >= 1 && columns.map(({content, id}) => {
                   return (
@@ -100,17 +98,18 @@ export const SiteNav: FC<SiteNavProps> = ({
                           case 'link':
                           case 'NavigationDropdown':
                             return (
-                              <NavItem 
+                              <NavItem
                                 key={id || JSON.stringify(content)}
                                 link={link}
-                                styles='special' label={label}
+                                styles='special'
+                                label={label}
                                 listNavContent={content}
                                 className='ml-6 first:ml-0'
                               />
                             )
                           case 'button':
                             return (
-                              <Button 
+                              <Button
                                 key={id || JSON.stringify(content)}
                                 label={label}
                                 link={link}
@@ -123,7 +122,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             )
                           case 'NavigationDynamicList':
                             return (
-                              <NavItem 
+                              <NavItem
                                 key={id || JSON.stringify(content)}
                                 styles='special'
                                 label={locales.current ? locales.current : 'English'}
@@ -131,7 +130,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                               />
                             )
                           default:
-                            break
+                            console.error('Unhandled SiteNav type', type)
+                            return null
                         }
                       })}
                     </div>
@@ -155,12 +155,15 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className='flex lg:hidden flex-col bg-gray-900 text-gray-50 px-4 pb-4 space-y-8'>
         <div className='flex justify-between items-center h-16'>
-          <div>Company Logo</div>
-          <div>Toggle</div>
+          <div>
+            {logo ? (
+              <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
+            ) : null}
+          </div>
+          <div>{openMenuText}</div>
         </div>
         {
           menuData.map(({columns, id}) => {
-
             let mobileNavContent = [...columns]
             mobileNavContent.length >= 1 && mobileNavContent.map(({mobile_position}, i) => {
               if (mobile_position === 'start')
@@ -168,14 +171,13 @@ export const SiteNav: FC<SiteNavProps> = ({
               if (mobile_position === 'end')
                 mobileNavContent = moveElement(mobileNavContent, i, 'end')
             })
-
             return (
               <section
                 key={id || JSON.stringify(mobileNavContent)}
                 className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
               >
                 {
-                  mobileNavContent.length >= 1 && mobileNavContent.map(({content, mobile_layout, id, mobile_position}) => {
+                  mobileNavContent.length >= 1 && mobileNavContent.map(({content, mobile_layout, id}) => {
                     const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
                     const columnsLength = content ? content.length : 0
                     return (
@@ -184,7 +186,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                         className={`flex ${border} ${dividerSm} ${layout}`}
                       >
                         {
-                          content && content.map(({label, link, type, content, id}, i) => {
+                          content && content.map(({label, link, type, content, dataSource, id}, i) => {
                             const isLast = i + 1 >= columnsLength ? true : false
                             switch (type) {
                               case 'NavigationDropdown': {
@@ -198,7 +200,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   </div>
                                 )
                               }
-
                               case 'link': {
                                 return (
                                   <a
@@ -210,7 +211,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   </a>
                                 )
                               }
-
                               case 'button': {
                                 return (
                                   <div
@@ -229,9 +229,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   </div>
                                 )
                               }
-
                               case 'NavigationDynamicList':
-                                if (content.datas === 'language') {
+                                if (dataSource === 'language') {
                                   return (
                                     <NavItem
                                       key={id || JSON.stringify(content)}
@@ -243,7 +242,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   )
                                 }
                               default:
-                                break
+                                return null
                             }
                           }
                           )}
@@ -269,6 +268,4 @@ export const SiteNav: FC<SiteNavProps> = ({
       }
     </nav>
   )
-
-
 }

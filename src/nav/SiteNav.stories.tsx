@@ -144,9 +144,7 @@ Desktop.args = {
               "link": ""
             },
             {
-              "content": {
-                "datas": "language"
-              },
+              "dataSource": "language",
               "type": "NavigationDynamicList"
             }
           ],

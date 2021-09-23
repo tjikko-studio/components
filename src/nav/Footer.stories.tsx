@@ -264,10 +264,8 @@ Default.args = {
               "type": "FooterSection",
               "content": [
                 {
-                  "content": {
-                    "datas": "language"
-                  },
-                  "type": "NavigationDynamicList"
+                  "type": "NavigationDynamicList",
+                  "dataSource": "language"
                 }
               ],
               "layout": "horizontal",

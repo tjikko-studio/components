@@ -36,7 +36,7 @@ export const Heading: FC<HeadingProps> = ({
   
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
   return (
-    <HeaderTag className={`${alignment === 'left' && 'w-max'} text-${alignment ? alignment : 'left'} ${className}`} >
+    <HeaderTag className={`${alignment === 'left' && 'w-full'} text-${alignment ? alignment : 'left'} ${className}`} >
       {text}
     </HeaderTag>
   )

@@ -46,7 +46,6 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
    * Additional space-separated class names to append
    */
   className?: string
-
 }
 
 /**
