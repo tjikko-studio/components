@@ -15,19 +15,19 @@ const Template: Story<SiteNavProps> = (args) => <SiteNav {...args} />
 export const Desktop = Template.bind({})
 Desktop.args = {
   styles: 'opaque',
-  languageList: {
+  locales: {
     current: 'En',
-    subMenu: [
+    content: [
       {
-        groupCaption: [],
-        groups: [
+        label: [],
+        content: [
           {
-            name: 'De',
-            url: '/de',
+            label: 'De',
+            link: '/de',
           },
           {
-            name: 'Afr',
-            url: '/afr',
+            label: 'Afr',
+            link: '/afr',
           }
         ]
       }
@@ -35,76 +35,123 @@ Desktop.args = {
   },
   menuData: [
     {
-      caption: 'Why SmartPixel',
-      subMenu: [
+      "attrs": [],
+      "columns": [
         {
-          groupCaption: [],
-          groups: [
+          "type": "NavigationSection",
+          "content": [
             {
-              name: 'Features',
-              url: '/features',
+              "type": "NavigationDropdown",
+              "label": "Why SmartPixel",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Features",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Customer Success Stories",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Quality and reliability",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "button",
+                      "label": "Contact Sales team",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
             },
             {
-              name: 'Customer Success Stories',
-              url: '/customer',
+              "type": "NavigationDropdown",
+              "label": "Solution",
+              "content": [
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "By Industry",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Real estate",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Others",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                },
+                {
+                  "type": "NavigationDropdownChild",
+                  "label": "By use case",
+                  "content": [
+                    {
+                      "type": "default",
+                      "label": "Sales Office",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Presentation",
+                      "location": "internal",
+                      "link": ""
+                    },
+                    {
+                      "type": "default",
+                      "label": "Remote",
+                      "location": "internal",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
             },
             {
-              name: 'Quality and reliability',
-              url: '/quality'
-            },
-            {
-              name: 'Contact Sales team',
-              url: '/contact',
-              type: 'button'
+              "type": "default",
+              "label": "Portfolio",
+              "location": "internal",
+              "link": ""
             }
-          ]
-        }
-      ]
-    },
-    {
-      caption: 'Solutions',
-      subMenu: [
-        {
-          groupCaption: 'BY INDUSTRY',
-          groups: [
-            {
-              name: 'Real estate',
-              url: '/real',
-            },
-            {
-              name: 'Others',
-              url: '/others',
-            }
-          ]
+          ],
+          "mobile_position": "default",
+          "mobile_layout": "vertical"
         },
         {
-          groupCaption: 'BY USE CASE',
-          groups: [
+          "type": "NavigationSection",
+          "content": [
             {
-              name: 'Sales Office',
-              url: '/sale',
+              "type": "button",
+              "label": "Free demo",
+              "location": "internal",
+              "link": ""
             },
             {
-              name: 'Presentation',
-              url: '/presentation'
-            },
-            {
-              name: 'Remote',
-              url: '/remote'
-            },
-            {
-              name: 'Contact Sales team',
-              url: '/contact',
-              type: 'button'
+              "dataSource": "language",
+              "type": "NavigationDynamicList"
             }
-          ]
+          ],
+          "mobile_position": "start",
+          "mobile_layout": "horizontal"
         }
       ]
-    },
-    {
-      caption: 'Portfolio',
-      captionLink: '/portfolio',
-      subMenu: []
     }
   ]
 }

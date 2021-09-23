@@ -5,6 +5,11 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
    * pop up type
    */
   type: 'default' | 'header' | 'button' | 'special'
+
+  /**
+   * Force padding
+   */
+  padding?: boolean
   
   /**
    * flag to check pop up item is active
@@ -14,10 +19,10 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * text to show
    */
-  caption: string
+  label: string
   
   /**
-   * url to show
+   * link to show
    */
   href?: string
   
@@ -31,16 +36,17 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const PopUpNavItem: FC<PopUpNavItemProps> = ({
-  caption = 'link',
+  label = 'link',
   type = 'default',
+  padding = true,
   href = '#',
   isActive = false,
   children = []
 }) => {
-  const classes = ['flex items-center']
+  const classes = ['flex items-center cursor-pointer']
   switch (type) {
     case 'special':
-      classes.push('py-2.5 fontStyle-base text-gray-100')
+      classes.push(`${!padding && 'py-2.5' } fontStyle-base text-gray-100`)
       if (isActive) {
         classes.push('text-primary-300 dark:text-primary-300')
       } else {
@@ -52,7 +58,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       classes.push('fontStyle-sm uppercase strong py-2.5 text-gray-800 dark:text-gray-100')
       break
     case 'button':
-      classes.push('py-3.5 fontStyle-xs uppercase strong')
+      classes.push(`${padding && 'py-3.5'} fontStyle-xs uppercase strong`)
       if (isActive) {
         classes.push('text-primary-700 dark:text-primary-100')
       } else {
@@ -61,11 +67,11 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       break
     case 'default':
     default:
-      classes.push('py-2.5 fontStyle-sm')
+      classes.push(`${padding && 'py-2.5'} fontStyle-sm`)
       if (isActive) {
         classes.push('text-primary-600 dark:text-primary-300')
       } else {
-        classes.push('text-gray-800 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-300')
+        classes.push('hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-300')
       }
       break
   }
@@ -74,7 +80,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       className={classes.join(' ')}
     >
       <a href={href}>
-        {caption}
+        {label}
       </a>
       {
         children ? children : ''

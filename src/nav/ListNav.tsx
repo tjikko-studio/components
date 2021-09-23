@@ -1,16 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
-
-export interface MenuItem {
-  name: string
-  url: string
-  type?: 'default' | 'header' | 'button'
-}
-
-export interface MenuType {
-  groupCaption: string
-  groups: MenuItem[]
-}
+import {MenuType} from '../../shared/types'
 
 export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -21,7 +11,7 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Links items list array that will be parsed through to build the component
    */
-  linkList: MenuType[],
+  listNavContent: MenuType[],
 
   /**
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
@@ -34,10 +24,9 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ListNav: FC<ListNavProps> = ({
   styles = 'elevated',
-  linkList = [],
+  listNavContent = [],
   className = ''
 }) => {
-  linkList = (linkList === null || linkList === undefined) ? [] : linkList
   const classes = [className]
   var wMax = ''
   switch (styles) {
@@ -56,27 +45,27 @@ export const ListNav: FC<ListNavProps> = ({
       className={classes.join(' ')}
     >
       {
-        linkList.map((menu) => {
+        listNavContent.map((menu) => {
           return (
-            <div className={wMax} key={menu.groupCaption} >
+            <div className={wMax} key={menu.label} >
               {
-                (linkList.length > 1) && (
+                (listNavContent.length > 1) && (
                   <PopUpNavItem
-                    caption={menu.groupCaption}
+                    label={menu.label}
                     type={'header'}
                     className='py-2.5'
                   />
                 )
               }
               {
-                menu.groups.map((menuItem) => {
+                menu.content.map((menuItem) => {
                   return (
                     <PopUpNavItem
-                      key={menuItem.name}
-                      caption={menuItem.name}
+                      key={menuItem.label}
+                      label={menuItem.label}
                       type={menuItem.type ? menuItem.type : 'default'}
                       className='py-2.5'
-                      href={menuItem.url}
+                      href={menuItem.link}
                     />
                   )
                 })
