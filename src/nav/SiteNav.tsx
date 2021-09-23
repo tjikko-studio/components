@@ -49,6 +49,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
    */
   className?: string
+  openMenuText?: string
 }
 
 /**
@@ -59,7 +60,8 @@ export const SiteNav: FC<SiteNavProps> = ({
   menuData = [],
   styles = 'opaque',
   className,
-  locales = null
+  locales = null,
+  openMenuText = 'Open main menu'
 }) => {
   const moveElement = (arr: any, x: number, pos: 'start' | 'end') => {
     let el = arr.splice(x, 1)
@@ -99,7 +101,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                               <NavItem
                                 key={id || JSON.stringify(content)}
                                 link={link}
-                                styles='special' label={label}
+                                styles='special'
+                                label={label}
                                 listNavContent={content}
                                 className='ml-6 first:ml-0'
                               />
@@ -157,7 +160,7 @@ export const SiteNav: FC<SiteNavProps> = ({
               <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
             ) : null}
           </div>
-          <div>Toggle</div>
+          <div>{openMenuText}</div>
         </div>
         {
           menuData.map(({columns, id}) => {
