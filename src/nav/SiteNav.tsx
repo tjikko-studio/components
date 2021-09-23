@@ -30,6 +30,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    */
   // menuData: MenuItemType[]
   menuData: NavColumns[]
+  
   /**
    *  logo url to show
    */

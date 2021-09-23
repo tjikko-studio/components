@@ -2,6 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import getWidth from '../../utilities/getWidth'
 import {NavItem} from './NavItem'
 import {Button} from '../Button'
+import {Media, ImageProps} from '../parts/Media'
 import {MenuType, MenuItemType} from '../../shared/types'
 
 export interface LocalesType {
@@ -35,6 +36,11 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   menuData: NavColumns[]
 
   /**
+   *  logo url to show
+   */
+  logo?: ImageProps | null
+
+  /**
    * language list
    */
   locales?: LocalesType
@@ -44,16 +50,19 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({
-  menuData = null,
+  logo,
+  menuData = [],
   locales = null
 }) => {
   const border = 'border-b border-gray-600 last:border-b-0'
 
   return (
     <div className='lg:flex flex-col bg-gray-900 text-gray-50 px-4 pb-4 sp_ace-y-12'>
-      <section className={`flex items-center h-16 ${border}`}>
-        <div>Company Logo</div>
-      </section>
+      {logo ? (
+        <section className={`flex items-center h-16 ${border}`}>
+          <Media media={logo} />
+        </section>
+      ) : null}
       {
         menuData.map(({id, columns, attrs}) => {
           return (
