@@ -79,7 +79,7 @@ export const Secondary: FC<SecondaryProps> = ({
                 <Media
                   media={image}
                   autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-                  className={`rounded-lg shadow-xl ${layout === 'default' ? ' w-auto' : ''}`}
+                  className={`rounded-lg shadow-xl w-full h-full`}
                 />
               )}
             </div>
