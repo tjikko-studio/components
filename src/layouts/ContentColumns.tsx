@@ -4,8 +4,12 @@ import React, {FC, HTMLAttributes, CSSProperties} from 'react'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 import containVal from '../../utilities/containVal'
-import {ColumnProps, ContentPosition} from '../../shared/types'
 import extractCombo from '../../utilities/stringUtils'
+import {
+  ColumnProps,
+  ContentPosition,
+  ComponentsExtraProps
+} from '../../shared/types'
 
 export interface SectionItemProps {
   id: string;
@@ -26,7 +30,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   /**
    * Rendered components extra props that changes the styles
    */
-  componentsExtraProps?: Record<string, (props:any)=>any>
+  componentsExtraProps?: ComponentsExtraProps
 
   /**
    * Custom classes for section

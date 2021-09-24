@@ -15,7 +15,9 @@
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "start:storybook": "node launchStorybook.js",
     "start": "concurrently npm:dev npm:dev:storybook",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",

@@ -12,8 +12,12 @@ import toArray from 'lodash.toarray'
 /*
  * Flatten requested object and it's props
  */
-export const flattenContent:any = (val: any, prop: string, level = false) => {
-  const content:any = {}
+export const flattenContent = (
+  val: Record<string, unknown>,
+  prop: string,
+  level = false
+): Record<string, unknown> => {
+  const content: Record<string, unknown> = {}
   let objParse = null
 
   switch (level) {
@@ -21,7 +25,7 @@ export const flattenContent:any = (val: any, prop: string, level = false) => {
     objParse = val[prop]
     break
   case true:
-    [objParse] = val[prop]
+    [objParse] = val[prop] as unknown[]
     break
   default:
     objParse = val[prop]
@@ -39,7 +43,14 @@ export const flattenContent:any = (val: any, prop: string, level = false) => {
 /*
  * To flatten links
  */
-export const flattenLink = (val: any) => {
+export const flattenLink = (val: {
+  link: string;
+  location: string;
+  // eslint-disable-next-line camelcase
+  link_external?: string;
+  // eslint-disable-next-line camelcase
+  link_internal?: { url: string }[];
+}): { link: string } => {
   val.link = ''
   if (val.location === 'external') {
     val.link = val.link_external

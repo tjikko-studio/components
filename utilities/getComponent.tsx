@@ -18,22 +18,32 @@ import {TextGroup} from '../src/blocks/TextGroup'
 import {Template} from '../src/blocks/Template'
 import {Text} from '../src/blocks/Text'
 
-import {ColumnProps} from '../shared/types'
+import {
+  BlockProps,
+  ContentType,
+  ColumnProps,
+  ComponentsExtraProps
+} from '../shared/types'
 
-function getCommonProps (content: any, id?: string) {
+type GetPropsFn<P = Record<string, unknown>> = (
+  content: ContentType,
+  id?: string
+) => P;
+
+const getCommonProps: GetPropsFn = (content, id) => {
   return {
     key: id || JSON.stringify(content)
   }
 }
 
-const propsByType: any = {
-  ButtonsGroups: (content: any, id?: string) => {
+const propsByType: Record<string, GetPropsFn> = {
+  ButtonsGroups: (content, id) => {
     return {
       ...getCommonProps(content, id),
       className: 'mt-8'
     }
   },
-  Hero: (content: any, id?: string) => {
+  Hero: (content, id) => {
     return {
       ...getCommonProps(content, id),
       bgColor: content.bg_color,
@@ -43,28 +53,28 @@ const propsByType: any = {
       bgVideo: content.bg_video?.[0]
     }
   },
-  Primary: (content: any, id?: string) => {
+  Primary: (content, id) => {
     return {
       ...getCommonProps(content, id),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Secondary: (content: any, id?: string) => {
+  Secondary: (content, id) => {
     return {
       ...getCommonProps(content, id),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Tertiary: (content: any, id?: string) => {
+  Tertiary: (content, id) => {
     return {
       ...getCommonProps(content, id),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Text: (content: any, id?: string) => {
+  Text: (content, id) => {
     return {
       ...getCommonProps(content, id),
       className: 'fontStyle-lg',
@@ -75,8 +85,8 @@ const propsByType: any = {
 
 function getProps (
   type: string,
-  {content, id}: {content:any, id?:string},
-  extraProps: Record<string, (baseProps:any)=>any> = {},
+  {content, id}: {content:ContentType, id?:string},
+  extraProps: ComponentsExtraProps = {},
   templatesContent: Record<string, ColumnProps> = {}
 ) {
   const specificProps = propsByType[type]
@@ -112,18 +122,13 @@ const ValidComponents: Record<string, FC> = {
   Text
 }
 
-export interface componentArg {
-  type:string
-  content:any
-}
-
 export default function getComponent (
   templatesContent: Record<string, ColumnProps> = {}
-):(component:componentArg, extraProps:any)=>any {
+) {
   return function SelectedComponent (
-    component: componentArg,
-    extraProps: any
-  ) {
+    component: BlockProps,
+    extraProps: ComponentsExtraProps
+  ): React.ReactElement {
     const Component = ValidComponents[component.type]
     try {
       return (
