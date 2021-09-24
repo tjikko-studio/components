@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {Divider, DividerProps} from './Divider'
@@ -11,17 +12,21 @@ export default {
     componentSubtitle: 'The Divider'
   },
   decorators: [
-    (Story) => (
-      <div className='max-w-screen-sm h-96'>
-        <Story />
-        <Story />
-        <Story />
-      </div>
-    ),
+    (ThisStory) => {
+      return (
+        <div className='max-w-screen-sm h-96'>
+          <ThisStory />
+          <ThisStory />
+          <ThisStory />
+        </div>
+      )
+    }
   ]
 } as Meta
 
-const Template: Story<DividerProps> = (args) => <Divider {...args} />
+const Template: Story<DividerProps> = (args) => {
+  return <Divider {...args} />
+}
 
 export const Horizontal = Template.bind({})
 
@@ -31,8 +36,8 @@ Horizontal.args = {
 
 export const HorizontalDark = Template.bind({})
 HorizontalDark.args = {
-  direction : "horizontal",
-  forceDark : true
+  direction: 'horizontal',
+  forceDark: true
 }
 HorizontalDark.parameters = {
   themes: {default: 'Dark Mode'}
@@ -45,8 +50,8 @@ Vertical.args = {
 
 export const VerticalDark = Template.bind({})
 VerticalDark.args = {
-  direction : "vertical",
-  forceDark : true
+  direction: 'vertical',
+  forceDark: true
 }
 VerticalDark.parameters = {
   themes: {default: 'Dark Mode'}

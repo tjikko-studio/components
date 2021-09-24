@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {Icon, IconProps} from './Icon'
@@ -6,14 +7,17 @@ export default {
   title: 'Tjikko/Blocks/Icon',
   component: Icon,
   argTypes: {
-    layout: {options: ['horizontal', 'vertical'], control: {layout: 'select'}},
+    layout: {options: ['horizontal', 'vertical'],
+      control: {layout: 'select'}}
   },
   parameters: {
     componentSubtitle: 'The Icon'
   }
 } as Meta
 
-const Template: Story<IconProps> = (args) => <Icon {...args} />
+const Template: Story<IconProps> = (args) => {
+  return <Icon {...args} />
+}
 
 export const Default = Template.bind({})
 Default.args = {
@@ -23,5 +27,5 @@ Default.args = {
     type: 'image'
   },
   title: 'Heading',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do…'
 }

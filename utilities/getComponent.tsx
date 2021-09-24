@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
@@ -21,7 +22,7 @@ import {ColumnProps} from '../shared/types'
 
 function getCommonProps (content: any, id?: string) {
   return {
-    key: id || JSON.stringify(content), // TODO: find shorter, better key for each component
+    key: id || JSON.stringify(content)
   }
 }
 
@@ -74,11 +75,13 @@ const propsByType: any = {
 
 function getProps (
   type: string,
-  {content, id}: {content:object, id?:string},
-  extraProps: Record<string, Function> = {},
+  {content, id}: {content:any, id?:string},
+  extraProps: Record<string, (baseProps:any)=>any> = {},
   templatesContent: Record<string, ColumnProps> = {}
 ) {
-  const specificProps = propsByType[type] ? propsByType[type](content, id) : getCommonProps(content, id)
+  const specificProps = propsByType[type]
+    ? propsByType[type](content, id)
+    : getCommonProps(content, id)
   const baseProps = {
     ...content,
     templatesContent,
@@ -109,17 +112,25 @@ const ValidComponents: Record<string, FC> = {
   Text
 }
 
-export default function getComponent (templatesContent: Record<string, ColumnProps> = {}) {
-  return (
-    component: {
-      type: string,
-      content: any
-    },
+export interface componentArg {
+  type:string
+  content:any
+}
+
+export default function getComponent (
+  templatesContent: Record<string, ColumnProps> = {}
+):(component:componentArg, extraProps:any)=>any {
+  return function SelectedComponent (
+    component: componentArg,
     extraProps: any
-  ) => {
+  ) {
     const Component = ValidComponents[component.type]
     try {
-      return <Component {...getProps(component.type, component, extraProps, templatesContent)} />
+      return (
+        <Component
+          {...getProps(component.type, component, extraProps, templatesContent)}
+        />
+      )
     } catch (ex) {
       console.error('Unrecognized component type', component)
       console.error(ex)

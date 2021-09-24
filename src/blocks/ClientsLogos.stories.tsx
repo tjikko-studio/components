@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {ClientsLogos, ClientsLogosProps} from './ClientsLogos'
@@ -12,56 +13,60 @@ export default {
   }
 } as Meta
 
-const Template: Story<ClientsLogosProps> = (args) => <ClientsLogos {...args} />
+const Template: Story<ClientsLogosProps> = (args) => {
+  return <ClientsLogos {...args} />
+}
 
 export const Default = Template.bind({})
 Default.args = {
-  content: [{
-    image: {
-      url: './images/test_logo_01.png'
-    },
-    company: 'Company 01'
-  }, {
-    image: {
-      url: './images/test_logo_02.png'
-    },
-    company: 'Company 02'
-  }, {
-    image: {
-      url: './images/test_logo_03.png'
-    },
-    company: 'Company 03'
-  }, {
-    image: {
-      url: './images/test_logo_04.png'
-    },
-    company: 'Company 04'
-  }, {
-    image: {
-      url: './images/test_logo_05.png'
-    },
-    company: 'Company 05'
-  }, {
-    image: {
-      url: './images/test_logo_06.png'
-    },
-    company: 'Company 06'
-  }, {
-    image: {
-      url: './images/test_logo_07.png'
-    },
-    company: 'Company 07'
-  }, {
-    image: {
-      url: './images/test_logo_08.png'
-    },
-    company: 'Company 08'
-  }, {
-    image: {
-      url: './images/test_logo_09.png'
-    },
-    company: 'Company 09'
-  }],
+  content: [
+    {
+      image: {
+        url: './images/test_logo_01.png'
+      },
+      company: 'Company 01'
+    }, {
+      image: {
+        url: './images/test_logo_02.png'
+      },
+      company: 'Company 02'
+    }, {
+      image: {
+        url: './images/test_logo_03.png'
+      },
+      company: 'Company 03'
+    }, {
+      image: {
+        url: './images/test_logo_04.png'
+      },
+      company: 'Company 04'
+    }, {
+      image: {
+        url: './images/test_logo_05.png'
+      },
+      company: 'Company 05'
+    }, {
+      image: {
+        url: './images/test_logo_06.png'
+      },
+      company: 'Company 06'
+    }, {
+      image: {
+        url: './images/test_logo_07.png'
+      },
+      company: 'Company 07'
+    }, {
+      image: {
+        url: './images/test_logo_08.png'
+      },
+      company: 'Company 08'
+    }, {
+      image: {
+        url: './images/test_logo_09.png'
+      },
+      company: 'Company 09'
+    }
+  ],
   size: 'default'
 }
 

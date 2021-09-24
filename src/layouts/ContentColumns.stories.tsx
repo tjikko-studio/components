@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import { ContentColumns, ContentColumnsProps } from './ContentColumns'
+import {ContentColumns, ContentColumnsProps} from './ContentColumns'
 import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
@@ -13,7 +14,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<ContentColumnsProps> = (args) => <ContentColumns {...args} />
+const Template: Story<ContentColumnsProps> = (args) => {
+  return <ContentColumns {...args} />
+}
 
 export const Default = Template.bind({})
 Default.args = {
@@ -21,7 +24,7 @@ Default.args = {
     {
       columns: [
         {
-          width: "1/1",
+          width: '1/1',
           blocks: [
             {
               type: 'Primary',
@@ -33,6 +36,7 @@ Default.args = {
                   type: 'image'
                 },
                 title: 'Heading',
+                // eslint-disable-next-line max-len
                 body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.',
                 buttons: [
                   {

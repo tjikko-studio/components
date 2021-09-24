@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {TextStyles, TextStylesProps} from './TextStyles'
 import {Story, Meta} from '@storybook/react/types-6-0'
@@ -7,23 +8,25 @@ export default {
   component: TextStyles,
   argTypes: {},
   parameters: {
-    componentSubtitle: 'The TextStyles',
+    componentSubtitle: 'The TextStyles'
   }
 } as Meta
 
-const Template: Story<TextStylesProps> = (args) => <TextStyles {...args} />
+const Template: Story<TextStylesProps> = (args) => {
+  return <TextStyles {...args} />
+}
 
 export const All = Template.bind({})
 All.args = {
-  type: 'all',
+  type: 'all'
 }
 
 export const Body = Template.bind({})
 Body.args = {
-  type: 'body',
+  type: 'body'
 }
 
 export const Headings = Template.bind({})
 Headings.args = {
-  type: 'heading',
+  type: 'heading'
 }

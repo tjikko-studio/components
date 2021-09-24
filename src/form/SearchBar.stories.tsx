@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import { Story, Meta } from '@storybook/react/types-6-0'
+import {Story, Meta} from '@storybook/react/types-6-0'
 import {SearchBar, SearchBarProps} from './SearchBar'
 
 export default {
@@ -10,7 +11,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<SearchBarProps> = (args) => <SearchBar {...args} />
+const Template: Story<SearchBarProps> = (args) => {
+  return <SearchBar {...args} />
+}
 
 export const Text = Template.bind({})
 Text.args = {

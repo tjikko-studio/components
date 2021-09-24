@@ -1,9 +1,10 @@
-import React, { FC, HTMLAttributes, CSSProperties } from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, {FC, HTMLAttributes, CSSProperties} from 'react'
 
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 import containVal from '../../utilities/containVal'
-import { ColumnProps, ContentPosition } from '../../shared/types'
+import {ColumnProps, ContentPosition} from '../../shared/types'
 import extractCombo from '../../utilities/stringUtils'
 
 export interface SectionItemProps {
@@ -25,7 +26,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   /**
    * Rendered components extra props that changes the styles
    */
-  componentsExtraProps?: Record<string, Function>
+  componentsExtraProps?: Record<string, (props:any)=>any>
 
   /**
    * Custom classes for section
@@ -54,7 +55,15 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
-  contentSectionClasses = 'gap-y-8 sm:gap-y-12 md:gap-y-24 sm:gap-x-12 md:gap-x-16 w-full h-full',
+  contentSectionClasses = [
+    'gap-y-8',
+    'sm:gap-y-12',
+    'md:gap-y-24',
+    'sm:gap-x-12',
+    'md:gap-x-16',
+    'w-full',
+    'h-full'
+  ].join(' '),
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
@@ -63,12 +72,14 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See the tailwind hacks in src/index.tsx
-  const align = (horAlign && verAlign) ? `justify-${horAlign} items-${verAlign}` : ''
+  const align = (horAlign && verAlign)
+    ? `justify-${horAlign} items-${verAlign}`
+    : ''
   return (
     <>
       {
         content
-          ? content.map(({ columns, id }) => {
+          ? content.map(({columns, id}) => {
             const headerClass = (
               content.length > 1 &&
               containVal(columns[0].blocks, 'type', ['Heading', 'Text'])
@@ -77,7 +88,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
               <section
                 key={id || JSON.stringify(columns)}
                 className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
-                style={{ ...contentSectionStyles }}
+                style={{...contentSectionStyles}}
               >
                 {
                   columns.map(({
@@ -89,8 +100,13 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                       // See the tailwind hacks in src/index.tsx
                       <div
                         key={id || JSON.stringify(blocks)}
-                        className={`col-span-${getWidth(width)} ${align} ${headerClass} ${columnClasses}`}
-                        style={{ ...columnStyles }}
+                        className={[
+                          `col-span-${getWidth(width)}`,
+                          align,
+                          headerClass,
+                          columnClasses
+                        ].join(' ')}
+                        style={{...columnStyles}}
                       >
                         {
                           blocks.map((block) => {
@@ -106,7 +122,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
               </section>
             )
           })
-        : null
+          : null
       }
     </>
   )

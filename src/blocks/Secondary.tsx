@@ -1,20 +1,21 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
 import {GroupButtonProps, ButtonsGroup} from '../blocks/ButtonsGroup'
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Is the component direction  default/horizontal (left to right) or vertical (image above)
+   * default/horizontal (left to right) or vertical (image above)
    */
   layout?: 'default' | 'vertical'
 
   /**
-  *  Block image
-  */
+   *  Block image
+   */
   image?: ImageProps | null
 
   /**
-  *  Video properties
-  */
+   *  Video properties
+   */
   autoplay ?: boolean
   muted ?: boolean
   controls ?: boolean
@@ -31,8 +32,8 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   body: string
 
   /**
-  *  Block buttons list
-  */
+   *  Block buttons list
+   */
   buttons?: GroupButtonProps[]
 
   /**
@@ -41,7 +42,7 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -60,34 +61,56 @@ export const Secondary: FC<SecondaryProps> = ({
   title = '',
   body = '',
   buttons = [],
-  className = '',
+  className = ''
 
 }) => {
-  layout = !layout ? 'default' : layout
+  const finalLayout = layout || 'default'
 
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'sm:flex' : ''} ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${
+        layout === 'default'
+          ? 'sm:flex'
+          : ''
+      } ${
+        imagePosition === 'right'
+          ? 'sm:flex-row-reverse'
+          : ''
+      }`}
     >
       {
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2 sm:p-4'}`}
+              className={`${
+                layout === 'vertical'
+                  ? 'sm:pb-8'
+                  : 'sm:w-1/2 sm:p-4'
+              }`}
             >
               {image && (
                 <Media
                   media={image}
-                  autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-                  className={`rounded-lg shadow-xl w-full h-full`}
+                  autoplay={autoplay}
+                  muted={muted}
+                  controls={controls}
+                  loop={loop}
+                  className={'rounded-lg shadow-xl w-full h-full'}
                 />
               )}
             </div>
             <div
-              className={`mt-4 sm:mt-0 ${layout !== 'vertical' && 'sm:w-1/2 sm:flex '} `}
+              className={`mt-4 sm:mt-0 ${
+                layout !== 'vertical'
+                  && 'sm:w-1/2 sm:flex'
+              }`}
             >
               <div
-                className={`${layout !== 'vertical' ? 'sm:pl-12' : ''} `}
+                className={
+                  layout === 'vertical'
+                    ? ''
+                    : 'sm:pl-12'
+                }
               >
                 <h2
                   className='fontStyle-4xl mb-4 break-words'
@@ -100,7 +123,11 @@ export const Secondary: FC<SecondaryProps> = ({
                 />
                 {
                   Object.keys(buttons).length >= 1 &&
-                  <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+                  <ButtonsGroup
+                    key={JSON.stringify(buttons)}
+                    buttons={buttons}
+                    className='space-x-4 mt-6'
+                  />
                 }
               </div>
             </div>

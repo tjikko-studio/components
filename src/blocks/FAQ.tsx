@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface QAProps {
@@ -22,11 +23,13 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const FAQ: FC<FAQProps> = ({
   content = [],
-  className = '',
+  className = ''
 }) => {
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 flex flex-col space-y-12 ${className}`}
+      className={
+        `text-gray-900 dark:text-gray-50 flex flex-col space-y-12 ${className}`
+      }
     >
       {
         content.map((qa) => {

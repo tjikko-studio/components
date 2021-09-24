@@ -1,10 +1,11 @@
-import React, { FC, HTMLAttributes } from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, {FC, HTMLAttributes} from 'react'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 import {Media, ImageProps} from '../parts/Media'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Is the component direction  default/horizontal (left to right) or vertical (image above)
+   * default/horizontal (left to right) or vertical (image above)
    */
   layout?: 'default' | 'vertical'
 
@@ -14,13 +15,13 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
   /**
-  *  Block image
-  */
+   *  Block image
+   */
   image?: ImageProps | null
 
   /**
-  *  Video properties
-  */
+   *  Video properties
+   */
   autoplay ?: boolean
   muted ?: boolean
   controls ?: boolean
@@ -37,12 +38,12 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   body: string
 
   /**
-  *  Block buttons list
-  */
+   *  Block buttons list
+   */
   buttons?: GroupButtonProps[]
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -61,16 +62,19 @@ export const Primary: FC<PrimaryProps> = ({
   title = '',
   body = '',
   buttons = [],
-  className = '',
+  className = ''
 }) => {
-  layout = !layout ? 'default' : layout
+  const finalLayout = layout || 'default'
   const Text = () => {
     return (
       <div
-        className={`mt-4 lg:mt-0 ${layout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'} `}
+        className={`mt-4 lg:mt-0 ${
+          finalLayout !== 'vertical'
+            && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'
+        }`}
       >
         <div
-          className={`${layout !== 'vertical' ? 'lg:pl-12' : ''} `}
+          className={finalLayout === 'vertical' ? '' : 'lg:pl-12'}
         >
           <h2
             className='fontStyle-4xl mb-4 break-words'
@@ -79,11 +83,15 @@ export const Primary: FC<PrimaryProps> = ({
           </h2>
           <p
             className='fontStyle-base'
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{__html: body}}
           />
           {
             Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className='space-x-4 mt-6' />
+            <ButtonsGroup
+              key={JSON.stringify(buttons)}
+              buttons={buttons}
+              className='space-x-4 mt-6'
+            />
           }
         </div>
       </div>
@@ -91,19 +99,34 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'default' ? 'lg:flex' : ''} ${imagePosition === 'right' ? 'lg:flex-row-reverse' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${
+        finalLayout === 'default'
+          ? 'lg:flex'
+          : ''
+      } ${
+        imagePosition === 'right'
+          ? 'lg:flex-row-reverse'
+          : ''
+      }`}
     >
       {
-        (layout === 'default' || layout === 'vertical') && (
+        (finalLayout === 'default' || finalLayout === 'vertical') && (
           <>
             <div
-              className={`${layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4'}`}
+              className={`${
+                layout === 'vertical'
+                  ? 'lg:pb-8'
+                  : 'lg:w-1/2 lg:p-4'
+              }`}
             >
               {image && (
                 <Media
                   media={image}
-                  autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-                  className={`rounded-lg shadow-xl w-full h-full`}
+                  autoplay={autoplay}
+                  muted={muted}
+                  controls={controls}
+                  loop={loop}
+                  className={'rounded-lg shadow-xl w-full h-full'}
                 />
               )}
             </div>

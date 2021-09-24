@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 // import Marquee from 'react-fast-marquee'
 
@@ -29,13 +30,23 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
 }) => {
   return (
     <div>
-    {/* <Marquee gradientWidth='0'> */}
-      <div className={`flex flex-nowrap w-max  space-x-14 lg:space-x-32 md:space-x-16`}>
+      {/* <Marquee gradientWidth='0'> */}
+      <div className={[
+        'flex',
+        'flex-nowrap',
+        'w-max',
+        'space-x-14',
+        'lg:space-x-32',
+        'md:space-x-16'
+      ].join(' ')}>
         {content.map(({image, company}) => {
           return (
             <div
               key={company}
-              className={size === 'default' ? 'h-14 lg:h-24 md:h-20' : 'h-14 lg:h-16 md:h-12'}
+              className={size === 'default'
+                ? 'h-14 lg:h-24 md:h-20'
+                : 'h-14 lg:h-16 md:h-12'
+              }
             >
               <img className='w-auto h-full' src={image.url} />
             </div>
@@ -43,7 +54,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         })
         }
       </div>
-    {/* </Marquee> */}
+      {/* </Marquee> */}
     </div>
   )
 }

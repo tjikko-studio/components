@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {ButtonsGroup, ButtonsGroupProps} from './ButtonsGroup'
@@ -14,17 +15,21 @@ export default {
   }
 } as Meta
 
-const Template: Story<ButtonsGroupProps> = (args) => <ButtonsGroup {...args} />
+const Template: Story<ButtonsGroupProps> = (args) => {
+  return <ButtonsGroup {...args} />
+}
 
 export const Default = Template.bind({})
 
 Default.args = {
-  buttons: [{
+  buttons: [
+    {
       label: 'Primary button',
       link: '#'
     },
     {
       label: 'Secondary button',
-      link: '#',
-  }]
+      link: '#'
+    }
+  ]
 }

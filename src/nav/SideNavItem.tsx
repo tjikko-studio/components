@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
@@ -27,7 +28,7 @@ export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
   spacer?: boolean
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -42,12 +43,37 @@ export const SideNavItem: FC<SideNavItemProps> = ({
   status = 'default',
   spacer = false
 }) => {
+  const classes = [
+    'list-none',
+    'border-l-2',
+    'pr-3',
+    'hover:border-primary-600',
+    'dark:hover:border-primary-300',
+    'hover:text-primary-700',
+    'dark:hover:text-primary-200',
+    'text-gray-600',
+    'dark:text-gray-300',
+    'cursor-pointer'
+  ]
+  classes.push(spacer ? 'py-1.5' : 'py-2.5')
+  classes.push(type === 'link' ? 'pl-7' : 'pl-5')
+  classes.push(...(status === 'default'
+    ? [
+      'border-gray-200',
+      'dark:border-gray-700'
+    ]
+    : [
+      'border-primary-600',
+      'dark:border-primary-300',
+      'text-primary-700',
+      'dark:text-primary-200'
+    ]
+  ))
 
   return (
     <li
-      className={`list-none border-l-2 pr-3 ${spacer ? 'py-1.5' : 'py-2.5'} ${type === 'link' ? 'pl-7' : 'pl-5'} ${status === 'default' ? 'border-gray-200 dark:border-gray-700' : 'border-primary-600 dark:border-primary-300 text-primary-700 dark:text-primary-200'} hover:border-primary-600 dark:hover:border-primary-300 hover:text-primary-700 dark:hover:text-primary-200 text-gray-600 dark:text-gray-300 cursor-pointer`}
+      className={classes.join(' ')}
     >
-
       {spacer ? '' :
         <a
           href={link ? link : '#'}

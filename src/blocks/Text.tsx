@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,7 +18,7 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
   text?: string
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -35,6 +36,11 @@ export const Text: FC<TextProps> = ({
 
   // See the tailwind hacks in src/index.tsx
   return (
-    <TextTag className={`${alignment === 'left' && `w-max`} text-${alignment} ${className}`} dangerouslySetInnerHTML={{ __html: text }} />
+    <TextTag
+      className={`${
+        alignment === 'left' && 'w-max'
+      } text-${alignment} ${className}`}
+      dangerouslySetInnerHTML={{__html: text}}
+    />
   )
 }

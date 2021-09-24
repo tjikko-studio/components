@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import ErrorIcon from '/assets/icons/information-fill.svg'
 import ValidatingIcon from '/assets/icons/loader-2-fill.svg'
@@ -61,7 +62,7 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
   isDisabled?: boolean
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 
@@ -87,39 +88,70 @@ export const TextArea: FC<TextAreaProps> = ({
   className,
   columnIndex = 1
 }) => {
-  const textareaClasses = ['form-textarea fontStyle-base py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const textareaClasses = [
+    'form-textarea',
+    'fontStyle-base',
+    'py-3',
+    'px-4',
+    'rounded-lg',
+    'border',
+    'w-full',
+    'bg-gray-50',
+    'dark:bg-gray-700',
+    'text-gray-800',
+    'dark:text-gray-100',
+    'border-gray-300',
+    'dark:border-gray-600'
+  ]
   addDisabledClasses(isDisabled, textareaClasses)
   addErrorClasses(isError, textareaClasses)
   addValidatingClasses(isValidating, textareaClasses)
   if (isValidating) {
-    textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
+    textareaClasses.push(
+      'drop-shadow-sm',
+      'outline-none',
+      'ring-2',
+      'border-transparent'
+    )
   }
   addSuccessClasses(isSuccess, textareaClasses)
   if (isSuccess) {
-    textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
+    textareaClasses.push(
+      'drop-shadow-sm outline-none ring-2 border-transparent'
+    )
   }
   return (
     <>
       {
         label &&
         <div
-          className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'} mb-2`}
+          className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${
+            isDisabled
+              && 'text-gray-500 dark:text-gray-600'
+          } mb-2`}
           style={{gridArea: `label-${columnIndex}`}}
         >
           <p>
             {label}
           </p>
-          {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
-          {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-          {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
-        </div> 
+          {(isError) &&
+            <ErrorIcon className='text-red-600 dark:text-red-400' />}
+          {(isValidating) &&
+            <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+          {(isSuccess) &&
+            <TickIcon className='text-green-600 dark:text-green-400' />}
+        </div>
       }
       <div
         className={`sm:grid-in-control-${columnIndex}`}
         style={{gridArea: `control-${columnIndex}`}}
       >
         <textarea
-          className={`${textareaClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+          className={`${textareaClasses.join(' ')} ${
+            focusClasses(
+              'outline-none ring-2 ring-primary-500 border-transparent',
+              isFocussed)
+          }`}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
@@ -128,7 +160,12 @@ export const TextArea: FC<TextAreaProps> = ({
       {
         information &&
         <div
-          className={`sm:grid-in-info-${columnIndex} fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600 mt-2'}`}
+          className={
+            `sm:grid-in-info-${columnIndex} ${
+              isDisabled
+                && 'text-gray-500 dark:text-gray-600 mt-2'
+            } fontStyle-sm min-h-6 flex items-center dark:text-gray-300`
+          }
           style={{gridArea: `info-${columnIndex}`}}
           dangerouslySetInnerHTML={{__html: information}}
         >
@@ -137,12 +174,18 @@ export const TextArea: FC<TextAreaProps> = ({
       {
         isError &&
         <div
-          className={`sm:grid-in-error-${columnIndex} ${isError ? 'opacity-100' : 'opacity-0'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400 mt-2`}
+          className={
+            `sm:grid-in-error-${columnIndex} fontStyle-sm min-h-6 flex ${
+              isError
+                ? 'opacity-100'
+                : 'opacity-0'
+            } items-center text-red-600 dark:text-red-400 mt-2`
+          }
           style={{gridArea: `error-${columnIndex}`}}
         >
           {error}
         </div>
-      }      
+      }
     </>
   )
 }

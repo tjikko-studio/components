@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
@@ -31,12 +32,12 @@ export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   link?: string
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 
   /**
-   * force dark mode (This will bypass dark mode and apply the dark mode on the component even in light mode
+   * apply the dark theme whether in dark or light mode
    */
   forceDark?: boolean
 }
@@ -56,52 +57,82 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   const buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']
-  switch (type) {
-    case 'primary':
-      buttonClasses.push('rounded-lg')
-      if (forceDark) {
-        buttonClasses.push('bg-primary-400 hover:bg-primary-200')
-        buttonClasses.push('text-primary-900')
+  const styles = {
+    primary: (isForceDark:boolean) => {
+      const newClasses = ['rounded-lg']
+      if (isForceDark) {
+        newClasses.push('bg-primary-400', 'hover:bg-primary-200')
+        newClasses.push('text-primary-900')
       } else {
-        buttonClasses.push('bg-primary-600 hover:bg-primary-700 dark:bg-primary-400 dark:hover:bg-primary-200')
-        buttonClasses.push('text-white dark:text-primary-900')
+        newClasses.push(
+          'bg-primary-600',
+          'hover:bg-primary-700',
+          'dark:bg-primary-400',
+          'dark:hover:bg-primary-200'
+        )
+        newClasses.push('text-white', 'dark:text-primary-900')
       }
-      break
-    case 'secondary':
-      buttonClasses.push('bg-none rounded-lg border')
-      if (forceDark) {
-        buttonClasses.push('border-primary-400 hover:border-primary-200')
-        buttonClasses.push('text-primary-400 hover:text-primary-200')
+      return newClasses
+    },
+    secondary: (isForceDark:boolean) => {
+      const newClasses = ['bg-none rounded-lg border']
+      if (isForceDark) {
+        newClasses.push('border-primary-400 hover:border-primary-200')
+        newClasses.push('text-primary-400 hover:text-primary-200')
       } else {
-        buttonClasses.push('border-primary-600 hover:border-primary-800 dark:border-primary-300  dark:hover:border-primary-100')
-        buttonClasses.push('text-primary-600 hover:text-primary-800 dark:text-primary-300 dark:hover:text-primary-100')
+        newClasses.push(
+          'border-primary-600',
+          'hover:border-primary-800',
+          'dark:border-primary-300',
+          'dark:hover:border-primary-100'
+        )
+        newClasses.push(
+          'text-primary-600',
+          'hover:text-primary-800',
+          'dark:text-primary-300',
+          'dark:hover:text-primary-100'
+        )
       }
-      break
-    case 'tertiary':
-      buttonClasses.push('bg-none')
-      if (forceDark) {
-        buttonClasses.push('text-primary-400 hover:text-primary-200')
+      return newClasses
+    },
+    tertiary: (isForceDark:boolean) => {
+      const newClasses = ['bg-none']
+      if (isForceDark) {
+        newClasses.push('text-primary-400 hover:text-primary-200')
       } else {
-        buttonClasses.push('text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-200')
+        newClasses.push(
+          'text-primary-600',
+          'hover:text-primary-700',
+          'dark:text-primary-400',
+          'dark:hover:text-primary-200'
+        )
       }
-      break
+      return newClasses
+    }
   }
+  buttonClasses.push(styles[type](forceDark).join(' '))
   switch (size) {
-    case 'small':
-      buttonClasses.push('h-8 max-h-8 py-2.5')
-      contentClasses.push('fontStyle-button-sm')
-      type !== 'tertiary' && buttonClasses.push('px-3.5')
-      break
-    case 'large':
-      buttonClasses.push('h-12 max-h-12 py-4')
-      type !== 'tertiary' && buttonClasses.push('px-5')
-      contentClasses.push('fontStyle-button-lg')
-      break
-    case 'default':
-    default:
-      buttonClasses.push('h-10 max-h-10 py-3.5')
-      type !== 'tertiary' && buttonClasses.push('px-4')
-      contentClasses.push('fontStyle-button-base')
+  case 'small':
+    buttonClasses.push('h-8 max-h-8 py-2.5')
+    contentClasses.push('fontStyle-button-sm')
+    if (type !== 'tertiary') {
+      buttonClasses.push('px-3.5')
+    }
+    break
+  case 'large':
+    buttonClasses.push('h-12 max-h-12 py-4')
+    if (type !== 'tertiary') {
+      buttonClasses.push('px-5')
+    }
+    contentClasses.push('fontStyle-button-lg')
+    break
+  case 'default':
+  default:
+    buttonClasses.push('h-10 max-h-10 py-3.5')
+    if (type !== 'tertiary') {
+      buttonClasses.push('px-4')
+    }
+    contentClasses.push('fontStyle-button-base')
   }
   buttonClasses.push(`${className}`)
   const buttonClassesJoined = buttonClasses.join(' ')
@@ -113,6 +144,7 @@ export const Button: FC<ButtonProps> = ({
         >{label}</span>
       )
     }
+    return null
   }
   if (link) {
     return (
@@ -123,13 +155,12 @@ export const Button: FC<ButtonProps> = ({
         <Content />
       </a>
     )
-  } else {
-    return (
-      <button
-        className={buttonClassesJoined}
-      >
-        <Content />
-      </button>
-    )
   }
+  return (
+    <button
+      className={buttonClassesJoined}
+    >
+      <Content />
+    </button>
+  )
 }

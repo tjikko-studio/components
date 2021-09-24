@@ -1,10 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {NavItem} from './NavItem'
 import {ListNav} from './ListNav'
-import {MenuType} from '../../shared/types'
+import {MenuType, MenuItemType} from '../../shared/types'
 import {Button} from '../Button'
 import {Media, ImageProps} from '../parts/Media'
-import {MenuItemType} from '../../shared/types'
 
 export interface LocalesType {
   current?: string | null
@@ -12,8 +12,11 @@ export interface LocalesType {
 }
 
 export interface NavColumn {
+  // eslint-disable-next-line camelcase
   mobile_layout: string
+  // eslint-disable-next-line camelcase
   mobile_position: string
+  // eslint-disable-next-line camelcase
   mobile_width: string
   content: MenuItemType[]
   id?: string
@@ -30,7 +33,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    */
   // menuData: MenuItemType[]
   menuData: NavColumns[]
-  
+
   /**
    *  logo url to show
    */
@@ -47,7 +50,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   styles?: 'opaque' | 'transparent'
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
   openMenuText?: string
@@ -64,13 +67,14 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
-  const moveElement = (arr: any, x: number, pos: 'start' | 'end') => {
-    let el = arr.splice(x, 1)
+  const moveElement = (arr: any, idx: number, pos: 'start' | 'end') => {
+    // eslint-disable-next-line no-magic-numbers
+    const el = arr.splice(idx, 1)
     return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
   }
 
   /*
-    Desktop Nav
+   *Desktop Nav
    */
   const DesktopNav = () => {
     return (
@@ -80,38 +84,64 @@ export const SiteNav: FC<SiteNavProps> = ({
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={`flex items-center justify-between md:justify-start h-24 px-10 ${(styles === 'opaque') && 'bg-gray-900 text-gray-50'} ${className}`}
+                className={[
+                  'flex',
+                  'items-center',
+                  'justify-between',
+                  'md:justify-start',
+                  'h-24',
+                  'px-10',
+                  (styles === 'opaque')
+                    ? 'bg-gray-900 text-gray-50'
+                    : '',
+                  className
+                ].join(' ')}
               >
                 <div className='flex-auto'>
                   {logo ? (
-                    <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
+                    <Media media={logo} className={'h-3 lg:h-4 w-auto'} />
                   ) : null}
                 </div>
                 {columns.length >= 1 && columns.map(({content, id}) => {
                   return (
                     <div
                       key={id || JSON.stringify(content)}
-                      className={`flex flex-auto items-center justify-center first:justify-start last:justify-end space-x-6`}
+                      className={[
+                        'flex',
+                        'flex-auto',
+                        'items-center',
+                        'justify-center',
+                        'first:justify-start',
+                        'last:justify-end',
+                        'space-x-6'
+                      ].join(' ')}
                     >
 
-                      {content && content.map(({label, link, type, content, id}) => {
-                        switch (type) {
+                      {content
+                        && content.map(({
+                          label,
+                          link,
+                          type,
+                          content: innerContent,
+                          id: innerId
+                        }) => {
+                          switch (type) {
                           case 'link':
                           case 'NavigationDropdown':
                             return (
                               <NavItem
-                                key={id || JSON.stringify(content)}
+                                key={innerId || JSON.stringify(innerContent)}
                                 link={link}
                                 styles='special'
                                 label={label}
-                                listNavContent={content}
+                                listNavContent={innerContent}
                                 className='ml-6 first:ml-0'
                               />
                             )
                           case 'button':
                             return (
                               <Button
-                                key={id || JSON.stringify(content)}
+                                key={innerId || JSON.stringify(innerContent)}
                                 label={label}
                                 link={link}
                                 type='primary'
@@ -124,17 +154,19 @@ export const SiteNav: FC<SiteNavProps> = ({
                           case 'NavigationDynamicList':
                             return (
                               <NavItem
-                                key={id || JSON.stringify(content)}
+                                key={innerId || JSON.stringify(innerContent)}
                                 styles='special'
-                                label={locales.current ? locales.current : 'English'}
+                                label={locales.current
+                                  ? locales.current
+                                  : 'English'}
                                 listNavContent={locales.content}
                               />
                             )
                           default:
                             console.error('Unhandled SiteNav type', type)
                             return null
-                        }
-                      })}
+                          }
+                        })}
                     </div>
                   )
                 })}
@@ -147,18 +179,27 @@ export const SiteNav: FC<SiteNavProps> = ({
   }
 
   /*
-    Mobile Nav
+   *Mobile Nav
    */
   const MobileNav = () => {
     const border = 'border-b border-gray-600 last:border-b-0'
-    const dividerSm = `pb-4 last:pb-0`
-    const dividerMd = `pb-8 last:pb-0`
+    const dividerSm = 'pb-4 last:pb-0'
+    const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className='flex lg:hidden flex-col bg-gray-900 text-gray-50 px-4 pb-4 space-y-8'>
+      <div className={[
+        'flex',
+        'lg:hidden',
+        'flex-col',
+        'bg-gray-900',
+        'text-gray-50',
+        'px-4',
+        'pb-4',
+        'space-y-8'
+      ].join(' ')}>
         <div className='flex justify-between items-center h-16'>
           <div>
             {logo ? (
-              <Media media={logo} className={`h-3 lg:h-4 w-auto`} />
+              <Media media={logo} className={'h-3 lg:h-4 w-auto'} />
             ) : null}
           </div>
           <div>{openMenuText}</div>
@@ -166,45 +207,72 @@ export const SiteNav: FC<SiteNavProps> = ({
         {
           menuData.map(({columns, id}) => {
             let mobileNavContent = [...columns]
-            mobileNavContent.length >= 1 && mobileNavContent.map(({mobile_position}, i) => {
-              if (mobile_position === 'start')
-                mobileNavContent = moveElement(mobileNavContent, i, 'start')
-              if (mobile_position === 'end')
-                mobileNavContent = moveElement(mobileNavContent, i, 'end')
-            })
+            if (mobileNavContent.length) {
+              // eslint-disable-next-line camelcase
+              mobileNavContent.forEach(({mobile_position}, idx) => {
+                // eslint-disable-next-line camelcase
+                if (mobile_position === 'start') {
+                  mobileNavContent = moveElement(mobileNavContent, idx, 'start')
+                }
+                // eslint-disable-next-line camelcase
+                if (mobile_position === 'end') {
+                  mobileNavContent = moveElement(mobileNavContent, idx, 'end')
+                }
+              })
+            }
             return (
               <section
                 key={id || JSON.stringify(mobileNavContent)}
                 className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
               >
                 {
-                  mobileNavContent.length >= 1 && mobileNavContent.map(({content, mobile_layout, id}) => {
-                    const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
-                    const columnsLength = content ? content.length : 0
-                    return (
-                      <div
-                        key={id || JSON.stringify(content)}
-                        className={`flex ${border} ${dividerSm} ${layout}`}
-                      >
-                        {
-                          content && content.map(({label, link, type, content, dataSource, id}, i) => {
-                            const isLast = i + 1 >= columnsLength ? true : false
-                            switch (type) {
+                  mobileNavContent.length
+                    // eslint-disable-next-line camelcase
+                    && mobileNavContent.map(({content, mobile_layout, id}) => {
+                      // eslint-disable-next-line camelcase
+                      const layout = mobile_layout === 'horizontal'
+                        ? ' justify-between items-start'
+                        : ' flex-col space-y-4'
+                      // eslint-disable-next-line no-magic-numbers
+                      const columnsLength = content ? content.length : 0
+                      return (
+                        <div
+                          key={id || JSON.stringify(content)}
+                          className={`flex ${border} ${dividerSm} ${layout}`}
+                        >
+                          {
+                            content && content.map(({
+                              label,
+                              link,
+                              type,
+                              content: innerContent,
+                              dataSource,
+                              id: innerId
+                            }, idx) => {
+                              const isLast = idx + 1 >= columnsLength
+                              switch (type) {
                               case 'NavigationDropdown': {
                                 return (
                                   <div
                                     className={`dark ${border} ${dividerSm}`}
-                                    key={id || JSON.stringify(content)}
+                                    key={innerId
+                                      || JSON.stringify(innerContent)}
                                   >
-                                    {label && <div className='fontStyle-xl mb-3'> {label} </div>}
-                                    <ListNav styles='flat' listNavContent={content} />
+                                    {label
+                                      && <div className='fontStyle-xl mb-3'>
+                                        {label}
+                                      </div>}
+                                    <ListNav
+                                      styles='flat'
+                                      listNavContent={innerContent}
+                                    />
                                   </div>
                                 )
                               }
                               case 'link': {
                                 return (
                                   <a
-                                    key={id || `[${label}](${link})`}
+                                    key={innerId || `[${label}](${link})`}
                                     href={link}
                                     className='fontStyle-xl'
                                   >
@@ -215,7 +283,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                               case 'button': {
                                 return (
                                   <div
-                                    key={id || `[${label}](${link})`}
+                                    key={innerId || `[${label}](${link})`}
                                     className='dark'
                                   >
                                     <Button
@@ -234,22 +302,26 @@ export const SiteNav: FC<SiteNavProps> = ({
                                 if (dataSource === 'language') {
                                   return (
                                     <NavItem
-                                      key={id || JSON.stringify(content)}
+                                      key={innerId
+                                        || JSON.stringify(innerContent)}
                                       styles='special'
-                                      label={locales.current ? locales.current : 'English'}
+                                      label={locales.current
+                                        ? locales.current
+                                        : 'English'}
                                       listNavContent={locales.content}
                                       dropdownRight={isLast}
                                     />
                                   )
                                 }
+                                return null
                               default:
                                 return null
+                              }
                             }
-                          }
-                          )}
-                      </div>
-                    )
-                  })
+                            )}
+                        </div>
+                      )
+                    })
                 }
               </section>
             )
@@ -261,6 +333,7 @@ export const SiteNav: FC<SiteNavProps> = ({
 
   return (
     <nav>
+      {/* eslint-disable-next-line no-magic-numbers */}
       {menuData.length >= 1 &&
         <>
           <DesktopNav />

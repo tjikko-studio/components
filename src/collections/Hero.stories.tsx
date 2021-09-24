@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Hero, HeroProps} from './Hero'
 import {Story, Meta} from '@storybook/react/types-6-0'
@@ -13,18 +14,21 @@ export default {
   }
 } as Meta
 
-const Template: Story<HeroProps> = (args) => <Hero {...args} />
+const Template: Story<HeroProps> = (args) => {
+  return <Hero {...args} />
+}
 
 export const Default = Template.bind({})
 Default.args = {
   bgColor: 'dark|#171A22',
   bgType: 'video',
   bgHasImage: true,
-  bgImage:{
+  bgImage: {
     url: 'https://source.unsplash.com/random'
   },
   bgHasVideo: true,
-  bgVideo:{
+  bgVideo: {
+    // eslint-disable-next-line max-len
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
   },
   content: [
@@ -32,22 +36,24 @@ Default.args = {
       type: 'Heading',
       content: {
         level: 'h1',
-        text: 'Hello you',
+        text: 'Hello you'
       }
     },
     {
       type: 'Text',
       content: {
-        text: 'wonderful people',
+        text: 'wonderful people'
       }
     },
     {
       type: 'ButtonsGroup',
       content: {
-        buttons: [{
-          label: 'Book a demo',
-          link: '#'
-        }]
+        buttons: [
+          {
+            label: 'Book a demo',
+            link: '#'
+          }
+        ]
       }
     }
   ]

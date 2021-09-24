@@ -1,9 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Is the composent direction  default/horizontasl (left to right) or vertical (image above)
+   * default/horizontal (left to right) or vertical (image above)
    */
   layout?: 'default' | 'vertical'
 
@@ -13,13 +14,13 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   imagePosition?: 'undefined' | 'auto' | 'left' | 'right'
 
   /**
-  *  Block image
-  */
+   *  Block image
+   */
   image?: ImageProps | null
 
   /**
-  *  Video properties
-  */
+   *  Video properties
+   */
   autoplay ?: boolean
   muted ?: boolean
   controls ?: boolean
@@ -52,11 +53,15 @@ export const Tertiary: FC<TertiaryProps> = ({
   title = '',
   body = ''
 }) => {
-  const layoutTypeStaged = !layout ? 'default' : layout
+  const layoutTypeStaged = layout || 'default'
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${layoutTypeStaged !== 'vertical' ? 'sm:w-1/2 sm:flex sm:ml-6' : ''}`}
+        className={`mt-4 sm:mt-0 ${
+          layoutTypeStaged === 'vertical'
+            ? ''
+            : 'sm:w-1/2 sm:flex sm:ml-6'
+        }`}
       >
         <div>
           <h2
@@ -66,7 +71,7 @@ export const Tertiary: FC<TertiaryProps> = ({
           </h2>
           <p
             className='fontStyle-base break-words'
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{__html: body}}
           >
           </p>
         </div>
@@ -75,9 +80,19 @@ export const Tertiary: FC<TertiaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout !== 'vertical' ? 'sm:flex' : ''} 
-      ${layout !== 'vertical' && imagePosition === 'right' ? 'sm:space-x-6' : ''}
-      ${layout !== 'vertical' && imagePosition === 'left' ? '-sm:space-x-6' : ''}`}
+      className={`text-gray-900 dark:text-gray-50 ${
+        layout === 'vertical'
+          ? ''
+          : 'sm:flex'
+      } ${
+        (layout === 'vertical' && imagePosition === 'right')
+          ? ''
+          : 'sm:space-x-6'
+      } ${
+        (layout === 'vertical' && imagePosition === 'left')
+          ? ''
+          : '-sm:space-x-6'
+      }`}
     >
       <div
         className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}
@@ -86,7 +101,7 @@ export const Tertiary: FC<TertiaryProps> = ({
           <Media
             media={image}
             autoplay={autoplay} muted={muted} controls={controls} loop={loop}
-            className={`rounded-lg shadow-xl w-full h-full`}
+            className={'rounded-lg shadow-xl w-full h-full'}
           />
         )}
       </div>

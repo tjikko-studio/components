@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
@@ -16,7 +17,16 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Content Position
    */
-  contentPosition ?: 'top|left' | 'top|center' | 'top|right' | 'center|left' | 'center|center' | 'center|right' | 'bottom|left' | 'bottom|center' | 'bottom|right'
+  contentPosition?:
+    'top|left' |
+    'top|center' |
+    'top|right' |
+    'center|left' |
+    'center|center' |
+    'center|right' |
+    'bottom|left' |
+    'bottom|center' |
+    'bottom|right'
   heroHeight?: string,
 
 
@@ -27,29 +37,29 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   templatesContent?: Record<string, ColumnProps>
 }
 
-const getHorPos = (v: string) => {
-  switch(v) {
-    case 'left' :
-      return 'left-0'
-    case 'center' :
-      return 'left-1/2 transform -translate-x-1/2'
-    case 'right' :
-      return 'right-0'
-    default :
-      return  ''
+const getHorPos = (value: string) => {
+  switch (value) {
+  case 'left' :
+    return 'left-0'
+  case 'center' :
+    return 'left-1/2 transform -translate-x-1/2'
+  case 'right' :
+    return 'right-0'
+  default :
+    return ''
   }
 }
 
-const getVerPos = (v: string) => {
-  switch(v) {
-    case 'top' :
-      return 'top-0'
-    case 'center' :
-      return 'top-1/2 transform -translate-y-1/2'
-    case 'bottom' :
-      return 'bottom-0'
-    default :
-      return  ''
+const getVerPos = (value: string) => {
+  switch (value) {
+  case 'top' :
+    return 'top-0'
+  case 'center' :
+    return 'top-1/2 transform -translate-y-1/2'
+  case 'bottom' :
+    return 'bottom-0'
+  default :
+    return ''
   }
 }
 
@@ -72,35 +82,90 @@ export const Hero: FC<HeroProps> = ({
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
-  const horHor = getHorPos(horPosVal)
+  const horPos = getHorPos(horPosVal)
   return (
     <header
-      className={`overflow-hidden bg-cover relative text-gray-50 ${theme ? theme : 'dark'}`}
-      style={{ backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : '' })`}}
+      className={`overflow-hidden bg-cover relative text-gray-50 ${
+        theme ? theme : 'dark'
+      }`}
+      style={{backgroundColor: background,
+        backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
     >
       {
-        /* TODO: Hide video if user prefers reduced motion, see https://github.com/tjikko-studio/components/issues/72 */
         bgHasVideo && (
-          <video id='heroVideo' poster={(bgHasImage && bgImage) ? bgImage.url : ''} autoPlay muted loop className='absolute z-0 top-0 left-0 object-cover w-full h-full hidden sm:block'>
+          <video
+            id='heroVideo'
+            poster={(bgHasImage && bgImage) ? bgImage.url : ''}
+            autoPlay
+            muted
+            loop
+            className={[
+              'absolute',
+              'z-0',
+              'top-0',
+              'left-0',
+              'object-cover',
+              'w-full',
+              'h-full',
+              'hidden',
+              'sm:block'
+            ].join(' ')}
+          >
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
       }
       <div
-        className='absolute z-1 h-2/6 -top-1/6 left-0 w-full bg-gradient-to-b from-gray-900 to-transparent opacity-40'
+        className={[
+          'absolute',
+          'z-1',
+          'h-2/6',
+          '-top-1/6',
+          'left-0',
+          'w-full',
+          'bg-gradient-to-b',
+          'from-gray-900',
+          'to-transparent',
+          'opacity-40'
+        ].join(' ')}
       />
       <div
-        className='absolute z-1 h-full -bottom-1/6 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-60'
+        className={[
+          'absolute',
+          'z-1',
+          'h-full',
+          '-bottom-1/6',
+          'left-0',
+          'w-full',
+          'bg-gradient-to-t',
+          'from-gray-900',
+          'to-transparent',
+          'opacity-60'
+        ].join(' ')}
       />
       {/* See the tailwind hacks in src/index.tsx */}
       <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
         <div
-          className={`text-gray-900 dark:text-gray-50 absolute z-20 p-6 lg:p-12 md:p-12 sm:p-12 flex flex-col space-y-5 ${verPos} ${horHor}`}
+          className={[
+            'text-gray-900',
+            'dark:text-gray-50',
+            'absolute',
+            'z-20',
+            'p-6',
+            'lg:p-12',
+            'md:p-12',
+            'sm:p-12',
+            'flex',
+            'flex-col',
+            'space-y-5',
+            verPos,
+            horPos
+          ].join(' ')}
         >
           {
             content.map((block) => {
               return toComponent(block, {
-                Heading: (baseProps: any) => {
+                Heading: () => {
                   return {
                     level: 'h1'
                   }

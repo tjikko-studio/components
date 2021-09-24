@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Button, ButtonProps} from './Button'
 import {Story, Meta} from '@storybook/react/types-6-0'
@@ -6,8 +7,10 @@ export default {
   title: 'Tjikko/Buttons',
   component: Button,
   argTypes: {
-    type: {options: ['primary', 'secondary', 'tertiary'], control: {type: 'select'}},
-    size: {options: ['small', 'default', 'large'], control: {type: 'select'}},
+    type: {options: ['primary', 'secondary', 'tertiary'],
+      control: {type: 'select'}},
+    size: {options: ['small', 'default', 'large'],
+      control: {type: 'select'}},
     forceDark: {control: {type: 'boolean'}}
   },
   parameters: {
@@ -15,18 +18,20 @@ export default {
   }
 } as Meta
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />
+const Template: Story<ButtonProps> = (args) => {
+  return <Button {...args} />
+}
 
 export const Primary = Template.bind({})
 Primary.args = {
-  type : 'primary',
-  label : 'Primary Button',
-  size : 'default',
-  icon : '',
-  iconPos : 'left',
-  link : '',
-  className : '',
-  forceDark : false
+  type: 'primary',
+  label: 'Primary Button',
+  size: 'default',
+  icon: '',
+  iconPos: 'left',
+  link: '',
+  className: '',
+  forceDark: false
 }
 
 export const Secondary = Template.bind({})

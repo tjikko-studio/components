@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
@@ -22,9 +23,7 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
   className : string
 }
 
-export interface ImageProps extends MediaProps {
-
-}
+export type ImageProps = MediaProps
 
 export const MediaImage: FC<ImageProps> = ({
   type,
@@ -34,7 +33,7 @@ export const MediaImage: FC<ImageProps> = ({
   extension,
   dimensions = {},
   content = {},
-  className,
+  className
 }) => {
   return (
     <figure role='group'>
@@ -93,14 +92,24 @@ export const Media: FC<GenericMediaProps> = ({
   muted = true,
   controls = false,
   loop = false,
-  className,
+  className
 }) => {
   switch (media.type) {
-    case 'image':
-      return <MediaImage key={media.url} {...media} className={className} />
-    case 'video':
-      return <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
-    default:
-      return null
+  case 'image':
+    return <MediaImage key={media.url} {...media} className={className} />
+  case 'video':
+    return (
+      <MediaVideo
+        key={media.url}
+        {...media}
+        className={className}
+        autoplay={autoplay}
+        muted={muted}
+        controls={controls}
+        loop={loop}
+      />
+    )
+  default:
+    return null
   }
 }

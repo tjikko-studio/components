@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
@@ -23,7 +24,7 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
 export const Testimonial: FC<TestimonialProps> = ({
   body = '',
   image = {},
-  title = '',
+  title = ''
 }) => {
   return (
     <div className='flex flex-col space-y-6 text-gray-900 dark:text-gray-50'

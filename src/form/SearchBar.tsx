@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes, useState} from 'react'
 import SearchIcon from '/assets/icons/search-line.svg'
 import focusClasses from '../../utilities/focusClasses'
@@ -25,7 +26,7 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
   isDisabled?: boolean
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -38,10 +39,32 @@ export const SearchBar: FC<SearchBarProps> = ({
   isFocussed = false,
   text,
   placeHolder,
-  className,
+  className
 }) => {
   const [autoFocus, setInputFocus] = useState(false)
-  const classes = ['form-input w-72 flex rounded-lg items-center overflow-hidden w-full pl-11 fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600' ]
+  const classes = [
+    'form-input',
+    'w-72',
+    'flex',
+    'rounded-lg',
+    'items-center',
+    'overflow-hidden',
+    'w-full',
+    'pl-11',
+    'fontStyle-base',
+    'h-12',
+    'max-h-12',
+    'py-3',
+    'px-4',
+    'rounded-lg',
+    'border',
+    'bg-gray-50',
+    'dark:bg-gray-700',
+    'text-gray-800',
+    'dark:text-gray-100',
+    'border-gray-300',
+    'dark:border-gray-600'
+  ]
   addDisabledClasses(isDisabled, classes)
   return (
     <div
@@ -55,13 +78,21 @@ export const SearchBar: FC<SearchBarProps> = ({
       </button>
       <input
         disabled={isDisabled}
-        className={`${classes.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+        className={
+          `${classes.join(' ')} ${
+            focusClasses(
+              'outline-none ring-2 ring-primary-500 border-transparent',
+              isFocussed)
+          }`}
         defaultValue={text}
         placeholder={placeHolder}
-        onFocus={() => setInputFocus(true)}
-        onBlur={() => setInputFocus(false)}
+        onFocus={() => {
+          return setInputFocus(true)
+        }}
+        onBlur={() => {
+          return setInputFocus(false)
+        }}
       />
     </div>
-
   )
 }

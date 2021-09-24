@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import { Story, Meta } from '@storybook/react/types-6-0'
+import {Story, Meta} from '@storybook/react/types-6-0'
 import {TextArea, TextAreaProps} from './TextArea'
 
 export default {
@@ -10,7 +11,9 @@ export default {
   }
 } as Meta
 
-const Template: Story<TextAreaProps> = (args) => <TextArea {...args} />
+const Template: Story<TextAreaProps> = (args) => {
+  return <TextArea {...args} />
+}
 
 export const Text = Template.bind({})
 Text.args = {
@@ -43,6 +46,6 @@ Success.args = {
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...Text.args,
-  text: "",
+  text: '',
   isDisabled: true
 }

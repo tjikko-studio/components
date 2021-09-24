@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface BreadcrumbType {
@@ -12,7 +13,7 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
   crumbs: BreadcrumbType[]
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -37,7 +38,11 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
                 key={item.name}
               >
                 <span
-                  className='fontStyle-xl hover:text-primary-300 dark:hover:text-primary-300'
+                  className={[
+                    'fontStyle-xl',
+                    'hover:text-primary-300',
+                    'dark:hover:text-primary-300'
+                  ].join(' ')}
                 >
                   <a
                     href={item.url}
@@ -48,7 +53,9 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
                   </a>
                 </span>
                 {
-                  (crumbs.length - 1 > index) && <span className='px-2.5'>/</span>
+                  // eslint-disable-next-line no-magic-numbers
+                  (crumbs.length - 1 > index)
+                    && <span className='px-2.5'>/</span>
                 }
               </li>
             )

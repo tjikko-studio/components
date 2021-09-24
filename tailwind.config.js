@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-env node */
 const plugin = require('tailwindcss/plugin')
 const styles = require('./styles')
 const applyFontConfig = require('./applyFontConfig')
@@ -13,12 +15,14 @@ module.exports = {
   },
   plugins: [
     require('tailwind-pseudo-elements'),
-    require("@tailwindcss/forms")({
-      strategy: 'class',
-    }),
+    require('@tailwindcss/forms')({strategy: 'class'}),
     plugin.withOptions(
-      function(){ return applyFontConfig },
-      function(){ return styles }
+      () => {
+        return applyFontConfig
+      },
+      () => {
+        return styles
+      }
     )
   ]
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-env node */
 const path = require('path')
 
 /**
@@ -7,19 +9,19 @@ const componentsConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /\/node_modules\//,
-        use: 'ts-loader',
+        test: /\.tsx?$/u,
+        exclude: /\/node_modules\//u,
+        use: 'ts-loader'
       },
       {
-        test: /\.svg$/,
-        use: 'react-svg-loader',
-      },
-    ],
+        test: /\.svg$/u,
+        use: 'react-svg-loader'
+      }
+    ]
   },
   resolve: {
     roots: [__dirname],
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg']
   },
   name: 'components',
   entry: path.resolve(__dirname, './src/index.tsx'),
@@ -29,31 +31,31 @@ const componentsConfig = {
     libraryTarget: 'commonjs-module',
     library: {
       type: 'var',
-      export: 'default',
-    },
+      export: 'default'
+    }
   },
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
-    vue: 'vue',
-  },
-};
+    vue: 'vue'
+  }
+}
 
 /**
  * @type import('webpack').Configuration
  */
 const stylesConfig = {
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      exclude: /node_modules/,
-      use: 'ts-loader',
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/u,
+        exclude: /node_modules/u,
+        use: 'ts-loader'
+      }
+    ]
   },
   resolve: {
-    roots: [
-      __dirname
-    ],
+    roots: [__dirname],
     extensions: ['.ts', '.tsx', '.js']
   },
   name: 'styles',
@@ -64,8 +66,8 @@ const stylesConfig = {
     libraryTarget: 'commonjs-module',
     library: {
       type: 'var',
-      export: 'default',
-    },
+      export: 'default'
+    }
   }
 }
 

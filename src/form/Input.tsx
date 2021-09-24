@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import ErrorIcon from '/assets/icons/information-fill.svg'
 import ValidatingIcon from '/assets/icons/loader-2-fill.svg'
@@ -61,12 +62,14 @@ export interface InputProps extends HTMLAttributes<HTMLDivElement> {
   isDisabled?: boolean
 
   /**
-    * Custom Classes
-    */
+   * Custom Classes
+   */
   className?: string
 
   columnIndex?: number
 }
+
+const DEFAULT_COLUMN_INDEX = 1
 
 /**
  * Primary UI component for user interaction
@@ -83,10 +86,36 @@ export const Input: FC<InputProps> = ({
   information,
   error,
   className = '',
-  columnIndex = 1
+  columnIndex = DEFAULT_COLUMN_INDEX
 }) => {
-  const labelContainerClasses = [`fontStyle-sm min-h-6 strong flex items-center flex-row justify-between dark:text-gray-300 mb-2`]
-  const inputClasses = ['form-input fontStyle-base h-12 max-h-12 py-3 px-4 rounded-lg border w-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600']
+  const labelContainerClasses = [
+    'fontStyle-sm',
+    'min-h-6',
+    'strong',
+    'flex',
+    'items-center',
+    'flex-row',
+    'justify-between',
+    'dark:text-gray-300',
+    'mb-2'
+  ]
+  const inputClasses = [
+    'form-input',
+    'fontStyle-base',
+    'h-12',
+    'max-h-12',
+    'py-3',
+    'px-4',
+    'rounded-lg',
+    'border',
+    'w-full',
+    'bg-gray-50',
+    'dark:bg-gray-700',
+    'text-gray-800',
+    'dark:text-gray-100',
+    'border-gray-300',
+    'dark:border-gray-600'
+  ]
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
     // See the tailwind hacks in src/index.tsx
@@ -94,7 +123,14 @@ export const Input: FC<InputProps> = ({
   }
   addErrorClasses(isError || isValidating || isSuccess, inputClasses)
   if (isError || isValidating || isSuccess) {
-    inputClasses.push('drop-shadow-sm outline-none ring-2 dark:ring-red-500 ring-red-600 border-transparent')
+    inputClasses.push(
+      'drop-shadow-sm',
+      'outline-none',
+      'ring-2',
+      'dark:ring-red-500',
+      'ring-red-600',
+      'border-transparent'
+    )
   }
   addValidatingClasses(isValidating, inputClasses)
   addSuccessClasses(isSuccess, inputClasses)
@@ -109,17 +145,24 @@ export const Input: FC<InputProps> = ({
           <p>
             {label}
           </p>
-          {(isError) && <ErrorIcon className='text-red-600 dark:text-red-400' />}
-          {(isValidating) && <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-          {(isSuccess) && <TickIcon className='text-green-600 dark:text-green-400' />}
+          {(isError) &&
+            <ErrorIcon className='text-red-600 dark:text-red-400' />}
+          {(isValidating) &&
+            <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
+          {(isSuccess) &&
+            <TickIcon className='text-green-600 dark:text-green-400' />}
         </div>
-      }      
+      }
       <div
         className={`sm:grid-in-control-${columnIndex}`}
         style={{gridArea: `control-${columnIndex}`}}
       >
         <input
-          className={`${inputClasses.join(' ')} ${focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed)}`}
+          className={`${inputClasses.join(' ')} ${
+            focusClasses(
+              'outline-none ring-2 ring-primary-500 border-transparent',
+              isFocussed)
+          }`}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
@@ -131,10 +174,15 @@ export const Input: FC<InputProps> = ({
           className={`sm:grid-in-info-${columnIndex} mt-2`}
           style={{gridArea: `info-${columnIndex}`}}
         >
-            <div
-              className={`fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${isDisabled && 'text-gray-500 dark:text-gray-600'}`}
-              dangerouslySetInnerHTML={{__html: information}}
-            />
+          <div
+            className={
+              `fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${
+                isDisabled
+                  && 'text-gray-500 dark:text-gray-600'
+              }`
+            }
+            dangerouslySetInnerHTML={{__html: information}}
+          />
         </div>
       }
       {
@@ -143,7 +191,17 @@ export const Input: FC<InputProps> = ({
           className={`grid-in-error-${columnIndex} mt-2`}
           style={{gridArea: `error-${columnIndex}`}}
         >
-          <div className={`${isError ? 'opacity-100' : 'opacity-o'} fontStyle-sm min-h-6 flex items-center text-red-600 dark:text-red-400`}>{error}</div>
+          <div className={[
+            'fontStyle-sm',
+            'min-h-6',
+            'flex',
+            'items-center',
+            'text-red-600',
+            'dark:text-red-400',
+            isError
+              ? 'opacity-100'
+              : 'opacity-o'
+          ].join(' ')}>{error}</div>
         </div>
       }
     </>

@@ -1,54 +1,51 @@
-module.exports = exports = function ({theme, addBase, addUtilities}) {
+/* eslint-env node */
+exports = function exports ({theme, addBase, addUtilities}) {
   const fontBase = {
-    'body': {
+    body: {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.base'),
       lineHeight: theme('lineHeight.base'),
       letterSpacing: theme('letterSpacing.base'),
       fontWeight: theme('fontWeight.base')
     },
-    'strong': {
-      fontWeight: theme('fontWeight.semibold')
-    },
-    'uppercase': {
-      letterSpacing: theme('letterSpacing.wider'),
-    },
-    'h1': {
+    strong: {fontWeight: theme('fontWeight.semibold')},
+    uppercase: {letterSpacing: theme('letterSpacing.wider')},
+    h1: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.6xl'),
       lineHeight: theme('lineHeight.6xl'),
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.6xl')
     },
-    'h2': {
+    h2: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.5xl'),
       lineHeight: theme('lineHeight.5xl'),
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.5xl')
     },
-    'h3': {
+    h3: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.4xl'),
       lineHeight: theme('lineHeight.4xl'),
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.4xl')
     },
-    'h4': {
+    h4: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.3xl'),
       lineHeight: theme('lineHeight.3xl'),
       letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.3xl')
     },
-    'h5': {
+    h5: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.2xl'),
       lineHeight: theme('lineHeight.2xl'),
       letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.2xl')
     },
-    'h6': {
+    h6: {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.xl'),
       lineHeight: theme('lineHeight.xl'),
@@ -58,8 +55,8 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
   }
   const fontStyles = {
     /*
-      Font styles base modifiers
-      */
+     *Font styles base modifiers
+     */
     '.fontStyle-base': {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.base'),
@@ -71,12 +68,12 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.semibold')
     },
     '.fontStyle-base.uppercase, .fontStyle-base uppercase, .uppercase': {
-      letterSpacing: theme('letterSpacing.wider'),
+      letterSpacing: theme('letterSpacing.wider')
     },
 
     /*
-      Font styles large
-      */
+     *Font styles large
+     */
     '.fontStyle-lg': {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.lg'),
@@ -88,12 +85,12 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.semibold')
     },
     '.fontStyle-lg.uppercase, .fontStyle-lg uppercase': {
-      letterSpacing: theme('letterSpacing.wider'),
+      letterSpacing: theme('letterSpacing.wider')
     },
 
     /*
-      Font styles small
-      */
+     *Font styles small
+     */
     '.fontStyle-sm': {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.sm'),
@@ -105,12 +102,12 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.semibold')
     },
     '.fontStyle-sm.uppercase, .fontStyle-sm uppercase': {
-      letterSpacing: theme('letterSpacing.wider'),
+      letterSpacing: theme('letterSpacing.wider')
     },
 
     /*
-      Font styles xsmall
-      */
+     *Font styles xsmall
+     */
     '.fontStyle-xs': {
       fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.xs'),
@@ -122,12 +119,12 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.bold')
     },
     '.fontStyle-xs.uppercase, .fontStyle-xs uppercase': {
-      letterSpacing: theme('letterSpacing.wider'),
+      letterSpacing: theme('letterSpacing.wider')
     },
 
     /*
-      Font styles buttons
-      */
+     *Font styles buttons
+     */
     '.fontStyle-button-lg': {
       fontSize: theme('fontSize.base'),
       lineHeight: theme('lineHeight.4'),
@@ -160,8 +157,8 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
     },
 
     /*
-      Font styles xl to 9xl
-      */
+     *Font styles xl to 9xl
+     */
     '.fontStyle-xl': {
       fontFamily: theme('fontFamily.display'),
       fontSize: theme('fontSize.xl'),
@@ -225,8 +222,9 @@ module.exports = exports = function ({theme, addBase, addUtilities}) {
       lineHeight: theme('lineHeight.9xl'),
       letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.9xl')
-    },
+    }
   }
   addBase(fontBase)
   addUtilities(fontStyles, ['responsive'])
 }
+module.exports = exports

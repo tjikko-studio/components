@@ -1,9 +1,10 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
 
 /*
-* In production mode, show dynamic image and video with url
-*/
+ * In production mode, show dynamic image and video with url
+ */
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -27,7 +28,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   body?: string
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
@@ -44,15 +45,26 @@ export const Icon: FC<IconProps> = ({
 }) => {
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${layout === 'horizontal' ? 'sm:flex' : ''}`}
+      className={
+        `text-gray-900 dark:text-gray-50 ${
+          layout === 'horizontal'
+            ? 'sm:flex'
+            : ''
+        }`
+      }
     >
       <div
-        className={`flex-shrink-0  w-32 ${layout !== 'horizontal' && 'sm:pb-14 pb-6'}`}
+        className={
+          `flex-shrink-0  w-32 ${
+            layout !== 'horizontal'
+              && 'sm:pb-14 pb-6'
+          }`
+        }
       >
         {image && (
           <Media
             media={image}
-            className={`w-32 h-32`}
+            className={'w-32 h-32'}
           />
         )}
       </div>
@@ -69,9 +81,7 @@ export const Icon: FC<IconProps> = ({
         <p
           className='fontStyle-base pt-2'
         >
-          {
-            body && body === '' ? body : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
-          }
+          {body}
         </p>
       </div>
     </div>

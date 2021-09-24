@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {PopUpNavItem} from './PopUpNavItem'
 import {MenuType} from '../../shared/types'
@@ -14,11 +15,32 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
   listNavContent: MenuType[],
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 }
 
+const availableStyles = {
+  elevated: [
+    'flex',
+    'w-max',
+    'space-x-6',
+    'px-6',
+    'py-2.5',
+    'shadow-lg',
+    'rounded-lg',
+    'bg-gray-50',
+    'dark:bg-gray-800',
+    'text-gray-900',
+    'dark:text-gray-50'
+  ],
+  flat: [
+    'sm:grid',
+    'sm:grid-cols-2',
+    'xs:gap-6',
+    'justify-items-stretch'
+  ]
+}
 /**
  * Primary UI component for user interaction
  */
@@ -28,18 +50,12 @@ export const ListNav: FC<ListNavProps> = ({
   className = ''
 }) => {
   const classes = [className]
-  var wMax = ''
-  switch (styles) {
-    case 'elevated':
-      classes.push('flex w-max space-x-6 px-6 py-2.5 shadow-lg rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50')
-      wMax = 'w-max'
-      break
-    case 'flat':
-      classes.push('sm:grid sm:grid-cols-2 xs:gap-6 justify-items-stretch ')
-      wMax = ''
-    default:
-      break
+  let wMax = ''
+  classes.push(...availableStyles[styles])
+  if (styles === 'elevated') {
+    wMax = 'w-max'
   }
+
   return (
     <div
       className={classes.join(' ')}

@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-env node */
+
 /**
  * This ugly way of rewriting `npm run start:storybook` seems necessary on A2.
- * Even stranger, running `npm run start:storybook` directly this way won't work…
+ * Even stranger, running `npm run start:storybook` directly this way…
+ * doesn't work…
  */
 const path = require('path')
 

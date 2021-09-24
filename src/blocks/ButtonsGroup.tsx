@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Button, ButtonProps} from '../Button'
 
@@ -11,37 +12,40 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   buttons?: GroupButtonProps[]
 
   /**
-   * className modifier that will add custom classes if needed (margin, padding, direction, etc.)
+   * className override
    */
   className?: string
 
   columnIndex?: number
 }
 
+const DEFAULT_COLUMN_INDEX = 1
 /**
  * Primary UI component for user interaction
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({
   buttons = [],
   className = '',
-  columnIndex = 1
+  columnIndex = DEFAULT_COLUMN_INDEX
 }) => {
   return (
     <div
       className={`inline-flex space-x-4 w-max ${className}`}
       style={{gridArea: `control-${columnIndex}`}}
     >
-      {buttons.map(({link, label, type, iconPos, size, fullWidth}, index) => (
-        <Button
-          key={`[${label}](${link})`}
-          link={link}
-          label={label}
-          type={(index === 0) ? type ? type : 'primary' : type ? type : 'tertiary'}
-          iconPos={iconPos}
-          size={size ? size : 'default'}
-          className={`${fullWidth && 'w-full justify-center'}`}
-        />
-      ))}
+      {buttons.map(({link, label, type, iconPos, size, fullWidth}) => {
+        return (
+          <Button
+            key={`[${label}](${link})`}
+            link={link}
+            label={label}
+            type={type}
+            iconPos={iconPos}
+            size={size ? size : 'default'}
+            className={`${fullWidth && 'w-full justify-center'}`}
+          />
+        )
+      })}
     </div>
   )
 }

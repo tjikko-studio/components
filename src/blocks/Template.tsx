@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 import {ContentColumns} from '../layouts/ContentColumns'
@@ -12,8 +13,11 @@ export interface LocalesType {
 
 export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   /*
-    Fetch content have a different structure for pages templates & navigation templates (obviously)
-    I don't have any solution for this at the moment
+   * Fetch content have a different structure for
+   * - pages templates
+   * - navigation templates
+   * (obviously)
+   * I don't have any solution for this at the moment
    */
   locales?: LocalesType
   templateType?: 'template' | 'navigation' | 'footer'
@@ -29,33 +33,46 @@ export const Template: FC<TemplateProps> = ({
   templateType = 'template'
 }) => {
   const AvailableTemplates = {
-    template: () => (
-      <div>
-        {
-          content
-            ? (
-              <ContentColumns
-                content={content}
-                contentSectionClasses='sm:grid sm:grid-cols-12'
-              />
-            ) : (
-              <div>No template yet</div>
-            )
-        }
-      </div>
-    ),
-    navigation: () => (
-      <SiteNav menuData={content} locales={locales} />
-    ),
-    footer: () => (
-      <Footer menuData={content} locales={locales} />
-    )
+    template: () => {
+      return (
+        <div>
+          {
+            content
+              ? (
+                <ContentColumns
+                  content={content}
+                  contentSectionClasses='sm:grid sm:grid-cols-12'
+                />
+              ) : (
+                <div>No template yet</div>
+              )
+          }
+        </div>
+      )
+    },
+    navigation: () => {
+      return (
+        <SiteNav menuData={content} locales={locales} />
+      )
+    },
+    footer: () => {
+      return (
+        <Footer menuData={content} locales={locales} />
+      )
+    }
   }
-  const Chosen = AvailableTemplates[templateType]
-  if (!Chosen) {
+  const chosen = AvailableTemplates[templateType]
+  if (!chosen) {
     console.error(new Error(`Unhandled type ${templateType}!!!`))
-    console.error('Above error appeared with Template props:', JSON.stringify({content, locales, templateType}))
+    console.error(
+      'Above error appeared with Template props:',
+      JSON.stringify({
+        content,
+        locales,
+        templateType
+      })
+    )
     return null
   }
-  return Chosen()
+  return chosen()
 }

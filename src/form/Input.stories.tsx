@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-use-before-define
 import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {Input, InputProps} from './Input'
@@ -6,18 +7,22 @@ export default {
   title: 'Tjikko/Form Elements/Input',
   component: Input,
   parameters: {
-    componentSubtitle: 'The Forms/Input',
+    componentSubtitle: 'The Forms/Input'
   },
-  decorators: [(Story) => {
-    return (
-      <div className='border'>
-        <Story />
-      </div>
-    )
-  }]
+  decorators: [
+    (ThisStory) => {
+      return (
+        <div className='border'>
+          <ThisStory />
+        </div>
+      )
+    }
+  ]
 } as Meta
 
-const Template: Story<InputProps> = (args) => <Input {...args} />
+const Template: Story<InputProps> = (args) => {
+  return <Input {...args} />
+}
 
 export const Text = Template.bind({})
 Text.args = {
@@ -25,13 +30,13 @@ Text.args = {
   placeholder: 'Placeholder',
   information: 'information',
   error: 'Error Message',
-  label: 'Label',
+  label: 'Label'
 }
 
 export const Focused = Template.bind({})
 Focused.args = {
   ...Text.args,
-  isFocussed: true,
+  isFocussed: true
 }
 
 export const Error = Template.bind({})
@@ -52,6 +57,6 @@ Success.args = {
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...Text.args,
-  text: "",
+  text: '',
   isDisabled: true
 }
