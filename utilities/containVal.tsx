@@ -1,7 +1,7 @@
-export default function containVal (
-  obj ?: any[],
-  key?: string,
-  values ?: any[]
+export default function containVal<T extends string, U extends unknown> (
+  obj?: Record<T, U>[],
+  key?: T,
+  values?: U[]
 ): boolean {
   const keys = obj.map((value) => {
     return value[key]

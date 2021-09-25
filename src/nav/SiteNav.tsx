@@ -56,6 +56,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   openMenuText?: string
 }
 
+function moveElement<T> (arr: T[], idx: number, pos: 'start' | 'end'): T[] {
+  // eslint-disable-next-line no-magic-numbers
+  const el = arr.splice(idx, 1)
+  return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
+}
+
 /**
  * Primary UI component for user interaction
  */
@@ -67,12 +73,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
-  const moveElement = (arr: any, idx: number, pos: 'start' | 'end') => {
-    // eslint-disable-next-line no-magic-numbers
-    const el = arr.splice(idx, 1)
-    return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
-  }
-
   /*
    *Desktop Nav
    */

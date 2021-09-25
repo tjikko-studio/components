@@ -3,7 +3,7 @@ import React, {FC, HTMLAttributes} from 'react'
 
 import {ContentColumns} from '../layouts/ContentColumns'
 import extractCombo from '../../utilities/stringUtils'
-import {ColumnProps} from '../../shared/types'
+import {ColumnProps, ComponentsExtraProps} from '../../shared/types'
 
 export interface SectionItemProps {
   id: string;
@@ -71,25 +71,25 @@ export const Section: FC<SectionProps> = ({
     }
   }
 
-  const columnComponentExtraProps = {
-    Text: (baseProps: any) => {
+  const columnComponentExtraProps: ComponentsExtraProps = {
+    Text: (baseProps) => {
       return {
         className: `${baseProps.className} text-gray-900 dark:text-gray-50`
       }
     },
-    Primary: (baseProps: any) => {
+    Primary: (baseProps: { imagePosition: string }) => {
       imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
       return {
         imagePosition: imagePosPrimary
       }
     },
-    Secondary: (baseProps: any) => {
+    Secondary: (baseProps: { imagePosition: string }) => {
       imagePosSecondary = getNewPos(imagePosSecondary, baseProps.imagePosition)
       return {
         imagePosition: imagePosSecondary
       }
     },
-    Tertiary: (baseProps: any) => {
+    Tertiary: (baseProps: { imagePosition: string }) => {
       imagePosTertiary = getNewPos(imagePosTertiary, baseProps.imagePosition)
       return {
         imagePosition: imagePosTertiary

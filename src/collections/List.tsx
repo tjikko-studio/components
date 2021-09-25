@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC} from 'react'
 
-export interface ListProps<ItemType extends FC> {
+export interface ListProps<ItemType extends FC = FC> {
   items: ItemType[]
   component: (item: ItemType) => React.ReactNode
 }
 
-export const List: FC<ListProps<any>> = ({
+export const List: FC<ListProps> = ({
   component,
   items = []
 }) => {

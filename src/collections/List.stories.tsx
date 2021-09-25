@@ -16,7 +16,7 @@ export default {
   }
 } as Meta
 
-const Template = ({component, items}: ListProps<any>) => {
+const Template = ({component, items}: ListProps) => {
   return <List component={component} items={items} />
 }
 
