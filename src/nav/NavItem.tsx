@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import {PopUpNavItem} from './PopUpNavItem'
 import {ListNav} from './ListNav'
 import {MenuType} from '../../shared/types'
@@ -69,7 +71,7 @@ export const NavItem: FC<NavItemProps> = ({
 
   return (
     <div
-      className={`w-max relative ${className} z-10`}
+      className={cn('w-max relative z-10', className)}
       style={{width: 'fit-content'}}
       /* onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}} */
       /* onMouseLeave={() => setMouseIn(false)} */
@@ -80,22 +82,14 @@ export const NavItem: FC<NavItemProps> = ({
         label={label}
         href={link}
         padding={padding}
-        className={`flex items-center ${
-          mouseIn
-            && styles === 'default'
-            ? 'hover:text-primary-600'
-            : ''
-        } ${
-          mouseIn
-            && styles === 'special'
-            ? 'hover:text-primary-300'
-            : ''
-        } ${
-          mouseIn
-            && popup === 'flat'
-            ? 'hover:text-primary-100 hover:dark:text-primary-300'
-            : ''
-        }`}
+        className={cn(
+          'flex items-center',
+          mouseIn && styles === 'default' && 'hover:text-primary-600',
+          mouseIn && styles === 'special' && 'hover:text-primary-300',
+          mouseIn &&
+            popup === 'flat' &&
+            'hover:text-primary-100 hover:dark:text-primary-300'
+        )}
       >
         {(listNavContent) && (
           <span className='ml-2.5'>
@@ -109,11 +103,11 @@ export const NavItem: FC<NavItemProps> = ({
       </PopUpNavItem>
       {(mouseIn && mouseClick) && (listNavContent) && (
         <div
-          className={`absolute w-max ${
-            dropdownRight === false
-              ? 'left-0'
-              : 'right-0'
-          } ${dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3'}`}
+          className={cn(
+            'absolute w-max',
+            dropdownRight === false ? 'left-0' : 'right-0',
+            dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3'
+          )}
         >
           <ListNav
             styles={popup === 'flat' ? 'flat' : 'elevated'}

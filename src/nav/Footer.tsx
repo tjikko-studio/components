@@ -1,6 +1,8 @@
 /* eslint-disable no-magic-numbers */
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import getWidth from '../../utilities/getWidth'
 import {NavItem} from './NavItem'
 import {Button} from '../Button'
@@ -59,7 +61,7 @@ export const Footer: FC<FooterProps> = ({
   const border = 'border-b border-gray-600 last:border-b-0'
 
   return (
-    <div className={[
+    <div className={cn([
       'lg:flex',
       'flex-col',
       'bg-gray-900',
@@ -67,7 +69,7 @@ export const Footer: FC<FooterProps> = ({
       'px-4',
       'pb-4',
       'sp_ace-y-12'
-    ].join('')}>
+    ])}>
       {logo ? (
         <section className={`flex items-center h-16 ${border}`}>
           <Media media={logo} />
@@ -77,14 +79,14 @@ export const Footer: FC<FooterProps> = ({
         return (
           <section
             key={id || JSON.stringify(columns)}
-            className={[
+            className={cn([
               'grid',
               'grid-flow-row',
               'lg:grid-cols-12',
               'gap-x-4',
               'mt-12',
               attrs.no_gap ? 'gap-y-4' : 'gap-y-12'
-            ].join(' ')}
+            ])}
           >
             {columns.length && columns.map(({width, blocks, id: columnId}) => {
               return (
@@ -109,14 +111,13 @@ export const Footer: FC<FooterProps> = ({
                       return (
                         <div
                           key={blockId || JSON.stringify(content)}
-                          className={[
+                          className={cn([
                             'contentLayout',
                             `lg:col-span-${getWidth(width)}`,
                             layout === 'horizontal'
-                              ? 'flex flex-end h-full'
-                              : '',
+                              && 'flex flex-end h-full',
                             justify
-                          ].join(' ')}
+                          ])}
                         >
                           {content.length && content.map(({
                             label,
@@ -134,19 +135,19 @@ export const Footer: FC<FooterProps> = ({
                                   case 'NavigationDropdownChild':
                                     return (
                                       <div
-                                        className={[
+                                        className={cn([
                                           'dark',
                                           'flex',
                                           'flex-col',
                                           'space-y-4'
-                                        ].join(' ')}>
+                                        ])}>
                                         {label && (
                                           <div
-                                            className={[
+                                            className={cn([
                                               'fontStyle-xs',
                                               'uppercase',
                                               'text-gray-300'
-                                            ].join(' ')}
+                                            ])}
                                           >
                                             {label}
                                           </div>

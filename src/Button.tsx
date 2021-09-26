@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -134,13 +135,12 @@ export const Button: FC<ButtonProps> = ({
     }
     contentClasses.push('fontStyle-button-base')
   }
-  buttonClasses.push(`${className}`)
-  const buttonClassesJoined = buttonClasses.join(' ')
+  buttonClasses.push(className)
   const Content = () => {
     if (label) {
       return (
         <span
-          className={contentClasses.join(' ')}
+          className={cn(contentClasses)}
         >{label}</span>
       )
     }
@@ -150,7 +150,7 @@ export const Button: FC<ButtonProps> = ({
     return (
       <a
         href={link}
-        className={buttonClassesJoined}
+        className={cn(buttonClasses)}
       >
         <Content />
       </a>
@@ -158,7 +158,7 @@ export const Button: FC<ButtonProps> = ({
   }
   return (
     <button
-      className={buttonClassesJoined}
+      className={cn(buttonClasses)}
     >
       <Content />
     </button>

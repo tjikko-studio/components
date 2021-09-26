@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -47,7 +48,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   const classes = ['flex items-center cursor-pointer']
   switch (type) {
   case 'special':
-    classes.push(`${!padding && 'py-2.5'} fontStyle-base text-gray-100`)
+    classes.push(...[!padding && 'py-2.5', 'fontStyle-base text-gray-100'])
     if (isActive) {
       classes.push('text-primary-300 dark:text-primary-300')
     } else {
@@ -70,7 +71,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
     ])
     break
   case 'button':
-    classes.push(`${padding && 'py-3.5'} fontStyle-xs uppercase strong`)
+    classes.push(...[padding && 'py-3.5', 'fontStyle-xs uppercase strong'])
     if (isActive) {
       classes.push('text-primary-700 dark:text-primary-100')
     } else {
@@ -84,7 +85,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
     break
   case 'default':
   default:
-    classes.push(`${padding && 'py-2.5'} fontStyle-sm`)
+    classes.push(...[padding && 'py-2.5', 'fontStyle-sm'])
     if (isActive) {
       classes.push('text-primary-600 dark:text-primary-300')
     } else {
@@ -98,7 +99,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   }
   return (
     <div
-      className={classes.join(' ')}
+      className={cn(classes)}
     >
       <a href={href}>
         {label}

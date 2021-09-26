@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
+import cn from 'classnames'
 
 /*
  * In production mode, show dynamic image and video with url
@@ -45,21 +46,17 @@ export const Icon: FC<IconProps> = ({
 }) => {
   return (
     <div
-      className={
-        `text-gray-900 dark:text-gray-50 ${
-          layout === 'horizontal'
-            ? 'sm:flex'
-            : ''
-        }`
-      }
+      className={cn(
+        'text-gray-900 dark:text-gray-50',
+        layout === 'horizontal' && 'sm:flex',
+        className
+      )}
     >
       <div
-        className={
-          `flex-shrink-0  w-32 ${
-            layout !== 'horizontal'
-              && 'sm:pb-14 pb-6'
-          }`
-        }
+        className={cn(
+          'flex-shrink-0 w-32',
+          layout !== 'horizontal' && 'sm:pb-14 pb-6'
+        )}
       >
         {image && (
           <Media

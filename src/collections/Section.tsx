@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 import {ContentColumns} from '../layouts/ContentColumns'
 import extractCombo from '../../utilities/stringUtils'
@@ -74,7 +75,7 @@ export const Section: FC<SectionProps> = ({
   const columnComponentExtraProps: ComponentsExtraProps = {
     Text: (baseProps) => {
       return {
-        className: `${baseProps.className} text-gray-900 dark:text-gray-50`
+        className: cn(baseProps.className, 'text-gray-900 dark:text-gray-50')
       }
     },
     Primary: (baseProps: { imagePosition: string }) => {
@@ -123,11 +124,11 @@ export const Section: FC<SectionProps> = ({
   }
   return (
     <div
-      className={`overflow-hidden ${theme ? theme : ''}`}
+      className={cn('overflow-hidden', theme)}
       style={{backgroundColor: background}}
     >
       <div
-        className={classes.join(' ')}
+        className={cn(classes)}
       >
         {
           content && (
