@@ -29,7 +29,8 @@ Default.args = {
     },
     {
       label: 'Secondary button',
-      link: '#'
+      link: '#',
+      type: 'secondary'
     }
   ]
 }
