@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import ErrorIcon from '/assets/icons/information-fill.svg'
 import ValidatingIcon from '/assets/icons/loader-2-fill.svg'
 import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
@@ -125,10 +127,11 @@ export const TextArea: FC<TextAreaProps> = ({
       {
         label &&
         <div
-          className={`fontStyle-sm strong flex flex-row dark:text-gray-300 ${
-            isDisabled
-              && 'text-gray-500 dark:text-gray-600'
-          } mb-2`}
+          className={cn(
+            'fontStyle-sm strong flex flex-row dark:text-gray-300',
+            isDisabled && 'text-gray-500 dark:text-gray-600',
+            'mb-2'
+          )}
           style={{gridArea: `label-${columnIndex}`}}
         >
           <p>
@@ -147,11 +150,13 @@ export const TextArea: FC<TextAreaProps> = ({
         style={{gridArea: `control-${columnIndex}`}}
       >
         <textarea
-          className={`${textareaClasses.join(' ')} ${
+          className={cn(
+            textareaClasses,
             focusClasses(
               'outline-none ring-2 ring-primary-500 border-transparent',
-              isFocussed)
-          }`}
+              isFocussed
+            )
+          )}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
@@ -160,12 +165,11 @@ export const TextArea: FC<TextAreaProps> = ({
       {
         information &&
         <div
-          className={
-            `sm:grid-in-info-${columnIndex} ${
-              isDisabled
-                && 'text-gray-500 dark:text-gray-600 mt-2'
-            } fontStyle-sm min-h-6 flex items-center dark:text-gray-300`
-          }
+          className={cn(
+            `sm:grid-in-info-${columnIndex}`,
+            isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
+            'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
+          )}
           style={{gridArea: `info-${columnIndex}`}}
           dangerouslySetInnerHTML={{__html: information}}
         >
@@ -174,13 +178,11 @@ export const TextArea: FC<TextAreaProps> = ({
       {
         isError &&
         <div
-          className={
-            `sm:grid-in-error-${columnIndex} fontStyle-sm min-h-6 flex ${
-              isError
-                ? 'opacity-100'
-                : 'opacity-0'
-            } items-center text-red-600 dark:text-red-400 mt-2`
-          }
+          className={cn(
+            `sm:grid-in-error-${columnIndex} fontStyle-sm min-h-6 flex`,
+            isError ? 'opacity-100' : 'opacity-0',
+            'items-center text-red-600 dark:text-red-400 mt-2'
+          )}
           style={{gridArea: `error-${columnIndex}`}}
         >
           {error}

@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Button, ButtonProps} from '../Button'
+import cn from 'classnames'
 
 export interface GroupButtonProps extends ButtonProps {
   fullWidth: boolean
@@ -30,7 +31,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
 }) => {
   return (
     <div
-      className={`inline-flex space-x-4 w-max ${className}`}
+      className={cn('inline-flex space-x-4 w-max', className)}
       style={{gridArea: `control-${columnIndex}`}}
     >
       {buttons.map(({link, label, type, iconPos, size, fullWidth}) => {
@@ -42,7 +43,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
             type={type}
             iconPos={iconPos}
             size={size ? size : 'default'}
-            className={`${fullWidth && 'w-full justify-center'}`}
+            className={cn(fullWidth && 'w-full justify-center')}
           />
         )
       })}

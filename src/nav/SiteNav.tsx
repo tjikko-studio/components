@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import {NavItem} from './NavItem'
 import {ListNav} from './ListNav'
 import {MenuType, MenuItemType} from '../../shared/types'
@@ -56,6 +58,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   openMenuText?: string
 }
 
+function moveElement<T> (arr: T[], idx: number, pos: 'start' | 'end'): T[] {
+  // eslint-disable-next-line no-magic-numbers
+  const el = arr.splice(idx, 1)
+  return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
+}
+
 /**
  * Primary UI component for user interaction
  */
@@ -67,12 +75,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
-  const moveElement = (arr: any, idx: number, pos: 'start' | 'end') => {
-    // eslint-disable-next-line no-magic-numbers
-    const el = arr.splice(idx, 1)
-    return pos === 'end' ? [...arr, ...el] : [...el, ...arr]
-  }
-
   /*
    *Desktop Nav
    */
@@ -84,7 +86,7 @@ export const SiteNav: FC<SiteNavProps> = ({
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={[
+                className={cn([
                   'flex',
                   'items-center',
                   'justify-between',
@@ -92,10 +94,9 @@ export const SiteNav: FC<SiteNavProps> = ({
                   'h-24',
                   'px-10',
                   (styles === 'opaque')
-                    ? 'bg-gray-900 text-gray-50'
-                    : '',
+                    && 'bg-gray-900 text-gray-50',
                   className
-                ].join(' ')}
+                ])}
               >
                 <div className='flex-auto'>
                   {logo ? (
@@ -106,7 +107,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   return (
                     <div
                       key={id || JSON.stringify(content)}
-                      className={[
+                      className={cn([
                         'flex',
                         'flex-auto',
                         'items-center',
@@ -114,7 +115,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                         'first:justify-start',
                         'last:justify-end',
                         'space-x-6'
-                      ].join(' ')}
+                      ])}
                     >
 
                       {content
@@ -186,7 +187,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={[
+      <div className={cn([
         'flex',
         'lg:hidden',
         'flex-col',
@@ -195,7 +196,7 @@ export const SiteNav: FC<SiteNavProps> = ({
         'px-4',
         'pb-4',
         'space-y-8'
-      ].join(' ')}>
+      ])}>
         <div className='flex justify-between items-center h-16'>
           <div>
             {logo ? (
@@ -223,7 +224,7 @@ export const SiteNav: FC<SiteNavProps> = ({
             return (
               <section
                 key={id || JSON.stringify(mobileNavContent)}
-                className={`flex flex-col space-y-6 ${border} ${dividerMd}`}
+                className={cn('flex flex-col space-y-6', border, dividerMd)}
               >
                 {
                   mobileNavContent.length
@@ -238,7 +239,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                       return (
                         <div
                           key={id || JSON.stringify(content)}
-                          className={`flex ${border} ${dividerSm} ${layout}`}
+                          className={cn('flex', border, dividerSm, layout)}
                         >
                           {
                             content && content.map(({
@@ -254,7 +255,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                               case 'NavigationDropdown': {
                                 return (
                                   <div
-                                    className={`dark ${border} ${dividerSm}`}
+                                    className={cn('dark', border, dividerSm)}
                                     key={innerId
                                       || JSON.stringify(innerContent)}
                                   >

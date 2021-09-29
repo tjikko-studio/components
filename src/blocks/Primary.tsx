@@ -2,6 +2,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
 import {Media, ImageProps} from '../parts/Media'
+import cn from 'classnames'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -68,13 +69,15 @@ export const Primary: FC<PrimaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`mt-4 lg:mt-0 ${
-          finalLayout !== 'vertical'
-            && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center'
-        }`}
+        className={cn(
+          'mt-4 lg:mt-0',
+          finalLayout !== 'vertical' &&
+            'lg:w-1/2 lg:flex lg:items-center lg:justify-center',
+          className
+        )}
       >
         <div
-          className={finalLayout === 'vertical' ? '' : 'lg:pl-12'}
+          className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}
         >
           <h2
             className='fontStyle-4xl mb-4 break-words'
@@ -99,25 +102,21 @@ export const Primary: FC<PrimaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${
-        finalLayout === 'default'
-          ? 'lg:flex'
-          : ''
-      } ${
-        imagePosition === 'right'
-          ? 'lg:flex-row-reverse'
-          : ''
-      }`}
+      className={cn(
+        'text-gray-900 dark:text-gray-50',
+        finalLayout === 'default' && 'lg:flex',
+        imagePosition === 'right' && 'lg:flex-row-reverse'
+      )}
     >
       {
         (finalLayout === 'default' || finalLayout === 'vertical') && (
           <>
             <div
-              className={`${
+              className={cn(
                 layout === 'vertical'
                   ? 'lg:pb-8'
                   : 'lg:w-1/2 lg:p-4'
-              }`}
+              )}
             >
               {image && (
                 <Media

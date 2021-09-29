@@ -17,9 +17,6 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: 'Use specific npm version'
-        run: npm i -g npm@7
-
       - name: 'Check npm verison'
         run: echo $(npm -v)
 

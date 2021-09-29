@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface QAProps {
   question: string
@@ -27,9 +28,10 @@ export const FAQ: FC<FAQProps> = ({
 }) => {
   return (
     <div
-      className={
-        `text-gray-900 dark:text-gray-50 flex flex-col space-y-12 ${className}`
-      }
+      className={cn(
+        'text-gray-900 dark:text-gray-50 flex flex-col space-y-12',
+        className
+      )}
     >
       {
         content.map((qa) => {

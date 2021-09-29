@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 // import Marquee from 'react-fast-marquee'
+import cn from 'classnames'
 
 export interface ClientProps {
   image: {
@@ -31,14 +32,14 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
   return (
     <div>
       {/* <Marquee gradientWidth='0'> */}
-      <div className={[
+      <div className={cn([
         'flex',
         'flex-nowrap',
         'w-max',
         'space-x-14',
         'lg:space-x-32',
         'md:space-x-16'
-      ].join(' ')}>
+      ])}>
         {content.map(({image, company}) => {
           return (
             <div

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface DividerProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -37,12 +38,9 @@ export const Divider: FC<DividerProps> = ({
   if (forceDark) {
     dividerClasses.push('border-gray-600')
   }
-  if (className) {
-    dividerClasses.push(className)
-  }
   return (
     <hr
-      className={dividerClasses.join(' ')}
+      className={cn(dividerClasses, className)}
     />
   )
 }

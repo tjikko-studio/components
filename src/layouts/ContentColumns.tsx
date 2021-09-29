@@ -1,11 +1,16 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes, CSSProperties} from 'react'
+import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 import containVal from '../../utilities/containVal'
-import {ColumnProps, ContentPosition} from '../../shared/types'
 import extractCombo from '../../utilities/stringUtils'
+import {
+  ColumnProps,
+  ContentPosition,
+  ComponentsExtraProps
+} from '../../shared/types'
 
 export interface SectionItemProps {
   id: string;
@@ -26,7 +31,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   /**
    * Rendered components extra props that changes the styles
    */
-  componentsExtraProps?: Record<string, (props:any)=>any>
+  componentsExtraProps?: ComponentsExtraProps
 
   /**
    * Custom classes for section
@@ -55,7 +60,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
-  contentSectionClasses = [
+  contentSectionClasses = cn([
     'gap-y-8',
     'sm:gap-y-12',
     'md:gap-y-24',
@@ -63,7 +68,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     'md:gap-x-16',
     'w-full',
     'h-full'
-  ].join(' '),
+  ]),
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
@@ -87,7 +92,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={`grid sm:grid-cols-12 ${contentSectionClasses}`}
+                className={cn('grid sm:grid-cols-12', contentSectionClasses)}
                 style={{...contentSectionStyles}}
               >
                 {
@@ -100,12 +105,12 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                       // See the tailwind hacks in src/index.tsx
                       <div
                         key={id || JSON.stringify(blocks)}
-                        className={[
+                        className={cn([
                           `col-span-${getWidth(width)}`,
                           align,
                           headerClass,
                           columnClasses
-                        ].join(' ')}
+                        ])}
                         style={{...columnStyles}}
                       >
                         {

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-use-before-define
-import React, { FC, HTMLAttributes } from "react";
-import cn from "classnames";
+import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -125,12 +125,13 @@ export const Button: FC<ButtonProps> = ({
       return (
         <>
           {iconPos === "left" && <img src={icon} className={cn(iconClasses)} />}
-          <span className={lableClasses.join(" ")}>{label}</span>
+          <span className={cn(lableClasses)}>{label}</span>
           {iconPos === "right" && (
             <img src={icon} className={cn(iconClasses)} />
           )}
         </>
       );
+
     }
     if (label) {
       return <span className={cn(lableClasses)}>{label}</span>;
@@ -142,12 +143,15 @@ export const Button: FC<ButtonProps> = ({
   if (link) {
     return (
       <a href={link} className={cn(buttonClasses)}>
+
         <Content />
       </a>
     );
   }
   return (
+
     <button className={cn(buttonClasses)}>
+
       <Content />
     </button>
   );

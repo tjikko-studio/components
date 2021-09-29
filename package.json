@@ -1,6 +1,6 @@
 {
   "name": "@tjikko/components",
-  "version": "3.4.25",
+  "version": "3.4.27",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,9 @@
     "dev:storybook": "start-storybook -s ./assets -p 6006 --quiet",
     "start:storybook": "node launchStorybook.js",
     "start": "concurrently npm:dev npm:dev:storybook",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
@@ -72,6 +74,7 @@
     "@heroicons/react": "1.0.4",
     "@tailwindcss/forms": "0.3.3",
     "@types/react-slick": "0.23.5",
+    "classnames": "2.3.1",
     "http-server": "13.0.2",
     "lodash.isarray": "4.0.0",
     "lodash.isplainobject": "4.0.6",

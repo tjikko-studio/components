@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
+import cn from 'classnames'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -57,11 +58,10 @@ export const Tertiary: FC<TertiaryProps> = ({
   const Text = () => {
     return (
       <div
-        className={`mt-4 sm:mt-0 ${
-          layoutTypeStaged === 'vertical'
-            ? ''
-            : 'sm:w-1/2 sm:flex sm:ml-6'
-        }`}
+        className={cn(
+          'mt-4 sm:mt-0',
+          layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6'
+        )}
       >
         <div>
           <h2
@@ -80,22 +80,17 @@ export const Tertiary: FC<TertiaryProps> = ({
   }
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${
-        layout === 'vertical'
+      className={cn(
+        'text-gray-900 dark:text-gray-50',
+        layout === 'vertical' ? '' : 'sm:flex',
+        layout === 'vertical' && imagePosition === 'right'
           ? ''
-          : 'sm:flex'
-      } ${
-        (layout === 'vertical' && imagePosition === 'right')
-          ? ''
-          : 'sm:space-x-6'
-      } ${
-        (layout === 'vertical' && imagePosition === 'left')
-          ? ''
-          : '-sm:space-x-6'
-      }`}
+          : 'sm:space-x-6',
+        layout === 'vertical' && imagePosition === 'left' ? '' : '-sm:space-x-6'
+      )}
     >
       <div
-        className={`${layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2'}`}
+        className={cn(layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2')}
       >
         {image && (
           <Media

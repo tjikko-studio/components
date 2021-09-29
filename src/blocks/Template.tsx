@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
-import {ContentColumns} from '../layouts/ContentColumns'
-import {SiteNav} from '../nav/SiteNav'
-import {Footer} from '../nav/Footer'
+import {ContentColumns, SectionItemProps} from '../layouts/ContentColumns'
+import {SiteNav, NavColumns as SiteNavColumns} from '../nav/SiteNav'
+import {Footer, NavColumns as FooterNavColumns} from '../nav/Footer'
 import {MenuType} from '../../shared/types'
 
 export interface LocalesType {
@@ -21,7 +21,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
    */
   locales?: LocalesType
   templateType?: 'template' | 'navigation' | 'footer'
-  content?: any
+  content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
 }
 
 /**
@@ -40,7 +40,7 @@ export const Template: FC<TemplateProps> = ({
             content
               ? (
                 <ContentColumns
-                  content={content}
+                  content={content as SectionItemProps[]}
                   contentSectionClasses='sm:grid sm:grid-cols-12'
                 />
               ) : (
@@ -52,12 +52,12 @@ export const Template: FC<TemplateProps> = ({
     },
     navigation: () => {
       return (
-        <SiteNav menuData={content} locales={locales} />
+        <SiteNav menuData={content as SiteNavColumns[]} locales={locales} />
       )
     },
     footer: () => {
       return (
-        <Footer menuData={content} locales={locales} />
+        <Footer menuData={content as FooterNavColumns[]} locales={locales} />
       )
     }
   }

@@ -2,6 +2,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import {Media, ImageProps} from '../parts/Media'
 import {GroupButtonProps, ButtonsGroup} from '../blocks/ButtonsGroup'
+import cn from 'classnames'
+
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * default/horizontal (left to right) or vertical (image above)
@@ -68,25 +70,22 @@ export const Secondary: FC<SecondaryProps> = ({
 
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 ${
-        layout === 'default'
-          ? 'sm:flex'
-          : ''
-      } ${
-        imagePosition === 'right'
-          ? 'sm:flex-row-reverse'
-          : ''
-      }`}
+      className={cn(
+        'text-gray-900 dark:text-gray-50',
+        layout === 'default' && 'sm:flex',
+        imagePosition === 'right' && 'sm:flex-row-reverse',
+        className
+      )}
     >
       {
         (layout === 'default' || layout === 'vertical') && (
           <>
             <div
-              className={`${
+              className={
                 layout === 'vertical'
                   ? 'sm:pb-8'
                   : 'sm:w-1/2 sm:p-4'
-              }`}
+              }
             >
               {image && (
                 <Media
@@ -100,17 +99,13 @@ export const Secondary: FC<SecondaryProps> = ({
               )}
             </div>
             <div
-              className={`mt-4 sm:mt-0 ${
-                layout !== 'vertical'
-                  && 'sm:w-1/2 sm:flex'
-              }`}
+              className={cn(
+                'mt-4 sm:mt-0',
+                layout !== 'vertical' && 'sm:w-1/2 sm:flex'
+              )}
             >
               <div
-                className={
-                  layout === 'vertical'
-                    ? ''
-                    : 'sm:pl-12'
-                }
+                className={cn(layout !== 'vertical' && 'sm:pl-12')}
               >
                 <h2
                   className='fontStyle-4xl mb-4 break-words'

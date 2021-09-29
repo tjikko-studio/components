@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -37,9 +38,11 @@ export const Text: FC<TextProps> = ({
   // See the tailwind hacks in src/index.tsx
   return (
     <TextTag
-      className={`${
-        alignment === 'left' && 'w-max'
-      } text-${alignment} ${className}`}
+      className={cn(
+        alignment === 'left' && 'w-max',
+        `text-${alignment}`,
+        className
+      )}
       dangerouslySetInnerHTML={{__html: text}}
     />
   )

@@ -3,6 +3,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import getComponent from '../../utilities/getComponent'
 import {ColumnProps} from '../../shared/types'
+import cn from 'classnames'
 
 export interface FormItemProps {
   columns: ColumnProps[]
@@ -47,21 +48,21 @@ export const Form: FC<FormProps> = ({
               columns.reduce((acc, column, columnIndex) => {
                 const newAcc = acc.concat(column.blocks.map((block) => {
                   return toComponent(block, {
-                    Input: (baseProps:any) => {
+                    Input: (baseProps) => {
                       return {
-                        className: `${baseProps.className} w-full`,
+                        className: cn(baseProps.className, 'w-full'),
                         columnIndex
                       }
                     },
-                    TextArea: (baseProps: any) => {
+                    TextArea: (baseProps) => {
                       return {
-                        className: `${baseProps.className} w-full`,
+                        className: cn(baseProps.className, 'w-full'),
                         columnIndex
                       }
                     },
-                    ButtonsGroup: (baseProps: any) => {
+                    ButtonsGroup: (baseProps) => {
                       return {
-                        className: `${baseProps.className} w-full`,
+                        className: cn(baseProps.className, 'w-full'),
                         columnIndex
                       }
                     }
