@@ -55,6 +55,7 @@ export const Button: FC<ButtonProps> = ({
   className = '',
   forceDark = false
 }) => {
+  const buttonType = type || 'primary'
   const buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']
   const styles = {
@@ -110,18 +111,18 @@ export const Button: FC<ButtonProps> = ({
       return newClasses
     }
   }
-  buttonClasses.push(styles[type](forceDark).join(' '))
+  buttonClasses.push(...styles[buttonType](forceDark))
   switch (size) {
   case 'small':
     buttonClasses.push('h-8 max-h-8 py-2.5')
     contentClasses.push('fontStyle-button-sm')
-    if (type !== 'tertiary') {
+    if (buttonType !== 'tertiary') {
       buttonClasses.push('px-3.5')
     }
     break
   case 'large':
     buttonClasses.push('h-12 max-h-12 py-4')
-    if (type !== 'tertiary') {
+    if (buttonType !== 'tertiary') {
       buttonClasses.push('px-5')
     }
     contentClasses.push('fontStyle-button-lg')
@@ -129,7 +130,7 @@ export const Button: FC<ButtonProps> = ({
   case 'default':
   default:
     buttonClasses.push('h-10 max-h-10 py-3.5')
-    if (type !== 'tertiary') {
+    if (buttonType !== 'tertiary') {
       buttonClasses.push('px-4')
     }
     contentClasses.push('fontStyle-button-base')
