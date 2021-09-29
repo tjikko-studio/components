@@ -7,7 +7,7 @@
  * To make sure tailwind will include them in the bundle, we mention them here.
  * more info: https://tailwindcss.com/docs/optimizing-for-production#safelisting-specific-classes
  */
- exports = [
+exports = [
   'col-span-1',
   'col-span-2',
   'col-span-3',
