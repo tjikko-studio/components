@@ -69,10 +69,9 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 
   columnIndex?: number
-
-  controlStyle?: any
 }
 
+const DEFAULT_COLUMN_INDEX = 1
 /**
  * Primary UI component for user interaction
  */
@@ -88,7 +87,7 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
-  columnIndex = 1
+  columnIndex = DEFAULT_COLUMN_INDEX
 }) => {
   const textareaClasses = [
     'form-textarea',

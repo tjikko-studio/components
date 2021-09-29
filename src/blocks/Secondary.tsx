@@ -72,17 +72,17 @@ export const Secondary: FC<SecondaryProps> = ({
     <div
       className={cn(
         'text-gray-900 dark:text-gray-50',
-        layout === 'default' && 'sm:flex',
+        finalLayout === 'default' && 'sm:flex',
         imagePosition === 'right' && 'sm:flex-row-reverse',
         className
       )}
     >
       {
-        (layout === 'default' || layout === 'vertical') && (
+        (finalLayout === 'default' || finalLayout === 'vertical') && (
           <>
             <div
               className={
-                layout === 'vertical'
+                finalLayout === 'vertical'
                   ? 'sm:pb-8'
                   : 'sm:w-1/2 sm:p-4'
               }
@@ -101,11 +101,11 @@ export const Secondary: FC<SecondaryProps> = ({
             <div
               className={cn(
                 'mt-4 sm:mt-0',
-                layout !== 'vertical' && 'sm:w-1/2 sm:flex'
+                finalLayout !== 'vertical' && 'sm:w-1/2 sm:flex'
               )}
             >
               <div
-                className={cn(layout !== 'vertical' && 'sm:pl-12')}
+                className={cn(finalLayout !== 'vertical' && 'sm:pl-12')}
               >
                 <h2
                   className='fontStyle-4xl mb-4 break-words'
@@ -117,6 +117,7 @@ export const Secondary: FC<SecondaryProps> = ({
                   dangerouslySetInnerHTML={{__html: body}}
                 />
                 {
+                  // eslint-disable-next-line no-magic-numbers
                   Object.keys(buttons).length >= 1 &&
                   <ButtonsGroup
                     key={JSON.stringify(buttons)}

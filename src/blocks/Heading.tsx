@@ -47,5 +47,5 @@ export const Heading: FC<HeadingProps> = ({
     >
       {text}
     </HeaderTag>
-  );
+  )
 }

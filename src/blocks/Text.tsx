@@ -35,7 +35,7 @@ export const Text: FC<TextProps> = ({
 }) => {
   const TextTag = tag
 
-  // See the tailwind hacks in src/index.tsx
+  // See safelist in tailwind.safelist.js
   return (
     <TextTag
       className={cn(

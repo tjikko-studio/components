@@ -39,6 +39,7 @@ Default.args = {
   menuData: [
     {
       attrs: {
+        // eslint-disable-next-line camelcase
         no_gap: false
       },
       columns: [
@@ -190,6 +191,7 @@ Default.args = {
     },
     {
       attrs: {
+        // eslint-disable-next-line camelcase
         no_gap: true
       },
       columns: [

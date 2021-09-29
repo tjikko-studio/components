@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-use-before-define
-import React from 'react'
 import {Story, Meta} from '@storybook/react/types-6-0'
 import {Breadcrumb, BreadcrumbProps} from './Breadcrumb'
 

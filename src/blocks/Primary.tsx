@@ -89,6 +89,7 @@ export const Primary: FC<PrimaryProps> = ({
             dangerouslySetInnerHTML={{__html: body}}
           />
           {
+            // eslint-disable-next-line no-magic-numbers
             Object.keys(buttons).length >= 1 &&
             <ButtonsGroup
               key={JSON.stringify(buttons)}

@@ -120,7 +120,7 @@ export const Input: FC<InputProps> = ({
   ]
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
-    // See the tailwind hacks in src/index.tsx
+    // See safelist in tailwind.safelist.js
     labelContainerClasses.push('text-gray-500 dark:text-gray-600')
   }
   addErrorClasses(isError || isValidating || isSuccess, inputClasses)

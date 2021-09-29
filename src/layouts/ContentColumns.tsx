@@ -76,7 +76,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
 }) => {
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
-  // See the tailwind hacks in src/index.tsx
+  // See safelist in tailwind.safelist.js
   const align = (horAlign && verAlign)
     ? `justify-${horAlign} items-${verAlign}`
     : ''
@@ -86,6 +86,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
         content
           ? content.map(({columns, id}) => {
             const headerClass = (
+              // eslint-disable-next-line no-magic-numbers
               content.length > 1 &&
               containVal(columns[0].blocks, 'type', ['Heading', 'Text'])
             ) ? 'mb-4 sm: mb-8' : ''
@@ -99,12 +100,12 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                   columns.map(({
                     width,
                     blocks,
-                    id
+                    id: columnId
                   }) => {
                     return (
-                      // See the tailwind hacks in src/index.tsx
+                      // See safelist in tailwind.safelist.js
                       <div
-                        key={id || JSON.stringify(blocks)}
+                        key={columnId || JSON.stringify(blocks)}
                         className={cn([
                           `col-span-${getWidth(width)}`,
                           align,

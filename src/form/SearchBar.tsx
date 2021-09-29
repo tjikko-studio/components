@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-use-before-define
-import React, {FC, HTMLAttributes, useState} from 'react'
+import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import SearchIcon from '/assets/icons/search-line.svg'
@@ -43,7 +43,6 @@ export const SearchBar: FC<SearchBarProps> = ({
   placeHolder,
   className
 }) => {
-  const [autoFocus, setInputFocus] = useState(false)
   const classes = [
     'form-input',
     'w-72',
@@ -89,12 +88,6 @@ export const SearchBar: FC<SearchBarProps> = ({
         )}
         defaultValue={text}
         placeholder={placeHolder}
-        onFocus={() => {
-          return setInputFocus(true)
-        }}
-        onBlur={() => {
-          return setInputFocus(false)
-        }}
       />
     </div>
   )

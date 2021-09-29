@@ -65,6 +65,7 @@ export const ListNav: FC<ListNavProps> = ({
           return (
             <div className={wMax} key={menu.label} >
               {
+                // eslint-disable-next-line no-magic-numbers
                 (listNavContent.length > 1) && (
                   <PopUpNavItem
                     label={menu.label}

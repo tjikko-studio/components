@@ -49,7 +49,7 @@ export const Section: FC<SectionProps> = ({
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
-  // See the tailwind hacks in src/index.tsx
+  // See safelist in tailwind.safelist.js
   const align = (horAlign && verAlign)
     ? `justify-${horAlign} items-${verAlign}`
     : ''

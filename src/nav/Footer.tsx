@@ -112,7 +112,7 @@ export const Footer: FC<FooterProps> = ({
                         <div
                           key={blockId || JSON.stringify(content)}
                           className={cn([
-                            'contentLayout',
+                            ...contentLayout,
                             `lg:col-span-${getWidth(width)}`,
                             layout === 'horizontal'
                               && 'flex flex-end h-full',

@@ -19,11 +19,12 @@ const Template: Story<TestimonialProps> = (args) => {
 }
 
 export const Default = Template.bind({})
+const imgSpaceSize = 1000
 Default.args = {
   // eslint-disable-next-line max-len
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
   image: {
-    url: `https://i.pravatar.cc/${Math.ceil(1000 * Math.random())}`
+    url: `https://i.pravatar.cc/${Math.ceil(imgSpaceSize * Math.random())}`
   },
   title: 'Maria Lopez, VP of Design at Meshery'
 }

@@ -103,10 +103,10 @@ export const SiteNav: FC<SiteNavProps> = ({
                     <Media media={logo} className={'h-3 lg:h-4 w-auto'} />
                   ) : null}
                 </div>
-                {columns.length >= 1 && columns.map(({content, id}) => {
+                {columns.length && columns.map(({content, id: columnId}) => {
                   return (
                     <div
-                      key={id || JSON.stringify(content)}
+                      key={columnId || JSON.stringify(content)}
                       className={cn([
                         'flex',
                         'flex-auto',
@@ -229,100 +229,104 @@ export const SiteNav: FC<SiteNavProps> = ({
                 {
                   mobileNavContent.length
                     // eslint-disable-next-line camelcase
-                    && mobileNavContent.map(({content, mobile_layout, id}) => {
+                    && mobileNavContent.map(
                       // eslint-disable-next-line camelcase
-                      const layout = mobile_layout === 'horizontal'
-                        ? ' justify-between items-start'
-                        : ' flex-col space-y-4'
-                      // eslint-disable-next-line no-magic-numbers
-                      const columnsLength = content ? content.length : 0
-                      return (
-                        <div
-                          key={id || JSON.stringify(content)}
-                          className={cn('flex', border, dividerSm, layout)}
-                        >
-                          {
-                            content && content.map(({
-                              label,
-                              link,
-                              type,
-                              content: innerContent,
-                              dataSource,
-                              id: innerId
-                            }, idx) => {
-                              const isLast = idx + 1 >= columnsLength
-                              switch (type) {
-                              case 'NavigationDropdown': {
-                                return (
-                                  <div
-                                    className={cn('dark', border, dividerSm)}
-                                    key={innerId
-                                      || JSON.stringify(innerContent)}
-                                  >
-                                    {label
-                                      && <div className='fontStyle-xl mb-3'>
-                                        {label}
-                                      </div>}
-                                    <ListNav
-                                      styles='flat'
-                                      listNavContent={innerContent}
-                                    />
-                                  </div>
-                                )
-                              }
-                              case 'link': {
-                                return (
-                                  <a
-                                    key={innerId || `[${label}](${link})`}
-                                    href={link}
-                                    className='fontStyle-xl'
-                                  >
-                                    {label}
-                                  </a>
-                                )
-                              }
-                              case 'button': {
-                                return (
-                                  <div
-                                    key={innerId || `[${label}](${link})`}
-                                    className='dark'
-                                  >
-                                    <Button
-                                      label={label}
-                                      link={link}
-                                      type='primary'
-                                      icon='none'
-                                      size='default'
-                                      forceDark={true}
-                                      className='lg:ml-6 lg:first:ml-0'
-                                    />
-                                  </div>
-                                )
-                              }
-                              case 'NavigationDynamicList':
-                                if (dataSource === 'language') {
+                      ({content, mobile_layout, id: navContentId}) => {
+                        // eslint-disable-next-line camelcase
+                        const layout = mobile_layout === 'horizontal'
+                          ? ' justify-between items-start'
+                          : ' flex-col space-y-4'
+                        // eslint-disable-next-line no-magic-numbers
+                        const columnsLength = content ? content.length : 0
+                        return (
+                          <div
+                            key={navContentId || JSON.stringify(content)}
+                            className={cn('flex', border, dividerSm, layout)}
+                          >
+                            {
+                              content && content.map(({
+                                label,
+                                link,
+                                type,
+                                content: innerContent,
+                                dataSource,
+                                id: innerId
+                              }, idx) => {
+                                // eslint-disable-next-line no-magic-numbers
+                                const isLast = idx + 1 >= columnsLength
+                                switch (type) {
+                                case 'NavigationDropdown': {
                                   return (
-                                    <NavItem
+                                    <div
+                                      className={cn('dark', border, dividerSm)}
                                       key={innerId
                                         || JSON.stringify(innerContent)}
-                                      styles='special'
-                                      label={locales.current
-                                        ? locales.current
-                                        : 'English'}
-                                      listNavContent={locales.content}
-                                      dropdownRight={isLast}
-                                    />
+                                    >
+                                      {label
+                                        && <div className='fontStyle-xl mb-3'>
+                                          {label}
+                                        </div>}
+                                      <ListNav
+                                        styles='flat'
+                                        listNavContent={innerContent}
+                                      />
+                                    </div>
                                   )
                                 }
-                                return null
-                              default:
-                                return null
+                                case 'link': {
+                                  return (
+                                    <a
+                                      key={innerId || `[${label}](${link})`}
+                                      href={link}
+                                      className='fontStyle-xl'
+                                    >
+                                      {label}
+                                    </a>
+                                  )
+                                }
+                                case 'button': {
+                                  return (
+                                    <div
+                                      key={innerId || `[${label}](${link})`}
+                                      className='dark'
+                                    >
+                                      <Button
+                                        label={label}
+                                        link={link}
+                                        type='primary'
+                                        icon='none'
+                                        size='default'
+                                        forceDark={true}
+                                        className='lg:ml-6 lg:first:ml-0'
+                                      />
+                                    </div>
+                                  )
+                                }
+                                case 'NavigationDynamicList':
+                                  if (dataSource === 'language') {
+                                    return (
+                                      <NavItem
+                                        key={innerId
+                                          || JSON.stringify(innerContent)}
+                                        styles='special'
+                                        label={locales.current
+                                          ? locales.current
+                                          : 'English'}
+                                        listNavContent={locales.content}
+                                        dropdownRight={isLast}
+                                      />
+                                    )
+                                  }
+                                  return null
+                                default:
+                                  return null
+                                }
                               }
-                            }
-                            )}
-                        </div>
-                      )
-                    })
+                              )}
+                          </div>
+                        )
+                      }
+                    )
                 }
               </section>
             )
