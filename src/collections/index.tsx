@@ -6,7 +6,6 @@ import {Section} from './Section'
 export default {
   Form,
   Hero,
-  ContentPositionType,
   List,
   Section
 }
