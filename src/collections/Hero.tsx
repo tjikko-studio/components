@@ -2,7 +2,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
-import {ColumnProps} from '../../shared/types'
+import {ColumnProps, ContentPosition} from '../../shared/types'
 import cn from 'classnames'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
@@ -18,16 +18,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Content Position
    */
-  contentPosition?:
-    'top|left' |
-    'top|center' |
-    'top|right' |
-    'center|left' |
-    'center|center' |
-    'center|right' |
-    'bottom|left' |
-    'bottom|center' |
-    'bottom|right'
+  contentPosition?: ContentPosition
   heroHeight?: string,
 
 

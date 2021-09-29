@@ -11,7 +11,15 @@ export interface ColumnProps {
     id: string
 }
 
-export type ContentPosition = 'center|center' | 'bottom|left'
+export type ContentPosition = 'top|left' |
+  'top|center' |
+  'top|right' |
+  'center|left' |
+  'center|center' |
+  'center|right' |
+  'bottom|left' |
+  'bottom|center' |
+  'bottom|right'
 
 export interface MenuItem {
   label: string
