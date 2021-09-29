@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-use-before-define
 import React, { FC, HTMLAttributes } from "react";
+import cn from "classnames";
 
 export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -117,41 +119,36 @@ export const Button: FC<ButtonProps> = ({
       lableClasses.push("fontStyle-button-base");
       icon && lableClasses.push(iconPos === "left" ? "ml-3" : "mr-4");
   }
-  buttonClasses.push(`${className}`);
-  const buttonClassesJoined = buttonClasses.join(" ");
-  const iconClassesJoined = iconClasses.join(" ");
+  buttonClasses.push(className);
   const Content = () => {
     if (label && icon) {
       return (
         <>
-          {iconPos === "left" && (
-            <img src={icon} className={iconClassesJoined} />
-          )}
+          {iconPos === "left" && <img src={icon} className={cn(iconClasses)} />}
           <span className={lableClasses.join(" ")}>{label}</span>
           {iconPos === "right" && (
-            <img src={icon} className={iconClassesJoined} />
+            <img src={icon} className={cn(iconClasses)} />
           )}
         </>
       );
     }
     if (label) {
-      return <span className={lableClasses.join(" ")}>{label}</span>;
+      return <span className={cn(lableClasses)}>{label}</span>;
     }
     if (icon) {
-      return <img src={icon} className={iconClassesJoined} />;
+      return <img src={icon} className={cn(iconClasses)} />;
     }
   };
   if (link) {
     return (
-      <a href={link} className={buttonClassesJoined}>
+      <a href={link} className={cn(buttonClasses)}>
         <Content />
       </a>
     );
-  } else {
-    return (
-      <button className={buttonClassesJoined}>
-        <Content />
-      </button>
-    );
   }
+  return (
+    <button className={cn(buttonClasses)}>
+      <Content />
+    </button>
+  );
 };
