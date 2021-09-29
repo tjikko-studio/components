@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface BreadcrumbType {
   name: string
@@ -28,7 +29,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
   return (
     <nav
       aria-label='Breadcrumb'
-      className={`dark:text-gray-50 ${className}`}
+      className={cn('dark:text-gray-50', className)}
     >
       <ul className='flex flex-wrap'>
         {
@@ -38,11 +39,11 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({
                 key={item.name}
               >
                 <span
-                  className={[
+                  className={cn([
                     'fontStyle-xl',
                     'hover:text-primary-300',
                     'dark:hover:text-primary-300'
-                  ].join(' ')}
+                  ])}
                 >
                   <a
                     href={item.url}

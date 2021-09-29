@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -27,14 +28,14 @@ export const TextGroup: FC<TextGroupProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`p-6 ${className}`}>
-      <h5 className={[
+    <div className={cn('p-6', className)}>
+      <h5 className={cn([
         'fontStyle-lg',
         'strong',
         'uppercase',
         'text-gray-900',
         'dark:text-gray-50'
-      ].join(' ')}>
+      ])}>
         {title}
       </h5>
       <hr className='border-primary-500 dark:border-primary-400 mt-4' />

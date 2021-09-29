@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import ErrorIcon from '/assets/icons/information-fill.svg'
 import ValidatingIcon from '/assets/icons/loader-2-fill.svg'
 import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
@@ -139,7 +141,7 @@ export const Input: FC<InputProps> = ({
       {
         label &&
         <div
-          className={labelContainerClasses.join('')}
+          className={cn(labelContainerClasses)}
           style={{gridArea: `label-${columnIndex}`}}
         >
           <p>
@@ -158,11 +160,13 @@ export const Input: FC<InputProps> = ({
         style={{gridArea: `control-${columnIndex}`}}
       >
         <input
-          className={`${inputClasses.join(' ')} ${
+          className={cn(
+            inputClasses,
             focusClasses(
               'outline-none ring-2 ring-primary-500 border-transparent',
-              isFocussed)
-          }`}
+              isFocussed
+            )
+          )}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
@@ -175,12 +179,10 @@ export const Input: FC<InputProps> = ({
           style={{gridArea: `info-${columnIndex}`}}
         >
           <div
-            className={
-              `fontStyle-sm min-h-6 flex items-center dark:text-gray-300 ${
-                isDisabled
-                  && 'text-gray-500 dark:text-gray-600'
-              }`
-            }
+            className={cn(
+              'fontStyle-sm min-h-6 flex items-center dark:text-gray-300',
+              isDisabled && 'text-gray-500 dark:text-gray-600'
+            )}
             dangerouslySetInnerHTML={{__html: information}}
           />
         </div>
@@ -191,7 +193,7 @@ export const Input: FC<InputProps> = ({
           className={`grid-in-error-${columnIndex} mt-2`}
           style={{gridArea: `error-${columnIndex}`}}
         >
-          <div className={[
+          <div className={cn([
             'fontStyle-sm',
             'min-h-6',
             'flex',
@@ -201,7 +203,7 @@ export const Input: FC<InputProps> = ({
             isError
               ? 'opacity-100'
               : 'opacity-o'
-          ].join(' ')}>{error}</div>
+          ])}>{error}</div>
         </div>
       }
     </>

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -72,12 +73,12 @@ export const SideNavItem: FC<SideNavItemProps> = ({
 
   return (
     <li
-      className={classes.join(' ')}
+      className={cn(classes)}
     >
       {spacer ? '' :
         <a
           href={link ? link : '#'}
-          className={`fontStyle-sm ${type === 'header' ? 'strong' : ''}`}
+          className={cn('fontStyle-sm', type === 'header' && 'strong')}
         >{text}</a>}
     </li>
 

@@ -3,6 +3,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
 import {ColumnProps} from '../../shared/types'
+import cn from 'classnames'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -85,9 +86,10 @@ export const Hero: FC<HeroProps> = ({
   const horPos = getHorPos(horPosVal)
   return (
     <header
-      className={`overflow-hidden bg-cover relative text-gray-50 ${
+      className={cn(
+        'overflow-hidden bg-cover relative text-gray-50',
         theme ? theme : 'dark'
-      }`}
+      )}
       style={{backgroundColor: background,
         backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
     >
@@ -99,7 +101,7 @@ export const Hero: FC<HeroProps> = ({
             autoPlay
             muted
             loop
-            className={[
+            className={cn([
               'absolute',
               'z-0',
               'top-0',
@@ -109,14 +111,14 @@ export const Hero: FC<HeroProps> = ({
               'h-full',
               'hidden',
               'sm:block'
-            ].join(' ')}
+            ])}
           >
             <source src={bgVideo.url} type='video/mp4' />
           </video>
         )
       }
       <div
-        className={[
+        className={cn([
           'absolute',
           'z-1',
           'h-2/6',
@@ -127,10 +129,10 @@ export const Hero: FC<HeroProps> = ({
           'from-gray-900',
           'to-transparent',
           'opacity-40'
-        ].join(' ')}
+        ])}
       />
       <div
-        className={[
+        className={cn([
           'absolute',
           'z-1',
           'h-full',
@@ -141,12 +143,12 @@ export const Hero: FC<HeroProps> = ({
           'from-gray-900',
           'to-transparent',
           'opacity-60'
-        ].join(' ')}
+        ])}
       />
       {/* See the tailwind hacks in src/index.tsx */}
       <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
         <div
-          className={[
+          className={cn([
             'text-gray-900',
             'dark:text-gray-50',
             'absolute',
@@ -160,7 +162,7 @@ export const Hero: FC<HeroProps> = ({
             'space-y-5',
             verPos,
             horPos
-          ].join(' ')}
+          ])}
         >
           {
             content.map((block) => {

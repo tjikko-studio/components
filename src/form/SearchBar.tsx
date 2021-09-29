@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes, useState} from 'react'
+import cn from 'classnames'
+
 import SearchIcon from '/assets/icons/search-line.svg'
 import focusClasses from '../../utilities/focusClasses'
 import addDisabledClasses from '../../snippets/addDisabledClasses'
@@ -68,7 +70,7 @@ export const SearchBar: FC<SearchBarProps> = ({
   addDisabledClasses(isDisabled, classes)
   return (
     <div
-      className={`text-gray-900 dark:text-gray-50 relative w-72 ${className}`}
+      className={cn('text-gray-900 dark:text-gray-50 relative w-72', className)}
     >
       <button
         className='absolute top-1/2 -mt-2 ml-4'
@@ -78,12 +80,13 @@ export const SearchBar: FC<SearchBarProps> = ({
       </button>
       <input
         disabled={isDisabled}
-        className={
-          `${classes.join(' ')} ${
-            focusClasses(
-              'outline-none ring-2 ring-primary-500 border-transparent',
-              isFocussed)
-          }`}
+        className={cn(
+          classes,
+          focusClasses(
+            'outline-none ring-2 ring-primary-500 border-transparent',
+            isFocussed
+          )
+        )}
         defaultValue={text}
         placeholder={placeHolder}
         onFocus={() => {

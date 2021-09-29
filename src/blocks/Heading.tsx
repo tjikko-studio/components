@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -37,12 +38,14 @@ export const Heading: FC<HeadingProps> = ({
 
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
   return (
-    <HeaderTag className={
-      `${
-        finalAlignment === 'left' && 'w-full'
-      } text-${finalAlignment ? finalAlignment : 'left'} ${className}`
-    } >
+    <HeaderTag
+      className={cn(
+        finalAlignment === 'left' && 'w-full',
+        `text-${finalAlignment ? finalAlignment : 'left'}`,
+        className
+      )}
+    >
       {text}
     </HeaderTag>
-  )
+  );
 }
