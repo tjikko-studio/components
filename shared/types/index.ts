@@ -1,4 +1,4 @@
-export type ContentType = any;
+export type ContentType = any
 
 export interface BlockProps {
     type: string
@@ -46,4 +46,4 @@ export interface MenuItemType {
 export type ComponentsExtraProps<
   P = Record<string, unknown>,
   T = Record<string, unknown>
-> = Record<string, (props: P) => T>;
+> = Record<string, (props: P) => T>

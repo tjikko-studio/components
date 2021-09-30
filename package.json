@@ -103,6 +103,7 @@
     "/README.md",
     "/assets/",
     "applyFontConfig.js",
-    "tailwind.safelist.js"
+    "tailwind.safelist.js",
+    "shared/types/index.ts"
   ]
 }
