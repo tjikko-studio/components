@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-use-before-define
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
 import {PopUpNavItem} from './PopUpNavItem'
@@ -64,20 +64,25 @@ export const NavItem: FC<NavItemProps> = ({
   dropdownTop = false,
   className = ''
 }) => {
-  // const mouseIn = [mouseIn, setMouseIn] = useState(false)
-  const mouseIn = true
-  // const mouseClick = [mouseClick, setMouseClick] = useState(false)
-  const mouseClick = true
+  const [mouseIn, setMouseIn] = useState(false)
+  const [mouseClick, setMouseClick] = useState(false)
 
   return (
     <div
       className={cn('w-max relative z-10', className)}
       style={{width: 'fit-content'}}
-      /* onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}} */
-      /* onMouseLeave={() => setMouseIn(false)} */
+      onMouseEnter={() => {
+        setMouseIn(true)
+        setMouseClick(true)
+      }}
+      onMouseLeave={() => {
+        setMouseIn(false)
+      }}
     >
       <PopUpNavItem
-        /* onClick={() => setMouseClick(!mouseClick)} */
+        onClick={() => {
+          setMouseClick(!mouseClick)
+        }}
         type={styles}
         label={label}
         href={link}
@@ -118,60 +123,4 @@ export const NavItem: FC<NavItemProps> = ({
       }
     </div>
   )
-  // Version with React useState (that is not working inside Kirby)
-  /*
-   * return (
-   * <div
-   *  className={`w-max relative ${className}`}
-   *  style={{width: 'fit-content'}}
-   *  onMouseEnter={() => {setMouseIn(true); setMouseClick(true)}}
-   *  onMouseLeave={() => setMouseIn(false)}
-   * >
-   *  <PopUpNavItem
-   *    onClick={() => setMouseClick(!mouseClick)}
-   *    type={(styles === 'default/white') ? 'special' : 'default'}
-   *    label={label}
-   *    href={link}
-   *    className={`flex items-center ${
-   *      mouseIn
-   *        && styles === 'default'
-   *        ? 'text-primary-600'
-   *        : ''
-   *    } ${
-   *      mouseIn
-   *        && styles === 'default/white'
-   *        ? 'text-primary-300'
-   *        : ''
-   *    } ${
-   *      mouseIn
-   *        && styles === 'flat'
-   *        ? 'text-primary-100 dark:text-primary-300'
-   *        : ''
-   *    }`}
-   *  >
-   *    {(listNavContent.length > 0) && (
-   *      <span className='ml-2.5'>
-   *        <ArrowDown
-   *          width='18'
-   *          height='18'
-   *        />
-   *      </span>
-   *    )
-   *    }
-   *  </PopUpNavItem>
-   *  {(mouseIn && mouseClick) && (listNavContent.length > 0) && (
-   *    <div
-   *      className='absolute left-0 top-full pt-1 w-max'
-   *    >
-   *      Hello wonderful people
-   *      <ListNav
-   *        styles={styles === 'flat' ? 'flat' : 'elevated'}
-   *        listNavContent={listNavContent}
-   *      />
-   *    </div>
-   *  )
-   *  }
-   * </div>
-   * )
-   */
 }
