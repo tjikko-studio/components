@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-// import Marquee from 'react-fast-marquee'
+import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
 export interface ClientProps {
@@ -30,8 +30,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
   content = []
 }) => {
   return (
-    <div>
-      {/* <Marquee gradientWidth='0'> */}
+    <Marquee gradientWidth='0'>
       <div className={cn([
         'flex',
         'flex-nowrap',
@@ -55,7 +54,6 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
         })
         }
       </div>
-      {/* </Marquee> */}
-    </div>
+    </Marquee>
   )
 }
