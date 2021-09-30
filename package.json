@@ -102,6 +102,7 @@
     "styles.js",
     "/README.md",
     "/assets/",
-    "applyFontConfig.js"
+    "applyFontConfig.js",
+    "tailwind.safelist.js"
   ]
 }
