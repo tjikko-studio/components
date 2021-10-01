@@ -70,6 +70,7 @@ export const Hero: FC<HeroProps> = ({
   content = [],
   templatesContent = {}
 }) => {
+  const finalHeroHeight = heroHeight || '90vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
@@ -137,7 +138,7 @@ export const Hero: FC<HeroProps> = ({
         ])}
       />
       {/* See the tailwind hacks in src/index.tsx */}
-      <div className={`h-${heroHeight} max-w-screen-xl mx-auto relative`}>
+      <div className={`h-${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
         <div
           className={cn([
             'text-gray-900',
