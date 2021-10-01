@@ -85,7 +85,8 @@ export const Footer: FC<FooterProps> = ({
               'lg:grid-cols-12',
               'gap-x-4',
               'mt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12'
+              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
+              'justify-items-center'
             ])}
           >
             {columns.length && columns.map(({width, blocks, id: columnId}) => {
