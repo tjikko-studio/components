@@ -20,6 +20,7 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     license?: string
     link?: string
   }
+  alt?: string
   className : string
 }
 
@@ -29,6 +30,7 @@ export const MediaImage: FC<ImageProps> = ({
   type,
   id,
   link,
+  alt,
   url,
   extension,
   dimensions = {},
@@ -38,7 +40,7 @@ export const MediaImage: FC<ImageProps> = ({
   return (
     <figure role='group'>
       <img src={url}
-        alt={content && content.alt ? content.alt : ''}
+        alt={content && content.alt ? content.alt : alt}
         className={className}
       />
       {content && content.caption && (
@@ -83,6 +85,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
+  alt?: string
   className?: string
 }
 
@@ -92,11 +95,14 @@ export const Media: FC<GenericMediaProps> = ({
   muted = true,
   controls = false,
   loop = false,
+  alt,
   className
 }) => {
   switch (media.type) {
   case 'image':
-    return <MediaImage key={media.url} {...media} className={className} />
+    return (
+      <MediaImage key={media.url} {...media} alt={alt} className={className} />
+    )
   case 'video':
     return (
       <MediaVideo

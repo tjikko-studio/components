@@ -96,6 +96,7 @@ export const Tertiary: FC<TertiaryProps> = ({
           <Media
             media={image}
             autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            alt={title}
             className={'rounded-lg shadow-xl w-full h-full'}
           />
         )}

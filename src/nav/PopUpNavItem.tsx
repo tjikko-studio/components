@@ -100,6 +100,8 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   return (
     <div
       className={cn(classes)}
+      role={'navigation'}
+      aria-label={label}
     >
       <a href={href}>
         {label}

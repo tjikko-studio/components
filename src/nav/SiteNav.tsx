@@ -262,10 +262,15 @@ export const SiteNav: FC<SiteNavProps> = ({
                                       key={innerId
                                         || JSON.stringify(innerContent)}
                                     >
-                                      {label
-                                        && <div className='fontStyle-xl mb-3'>
+                                      {label && (
+                                        <div
+                                          className='fontStyle-xl mb-3'
+                                          role={'navigation'}
+                                          aria-label={label}
+                                        >
                                           {label}
-                                        </div>}
+                                        </div>
+                                      )}
                                       <ListNav
                                         styles='flat'
                                         listNavContent={innerContent}

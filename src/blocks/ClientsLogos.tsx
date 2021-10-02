@@ -48,7 +48,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({
                 : 'h-14 lg:h-16 md:h-12'
               }
             >
-              <img className='w-auto h-full' src={image.url} />
+              <img className='w-auto h-full' src={image.url} alt={company} />
             </div>
           )
         })

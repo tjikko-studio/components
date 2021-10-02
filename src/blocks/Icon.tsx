@@ -61,6 +61,7 @@ export const Icon: FC<IconProps> = ({
         {image && (
           <Media
             media={image}
+            alt={title}
             className={'w-32 h-32'}
           />
         )}
