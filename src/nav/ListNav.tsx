@@ -1,5 +1,7 @@
 // eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import {PopUpNavItem} from './PopUpNavItem'
 import {MenuType} from '../../shared/types'
 
@@ -58,12 +60,17 @@ export const ListNav: FC<ListNavProps> = ({
 
   return (
     <div
-      className={classes.join(' ')}
+      className={cn(classes)}
     >
       {
         listNavContent.map((menu) => {
           return (
-            <div className={wMax} key={menu.label} >
+            <div
+              className={wMax}
+              key={menu.label}
+              role={'navigation'}
+              aria-label={menu.label}
+            >
               {
                 // eslint-disable-next-line no-magic-numbers
                 (listNavContent.length > 1) && (

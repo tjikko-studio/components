@@ -141,7 +141,10 @@ export const Footer: FC<FooterProps> = ({
                                           'flex',
                                           'flex-col',
                                           'space-y-4'
-                                        ])}>
+                                        ])}
+                                        role={'navigation'}
+                                        aria-label={label}
+                                      >
                                         {label && (
                                           <div
                                             className={cn([
@@ -167,7 +170,7 @@ export const Footer: FC<FooterProps> = ({
                                                 }`}
                                                 href={innerLink}
                                                 className='fontStyle-sm'>
-                                                {label}
+                                                {innerLabel}
                                               </a>
                                             )
                                           })
