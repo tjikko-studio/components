@@ -1,15 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
-import {ButtonsGroup, ButtonsGroupProps} from './ButtonsGroup'
+import {Meta, Story} from '@storybook/react/types-6-0'
 
+import {ButtonsGroup, ButtonsGroupProps} from './ButtonsGroup'
 
 export default {
   title: 'Tjikko/Blocks/Buttons Group',
   component: ButtonsGroup,
-  argTypes: {
-
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'The Button Group'
   }

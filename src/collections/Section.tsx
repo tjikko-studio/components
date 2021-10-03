@@ -1,13 +1,13 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {ContentColumns} from '../layouts/ContentColumns'
 import extractCombo from '../../utilities/stringUtils'
+import {ContentColumns} from '../layouts/ContentColumns'
+
 import {ColumnProps, ComponentsExtraProps} from '../../shared/types'
 
 export interface SectionItemProps {
-  id: string;
+  id: string
   columns: ColumnProps[]
 }
 
@@ -35,7 +35,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * Sections object that will be parsed through to build the component
    */
-  content?: SectionItemProps[],
+  content?: SectionItemProps[]
   templatesContent?: Record<string, ColumnProps>
 }
 
@@ -50,25 +50,23 @@ export const Section: FC<SectionProps> = ({
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
   // See safelist in tailwind.safelist.js
-  const align = (horAlign && verAlign)
-    ? `justify-${horAlign} items-${verAlign}`
-    : ''
+  const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
   let imagePosPrimary = 'undefined'
   let imagePosSecondary = 'undefined'
   let imagePosTertiary = 'undefined'
 
-  function getNewPos (prevPos: string, newPos: string) {
+  function getNewPos(prevPos: string, newPos: string) {
     const finalPos = newPos || 'auto'
     switch (`${prevPos} | ${finalPos}`) {
-    case 'undefined | auto':
-      return 'left'
-    case 'left | auto':
-      return 'right'
-    case 'right | auto':
-      return 'left'
-    default:
-      return finalPos
+      case 'undefined | auto':
+        return 'left'
+      case 'left | auto':
+        return 'right'
+      case 'right | auto':
+        return 'left'
+      default:
+        return finalPos
     }
   }
 
@@ -78,25 +76,26 @@ export const Section: FC<SectionProps> = ({
         className: cn(baseProps.className, 'text-gray-900 dark:text-gray-50')
       }
     },
-    Primary: (baseProps: { imagePosition: string }) => {
+    Primary: (baseProps: {imagePosition: string}) => {
       imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
       return {
         imagePosition: imagePosPrimary
       }
     },
-    Secondary: (baseProps: { imagePosition: string }) => {
+    Secondary: (baseProps: {imagePosition: string}) => {
       imagePosSecondary = getNewPos(imagePosSecondary, baseProps.imagePosition)
       return {
         imagePosition: imagePosSecondary
       }
     },
-    Tertiary: (baseProps: { imagePosition: string }) => {
+    Tertiary: (baseProps: {imagePosition: string}) => {
       imagePosTertiary = getNewPos(imagePosTertiary, baseProps.imagePosition)
       return {
         imagePosition: imagePosTertiary
       }
     }
   }
+
   const classes = [
     'text-gray-900',
     'dark:text-gray-50',
@@ -122,25 +121,19 @@ export const Section: FC<SectionProps> = ({
   if (align) {
     classes.push(align)
   }
+
   return (
-    <div
-      className={cn('overflow-hidden', theme)}
-      style={{backgroundColor: background}}
-    >
-      <div
-        className={cn(classes)}
-      >
-        {
-          content && (
-            <ContentColumns
-              content={content}
-              contentPosition={contentPosition}
-              componentsExtraProps={columnComponentExtraProps}
-              columnClasses='flex flex-col space-y-8 h-full'
-              templatesContent={templatesContent}
-            />
-          )
-        }
+    <div className={cn('overflow-hidden', theme)} style={{backgroundColor: background}}>
+      <div className={cn(classes)}>
+        {content && (
+          <ContentColumns
+            content={content}
+            contentPosition={contentPosition}
+            componentsExtraProps={columnComponentExtraProps}
+            columnClasses="flex flex-col space-y-8 h-full"
+            templatesContent={templatesContent}
+          />
+        )}
       </div>
     </div>
   )

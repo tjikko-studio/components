@@ -1,7 +1,7 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-import {Media, ImageProps} from '../parts/Media'
 import cn from 'classnames'
+
+import {ImageProps, Media} from '../parts/Media'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -22,11 +22,10 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Video properties
    */
-  autoplay ?: boolean
-  muted ?: boolean
-  controls ?: boolean
-  loop ?: boolean
-
+  autoplay?: boolean
+  muted?: boolean
+  controls?: boolean
+  loop?: boolean
 
   /**
    * text to display for heading
@@ -38,7 +37,6 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    */
   body: string
 }
-
 
 /**
  * Primary UI component for user interaction
@@ -55,47 +53,35 @@ export const Tertiary: FC<TertiaryProps> = ({
   body = ''
 }) => {
   const layoutTypeStaged = layout || 'default'
+
   const Text = () => {
     return (
-      <div
-        className={cn(
-          'mt-4 sm:mt-0',
-          layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6'
-        )}
-      >
+      <div className={cn('mt-4 sm:mt-0', layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6')}>
         <div>
-          <h2
-            className='fontStyle-2xl mb-2 break-words block w-full'
-          >
-            {title}
-          </h2>
-          <p
-            className='fontStyle-base break-words'
-            dangerouslySetInnerHTML={{__html: body}}
-          >
-          </p>
+          <h2 className="fontStyle-2xl mb-2 break-words block w-full">{title}</h2>
+          <p className="fontStyle-base break-words" dangerouslySetInnerHTML={{__html: body}}></p>
         </div>
       </div>
     )
   }
+
   return (
     <div
       className={cn(
         'text-gray-900 dark:text-gray-50',
         layout === 'vertical' ? '' : 'sm:flex',
-        layout === 'vertical' && imagePosition === 'right'
-          ? ''
-          : 'sm:space-x-6',
+        layout === 'vertical' && imagePosition === 'right' ? '' : 'sm:space-x-6',
         layout === 'vertical' && imagePosition === 'left' ? '' : '-sm:space-x-6'
       )}
     >
-      <div
-        className={cn(layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2')}
-      >
+      <div className={cn(layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2')}>
         {image && (
           <Media
             media={image}
-            autoplay={autoplay} muted={muted} controls={controls} loop={loop}
+            autoplay={autoplay}
+            muted={muted}
+            controls={controls}
+            loop={loop}
             alt={title}
             className={'rounded-lg shadow-xl w-full h-full'}
           />

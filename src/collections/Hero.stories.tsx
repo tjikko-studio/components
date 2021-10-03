@@ -1,14 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Hero, HeroProps} from './Hero'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Collections/Hero',
   component: Hero,
-  argTypes: {
-
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'Hero'
   }
@@ -28,7 +26,6 @@ Default.args = {
   },
   bgHasVideo: true,
   bgVideo: {
-    // eslint-disable-next-line max-len
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
   },
   content: [

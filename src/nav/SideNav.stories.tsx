@@ -1,13 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {SideNav, SideNavProps} from './SideNav'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Nav Elements/SideNav',
   component: SideNav,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'The SideNav'
   }

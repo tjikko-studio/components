@@ -1,13 +1,14 @@
-/* eslint-disable max-len */
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-import getComponent from '../../utilities/getComponent'
-import {ColumnProps} from '../../shared/types'
 import cn from 'classnames'
+
+import getComponent from '../../utilities/getComponent'
+
+import {ColumnProps} from '../../shared/types'
 
 export interface FormItemProps {
   columns: ColumnProps[]
 }
+
 export interface FormProps extends HTMLAttributes<HTMLElement> {
   /**
    * What is the width of the form?
@@ -21,15 +22,11 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
   templatesContent?: Record<string, ColumnProps>
 }
 
-export const Form: FC<FormProps> = ({
-  width = 'full',
-  content = [],
-  templatesContent = {}
-}) => {
+export const Form: FC<FormProps> = ({width = 'full', content = [], templatesContent = {}}) => {
   const toComponent = getComponent(templatesContent)
   return (
-    <form className='grid gap-4'>{
-      content.map(({columns}) => {
+    <form className="grid gap-4">
+      {content.map(({columns}) => {
         return (
           <section
             key={JSON.stringify(columns)}
@@ -44,9 +41,10 @@ export const Form: FC<FormProps> = ({
 "  error-0   error-1   error-2   error-3   error-4   error-5   error-6   error-7   error-8   error-9   error-10   error-11"
               `
             }}
-          >{
-              columns.reduce((acc, column, columnIndex) => {
-                const newAcc = acc.concat(column.blocks.map((block) => {
+          >
+            {columns.reduce((acc, column, columnIndex) => {
+              const newAcc = acc.concat(
+                column.blocks.map((block) => {
                   return toComponent(block, {
                     Input: (baseProps) => {
                       return {
@@ -67,12 +65,13 @@ export const Form: FC<FormProps> = ({
                       }
                     }
                   })
-                }))
-                return newAcc
-              }, [])
-            }</section>
+                })
+              )
+              return newAcc
+            }, [])}
+          </section>
         )
-      })
-    }</form>
+      })}
+    </form>
   )
 }

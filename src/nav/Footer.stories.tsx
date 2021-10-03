@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Footer, FooterProps} from './Footer'
 
 export default {
@@ -39,7 +39,6 @@ Default.args = {
   menuData: [
     {
       attrs: {
-        // eslint-disable-next-line camelcase
         no_gap: false
       },
       columns: [
@@ -191,7 +190,6 @@ Default.args = {
     },
     {
       attrs: {
-        // eslint-disable-next-line camelcase
         no_gap: true
       },
       columns: [
