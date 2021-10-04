@@ -134,6 +134,11 @@ Desktop.args = {
               ]
             },
             {
+              type: 'NavigationDropdown',
+              label: 'Portfolio',
+              content: []
+            },
+            {
               type: 'default',
               label: 'Portfolio',
               location: 'internal',

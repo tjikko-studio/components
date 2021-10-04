@@ -23,39 +23,39 @@ const Template: Story<NavItemProps> = (args) => {
 
 export const None = Template.bind({})
 None.args = {
-  styles: 'default',
-  dropdown: []
+  listNavContent: []
 }
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  dropdown: [
-    {
-      columnLabel: 'Group 01',
-      content: [
-        {
-          label: 'Link 01',
-          link: '/linkURL',
-          type: 'link'
-        },
-        {
-          label: 'Link 02',
-          link: '/linkURL',
-          type: 'button'
-        },
-        {
-          label: 'Link 03',
-          link: '/linkURL',
-          type: 'button'
-        }
-      ]
-    }
-  ]
+  listNavContent:
+    [
+      {
+        columnLabel: 'Group 01',
+        content: [
+          {
+            label: 'Link 01',
+            link: '/linkURL',
+            type: 'link'
+          },
+          {
+            label: 'Link 02',
+            link: '/linkURL',
+            type: 'button'
+          },
+          {
+            label: 'Link 03',
+            link: '/linkURL',
+            type: 'button'
+          }
+        ]
+      }
+    ]
 }
 
 export const MultiData = Template.bind({})
 MultiData.args = {
-  dropdown: [
+  listNavContent: [
     {
       columnLabel: 'Group 01',
       content: [
