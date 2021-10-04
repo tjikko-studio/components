@@ -1,19 +1,15 @@
-// eslint-disable-next-line no-use-before-define
-import React, {FC, HTMLAttributes, CSSProperties} from 'react'
+import React, {CSSProperties, FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import containVal from '../../utilities/containVal'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
-import containVal from '../../utilities/containVal'
 import extractCombo from '../../utilities/stringUtils'
-import {
-  ColumnProps,
-  ContentPosition,
-  ComponentsExtraProps
-} from '../../shared/types'
+
+import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
 
 export interface SectionItemProps {
-  id: string;
+  id: string
   columns: ColumnProps[]
 }
 
@@ -60,15 +56,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
-  contentSectionClasses = cn([
-    'gap-y-8',
-    'sm:gap-y-12',
-    'md:gap-y-24',
-    'sm:gap-x-12',
-    'md:gap-x-16',
-    'w-full',
-    'h-full'
-  ]),
+  contentSectionClasses = cn(['gap-y-8', 'sm:gap-y-12', 'md:gap-y-24', 'sm:gap-x-12', 'md:gap-x-16', 'w-full', 'h-full']),
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
@@ -77,59 +65,39 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See safelist in tailwind.safelist.js
-  const align = (horAlign && verAlign)
-    ? `justify-${horAlign} items-${verAlign}`
-    : ''
+  const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
+
   return (
     <>
-      {
-        content
-          ? content.map(({columns, id}) => {
-            const headerClass = (
-              // eslint-disable-next-line no-magic-numbers
-              content.length > 1 &&
-              containVal(columns[0].blocks, 'type', ['Heading', 'Text'])
-            ) ? 'mb-4 sm: mb-8' : ''
+      {content
+        ? content.map(({columns, id}) => {
+            const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
             return (
               <section
                 key={id || JSON.stringify(columns)}
                 className={cn('grid sm:grid-cols-12', contentSectionClasses)}
                 style={{...contentSectionStyles}}
               >
-                {
-                  columns.map(({
-                    width,
-                    blocks,
-                    id: columnId
-                  }) => {
-                    return (
-                      // See safelist in tailwind.safelist.js
-                      <div
-                        key={columnId || JSON.stringify(blocks)}
-                        className={cn([
-                          `col-span-${getWidth(width)}`,
-                          align,
-                          headerClass,
-                          columnClasses
-                        ])}
-                        style={{...columnStyles}}
-                      >
-                        {
-                          blocks.map((block) => {
-                            return toComponent(block, {
-                              ...componentsExtraProps
-                            })
-                          })
-                        }
-                      </div>
-                    )
-                  })
-                }
+                {columns.map(({width, blocks, id: columnId}) => {
+                  return (
+                    // See safelist in tailwind.safelist.js
+                    <div
+                      key={columnId || JSON.stringify(blocks)}
+                      className={cn([`col-span-${getWidth(width)}`, align, headerClass, columnClasses])}
+                      style={{...columnStyles}}
+                    >
+                      {blocks.map((block) => {
+                        return toComponent(block, {
+                          ...componentsExtraProps
+                        })
+                      })}
+                    </div>
+                  )
+                })}
               </section>
             )
           })
-          : null
-      }
+        : null}
     </>
   )
 }

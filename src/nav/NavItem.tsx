@@ -1,11 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
-import {PopUpNavItem} from './PopUpNavItem'
-import {ListNav} from './ListNav'
-import {MenuType} from '../../shared/types'
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
+
+import {ListNav} from './ListNav'
+import {PopUpNavItem} from './PopUpNavItem'
+
+import {MenuType} from '../../shared/types'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -91,22 +92,16 @@ export const NavItem: FC<NavItemProps> = ({
           'flex items-center',
           mouseIn && styles === 'default' && 'hover:text-primary-600',
           mouseIn && styles === 'special' && 'hover:text-primary-300',
-          mouseIn &&
-            popup === 'flat' &&
-            'hover:text-primary-100 hover:dark:text-primary-300'
+          mouseIn && popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
       >
-        {(listNavContent) && (
-          <span className='ml-2.5'>
-            <ArrowDown
-              width='18'
-              height='18'
-            />
+        {listNavContent && (
+          <span className="ml-2.5">
+            <ArrowDown width="18" height="18" />
           </span>
-        )
-        }
+        )}
       </PopUpNavItem>
-      {(mouseIn && mouseClick) && (listNavContent) && (
+      {mouseIn && mouseClick && listNavContent && (
         <div
           className={cn(
             'absolute w-max',
@@ -114,13 +109,9 @@ export const NavItem: FC<NavItemProps> = ({
             dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3'
           )}
         >
-          <ListNav
-            styles={popup === 'flat' ? 'flat' : 'elevated'}
-            listNavContent={listNavContent}
-          />
+          <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>
-      )
-      }
+      )}
     </div>
   )
 }

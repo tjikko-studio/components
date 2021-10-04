@@ -1,14 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Form, FormProps} from './Form'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Collections/Form',
   component: Form,
-  argTypes: {
-
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'Form'
   }
@@ -241,8 +239,8 @@ AnnotatedFormFullPage.args = {
               content: {
                 label: 'Huge field with label on the long side',
                 placeholder: 'write here',
-                // eslint-disable-next-line max-len
-                information: 'But not before we bombard you with extra instructions and make it very hard for the rest of the form to properly align in all imaginable cases!',
+                information:
+                  'But not before we bombard you with extra instructions and make it very hard for the rest of the form to properly align in all imaginable cases!', // eslint-disable-line max-len
                 error: 'Especially if you take errors into account…'
               }
             }

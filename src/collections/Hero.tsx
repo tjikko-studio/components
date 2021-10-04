@@ -1,61 +1,61 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
+
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
+
 import {ColumnProps, ContentPosition} from '../../shared/types'
-import cn from 'classnames'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   /**
    * Background data
    */
   bgColor?: string
-  bgHasImage ?: boolean
-  bgHasVideo ?: boolean
-  bgImage ?: ImageProps
-  bgVideo ?: ImageProps
+  bgHasImage?: boolean
+  bgHasVideo?: boolean
+  bgImage?: ImageProps
+  bgVideo?: ImageProps
 
   /**
    * Content Position
    */
   contentPosition?: ContentPosition
-  heroHeight?: string,
-
+  heroHeight?: string
 
   /**
    * Hero object that will be parsed through to build the component
    */
-  content?: [],
+  content?: []
   templatesContent?: Record<string, ColumnProps>
 }
 
 const getHorPos = (value: string) => {
   switch (value) {
-  case 'left' :
-    return 'left-0'
-  case 'center' :
-    return 'left-1/2 transform -translate-x-1/2'
-  case 'right' :
-    return 'right-0'
-  default :
-    return ''
+    case 'left':
+      return 'left-0'
+    case 'center':
+      return 'left-1/2 transform -translate-x-1/2'
+    case 'right':
+      return 'right-0'
+    default:
+      return ''
   }
 }
 
 const getVerPos = (value: string) => {
   switch (value) {
-  case 'top' :
-    return 'top-0'
-  case 'center' :
-    return 'top-1/2 transform -translate-y-1/2'
-  case 'bottom' :
-    return 'bottom-0'
-  default :
-    return ''
+    case 'top':
+      return 'top-0'
+    case 'center':
+      return 'top-1/2 transform -translate-y-1/2'
+    case 'bottom':
+      return 'bottom-0'
+    default:
+      return ''
   }
 }
 
-function extractCombo (thing: string) {
+function extractCombo(thing: string) {
   return thing ? thing.split('|') : [null, null]
 }
 
@@ -76,39 +76,24 @@ export const Hero: FC<HeroProps> = ({
   const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
+
   return (
     <header
-      className={cn(
-        'overflow-hidden bg-cover relative text-gray-50',
-        theme ? theme : 'dark'
-      )}
-      style={{backgroundColor: background,
-        backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
+      className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark')}
+      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
     >
-      {
-        bgHasVideo && (
-          <video
-            id='heroVideo'
-            poster={(bgHasImage && bgImage) ? bgImage.url : ''}
-            autoPlay
-            muted
-            loop
-            className={cn([
-              'absolute',
-              'z-0',
-              'top-0',
-              'left-0',
-              'object-cover',
-              'w-full',
-              'h-full',
-              'hidden',
-              'sm:block'
-            ])}
-          >
-            <source src={bgVideo.url} type='video/mp4' />
-          </video>
-        )
-      }
+      {bgHasVideo && (
+        <video
+          id="heroVideo"
+          poster={bgHasImage && bgImage ? bgImage.url : ''}
+          autoPlay
+          muted
+          loop
+          className={cn(['absolute', 'z-0', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
+        >
+          <source src={bgVideo.url} type="video/mp4" />
+        </video>
+      )}
       <div
         className={cn([
           'absolute',
@@ -156,17 +141,15 @@ export const Hero: FC<HeroProps> = ({
             horPos
           ])}
         >
-          {
-            content.map((block) => {
-              return toComponent(block, {
-                Heading: () => {
-                  return {
-                    level: 'h1'
-                  }
+          {content.map((block) => {
+            return toComponent(block, {
+              Heading: () => {
+                return {
+                  level: 'h1'
                 }
-              })
+              }
             })
-          }
+          })}
         </div>
       </div>
     </header>

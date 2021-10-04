@@ -1,0 +1,15 @@
+{
+  "extends": ["prettier", "react-app"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "max-len": ["error", 140],
+    "complexity": ["error", 20],
+    "import/no-anonymous-default-export": "off"
+  }
+}

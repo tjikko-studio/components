@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC} from 'react'
 
 export interface ListProps<ItemType extends FC = FC> {
@@ -6,16 +5,11 @@ export interface ListProps<ItemType extends FC = FC> {
   component: (item: ItemType) => React.ReactNode
 }
 
-export const List: FC<ListProps> = ({
-  component,
-  items = []
-}) => {
+export const List: FC<ListProps> = ({component, items = []}) => {
   return (
-    <div className='max-w-screen-xl mx-auto'>
+    <div className="max-w-screen-xl mx-auto">
       {items.map((itemProps) => {
-        return (
-          <div key={JSON.stringify(itemProps)}>{component(itemProps)}</div>
-        )
+        return <div key={JSON.stringify(itemProps)}>{component(itemProps)}</div>
       })}
     </div>
   )

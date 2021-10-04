@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
@@ -27,20 +26,13 @@ const extraClasses = {
 /**
  * Primary UI component for user interaction
  */
-export const Divider: FC<DividerProps> = ({
-  direction = 'horizontal',
-  className,
-  forceDark = false
-}) => {
+export const Divider: FC<DividerProps> = ({direction = 'horizontal', className, forceDark = false}) => {
   const dividerClasses = ['border-0 border-gray-300 dark:border-gray-600']
 
   dividerClasses.push(extraClasses[direction])
   if (forceDark) {
     dividerClasses.push('border-gray-600')
   }
-  return (
-    <hr
-      className={cn(dividerClasses, className)}
-    />
-  )
+
+  return <hr className={cn(dividerClasses, className)} />
 }

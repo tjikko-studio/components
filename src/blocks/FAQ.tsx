@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
@@ -6,6 +5,7 @@ export interface QAProps {
   question: string
   answer: string
 }
+
 export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Questions object that will be parsed through to build the component
@@ -18,39 +18,20 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-
 /**
  * Primary UI component for user interaction
  */
-export const FAQ: FC<FAQProps> = ({
-  content = [],
-  className = ''
-}) => {
+export const FAQ: FC<FAQProps> = ({content = [], className = ''}) => {
   return (
-    <div
-      className={cn(
-        'text-gray-900 dark:text-gray-50 flex flex-col space-y-12',
-        className
-      )}
-    >
-      {
-        content.map((qa) => {
-          return (
-            <div key={qa.question}>
-              <div
-                className='fontStyle-lg strong'
-              >
-                {qa.question}
-              </div>
-              <div
-                className='pt-2 fontStyle-base'
-              >
-                {qa.answer}
-              </div>
-            </div>
-          )
-        })
-      }
+    <div className={cn('text-gray-900 dark:text-gray-50 flex flex-col space-y-12', className)}>
+      {content.map((qa) => {
+        return (
+          <div key={qa.question}>
+            <div className="fontStyle-lg strong">{qa.question}</div>
+            <div className="pt-2 fontStyle-base">{qa.answer}</div>
+          </div>
+        )
+      })}
     </div>
   )
 }

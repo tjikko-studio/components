@@ -1,17 +1,23 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Tertiary, TertiaryProps} from './Tertiary'
 
 export default {
   title: 'Tjikko/Blocks/Tertiary',
   component: Tertiary,
   argTypes: {
-    layout: {options: ['default', 'vertical'],
-      control: {layout: 'select'}},
-    mirror: {control: {layout: 'boolean'}},
-    imagePosition: {options: ['auto', 'left', 'right'],
-      control: {layout: 'select'}}
+    layout: {
+      options: ['default', 'vertical'],
+      control: {layout: 'select'}
+    },
+    mirror: {
+      control: {layout: 'boolean'}
+    },
+    imagePosition: {
+      options: ['auto', 'left', 'right'],
+      control: {layout: 'select'}
+    }
   },
   parameters: {
     componentSubtitle: 'The Tertiary'
@@ -31,9 +37,9 @@ Default.args = {
     type: 'image'
   },
   title: 'Heading',
-  // eslint-disable-next-line max-len
-  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.'
+  body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.' // eslint-disable-line max-len
 }
+
 export const WidthControl = Template.bind({})
 WidthControl.args = {
   className: 'w-80',

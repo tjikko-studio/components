@@ -1,14 +1,16 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {NavItem, NavItemProps} from './NavItem'
 
 export default {
   title: 'Tjikko/Nav Elements/NavItem',
   component: NavItem,
   argTypes: {
-    styles: {options: ['default', 'default/white', 'flat'],
-      control: {type: 'select'}}
+    styles: {
+      options: ['default', 'default/white', 'flat'],
+      control: {type: 'select'}
+    }
   },
   parameters: {
     componentSubtitle: 'The Buttons NavItem'
@@ -27,30 +29,30 @@ None.args = {
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  dropdown:
-    [
-      {
-        columnLabel: 'Group 01',
-        content: [
-          {
-            label: 'Link 01',
-            link: '/linkURL',
-            type: 'link'
-          },
-          {
-            label: 'Link 02',
-            link: '/linkURL',
-            type: 'button'
-          },
-          {
-            label: 'Link 03',
-            link: '/linkURL',
-            type: 'button'
-          }
-        ]
-      }
-    ]
+  dropdown: [
+    {
+      columnLabel: 'Group 01',
+      content: [
+        {
+          label: 'Link 01',
+          link: '/linkURL',
+          type: 'link'
+        },
+        {
+          label: 'Link 02',
+          link: '/linkURL',
+          type: 'button'
+        },
+        {
+          label: 'Link 03',
+          link: '/linkURL',
+          type: 'button'
+        }
+      ]
+    }
+  ]
 }
+
 export const MultiData = Template.bind({})
 MultiData.args = {
   dropdown: [

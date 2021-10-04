@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-import {Media, ImageProps} from '../parts/Media'
-import {GroupButtonProps, ButtonsGroup} from '../blocks/ButtonsGroup'
 import cn from 'classnames'
+
+import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
+import {ImageProps, Media} from '../parts/Media'
 
 export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -18,10 +18,10 @@ export interface SecondaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Video properties
    */
-  autoplay ?: boolean
-  muted ?: boolean
-  controls ?: boolean
-  loop ?: boolean
+  autoplay?: boolean
+  muted?: boolean
+  controls?: boolean
+  loop?: boolean
 
   /**
    * text to display for heading
@@ -64,7 +64,6 @@ export const Secondary: FC<SecondaryProps> = ({
   body = '',
   buttons = [],
   className = ''
-
 }) => {
   const finalLayout = layout || 'default'
 
@@ -77,60 +76,32 @@ export const Secondary: FC<SecondaryProps> = ({
         className
       )}
     >
-      {
-        (finalLayout === 'default' || finalLayout === 'vertical') && (
-          <>
-            <div
-              className={
-                finalLayout === 'vertical'
-                  ? 'sm:pb-8'
-                  : 'sm:w-1/2 sm:p-4'
-              }
-            >
-              {image && (
-                <Media
-                  media={image}
-                  autoplay={autoplay}
-                  muted={muted}
-                  controls={controls}
-                  loop={loop}
-                  alt={title}
-                  className={'rounded-lg shadow-xl w-full h-full'}
-                />
+      {(finalLayout === 'default' || finalLayout === 'vertical') && (
+        <>
+          <div className={finalLayout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2 sm:p-4'}>
+            {image && (
+              <Media
+                media={image}
+                autoplay={autoplay}
+                muted={muted}
+                controls={controls}
+                loop={loop}
+                alt={title}
+                className={'rounded-lg shadow-xl w-full h-full'}
+              />
+            )}
+          </div>
+          <div className={cn('mt-4 sm:mt-0', finalLayout !== 'vertical' && 'sm:w-1/2 sm:flex')}>
+            <div className={cn(finalLayout !== 'vertical' && 'sm:pl-12')}>
+              <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
+              <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
+              {Object.keys(buttons).length >= 1 && (
+                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />
               )}
             </div>
-            <div
-              className={cn(
-                'mt-4 sm:mt-0',
-                finalLayout !== 'vertical' && 'sm:w-1/2 sm:flex'
-              )}
-            >
-              <div
-                className={cn(finalLayout !== 'vertical' && 'sm:pl-12')}
-              >
-                <h2
-                  className='fontStyle-4xl mb-4 break-words'
-                >
-                  {title}
-                </h2>
-                <p
-                  className='fontStyle-base'
-                  dangerouslySetInnerHTML={{__html: body}}
-                />
-                {
-                  // eslint-disable-next-line no-magic-numbers
-                  Object.keys(buttons).length >= 1 &&
-                  <ButtonsGroup
-                    key={JSON.stringify(buttons)}
-                    buttons={buttons}
-                    className='space-x-4 mt-6'
-                  />
-                }
-              </div>
-            </div>
-          </>
-        )
-      }
+          </div>
+        </>
+      )}
     </div>
   )
 }

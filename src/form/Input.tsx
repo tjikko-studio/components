@@ -1,16 +1,15 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
 import ErrorIcon from '/assets/icons/information-fill.svg'
 import ValidatingIcon from '/assets/icons/loader-2-fill.svg'
-import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
-import focusClasses from '../../utilities/focusClasses'
+
 import addDisabledClasses from '../../snippets/addDisabledClasses'
 import addErrorClasses from '../../snippets/addErrorClasses'
-import addValidatingClasses from '../../snippets/addValidatingClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
-
+import addValidatingClasses from '../../snippets/addValidatingClasses'
+import focusClasses from '../../utilities/focusClasses'
 
 export interface InputProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -118,94 +117,64 @@ export const Input: FC<InputProps> = ({
     'border-gray-300',
     'dark:border-gray-600'
   ]
+
   addDisabledClasses(isDisabled, inputClasses)
   if (isDisabled) {
     // See safelist in tailwind.safelist.js
     labelContainerClasses.push('text-gray-500 dark:text-gray-600')
   }
+
   addErrorClasses(isError || isValidating || isSuccess, inputClasses)
   if (isError || isValidating || isSuccess) {
-    inputClasses.push(
-      'drop-shadow-sm',
-      'outline-none',
-      'ring-2',
-      'dark:ring-red-500',
-      'ring-red-600',
-      'border-transparent'
-    )
+    inputClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'dark:ring-red-500', 'ring-red-600', 'border-transparent')
   }
+
   addValidatingClasses(isValidating, inputClasses)
   addSuccessClasses(isSuccess, inputClasses)
+
   return (
     <>
-      {
-        label &&
-        <div
-          className={cn(labelContainerClasses)}
-          style={{gridArea: `label-${columnIndex}`}}
-        >
-          <p>
-            {label}
-          </p>
-          {(isError) &&
-            <ErrorIcon className='text-red-600 dark:text-red-400' />}
-          {(isValidating) &&
-            <ValidatingIcon className='text-blue-600 dark:text-blue-400' />}
-          {(isSuccess) &&
-            <TickIcon className='text-green-600 dark:text-green-400' />}
+      {label && (
+        <div className={cn(labelContainerClasses)} style={{gridArea: `label-${columnIndex}`}}>
+          <p>{label}</p>
+          {isError && <ErrorIcon className="text-red-600 dark:text-red-400" />}
+          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400" />}
+          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400" />}
         </div>
-      }
-      <div
-        className={`sm:grid-in-control-${columnIndex}`}
-        style={{gridArea: `control-${columnIndex}`}}
-      >
+      )}
+      <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
         <input
-          className={cn(
-            inputClasses,
-            focusClasses(
-              'outline-none ring-2 ring-primary-500 border-transparent',
-              isFocussed
-            )
-          )}
+          className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
         />
       </div>
-      {
-        information &&
-        <div
-          className={`sm:grid-in-info-${columnIndex} mt-2`}
-          style={{gridArea: `info-${columnIndex}`}}
-        >
+      {information && (
+        <div className={`sm:grid-in-info-${columnIndex} mt-2`} style={{gridArea: `info-${columnIndex}`}}>
           <div
-            className={cn(
-              'fontStyle-sm min-h-6 flex items-center dark:text-gray-300',
-              isDisabled && 'text-gray-500 dark:text-gray-600'
-            )}
+            className={cn('fontStyle-sm min-h-6 flex items-center dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600')}
             dangerouslySetInnerHTML={{__html: information}}
           />
         </div>
-      }
-      {
-        isError &&
-        <div
-          className={`grid-in-error-${columnIndex} mt-2`}
-          style={{gridArea: `error-${columnIndex}`}}
-        >
-          <div className={cn([
-            'fontStyle-sm',
-            'min-h-6',
-            'flex',
-            'items-center',
-            'text-red-600',
-            'dark:text-red-400',
-            isError
-              ? 'opacity-100'
-              : 'opacity-o'
-          ])}>{error}</div>
+      )}
+      {isError && (
+        <div className={`grid-in-error-${columnIndex} mt-2`} style={{gridArea: `error-${columnIndex}`}}>
+          <div
+            className={cn([
+              'fontStyle-sm',
+              'min-h-6',
+              'flex',
+              'items-center',
+              'text-red-600',
+              'dark:text-red-400',
+              isError ? 'opacity-100' : 'opacity-o'
+            ])}
+          >
+            {error}
+          </div>
         </div>
-      }
+      )}
     </>
   )
 }

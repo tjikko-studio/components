@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
@@ -6,9 +5,10 @@ import cn from 'classnames'
 export interface ClientProps {
   image: {
     url: string
-  },
-  company: string,
+  }
+  company: string
 }
+
 export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The size and spacing of the logos
@@ -25,34 +25,17 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const ClientsLogos: FC<ClientsLogosProps> = ({
-  size = 'default',
-  content = []
-}) => {
+export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content = []}) => {
   return (
-    <Marquee gradientWidth='0'>
-      <div className={cn([
-        'flex',
-        'flex-nowrap',
-        'w-max',
-        'space-x-14',
-        'lg:space-x-32',
-        'md:space-x-16'
-      ])}>
+    <Marquee gradientWidth="0">
+      <div className={cn(['flex', 'flex-nowrap', 'w-max', 'space-x-14', 'lg:space-x-32', 'md:space-x-16'])}>
         {content.map(({image, company}) => {
           return (
-            <div
-              key={company}
-              className={size === 'default'
-                ? 'h-14 lg:h-24 md:h-20'
-                : 'h-14 lg:h-16 md:h-12'
-              }
-            >
-              <img className='w-auto h-full' src={image.url} alt={company} />
+            <div key={company} className={size === 'default' ? 'h-14 lg:h-24 md:h-20' : 'h-14 lg:h-16 md:h-12'}>
+              <img className="w-auto h-full" src={image.url} alt={company} />
             </div>
           )
-        })
-        }
+        })}
       </div>
     </Marquee>
   )

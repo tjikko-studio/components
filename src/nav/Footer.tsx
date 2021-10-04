@@ -1,13 +1,12 @@
-/* eslint-disable no-magic-numbers */
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
-import {NavItem} from './NavItem'
 import {Button} from '../Button'
-import {Media, ImageProps} from '../parts/Media'
-import {MenuType, MenuItemType} from '../../shared/types'
+import {ImageProps, Media} from '../parts/Media'
+import {NavItem} from './NavItem'
+
+import {MenuItemType, MenuType} from '../../shared/types'
 
 export interface LocalesType {
   current?: string | null
@@ -29,7 +28,7 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {'no_gap': string}
+  attrs: {no_gap: string}
   columns: NavColumn[]
 }
 
@@ -53,23 +52,11 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({
-  logo,
-  menuData = [],
-  locales = null
-}) => {
+export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) => {
   const border = 'border-b border-gray-600 last:border-b-0'
 
   return (
-    <div className={cn([
-      'lg:flex',
-      'flex-col',
-      'bg-gray-900',
-      'text-gray-50',
-      'px-4',
-      'pb-4',
-      'sp_ace-y-12'
-    ])}>
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'sp_ace-y-12'])}>
       {logo ? (
         <section className={`flex items-center h-16 ${border}`}>
           <Media media={logo} />
@@ -89,179 +76,115 @@ export const Footer: FC<FooterProps> = ({
               'justify-items-center'
             ])}
           >
-            {columns.length && columns.map(({width, blocks, id: columnId}) => {
-              return (
-                <div
-                  key={columnId || JSON.stringify(blocks)}
-                  className={`lg:col-span-${getWidth(width)} h-full`}
-                >
-                  {blocks.length >= 1 && blocks.map(
-                    ({content, layout, rtl, id: blockId}) => {
-                      const contentLayout = layout === 'horizontal'
-                        ? ['flex', 'lg:mt-0', 'items-center', 'h-full']
-                        : [
-                          'lg:flex',
-                          'items-start',
-                          'flex-col',
-                          'first:mt-0',
-                          'lg:mt-0',
-                          'space-y-4'
-                        ]
-                      const justify = rtl ? 'lg:justify-end' : ''
-                      const contentLength = content.length
-                      return (
-                        <div
-                          key={blockId || JSON.stringify(content)}
-                          className={cn([
-                            ...contentLayout,
-                            `lg:col-span-${getWidth(width)}`,
-                            layout === 'horizontal'
-                              && 'flex flex-end h-full',
-                            justify
-                          ])}
-                        >
-                          {content.length && content.map(({
-                            label,
-                            link,
-                            type,
-                            content: innerContent,
-                            dataSource,
-                            id: contentId
-                          }, idx) => {
-                            return (
-                              <div
-                                key={contentId || JSON.stringify(innerContent)}
-                              >{(() => {
-                                  switch (type) {
-                                  case 'NavigationDropdownChild':
-                                    return (
-                                      <div
-                                        className={cn([
-                                          'dark',
-                                          'flex',
-                                          'flex-col',
-                                          'space-y-4'
-                                        ])}
-                                        role={'navigation'}
-                                        aria-label={label}
-                                      >
-                                        {label && (
-                                          <div
-                                            className={cn([
-                                              'fontStyle-xs',
-                                              'uppercase',
-                                              'text-gray-300'
-                                            ])}
-                                          >
-                                            {label}
-                                          </div>
-                                        )}
-                                        {
-                                          content.map(({
-                                            label: innerLabel,
-                                            link: innerLink
-                                          }) => {
+            {columns.length &&
+              columns.map(({width, blocks, id: columnId}) => {
+                return (
+                  <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full`}>
+                    {blocks.length >= 1 &&
+                      blocks.map(({content, layout, rtl, id: blockId}) => {
+                        const contentLayout =
+                          layout === 'horizontal'
+                            ? ['flex', 'lg:mt-0', 'items-center', 'h-full']
+                            : ['lg:flex', 'items-start', 'flex-col', 'first:mt-0', 'lg:mt-0', 'space-y-4']
+                        const justify = rtl ? 'lg:justify-end' : ''
+                        const contentLength = content.length
+                        return (
+                          <div
+                            key={blockId || JSON.stringify(content)}
+                            className={cn([
+                              ...contentLayout,
+                              `lg:col-span-${getWidth(width)}`,
+                              layout === 'horizontal' && 'flex flex-end h-full',
+                              justify
+                            ])}
+                          >
+                            {content.length &&
+                              content.map(({label, link, type, content: innerContent, dataSource, id: contentId}, idx) => {
+                                return (
+                                  <div key={contentId || JSON.stringify(innerContent)}>
+                                    {(() => {
+                                      switch (type) {
+                                        case 'NavigationDropdownChild':
+                                          return (
+                                            <div
+                                              className={cn(['dark', 'flex', 'flex-col', 'space-y-4'])}
+                                              role={'navigation'}
+                                              aria-label={label}
+                                            >
+                                              {label && <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>}
+                                              {content.map(({label: innerLabel, link: innerLink}) => {
+                                                return (
+                                                  <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
+                                                    {innerLabel}
+                                                  </a>
+                                                )
+                                              })}
+                                            </div>
+                                          )
+                                        case 'link': {
+                                          const Alink = () => {
                                             return (
-                                              <a
-                                                key={`${
-                                                  innerLabel
-                                                }${
-                                                  innerLink
-                                                }`}
-                                                href={innerLink}
-                                                className='fontStyle-sm'>
-                                                {innerLabel}
+                                              <a href={link} className="fontStyle-sm">
+                                                {label}
                                               </a>
                                             )
-                                          })
-                                        }
-                                      </div>
-                                    )
-                                  case 'link': {
-                                    const Alink = () => {
-                                      return (
-                                        <a
-                                          href={link}
-                                          className='fontStyle-sm'
-                                        >
-                                          {label}
-                                        </a>
-                                      )
-                                    }
-                                    if (layout === 'horizontal') {
-                                      const lClass = (idx + 1 < contentLength)
-                                        ? 'after-content after:mr-2 after:ml-2'
-                                        : ''
-                                      return (
-                                        <div
-                                          className={lClass}
-                                          data-content-after='-'
-                                        >
-                                          <Alink />
-                                        </div>
-                                      )
-                                    }
-                                    if (layout === 'vertical') {
-                                      return (
-                                        <Alink />
-                                      )
-                                    }
-                                    return null
-                                  }
-                                  case 'button':
-                                    return (
-                                      <div className='dark'>
-                                        <Button
-                                          label={label}
-                                          link={link}
-                                          type='primary'
-                                          icon='none'
-                                          size='default'
-                                          forceDark={true}
-                                          className='lg:ml-6 lg:first:ml-0'
-                                        />
-                                      </div>
-                                    )
-                                  case 'NavigationDynamicList':
-                                    if (dataSource === 'language') {
-                                      return (
-                                        <NavItem
-                                          styles='default'
-                                          popup='elevated'
-                                          padding={false}
-                                          label={locales.current
-                                            ? locales.current
-                                            : 'English'
                                           }
-                                          listNavContent={locales.content}
-                                          dropdownTop={true}
-                                        />
-                                      )
-                                    }
-                                    console.error(
-                                      'unrecognized dataSource',
-                                      dataSource,
-                                      typeof dataSource
-                                    )
-                                    return null
-                                  default:
-                                    console.error(
-                                      'Unrecognized footer type',
-                                      type
-                                    )
-                                    return null
-                                  }
-                                })()
-                                }</div>
-                            )
-                          })}
-                        </div>
-                      )
-                    })
-                  }
-                </div>
-              )
-            })}
+                                          if (layout === 'horizontal') {
+                                            const lClass = idx + 1 < contentLength ? 'after-content after:mr-2 after:ml-2' : ''
+                                            return (
+                                              <div className={lClass} data-content-after="-">
+                                                <Alink />
+                                              </div>
+                                            )
+                                          }
+                                          if (layout === 'vertical') {
+                                            return <Alink />
+                                          }
+                                          return null
+                                        }
+                                        case 'button':
+                                          return (
+                                            <div className="dark">
+                                              <Button
+                                                label={label}
+                                                link={link}
+                                                type="primary"
+                                                icon="none"
+                                                size="default"
+                                                forceDark={true}
+                                                className="lg:ml-6 lg:first:ml-0"
+                                              />
+                                            </div>
+                                          )
+                                        case 'NavigationDynamicList':
+                                          if (dataSource === 'language') {
+                                            return (
+                                              <NavItem
+                                                styles="default"
+                                                popup="elevated"
+                                                padding={false}
+                                                label={locales.current ? locales.current : 'English'}
+                                                listNavContent={locales.content}
+                                                dropdownTop={true}
+                                              />
+                                            )
+                                          }
+                                          console.error('unrecognized dataSource', dataSource, typeof dataSource)
+                                          return null
+                                        default:
+                                          console.error('Unrecognized footer type', type)
+                                          return null
+                                      }
+                                    })()}
+                                  </div>
+                                )
+                              })}
+                          </div>
+                        )
+                      })}
+                  </div>
+                )
+              })}
           </section>
         )
       })}
