@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-env node */
 module.exports = {
   plugins: [
     require('tailwindcss'),
@@ -9,8 +7,6 @@ module.exports = {
       stage: 3,
       features: {'custom-properties': false}
     }),
-    process.env.NODE_ENV === 'production'
-      ? require('cssnano')({preset: 'default'})
-      : null
+    process.env.NODE_ENV === 'production' ? require('cssnano')({preset: 'default'}) : null
   ]
 }

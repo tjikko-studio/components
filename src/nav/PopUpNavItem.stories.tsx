@@ -1,14 +1,16 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {PopUpNavItem, PopUpNavItemProps} from './PopUpNavItem'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Nav Elements/PopUpNavItem',
   component: PopUpNavItem,
   argTypes: {
-    type: {options: ['default', 'header', 'button', 'special'],
-      control: {type: 'select'}}
+    type: {
+      options: ['default', 'header', 'button', 'special'],
+      control: {type: 'select'}
+    }
   },
   parameters: {
     componentSubtitle: 'The Buttons'

@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-import {SideNavItemProps, SideNavItem} from './SideNavItem'
+
+import {SideNavItem, SideNavItemProps} from './SideNavItem'
 
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -17,21 +17,11 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SideNav: FC<SideNavProps> = ({
-  items = [],
-  className = ''
-}) => {
+export const SideNav: FC<SideNavProps> = ({items = [], className = ''}) => {
   return (
-    <ul
-      className={className}
-    >
+    <ul className={className}>
       {items.map((item) => {
-        return (
-          <SideNavItem
-            key={`${item.text}_${item.link}`}
-            {...item}
-          />
-        )
+        return <SideNavItem key={`${item.text}_${item.link}`} {...item} />
       })}
     </ul>
   )

@@ -1,10 +1,10 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import SearchIcon from '/assets/icons/search-line.svg'
-import focusClasses from '../../utilities/focusClasses'
+
 import addDisabledClasses from '../../snippets/addDisabledClasses'
+import focusClasses from '../../utilities/focusClasses'
 
 export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -36,13 +36,7 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SearchBar: FC<SearchBarProps> = ({
-  isDisabled = false,
-  isFocussed = false,
-  text,
-  placeHolder,
-  className
-}) => {
+export const SearchBar: FC<SearchBarProps> = ({isDisabled = false, isFocussed = false, text, placeHolder, className}) => {
   const classes = [
     'form-input',
     'w-72',
@@ -67,25 +61,15 @@ export const SearchBar: FC<SearchBarProps> = ({
     'dark:border-gray-600'
   ]
   addDisabledClasses(isDisabled, classes)
+
   return (
-    <div
-      className={cn('text-gray-900 dark:text-gray-50 relative w-72', className)}
-    >
-      <button
-        className='absolute top-1/2 -mt-2 ml-4'
-        disabled={isDisabled}
-      >
-        <SearchIcon className='w-4 h-4'/>
+    <div className={cn('text-gray-900 dark:text-gray-50 relative w-72', className)}>
+      <button className="absolute top-1/2 -mt-2 ml-4" disabled={isDisabled}>
+        <SearchIcon className="w-4 h-4" />
       </button>
       <input
         disabled={isDisabled}
-        className={cn(
-          classes,
-          focusClasses(
-            'outline-none ring-2 ring-primary-500 border-transparent',
-            isFocussed
-          )
-        )}
+        className={cn(classes, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
         defaultValue={text}
         placeholder={placeHolder}
       />

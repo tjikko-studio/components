@@ -1,20 +1,19 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Divider, DividerProps} from './Divider'
 
 export default {
   title: 'Tjikko/Nav Elements/Divider',
   component: Divider,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'The Divider'
   },
   decorators: [
     (ThisStory) => {
       return (
-        <div className='max-w-screen-sm h-96'>
+        <div className="max-w-screen-sm h-96">
           <ThisStory />
           <ThisStory />
           <ThisStory />

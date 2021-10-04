@@ -1,13 +1,12 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {ClientsLogos, ClientsLogosProps} from './ClientsLogos'
 
 export default {
   title: 'Tjikko/Blocks/Clients Logos',
   component: ClientsLogos,
-  argTypes: {
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'The Clients Logos'
   }
@@ -25,42 +24,50 @@ Default.args = {
         url: './images/test_logo_01.png'
       },
       company: 'Company 01'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_02.png'
       },
       company: 'Company 02'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_03.png'
       },
       company: 'Company 03'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_04.png'
       },
       company: 'Company 04'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_05.png'
       },
       company: 'Company 05'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_06.png'
       },
       company: 'Company 06'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_07.png'
       },
       company: 'Company 07'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_08.png'
       },
       company: 'Company 08'
-    }, {
+    },
+    {
       image: {
         url: './images/test_logo_09.png'
       },

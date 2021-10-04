@@ -1,7 +1,7 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {TextStyles, TextStylesProps} from './TextStyles'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Styles/Text Styles',

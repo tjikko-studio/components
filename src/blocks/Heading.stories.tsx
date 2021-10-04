@@ -1,14 +1,16 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Heading, HeadingProps} from './Heading'
 
 export default {
   title: 'Tjikko/Blocks/Heading',
   component: Heading,
   argTypes: {
-    level: {options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-      control: {type: 'select'}}
+    level: {
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      control: {type: 'select'}
+    }
   },
   parameters: {
     componentSubtitle: 'The Heading'

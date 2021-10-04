@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
@@ -58,29 +57,21 @@ export const SideNavItem: FC<SideNavItemProps> = ({
   ]
   classes.push(spacer ? 'py-1.5' : 'py-2.5')
   classes.push(type === 'link' ? 'pl-7' : 'pl-5')
-  classes.push(...(status === 'default'
-    ? [
-      'border-gray-200',
-      'dark:border-gray-700'
-    ]
-    : [
-      'border-primary-600',
-      'dark:border-primary-300',
-      'text-primary-700',
-      'dark:text-primary-200'
-    ]
-  ))
+  classes.push(
+    ...(status === 'default'
+      ? ['border-gray-200', 'dark:border-gray-700']
+      : ['border-primary-600', 'dark:border-primary-300', 'text-primary-700', 'dark:text-primary-200'])
+  )
 
   return (
-    <li
-      className={cn(classes)}
-    >
-      {spacer ? '' :
-        <a
-          href={link ? link : '#'}
-          className={cn('fontStyle-sm', type === 'header' && 'strong')}
-        >{text}</a>}
+    <li className={cn(classes)}>
+      {spacer ? (
+        ''
+      ) : (
+        <a href={link ? link : '#'} className={cn('fontStyle-sm', type === 'header' && 'strong')}>
+          {text}
+        </a>
+      )}
     </li>
-
   )
 }

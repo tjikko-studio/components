@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Input, InputProps} from './Input'
 
 export default {
@@ -12,7 +12,7 @@ export default {
   decorators: [
     (ThisStory) => {
       return (
-        <div className='border'>
+        <div className="border">
           <ThisStory />
         </div>
       )
@@ -44,16 +44,19 @@ Error.args = {
   ...Text.args,
   isError: true
 }
+
 export const Validate = Template.bind({})
 Validate.args = {
   ...Text.args,
   isValidating: true
 }
+
 export const Success = Template.bind({})
 Success.args = {
   ...Text.args,
   isSuccess: true
 }
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...Text.args,

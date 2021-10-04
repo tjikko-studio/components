@@ -1,34 +1,25 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {FAQ} from '../src/blocks/FAQ'
-import {Form} from '../src/collections/Form'
 import {Heading} from '../src/blocks/Heading'
-import {Hero} from '../src/collections/Hero'
 import {Icon} from '../src/blocks/Icon'
-import {Input} from '../src/form/Input'
 import {Primary} from '../src/blocks/Primary'
 import {Secondary} from '../src/blocks/Secondary'
-import {Section} from '../src/collections/Section'
+import {Template} from '../src/blocks/Template'
 import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
-import {TextGroup} from '../src/blocks/TextGroup'
-import {Template} from '../src/blocks/Template'
 import {Text} from '../src/blocks/Text'
+import {TextGroup} from '../src/blocks/TextGroup'
+import {Form} from '../src/collections/Form'
+import {Hero} from '../src/collections/Hero'
+import {Section} from '../src/collections/Section'
+import {Input} from '../src/form/Input'
 
-import {
-  BlockProps,
-  ContentType,
-  ColumnProps,
-  ComponentsExtraProps
-} from '../shared/types'
+import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
-type GetPropsFn<P = Record<string, unknown>> = (
-  content: ContentType,
-  id?: string
-) => P;
+type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string) => P
 
 const getCommonProps: GetPropsFn = (content, id) => {
   return {
@@ -83,15 +74,13 @@ const propsByType: Record<string, GetPropsFn> = {
   }
 }
 
-function getProps (
+function getProps(
   type: string,
-  {content, id}: {content:ContentType, id?:string},
+  {content, id}: {content: ContentType; id?: string},
   extraProps: ComponentsExtraProps = {},
   templatesContent: Record<string, ColumnProps> = {}
 ) {
-  const specificProps = propsByType[type]
-    ? propsByType[type](content, id)
-    : getCommonProps(content, id)
+  const specificProps = propsByType[type] ? propsByType[type](content, id) : getCommonProps(content, id)
   const baseProps = {
     ...content,
     templatesContent,
@@ -122,20 +111,11 @@ const ValidComponents: Record<string, FC> = {
   Text
 }
 
-export default function getComponent (
-  templatesContent: Record<string, ColumnProps> = {}
-) {
-  return function SelectedComponent (
-    component: BlockProps,
-    extraProps: ComponentsExtraProps
-  ): React.ReactElement {
+export default function getComponent(templatesContent: Record<string, ColumnProps> = {}) {
+  return function SelectedComponent(component: BlockProps, extraProps: ComponentsExtraProps): React.ReactElement {
     const Component = ValidComponents[component.type]
     try {
-      return (
-        <Component
-          {...getProps(component.type, component, extraProps, templatesContent)}
-        />
-      )
+      return <Component {...getProps(component.type, component, extraProps, templatesContent)} />
     } catch (ex) {
       console.error('Unrecognized component type', component)
       console.error(ex)

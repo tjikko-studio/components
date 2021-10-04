@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-env node */
 const prodConfig = require('./webpack.prod.js')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 

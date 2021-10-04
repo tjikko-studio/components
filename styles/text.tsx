@@ -1,11 +1,5 @@
-const fontList = [
-  'Inter',
-  '"Helvetica Neue"',
-  'Helvetica',
-  'Arial',
-  '"Lucida Grande"',
-  'sans-serif'
-].join(', ')
+const fontList = ['Inter', '"Helvetica Neue"', 'Helvetica', 'Arial', '"Lucida Grande"', 'sans-serif'].join(', ')
+
 export default {
   fontFamily: {
     display: [fontList],

@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
-import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
-import {Media, ImageProps} from '../parts/Media'
 import cn from 'classnames'
+
+import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
+import {ImageProps, Media} from '../parts/Media'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -23,10 +23,10 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Video properties
    */
-  autoplay ?: boolean
-  muted ?: boolean
-  controls ?: boolean
-  loop ?: boolean
+  autoplay?: boolean
+  muted?: boolean
+  controls?: boolean
+  loop?: boolean
 
   /**
    * text to display for heading
@@ -68,39 +68,16 @@ export const Primary: FC<PrimaryProps> = ({
   const finalLayout = layout || 'default'
   const Text = () => {
     return (
-      <div
-        className={cn(
-          'mt-4 lg:mt-0',
-          finalLayout !== 'vertical' &&
-            'lg:w-1/2 lg:flex lg:items-center lg:justify-center',
-          className
-        )}
-      >
-        <div
-          className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}
-        >
-          <h2
-            className='fontStyle-4xl mb-4 break-words'
-          >
-            {title}
-          </h2>
-          <p
-            className='fontStyle-base'
-            dangerouslySetInnerHTML={{__html: body}}
-          />
-          {
-            // eslint-disable-next-line no-magic-numbers
-            Object.keys(buttons).length >= 1 &&
-            <ButtonsGroup
-              key={JSON.stringify(buttons)}
-              buttons={buttons}
-              className='space-x-4 mt-6'
-            />
-          }
+      <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center', className)}>
+        <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
+          <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
+          <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
+          {Object.keys(buttons).length >= 1 && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />}
         </div>
       </div>
     )
   }
+
   return (
     <div
       className={cn(
@@ -109,31 +86,24 @@ export const Primary: FC<PrimaryProps> = ({
         imagePosition === 'right' && 'lg:flex-row-reverse'
       )}
     >
-      {
-        (finalLayout === 'default' || finalLayout === 'vertical') && (
-          <>
-            <div
-              className={cn(
-                layout === 'vertical'
-                  ? 'lg:pb-8'
-                  : 'lg:w-1/2 lg:p-4'
-              )}
-            >
-              {image && (
-                <Media
-                  media={image}
-                  autoplay={autoplay}
-                  muted={muted}
-                  controls={controls}
-                  loop={loop}
-                  className={'rounded-lg shadow-xl w-full h-full'}
-                />
-              )}
-            </div>
-            <Text />
-          </>
-        )
-      }
+      {(finalLayout === 'default' || finalLayout === 'vertical') && (
+        <>
+          <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4')}>
+            {image && (
+              <Media
+                media={image}
+                autoplay={autoplay}
+                muted={muted}
+                controls={controls}
+                loop={loop}
+                alt={title}
+                className={'rounded-lg shadow-xl w-full h-full'}
+              />
+            )}
+          </div>
+          <Text />
+        </>
+      )}
     </div>
   )
 }

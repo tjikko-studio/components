@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
@@ -20,32 +19,17 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     license?: string
     link?: string
   }
-  className : string
+  alt?: string
+  className: string
 }
 
 export type ImageProps = MediaProps
 
-export const MediaImage: FC<ImageProps> = ({
-  type,
-  id,
-  link,
-  url,
-  extension,
-  dimensions = {},
-  content = {},
-  className
-}) => {
+export const MediaImage: FC<ImageProps> = ({type, id, link, alt, url, extension, dimensions = {}, content = {}, className}) => {
   return (
-    <figure role='group'>
-      <img src={url}
-        alt={content && content.alt ? content.alt : ''}
-        className={className}
-      />
-      {content && content.caption && (
-        <figcaption>
-          {content.caption}
-        </figcaption>
-      )}
+    <figure role="group">
+      <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />
+      {content && content.caption && <figcaption>{content.caption}</figcaption>}
     </figure>
   )
 }
@@ -57,18 +41,9 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({
-  url,
-  extension,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  className
-}) => {
+export const MediaVideo: FC<VideoProps> = ({url, extension, autoplay, muted, controls, loop, className}) => {
   return (
-    <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop}
-      className={className}>
+    <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={className}>
       <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
     </video>
   )
@@ -83,33 +58,19 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
+  alt?: string
   className?: string
 }
 
-export const Media: FC<GenericMediaProps> = ({
-  media,
-  autoplay = true,
-  muted = true,
-  controls = false,
-  loop = false,
-  className
-}) => {
+export const Media: FC<GenericMediaProps> = ({media, autoplay = true, muted = true, controls = false, loop = false, alt, className}) => {
   switch (media.type) {
-  case 'image':
-    return <MediaImage key={media.url} {...media} className={className} />
-  case 'video':
-    return (
-      <MediaVideo
-        key={media.url}
-        {...media}
-        className={className}
-        autoplay={autoplay}
-        muted={muted}
-        controls={controls}
-        loop={loop}
-      />
-    )
-  default:
-    return null
+    case 'image':
+      return <MediaImage key={media.url} {...media} alt={alt} className={className} />
+    case 'video':
+      return (
+        <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+      )
+    default:
+      return null
   }
 }

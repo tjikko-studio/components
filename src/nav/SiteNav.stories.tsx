@@ -1,7 +1,7 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {SiteNav, SiteNavProps} from './SiteNav'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Nav Elements/SiteNav',
@@ -139,9 +139,7 @@ Desktop.args = {
               link: ''
             }
           ],
-          // eslint-disable-next-line camelcase
           mobile_position: 'default',
-          // eslint-disable-next-line camelcase
           mobile_layout: 'vertical'
         },
         {
@@ -158,9 +156,7 @@ Desktop.args = {
               type: 'NavigationDynamicList'
             }
           ],
-          // eslint-disable-next-line camelcase
           mobile_position: 'start',
-          // eslint-disable-next-line camelcase
           mobile_layout: 'horizontal'
         }
       ]

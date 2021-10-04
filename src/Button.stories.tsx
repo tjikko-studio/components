@@ -1,17 +1,23 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {Button, ButtonProps} from './Button'
-import {Story, Meta} from '@storybook/react/types-6-0'
 
 export default {
   title: 'Tjikko/Buttons',
   component: Button,
   argTypes: {
-    type: {options: ['primary', 'secondary', 'tertiary'],
-      control: {type: 'select'}},
-    size: {options: ['small', 'default', 'large'],
-      control: {type: 'select'}},
-    forceDark: {control: {type: 'boolean'}}
+    type: {
+      options: ['primary', 'secondary', 'tertiary'],
+      control: {type: 'select'}
+    },
+    size: {
+      options: ['small', 'default', 'large'],
+      control: {type: 'select'}
+    },
+    forceDark: {
+      control: {type: 'boolean'}
+    }
   },
   parameters: {
     componentSubtitle: 'The Buttons'

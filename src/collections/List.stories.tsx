@@ -1,16 +1,14 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {List, ListProps} from './List'
-import {FAQ} from '../blocks/FAQ'
-import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Meta} from '@storybook/react/types-6-0'
+
+import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import {FAQ} from '../blocks/FAQ'
+import {List, ListProps} from './List'
 
 export default {
   title: 'Tjikko/List',
   component: List,
-  argTypes: {
-
-  },
+  argTypes: {},
   parameters: {
     componentSubtitle: 'List'
   }
@@ -27,11 +25,11 @@ FAQList.args = {
     {
       content: [
         {
-          // eslint-disable-next-line max-len
           question: 'Quite a long question  aenean lacinia bibendum nulla sed consectetur maecenas sed diam eget risus.',
-          // eslint-disable-next-line max-len
-          answer: 'Quite a long answer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor.  Vestibulum id ligula porta felis euismod semper. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.'
-        }, {
+          answer:
+            'Quite a long answer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor.  Vestibulum id ligula porta felis euismod semper. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui.' // eslint-disable-line max-len
+        },
+        {
           question: 'Question 2',
           answer: 'Answer 2'
         }
@@ -49,7 +47,8 @@ ButtonsGroupList.args = {
         {
           label: 'First Button',
           link: 'https://perdu.com'
-        }, {
+        },
+        {
           label: 'Second Button',
           link: 'https://perdu.com'
         }

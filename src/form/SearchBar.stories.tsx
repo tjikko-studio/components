@@ -1,6 +1,6 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react'
-import {Story, Meta} from '@storybook/react/types-6-0'
+import {Meta, Story} from '@storybook/react/types-6-0'
+
 import {SearchBar, SearchBarProps} from './SearchBar'
 
 export default {
@@ -20,11 +20,13 @@ Text.args = {
   text: 'Search',
   placeHolder: 'Search'
 }
+
 export const Focused = Template.bind({})
 Focused.args = {
   ...Text.args,
   isFocussed: true
 }
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...Text.args,
