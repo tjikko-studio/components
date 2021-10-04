@@ -68,7 +68,7 @@ export const Primary: FC<PrimaryProps> = ({
   const finalLayout = layout || 'default'
   const Text = () => {
     return (
-      <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-center', className)}>
+      <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-left', className)}>
         <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
           <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
           <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
