@@ -117,7 +117,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                         'space-x-6'
                       ])}
                     >
-
                       {content
                         && content.map(({
                           label,

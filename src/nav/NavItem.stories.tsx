@@ -21,13 +21,12 @@ const Template: Story<NavItemProps> = (args) => {
 
 export const None = Template.bind({})
 None.args = {
-  styles: 'default',
-  dropdown: []
+  listNavContent: []
 }
 
 export const SingleData = Template.bind({})
 SingleData.args = {
-  dropdown:
+  listNavContent:
     [
       {
         columnLabel: 'Group 01',
@@ -53,7 +52,7 @@ SingleData.args = {
 }
 export const MultiData = Template.bind({})
 MultiData.args = {
-  dropdown: [
+  listNavContent: [
     {
       columnLabel: 'Group 01',
       content: [
