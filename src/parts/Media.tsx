@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
-  type: string
+  type: 'image' | 'video'
   id: string
   link: string
   url: string
@@ -63,14 +63,9 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Media: FC<GenericMediaProps> = ({media, autoplay = true, muted = true, controls = false, loop = false, alt, className}) => {
-  switch (media.type) {
-    case 'image':
-      return <MediaImage key={media.url} {...media} alt={alt} className={className} />
-    case 'video':
-      return (
-        <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
-      )
-    default:
-      return null
-  }
+  return media.type === 'video' ? (
+    <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+  ) : (
+    <MediaImage key={media.url} {...media} alt={alt || media.alt} className={className} />
+  )
 }
