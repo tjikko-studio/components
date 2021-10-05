@@ -94,34 +94,38 @@ export const Hero: FC<HeroProps> = ({
           <source src={bgVideo.url} type="video/mp4" />
         </video>
       )}
-      <div
-        className={cn([
-          'absolute',
-          'z-1',
-          'h-2/6',
-          '-top-1/6',
-          'left-0',
-          'w-full',
-          'bg-gradient-to-b',
-          'from-gray-900',
-          'to-transparent',
-          'opacity-40'
-        ])}
-      />
-      <div
-        className={cn([
-          'absolute',
-          'z-1',
-          'h-full',
-          '-bottom-1/6',
-          'left-0',
-          'w-full',
-          'bg-gradient-to-t',
-          'from-gray-900',
-          'to-transparent',
-          'opacity-60'
-        ])}
-      />
+      {(bgHasImage || bgHasVideo) && (
+        <>
+          <div
+            className={cn([
+              'absolute',
+              'z-1',
+              'h-2/6',
+              '-top-1/6',
+              'left-0',
+              'w-full',
+              'bg-gradient-to-b',
+              'from-gray-900',
+              'to-transparent',
+              'opacity-40'
+            ])}
+          />
+          <div
+            className={cn([
+              'absolute',
+              'z-1',
+              'h-full',
+              '-bottom-1/6',
+              'left-0',
+              'w-full',
+              'bg-gradient-to-t',
+              'from-gray-900',
+              'to-transparent',
+              'opacity-60'
+            ])}
+          />
+        </>
+      )}
       {/* See the tailwind hacks in src/index.tsx */}
       <div className={`h-${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
         <div
@@ -141,15 +145,19 @@ export const Hero: FC<HeroProps> = ({
             horPos
           ])}
         >
-          {content.map((block) => {
-            return toComponent(block, {
-              Heading: () => {
-                return {
-                  level: 'h1'
+          {content.length >= 1 ? (
+            content.map((block) => {
+              return toComponent(block, {
+                Heading: () => {
+                  return {
+                    level: 'h1'
+                  }
                 }
-              }
+              })
             })
-          })}
+          ) : (
+            <div>No content yet</div>
+          )}
         </div>
       </div>
     </header>
