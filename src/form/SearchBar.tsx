@@ -65,7 +65,7 @@ export const SearchBar: FC<SearchBarProps> = ({isDisabled = false, isFocussed = 
   return (
     <div className={cn('text-gray-900 dark:text-gray-50 relative w-72', className)}>
       <button className="absolute top-1/2 -mt-2 ml-4" disabled={isDisabled}>
-        <SearchIcon className="w-4 h-4" />
+        <SearchIcon className="w-4 h-4" viewBox="0 0 24 24"/>
       </button>
       <input
         disabled={isDisabled}
