@@ -1,8 +1,6 @@
 import React from 'react'
 import {Meta, Story} from '@storybook/react/types-6-0'
 
-import companyLogo from '/assets/images/company_logo_placeholder.png'
-
 import {Footer, FooterProps} from './Footer'
 
 export default {
@@ -22,7 +20,7 @@ export const Default = Template.bind({})
 Default.args = {
   logo: {
     type: 'image',
-    url: companyLogo
+    url: './images/company_logo_placeholder.svg'
   },
   locales: {
     current: 'En',

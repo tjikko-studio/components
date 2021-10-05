@@ -1,4 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
+import SVG from 'react-inlinesvg'
 import cn from 'classnames'
 
 import {Button} from '../Button'
@@ -92,7 +93,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 className
               ])}
             >
-              <div className="flex-auto">{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+              <div className="flex-auto">{logo ? <SVG src={logo.url} className={'h-3 lg:h-4 w-auto'} title="" /> : null}</div>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -170,7 +171,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
         <div className="flex justify-between items-center h-16">
-          <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+          <div>{logo ? <SVG src={logo.url} className={'h-3 lg:h-4 w-auto'} title="" /> : null}</div>
           <div>{openMenuText}</div>
         </div>
         {menuData.map(({columns, id}) => {

@@ -1,4 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
+import SVG from 'react-inlinesvg'
 import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
@@ -59,7 +60,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
     <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'sp_ace-y-12'])}>
       {logo ? (
         <section className={`flex items-center h-16 ${border}`}>
-          <Media media={logo} />
+          <SVG src={logo.url} className={'h-3 lg:h-4 w-auto'} title="" />
         </section>
       ) : null}
       {menuData.map(({id, columns, attrs}) => {
