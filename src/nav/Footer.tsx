@@ -112,7 +112,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                               aria-label={label}
                                             >
                                               {label && <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>}
-                                              {content.map(({label: innerLabel, link: innerLink}) => {
+                                              {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                 return (
                                                   <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
                                                     {innerLabel}
