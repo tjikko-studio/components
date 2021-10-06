@@ -128,9 +128,9 @@ export const TextArea: FC<TextAreaProps> = ({
           style={{gridArea: `label-${columnIndex}`}}
         >
           <p className="w-full">{label}</p>
-          {isError && <ErrorIcon className="text-red-600 dark:text-red-400" />}
-          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400" />}
-          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400" />}
+          {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
+          {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
+          {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
         </div>
       )}
       <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
