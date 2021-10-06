@@ -120,10 +120,14 @@ export const TextArea: FC<TextAreaProps> = ({
     <>
       {label && (
         <div
-          className={cn('fontStyle-sm strong flex flex-row dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600', 'mb-2')}
+          className={cn([
+            'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
+            isDisabled && 'text-gray-500 dark:text-gray-600',
+            'mb-2'
+          ])}
           style={{gridArea: `label-${columnIndex}`}}
         >
-          <p>{label}</p>
+          <p className="w-full">{label}</p>
           {isError && <ErrorIcon className="text-red-600 dark:text-red-400" />}
           {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400" />}
           {isSuccess && <TickIcon className="text-green-600 dark:text-green-400" />}
