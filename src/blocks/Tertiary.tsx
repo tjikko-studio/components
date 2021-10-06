@@ -54,26 +54,15 @@ export const Tertiary: FC<TertiaryProps> = ({
 }) => {
   const layoutTypeStaged = layout || 'default'
 
-  const Text = () => {
-    return (
-      <div className={cn('mt-4 sm:mt-0', layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6')}>
-        <div>
-          <h2 className="fontStyle-2xl mb-2 break-words block w-full">{title}</h2>
-          <p className="fontStyle-base break-words" dangerouslySetInnerHTML={{__html: body}}></p>
-        </div>
-      </div>
-    )
-  }
-
+  const classes = [
+    'text-gray-900',
+    'dark:text-gray-50',
+    {'sm:flex': layout !== 'vertical'},
+    {'sm:space-x-6': layout === 'vertical' && imagePosition === 'right'},
+    {'-sm:space-x-6': layout === 'vertical' && imagePosition === 'left'}
+  ]
   return (
-    <div
-      className={cn(
-        'text-gray-900 dark:text-gray-50',
-        layout === 'vertical' ? '' : 'sm:flex',
-        layout === 'vertical' && imagePosition === 'right' ? '' : 'sm:space-x-6',
-        layout === 'vertical' && imagePosition === 'left' ? '' : '-sm:space-x-6'
-      )}
-    >
+    <div className={cn(classes)}>
       <div className={cn(layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2')}>
         {image && (
           <Media
@@ -87,7 +76,12 @@ export const Tertiary: FC<TertiaryProps> = ({
           />
         )}
       </div>
-      <Text />
+      <div className={cn('mt-4 sm:mt-0', layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6')}>
+        <div>
+          <h2 className="fontStyle-2xl mb-2 break-words block w-full">{title}</h2>
+          <p className="fontStyle-base break-words" dangerouslySetInnerHTML={{__html: body}}></p>
+        </div>
+      </div>
     </div>
   )
 }

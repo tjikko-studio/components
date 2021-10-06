@@ -56,7 +56,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
   const border = 'border-b border-gray-600 last:border-b-0'
 
   return (
-    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'sp_ace-y-12'])}>
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4'])}>
       {logo ? (
         <section className={`flex items-center h-16 ${border}`}>
           <Media media={logo} />
@@ -112,7 +112,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                               aria-label={label}
                                             >
                                               {label && <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>}
-                                              {content.map(({label: innerLabel, link: innerLink}) => {
+                                              {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                 return (
                                                   <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
                                                     {innerLabel}
