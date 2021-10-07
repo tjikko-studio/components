@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {Button} from '../Button'
-import {ImageProps, Media} from '../parts/Media'
+import {ImageProps} from '../parts/Media'
 import {ListNav} from './ListNav'
 import {NavItem} from './NavItem'
 
@@ -30,13 +30,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
    */
-  // menuData: MenuItemType[]
   menuData: NavColumns[]
 
   /**
    *  logo url to show
    */
-  logo?: ImageProps | null
+  menuLogo?: ImageProps
 
   /**
    * language list
@@ -64,13 +63,14 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  logo,
+  menuLogo,
   menuData = [],
   styles = 'opaque',
   className,
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
+  console.log(menuLogo)
   /*
    *Desktop Nav
    */
@@ -92,7 +92,15 @@ export const SiteNav: FC<SiteNavProps> = ({
                 className
               ])}
             >
-              <div className="flex-auto">{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+              <div className="flex-auto">
+                {menuLogo ? (
+                  <img
+                    src={menuLogo.url}
+                    alt={menuLogo.content && menuLogo.content.alt ? menuLogo.content.alt : menuLogo.alt}
+                    className="h-3 lg:h-4 w-auto"
+                  />
+                ) : null}
+              </div>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -170,7 +178,15 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
         <div className="flex justify-between items-center h-16">
-          <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+          <div>
+            {menuLogo ? (
+              <img
+                src={menuLogo.url}
+                alt={menuLogo.content && menuLogo.content.alt ? menuLogo.content.alt : menuLogo.alt}
+                className="h-3 lg:h-4 w-auto"
+              />
+            ) : null}
+          </div>
           <div>{openMenuText}</div>
         </div>
         {menuData.map(({columns, id}) => {

@@ -3,7 +3,6 @@ import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
-import {ImageProps, Media} from '../parts/Media'
 import {NavItem} from './NavItem'
 
 import {MenuItemType, MenuType} from '../../shared/types'
@@ -39,11 +38,6 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   menuData: NavColumns[]
 
   /**
-   *  logo url to show
-   */
-  logo?: ImageProps | null
-
-  /**
    * language list
    */
   locales?: LocalesType
@@ -52,28 +46,24 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) => {
-  const border = 'border-b border-gray-600 last:border-b-0'
+export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
+  const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
-    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4'])}>
-      {logo ? (
-        <section className={`flex items-center h-16 ${border}`}>
-          <Media media={logo} />
-        </section>
-      ) : null}
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8'])}>
       {menuData.map(({id, columns, attrs}) => {
         return (
           <section
             key={id || JSON.stringify(columns)}
+            // eslint-disable-next-line prettier/prettier
             className={cn([
               'grid',
               'grid-flow-row',
               'lg:grid-cols-12',
               'gap-x-4',
-              'mt-12',
+              'pt-12',
               attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
-              'justify-items-center'
+              border
             ])}
           >
             {columns.length &&
@@ -171,6 +161,18 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                           }
                                           console.error('unrecognized dataSource', dataSource, typeof dataSource)
                                           return null
+                                        case 'NavigationLogo':
+                                          const image = innerContent.image
+                                          console.log(innerContent)
+                                          return (
+                                            <div className="">
+                                              <img
+                                                src={image.url}
+                                                alt={image.content && image.content.alt ? image.content.alt : image.alt}
+                                                className={'h-8 w-auto'}
+                                              />
+                                            </div>
+                                          )
                                         default:
                                           console.error('Unrecognized footer type', type)
                                           return null
