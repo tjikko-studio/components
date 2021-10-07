@@ -49,34 +49,32 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   type === 'header' && linkClasses.push('cursor-default')
   switch (type) {
     case 'special':
-      wrapperClasses.push(...['fontStyle-base text-gray-100'])
+      linkClasses.push(...['fontStyle-base text-gray-100'])
       if (isActive) {
-        wrapperClasses.push('text-primary-300 dark:text-primary-300')
+        linkClasses.push('text-primary-300 dark:text-primary-300')
       } else {
-        wrapperClasses.push(...['hover:text-primary-300', 'dark:text-gray-100', 'dark:hover:text-primary-300'])
+        linkClasses.push(...['hover:text-primary-300', 'dark:text-gray-100', 'dark:hover:text-primary-300'])
       }
 
       break
     case 'header':
-      wrapperClasses.push(...['fontStyle-sm', 'uppercase', 'strong', 'text-gray-800', 'dark:text-gray-100'])
-      linkClasses.push(...['py-2.5'])
+      linkClasses.push(...['fontStyle-sm', 'uppercase', 'strong', 'text-gray-800', 'dark:text-gray-100', 'py-2.5'])
       break
     case 'button':
-      wrapperClasses.push(...[padding && 'py-3.5', 'fontStyle-xs uppercase strong'])
+      linkClasses.push(...[padding && 'py-3.5', 'fontStyle-xs uppercase strong'])
       if (isActive) {
-        wrapperClasses.push('text-primary-700 dark:text-primary-100')
+        linkClasses.push('text-primary-700 dark:text-primary-100')
       } else {
-        wrapperClasses.push(...['text-primary-600', 'hover:text-primary-700', 'dark:text-primary-300', 'dark:hover:text-primary-100'])
+        linkClasses.push(...['text-primary-600', 'hover:text-primary-700', 'dark:text-primary-300', 'dark:hover:text-primary-100'])
       }
       break
     case 'default':
     default:
-      wrapperClasses.push(...['fontStyle-sm'])
-      linkClasses.push(...[padding && 'py-2.5'])
+      linkClasses.push(...['fontStyle-sm', padding && 'py-2.5'])
       if (isActive) {
-        wrapperClasses.push('text-primary-600 dark:text-primary-300')
+        linkClasses.push('text-primary-600 dark:text-primary-300')
       } else {
-        wrapperClasses.push(...['hover:text-primary-600', 'dark:text-gray-100', 'dark:hover:text-primary-300'])
+        linkClasses.push(...['hover:text-primary-600', 'dark:text-gray-100', 'dark:hover:text-primary-300'])
       }
       break
   }
@@ -87,7 +85,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
           {label}
         </a>
       ) : (
-        <span className={cn(linkClasses)}>{label}</span>
+        <h3 className={cn(linkClasses)}>{label}</h3>
       )}
       {children ? children : ''}
     </div>

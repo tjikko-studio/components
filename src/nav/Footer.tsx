@@ -111,7 +111,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                               role={'navigation'}
                                               aria-label={label}
                                             >
-                                              {label && <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>}
+                                              {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                               {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                 return (
                                                   <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
