@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
+import {ImageProps, Media} from '../parts/Media'
 import {NavItem} from './NavItem'
 
 import {MenuItemType, MenuType} from '../../shared/types'
@@ -162,14 +163,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                           console.error('unrecognized dataSource', dataSource, typeof dataSource)
                                           return null
                                         case 'NavigationLogo':
-                                          const image = innerContent.image
                                           return (
                                             <div className="">
-                                              <img
-                                                src={image.url}
-                                                alt={image.content && image.content.alt ? image.content.alt : image.alt}
-                                                className={'h-8 w-auto'}
-                                              />
+                                              <Media media={innerContent.image} className="h-8 w-auto" />
                                             </div>
                                           )
                                         default:

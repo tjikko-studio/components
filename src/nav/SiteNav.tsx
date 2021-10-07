@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {Button} from '../Button'
-import {ImageProps} from '../parts/Media'
+import {ImageProps, Media} from '../parts/Media'
 import {ListNav} from './ListNav'
 import {NavItem} from './NavItem'
 
@@ -91,15 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 className
               ])}
             >
-              <div className="flex-auto">
-                {menuLogo ? (
-                  <img
-                    src={menuLogo.url}
-                    alt={menuLogo.content && menuLogo.content.alt ? menuLogo.content.alt : menuLogo.alt}
-                    className="h-3 lg:h-4 w-auto"
-                  />
-                ) : null}
-              </div>
+              <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -177,15 +169,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
         <div className="flex justify-between items-center h-16">
-          <div>
-            {menuLogo ? (
-              <img
-                src={menuLogo.url}
-                alt={menuLogo.content && menuLogo.content.alt ? menuLogo.content.alt : menuLogo.alt}
-                className="h-3 lg:h-4 w-auto"
-              />
-            ) : null}
-          </div>
+          <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
           <div>{openMenuText}</div>
         </div>
         {menuData.map(({columns, id}) => {
