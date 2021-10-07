@@ -74,7 +74,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
-  const [mouseClick, setMouseClick] = useState(false)
+  const [menuOpened, setmenuOpened] = useState(false)
   /*
    *Desktop Nav
    */
@@ -172,16 +172,16 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', mouseClick && 'pb-4'])}>
+      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
           <button 
             onClick={() => {
-              setMouseClick(!mouseClick)
+              setmenuOpened(!menuOpened)
             }}
           >
-            <MenuIcon className={`w-auto h-5 ${mouseClick && 'hidden'}`} />
-            <CloseIcon className={`w-auto h-5 ${!mouseClick && 'hidden'}`} />
+            <MenuIcon className={`w-auto h-5 ${menuOpened && 'hidden'}`} />
+            <CloseIcon className={`w-auto h-5 ${!menuOpened && 'hidden'}`} />
           </button>
         </div>
         {menuData.map(({columns, id}) => {
@@ -200,7 +200,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           return (
             <section
               key={id || JSON.stringify(mobileNavContent)}
-              className={cn('flex flex-col space-y-6', border, dividerMd, !mouseClick && 'hidden')}
+              className={cn('flex flex-col space-y-6', border, dividerMd, !menuOpened && 'hidden')}
             >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
