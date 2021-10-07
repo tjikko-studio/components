@@ -34,7 +34,7 @@ export interface MenuType {
   label: string
   link?: string
   content: MenuItem[]
-  image: ImageProps
+  image?: ImageProps
 }
 
 export interface MenuItemType {

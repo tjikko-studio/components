@@ -70,7 +70,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
-  console.log(menuLogo)
   /*
    *Desktop Nav
    */

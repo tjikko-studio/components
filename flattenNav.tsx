@@ -91,7 +91,7 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
     deeply(mapValues)(obj, (val: any) => {
       let final = val
 
-      if (isPlainObject(final) && 'type' in final && 'id' in final && final.content && final.content.content) {
+      if (isPlainObject(final) && 'type' in final && 'id' in final && final?.content?.content) {
         final = flattenContent(final, 'content')
       }
       if (isPlainObject(final) && 'location' in final) {

@@ -163,7 +163,6 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                           return null
                                         case 'NavigationLogo':
                                           const image = innerContent.image
-                                          console.log(innerContent)
                                           return (
                                             <div className="">
                                               <img
