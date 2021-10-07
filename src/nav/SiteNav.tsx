@@ -1,5 +1,8 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
+
+import CloseIcon from '/assets/icons/close-line.svg'
+import MenuIcon from '/assets/icons/menu-line.svg'
 
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
@@ -71,6 +74,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Open main menu'
 }) => {
+  const [mouseClick, setMouseClick] = useState(false)
   /*
    *Desktop Nav
    */
@@ -168,10 +172,17 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
+      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', mouseClick && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
-          <div>{openMenuText}</div>
+          <button 
+            onClick={() => {
+              setMouseClick(!mouseClick)
+            }}
+          >
+            <MenuIcon className={`w-auto h-5 ${mouseClick && 'hidden'}`} />
+            <CloseIcon className={`w-auto h-5 ${!mouseClick && 'hidden'}`} />
+          </button>
         </div>
         {menuData.map(({columns, id}) => {
           let mobileNavContent = [...columns]
@@ -187,7 +198,10 @@ export const SiteNav: FC<SiteNavProps> = ({
             })
           }
           return (
-            <section key={id || JSON.stringify(mobileNavContent)} className={cn('flex flex-col space-y-6', border, dividerMd)}>
+            <section
+              key={id || JSON.stringify(mobileNavContent)}
+              className={cn('flex flex-col space-y-6', border, dividerMd, !mouseClick && 'hidden')}
+            >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
                   const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
