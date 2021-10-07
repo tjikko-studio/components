@@ -245,8 +245,10 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   />
                                 )
                               }
+                              console.error('unrecognized dataSource in SiteNav', dataSource, typeof dataSource)
                               return null
                             default:
+                              console.error('unrecognized content type in SiteNav', type)
                               return null
                           }
                         })}

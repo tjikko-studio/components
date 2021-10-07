@@ -158,8 +158,8 @@ Desktop.args = {
               link: ''
             },
             {
-              dataSource: 'language',
-              type: 'NavigationDynamicList'
+              type: 'NavigationDynamicList',
+              dataSource: 'language'
             }
           ],
           mobile_position: 'start',

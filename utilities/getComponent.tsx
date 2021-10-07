@@ -117,7 +117,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
     try {
       return <Component {...getProps(component.type, component, extraProps, templatesContent)} />
     } catch (ex) {
-      console.error('Unrecognized component type', component)
+      console.error('Unrecognized component type in getComponents', component)
       console.error(ex)
       return null
     }

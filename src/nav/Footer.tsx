@@ -169,10 +169,10 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                               />
                                             )
                                           }
-                                          console.error('unrecognized dataSource', dataSource, typeof dataSource)
+                                          console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                           return null
                                         default:
-                                          console.error('Unrecognized footer type', type)
+                                          console.error('Unrecognized content type in footer', type)
                                           return null
                                       }
                                     })()}
