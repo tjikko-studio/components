@@ -80,12 +80,11 @@ export const Hero: FC<HeroProps> = ({
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark')}
-      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
+      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
     >
       {bgHasVideo && (
         <video
           id="heroVideo"
-          poster={bgHasImage && bgImage ? bgImage.url : ''}
           autoPlay
           muted
           loop
