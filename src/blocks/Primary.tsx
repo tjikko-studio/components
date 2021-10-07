@@ -66,17 +66,6 @@ export const Primary: FC<PrimaryProps> = ({
   className = ''
 }) => {
   const finalLayout = layout || 'default'
-  const Text = () => {
-    return (
-      <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-left', className)}>
-        <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
-          <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
-          <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
-          {Object.keys(buttons).length >= 1 && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />}
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div
@@ -96,12 +85,18 @@ export const Primary: FC<PrimaryProps> = ({
                 muted={muted}
                 controls={controls}
                 loop={loop}
-                alt={title}
+                alt={image.url ? image.alt || title : ''}
                 className={'rounded-lg shadow-xl w-full h-full'}
               />
             )}
           </div>
-          <Text />
+          <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-left', className)}>
+            <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
+              <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
+              <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
+              {Object.keys(buttons).length && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />}
+            </div>
+          </div>
         </>
       )}
     </div>
