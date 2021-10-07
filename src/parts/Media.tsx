@@ -24,11 +24,10 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type ImageProps = MediaProps
-
 export const MediaImage: FC<ImageProps> = ({type, id, link, alt, url, extension, dimensions = {}, content = {}, className}) => {
   return (
     <figure role="group">
-      <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />
+      {url && <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />}
       {content && content.caption && <figcaption>{content.caption}</figcaption>}
     </figure>
   )
