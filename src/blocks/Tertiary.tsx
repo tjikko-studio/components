@@ -78,8 +78,8 @@ export const Tertiary: FC<TertiaryProps> = ({
       </div>
       <div className={cn('mt-4 sm:mt-0', layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6')}>
         <div>
-          <h2 className="fontStyle-2xl mb-2 break-words block w-full">{title}</h2>
-          <p className="fontStyle-base break-words" dangerouslySetInnerHTML={{__html: body}}></p>
+          <h2 className="fontStyle-2xl break-words block w-full">{title}</h2>
+          <p className="fontStyle-base break-words mt-2" dangerouslySetInnerHTML={{__html: body}}></p>
         </div>
       </div>
     </div>

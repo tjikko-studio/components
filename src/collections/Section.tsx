@@ -130,7 +130,7 @@ export const Section: FC<SectionProps> = ({
             content={content}
             contentPosition={contentPosition}
             componentsExtraProps={columnComponentExtraProps}
-            columnClasses="flex flex-col space-y-8 h-full"
+            columnClasses="flex flex-col space-y-6 h-full"
             templatesContent={templatesContent}
           />
         ) : (
