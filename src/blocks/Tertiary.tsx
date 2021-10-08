@@ -58,8 +58,8 @@ export const Tertiary: FC<TertiaryProps> = ({
     'text-gray-900',
     'dark:text-gray-50',
     {'sm:flex': layout !== 'vertical'},
-    {'sm:space-x-6': layout === 'vertical' && imagePosition === 'right'},
-    {'-sm:space-x-6': layout === 'vertical' && imagePosition === 'left'}
+    {'sm:space-x-6': layout !== 'vertical' && imagePosition === 'right'},
+    {'-sm:space-x-6': layout !== 'vertical' && imagePosition === 'left'}
   ]
   return (
     <div className={cn(classes)}>
