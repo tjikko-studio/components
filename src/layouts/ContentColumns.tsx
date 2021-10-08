@@ -50,6 +50,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   columnStyles?: CSSProperties
 
   templatesContent?: Record<string, ColumnProps>
+
+  className?: string
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
@@ -60,7 +62,8 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
-  templatesContent = {}
+  templatesContent = {},
+  className
 }) => {
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
@@ -75,7 +78,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={cn('grid sm:grid-cols-12', contentSectionClasses)}
+                className={cn('grid sm:grid-cols-12', contentSectionClasses, className)}
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width, blocks, id: columnId}) => {

@@ -24,6 +24,9 @@ export interface NavColumn {
 export interface NavColumns {
   columns: NavColumn[]
   id?: string
+  attrs: {
+    classname?: string
+  }
 }
 
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
@@ -76,7 +79,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   const DesktopNav = () => {
     return (
       <div className="hidden lg:block">
-        {menuData.map(({columns, id}) => {
+        {menuData.map(({columns, id, attrs}) => {
           return (
             <section
               key={id || JSON.stringify(columns)}
@@ -88,7 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 'h-24',
                 'px-10',
                 styles === 'opaque' && 'bg-gray-900 text-gray-50',
-                className
+                attrs.classname
               ])}
             >
               <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
@@ -172,7 +175,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
           <div>{openMenuText}</div>
         </div>
-        {menuData.map(({columns, id}) => {
+        {menuData.map(({columns, id, attrs}) => {
           let mobileNavContent = [...columns]
           if (mobileNavContent.length) {
             mobileNavContent.forEach(({mobile_position}, idx) => {
@@ -186,7 +189,10 @@ export const SiteNav: FC<SiteNavProps> = ({
             })
           }
           return (
-            <section key={id || JSON.stringify(mobileNavContent)} className={cn('flex flex-col space-y-6', border, dividerMd)}>
+            <section
+              key={id || JSON.stringify(mobileNavContent)}
+              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.classname)}
+            >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
                   const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
@@ -262,7 +268,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   }
 
   return (
-    <nav>
+    <nav className={className}>
       {menuData.length >= 1 && (
         <>
           <DesktopNav />
