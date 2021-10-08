@@ -28,7 +28,7 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {
+  attrs?: {
     no_gap: string
     classname?: string
   }
@@ -68,8 +68,8 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
               'lg:grid-cols-12',
               'gap-x-4',
               'pt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
-              attrs.classname,
+              attrs?.no_gap ? 'gap-y-4' : 'gap-y-12',
+              attrs?.classname,
               border
             ])}
           >

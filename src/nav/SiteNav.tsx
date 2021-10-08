@@ -24,7 +24,7 @@ export interface NavColumn {
 export interface NavColumns {
   columns: NavColumn[]
   id?: string
-  attrs: {
+  attrs?: {
     classname?: string
   }
 }
@@ -91,7 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 'h-24',
                 'px-10',
                 styles === 'opaque' && 'bg-gray-900 text-gray-50',
-                attrs.classname
+                attrs?.classname
               ])}
             >
               <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
