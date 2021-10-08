@@ -27,6 +27,8 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   content?: []
   templatesContent?: Record<string, ColumnProps>
+
+  className?: string
 }
 
 const getHorPos = (value: string) => {
@@ -68,7 +70,8 @@ export const Hero: FC<HeroProps> = ({
   contentPosition = 'bottom|left',
   heroHeight = '90vh',
   content = [],
-  templatesContent = {}
+  templatesContent = {},
+  className
 }) => {
   const finalHeroHeight = heroHeight || '90vh'
   const toComponent = getComponent(templatesContent)
@@ -79,7 +82,7 @@ export const Hero: FC<HeroProps> = ({
 
   return (
     <header
-      className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark')}
+      className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
       style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
     >
       {bgHasVideo && (
