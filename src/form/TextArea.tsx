@@ -120,13 +120,17 @@ export const TextArea: FC<TextAreaProps> = ({
     <>
       {label && (
         <div
-          className={cn('fontStyle-sm strong flex flex-row dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600', 'mb-2')}
+          className={cn([
+            'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
+            isDisabled && 'text-gray-500 dark:text-gray-600',
+            'mb-2'
+          ])}
           style={{gridArea: `label-${columnIndex}`}}
         >
-          <p>{label}</p>
-          {isError && <ErrorIcon className="text-red-600 dark:text-red-400 w-4 h-4" viewBox="0 0 24 24" />}
-          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400 w-4 h-4" viewBox="0 0 24 24" />}
-          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400 w-4 h-4" viewBox="0 0 24 24" />}
+          <p className="w-full">{label}</p>
+          {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
+          {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
+          {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
         </div>
       )}
       <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>

@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
-  type: string
+  type: 'image' | 'video'
   id: string
   link: string
   url: string
@@ -24,11 +24,10 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type ImageProps = MediaProps
-
 export const MediaImage: FC<ImageProps> = ({type, id, link, alt, url, extension, dimensions = {}, content = {}, className}) => {
   return (
     <figure role="group">
-      <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />
+      {url && <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />}
       {content && content.caption && <figcaption>{content.caption}</figcaption>}
     </figure>
   )
@@ -63,14 +62,9 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Media: FC<GenericMediaProps> = ({media, autoplay = true, muted = true, controls = false, loop = false, alt, className}) => {
-  switch (media.type) {
-    case 'image':
-      return <MediaImage key={media.url} {...media} alt={alt} className={className} />
-    case 'video':
-      return (
-        <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
-      )
-    default:
-      return null
-  }
+  return media.type === 'video' ? (
+    <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+  ) : (
+    <MediaImage key={media.url} {...media} alt={alt || media.alt} className={className} />
+  )
 }

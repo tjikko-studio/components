@@ -125,7 +125,7 @@ export const Section: FC<SectionProps> = ({
   return (
     <div className={cn('overflow-hidden', theme)} style={{backgroundColor: background}}>
       <div className={cn(classes)}>
-        {content && (
+        {content.length >= 1 ? (
           <ContentColumns
             content={content}
             contentPosition={contentPosition}
@@ -133,6 +133,8 @@ export const Section: FC<SectionProps> = ({
             columnClasses="flex flex-col space-y-8 h-full"
             templatesContent={templatesContent}
           />
+        ) : (
+          <div>No content yet</div>
         )}
       </div>
     </div>
