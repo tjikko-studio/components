@@ -93,7 +93,9 @@ export const Primary: FC<PrimaryProps> = ({
             <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
               <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
               <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
-              {Object.keys(buttons).length && <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />}
+              {Object.keys(buttons).length ? (
+                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />
+              ) : null}
             </div>
           </div>
         </>
