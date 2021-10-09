@@ -94,6 +94,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                     return (
                                       <div key={contentId || JSON.stringify(innerContent)}>
                                         {(() => {
+                                          console.log('====', type)
                                           switch (type) {
                                             case 'NavigationDropdownChild':
                                               return (
@@ -102,9 +103,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                                   role={'navigation'}
                                                   aria-label={label}
                                                 >
-                                                  {label && (
-                                                    <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>
-                                                  )}
+                                                  {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                                   {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                     return (
                                                       <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
@@ -165,16 +164,17 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                               console.error('unrecognized dataSource', dataSource, typeof dataSource)
                                               return null
                                             case 'NavigationLogo':
-                                              if (innerContent.image) {
+                                              console.log('====', innerContent)
+                                              if (innerContent[0]?.image) {
                                                 return (
-                                                  <div className="">
-                                                    <Media media={innerContent.image} className="h-8 w-auto" />
+                                                  <div>
+                                                    <Media media={innerContent[0]?.image} className="h-8 w-auto" />
                                                   </div>
                                                 )
                                               }
                                               return <div>Add business logo here</div>
                                             default:
-                                              console.error('Unrecognized footer type', type)
+                                              console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                               return null
                                           }
                                         })()}

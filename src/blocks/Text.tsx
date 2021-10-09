@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * text to show as question
+   * HTML to use as container
    */
   tag?: 'p' | 'pre' | 'span' | 'div'
 
