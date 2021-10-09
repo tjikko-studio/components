@@ -94,7 +94,6 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                     return (
                                       <div key={contentId || JSON.stringify(innerContent)}>
                                         {(() => {
-                                          console.log('====', type)
                                           switch (type) {
                                             case 'NavigationDropdownChild':
                                               return (
@@ -164,7 +163,6 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                               console.error('unrecognized dataSource', dataSource, typeof dataSource)
                                               return null
                                             case 'NavigationLogo':
-                                              console.log('====', innerContent)
                                               if (innerContent[0]?.image) {
                                                 return (
                                                   <div>
