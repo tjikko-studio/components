@@ -30,13 +30,12 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
    */
-  // menuData: MenuItemType[]
   menuData: NavColumns[]
 
   /**
    *  logo url to show
    */
-  logo?: ImageProps | null
+  menuLogo?: ImageProps
 
   /**
    * language list
@@ -64,7 +63,7 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  logo,
+  menuLogo,
   menuData = [],
   styles = 'opaque',
   className,
@@ -92,7 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 className
               ])}
             >
-              <div className="flex-auto">{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+              <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -170,7 +169,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
         <div className="flex justify-between items-center h-16">
-          <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
+          <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
           <div>{openMenuText}</div>
         </div>
         {menuData.map(({columns, id}) => {
@@ -245,8 +244,10 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   />
                                 )
                               }
+                              console.error('unrecognized dataSource in SiteNav', dataSource, typeof dataSource)
                               return null
                             default:
+                              console.error('unrecognized content type in SiteNav', type)
                               return null
                           }
                         })}

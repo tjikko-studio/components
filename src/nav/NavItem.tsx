@@ -95,13 +95,13 @@ export const NavItem: FC<NavItemProps> = ({
           mouseIn && popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
       >
-        {listNavContent && (
+        {listNavContent.length && (
           <span className="ml-2.5">
             <ArrowDown width="18" height="18" />
           </span>
         )}
       </PopUpNavItem>
-      {mouseIn && mouseClick && listNavContent && (
+      {mouseIn && mouseClick && listNavContent.length ? (
         <div
           className={cn(
             'absolute w-max',
@@ -111,7 +111,7 @@ export const NavItem: FC<NavItemProps> = ({
         >
           <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

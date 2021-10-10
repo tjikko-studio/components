@@ -12,7 +12,14 @@ module.exports = {
     config.module.rules.push({
       test: /\.svg$/,
       enforce: 'pre',
-      loader: require.resolve('react-svg-loader')
+      use: {
+        loader: require.resolve('react-svg-loader'),
+        options: {
+          svgo: {
+            plugins: [{removeViewBox: false}]
+          }
+        }
+      }
     })
     return config
   }
