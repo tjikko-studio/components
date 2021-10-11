@@ -71,7 +71,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id}) => {
-            const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
+            const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm:mb-8' : ''
             return (
               <section
                 key={id || JSON.stringify(columns)}
