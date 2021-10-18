@@ -86,7 +86,6 @@ export const Secondary: FC<SecondaryProps> = ({
                 muted={muted}
                 controls={controls}
                 loop={loop}
-                alt={title}
                 className={'rounded-lg shadow-xl w-full h-full'}
               />
             )}

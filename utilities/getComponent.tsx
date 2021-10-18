@@ -3,6 +3,7 @@ import React, {FC} from 'react'
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {FAQ} from '../src/blocks/FAQ'
+import {Gallery} from '../src/blocks/Gallery'
 import {Heading} from '../src/blocks/Heading'
 import {Icon} from '../src/blocks/Icon'
 import {Primary} from '../src/blocks/Primary'
@@ -69,7 +70,7 @@ const propsByType: Record<string, GetPropsFn> = {
   Text: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      className: 'fontStyle-lg',
+      className: 'fontStyle-base',
       tag: 'div'
     }
   }
@@ -105,6 +106,7 @@ const ValidComponents: Record<string, FC> = {
   Primary,
   Secondary,
   Section,
+  Gallery,
   Tertiary,
   Testimonial,
   TextGroup,

@@ -19,16 +19,24 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     license?: string
     link?: string
   }
-  alt?: string
   className: string
+  gallery?: boolean
 }
 
 export type ImageProps = MediaProps
-export const MediaImage: FC<ImageProps> = ({type, id, link, alt, url, extension, dimensions = {}, content = {}, className}) => {
+export const MediaImage: FC<ImageProps> = ({type, id, link, url, extension, dimensions = {}, content = {}, className, gallery}) => {
   return (
-    <figure role="group">
-      {url && <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />}
-      {content && content.caption && <figcaption>{content.caption}</figcaption>}
+    <figure key={id} role="group" className={gallery && className}>
+      {url && <img src={url} alt={content && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
+      {content && content.caption && (
+        <>
+          {gallery && <div className="absolute h-1/2 bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
+          <figcaption
+            className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-sm text-gray-50`}
+            dangerouslySetInnerHTML={{__html: content.caption}}
+          />
+        </>
+      )}
     </figure>
   )
 }
@@ -40,11 +48,23 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({url, extension, autoplay, muted, controls, loop, className}) => {
+export const MediaVideo: FC<VideoProps> = ({type, id, url, content = {}, extension, autoplay, muted, controls, loop, className, gallery}) => {
   return (
-    <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={className}>
-      <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-    </video>
+    <figure key={id} role="group" className={gallery && className}>
+      <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>
+        <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
+        <meta itemProp="description" content={content && content.alt && content.alt}></meta>
+      </video>
+      {content && content.caption && (
+        <>
+          {gallery && <div className="absolute h-1/2 bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
+          <figcaption
+            className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-sm text-gray-50`}
+            dangerouslySetInnerHTML={{__html: content.caption}}
+          />
+        </>
+      )}
+    </figure>
   )
 }
 
@@ -57,14 +77,25 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-  alt?: string
   className?: string
+  gallery?: boolean
 }
 
-export const Media: FC<GenericMediaProps> = ({media, autoplay = true, muted = true, controls = false, loop = false, alt, className}) => {
+export const Media: FC<GenericMediaProps> = ({
+  media,
+  autoplay = true,
+  muted = true,
+  controls = false,
+  loop = false,
+  className,
+  gallery
+}) => {
   return media.type === 'video' ? (
-    <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
+    <MediaVideo key={media.url} {...media} autoplay={autoplay} muted={muted} controls={controls} loop={loop} gallery={gallery} />
   ) : (
-    <MediaImage key={media.url} {...media} alt={alt || media.alt} className={className} />
+    <MediaImage key={media.url} {...media} className={className} gallery={gallery} />
   )
+}
+function cn(arg0: string[]): string {
+  throw new Error('Function not implemented.')
 }

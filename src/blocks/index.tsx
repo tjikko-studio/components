@@ -3,6 +3,7 @@ import {ButtonsGroup} from './ButtonsGroup'
 import {ClientsLogos} from './ClientsLogos'
 import {FAQ} from './FAQ'
 import {FeaturesShow} from './FeaturesShow'
+import {Gallery} from './Gallery'
 import {Heading} from './Heading'
 import {Icon} from './Icon'
 import {Primary} from './Primary'
@@ -19,6 +20,7 @@ export default {
   ClientsLogos,
   FAQ,
   FeaturesShow,
+  Gallery,
   Heading,
   Icon,
   Primary,
