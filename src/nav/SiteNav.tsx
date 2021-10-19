@@ -25,7 +25,7 @@ export interface NavColumns {
   columns: NavColumn[]
   id?: string
   attrs?: {
-    classname?: string
+    className?: string
   }
 }
 
@@ -91,7 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 'h-24',
                 'px-10',
                 styles === 'opaque' && 'bg-gray-900 text-gray-50',
-                attrs?.classname
+                attrs?.className
               ])}
             >
               <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
@@ -191,7 +191,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           return (
             <section
               key={id || JSON.stringify(mobileNavContent)}
-              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.classname)}
+              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.className)}
             >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
