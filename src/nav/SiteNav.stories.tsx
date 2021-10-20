@@ -18,7 +18,7 @@ const Template: Story<SiteNavProps> = (args) => {
 export const Desktop = Template.bind({})
 Desktop.args = {
   styles: 'opaque',
-  logo: {
+  menuLogo: {
     type: 'image',
     url: './images/company_logo_placeholder.svg'
   },
@@ -49,7 +49,7 @@ Desktop.args = {
           content: [
             {
               type: 'NavigationDropdown',
-              label: 'Why SmartPixel',
+              label: 'Why Acme',
               content: [
                 {
                   type: 'NavigationDropdownChild',

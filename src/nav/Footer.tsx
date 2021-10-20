@@ -53,6 +53,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
 
   return (
     <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8'])}>
+      {console.log(JSON.stringify(menuData, 0, 2))}
       {menuData.map(({id, columns, attrs}) => {
         return (
           <section

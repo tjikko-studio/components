@@ -18,10 +18,6 @@ const Template: Story<FooterProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  logo: {
-    type: 'image',
-    url: './images/company_logo_placeholder.svg'
-  },
   locales: {
     current: 'En',
     content: [
@@ -49,29 +45,69 @@ Default.args = {
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
+                  content: {
+                    image: {
+                      filename: 'logo-smpx-light.svg',
+                      info: '',
+                      link: './images/company_logo_placeholder.svg',
+                      text: 'logo-smpx-light.svg',
+                      type: 'image',
+                      url: './images/company_logo_placeholder.svg',
+                      uuid: 'logo-smpx-light.svg'
+                    }
+                  },
+                  isHidden: false,
+                  type: 'NavigationLogo'
+                }
+              ],
+              layout: 'vertical',
+              rtl: false
+            }
+          ],
+          width: '1/1'
+        }
+      ]
+    },
+    {
+      attrs: {
+        no_gap: false
+      },
+      columns: [
+        {
+          blocks: [
+            {
+              isHidden: false,
+              type: 'FooterSection',
+              content: [
+                {
+                  isHidden: false,
                   type: 'NavigationDropdownChild',
-                  label: 'Why Smart Pixel',
+                  label: 'Why Acme',
                   content: [
                     {
-                      type: 'default',
-                      label: 'Features',
+                      isHidden: false,
+                      type: 'link',
+                      label: 'The Experience',
                       location: 'internal',
                       link: ''
                     },
                     {
-                      type: 'default',
-                      label: 'Customers Success Stories',
+                      isHidden: false,
+                      type: 'link',
+                      label: 'Art, Tech & Team',
                       location: 'internal',
                       link: ''
                     },
                     {
-                      type: 'default',
-                      label: 'Quality & Reliability',
+                      isHidden: false,
+                      type: 'link',
+                      label: 'Success Stories',
                       location: 'internal',
-                      link: ''
+                      link: '#'
                     }
                   ]
                 }
@@ -85,23 +121,61 @@ Default.args = {
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
+                  isHidden: false,
+                  type: 'NavigationDropdownChild',
+                  label: 'Solutions by Event',
+                  content: [
+                    {
+                      isHidden: false,
+                      type: 'link',
+                      label: 'Sales Gallery',
+                      location: 'internal',
+                      link: '#'
+                    },
+                    {
+                      isHidden: false,
+                      type: 'link',
+                      label: 'Remote',
+                      location: 'internal',
+                      link: '#'
+                    }
+                  ]
+                }
+              ],
+              layout: 'vertical',
+              rtl: false
+            }
+          ],
+          width: '1/4'
+        },
+        {
+          blocks: [
+            {
+              isHidden: false,
+              type: 'FooterSection',
+              content: [
+                {
+                  isHidden: false,
                   type: 'NavigationDropdownChild',
                   label: 'Solutions by Industry',
                   content: [
                     {
-                      type: 'default',
+                      isHidden: false,
+                      type: 'link',
                       label: 'Real Estate',
                       location: 'internal',
-                      link: ''
+                      link: '#'
                     },
                     {
-                      type: 'default',
-                      label: 'Others',
+                      isHidden: false,
+                      type: 'link',
+                      label: 'Other Industries',
                       location: 'internal',
-                      link: ''
+                      link: '#'
                     }
                   ]
                 }
@@ -115,68 +189,38 @@ Default.args = {
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
-                  type: 'NavigationDropdownChild',
-                  label: 'Solutions by Use Case',
-                  content: [
-                    {
-                      type: 'default',
-                      label: 'Sales Office',
-                      location: 'internal',
-                      link: ''
-                    },
-                    {
-                      type: 'default',
-                      label: 'Presentation',
-                      location: 'internal',
-                      link: ''
-                    },
-                    {
-                      type: 'default',
-                      label: 'Remote',
-                      location: 'internal',
-                      link: ''
-                    }
-                  ]
-                }
-              ],
-              layout: 'vertical',
-              rtl: false
-            }
-          ],
-          width: '1/4'
-        },
-        {
-          blocks: [
-            {
-              type: 'FooterSection',
-              content: [
-                {
+                  isHidden: false,
                   type: 'NavigationDropdownChild',
                   label: 'Other Links',
                   content: [
                     {
-                      type: 'default',
+                      isHidden: false,
+                      type: 'link',
                       label: 'Portfolio',
                       location: 'internal',
                       link: ''
                     },
                     {
-                      type: 'default',
+                      isHidden: false,
+                      type: 'link',
                       label: 'Company',
                       location: 'internal',
                       link: ''
                     },
                     {
-                      type: 'default',
+                      isHidden: false,
+                      type: 'link',
                       label: 'Contact us',
                       location: 'internal',
                       link: ''
                     },
                     {
-                      type: 'default',
+                      isHidden: false,
+                      type: 'link',
                       label: 'Career',
                       location: 'internal',
                       link: ''
@@ -194,28 +238,32 @@ Default.args = {
     },
     {
       attrs: {
-        no_gap: true
+        no_gap: false
       },
       columns: [
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: '© 2021',
                   location: 'internal',
                   link: ''
                 },
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'Privacy',
                   location: 'internal',
                   link: ''
                 },
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'Terms',
                   location: 'internal',
                   link: ''
@@ -230,28 +278,33 @@ Default.args = {
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'Facebook',
                   location: 'internal',
                   link: ''
                 },
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'YouTube',
                   location: 'internal',
                   link: ''
                 },
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'Twitter',
                   location: 'internal',
                   link: ''
                 },
                 {
-                  type: 'default',
+                  isHidden: false,
+                  type: 'link',
                   label: 'LinkedIn',
                   location: 'internal',
                   link: ''
@@ -266,14 +319,18 @@ Default.args = {
         {
           blocks: [
             {
+              isHidden: false,
               type: 'FooterSection',
               content: [
                 {
-                  type: 'NavigationDynamicList',
-                  dataSource: 'language'
+                  content: {
+                    data_source: 'languages'
+                  },
+                  isHidden: false,
+                  type: 'NavigationDynamicList'
                 }
               ],
-              layout: 'horizontal',
+              layout: 'vertical',
               rtl: false
             }
           ],
