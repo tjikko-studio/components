@@ -79,11 +79,10 @@ export const Hero: FC<HeroProps> = ({
   const [theme, background] = extractCombo(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
-
   return (
     <header
-      className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
-      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
+      className={cn('overflow-hidden bg-cover relative', theme ? theme : 'dark', className)}
+      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage ? bgImage.url : ''})`}}
     >
       {bgHasVideo && (
         <video
