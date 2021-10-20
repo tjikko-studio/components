@@ -1,3 +1,5 @@
+const { screens } = require('tailwindcss/defaultTheme')
+
 const defaultHeightValues = {
   0: '0px',
   px: '1px',
@@ -99,8 +101,17 @@ const heightValues = {
   ...defaultHeightValues,
   ...newHeightValues
 }
+const widthValues = {
+  'screen-xxs': '375px',
+  'screen-xs': '414px',
+  'screen-sm': '640px',
+  'screen-md': '768px',
+  'screen-lg': '1024px',
+  'screen-xl': '1280px',
+  'screen-2xl': '1536px'
+}
 
-export interface MediaQueryProps {
+/* export interface MediaQueryProps {
   [key: string]: string
 }
 
@@ -127,7 +138,7 @@ const screens: MediaQueryProps = {
  *     const screenSize = screenSizes[key]
  *     return {
  *       ...all,
- *       [key]: {min: screenSize},
+ *       [key]: screenSize}
  *       [`\!${key}`]: {max: screenSize}
  *     }
  *   },
@@ -139,5 +150,16 @@ export default {
   height: heightValues,
   minHeight: heightValues,
   maxHeight: heightValues,
-  screens
+  width: widthValues,
+  minWidth: widthValues,
+  maxWidth: widthValues,
+  screens: {
+    xxs: '375px',
+    xs: '414px',
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px'
+  }
 }
