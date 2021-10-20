@@ -24,7 +24,7 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type ImageProps = MediaProps
-export const MediaImage: FC<ImageProps> = ({type, id, link, url, extension, dimensions = {}, content = {}, className, gallery}) => {
+export const MediaImage: FC<ImageProps> = ({id, link, url, extension, dimensions = {}, content = {}, className, gallery}) => {
   return (
     <figure key={id} role="group" className={gallery && className}>
       {url && <img src={url} alt={content && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
@@ -32,7 +32,7 @@ export const MediaImage: FC<ImageProps> = ({type, id, link, url, extension, dime
         <>
           {gallery && <div className="absolute h-1/2 bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
-            className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-sm text-gray-50`}
+            className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-xs text-gray-50 bg-opacity-80`}
             dangerouslySetInnerHTML={{__html: content.caption}}
           />
         </>
@@ -48,7 +48,7 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({type, id, url, content = {}, extension, autoplay, muted, controls, loop, className, gallery}) => {
+export const MediaVideo: FC<VideoProps> = ({id, url, content = {}, extension, autoplay, muted, controls, loop, className, gallery}) => {
   return (
     <figure key={id} role="group" className={gallery && className}>
       <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>

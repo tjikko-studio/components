@@ -40,10 +40,10 @@ export const Gallery: FC<GalleryProps> = ({images = null, className = '', captio
   switch (images.length) {
     case 2:
     case 4:
-      gridLayout = 'grid-cols-2'
+      gridLayout = 'xs:grid-cols-2'
       break
     case 3:
-      gridLayout = 'grid-cols-3'
+      gridLayout = 'xs:grid-cols-3'
       break
     default:
       break
