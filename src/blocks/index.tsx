@@ -1,6 +1,7 @@
 import {Breadcrumb} from './Breadcrumb'
 import {ButtonsGroup} from './ButtonsGroup'
 import {ClientsLogos} from './ClientsLogos'
+import {Divider} from './Divider'
 import {FAQ} from './FAQ'
 import {FeaturesShow} from './FeaturesShow'
 import {Gallery} from './Gallery'
@@ -18,6 +19,7 @@ export default {
   Breadcrumb,
   ButtonsGroup,
   ClientsLogos,
+  Divider,
   FAQ,
   FeaturesShow,
   Gallery,

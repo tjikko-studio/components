@@ -2,6 +2,7 @@ import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
+import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
 import {Gallery} from '../src/blocks/Gallery'
 import {Heading} from '../src/blocks/Heading'
@@ -97,6 +98,7 @@ function getProps(
 const ValidComponents: Record<string, FC> = {
   ButtonsGroup,
   ClientsLogos,
+  Divider,
   FAQ,
   Form,
   Heading,
