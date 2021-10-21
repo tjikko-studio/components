@@ -25,6 +25,10 @@ Default.args = {
         label: [],
         content: [
           {
+            label: 'En',
+            link: '/en'
+          },
+          {
             label: 'De',
             link: '/de'
           },
