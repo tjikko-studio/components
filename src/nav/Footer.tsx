@@ -166,13 +166,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                         case 'NavigationLogo':
                                           return (
                                             <div>
-                                              {innerContent.image ? (
-                                                <div>
-                                                  <Media media={innerContent.image} className="h-8 w-auto" />
-                                                </div>
-                                              ) : (
-                                                <div>Missing logo</div>
-                                              )}
+                                              {innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null}
                                             </div>
                                           )
                                         default:
