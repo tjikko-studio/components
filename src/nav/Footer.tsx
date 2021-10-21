@@ -29,7 +29,6 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {no_gap: string}
   columns: NavColumn[]
 }
 
@@ -64,7 +63,6 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
               'lg:grid-cols-12',
               'gap-x-4',
               'pt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
               border
             ])}
           >

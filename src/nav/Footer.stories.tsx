@@ -38,9 +38,6 @@ Default.args = {
   },
   menuData: [
     {
-      attrs: {
-        no_gap: false
-      },
       columns: [
         {
           blocks: [
@@ -73,9 +70,6 @@ Default.args = {
       ]
     },
     {
-      attrs: {
-        no_gap: false
-      },
       columns: [
         {
           blocks: [
@@ -237,9 +231,6 @@ Default.args = {
       ]
     },
     {
-      attrs: {
-        no_gap: false
-      },
       columns: [
         {
           blocks: [
