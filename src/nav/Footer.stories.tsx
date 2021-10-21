@@ -81,19 +81,16 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'The Experience',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'link',
                       label: 'Art, Tech & Team',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'link',
                       label: 'Success Stories',
-                      location: 'internal',
                       link: '#'
                     }
                   ]
@@ -117,13 +114,11 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Sales Gallery',
-                      location: 'internal',
                       link: '#'
                     },
                     {
                       type: 'link',
                       label: 'Remote',
-                      location: 'internal',
                       link: '#'
                     }
                   ]
@@ -147,13 +142,11 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Real Estate',
-                      location: 'internal',
                       link: '#'
                     },
                     {
                       type: 'link',
                       label: 'Other Industries',
-                      location: 'internal',
                       link: '#'
                     }
                   ]
@@ -177,25 +170,21 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Portfolio',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'link',
                       label: 'Company',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'link',
                       label: 'Contact us',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'link',
                       label: 'Career',
-                      location: 'internal',
                       link: ''
                     }
                   ]
@@ -219,19 +208,16 @@ Default.args = {
                 {
                   type: 'link',
                   label: '© 2021',
-                  location: 'internal',
                   link: ''
                 },
                 {
                   type: 'link',
                   label: 'Privacy',
-                  location: 'internal',
                   link: ''
                 },
                 {
                   type: 'link',
                   label: 'Terms',
-                  location: 'internal',
                   link: ''
                 }
               ],
@@ -249,25 +235,21 @@ Default.args = {
                 {
                   type: 'link',
                   label: 'Facebook',
-                  location: 'internal',
                   link: ''
                 },
                 {
                   type: 'link',
                   label: 'YouTube',
-                  location: 'internal',
                   link: ''
                 },
                 {
                   type: 'link',
                   label: 'Twitter',
-                  location: 'internal',
                   link: ''
                 },
                 {
                   type: 'link',
                   label: 'LinkedIn',
-                  location: 'internal',
                   link: ''
                 }
               ],

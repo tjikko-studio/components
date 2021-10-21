@@ -58,25 +58,21 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Features',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'default',
                       label: 'Customer Success Stories',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'default',
                       label: 'Quality and reliability',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'button',
                       label: 'Contact Sales team',
-                      location: 'internal',
                       link: ''
                     }
                   ]
@@ -94,13 +90,11 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Real estate',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'default',
                       label: 'Others',
-                      location: 'internal',
                       link: ''
                     }
                   ]
@@ -112,19 +106,16 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Sales Office',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'default',
                       label: 'Presentation',
-                      location: 'internal',
                       link: ''
                     },
                     {
                       type: 'default',
                       label: 'Remote',
-                      location: 'internal',
                       link: ''
                     }
                   ]
@@ -139,7 +130,6 @@ Desktop.args = {
             {
               type: 'default',
               label: 'Portfolio',
-              location: 'internal',
               link: ''
             }
           ],
@@ -152,7 +142,6 @@ Desktop.args = {
             {
               type: 'button',
               label: 'Free demo',
-              location: 'internal',
               link: ''
             },
             {
