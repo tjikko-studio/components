@@ -59,8 +59,7 @@ Default.args = {
                   type: 'NavigationLogo'
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ]
         }
@@ -95,8 +94,7 @@ Default.args = {
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -123,8 +121,7 @@ Default.args = {
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -151,8 +148,7 @@ Default.args = {
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -189,8 +185,7 @@ Default.args = {
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -220,8 +215,7 @@ Default.args = {
                   link: ''
                 }
               ],
-              layout: 'horizontal',
-              rtl: false
+              layout: 'horizontal'
             }
           ],
           width: '3/12'
@@ -252,8 +246,7 @@ Default.args = {
                   link: ''
                 }
               ],
-              layout: 'horizontal',
-              rtl: false
+              layout: 'horizontal'
             }
           ],
           width: '6/12'
@@ -270,8 +263,7 @@ Default.args = {
                   type: 'NavigationDynamicList'
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '3/12'
