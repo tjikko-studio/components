@@ -19,24 +19,25 @@ import {Input} from '../src/form/Input'
 
 import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
-type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string) => P
+type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string, attrs?: {className: string}) => P
 
-const getCommonProps: GetPropsFn = (content, id) => {
+const getCommonProps: GetPropsFn = (content, id, attrs) => {
   return {
-    key: id || JSON.stringify(content)
+    key: id || JSON.stringify(content),
+    className: attrs?.className
   }
 }
 
 const propsByType: Record<string, GetPropsFn> = {
-  ButtonsGroups: (content, id) => {
+  ButtonsGroups: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       className: 'mt-8'
     }
   },
-  Hero: (content, id) => {
+  Hero: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       bgColor: content.bg_color,
       bgHasImage: content.bg_has_image,
       bgHasVideo: content.bg_has_video,
@@ -44,30 +45,30 @@ const propsByType: Record<string, GetPropsFn> = {
       bgVideo: content.bg_video?.[0]
     }
   },
-  Primary: (content, id) => {
+  Primary: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Secondary: (content, id) => {
+  Secondary: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Tertiary: (content, id) => {
+  Tertiary: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
       layout: content.layout
     }
   },
-  Text: (content, id) => {
+  Text: (content, id, attrs) => {
     return {
-      ...getCommonProps(content, id),
+      ...getCommonProps(content, id, attrs),
       className: 'fontStyle-lg',
       tag: 'div'
     }
@@ -76,11 +77,11 @@ const propsByType: Record<string, GetPropsFn> = {
 
 function getProps(
   type: string,
-  {content, id}: {content: ContentType; id?: string},
+  {content, id, attrs}: {content: ContentType; id?: string; attrs?: {className: string}},
   extraProps: ComponentsExtraProps = {},
   templatesContent: Record<string, ColumnProps> = {}
 ) {
-  const specificProps = propsByType[type] ? propsByType[type](content, id) : getCommonProps(content, id)
+  const specificProps = propsByType[type] ? propsByType[type](content, id, attrs) : getCommonProps(content, id, attrs)
   const baseProps = {
     ...content,
     templatesContent,
@@ -117,7 +118,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
     try {
       return <Component {...getProps(component.type, component, extraProps, templatesContent)} />
     } catch (ex) {
-      console.error('Unrecognized component type', component)
+      console.error('Unrecognized component type in getComponents', component)
       console.error(ex)
       return null
     }
