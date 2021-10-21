@@ -45,18 +45,12 @@ Default.args = {
               type: 'FooterSection',
               content: [
                 {
+                  type: 'NavigationLogo',
                   content: {
                     image: {
-                      filename: 'logo-smpx-light.svg',
-                      info: '',
-                      link: './images/company_logo_placeholder.svg',
-                      text: 'logo-smpx-light.svg',
-                      type: 'image',
-                      url: './images/company_logo_placeholder.svg',
-                      uuid: 'logo-smpx-light.svg'
+                      url: './images/company_logo_placeholder.svg'
                     }
-                  },
-                  type: 'NavigationLogo'
+                  }
                 }
               ],
               layout: 'vertical'
@@ -79,17 +73,17 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'The Experience',
-                      link: ''
+                      link: '#experience'
                     },
                     {
                       type: 'link',
                       label: 'Art, Tech & Team',
-                      link: ''
+                      link: '#art-tech-team'
                     },
                     {
                       type: 'link',
                       label: 'Success Stories',
-                      link: '#'
+                      link: '#success-stories'
                     }
                   ]
                 }
@@ -111,12 +105,12 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Sales Gallery',
-                      link: '#'
+                      link: '#sales-gallery'
                     },
                     {
                       type: 'link',
                       label: 'Remote',
-                      link: '#'
+                      link: ''
                     }
                   ]
                 }
@@ -138,12 +132,12 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Real Estate',
-                      link: '#'
+                      link: '#real-estate'
                     },
                     {
                       type: 'link',
                       label: 'Other Industries',
-                      link: '#'
+                      link: '#other-industries'
                     }
                   ]
                 }
@@ -165,22 +159,22 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Portfolio',
-                      link: ''
+                      link: '#portfolio'
                     },
                     {
                       type: 'link',
                       label: 'Company',
-                      link: ''
+                      link: '#company'
                     },
                     {
                       type: 'link',
                       label: 'Contact us',
-                      link: ''
+                      link: '#contact-us'
                     },
                     {
                       type: 'link',
                       label: 'Career',
-                      link: ''
+                      link: '#career'
                     }
                   ]
                 }
@@ -202,17 +196,17 @@ Default.args = {
                 {
                   type: 'link',
                   label: '© 2021',
-                  link: ''
+                  link: '#copyright'
                 },
                 {
                   type: 'link',
                   label: 'Privacy',
-                  link: ''
+                  link: '#privacy'
                 },
                 {
                   type: 'link',
                   label: 'Terms',
-                  link: ''
+                  link: '#terms'
                 }
               ],
               layout: 'horizontal'
@@ -228,22 +222,22 @@ Default.args = {
                 {
                   type: 'link',
                   label: 'Facebook',
-                  link: ''
+                  link: '#facebook'
                 },
                 {
                   type: 'link',
                   label: 'YouTube',
-                  link: ''
+                  link: '#youtube'
                 },
                 {
                   type: 'link',
                   label: 'Twitter',
-                  link: ''
+                  link: '#twitter'
                 },
                 {
                   type: 'link',
                   label: 'LinkedIn',
-                  link: ''
+                  link: '#linkedIn'
                 }
               ],
               layout: 'horizontal'
