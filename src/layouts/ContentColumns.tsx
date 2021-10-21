@@ -11,7 +11,7 @@ import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/t
 export interface SectionItemProps {
   id: string
   columns: ColumnProps[]
-  attrs?: {classname?: string}
+  attrs?: {className?: string}
 }
 
 export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
@@ -79,7 +79,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.classname)}
+                className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {

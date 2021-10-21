@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
-import {ImageProps, Media} from '../parts/Media'
+import {Media} from '../parts/Media'
 import {NavItem} from './NavItem'
 
 import {MenuItemType, MenuType} from '../../shared/types'
@@ -30,7 +30,7 @@ export interface NavColumn {
 export interface NavColumns {
   id?: string
   attrs?: {
-    classname?: string
+    className?: string
   }
   columns: NavColumn[]
 }
@@ -68,7 +68,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
               'lg:grid-cols-12',
               'gap-x-4',
               'pt-12',
-              attrs?.classname,
+              attrs?.className,
               border
             ])}
           >
