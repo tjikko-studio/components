@@ -13,7 +13,6 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
     orientation: string
   }
   content?: {
-    alt?: string
     caption?: string
     creator?: string
     license?: string
@@ -27,7 +26,7 @@ export type ImageProps = MediaProps
 export const MediaImage: FC<ImageProps> = ({type, id, link, alt, url, extension, dimensions = {}, content = {}, className}) => {
   return (
     <figure role="group">
-      {url && <img src={url} alt={content && content.alt ? content.alt : alt} className={className} />}
+      <img src={url} alt={alt} className={className} />
       {content && content.caption && <figcaption>{content.caption}</figcaption>}
     </figure>
   )
@@ -65,6 +64,6 @@ export const Media: FC<GenericMediaProps> = ({media, autoplay = true, muted = tr
   return media.type === 'video' ? (
     <MediaVideo key={media.url} {...media} className={className} autoplay={autoplay} muted={muted} controls={controls} loop={loop} />
   ) : (
-    <MediaImage key={media.url} {...media} alt={alt || media.alt} className={className} />
+    <MediaImage key={media.url} {...media} alt={media.alt || alt} className={className} />
   )
 }
