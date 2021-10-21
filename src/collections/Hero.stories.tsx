@@ -48,7 +48,7 @@ Default.args = {
         buttons: [
           {
             label: 'Book a demo',
-            link: '#'
+            link: '#book-demo'
           }
         ]
       }

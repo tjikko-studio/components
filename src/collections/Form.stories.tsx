@@ -83,7 +83,7 @@ SimpleFormFullPage.args = {
                 buttons: [
                   {
                     label: 'Send',
-                    link: '#',
+                    link: '#send',
                     type: 'primary',
                     size: 'large'
                   }
@@ -167,7 +167,7 @@ FormWithErrors.args = {
                 buttons: [
                   {
                     label: 'Send',
-                    link: '#',
+                    link: '#send',
                     type: 'primary',
                     size: 'large'
                   }
@@ -209,7 +209,7 @@ InlineForm.args = {
                 buttons: [
                   {
                     label: 'Send',
-                    link: '#',
+                    link: '#send',
                     width: 'auto',
                     type: 'primary',
                     size: 'large'
@@ -283,7 +283,7 @@ AnnotatedFormFullPage.args = {
                 buttons: [
                   {
                     label: 'OK',
-                    link: '#',
+                    link: '#send',
                     type: 'primary',
                     size: 'large'
                   }
