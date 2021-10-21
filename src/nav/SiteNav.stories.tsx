@@ -18,7 +18,7 @@ const Template: Story<SiteNavProps> = (args) => {
 export const Desktop = Template.bind({})
 Desktop.args = {
   styles: 'opaque',
-  menuLogo: {
+  logo: {
     type: 'image',
     url: './images/company_logo_placeholder.svg'
   },
