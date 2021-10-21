@@ -94,7 +94,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                             ])}
                           >
                             {content.length &&
-                              content.map(({label, link, type, content: innerContent, dataSource, id: contentId}, idx) => {
+                              content.map(({label, link, type, content: innerContent, id: contentId}, idx) => {
                                 return (
                                   <div key={contentId || JSON.stringify(innerContent)}>
                                     {(() => {
@@ -152,7 +152,8 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                                             </div>
                                           )
                                         case 'NavigationDynamicList':
-                                          if (dataSource === 'language') {
+                                          const dataSource = content[0].content.data_source
+                                          if (dataSource === 'languages') {
                                             return (
                                               <NavItem
                                                 styles="default"
