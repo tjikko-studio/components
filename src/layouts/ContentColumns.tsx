@@ -11,6 +11,7 @@ import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/t
 export interface SectionItemProps {
   id: string
   columns: ColumnProps[]
+  attrs?: {classname?: string}
 }
 
 export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
@@ -50,6 +51,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   columnStyles?: CSSProperties
 
   templatesContent?: Record<string, ColumnProps>
+
+  className?: string
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
@@ -60,7 +63,8 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
-  templatesContent = {}
+  templatesContent = {},
+  className
 }) => {
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
@@ -70,12 +74,12 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   return (
     <>
       {content
-        ? content.map(({columns, id}) => {
+        ? content.map(({columns, id, attrs}) => {
             const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
             return (
               <section
                 key={id || JSON.stringify(columns)}
-                className={cn('grid sm:grid-cols-12', contentSectionClasses)}
+                className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.classname)}
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {

@@ -37,6 +37,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    */
   content?: SectionItemProps[]
   templatesContent?: Record<string, ColumnProps>
+
+  className?: string
 }
 
 export const Section: FC<SectionProps> = ({
@@ -45,7 +47,8 @@ export const Section: FC<SectionProps> = ({
   layoutSpacing = 'default',
   contentPosition = 'center|center',
   content = [],
-  templatesContent = {}
+  templatesContent = {},
+  className
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)
@@ -123,14 +126,14 @@ export const Section: FC<SectionProps> = ({
   }
 
   return (
-    <div className={cn('overflow-hidden', theme)} style={{backgroundColor: background}}>
+    <div className={cn('overflow-hidden', theme, className)} style={{backgroundColor: background}}>
       <div className={cn(classes)}>
         {content.length >= 1 ? (
           <ContentColumns
             content={content}
             contentPosition={contentPosition}
             componentsExtraProps={columnComponentExtraProps}
-            columnClasses="flex flex-col space-y-8 h-full"
+            columnClasses="flex flex-col space-y-6 h-full"
             templatesContent={templatesContent}
           />
         ) : (

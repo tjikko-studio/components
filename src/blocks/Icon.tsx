@@ -42,9 +42,9 @@ export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title 
       <div className={cn('flex-shrink-0 w-32', layout !== 'horizontal' && 'sm:pb-14 pb-6')}>
         {image && <Media media={image} alt={title} className={'w-32 h-32'} />}
       </div>
-      <div className={layout === 'horizontal' ? 'sm:ml-6' : 'mt-6'}>
+      <div className={layout === 'horizontal' ? 'mt-4 sm:mt-0 sm:ml-6' : 'mt-6'}>
         <h2 className="fontStyle-2xl break-words">{title ? title : 'title'}</h2>
-        <p className="fontStyle-base pt-2">{body}</p>
+        <p className="fontStyle-base mt-2">{body}</p>
       </div>
     </div>
   )
