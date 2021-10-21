@@ -29,7 +29,9 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {no_gap: string}
+  attrs?: {
+    classname?: string
+  }
   columns: NavColumn[]
 }
 
@@ -43,17 +45,18 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
    * language list
    */
   locales?: LocalesType
+
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
+export const Footer: FC<FooterProps> = ({menuData = [], locales = null, className}) => {
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
-    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8'])}>
-      {console.log(JSON.stringify(menuData, null, 2))}
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8', className])}>
       {menuData.map(({id, columns, attrs}) => {
         return (
           <section
@@ -65,12 +68,12 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
               'lg:grid-cols-12',
               'gap-x-4',
               'pt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
+              attrs?.classname,
               border
             ])}
           >
             {columns.length &&
-              columns.map(({width, blocks, id: columnId}) => {
+              columns.map(({width = '1/1', blocks, id: columnId}) => {
                 return (
                   <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full`}>
                     {blocks.length >= 1 &&
@@ -166,8 +169,8 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                           return null
                                         case 'NavigationLogo':
                                           return (
-                                            <div className="">
-                                              <Media media={innerContent.image} className="h-8 w-auto" />
+                                            <div>
+                                              {innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null}
                                             </div>
                                           )
                                         default:
