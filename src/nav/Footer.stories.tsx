@@ -62,8 +62,7 @@ Default.args = {
               layout: 'vertical',
               rtl: false
             }
-          ],
-          width: '1/1'
+          ]
         }
       ]
     },

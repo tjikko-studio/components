@@ -67,7 +67,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
             ])}
           >
             {columns.length &&
-              columns.map(({width, blocks, id: columnId}) => {
+              columns.map(({width = '1/1', blocks, id: columnId}) => {
                 return (
                   <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full`}>
                     {blocks.length >= 1 &&
