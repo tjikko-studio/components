@@ -72,9 +72,9 @@ export const SiteNav: FC<SiteNavProps> = ({
   styles = 'opaque',
   className,
   locales = null,
-  openMenuText = 'Open main menu'
+  openMenuText = 'Toggle Menu'
 }) => {
-  const [menuOpened, setmenuOpened] = useState(false)
+  const [menuOpened, setMenuOpened] = useState(false)
   /*
    *Desktop Nav
    */
@@ -176,8 +176,9 @@ export const SiteNav: FC<SiteNavProps> = ({
         <div className="flex justify-between items-center h-16">
           <div>{logo ? <Media media={logo} className={'h-3 lg:h-4 w-auto'} /> : null}</div>
           <button 
+            aria-label={openMenuText}
             onClick={() => {
-              setmenuOpened(!menuOpened)
+              setMenuOpened(!menuOpened)
             }}
           >
             <MenuIcon className={`w-auto h-5 ${menuOpened && 'hidden'}`} />
