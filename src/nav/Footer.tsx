@@ -1,5 +1,4 @@
 import React, {FC, HTMLAttributes} from 'react'
-import SVG from 'react-inlinesvg'
 import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
