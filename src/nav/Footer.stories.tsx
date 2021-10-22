@@ -255,10 +255,10 @@ Default.args = {
               type: 'FooterSection',
               content: [
                 {
+                  type: 'NavigationDynamicList',
                   content: {
                     data_source: 'languages'
-                  },
-                  type: 'NavigationDynamicList'
+                  }
                 }
               ],
               layout: 'vertical'
