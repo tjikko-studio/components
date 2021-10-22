@@ -1,5 +1,4 @@
 import React, {FC, HTMLAttributes} from 'react'
-import SVG from 'react-inlinesvg'
 import cn from 'classnames'
 
 import {Button} from '../Button'
@@ -207,7 +206,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   return (
                     <div key={navContentId || JSON.stringify(content)} className={cn('flex', border, dividerSm, layout)}>
                       {content &&
-                        content.map(({label, link, type, content: innerContent, dataSource, id: innerId}, idx) => {
+                        content.map(({label, link, type, content: innerContent, id: innerId}, idx) => {
                           const isLast = idx + 1 >= columnsLength
                           switch (type) {
                             case 'NavigationDropdown': {
