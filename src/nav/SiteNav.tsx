@@ -128,7 +128,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'button':
                               return (
                                 <Button
-                                  key={innerId || JSON.stringify(innerContent)}
+                                  key={innerId || link}
                                   label={label}
                                   link={link}
                                   type="primary"
