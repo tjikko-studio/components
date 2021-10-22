@@ -18,7 +18,9 @@
     "test": "jest --passWithNoTests",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "format": "prettier src --write"
+    "format": "prettier src --write",
+    "clean": "rm -rf styles.js index.js index.js.LICENSE.txt storybook-static assets/app.css",
+    "uninstall": "rm -rf node_modules"
   },
   "keywords": [],
   "author": "Tjikko Studio <https://tjikko.studio>",
