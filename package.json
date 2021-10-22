@@ -8,7 +8,7 @@
     "build:dev": "webpack --config ./webpack.dev.js --node-env development",
     "build:prod": "webpack --config ./webpack.prod.js --node-env production",
     "build:css": "postcss ./assets/globals.css -o ./assets/app.css",
-    "build:storybook": "npm run build:css && build-storybook -c .storybook -s assets",
+    "build:storybook": "npm run build:css && build-storybook -c .storybook -s ./assets",
     "build:all": "npm run build && npm run build:storybook",
     "build": "npm run build:prod && npm run build:css",
     "dev": "npm run build:dev -- --watch",
@@ -97,7 +97,6 @@
     "lodash.mixin": "4.3.0",
     "lodash.toarray": "4.4.0",
     "react-fast-marquee": "1.2.1",
-    "react-inlinesvg": "2.3.0",
     "tailwind-pseudo-elements": "0.4.0",
     "tailwindcss": "2.2.15",
     "vuera": "0.2.7"

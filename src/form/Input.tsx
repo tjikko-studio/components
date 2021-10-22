@@ -137,9 +137,9 @@ export const Input: FC<InputProps> = ({
       {label && (
         <div className={cn(labelContainerClasses)} style={{gridArea: `label-${columnIndex}`}}>
           <p>{label}</p>
-          {isError && <ErrorIcon className="text-red-600 dark:text-red-400" />}
-          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400" />}
-          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400" />}
+          {isError && <ErrorIcon className="text-red-600 dark:text-red-400 w-4 h-4" />}
+          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400 w-4 h-4" />}
+          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400 w-4 h-4" />}
         </div>
       )}
       <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>

@@ -39,7 +39,7 @@ Default.args = {
                 buttons: [
                   {
                     label: 'Primary button',
-                    link: '#',
+                    link: '#primary',
                     type: 'tertiary'
                   }
                 ]
@@ -59,7 +59,7 @@ Default.args = {
                 buttons: [
                   {
                     label: 'Primary button',
-                    link: '#',
+                    link: '#tertiary',
                     type: 'tertiary'
                   }
                 ]

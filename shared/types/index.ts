@@ -35,14 +35,14 @@ export interface MenuType {
   link?: string
   content: MenuItem[]
   image?: ImageProps
+  data_source?: string
 }
 
 export interface MenuItemType {
   label: string
   link: string
   type: string
-  content?: MenuType[]
-  dataSource?: string
+  content?: MenuType[] & MenuType
   id: string
 }
 

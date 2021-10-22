@@ -22,11 +22,11 @@ Default.args = {
   buttons: [
     {
       label: 'Primary button',
-      link: '#'
+      link: '#primary'
     },
     {
       label: 'Secondary button',
-      link: '#',
+      link: '#secondary',
       type: 'secondary'
     }
   ]
