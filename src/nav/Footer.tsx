@@ -28,7 +28,9 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {no_gap: string}
+  attrs?: {
+    className?: string
+  }
   columns: NavColumn[]
 }
 
@@ -42,16 +44,18 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
    * language list
    */
   locales?: LocalesType
+
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
+export const Footer: FC<FooterProps> = ({menuData = [], locales = null, className}) => {
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
-    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8'])}>
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8', className])}>
       {menuData.map(({id, columns, attrs}) => {
         return (
           <section
@@ -63,12 +67,12 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
               'lg:grid-cols-12',
               'gap-x-4',
               'pt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
+              attrs?.className,
               border
             ])}
           >
             {columns.length
-              ? columns.map(({width, blocks, id: columnId}) => {
+              ? columns.map(({width = '1/1', blocks, id: columnId}) => {
                   return (
                     <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full space-y-12`}>
                       {blocks.length >= 1 &&
@@ -90,7 +94,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                               ])}
                             >
                               {content.length
-                                ? content.map(({label, link, type, content: innerContent, dataSource, id: contentId}, idx) => {
+                                ? content.map(({label, link, type, content: innerContent, id: contentId}, idx) => {
                                     return (
                                       <div key={contentId || JSON.stringify(innerContent)}>
                                         {(() => {
@@ -105,8 +109,8 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                                   {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                                   {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                     return (
-                                                      <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
-                                                        {innerLabel}
+                                                      <a href={link} className="fontStyle-sm">
+                                                        {label}
                                                       </a>
                                                     )
                                                   })}
@@ -148,7 +152,8 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                                 </div>
                                               )
                                             case 'NavigationDynamicList':
-                                              if (dataSource === 'language') {
+                                              const dataSource = innerContent.data_source
+                                              if (dataSource === 'languages') {
                                                 return (
                                                   <NavItem
                                                     styles="default"
@@ -160,19 +165,12 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null}) => {
                                                   />
                                                 )
                                               }
-                                              console.error('unrecognized dataSource', dataSource, typeof dataSource)
+                                              console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                               return null
                                             case 'NavigationLogo':
-                                              if (innerContent[0]?.image) {
-                                                return (
-                                                  <div>
-                                                    <Media media={innerContent[0]?.image} className="h-8 w-auto" />
-                                                  </div>
-                                                )
-                                              }
-                                              return <div>Add business logo here</div>
+                                              return innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null
                                             default:
-                                              console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
+                                              console.error('Unrecognized content type in footer', type)
                                               return null
                                           }
                                         })()}
