@@ -168,11 +168,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                                           console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                           return null
                                         case 'NavigationLogo':
-                                          return (
-                                            <div>
-                                              {innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null}
-                                            </div>
-                                          )
+                                          return innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null
                                         default:
                                           console.error('Unrecognized content type in footer', type)
                                           return null
