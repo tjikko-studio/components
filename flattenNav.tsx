@@ -136,7 +136,7 @@ export interface Language {
   code: string
 }
 
-export const languageParser: any = (languages: Language[], domain?: string, slug?: [], locale: string) => {
+export const languageParser: any = (languages: Language[], domain?: string, slug?: [], locale?: string) => {
   let defaultLanguage: any = null
   let current: string = null
   const content = languages.map((language) => {
