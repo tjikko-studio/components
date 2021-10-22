@@ -115,7 +115,6 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
  * Language data normalization
  */
 export const languageValUpdates: any = (language: any, domain?: string, slug?: []) => {
-  
   Object.entries(language).forEach(([key, value]) => {
     if (key === 'name') {
       language.label = value
@@ -134,19 +133,25 @@ export const languageValUpdates: any = (language: any, domain?: string, slug?: [
 export interface Language {
   default: boolean
   label: string
+  code: string
 }
 
-export const languageParser: any = (languages: Language[], domain?: string, slug?: []) => {
+export const languageParser: any = (languages: Language[], domain?: string, slug?: [], locale: string) => {
   let defaultLanguage: any = null
+  let current: string = null
   const content = languages.map((language) => {
     const [updatedLanguage, isDefault] = languageValUpdates(language, domain, slug)
     if (isDefault) {
       defaultLanguage = updatedLanguage.value || null
     }
+    if (language.code === locale) {
+      current = language.label
+    }
     return updatedLanguage
   })
   return {
     defaultLanguage,
+    current,
     content: [
       {
         label: '',
