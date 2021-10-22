@@ -29,6 +29,10 @@ Desktop.args = {
         label: [],
         content: [
           {
+            label: 'En',
+            link: '/en'
+          },
+          {
             label: 'De',
             link: '/de'
           },
@@ -58,22 +62,22 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Features',
-                      link: ''
+                      link: '#features'
                     },
                     {
                       type: 'default',
                       label: 'Customer Success Stories',
-                      link: ''
+                      link: '#success-stories'
                     },
                     {
                       type: 'default',
                       label: 'Quality and reliability',
-                      link: ''
+                      link: '#quality-reliability'
                     },
                     {
                       type: 'button',
                       label: 'Contact Sales team',
-                      link: ''
+                      link: '#contact-sales'
                     }
                   ]
                 }
@@ -90,12 +94,12 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Real estate',
-                      link: ''
+                      link: '#real-estate'
                     },
                     {
                       type: 'default',
                       label: 'Others',
-                      link: ''
+                      link: '#other'
                     }
                   ]
                 },
@@ -106,17 +110,17 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Sales Office',
-                      link: ''
+                      link: '#sales-office'
                     },
                     {
                       type: 'default',
                       label: 'Presentation',
-                      link: ''
+                      link: '#presentation'
                     },
                     {
                       type: 'default',
                       label: 'Remote',
-                      link: ''
+                      link: '#remote'
                     }
                   ]
                 }
@@ -130,7 +134,7 @@ Desktop.args = {
             {
               type: 'default',
               label: 'Portfolio',
-              link: ''
+              link: '#portfolio'
             }
           ],
           mobile_position: 'default',
@@ -142,7 +146,7 @@ Desktop.args = {
             {
               type: 'button',
               label: 'Free demo',
-              link: ''
+              link: '#free-demo'
             },
             {
               type: 'NavigationDynamicList',
