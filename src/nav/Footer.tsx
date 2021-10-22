@@ -96,7 +96,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                               {content.length
                                 ? content.map(({label, link, type, content: innerContent, id: contentId}, idx) => {
                                     return (
-                                      <div key={contentId || JSON.stringify(innerContent)}>
+                                      <div key={link || contentId || JSON.stringify(innerContent)}>
                                         {(() => {
                                           switch (type) {
                                             case 'NavigationDropdownChild':
@@ -109,7 +109,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                                                   {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                                   {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                     return (
-                                                      <a href={innerLink} className="fontStyle-sm">
+                                                      <a key={innerLink} href={innerLink} className="fontStyle-sm">
                                                         {innerLabel}
                                                       </a>
                                                     )

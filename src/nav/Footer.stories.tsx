@@ -114,7 +114,7 @@ Default.args = {
                     {
                       type: 'link',
                       label: 'Remote',
-                      link: ''
+                      link: '#remote'
                     }
                   ]
                 }
