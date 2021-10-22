@@ -32,6 +32,19 @@ export interface NavColumns {
   }
 }
 
+/* 
+export interface NavColumns {
+  logo: ImageProps
+  content?: {
+    columns: NavColumn[]
+    id?: string
+    attrs?: {
+      className?: string
+    }
+  }
+}
+ */
+
 export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * menu json data same as NavItem
@@ -286,7 +299,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   }
 
   return (
-    <nav className={className}>
+    <nav className={cn('sticky top-0 z-50', className)}>
       {menuData.length >= 1 && (
         <>
           <DesktopNav />
