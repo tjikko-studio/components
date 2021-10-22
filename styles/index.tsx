@@ -1,18 +1,19 @@
 import colors from './colors'
-import sizes from './sizes'
+import sizes, {breakpoints} from './sizes'
 import text from './text'
 import variants from './variants'
 
 const theme = {
   ...text,
-  ...sizes,
-  ...colors
+  ...colors,
+  ...sizes
 }
 
 export default {
   darkMode: 'class',
   theme: {
-    extend: theme
+    extend: theme,
+    screens: breakpoints
   },
   variants: {
     extend: variants
