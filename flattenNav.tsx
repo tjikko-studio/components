@@ -114,14 +114,16 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
 /*
  * Language data normalization
  */
-export const languageValUpdates: any = (language: any) => {
+export const languageValUpdates: any = (language: any, domain?: string, slug?: []) => {
+  
   Object.entries(language).forEach(([key, value]) => {
     if (key === 'name') {
       language.label = value
       delete language.name
     }
     if (key === 'url') {
-      language.link = value
+      const url = domain && slug ? `${domain}/${language.code}/${slug.join('/')}` : value
+      language.link = url
       delete language.url
     }
   })
@@ -134,10 +136,10 @@ export interface Language {
   label: string
 }
 
-export const languageParser: any = (languages: Language[]) => {
+export const languageParser: any = (languages: Language[], domain?: string, slug?: []) => {
   let defaultLanguage: any = null
   const content = languages.map((language) => {
-    const [updatedLanguage, isDefault] = languageValUpdates(language)
+    const [updatedLanguage, isDefault] = languageValUpdates(language, domain, slug)
     if (isDefault) {
       defaultLanguage = updatedLanguage.value || null
     }
