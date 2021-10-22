@@ -38,7 +38,7 @@ Default.args = {
                 buttons: [
                   {
                     label: 'Primary button',
-                    link: '#',
+                    link: '#one',
                     type: 'primary'
                   }
                 ]
@@ -58,7 +58,7 @@ Default.args = {
                 buttons: [
                   {
                     label: 'Primary button but different',
-                    link: '#',
+                    link: '#two',
                     type: 'primary'
                   }
                 ]

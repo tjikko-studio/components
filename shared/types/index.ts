@@ -1,3 +1,5 @@
+import {ImageProps} from '../../src/parts/Media'
+
 export type ContentType = any
 
 export interface BlockProps {
@@ -32,14 +34,15 @@ export interface MenuType {
   label: string
   link?: string
   content: MenuItem[]
+  image?: ImageProps
+  data_source?: string
 }
 
 export interface MenuItemType {
   label: string
   link: string
   type: string
-  content?: MenuType[]
-  dataSource?: string
+  content?: MenuType[] & MenuType
   id: string
 }
 

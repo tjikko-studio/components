@@ -22,18 +22,19 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   locales?: LocalesType
   templateType?: 'template' | 'navigation' | 'footer'
   content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Template: FC<TemplateProps> = ({content = [], locales = null, templateType = 'template'}) => {
+export const Template: FC<TemplateProps> = ({content = [], locales = null, templateType = 'template', className}) => {
   const AvailableTemplates = {
     template: () => {
       return (
         <div>
           {content ? (
-            <ContentColumns content={content as SectionItemProps[]} contentSectionClasses="sm:grid sm:grid-cols-12" />
+            <ContentColumns content={content as SectionItemProps[]} className={className} contentSectionClasses="sm:grid sm:grid-cols-12" />
           ) : (
             <div>No template yet</div>
           )}
@@ -41,10 +42,10 @@ export const Template: FC<TemplateProps> = ({content = [], locales = null, templ
       )
     },
     navigation: () => {
-      return <SiteNav menuData={content as SiteNavColumns[]} locales={locales} />
+      return <SiteNav menuData={content as SiteNavColumns[]} locales={locales} className={className} />
     },
     footer: () => {
-      return <Footer menuData={content as FooterNavColumns[]} locales={locales} />
+      return <Footer menuData={content as FooterNavColumns[]} locales={locales} className={className} />
     }
   }
 

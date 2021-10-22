@@ -97,7 +97,7 @@ export const NavItem: FC<NavItemProps> = ({
       >
         {listNavContent.length && (
           <span className="ml-2.5">
-            <ArrowDown width="18" height="18" />
+            <ArrowDown className="w-5 h-5" />
           </span>
         )}
       </PopUpNavItem>

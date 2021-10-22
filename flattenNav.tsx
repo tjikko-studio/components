@@ -90,7 +90,8 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
   return toArray(
     deeply(mapValues)(obj, (val: any) => {
       let final = val
-      if (isPlainObject(final) && 'type' in final && 'id' in final && final.content.content) {
+
+      if (isPlainObject(final) && 'type' in final && 'id' in final && final?.content?.content) {
         final = flattenContent(final, 'content')
       }
       if (isPlainObject(final) && 'location' in final) {
@@ -102,6 +103,9 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
       if (blocks === true && isPlainObject(final) && final.width && final.blocks.length) {
         final = flattenContent(final, 'blocks', true)
       }
+      if (isPlainObject(final) && final.type === 'NavigationLogo' && final.content.image) {
+        final.content.image = final.content.image[0]
+      }
       return final
     })
   )
@@ -110,14 +114,15 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
 /*
  * Language data normalization
  */
-export const languageValUpdates: any = (language: any) => {
+export const languageValUpdates: any = (language: any, domain?: string, slug?: []) => {
   Object.entries(language).forEach(([key, value]) => {
     if (key === 'name') {
       language.label = value
       delete language.name
     }
     if (key === 'url') {
-      language.link = value
+      const url = domain && slug ? `${domain}/${language.code}/${slug.join('/')}` : value
+      language.link = url
       delete language.url
     }
   })
@@ -128,19 +133,25 @@ export const languageValUpdates: any = (language: any) => {
 export interface Language {
   default: boolean
   label: string
+  code: string
 }
 
-export const languageParser: any = (languages: Language[]) => {
+export const languageParser: any = (languages: Language[], domain?: string, slug?: [], locale?: string) => {
   let defaultLanguage: any = null
+  let current: string = null
   const content = languages.map((language) => {
-    const [updatedLanguage, isDefault] = languageValUpdates(language)
+    const [updatedLanguage, isDefault] = languageValUpdates(language, domain, slug)
     if (isDefault) {
       defaultLanguage = updatedLanguage.value || null
+    }
+    if (language.code === locale) {
+      current = language.label
     }
     return updatedLanguage
   })
   return {
     defaultLanguage,
+    current,
     content: [
       {
         label: '',

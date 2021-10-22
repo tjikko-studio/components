@@ -1,8 +1,6 @@
 import React from 'react'
 import {Meta, Story} from '@storybook/react/types-6-0'
 
-import companyLogo from '/assets/images/company_logo_placeholder.png'
-
 import {Footer, FooterProps} from './Footer'
 
 export default {
@@ -20,16 +18,16 @@ const Template: Story<FooterProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  logo: {
-    type: 'image',
-    url: companyLogo
-  },
   locales: {
     current: 'En',
     content: [
       {
         label: [],
         content: [
+          {
+            label: 'En',
+            link: '/en'
+          },
           {
             label: 'De',
             link: '/de'
@@ -44,9 +42,28 @@ Default.args = {
   },
   menuData: [
     {
-      attrs: {
-        no_gap: false
-      },
+      columns: [
+        {
+          blocks: [
+            {
+              type: 'FooterSection',
+              content: [
+                {
+                  type: 'NavigationLogo',
+                  content: {
+                    image: {
+                      url: './images/company_logo_placeholder.svg'
+                    }
+                  }
+                }
+              ],
+              layout: 'vertical'
+            }
+          ]
+        }
+      ]
+    },
+    {
       columns: [
         {
           blocks: [
@@ -55,31 +72,54 @@ Default.args = {
               content: [
                 {
                   type: 'NavigationDropdownChild',
-                  label: 'Why Smart Pixel',
+                  label: 'Why Acme',
                   content: [
                     {
-                      type: 'default',
-                      label: 'Features',
-                      location: 'internal',
-                      link: ''
+                      type: 'link',
+                      label: 'The Experience',
+                      link: '#experience'
                     },
                     {
-                      type: 'default',
-                      label: 'Customers Success Stories',
-                      location: 'internal',
-                      link: ''
+                      type: 'link',
+                      label: 'Art, Tech & Team',
+                      link: '#art-tech-team'
                     },
                     {
-                      type: 'default',
-                      label: 'Quality & Reliability',
-                      location: 'internal',
+                      type: 'link',
+                      label: 'Success Stories',
+                      link: '#success-stories'
+                    }
+                  ]
+                }
+              ],
+              layout: 'vertical'
+            }
+          ],
+          width: '1/4'
+        },
+        {
+          blocks: [
+            {
+              type: 'FooterSection',
+              content: [
+                {
+                  type: 'NavigationDropdownChild',
+                  label: 'Solutions by Event',
+                  content: [
+                    {
+                      type: 'link',
+                      label: 'Sales Gallery',
+                      link: '#sales-gallery'
+                    },
+                    {
+                      type: 'link',
+                      label: 'Remote',
                       link: ''
                     }
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -94,58 +134,19 @@ Default.args = {
                   label: 'Solutions by Industry',
                   content: [
                     {
-                      type: 'default',
+                      type: 'link',
                       label: 'Real Estate',
-                      location: 'internal',
-                      link: ''
+                      link: '#real-estate'
                     },
                     {
-                      type: 'default',
-                      label: 'Others',
-                      location: 'internal',
-                      link: ''
+                      type: 'link',
+                      label: 'Other Industries',
+                      link: '#other-industries'
                     }
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
-            }
-          ],
-          width: '1/4'
-        },
-        {
-          blocks: [
-            {
-              type: 'FooterSection',
-              content: [
-                {
-                  type: 'NavigationDropdownChild',
-                  label: 'Solutions by Use Case',
-                  content: [
-                    {
-                      type: 'default',
-                      label: 'Sales Office',
-                      location: 'internal',
-                      link: ''
-                    },
-                    {
-                      type: 'default',
-                      label: 'Presentation',
-                      location: 'internal',
-                      link: ''
-                    },
-                    {
-                      type: 'default',
-                      label: 'Remote',
-                      location: 'internal',
-                      link: ''
-                    }
-                  ]
-                }
-              ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -160,34 +161,29 @@ Default.args = {
                   label: 'Other Links',
                   content: [
                     {
-                      type: 'default',
+                      type: 'link',
                       label: 'Portfolio',
-                      location: 'internal',
-                      link: ''
+                      link: '#portfolio'
                     },
                     {
-                      type: 'default',
+                      type: 'link',
                       label: 'Company',
-                      location: 'internal',
-                      link: ''
+                      link: '#company'
                     },
                     {
-                      type: 'default',
+                      type: 'link',
                       label: 'Contact us',
-                      location: 'internal',
-                      link: ''
+                      link: '#contact-us'
                     },
                     {
-                      type: 'default',
+                      type: 'link',
                       label: 'Career',
-                      location: 'internal',
-                      link: ''
+                      link: '#career'
                     }
                   ]
                 }
               ],
-              layout: 'vertical',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '1/4'
@@ -195,9 +191,6 @@ Default.args = {
       ]
     },
     {
-      attrs: {
-        no_gap: true
-      },
       columns: [
         {
           blocks: [
@@ -205,26 +198,22 @@ Default.args = {
               type: 'FooterSection',
               content: [
                 {
-                  type: 'default',
+                  type: 'link',
                   label: '© 2021',
-                  location: 'internal',
-                  link: ''
+                  link: '#copyright'
                 },
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'Privacy',
-                  location: 'internal',
-                  link: ''
+                  link: '#privacy'
                 },
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'Terms',
-                  location: 'internal',
-                  link: ''
+                  link: '#terms'
                 }
               ],
-              layout: 'horizontal',
-              rtl: false
+              layout: 'horizontal'
             }
           ],
           width: '3/12'
@@ -235,32 +224,27 @@ Default.args = {
               type: 'FooterSection',
               content: [
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'Facebook',
-                  location: 'internal',
-                  link: ''
+                  link: '#facebook'
                 },
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'YouTube',
-                  location: 'internal',
-                  link: ''
+                  link: '#youtube'
                 },
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'Twitter',
-                  location: 'internal',
-                  link: ''
+                  link: '#twitter'
                 },
                 {
-                  type: 'default',
+                  type: 'link',
                   label: 'LinkedIn',
-                  location: 'internal',
-                  link: ''
+                  link: '#linkedIn'
                 }
               ],
-              layout: 'horizontal',
-              rtl: false
+              layout: 'horizontal'
             }
           ],
           width: '6/12'
@@ -272,11 +256,12 @@ Default.args = {
               content: [
                 {
                   type: 'NavigationDynamicList',
-                  dataSource: 'language'
+                  content: {
+                    data_source: 'languages'
+                  }
                 }
               ],
-              layout: 'horizontal',
-              rtl: false
+              layout: 'vertical'
             }
           ],
           width: '3/12'

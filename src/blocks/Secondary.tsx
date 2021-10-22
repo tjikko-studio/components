@@ -95,9 +95,9 @@ export const Secondary: FC<SecondaryProps> = ({
             <div className={cn(finalLayout !== 'vertical' && 'sm:pl-12')}>
               <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
               <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
-              {Object.keys(buttons).length >= 1 && (
+              {Object.keys(buttons).length ? (
                 <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />
-              )}
+              ) : null}
             </div>
           </div>
         </>

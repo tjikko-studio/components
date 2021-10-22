@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
-import {ImageProps, Media} from '../parts/Media'
+import {Media} from '../parts/Media'
 import {NavItem} from './NavItem'
 
 import {MenuItemType, MenuType} from '../../shared/types'
@@ -28,7 +28,9 @@ export interface NavColumn {
 
 export interface NavColumns {
   id?: string
-  attrs: {no_gap: string}
+  attrs?: {
+    className?: string
+  }
   columns: NavColumn[]
 }
 
@@ -39,45 +41,38 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   menuData: NavColumns[]
 
   /**
-   *  logo url to show
-   */
-  logo?: ImageProps | null
-
-  /**
    * language list
    */
   locales?: LocalesType
+
+  className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) => {
-  const border = 'border-b border-gray-600 last:border-b-0'
+export const Footer: FC<FooterProps> = ({menuData = [], locales = null, className}) => {
+  const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
-    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4'])}>
-      {logo ? (
-        <section className={`flex items-center h-16 ${border}`}>
-          <Media media={logo} />
-        </section>
-      ) : null}
+    <div className={cn(['lg:flex', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-8', className])}>
       {menuData.map(({id, columns, attrs}) => {
         return (
           <section
             key={id || JSON.stringify(columns)}
+            // eslint-disable-next-line prettier/prettier
             className={cn([
               'grid',
               'grid-flow-row',
               'lg:grid-cols-12',
               'gap-x-4',
-              'mt-12',
-              attrs.no_gap ? 'gap-y-4' : 'gap-y-12',
-              'justify-items-center'
+              'pt-12',
+              attrs?.className,
+              border
             ])}
           >
             {columns.length &&
-              columns.map(({width, blocks, id: columnId}) => {
+              columns.map(({width = '1/1', blocks, id: columnId}) => {
                 return (
                   <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full`}>
                     {blocks.length >= 1 &&
@@ -99,7 +94,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                             ])}
                           >
                             {content.length &&
-                              content.map(({label, link, type, content: innerContent, dataSource, id: contentId}, idx) => {
+                              content.map(({label, link, type, content: innerContent, id: contentId}, idx) => {
                                 return (
                                   <div key={contentId || JSON.stringify(innerContent)}>
                                     {(() => {
@@ -111,7 +106,7 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                               role={'navigation'}
                                               aria-label={label}
                                             >
-                                              {label && <div className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</div>}
+                                              {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                               {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                 return (
                                                   <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
@@ -157,7 +152,8 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                             </div>
                                           )
                                         case 'NavigationDynamicList':
-                                          if (dataSource === 'language') {
+                                          const dataSource = innerContent.data_source
+                                          if (dataSource === 'languages') {
                                             return (
                                               <NavItem
                                                 styles="default"
@@ -171,6 +167,8 @@ export const Footer: FC<FooterProps> = ({logo, menuData = [], locales = null}) =
                                           }
                                           console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                           return null
+                                        case 'NavigationLogo':
+                                          return innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null
                                         default:
                                           console.error('Unrecognized content type in footer', type)
                                           return null
