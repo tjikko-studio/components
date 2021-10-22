@@ -36,7 +36,11 @@ export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, 
     <article className={cn(classes)}>
       {content.length >= 1 ? (
         content.map((block) => {
-          return <section className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-lg mx-auto')}>{toComponent(block, {})}</section>
+          return (
+            <section key={} className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-lg mx-auto')}>
+              {toComponent(block, {})}
+            </section>
+          )
         })
       ) : (
         <div>No content yet</div>
