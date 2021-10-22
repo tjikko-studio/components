@@ -1,4 +1,4 @@
-const { screens } = require('tailwindcss/defaultTheme')
+const {screens} = require('tailwindcss/defaultTheme')
 
 const defaultHeightValues = {
   0: '0px',
@@ -158,9 +158,6 @@ export default {
 export const breakpoints: MediaQueryProps = {
   xxs: '375px',
   xs: '414px',
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
+  ...screens,
   '2xl': '1536px'
 }
