@@ -150,7 +150,9 @@ Desktop.args = {
             },
             {
               type: 'NavigationDynamicList',
-              dataSource: 'language'
+              content: {
+                data_source: 'languages'
+              }
             }
           ],
           mobile_position: 'start',
