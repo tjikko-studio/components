@@ -42,7 +42,6 @@ export interface MenuItemType {
   link: string
   type: string
   content?: MenuType[]
-  dataSource?: string
   id: string
 }
 

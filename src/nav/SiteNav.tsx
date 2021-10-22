@@ -140,14 +140,19 @@ export const SiteNav: FC<SiteNavProps> = ({
                                 />
                               )
                             case 'NavigationDynamicList':
-                              return (
-                                <NavItem
-                                  key={innerId || JSON.stringify(innerContent)}
-                                  styles="special"
-                                  label={locales.current ? locales.current : 'English'}
-                                  listNavContent={locales.content}
-                                />
-                              )
+                              const dataSource = innerContent.data_source
+                              if (dataSource === 'languages') {
+                                return (
+                                  <NavItem
+                                    key={innerId || JSON.stringify(innerContent)}
+                                    styles="special"
+                                    label={locales.current ? locales.current : 'English'}
+                                    listNavContent={locales.content}
+                                  />
+                                )
+                              }
+                              console.error('unrecognized dataSource in SiteNav', dataSource, typeof dataSource)
+                              return null
                             default:
                               console.error('Unhandled SiteNav type', type)
                               return null
@@ -240,7 +245,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                               )
                             }
                             case 'NavigationDynamicList':
-                              if (dataSource === 'language') {
+                              const dataSource = innerContent.data_source
+                              if (dataSource === 'languages') {
                                 return (
                                   <NavItem
                                     key={innerId || JSON.stringify(innerContent)}

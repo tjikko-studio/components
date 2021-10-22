@@ -152,7 +152,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                                             </div>
                                           )
                                         case 'NavigationDynamicList':
-                                          const dataSource = content[0].content.data_source
+                                          const dataSource = innerContent.data_source
                                           if (dataSource === 'languages') {
                                             return (
                                               <NavItem
