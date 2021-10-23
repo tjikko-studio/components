@@ -20,6 +20,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * Wrapper background color
    */
   wrapperColor?: string
+  aboveColor?: string
 
   /**
    * Content Position
@@ -41,6 +42,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * With some effects around it
    */
   floating?: boolean
+  floatingAbove?: boolean
+  abovePos?: string
 
   /**
    * Sections object that will be parsed through to build the component
@@ -54,10 +57,13 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
 export const Section: FC<SectionProps> = ({
   bgColor = 'transparent',
   wrapperColor = '',
+  aboveColor = '',
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
   floating = false,
+  floatingAbove = false,
+  abovePos = 'bottom',
   content = [],
   templatesContent = {},
   className
@@ -70,7 +76,8 @@ export const Section: FC<SectionProps> = ({
   let imagePosPrimary = 'undefined'
   let imagePosSecondary = 'undefined'
   let imagePosTertiary = 'undefined'
-  let outerBg = ''
+  let wrapperBg = ''
+  let nextBg = ''
   let wrapperClasses = []
   let innerBg = ''
 
@@ -141,16 +148,21 @@ export const Section: FC<SectionProps> = ({
   }
   if (floating) {
     innerBg = background
-    outerBg = wrapperColor
-    wrapperClasses.push('pb-12 relative')
-    classes.push('rounded-lg drop-shadow-xl relative z-10')
+    wrapperClasses.push('py-12 relative')
+    classes.push('rounded-lg drop-shadow-xl')
+    console.log(`${floating} : ${floatingAbove}`)
+    wrapperBg = wrapperColor
+    if (floatingAbove) {
+      nextBg = aboveColor
+      classes.push('relative z-10')
+      abovePos = `${abovePos}-0`
+    }
   } else {
-    outerBg = background
+    wrapperBg = background
   }
-  console.log(floating)
 
   return (
-    <section className={cn('overflow-hidden', theme, className, wrapperClasses)} style={{backgroundColor: outerBg}}>
+    <section className={cn('overflow-hidden', theme, className, wrapperClasses)} style={{backgroundColor: wrapperBg}}>
       <div className={cn(classes)} style={{backgroundColor: innerBg}}>
         {content.length >= 1 ? (
           <ContentColumns
@@ -164,7 +176,9 @@ export const Section: FC<SectionProps> = ({
           <div>No content yet</div>
         )}
       </div>
-      {floating && <div className="absolute bottom-0 w-full h-1/2 bg-gray-800"></div>}
+      {floatingAbove && <div className={cn('absolute w-full h-1/2', abovePos)} style={{backgroundColor: nextBg}}></div>}
     </section>
   )
 }
+
+

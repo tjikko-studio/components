@@ -40,6 +40,7 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       bgColor: content.bg_color,
       wrapperColor: content.wrapper_color,
+      aboveColor: content.above_color,
       bgHasImage: content.bg_has_image,
       bgHasVideo: content.bg_has_video,
       bgImage: content.bg_image?.[0],
