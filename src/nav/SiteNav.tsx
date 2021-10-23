@@ -286,7 +286,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   }
 
   return (
-    <nav className={className}>
+    <nav className={cn('lg:sticky lg:z-50 top-0', className)}>
       {menuData.length >= 1 && (
         <>
           <DesktopNav />
