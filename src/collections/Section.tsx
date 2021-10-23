@@ -150,7 +150,6 @@ export const Section: FC<SectionProps> = ({
     innerBg = background
     wrapperClasses.push('py-12 relative')
     classes.push('rounded-lg drop-shadow-xl')
-    console.log(`${floating} : ${floatingAbove}`)
     wrapperBg = wrapperColor
     if (floatingAbove) {
       nextBg = aboveColor
@@ -176,7 +175,7 @@ export const Section: FC<SectionProps> = ({
           <div>No content yet</div>
         )}
       </div>
-      {floatingAbove && <div className={cn('absolute w-full h-1/2', abovePos)} style={{backgroundColor: nextBg}}></div>}
+      {floatingAbove && <div className={cn('absolute w-full h-1/2', abovePos)} style={{backgroundColor: nextBg}} />}
     </section>
   )
 }
