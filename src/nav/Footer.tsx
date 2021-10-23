@@ -67,6 +67,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                 'grid-flow-row',
                 'lg:grid-cols-12',
                 'gap-x-4',
+                'gap-y-10',
                 'pt-12',
                 attrs?.className,
                 border
@@ -75,12 +76,12 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
               {columns.length &&
                 columns.map(({width = '1/1', blocks, id: columnId}) => {
                   return (
-                    <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} h-full`}>
+                    <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} lg:h-full`}>
                       {blocks.length >= 1 &&
                         blocks.map(({content, layout, rtl, id: blockId}) => {
                           const contentLayout =
                             layout === 'horizontal'
-                              ? ['flex', 'lg:mt-0', 'items-center', 'h-full']
+                              ? ['flex', 'lg:mt-0', 'items-center']
                               : ['lg:flex', 'items-start', 'flex-col', 'first:mt-0', 'lg:mt-0', 'space-y-4']
                           const justify = rtl ? 'lg:justify-end' : ''
                           const contentLength = content.length
@@ -90,7 +91,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                               className={cn([
                                 ...contentLayout,
                                 `lg:col-span-${getWidth(width)}`,
-                                layout === 'horizontal' && 'flex flex-end h-full',
+                                layout === 'horizontal' && 'flex-end lg:h-full',
                                 justify
                               ])}
                             >
