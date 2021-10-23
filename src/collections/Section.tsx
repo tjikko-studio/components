@@ -179,5 +179,3 @@ export const Section: FC<SectionProps> = ({
     </section>
   )
 }
-
-
