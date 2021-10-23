@@ -16,6 +16,10 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    * Background color
    */
   bgColor?: string
+  /**
+   * Wrapper background color
+   */
+  wrapperColor?: string
 
   /**
    * Content Position
@@ -33,6 +37,12 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   layoutSpacing?: 'default' | 'tight'
 
   /**
+   * Floating section
+   * With some effects around it
+   */
+  floating?: boolean
+
+  /**
    * Sections object that will be parsed through to build the component
    */
   content?: SectionItemProps[]
@@ -43,9 +53,11 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
 
 export const Section: FC<SectionProps> = ({
   bgColor = 'transparent',
+  wrapperColor = '',
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
+  floating = false,
   content = [],
   templatesContent = {},
   className
@@ -58,6 +70,9 @@ export const Section: FC<SectionProps> = ({
   let imagePosPrimary = 'undefined'
   let imagePosSecondary = 'undefined'
   let imagePosTertiary = 'undefined'
+  let outerBg = ''
+  let wrapperClasses = []
+  let innerBg = ''
 
   function getNewPos(prevPos: string, newPos: string) {
     const finalPos = newPos || 'auto'
@@ -124,10 +139,19 @@ export const Section: FC<SectionProps> = ({
   if (align) {
     classes.push(align)
   }
+  if (floating) {
+    innerBg = background
+    outerBg = wrapperColor
+    wrapperClasses.push('pb-12 relative')
+    classes.push('rounded-lg drop-shadow-xl relative z-10')
+  } else {
+    outerBg = background
+  }
+  console.log(floating)
 
   return (
-    <div className={cn('overflow-hidden', theme, className)} style={{backgroundColor: background}}>
-      <div className={cn(classes)}>
+    <section className={cn('overflow-hidden', theme, className, wrapperClasses)} style={{backgroundColor: outerBg}}>
+      <div className={cn(classes)} style={{backgroundColor: innerBg}}>
         {content.length >= 1 ? (
           <ContentColumns
             content={content}
@@ -140,6 +164,7 @@ export const Section: FC<SectionProps> = ({
           <div>No content yet</div>
         )}
       </div>
-    </div>
+      {floating && <div className="absolute bottom-0 w-full h-1/2 bg-gray-800"></div>}
+    </section>
   )
 }
