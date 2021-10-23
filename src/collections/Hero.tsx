@@ -7,6 +7,9 @@ import {ImageProps} from '../parts/Media'
 import {ColumnProps, ContentPosition} from '../../shared/types'
 
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
+  textColor?: string
+  darkTextColor?: string
+
   /**
    * Background data
    */
@@ -61,7 +64,12 @@ function extractCombo(thing: string) {
   return thing ? thing.split('|') : [null, null]
 }
 
+const DEFAULT_TEXT_COLOR = 'gray-900'
+const DEFAULT_DARK_TEXT_COLOR = 'gray-50'
+
 export const Hero: FC<HeroProps> = ({
+  textColor = DEFAULT_TEXT_COLOR,
+  darkTextColor = DEFAULT_DARK_TEXT_COLOR,
   bgColor = 'transparent',
   bgHasImage = false,
   bgHasVideo = false,
@@ -131,8 +139,8 @@ export const Hero: FC<HeroProps> = ({
       <div className={`h-${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
         <div
           className={cn([
-            'text-gray-900',
-            'dark:text-gray-50',
+            `text-${textColor || DEFAULT_TEXT_COLOR}`,
+            `dark:text-${darkTextColor || DEFAULT_DARK_TEXT_COLOR}`,
             'absolute',
             'z-20',
             'p-6',

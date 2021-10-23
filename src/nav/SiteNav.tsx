@@ -1,5 +1,8 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
+
+import CloseIcon from '/assets/icons/close-line.svg'
+import MenuIcon from '/assets/icons/menu-line.svg'
 
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
@@ -25,7 +28,7 @@ export interface NavColumns {
   columns: NavColumn[]
   id?: string
   attrs?: {
-    classname?: string
+    className?: string
   }
 }
 
@@ -38,7 +41,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  logo url to show
    */
-  menuLogo?: ImageProps
+  logo?: ImageProps
 
   /**
    * language list
@@ -66,13 +69,14 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
  * Primary UI component for user interaction
  */
 export const SiteNav: FC<SiteNavProps> = ({
-  menuLogo,
+  logo,
   menuData = [],
   styles = 'opaque',
   className,
   locales = null,
-  openMenuText = 'Open main menu'
+  openMenuText = 'Toggle Menu'
 }) => {
+  const [menuOpened, setMenuOpened] = useState(false)
   /*
    *Desktop Nav
    */
@@ -91,10 +95,10 @@ export const SiteNav: FC<SiteNavProps> = ({
                 'h-24',
                 'px-10',
                 styles === 'opaque' && 'bg-gray-900 text-gray-50',
-                attrs?.classname
+                attrs?.className
               ])}
             >
-              <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
+              <div className="flex-auto">{logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}</div>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -128,7 +132,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'button':
                               return (
                                 <Button
-                                  key={innerId || JSON.stringify(innerContent)}
+                                  key={innerId || link}
                                   label={label}
                                   link={link}
                                   type="primary"
@@ -139,14 +143,19 @@ export const SiteNav: FC<SiteNavProps> = ({
                                 />
                               )
                             case 'NavigationDynamicList':
-                              return (
-                                <NavItem
-                                  key={innerId || JSON.stringify(innerContent)}
-                                  styles="special"
-                                  label={locales.current ? locales.current : 'English'}
-                                  listNavContent={locales.content}
-                                />
-                              )
+                              const dataSource = innerContent.data_source
+                              if (dataSource === 'languages') {
+                                return (
+                                  <NavItem
+                                    key={innerId || JSON.stringify(innerContent)}
+                                    styles="special"
+                                    label={locales.current ? locales.current : 'English'}
+                                    listNavContent={locales.content}
+                                  />
+                                )
+                              }
+                              console.error('unrecognized dataSource in SiteNav', dataSource, typeof dataSource)
+                              return null
                             default:
                               console.error('Unhandled SiteNav type', type)
                               return null
@@ -170,10 +179,18 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'px-4', 'pb-4', 'space-y-8'])}>
+      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
-          <div className="flex-auto">{menuLogo ? <Media media={menuLogo} className="h-3 lg:h-4 w-auto" /> : null}</div>
-          <div>{openMenuText}</div>
+          <div className="flex-auto">{logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}</div>
+          <button
+            aria-label={openMenuText}
+            onClick={() => {
+              setMenuOpened(!menuOpened)
+            }}
+          >
+            <MenuIcon className={`w-auto h-5 ${menuOpened && 'hidden'}`} />
+            <CloseIcon className={`w-auto h-5 ${!menuOpened && 'hidden'}`} />
+          </button>
         </div>
         {menuData.map(({columns, id, attrs}) => {
           let mobileNavContent = [...columns]
@@ -191,7 +208,7 @@ export const SiteNav: FC<SiteNavProps> = ({
           return (
             <section
               key={id || JSON.stringify(mobileNavContent)}
-              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.classname)}
+              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.className, !menuOpened && 'hidden')}
             >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
@@ -201,7 +218,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                   return (
                     <div key={navContentId || JSON.stringify(content)} className={cn('flex', border, dividerSm, layout)}>
                       {content &&
-                        content.map(({label, link, type, content: innerContent, dataSource, id: innerId}, idx) => {
+                        content.map(({label, link, type, content: innerContent, id: innerId}, idx) => {
                           const isLast = idx + 1 >= columnsLength
                           switch (type) {
                             case 'NavigationDropdown': {
@@ -239,7 +256,8 @@ export const SiteNav: FC<SiteNavProps> = ({
                               )
                             }
                             case 'NavigationDynamicList':
-                              if (dataSource === 'language') {
+                              const dataSource = innerContent.data_source
+                              if (dataSource === 'languages') {
                                 return (
                                   <NavItem
                                     key={innerId || JSON.stringify(innerContent)}

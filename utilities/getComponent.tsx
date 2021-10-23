@@ -21,12 +21,12 @@ import {Input} from '../src/form/Input'
 
 import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
-type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string, attrs?: {classname: string}) => P
+type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string, attrs?: {className: string}) => P
 
 const getCommonProps: GetPropsFn = (content, id, attrs) => {
   return {
     key: id || JSON.stringify(content),
-    className: attrs?.classname
+    className: attrs?.className
   }
 }
 
@@ -79,7 +79,7 @@ const propsByType: Record<string, GetPropsFn> = {
 
 function getProps(
   type: string,
-  {content, id, attrs}: {content: ContentType; id?: string; attrs?: {classname: string}},
+  {content, id, attrs}: {content: ContentType; id?: string; attrs?: {className: string}},
   extraProps: ComponentsExtraProps = {},
   templatesContent: Record<string, ColumnProps> = {}
 ) {

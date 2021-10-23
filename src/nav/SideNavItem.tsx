@@ -43,6 +43,7 @@ export const SideNavItem: FC<SideNavItemProps> = ({
   status = 'default',
   spacer = false
 }) => {
+  link = link ? link : '#'
   const classes = [
     'list-none',
     'border-l-2',
@@ -68,7 +69,7 @@ export const SideNavItem: FC<SideNavItemProps> = ({
       {spacer ? (
         ''
       ) : (
-        <a href={link ? link : '#'} className={cn('fontStyle-sm', type === 'header' && 'strong')}>
+        <a href={link} className={cn('fontStyle-sm', type === 'header' && 'strong')}>
           {text}
         </a>
       )}

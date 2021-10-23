@@ -124,6 +124,7 @@ export interface MediaQueryProps {
   xl: '1280px',
   '2xl': '1536px'
 }
+*/
 
 /**
  * These screenSizes have string values,
@@ -152,12 +153,12 @@ export default {
   maxHeight: heightValues,
   width: widthValues,
   minWidth: widthValues,
-  maxWidth: widthValues,
+  maxWidth: widthValues
 }
 
 export const breakpoints: MediaQueryProps = {
-  xxs: '375px',
-  xs: '414px',
+  xxs: widthValues['screen-xxs'],
+  xs: widthValues['screen-xs'],
   ...screens,
-  '2xl': '1536px'
+  '2xl': widthValues['screen-2xl']
 }
