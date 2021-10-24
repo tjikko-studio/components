@@ -1,8 +1,6 @@
 import React from 'react'
 import {Meta, Story} from '@storybook/react/types-6-0'
 
-import companyLogo from '/assets/images/company_logo_placeholder.png'
-
 import {SiteNav, SiteNavProps} from './SiteNav'
 
 export default {
@@ -22,7 +20,7 @@ Desktop.args = {
   styles: 'opaque',
   logo: {
     type: 'image',
-    url: companyLogo
+    url: './images/company_logo_placeholder.svg'
   },
   locales: {
     current: 'En',
@@ -30,6 +28,10 @@ Desktop.args = {
       {
         label: [],
         content: [
+          {
+            label: 'En',
+            link: '/en'
+          },
           {
             label: 'De',
             link: '/de'
@@ -51,7 +53,7 @@ Desktop.args = {
           content: [
             {
               type: 'NavigationDropdown',
-              label: 'Why SmartPixel',
+              label: 'Why Acme',
               content: [
                 {
                   type: 'NavigationDropdownChild',
@@ -60,26 +62,22 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Features',
-                      location: 'internal',
-                      link: ''
+                      link: '#features'
                     },
                     {
                       type: 'default',
                       label: 'Customer Success Stories',
-                      location: 'internal',
-                      link: ''
+                      link: '#success-stories'
                     },
                     {
                       type: 'default',
                       label: 'Quality and reliability',
-                      location: 'internal',
-                      link: ''
+                      link: '#quality-reliability'
                     },
                     {
                       type: 'button',
                       label: 'Contact Sales team',
-                      location: 'internal',
-                      link: ''
+                      link: '#contact-sales'
                     }
                   ]
                 }
@@ -96,14 +94,12 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Real estate',
-                      location: 'internal',
-                      link: ''
+                      link: '#real-estate'
                     },
                     {
                       type: 'default',
                       label: 'Others',
-                      location: 'internal',
-                      link: ''
+                      link: '#other'
                     }
                   ]
                 },
@@ -114,20 +110,17 @@ Desktop.args = {
                     {
                       type: 'default',
                       label: 'Sales Office',
-                      location: 'internal',
-                      link: ''
+                      link: '#sales-office'
                     },
                     {
                       type: 'default',
                       label: 'Presentation',
-                      location: 'internal',
-                      link: ''
+                      link: '#presentation'
                     },
                     {
                       type: 'default',
                       label: 'Remote',
-                      location: 'internal',
-                      link: ''
+                      link: '#remote'
                     }
                   ]
                 }
@@ -141,8 +134,7 @@ Desktop.args = {
             {
               type: 'default',
               label: 'Portfolio',
-              location: 'internal',
-              link: ''
+              link: '#portfolio'
             }
           ],
           mobile_position: 'default',
@@ -154,12 +146,13 @@ Desktop.args = {
             {
               type: 'button',
               label: 'Free demo',
-              location: 'internal',
-              link: ''
+              link: '#free-demo'
             },
             {
               type: 'NavigationDynamicList',
-              dataSource: 'language'
+              content: {
+                data_source: 'languages'
+              }
             }
           ],
           mobile_position: 'start',
