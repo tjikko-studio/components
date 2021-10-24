@@ -37,7 +37,10 @@ export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, 
       {content.length >= 1 ? (
         content.map((block) => {
           return (
-            <section key={} className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-lg mx-auto')}>
+            <section
+              key={JSON.stringify(block.content)}
+              className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-lg mx-auto')}
+            >
               {toComponent(block, {})}
             </section>
           )
