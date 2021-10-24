@@ -1,24 +1,16 @@
-import React, {FC, useEffect} from 'react'
+import React, {FC} from 'react'
+import {InlineWidget} from 'react-calendly'
 import cn from 'classnames'
 
-export interface CalendlyProps {}
+export interface CalendlyProps {
+  username: string
+  duration: string
+}
 
-export const Calendly: FC<CalendlyProps> = () => {
-  useEffect(() => {
-    const head = document.querySelector('head')
-    const script = document.createElement('script')
-    script.setAttribute('src', 'https://assets.calendly.com/assets/external/widget.js')
-    script.setAttribute('async', 'true')
-    head.appendChild(script)
-    return () => {
-      head.removeChild(script)
-    }
-  }, [])
+export const Calendly: FC<CalendlyProps> = ({username, duration}) => {
   return (
-    <div
-      className={cn('calendly-inline-widget')}
-      style={{minWidth: '320px', height: '630px'}}
-      data-url="https://calendly.com/stream-1/30min"
-    />
+    <div className={cn('my-8 overflow-hidden')}>
+      <InlineWidget url={`https://calendly.com/${username}/${duration || '30min'}`} />
+    </div>
   )
 }

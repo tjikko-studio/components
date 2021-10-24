@@ -17,4 +17,7 @@ const Template: Story<CalendlyProps> = (args) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  username: 'stream-1',
+  duration: '30min'
+}
