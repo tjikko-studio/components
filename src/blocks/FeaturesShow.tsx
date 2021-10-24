@@ -1,14 +1,15 @@
 import React, {FC, useRef} from 'react'
 import cn from 'classnames'
 
+import getComponent from '../../utilities/getComponent'
 import useFrameScroll from '../hooks/useFrameScroll'
 import {ImageProps, Media} from '../parts/Media'
 
-import {ContentPosition} from '../../shared/types'
+import {BlockProps, ContentPosition} from '../../shared/types'
 
 type FeaturesShowItemBox = {
   title?: string
-  description?: string
+  body?: string
 
   /**
    * Content Position
@@ -18,12 +19,12 @@ type FeaturesShowItemBox = {
 
 type FeaturesShowItem = {
   image: ImageProps[]
-  title?: string
-  boxes?: FeaturesShowItemBox[]
+  info_boxes?: FeaturesShowItemBox[]
 }
 
 export type FeaturesShowProps = {
   items?: FeaturesShowItem[]
+  header?: BlockProps[]
   className?: string
 }
 
@@ -59,15 +60,13 @@ function extractCombo(thing: string) {
 
 const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
   const scrollRef = useRef<HTMLDivElement>()
-  const frame = useFrameScroll(item.boxes.length, scrollRef, 3 * 1000)
+  const frame = useFrameScroll(item.info_boxes.length, scrollRef, 3 * 1000)
 
   return (
     <div ref={scrollRef} className="flex flex-col items-center mx-10 my-8 h-100vh">
-      <h2 className="my-8 fontStyle-5xl">{item.title}</h2>
-
       <div className="relative w-full px-8">
-        {item.image?.[0] && <Media media={item.image?.[0]} alt={item.title} className="w-full h-80vh rounded-xl" />}
-        {item.boxes.map((box, idx) => {
+        {item.image?.[0] && <Media media={item.image?.[0]} className="w-full h-80vh rounded-xl" />}
+        {item.info_boxes.map((box, idx) => {
           const [verPosVal, horPosVal] = extractCombo(box.position)
           const verPos = getVerPos(verPosVal)
           const horPos = getHorPos(horPosVal)
@@ -82,8 +81,8 @@ const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
                 frame === idx ? 'opacity-100' : 'opacity-0'
               )}
             >
-              <div className="mb-4 fontStyle-2xl">{box.title}</div>
-              <p>{box.description}</p>
+              <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: box.title}} />
+              <div dangerouslySetInnerHTML={{__html: box.body}} />
             </div>
           )
         })}
@@ -92,9 +91,16 @@ const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
   )
 }
 
-export const FeaturesShow: FC<FeaturesShowProps> = ({className, items}) => {
+export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, items}) => {
+  const toComponent = getComponent()
+
   return (
     <div className={className}>
+      <div className="my-8">
+        {header?.map((block) => {
+          return toComponent(block)
+        })}
+      </div>
       {items?.map((item, idx) => (
         <FeatureShowItem key={idx} item={item} />
       ))}
