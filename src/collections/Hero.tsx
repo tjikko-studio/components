@@ -76,12 +76,12 @@ export const Hero: FC<HeroProps> = ({
   bgImage = {},
   bgVideo = {},
   contentPosition = 'bottom|left',
-  heroHeight = '90vh',
+  heroHeight = '80vh',
   content = [],
   templatesContent = {},
   className
 }) => {
-  const finalHeroHeight = heroHeight || '90vh'
+  const finalHeroHeight = heroHeight || '80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const [theme, background] = extractCombo(bgColor)

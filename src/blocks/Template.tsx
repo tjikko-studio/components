@@ -3,6 +3,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import {ContentColumns, SectionItemProps} from '../layouts/ContentColumns'
 import {Footer, NavColumns as FooterNavColumns} from '../nav/Footer'
 import {SiteNav, NavColumns as SiteNavColumns} from '../nav/SiteNav'
+import {ImageProps} from '../parts/Media'
 
 import {MenuType} from '../../shared/types'
 
@@ -20,6 +21,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
    * I don't have any solution for this at the moment
    */
   locales?: LocalesType
+  logo?: ImageProps
   templateType?: 'template' | 'navigation' | 'footer'
   content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
   className?: string
@@ -28,7 +30,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Template: FC<TemplateProps> = ({content = [], locales = null, templateType = 'template', className}) => {
+export const Template: FC<TemplateProps> = ({logo = null, content = [], locales = null, templateType = 'template', className}) => {
   const AvailableTemplates = {
     template: () => {
       return (
@@ -42,7 +44,7 @@ export const Template: FC<TemplateProps> = ({content = [], locales = null, templ
       )
     },
     navigation: () => {
-      return <SiteNav menuData={content as SiteNavColumns[]} locales={locales} className={className} />
+      return <SiteNav menuData={content as SiteNavColumns[]} logo={logo} locales={locales} className={className} />
     },
     footer: () => {
       return <Footer menuData={content as FooterNavColumns[]} locales={locales} className={className} />
@@ -57,6 +59,7 @@ export const Template: FC<TemplateProps> = ({content = [], locales = null, templ
       JSON.stringify({
         content,
         locales,
+        logo,
         templateType
       })
     )
