@@ -6,5 +6,6 @@ export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Collection: FC<CollectionProps> = ({items} = {items: []}) => {
   const finalItems = items || []
-  return <pre>{JSON.stringify(finalItems, null, 2)}</pre>
+  // return <pre>{JSON.stringify(finalItems, null, 2)}</pre>
+  return <p>Coming Soon</p>
 }
