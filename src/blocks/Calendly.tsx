@@ -4,6 +4,7 @@ import type {Prefill} from 'react-calendly/typings/calendly'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
+import lightOrDark from '../../utilities/lightOrDark'
 import {Button} from '../Button'
 import {Input} from '../form/Input'
 
@@ -21,7 +22,7 @@ function extractCombo(thing: string) {
 }
 
 export const Calendly: FC<CalendlyProps> = ({header, bgColor, username, duration}) => {
-  const [theme, background] = extractCombo(bgColor)
+  const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const toComponent = getComponent()
 
   const [firstName, setFirstName] = useState('')
@@ -42,7 +43,7 @@ export const Calendly: FC<CalendlyProps> = ({header, bgColor, username, duration
   }, [username, duration, prefill])
 
   return (
-    <div className={cn('flex flex-col items-center py-8 overflow-hidden', theme)} style={{backgroundColor: background}}>
+    <div className={cn('flex flex-col items-center py-8 overflow-hidden', theme)} style={{backgroundColor: bgColor}}>
       <div className="my-8 dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
