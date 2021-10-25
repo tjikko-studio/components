@@ -100,6 +100,7 @@
     "lodash.mixin": "4.3.0",
     "lodash.throttle": "4.1.1",
     "lodash.toarray": "4.4.0",
+    "react-calendly": "2.2.2",
     "react-fast-marquee": "1.2.1",
     "tailwind-pseudo-elements": "0.4.0",
     "tailwindcss": "2.2.15",
