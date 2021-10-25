@@ -150,7 +150,7 @@ export const Section: FC<SectionProps> = ({
   if (floating) {
     innerBg = bgColor
     wrapperClasses.push('py-12 relative')
-    classes.push('rounded-lg drop-shadow-xl')
+    classes.push('rounded-lg shadow-2xl')
     wrapperBg = wrapperColor
     if (floatingAbove) {
       nextBg = aboveColor
