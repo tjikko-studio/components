@@ -1,4 +1,4 @@
-import {ImageProps} from '../../src/parts/Media'
+import type {ImageProps} from '../../src/parts/Media'
 
 export type ContentType = any
 
