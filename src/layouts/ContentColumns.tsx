@@ -77,7 +77,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
         ? content.map(({columns, id, attrs}) => {
             const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
             return (
-              <section
+              <div
                 key={id || JSON.stringify(columns)}
                 className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
@@ -98,7 +98,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                     </div>
                   )
                 })}
-              </section>
+              </div>
             )
           })
         : null}
