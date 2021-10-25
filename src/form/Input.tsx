@@ -28,11 +28,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   text?: string
 
   /**
-   * input value
-   */
-  value?: string
-
-  /**
    * placeholder text
    */
   placeholder?: string

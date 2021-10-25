@@ -12,7 +12,7 @@ import {BlockProps} from '../../shared/types'
 export interface CalendlyProps {
   username: string
   duration: string
-  bgColor: string
+  bgColor?: string
   header?: BlockProps[]
 }
 
