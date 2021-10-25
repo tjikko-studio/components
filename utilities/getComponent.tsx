@@ -2,7 +2,9 @@ import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
+import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
+import {Gallery} from '../src/blocks/Gallery'
 import {Heading} from '../src/blocks/Heading'
 import {Icon} from '../src/blocks/Icon'
 import {Primary} from '../src/blocks/Primary'
@@ -12,6 +14,8 @@ import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
 import {Text} from '../src/blocks/Text'
 import {TextGroup} from '../src/blocks/TextGroup'
+import {Article} from '../src/collections/Article'
+import {Collection} from '../src/collections/Collection'
 import {Form} from '../src/collections/Form'
 import {Hero} from '../src/collections/Hero'
 import {Section} from '../src/collections/Section'
@@ -71,7 +75,7 @@ const propsByType: Record<string, GetPropsFn> = {
   Text: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      className: 'fontStyle-lg',
+      className: 'fontStyle-base',
       tag: 'div'
     }
   }
@@ -96,8 +100,11 @@ function getProps(
 }
 
 const ValidComponents: Record<string, FC> = {
+  Article,
   ButtonsGroup,
+  Collection,
   ClientsLogos,
+  Divider,
   FAQ,
   Form,
   Heading,
@@ -107,6 +114,7 @@ const ValidComponents: Record<string, FC> = {
   Primary,
   Secondary,
   Section,
+  Gallery,
   Tertiary,
   Testimonial,
   TextGroup,

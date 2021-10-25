@@ -84,7 +84,6 @@ export const Primary: FC<PrimaryProps> = ({
                 muted={muted}
                 controls={controls}
                 loop={loop}
-                alt={image.url ? image.alt || title : ''}
                 className={'rounded-lg shadow-xl w-full h-full'}
               />
             )}

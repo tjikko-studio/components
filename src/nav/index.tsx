@@ -1,4 +1,3 @@
-import {Divider} from './Divider'
 import {Footer} from './Footer'
 import {ListNav} from './ListNav'
 import {NavItem} from './NavItem'
@@ -8,7 +7,6 @@ import {SideNavItem} from './SideNavItem'
 import {SiteNav} from './SiteNav'
 
 export default {
-  Divider,
   Footer,
   ListNav,
   NavItem,

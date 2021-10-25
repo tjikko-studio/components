@@ -71,7 +71,6 @@ export const Tertiary: FC<TertiaryProps> = ({
             muted={muted}
             controls={controls}
             loop={loop}
-            alt={title}
             className={'rounded-lg shadow-xl w-full h-full'}
           />
         )}

@@ -70,6 +70,9 @@ exports = function exports ({theme, addBase, addUtilities}) {
     '.fontStyle-base.uppercase, .fontStyle-base uppercase, .uppercase': {
       letterSpacing: theme('letterSpacing.wider')
     },
+    '.fontStyle-base p:nth-child(n+2), .fontStyle-base ul:nth-child(n+2), .fontStyle-base ol:nth-child(n+2)': {
+      marginTop: theme('spacing.4')
+    },
 
     /*
      *Font styles large

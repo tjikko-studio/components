@@ -85,7 +85,6 @@ export const Hero: FC<HeroProps> = ({
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
-
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
