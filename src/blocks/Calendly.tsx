@@ -42,7 +42,7 @@ export const Calendly: FC<CalendlyProps> = ({header, bgColor, username, duration
   }, [username, duration, prefill])
 
   return (
-    <div className={cn('flex flex-col items-center py-8 overflow-hidden', theme ? theme : 'dark')} style={{backgroundColor: background}}>
+    <div className={cn('flex flex-col items-center py-8 overflow-hidden', theme)} style={{backgroundColor: background}}>
       <div className="my-8 dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
