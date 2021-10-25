@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, InputHTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
@@ -11,7 +11,7 @@ import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
 
-export interface InputProps extends HTMLAttributes<HTMLDivElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * focussed type
    */
@@ -87,7 +87,9 @@ export const Input: FC<InputProps> = ({
   information,
   error,
   className = '',
-  columnIndex = DEFAULT_COLUMN_INDEX
+  columnIndex = DEFAULT_COLUMN_INDEX,
+  value,
+  onChange
 }) => {
   const labelContainerClasses = [
     'fontStyle-sm',
@@ -137,14 +139,16 @@ export const Input: FC<InputProps> = ({
       {label && (
         <div className={cn(labelContainerClasses)} style={{gridArea: `label-${columnIndex}`}}>
           <p>{label}</p>
-          {isError && <ErrorIcon className="text-red-600 dark:text-red-400 w-4 h-4" />}
-          {isValidating && <ValidatingIcon className="text-blue-600 dark:text-blue-400 w-4 h-4" />}
-          {isSuccess && <TickIcon className="text-green-600 dark:text-green-400 w-4 h-4" />}
+          {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
+          {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+          {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}
         </div>
       )}
       <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
         <input
           className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
+          value={value}
+          onChange={onChange}
           defaultValue={text}
           placeholder={placeholder}
           disabled={isDisabled}
