@@ -14,6 +14,7 @@ import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
 import {Text} from '../src/blocks/Text'
 import {TextGroup} from '../src/blocks/TextGroup'
+import {Article} from '../src/collections/Article'
 import {Collection} from '../src/collections/Collection'
 import {Form} from '../src/collections/Form'
 import {Hero} from '../src/collections/Hero'
@@ -99,6 +100,7 @@ function getProps(
 }
 
 const ValidComponents: Record<string, FC> = {
+  Article,
   ButtonsGroup,
   Collection,
   ClientsLogos,
