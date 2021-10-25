@@ -109,7 +109,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
 
   return (
     <div className={cn(theme, className)} style={{backgroundColor: background}}>
-      <div className="py-8 dark:text-gray-50">
+      <div className="p-8 dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
         })}
