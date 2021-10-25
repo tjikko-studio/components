@@ -82,7 +82,7 @@ export const Hero: FC<HeroProps> = ({
   const finalHeroHeight = heroHeight || '80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
-  const theme = bgColor && bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
+  const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
 

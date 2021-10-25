@@ -70,7 +70,7 @@ export const Section: FC<SectionProps> = ({
   className
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
-  const theme = bgColor && bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
+  const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
