@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import lightOrDark from '../../utilities/lightOrDark'
 import extractCombo from '../../utilities/stringUtils'
 import {ContentColumns} from '../layouts/ContentColumns'
 
@@ -69,7 +70,7 @@ export const Section: FC<SectionProps> = ({
   className
 }) => {
   const [verAlign, horAlign] = extractCombo(contentPosition)
-  const [theme, background] = extractCombo(bgColor)
+  const theme = bgColor && bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
@@ -147,7 +148,7 @@ export const Section: FC<SectionProps> = ({
     classes.push(align)
   }
   if (floating) {
-    innerBg = background
+    innerBg = bgColor
     wrapperClasses.push('py-12 relative')
     classes.push('rounded-lg drop-shadow-xl')
     wrapperBg = wrapperColor
@@ -157,7 +158,7 @@ export const Section: FC<SectionProps> = ({
       abovePos = `${abovePos}-0`
     }
   } else {
-    wrapperBg = background
+    wrapperBg = bgColor
   }
 
   return (

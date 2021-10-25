@@ -2,6 +2,8 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
+import lightOrDark from '../../utilities/lightOrDark'
+import extractCombo from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'
@@ -60,10 +62,6 @@ const getVerPos = (value: string) => {
   }
 }
 
-function extractCombo(thing: string) {
-  return thing ? thing.split('|') : [null, null]
-}
-
 const DEFAULT_TEXT_COLOR = 'gray-900'
 const DEFAULT_DARK_TEXT_COLOR = 'gray-50'
 
@@ -84,14 +82,14 @@ export const Hero: FC<HeroProps> = ({
   const finalHeroHeight = heroHeight || '80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
-  const [theme, background] = extractCombo(bgColor)
+  const theme = bgColor && bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
 
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
-      style={{backgroundColor: background, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
+      style={{backgroundColor: bgColor, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
     >
       {bgHasVideo && (
         <video
