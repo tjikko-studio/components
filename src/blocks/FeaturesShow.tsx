@@ -1,4 +1,6 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useState} from 'react'
+// @ts-expect-error
+import Zoom from 'react-reveal/Zoom'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
@@ -59,45 +61,32 @@ function extractCombo(thing: string) {
 }
 
 const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
-  const [currentBoxIdx, setCurrentBoxIdx] = useState(0)
-  const totalBoxes = item.info_boxes?.length || 0
-
-  useEffect(() => {
-    let idx = 0
-    const intervalId = setInterval(() => {
-      setCurrentBoxIdx(idx % totalBoxes)
-      idx++
-    }, 2 * 1000)
-
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [totalBoxes])
+  const [visibleIdx, setVisibleIdx] = useState(-1)
 
   return (
     <div className="flex flex-col items-center mx-10 h-100vh">
       <div className="relative w-full px-8">
         {item.image?.[0] && <Media media={item.image?.[0]} className="w-full h-80vh rounded-xl" />}
-        {item.info_boxes.map((box, idx) => {
-          const [verPosVal, horPosVal] = extractCombo(box.position)
-          const verPos = getVerPos(verPosVal)
-          const horPos = getHorPos(horPosVal)
+        <Zoom cascade fraction={1} onReveal={() => setVisibleIdx(visibleIdx + 1)}>
+          {item.info_boxes.map((box, idx) => {
+            const [verPosVal, horPosVal] = extractCombo(box.position)
+            const verPos = getVerPos(verPosVal)
+            const horPos = getHorPos(horPosVal)
 
-          return (
-            <div
-              key={idx}
-              className={cn(
-                'absolute z-20 bg-white rounded-xl shadow-xl w-1/3 p-8 transition-opacity duration-2000',
-                verPos,
-                horPos,
-                currentBoxIdx === idx ? 'opacity-100' : 'opacity-0'
-              )}
-            >
-              <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: box.title}} />
-              <div dangerouslySetInnerHTML={{__html: box.body}} />
-            </div>
-          )
-        })}
+            return (
+              <div
+                key={idx}
+                className={cn('absolute z-20 w-1/3', verPos, horPos)}
+                style={{visibility: visibleIdx === idx ? 'visible' : 'hidden'}}
+              >
+                <div className="p-8 bg-white shadow-xl rounded-xl">
+                  <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: box.title}} />
+                  <div dangerouslySetInnerHTML={{__html: box.body}} />
+                </div>
+              </div>
+            )
+          })}
+        </Zoom>
       </div>
     </div>
   )
@@ -114,6 +103,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
           return toComponent(block)
         })}
       </div>
+
       {items?.map((item, idx) => (
         <FeatureShowItem key={idx} item={item} />
       ))}
