@@ -1,3 +1,6 @@
+/* 
+Source: https://awik.io/determine-color-bright-dark-using-javascript/
+*/
 export default function lightOrDark(color: any) {
   let r
   let g
