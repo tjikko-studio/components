@@ -1,5 +1,6 @@
 import {Breadcrumb} from './Breadcrumb'
 import {ButtonsGroup} from './ButtonsGroup'
+import {Calendly} from './Calendly'
 import {ClientsLogos} from './ClientsLogos'
 import {Divider} from './Divider'
 import {FAQ} from './FAQ'
@@ -18,6 +19,7 @@ import {TextGroup} from './TextGroup'
 export default {
   Breadcrumb,
   ButtonsGroup,
+  Calendly,
   ClientsLogos,
   Divider,
   FAQ,

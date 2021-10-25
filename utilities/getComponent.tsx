@@ -123,7 +123,7 @@ const ValidComponents: Record<string, FC> = {
 }
 
 export default function getComponent(templatesContent: Record<string, ColumnProps> = {}) {
-  return function SelectedComponent(component: BlockProps, extraProps: ComponentsExtraProps): React.ReactElement {
+  return function SelectedComponent(component: BlockProps, extraProps?: ComponentsExtraProps): React.ReactElement {
     const Component = ValidComponents[component.type]
     try {
       return <Component {...getProps(component.type, component, extraProps, templatesContent)} />

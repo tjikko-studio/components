@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-export interface ButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   /**
    * button type
    */
@@ -53,7 +53,8 @@ export const Button: FC<ButtonProps> = ({
   iconPos = 'left',
   link = '',
   className = '',
-  forceDark = false
+  forceDark = false,
+  onClick
 }) => {
   const buttonType = type || 'primary'
   const buttonClasses = ['inline-flex items-center space-x-3']
@@ -124,13 +125,13 @@ export const Button: FC<ButtonProps> = ({
   }
   if (link) {
     return (
-      <a href={link} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={link} className={cn(buttonClasses)}>
         <Content />
       </a>
     )
   }
   return (
-    <button className={cn(buttonClasses)}>
+    <button onClick={onClick} className={cn(buttonClasses)}>
       <Content />
     </button>
   )
