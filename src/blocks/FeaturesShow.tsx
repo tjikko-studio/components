@@ -1,8 +1,7 @@
-import React, {FC, useRef} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
-import useFrameScroll from '../hooks/useFrameScroll'
 import {ImageProps, Media} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'
@@ -26,6 +25,7 @@ export type FeaturesShowProps = {
   items?: FeaturesShowItem[]
   header?: BlockProps[]
   className?: string
+  bgColor?: string
 }
 
 const getHorPos = (value: string) => {
@@ -59,11 +59,23 @@ function extractCombo(thing: string) {
 }
 
 const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
-  const scrollRef = useRef<HTMLDivElement>()
-  const frame = useFrameScroll(item.info_boxes.length, scrollRef, 3 * 1000)
+  const [currentBoxIdx, setCurrentBoxIdx] = useState(0)
+  const totalBoxes = item.info_boxes?.length || 0
+
+  useEffect(() => {
+    let idx = 0
+    const intervalId = setInterval(() => {
+      setCurrentBoxIdx(idx % totalBoxes)
+      idx++
+    }, 2 * 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [totalBoxes])
 
   return (
-    <div ref={scrollRef} className="flex flex-col items-center mx-10 my-8 h-100vh">
+    <div className="flex flex-col items-center mx-10 h-100vh">
       <div className="relative w-full px-8">
         {item.image?.[0] && <Media media={item.image?.[0]} className="w-full h-80vh rounded-xl" />}
         {item.info_boxes.map((box, idx) => {
@@ -78,7 +90,7 @@ const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
                 'absolute z-20 bg-white rounded-xl shadow-xl w-1/3 p-8 transition-opacity duration-2000',
                 verPos,
                 horPos,
-                frame === idx ? 'opacity-100' : 'opacity-0'
+                currentBoxIdx === idx ? 'opacity-100' : 'opacity-0'
               )}
             >
               <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: box.title}} />
@@ -91,12 +103,13 @@ const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
   )
 }
 
-export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, items}) => {
+export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
   const toComponent = getComponent()
+  const [theme, background] = extractCombo(bgColor)
 
   return (
-    <div className={className}>
-      <div className="my-8">
+    <div className={cn(theme, className)} style={{backgroundColor: background}}>
+      <div className="py-8 dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
         })}
