@@ -42,6 +42,7 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
    *  logo url to show
    */
   logo?: ImageProps
+  homeLink?: string
 
   /**
    * language list
@@ -70,12 +71,14 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
  */
 export const SiteNav: FC<SiteNavProps> = ({
   logo,
+  homeLink = null,
   menuData = [],
   styles = 'opaque',
   className,
   locales = null,
   openMenuText = 'Toggle Menu'
 }) => {
+  console.log(homeLink)
   const [menuOpened, setMenuOpened] = useState(false)
   /*
    *Desktop Nav
@@ -98,7 +101,9 @@ export const SiteNav: FC<SiteNavProps> = ({
                 attrs?.className
               ])}
             >
-              <div className="flex-auto">{logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}</div>
+              <a className="flex-auto" href={homeLink}>
+                {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
+              </a>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
                   return (
@@ -181,7 +186,9 @@ export const SiteNav: FC<SiteNavProps> = ({
     return (
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
-          <div className="flex-auto">{logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}</div>
+          <a className="flex-auto" href={homeLink}>
+            {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
+          </a>
           <button
             aria-label={openMenuText}
             onClick={() => {
