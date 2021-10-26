@@ -1,5 +1,4 @@
 import React, {FC, HTMLAttributes} from 'react'
-import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
 export interface ClientProps {
@@ -26,17 +25,28 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content = []}) => {
+  let wrapperClass = ['flex flex-wrap justify-center']
+  let logoClass = ['w-auto']
+
+  if (size === 'default') {
+    wrapperClass.push('gap-12 sm:gap-14 lg:gap-16')
+    logoClass.push('h-6 sm:h-7 md:h-8 lg:h-9')
+  } else {
+    wrapperClass.push('gap-10 sm:gap-12 lg:gap-14')
+    logoClass.push('h-5 sm:h-6 md:h-7 lg:h-8')
+  }
+
   return (
-    <Marquee gradientWidth="0">
-      <div className={cn(['flex', 'flex-nowrap', 'w-max', 'space-x-14', 'lg:space-x-32', 'md:space-x-16'])}>
-        {content.map(({image, company}) => {
+    <section>
+      <div className={cn(wrapperClass)}>
+        {content.map(({image, company}, i) => {
           return (
-            <div key={company} className={size === 'default' ? 'h-14 lg:h-24 md:h-20' : 'h-14 lg:h-16 md:h-12'}>
-              <img className="w-auto h-full" src={image.url} alt={company} />
+            <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
+              <img className={cn(logoClass)} src={image.url} alt={company} />
             </div>
           )
         })}
       </div>
-    </Marquee>
+    </section>
   )
 }

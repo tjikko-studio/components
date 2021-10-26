@@ -111,6 +111,24 @@ const widthValues = {
   'screen-2xl': '1536px'
 }
 
+const flex = {
+  '1/2': '0 0 50%',
+  '1/3': '0 0 33.333333%',
+  '2/3': '0 0 66.666667%',
+  '1/4': '0 0 25%',
+  '2/4': '0 0 50%',
+  '3/4': '0 0 75%',
+  '1/5': '0 0 20%',
+  '2/5': '0 0 40%',
+  '3/5': '0 0 60%',
+  '4/5': '0 0 80%',
+  '1/6': '0 0 16.666667%',
+  '2/6': '0 0 33.333333%',
+  '3/6': '0 0 50%',
+  '4/6': '0 0 66.666667%',
+  '5/6': '0 0 83.333333%'
+}
+
 export interface MediaQueryProps {
   [key: string]: string
 }
@@ -153,12 +171,13 @@ export default {
   maxHeight: heightValues,
   width: widthValues,
   minWidth: widthValues,
-  maxWidth: widthValues
+  maxWidth: widthValues,
+  flex
 }
 
 export const breakpoints: MediaQueryProps = {
   xxs: widthValues['screen-xxs'],
   xs: widthValues['screen-xs'],
   ...screens,
-  '2xl': widthValues['screen-2xl']
+  '2xl': widthValues['screen-2xl'],
 }
