@@ -1,13 +1,24 @@
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
 export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 
-export const MediaImage: FC<ImageProps> = ({id, link, url, extension, dimensions = {}, content = {}, className, gallery}) => {
+export const MediaImage: FC<ImageProps> = ({
+  id,
+  link,
+  url,
+  extension,
+  dimensions = {},
+  content = {},
+  className,
+  wrapperClassName,
+  gallery
+}) => {
   return (
-    <figure key={id} role="group" className={gallery && className}>
+    <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
       {url && <img src={url} alt={content && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
       {content && content.caption && (
         <>
@@ -29,9 +40,21 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({id, url, content = {}, extension, autoplay, muted, controls, loop, className, gallery}) => {
+export const MediaVideo: FC<VideoProps> = ({
+  id,
+  url,
+  content = {},
+  extension,
+  autoplay,
+  muted,
+  controls,
+  loop,
+  className,
+  wrapperClassName,
+  gallery
+}) => {
   return (
-    <figure key={id} role="group" className={gallery && className}>
+    <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
       <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={content && content.alt && content.alt}></meta>
@@ -59,6 +82,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   controls?: boolean
   loop?: boolean
   className?: string
+  wrapperClassName?: string
   gallery?: boolean
 }
 
@@ -69,14 +93,22 @@ export const Media: FC<GenericMediaProps> = ({
   controls = false,
   loop = false,
   className,
+  wrapperClassName,
   gallery
 }) => {
   return media.type === 'video' ? (
-    <MediaVideo key={media.url} {...media} autoplay={autoplay} muted={muted} controls={controls} loop={loop} gallery={gallery} />
+    <MediaVideo
+      key={media.url}
+      {...media}
+      autoplay={autoplay}
+      muted={muted}
+      controls={controls}
+      loop={loop}
+      className={className}
+      wrapperClassName={wrapperClassName}
+      gallery={gallery}
+    />
   ) : (
-    <MediaImage key={media.url} {...media} className={className} gallery={gallery} />
+    <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
   )
-}
-function cn(arg0: string[]): string {
-  throw new Error('Function not implemented.')
 }
