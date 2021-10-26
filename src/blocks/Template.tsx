@@ -52,7 +52,6 @@ export const Template: FC<TemplateProps> = ({
       )
     },
     navigation: () => {
-      console.log(homeLink)
       return <SiteNav menuData={content as SiteNavColumns[]} logo={logo} locales={locales} homeLink={homeLink} className={className} />
     },
     footer: () => {

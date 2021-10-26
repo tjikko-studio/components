@@ -78,7 +78,6 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Toggle Menu'
 }) => {
-  console.log(homeLink)
   const [menuOpened, setMenuOpened] = useState(false)
   /*
    *Desktop Nav
