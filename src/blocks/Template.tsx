@@ -55,7 +55,7 @@ export const Template: FC<TemplateProps> = ({
       return <SiteNav menuData={content as SiteNavColumns[]} logo={logo} locales={locales} homeLink={homeLink} className={className} />
     },
     footer: () => {
-      return <Footer menuData={content as FooterNavColumns[]} locales={locales} className={className} />
+      return <Footer menuData={content as FooterNavColumns[]} locales={locales} homeLink={homeLink} className={className} />
     }
   }
 
