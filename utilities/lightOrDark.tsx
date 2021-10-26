@@ -26,7 +26,6 @@ export default function lightOrDark(color: any) {
   hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
 
   // Using the HSP value, determine whether the color is light or dark
-  console.log(r, g, b)
   if (hsp > 127.5) {
     return 'light'
   } else {
