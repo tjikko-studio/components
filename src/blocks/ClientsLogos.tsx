@@ -39,7 +39,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content =
   return (
     <section>
       <div className={cn(wrapperClass)}>
-        {content.map(({image, company}, i) => {
+        {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
               <img className={cn(logoClass)} src={image.url} alt={company} />

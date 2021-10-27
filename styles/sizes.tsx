@@ -179,5 +179,5 @@ export const breakpoints: MediaQueryProps = {
   xxs: widthValues['screen-xxs'],
   xs: widthValues['screen-xs'],
   ...screens,
-  '2xl': widthValues['screen-2xl'],
+  '2xl': widthValues['screen-2xl']
 }
