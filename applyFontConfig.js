@@ -51,6 +51,33 @@ exports = function exports ({theme, addBase, addUtilities}) {
       lineHeight: theme('lineHeight.xl'),
       letterSpacing: theme('letterSpacing.widest'),
       fontWeight: theme('fontWeight.xl')
+    },
+
+    /*
+     * Paragraph and lists formating
+     */
+    '.fontStyle-base, p': {
+      marginTop: theme('spacing.2'),
+      marginBottom: theme('spacing.2')
+    },
+    'ol, ul': {
+      marginTop: theme('spacing.4'),
+      marginBottom: theme('spacing.4')
+    },
+    hr: {
+      marginTop: theme('spacing.8'),
+      marginBottom: theme('spacing.8')
+    },
+    'ul li': {
+      listStyleType: 'disc'
+    },
+    'ol li': {
+      listStyleType: 'decimal'
+    },
+    'ul li, ol li': {
+      listPosition: 'outside',
+      marginTop: theme('spacing["0.5"]'),
+      marginBottom: theme('spacing["0.5"]')
     }
   }
   const fontStyles = {
@@ -69,9 +96,6 @@ exports = function exports ({theme, addBase, addUtilities}) {
     },
     '.fontStyle-base.uppercase, .fontStyle-base uppercase, .uppercase': {
       letterSpacing: theme('letterSpacing.wider')
-    },
-    '.fontStyle-base p:nth-child(n+2), .fontStyle-base ul:nth-child(n+2), .fontStyle-base ol:nth-child(n+2)': {
-      marginTop: theme('spacing.4')
     },
 
     /*
