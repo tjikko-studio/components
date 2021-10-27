@@ -19,7 +19,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Block image
    */
-  images?: MediaProps[] | null
+  images?: MediaProps[]
 
   /**
    * alt text
