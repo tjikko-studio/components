@@ -24,7 +24,7 @@ export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
 
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) => {
   return (
-    <div className="grid sm:grid-cols-2 gap-12 py-12 sm:gap-8 sm:p-8">
+    <div className="grid gap-12 py-12 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
         <Tertiary
           key={item.id}
@@ -54,7 +54,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
             </div>
           </div>
 
-          {item.content.video?.[0] && <Media media={item.content.video[0]} className="rounded-xl" wrapperClassName="w-full" />}
+          {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
 
           <Button className="mt-4" type="tertiary" link={item.url} label={`Read about ${item.content.title}`} />
         </div>
