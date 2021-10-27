@@ -1,6 +1,29 @@
-import {ImageProps} from '../../src/parts/Media'
-
 export type ContentType = any
+
+export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
+  type: 'image' | 'video'
+  id: string
+  link: string
+  url: string
+  extension: string
+  dimensions?: {
+    width: number
+    height: number
+    ratio: number
+    orientation: string
+  }
+  content?: {
+    alt?: string
+    caption?: string
+    creator?: string
+    license?: string
+    link?: string
+  }
+  className: string
+  gallery?: boolean
+}
+
+export type ImageProps = MediaProps
 
 export interface BlockProps {
   type: string
