@@ -1,85 +1,6 @@
 /* eslint-env node */
 exports = function exports ({theme, addBase, addUtilities}) {
-  const fontBase = {
-    body: {
-      fontFamily: theme('fontFamily.body'),
-      fontSize: theme('fontSize.base'),
-      lineHeight: theme('lineHeight.base'),
-      letterSpacing: theme('letterSpacing.base'),
-      fontWeight: theme('fontWeight.base')
-    },
-    strong: {fontWeight: theme('fontWeight.semibold')},
-    uppercase: {letterSpacing: theme('letterSpacing.wider')},
-    h1: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.6xl'),
-      lineHeight: theme('lineHeight.6xl'),
-      letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.6xl')
-    },
-    h2: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.5xl'),
-      lineHeight: theme('lineHeight.5xl'),
-      letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.5xl')
-    },
-    h3: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.4xl'),
-      lineHeight: theme('lineHeight.4xl'),
-      letterSpacing: theme('letterSpacing.wider'),
-      fontWeight: theme('fontWeight.4xl')
-    },
-    h4: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.3xl'),
-      lineHeight: theme('lineHeight.3xl'),
-      letterSpacing: theme('letterSpacing.widest'),
-      fontWeight: theme('fontWeight.3xl')
-    },
-    h5: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.2xl'),
-      lineHeight: theme('lineHeight.2xl'),
-      letterSpacing: theme('letterSpacing.widest'),
-      fontWeight: theme('fontWeight.2xl')
-    },
-    h6: {
-      fontFamily: theme('fontFamily.display'),
-      fontSize: theme('fontSize.xl'),
-      lineHeight: theme('lineHeight.xl'),
-      letterSpacing: theme('letterSpacing.widest'),
-      fontWeight: theme('fontWeight.xl')
-    },
 
-    /*
-     * Paragraph and lists formating
-     */
-    '.fontStyle-base, p': {
-      marginTop: theme('spacing.2'),
-      marginBottom: theme('spacing.2')
-    },
-    'ol, ul': {
-      marginTop: theme('spacing.4'),
-      marginBottom: theme('spacing.4')
-    },
-    hr: {
-      marginTop: theme('spacing.8'),
-      marginBottom: theme('spacing.8')
-    },
-    'ul li': {
-      listStyleType: 'disc'
-    },
-    'ol li': {
-      listStyleType: 'decimal'
-    },
-    'ul li, ol li': {
-      listPosition: 'outside',
-      marginTop: theme('spacing["0.5"]'),
-      marginBottom: theme('spacing["0.5"]')
-    }
-  }
   const fontStyles = {
     /*
      *Font styles base modifiers
@@ -249,6 +170,47 @@ exports = function exports ({theme, addBase, addUtilities}) {
       lineHeight: theme('lineHeight.9xl'),
       letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.9xl')
+    }
+  }
+  const fontBase = {
+    /*
+     * Header and body Formating
+     */
+    h1: fontStyles['.fontStyle-6xl'],
+    h2: fontStyles['.fontStyle-5xl'],
+    h3: fontStyles['.fontStyle-4xl'],
+    h4: fontStyles['.fontStyle-3xl'],
+    h5: fontStyles['.fontStyle-4xl'],
+    h6: fontStyles['.fontStyle-xl'],
+    body: fontStyles['.fontStyle-base'],
+    strong: {fontWeight: theme('fontWeight.semibold')},
+    uppercase: {letterSpacing: theme('letterSpacing.wider')},
+
+    /*
+     * Paragraph and lists formating
+     */
+    '.fontStyle-base, p': {
+      marginTop: theme('spacing.2'),
+      marginBottom: theme('spacing.2')
+    },
+    'ol, ul': {
+      marginTop: theme('spacing.4'),
+      marginBottom: theme('spacing.4')
+    },
+    hr: {
+      marginTop: theme('spacing.8'),
+      marginBottom: theme('spacing.8')
+    },
+    'ul li': {
+      listStyleType: 'disc'
+    },
+    'ol li': {
+      listStyleType: 'decimal'
+    },
+    'ul li, ol li': {
+      listPosition: 'outside',
+      marginTop: theme('spacing["0.5"]'),
+      marginBottom: theme('spacing["0.5"]')
     }
   }
   addBase(fontBase)
