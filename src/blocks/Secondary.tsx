@@ -71,14 +71,14 @@ export const Secondary: FC<SecondaryProps> = ({
     <div
       className={cn(
         'text-gray-900 dark:text-gray-50',
-        finalLayout === 'default' && 'sm:flex',
-        imagePosition === 'right' && 'sm:flex-row-reverse',
+        finalLayout === 'default' && 'lg:flex',
+        imagePosition === 'right' && 'lg:flex-row-reverse',
         className
       )}
     >
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
-          <div className={finalLayout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2 sm:p-4'}>
+          <div className={finalLayout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4'}>
             {image && (
               <Media
                 media={image}
@@ -90,8 +90,8 @@ export const Secondary: FC<SecondaryProps> = ({
               />
             )}
           </div>
-          <div className={cn('mt-4 sm:mt-0', finalLayout !== 'vertical' && 'sm:w-1/2 sm:flex')}>
-            <div className={cn(finalLayout !== 'vertical' && 'sm:pl-12')}>
+          <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex')}>
+            <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>
               <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
               <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
               {Object.keys(buttons).length ? (
