@@ -1,4 +1,5 @@
 import React, {FC, HTMLAttributes} from 'react'
+import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
 export interface ClientProps {
@@ -13,7 +14,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
    * The size and spacing of the logos
    * (Dev note: Maybe should we get rid of this to encourage consistency )
    */
-  size?: 'default' | 'compact'
+  logosLayout?: 'grid' | 'banner'
 
   /**
    * Clients logos object that will be parsed through to build the component
@@ -24,21 +25,23 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content = []}) => {
-  let wrapperClass = ['flex flex-wrap justify-center']
-  let logoClass = ['w-auto']
+export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout = 'grid'}) => {
+  logosLayout = logosLayout ? logosLayout : 'grid'
 
-  if (size === 'default') {
-    wrapperClass.push('gap-12 sm:gap-14 lg:gap-16')
-    logoClass.push('h-6 sm:h-7 md:h-8 lg:h-9')
-  } else {
-    wrapperClass.push('gap-10 sm:gap-12 lg:gap-14')
-    logoClass.push('h-5 sm:h-6 md:h-7 lg:h-8')
+  let wrapperClass = ['flex justify-center gap-12 sm:gap-14 lg:gap-16']
+  let logoClass = ['w-auto h-6 sm:h-7 md:h-8 lg:h-9']
+  let layoutClass = ['flex justify-center']
+
+  if (logosLayout === 'grid') {
+    wrapperClass.push('flex-wrap')
+    layoutClass.push('flex-grow-0 flex-shrink-0')
+  } else if (logosLayout === 'banner') {
+    wrapperClass.push('flex-nowrap w-max space-x-14 lg:space-x-32 md:space-x-16')
   }
 
-  return (
-    <section>
-      <div className={cn(wrapperClass)}>
+  const LogosList = () => {
+    return (
+      <>
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
@@ -46,7 +49,25 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content =
             </div>
           )
         })}
-      </div>
+      </>
+    )
+  }
+
+  return (
+    <section>
+      {logosLayout === 'grid' ? (
+        <div className={cn(wrapperClass)}>
+          <LogosList />
+        </div>
+      ) : (
+        logosLayout === 'banner' && (
+          <Marquee gradientWidth="0">
+            <div className={cn(wrapperClass)}>
+              <LogosList />
+            </div>
+          </Marquee>
+        )
+      )}
     </section>
   )
 }
