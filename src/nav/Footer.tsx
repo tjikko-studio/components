@@ -39,6 +39,7 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
    * menu json data same as NavItem
    */
   menuData: NavColumns[]
+  homeLink?: string
 
   /**
    * language list
@@ -51,7 +52,8 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({menuData = [], locales = null, className}) => {
+export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink = null, className}) => {
+  console.log(homeLink)
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
@@ -170,7 +172,11 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, classNam
                                             console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                             return null
                                           case 'NavigationLogo':
-                                            return innerContent.image ? <Media media={innerContent.image} className="h-8 w-auto" /> : null
+                                            return innerContent.image ? (
+                                              <a href={homeLink}>
+                                                <Media media={innerContent.image} className="h-8 w-auto" />
+                                              </a>
+                                            ) : null
                                           default:
                                             console.error('Unrecognized content type in footer', type)
                                             return null
