@@ -24,7 +24,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * alt text
    */
-  caption: string
+  caption?: string
 
   /**
    * className override
