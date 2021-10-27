@@ -26,7 +26,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content = []}) => {
   return (
-    <div>
+    <section>
       <div className={cn(['flex', 'flex-nowrap', 'w-max', 'space-x-14', 'lg:space-x-32', 'md:space-x-16'])}>
         {content.map(({image, company}) => {
           return (
@@ -36,6 +36,6 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content =
           )
         })}
       </div>
-    </div>
+    </section>
   )
 }
