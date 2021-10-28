@@ -57,13 +57,13 @@ export const Tertiary: FC<TertiaryProps> = ({
   const classes = [
     'text-gray-900',
     'dark:text-gray-50',
-    {'sm:flex': layout !== 'vertical'},
-    {'-sm:space-x-6 flex-row-reverse': layout !== 'vertical' && imagePosition === 'right'},
-    {'sm:space-x-6': layout !== 'vertical' && imagePosition === 'left'}
+    {'lg:flex': layout !== 'vertical'},
+    {'-lg:space-x-6 flex-row-reverse': layout !== 'vertical' && imagePosition === 'right'},
+    {'lg:space-x-6': layout !== 'vertical' && imagePosition === 'left'}
   ]
   return (
     <div className={cn(classes)}>
-      <div className={cn(layout === 'vertical' ? 'sm:pb-8' : 'sm:w-1/2')}>
+      <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2')}>
         {image && (
           <Media
             media={image}
@@ -75,7 +75,7 @@ export const Tertiary: FC<TertiaryProps> = ({
           />
         )}
       </div>
-      <div className={cn('mt-4 sm:mt-0', layoutTypeStaged !== 'vertical' && 'sm:w-1/2 sm:flex sm:ml-6')}>
+      <div className={cn('mt-4 lg:mt-0', layoutTypeStaged !== 'vertical' && 'lg:w-1/2 lg:flex lg:ml-6')}>
         <div>
           <h2 className="fontStyle-2xl break-words block w-full">{title}</h2>
           <p className="fontStyle-base break-words mt-2" dangerouslySetInnerHTML={{__html: body}}></p>

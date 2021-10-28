@@ -24,7 +24,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * alt text
    */
-  caption: string
+  caption?: string
 
   /**
    * className override
@@ -54,6 +54,7 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
         {images.map((image) => {
           return (
             <Media
+              key={image.id}
               media={image}
               autoplay={false}
               muted={false}
@@ -66,7 +67,7 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
         })}
       </div>
       <figcaption
-        className="fontStyle-sm bg-opacity-60 text-gray:500 dark:text-gray-400 mt-4 relative"
+        className="relative mt-4 fontStyle-sm bg-opacity-60 text-gray:500 dark:text-gray-400"
         dangerouslySetInnerHTML={{__html: caption}}
       />
     </figure>
