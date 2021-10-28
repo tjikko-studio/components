@@ -53,7 +53,6 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink = null, className}) => {
-  console.log(homeLink)
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
