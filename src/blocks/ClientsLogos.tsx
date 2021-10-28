@@ -29,14 +29,14 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
   logosLayout = logosLayout ? logosLayout : 'grid'
 
   let wrapperClass = ['flex justify-center gap-12 sm:gap-14 lg:gap-16']
-  let logoClass = ['w-auto h-6 sm:h-7 md:h-8 lg:h-9']
+  let logoClass = ['w-auto h-12 md:h-14 lg:h-16 xl:h-18']
   let layoutClass = ['flex justify-center']
 
   if (logosLayout === 'grid') {
     wrapperClass.push('flex-wrap')
     layoutClass.push('flex-grow-0 flex-shrink-0')
   } else if (logosLayout === 'marquee') {
-    wrapperClass.push('flex-nowrap w-max gap-14 mr-14 md:gap-16 md:mr-16 lg:gap-24 lg:mr-24')
+    wrapperClass.push('flex-nowrap w-max mr-12 sm:mr-14 lg:mr-16')
   }
 
   const LogosList = () => {
@@ -62,7 +62,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
       ) : (
         logosLayout === 'marquee' && (
           <div className="relative w-screen transform -translate-x-1/2 left-1/2">
-            <Marquee gradientWidth="0" speed={96}>
+            <Marquee gradientWidth="0" speed={88}>
               <div className={cn(wrapperClass)}>
                 <LogosList />
               </div>
