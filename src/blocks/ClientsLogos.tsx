@@ -14,7 +14,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
    * The size and spacing of the logos
    * (Dev note: Maybe should we get rid of this to encourage consistency )
    */
-  logosLayout?: 'grid' | 'banner'
+  logosLayout?: 'grid' | 'marquee'
 
   /**
    * Clients logos object that will be parsed through to build the component
@@ -35,7 +35,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
   if (logosLayout === 'grid') {
     wrapperClass.push('flex-wrap')
     layoutClass.push('flex-grow-0 flex-shrink-0')
-  } else if (logosLayout === 'banner') {
+  } else if (logosLayout === 'marquee') {
     wrapperClass.push('flex-nowrap w-max gap-14 mr-14 md:gap-16 md:mr-16 lg:gap-24 lg:mr-24')
   }
 
@@ -60,7 +60,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
           <LogosList />
         </div>
       ) : (
-        logosLayout === 'banner' && (
+        logosLayout === 'marquee' && (
           <div className="relative w-screen transform -translate-x-1/2 left-1/2">
             <Marquee gradientWidth="0" speed={96}>
               <div className={cn(wrapperClass)}>
