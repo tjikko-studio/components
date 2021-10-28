@@ -44,7 +44,7 @@ Default.args = {
             type: 'image',
             id: 'portfolio/sp-condos/my-image-02.png',
             link: '/pages/portfolio+sp-condos/files/my-image-02.png',
-            url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/42a5a4accd-1635204716/my-image-02.png',
+            url: 'https://via.placeholder.com/1.gif/111827/111827',
             extension: 'png',
             content: {
               caption: '<p>Image 02 caption text</p>',
@@ -95,7 +95,7 @@ Default.args = {
             type: 'image',
             id: 'portfolio/sp-condos/my-image-01.png',
             link: '/pages/portfolio+sp-condos/files/my-image-01.png',
-            url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/f711f48074-1635204716/my-image-01.png',
+            url: 'https://via.placeholder.com/1.gif/111827/111827',
             extension: 'png',
             content: {
               caption: '<p>Image 01 caption text</p>',
@@ -116,7 +116,7 @@ Default.args = {
             type: 'image',
             id: 'portfolio/sp-condos/my-image-02.png',
             link: '/pages/portfolio+sp-condos/files/my-image-02.png',
-            url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/42a5a4accd-1635204716/my-image-02.png',
+            url: 'https://via.placeholder.com/1.gif/111827/111827',
             extension: 'png',
             content: {
               caption: '<p>Image 02 caption text</p>',

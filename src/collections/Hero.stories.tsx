@@ -22,7 +22,7 @@ Default.args = {
   bgType: 'video',
   bgHasImage: true,
   bgImage: {
-    url: 'https://source.unsplash.com/random'
+    url: 'https://via.placeholder.com/1.gif/111827/111827'
   },
   bgHasVideo: true,
   bgVideo: {
