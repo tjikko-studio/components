@@ -40,23 +40,23 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) =>
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <div className="flex flex-wrap gap-8 py-8 px-4 sm:gap-8 sm:p-8 md:m-8">
+    <div className="flex flex-wrap gap-16 py-12 px-4 sm:gap-8 sm:p-8 lg:m-8">
       {items?.map((item) => (
-        <div key={item.id} className="flex flex-col w-full md:p-8">
-          <div className="md:flex md:gap-x-4">
-            <div className="flex flex-col md:w-1/2">
+        <div key={item.id} className="flex flex-col w-full lg:p-8 jus">
+          <div className="lg:flex lg:gap-x-4">
+            <div className="flex flex-col lg:w-1/2">
               <Heading text={item.content.title} className="pb-4" />
               <p className="pb-4 text-left">{item.content.description}</p>
             </div>
 
-            <div className="md:w-1/2">
-              <Gallery images={item.content.images} />
+            <div className="lg:w-1/2">
+              <Gallery images={item.content.images} mobileColumns={true} />
             </div>
           </div>
 
           {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
 
-          <Button className="mt-4" type="tertiary" link={item.url} label={`Read about ${item.content.title}`} />
+            <Button className="mt-4 w-fit" type="secondary" link={item.url} label={`Read about ${item.content.title}`} />
         </div>
       ))}
     </div>

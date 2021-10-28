@@ -27,6 +27,11 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   caption?: string
 
   /**
+   * Columns on mobile
+   */
+  mobileColumns?: boolean
+
+  /**
    * className override
    */
   className?: string
@@ -35,19 +40,22 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption = ''}) => {
-  let gridLayout = ''
+export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption = '', mobileColumns = false}) => {
+  let gridLayout = null
   switch (images.length) {
     case 2:
     case 4:
-      gridLayout = 'xs:grid-cols-2'
+      gridLayout = 'grid-cols-2'
       break
     case 3:
-      gridLayout = 'xs:grid-cols-3'
+      gridLayout = 'grid-cols-3'
       break
     default:
       break
   }
+
+  gridLayout = !mobileColumns && gridLayout ? `xs:${gridLayout}` : gridLayout
+
   return (
     <figure role="group" className={cn(className)}>
       <div className={cn('grid gap-2', gridLayout)}>
