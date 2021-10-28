@@ -24,7 +24,7 @@ export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
 
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) => {
   return (
-    <div className="grid gap-12 py-12 sm:grid-cols-2 sm:gap-8 sm:p-8">
+    <div className="grid gap-12 px-8 py-12 sm:grid-cols-2 sm:gap-8">
       {items?.map((item) => (
         <Tertiary
           key={item.id}
@@ -40,10 +40,10 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) =>
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <div className="flex flex-wrap gap-12 py-12 sm:gap-8 sm:p-8 md:m-8">
+    <div className="flex flex-wrap gap-12 px-8 py-12 sm:gap-8">
       {items?.map((item) => (
-        <div className="flex flex-col w-full md:p-8">
-          <div key={item.id} className="md:flex md:gap-x-4">
+        <div key={item.id} className="flex flex-col w-full md:p-8">
+          <div className="md:flex md:gap-x-4">
             <div className="flex flex-col md:w-1/2">
               <Heading text={item.content.title} className="pb-4" />
               <p className="pb-4 text-left">{item.content.description}</p>
