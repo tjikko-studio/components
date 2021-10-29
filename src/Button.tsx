@@ -63,7 +63,7 @@ export const Button: FC<ButtonProps> = ({
   onClick
 }) => {
   const buttonType = type || 'primary'
-  let buttonClasses = ['inline-flex items-center space-x-3']
+  const buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']
   const styles = {
     primary: (isForceDark: boolean) => {
