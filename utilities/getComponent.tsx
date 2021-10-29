@@ -31,11 +31,11 @@ const getCommonProps: GetPropsFn = (content, id, attrs) => {
     className: attrs?.className
   }
 }
-
 const propsByType: Record<string, GetPropsFn> = {
-  ButtonsGroups: (content, id, attrs) => {
+  ButtonsGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
+      fullWidth: content.full_width,
       className: 'mt-8'
     }
   },
