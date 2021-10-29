@@ -22,9 +22,14 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   icon?: string
 
   /**
-   * icon size
+   * button size
    */
   size?: 'default' | 'large' | 'small'
+
+  /**
+   * Is the button full width
+   */
+  fullWidth?: boolean
 
   /**
    * button link
@@ -54,10 +59,11 @@ export const Button: FC<ButtonProps> = ({
   link = '',
   className = '',
   forceDark = false,
+  fullWidth = false,
   onClick
 }) => {
   const buttonType = type || 'primary'
-  const buttonClasses = ['inline-flex items-center space-x-3']
+  let buttonClasses = ['inline-flex items-center space-x-3']
   const contentClasses = ['']
   const styles = {
     primary: (isForceDark: boolean) => {
@@ -92,6 +98,7 @@ export const Button: FC<ButtonProps> = ({
       return newClasses
     }
   }
+  fullWidth && buttonClasses.push('w-full justify-center')
   buttonClasses.push(...styles[buttonType](forceDark))
   switch (size) {
     case 'small':
