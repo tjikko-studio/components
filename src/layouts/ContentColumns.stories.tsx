@@ -30,7 +30,7 @@ Default.args = {
                 type: 'default',
                 imagePosition: 'auto',
                 image: {
-                  url: 'https://source.unsplash.com/random',
+                  url: 'https://via.placeholder.com/1.gif/111827/111827',
                   type: 'image'
                 },
                 title: 'Heading',
@@ -50,7 +50,7 @@ Default.args = {
                 type: 'default',
                 imagePosition: 'auto',
                 image: {
-                  url: 'https://source.unsplash.com/random',
+                  url: 'https://via.placeholder.com/1.gif/111827/111827',
                   type: 'image'
                 },
                 title: 'Heading 2',

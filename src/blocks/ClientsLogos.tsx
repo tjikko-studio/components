@@ -14,7 +14,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
    * The size and spacing of the logos
    * (Dev note: Maybe should we get rid of this to encourage consistency )
    */
-  size?: 'default' | 'compact'
+  logosLayout?: 'grid' | 'marquee'
 
   /**
    * Clients logos object that will be parsed through to build the component
@@ -25,18 +25,51 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const ClientsLogos: FC<ClientsLogosProps> = ({size = 'default', content = []}) => {
-  return (
-    <Marquee gradientWidth="0">
-      <div className={cn(['flex', 'flex-nowrap', 'w-max', 'space-x-14', 'lg:space-x-32', 'md:space-x-16'])}>
+export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout = 'grid'}) => {
+  logosLayout = logosLayout ? logosLayout : 'grid'
+
+  let wrapperClass = ['flex justify-center gap-12 sm:gap-14 lg:gap-16']
+  let logoClass = ['w-auto h-12 md:h-14 lg:h-16 xl:h-18']
+  let layoutClass = ['flex justify-center']
+
+  if (logosLayout === 'grid') {
+    wrapperClass.push('flex-wrap')
+    layoutClass.push('flex-grow-0 flex-shrink-0')
+  } else if (logosLayout === 'marquee') {
+    wrapperClass.push('flex-nowrap w-max mr-12 sm:mr-14 lg:mr-16')
+  }
+
+  const LogosList = () => {
+    return (
+      <>
         {content.map(({image, company}) => {
           return (
-            <div key={company} className={size === 'default' ? 'h-14 lg:h-24 md:h-20' : 'h-14 lg:h-16 md:h-12'}>
-              <img className="w-auto h-full" src={image.url} alt={company} />
+            <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
+              <img className={cn(logoClass)} src={image.url} alt={company} />
             </div>
           )
         })}
-      </div>
-    </Marquee>
+      </>
+    )
+  }
+
+  return (
+    <section>
+      {logosLayout === 'grid' ? (
+        <div className={cn(wrapperClass)}>
+          <LogosList />
+        </div>
+      ) : (
+        logosLayout === 'marquee' && (
+          <div className="relative w-screen transform -translate-x-1/2 left-1/2">
+            <Marquee gradientWidth="0" speed={88}>
+              <div className={cn(wrapperClass)}>
+                <LogosList />
+              </div>
+            </Marquee>
+          </div>
+        )
+      )}
+    </section>
   )
 }

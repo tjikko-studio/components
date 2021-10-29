@@ -19,7 +19,8 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
     license?: string
     link?: string
   }
-  className: string
+  className?: string
+  wrapperClassName?: string
   gallery?: boolean
 }
 

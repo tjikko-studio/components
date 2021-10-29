@@ -51,6 +51,12 @@ const propsByType: Record<string, GetPropsFn> = {
       bgVideo: content.bg_video?.[0]
     }
   },
+  ClientsLogos: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      logosLayout: content.logos_layout
+    }
+  },
   Primary: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),

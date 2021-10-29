@@ -22,6 +22,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
    */
   locales?: LocalesType
   logo?: ImageProps
+  homeLink?: string
   templateType?: 'template' | 'navigation' | 'footer'
   content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
   className?: string
@@ -30,7 +31,14 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Template: FC<TemplateProps> = ({logo = null, content = [], locales = null, templateType = 'template', className}) => {
+export const Template: FC<TemplateProps> = ({
+  logo = null,
+  homeLink = null,
+  content = [],
+  locales = null,
+  templateType = 'template',
+  className
+}) => {
   const AvailableTemplates = {
     template: () => {
       return (
@@ -44,10 +52,10 @@ export const Template: FC<TemplateProps> = ({logo = null, content = [], locales 
       )
     },
     navigation: () => {
-      return <SiteNav menuData={content as SiteNavColumns[]} logo={logo} locales={locales} className={className} />
+      return <SiteNav menuData={content as SiteNavColumns[]} logo={logo} locales={locales} homeLink={homeLink} className={className} />
     },
     footer: () => {
-      return <Footer menuData={content as FooterNavColumns[]} locales={locales} className={className} />
+      return <Footer menuData={content as FooterNavColumns[]} locales={locales} homeLink={homeLink} className={className} />
     }
   }
 
@@ -60,6 +68,7 @@ export const Template: FC<TemplateProps> = ({logo = null, content = [], locales 
         content,
         locales,
         logo,
+        homeLink,
         templateType
       })
     )

@@ -16,8 +16,8 @@ const Template: Story<ClientsLogosProps> = (args) => {
   return <ClientsLogos {...args} />
 }
 
-export const Default = Template.bind({})
-Default.args = {
+export const Grid = Template.bind({})
+Grid.args = {
   content: [
     {
       image: {
@@ -74,11 +74,11 @@ Default.args = {
       company: 'Company 09'
     }
   ],
-  size: 'default'
+  logosLayout: 'grid'
 }
 
-export const Compact = Template.bind({})
-Compact.args = {
-  ...Default.args,
-  size: 'compact'
+export const Marquee = Template.bind({})
+Marquee.args = {
+  ...Grid.args,
+  logosLayout: 'marquee'
 }
