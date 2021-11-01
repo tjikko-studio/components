@@ -1,7 +1,10 @@
-import React, {FC, useEffect, useRef} from 'react'
+import 'intersection-observer'
+
+import React, {FC, RefObject, useEffect, useRef} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
+import extractCombo from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'
@@ -16,6 +19,7 @@ type FeaturesShowItemBox = {
   position?: ContentPosition
   idx?: number
   totalNbBoxes?: number
+  cloneLayerRef: RefObject<HTMLDivElement>
 }
 
 type FeaturesShowItem = {
@@ -28,36 +32,6 @@ export type FeaturesShowProps = {
   header?: BlockProps[]
   className?: string
   bgColor?: string
-}
-
-const getHorPos = (value: string) => {
-  switch (value) {
-    case 'left':
-      return 'left-0'
-    case 'center':
-      return 'left-1/2 transform -translate-x-1/2'
-    case 'right':
-      return 'right-0'
-    default:
-      return ''
-  }
-}
-
-const getVerPos = (value: string) => {
-  switch (value) {
-    case 'top':
-      return 'top-8'
-    case 'center':
-      return 'top-1/2 transform -translate-y-1/2'
-    case 'bottom':
-      return 'bottom-8'
-    default:
-      return ''
-  }
-}
-
-function extractCombo(thing: string) {
-  return thing ? thing.split('|') : [null, null]
 }
 
 const growthFactor = 2
@@ -112,70 +86,62 @@ function observerArgs(
   ]
 }
 
-function getOpacity(elem: HTMLElement, idx: number, length: number) {
+function ease(val: number): number {
+  return Math.sqrt(1 - Math.pow(val - 1, 2))
+}
+
+function getOpacity(elem: Element, idx: number, length: number): string {
   const viewportHeight = window.innerHeight
-  const fraction = viewportHeight / length
-  const threshold = (idx * viewportHeight) / length + fraction / 2
+  const viewportCenter = viewportHeight / 2
   const {top, height} = elem.getBoundingClientRect()
-  const distance = threshold - top
-  if (distance < 0) {
-    return '0'
-  } else if (distance >= height) {
+  const halfHeight = height / 2
+  const elemCenter = top + halfHeight
+  const delta = Math.abs(elemCenter - viewportCenter)
+  const fraction = delta / halfHeight
+  if (fraction > 1) {
     return '0'
   } else {
-    return `${distance / (height / growthFactor)}`
+    return ease(1 - fraction).toString()
   }
 }
 
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
 
-const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBoxes}) => {
-  const infoBoxContainerRef = useRef(null)
-  const [verPosVal, horPosVal] = extractCombo(position)
-  const verPos = getVerPos(verPosVal)
-  const horPos = getHorPos(horPosVal)
+function opacityModifier(elem: Element, clone: HTMLDivElement, idx: number, totalNbBoxes: number): () => void {
+  return () => {
+    clone.style.opacity = getOpacity(elem, idx, totalNbBoxes)
+  }
+}
+
+const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBoxes, cloneLayerRef}) => {
+  const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (infoBoxContainerRef.current) {
-      infoBoxContainerRef.current.style.opacity = 0
-      const popupContainerObserver = new IntersectionObserver(
-        ...observerArgs(
-          ({elem, val}: ObserverArgsCallback) => {
-            function alterOpacity() {
-              elem.style.opacity = getOpacity(elem, idx, totalNbBoxes)
-            }
-            alterOpacity()
-            if (val) {
-              window.addEventListener('scroll', alterOpacity, false)
-            } else {
-              window.removeEventListener('scroll', alterOpacity, false)
-            }
-          },
-          {
-            steps: 5
-          }
-        )
-      )
-      popupContainerObserver.observe(infoBoxContainerRef.current)
+    const infoBox = infoBoxContainerRef.current
+    const cloneLayer = cloneLayerRef.current
+    if (infoBox && cloneLayer) {
+      infoBox.style.opacity = '0'
+      const clone = infoBox.cloneNode(true) as HTMLDivElement
+      clone.style.height = 'unset'
+      clone.style.gridArea = position.replace('|', '-')
+      cloneLayer.appendChild(clone)
+      const modifyOpacity = opacityModifier(infoBox, clone, idx, totalNbBoxes)
+      const scrollContainer = window.document.querySelector('.k-panel-view')
+      ;(scrollContainer || window).addEventListener('scroll', modifyOpacity, false)
+      return () => {
+        ;(scrollContainer || window).removeEventListener('scroll', modifyOpacity, false)
+      }
     }
-  }, [infoBoxContainerRef, idx, totalNbBoxes])
+  }, [infoBoxContainerRef, idx, totalNbBoxes, cloneLayerRef, position])
   return (
     <div
-      className="relative flex items-start transition-opacity"
+      className="relative flex items-start transition-opacity items-center"
       ref={infoBoxContainerRef}
       style={{
         height: `${(growthFactor * 100) / totalNbBoxes}vh`
       }}
     >
-      <div
-        key={idx}
-        className={cn(
-          'absolute z-20 bg-white rounded-xl shadow-xl w-1/3 p-8 transition-opacity duration-2000',
-          verPos,
-          horPos
-          // currentBoxIdx === idx ? 'opacity-100' : 'opacity-0'
-        )}
-      >
+      <div key={idx} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
@@ -183,45 +149,57 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBo
   )
 }
 
-const imgContainerObserver = new IntersectionObserver(
-  ...observerArgs(
-    ({elem, val}: ObserverArgsCallback) => {
-      const bgImg: HTMLElement = elem.querySelector('.bg-img')
-      bgImg.style.transform = `scale(${val})`
-    },
-    {
-      steps: 5,
-      caps: [0.8, 0.9]
-    }
-  )
-)
-
-const FeatureShowItem: FC<{item: FeaturesShowItem}> = ({item}) => {
-  const imgContainerRef = useRef(null)
+const FeaturesShowSection: FC<{item: FeaturesShowItem}> = ({item}) => {
+  const imgContainerRef = useRef<HTMLDivElement>(null)
+  const cloneLayerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (imgContainerRef.current) {
+      const imgContainerObserver = new IntersectionObserver(
+        ...observerArgs(
+          ({elem, val}: ObserverArgsCallback) => {
+            const bgImg: HTMLElement = elem.querySelector('.bg-img')
+            bgImg.style.transform = `scale(${val})`
+          },
+          {
+            steps: 10,
+            caps: [0.8, 0.9]
+          }
+        )
+      )
       imgContainerObserver.observe(imgContainerRef.current)
     }
   }, [imgContainerRef])
 
   return (
-    <div className="flex flex-col items-center mx-10 h-100vh">
-      <div className="relative w-full px-8">
-        {item.image?.[0] && (
-          <div className="sticky t-0 h-100vh" ref={imgContainerRef}>
-            <div
-              className="bg-img h-full w-full bg-center bg-cover rounded-3xl transition-transform duration-700"
-              style={{
-                backgroundImage: `url(${item.image?.[0].url})`
-              }}
-            />
-          </div>
-        )}
-        {item.info_boxes.map((box, idx, all) => {
-          return <InfoBox key={box.title} {...box} idx={idx} totalNbBoxes={all.length} />
-        })}
-      </div>
+    <div className="relative w-full px-8">
+      {item.image?.[0] && (
+        <div className="sticky h-100vh" ref={imgContainerRef} style={{top: '0'}}>
+          <div
+            className="bg-img h-full w-full bg-center bg-cover rounded-3xl transition-transform duration-700"
+            style={{
+              backgroundImage: `url(${item.image?.[0].url})`
+            }}
+          />
+          <div
+            className="absolute h-full w-full"
+            style={{
+              top: '0',
+              display: 'grid',
+              gridTemplateRows: '1fr 1fr 1fr',
+              gridTemplateColumns: '1fr 1fr 1fr',
+              gridTemplateAreas: `
+                "top-left    top-center    top-right"
+                "center-left center-center center-right"
+                "bottom-left bottom-center bottom-right"`
+            }}
+            ref={cloneLayerRef}
+          />
+        </div>
+      )}
+      {item.info_boxes.map((box, idx, all) => {
+        return <InfoBox key={box.title} {...box} idx={idx} totalNbBoxes={all.length} cloneLayerRef={cloneLayerRef} />
+      })}
     </div>
   )
 }
@@ -238,7 +216,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
         })}
       </div>
       {items?.map((item, idx) => (
-        <FeatureShowItem key={idx} item={item} />
+        <FeaturesShowSection key={idx} item={item} />
       ))}
     </div>
   )
