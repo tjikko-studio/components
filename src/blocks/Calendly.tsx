@@ -17,10 +17,6 @@ export interface CalendlyProps {
   header?: BlockProps[]
 }
 
-function extractCombo(thing: string) {
-  return thing ? thing.split('|') : [null, null]
-}
-
 export const Calendly: FC<CalendlyProps> = ({header, bgColor, username, duration}) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const toComponent = getComponent()
