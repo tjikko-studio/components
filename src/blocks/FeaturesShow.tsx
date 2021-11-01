@@ -127,9 +127,15 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBo
       cloneLayer.appendChild(clone)
       const modifyOpacity = opacityModifier(infoBox, clone, idx, totalNbBoxes)
       const scrollContainer = window.document.querySelector('.k-panel-view')
-      ;(scrollContainer || window).addEventListener('scroll', modifyOpacity, false)
+      if (scrollContainer) {
+        scrollContainer.addEventListener('scroll', modifyOpacity, false)
+      }
+      window.addEventListener('scroll', modifyOpacity, false)
       return () => {
-        ;(scrollContainer || window).removeEventListener('scroll', modifyOpacity, false)
+        if (scrollContainer) {
+          scrollContainer.removeEventListener('scroll', modifyOpacity, false)
+        }
+        window.removeEventListener('scroll', modifyOpacity, false)
       }
     }
   }, [infoBoxContainerRef, idx, totalNbBoxes, cloneLayerRef, position])
