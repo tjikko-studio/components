@@ -124,6 +124,9 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, totalNbBoxes, 
       const clone = infoBox.cloneNode(true) as HTMLDivElement
       clone.style.height = 'unset'
       clone.style.gridArea = position.replace('|', '-')
+
+      clone.style.position = 'absolute' // required for the mobile case (no grid)
+
       cloneLayer.appendChild(clone)
       const modifyOpacity = opacityModifier(infoBox, clone)
       const scrollContainer = window.document.querySelector('.k-panel-view')
@@ -188,10 +191,9 @@ const FeaturesShowSection: FC<{item: FeaturesShowItem}> = ({item}) => {
             }}
           />
           <div
-            className="absolute h-full w-full"
+            className="absolute h-full w-full sm:grid"
             style={{
               top: '0',
-              display: 'grid',
               gridTemplateRows: '1fr 1fr 1fr',
               gridTemplateColumns: '1fr 1fr 1fr',
               gridTemplateAreas: `
