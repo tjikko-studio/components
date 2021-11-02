@@ -86,11 +86,11 @@ function observerArgs(
   ]
 }
 
-function ease(val: number): number {
+function easeOutCirc(val: number): number {
   return Math.sqrt(1 - Math.pow(val - 1, 2))
 }
 
-function getOpacity(elem: Element, idx: number, length: number): string {
+function getOpacity(elem: Element): string {
   const viewportHeight = window.innerHeight
   const viewportCenter = viewportHeight / 2
   const {top, height} = elem.getBoundingClientRect()
@@ -101,19 +101,19 @@ function getOpacity(elem: Element, idx: number, length: number): string {
   if (fraction > 1) {
     return '0'
   } else {
-    return ease(1 - fraction).toString()
+    return easeOutCirc(1 - fraction).toString()
   }
 }
 
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
 
-function opacityModifier(elem: Element, clone: HTMLDivElement, idx: number, totalNbBoxes: number): () => void {
+function opacityModifier(elem: Element, clone: HTMLDivElement): () => void {
   return () => {
-    clone.style.opacity = getOpacity(elem, idx, totalNbBoxes)
+    clone.style.opacity = getOpacity(elem)
   }
 }
 
-const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBoxes, cloneLayerRef}) => {
+const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, totalNbBoxes, cloneLayerRef}) => {
   const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBo
       clone.style.height = 'unset'
       clone.style.gridArea = position.replace('|', '-')
       cloneLayer.appendChild(clone)
-      const modifyOpacity = opacityModifier(infoBox, clone, idx, totalNbBoxes)
+      const modifyOpacity = opacityModifier(infoBox, clone)
       const scrollContainer = window.document.querySelector('.k-panel-view')
       if (scrollContainer) {
         scrollContainer.addEventListener('scroll', modifyOpacity, false)
@@ -138,7 +138,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBo
         window.removeEventListener('scroll', modifyOpacity, false)
       }
     }
-  }, [infoBoxContainerRef, idx, totalNbBoxes, cloneLayerRef, position])
+  }, [infoBoxContainerRef, cloneLayerRef, position])
   return (
     <div
       className="relative flex items-start transition-opacity items-center"
@@ -147,7 +147,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, idx, totalNbBo
         height: `${(growthFactor * 100) / totalNbBoxes}vh`
       }}
     >
-      <div key={idx} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
