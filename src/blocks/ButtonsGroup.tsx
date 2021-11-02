@@ -45,7 +45,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
       {buttons.map(({label, link, type, iconPos, size}) => {
         return (
           <Button
-            key={`[${label}](${link})`}
+            key={`[${label}](${JSON.stringify(link.value)})`}
             link={link}
             label={label}
             type={type}

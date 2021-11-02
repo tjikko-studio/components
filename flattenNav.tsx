@@ -37,27 +37,6 @@ export const flattenContent = (val: Record<string, unknown>, prop: string, level
 }
 
 /*
- * To flatten links
- */
-export const normalizeLink = (val: {
-  link: string
-  location: string
-  link_external?: string
-  link_internal?: {url: string}[]
-}): {link: string} => {
-  val.link = ''
-  if (val.location === 'external') {
-    val.link = val.link_external
-  } else if (val.location === 'internal' && val.link_internal[0]) {
-    val.link = val.link_internal[0].url
-  }
-  delete val.link_external
-  delete val.link_internal
-
-  return val
-}
-
-/*
  * Navigation flatten function
  */
 export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
@@ -93,9 +72,6 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
 
       if (isPlainObject(final) && 'type' in final && 'id' in final && final?.content?.content) {
         final = flattenContent(final, 'content')
-      }
-      if (isPlainObject(final) && 'location' in final) {
-        final = normalizeLink(final)
       }
       if (isPlainObject(final) && final.type === 'NavigationLink') {
         final = flattenContent(final, 'content')
@@ -160,33 +136,4 @@ export const languageParser: any = (languages: Language[], domain?: string, slug
     ]
   }
 }
-
-export const flattenLinks = (obj: any) => {
-  const {deeply}: any = mixin({
-    deeply: function (map) {
-      return function (obj: any, fn: (val: any) => any) {
-        return map(
-          mapValues(obj, function (v, k) {
-            if (isPlainObject(v) || isArray(v)) {
-              return isArray(v) ? toArray(deeply(map)(v, fn)) : deeply(map)(v, fn)
-            } else {
-              return v
-            }
-          }),
-          fn
-        )
-      }
-    }
-  })
-  return toArray(
-    deeply(mapValues)(obj, (val: any) => {
-      if (isPlainObject(val) && 'location' in val) {
-        return normalizeLink(val)
-      } else {
-        return val
-      }
-    })
-  )
-}
-
 export default flattenNav
