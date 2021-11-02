@@ -28,7 +28,7 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) =>
       {items?.map((item) => (
         <Tertiary
           key={item.id}
-          image={item.content.images[0]}
+          image={item.content.images?.[0]}
           imagePosition="right"
           title={item.content.title}
           body={item.content.description}
