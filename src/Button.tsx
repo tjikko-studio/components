@@ -5,7 +5,6 @@ import getLink from '../utilities/getLink'
 
 import {LinkObject} from '../shared/types'
 
-
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   /**
    * button type
