@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "lib": ["ESNext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "es6",
     "target": "es5",
     "jsx": "react",
