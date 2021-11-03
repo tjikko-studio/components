@@ -5,6 +5,7 @@ import {Heading} from '../blocks/Heading'
 import {Tertiary} from '../blocks/Tertiary'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
+import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
 
 type CollectionItem = {
   id: string
@@ -19,7 +20,11 @@ type CollectionItem = {
 
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
   items?: CollectionItem[]
-  datasource?: 'success-stories' | 'portfolio'
+  jobContent?: {
+    items: JobItem[]
+    tags: JobsTags[]
+  }
+  datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) => {
@@ -63,13 +68,17 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({items, datasource} = {items: []}) => {
+export const Collection: FC<CollectionProps> = ({items, jobContent, datasource} = {items: []}) => {
   if (datasource === 'success-stories') {
     return <SuccessStoriesCollection items={items} />
   }
 
   if (datasource === 'portfolio') {
     return <PortfolioCollection items={items} />
+  }
+
+  if (datasource === 'jobs') {
+    return <JobsCollection content={jobContent} />
   }
 
   return null
