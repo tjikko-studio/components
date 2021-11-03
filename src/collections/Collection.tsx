@@ -29,19 +29,14 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) =>
   return (
     <div className="grid gap-8 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
-<<<<<<< HEAD
-        <div key={item.id} id={item.content.category}>
-          <Tertiary image={item.content.images[0]} imagePosition="right" title={item.content.title} body={item.content.description} />
-        </div>
-=======
         <Tertiary
           key={item.id}
+          id={item.content.category}
           image={item.content.images?.[0]}
           imagePosition="right"
           title={item.content.title}
           body={item.content.description}
         />
->>>>>>> main
       ))}
     </div>
   )
@@ -91,17 +86,17 @@ const mapNavItems = (items: CollectionItem[], navItems: any[]): SideNavItemProps
           ]
         : []
     })
-    .filter(Boolean)
+    .filter(Boolean) as SideNavItemProps[]
 }
 
-export const Collection: FC<CollectionProps> = ({items, datasource, navItems} = {items: []}) => {
+export const Collection: FC<CollectionProps> = ({items = [], navItems = [], datasource}) => {
   const sideNavItems = useMemo(() => mapNavItems(items, navItems), [items, navItems])
   const Component = datasource === 'success-stories' ? SuccessStoriesCollection : datasource === 'portfolio' ? PortfolioCollection : null
-  console.log(sideNavItems)
+
   if (Component) {
     return (
       <div className="flex">
-        {sideNavItems && sideNavItems.length > 0 && (
+        {sideNavItems.length > 0 && (
           <div className="sticky z-10 top-24">
             <SideNav items={sideNavItems} />
           </div>
