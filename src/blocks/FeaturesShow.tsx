@@ -139,22 +139,36 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
   useEffect(() => {
     const infoBox = infoBoxContainerRef.current
     const cloneLayer = cloneLayerRef.current
+    let clone: HTMLDivElement = null
+    let infoBoxObserver: IntersectionObserver = null
+    let randomId: string = null
     if (infoBox && cloneLayer) {
       infoBox.style.opacity = '0'
-      const clone = infoBox.cloneNode(true) as HTMLDivElement
+      clone = infoBox.cloneNode(true) as HTMLDivElement
       clone.style.height = 'unset'
       clone.style.gridArea = position.replace('|', '-')
       clone.style.position = 'absolute' // required for the mobile case (no grid)
       cloneLayer.appendChild(clone)
 
-      const randomId = Math.random().toString()
-      const infoBoxObserver = new IntersectionObserver((entries) => {
+      randomId = Math.random().toString()
+      infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const modifyOpacity = opacityModifier(infoBox, clone)
           entry.isIntersecting ? addScrollListener(randomId, modifyOpacity) : removeScrollListener(randomId)
         })
       })
-      infoBoxObserver.observe(infoBoxContainerRef.current)
+      infoBoxObserver.observe(infoBox)
+    }
+    return () => {
+      if (clone) {
+        cloneLayer.removeChild(clone)
+      }
+      if (infoBoxObserver) {
+        infoBoxObserver.unobserve(infoBox)
+      }
+      if (randomId) {
+        removeScrollListener(randomId)
+      }
     }
   }, [infoBoxContainerRef, cloneLayerRef, position, addScrollListener, removeScrollListener])
 
@@ -184,8 +198,10 @@ const FeaturesShowSection: FC<{
   const cloneLayerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (imgContainerRef.current) {
-      const imgContainerObserver = new IntersectionObserver(
+    const imgContainer = imgContainerRef.current
+    let imgContainerObserver: IntersectionObserver = null
+    if (imgContainer) {
+      imgContainerObserver = new IntersectionObserver(
         ...observerArgs(
           ({elem, val}: ObserverArgsCallback) => {
             const bgImg: HTMLElement = elem.querySelector('.bg-img')
@@ -197,7 +213,12 @@ const FeaturesShowSection: FC<{
           }
         )
       )
-      imgContainerObserver.observe(imgContainerRef.current)
+      imgContainerObserver.observe(imgContainer)
+    }
+    return () => {
+      if (imgContainerObserver) {
+        imgContainerObserver.unobserve(imgContainer)
+      }
     }
   }, [imgContainerRef])
 
