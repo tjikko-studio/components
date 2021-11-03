@@ -126,7 +126,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'NavigationDropdown':
                               return (
                                 <NavItem
-                                  key={innerId || JSON.stringify(link.value)}
+                                  key={innerId || getLink(link)}
                                   link={link}
                                   styles="special"
                                   label={label}
@@ -137,7 +137,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'button':
                               return (
                                 <Button
-                                  key={innerId || JSON.stringify(link.value)}
+                                  key={innerId || getLink(link)}
                                   label={label}
                                   link={link}
                                   type="primary"
