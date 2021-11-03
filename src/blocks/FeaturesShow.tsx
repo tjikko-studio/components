@@ -215,9 +215,10 @@ const FeaturesShowSection: FC<{
             className="absolute h-full w-full sm:grid"
             style={{
               top: '0',
-              gridTemplateRows: '1fr 1fr 1fr',
+              gridTemplateRows: '6rem 1fr 1fr 1fr',
               gridTemplateColumns: '1fr 1fr 1fr',
               gridTemplateAreas: `
+                "   .             .             ."
                 "top-left    top-center    top-right"
                 "center-left center-center center-right"
                 "bottom-left bottom-center bottom-right"`
