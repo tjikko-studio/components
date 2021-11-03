@@ -48,7 +48,7 @@ export const normalizeLink = (val: {
   val.link = ''
   if (val.location === 'external') {
     val.link = val.link_external
-  } else if (val.location === 'internal' && val.link_internal[0]) {
+  } else if (val.location === 'internal' && val.link_internal?.[0]) {
     val.link = val.link_internal[0].url
   }
   delete val.link_external
@@ -104,7 +104,7 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
         final = flattenContent(final, 'blocks', true)
       }
       if (isPlainObject(final) && final.type === 'NavigationLogo' && final.content.image) {
-        final.content.image = final.content.image[0]
+        final.content.image = final.content.image?.[0]
       }
       return final
     })

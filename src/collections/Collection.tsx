@@ -29,9 +29,19 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) =>
   return (
     <div className="grid gap-8 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
+<<<<<<< HEAD
         <div key={item.id} id={item.content.category}>
           <Tertiary image={item.content.images[0]} imagePosition="right" title={item.content.title} body={item.content.description} />
         </div>
+=======
+        <Tertiary
+          key={item.id}
+          image={item.content.images?.[0]}
+          imagePosition="right"
+          title={item.content.title}
+          body={item.content.description}
+        />
+>>>>>>> main
       ))}
     </div>
   )
