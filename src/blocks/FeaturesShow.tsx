@@ -25,8 +25,8 @@ export type FeaturesShowItemBox = {
    * Content Position
    */
   position?: ContentPosition
-  idx?: number
-  totalNbBoxes?: number
+  idx: number
+  totalNbBoxes: number
   cloneLayerRef: RefObject<HTMLDivElement>
   addScrollListener: ScrollListenerAdder
   removeScrollListener: ScrollListenerRemover
@@ -128,6 +128,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
   title,
   body,
   position,
+  idx,
   totalNbBoxes,
   cloneLayerRef,
   addScrollListener,
@@ -157,12 +158,13 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     }
   }, [infoBoxContainerRef, cloneLayerRef, position, addScrollListener, removeScrollListener])
 
+  const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
     <div
       className="relative flex items-start transition-opacity items-center"
       ref={infoBoxContainerRef}
       style={{
-        height: `${(growthFactor * 100) / totalNbBoxes}vh`
+        height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
       }}
     >
       <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
@@ -280,8 +282,8 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
           return toComponent(block)
         })}
       </div>
-      {items?.map((item, idx) => (
-        <FeaturesShowSection key={idx} item={item} addScrollListener={addHandler} removeScrollListener={removeHandler} />
+      {items?.map((item) => (
+        <FeaturesShowSection key={JSON.stringify(item)} item={item} addScrollListener={addHandler} removeScrollListener={removeHandler} />
       ))}
     </div>
   )
