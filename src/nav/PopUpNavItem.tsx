@@ -40,7 +40,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   label = 'link',
   type = 'default',
   padding = true,
-  href = '#',
+  href = null,
   isActive = false,
   children = []
 }) => {
@@ -81,9 +81,13 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   return (
     <div className={cn(wrapperClasses)} role={'navigation'} aria-label={label}>
       {type !== 'header' ? (
-        <a className={cn(linkClasses)} href={href}>
-          {label}
-        </a>
+        href ? (
+          <a className={cn(linkClasses)} href={href}>
+            {label}
+          </a>
+        ) : (
+          <span className={cn(linkClasses, 'cursor-pointer')}>{label}</span>
+        )
       ) : (
         <h3 className={cn(linkClasses)}>{label}</h3>
       )}
