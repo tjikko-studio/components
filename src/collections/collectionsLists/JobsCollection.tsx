@@ -106,14 +106,15 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
               {navigation
                 ? navigation.map((item) => {
                     return (
-                      <li
-                        onClick={() => {
-                          setFilterContent(item.label)
-                        }}
-                        className={!item.available && 'pointer-events-none opacity-30'}
-                      >
-                        <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
-                      </li>
+                      item.available && (
+                        <li
+                          onClick={() => {
+                            setFilterContent(item.label)
+                          }}
+                        >
+                          <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
+                        </li>
+                      )
                     )
                   })
                 : null}
@@ -144,9 +145,6 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
             <div>No job at the moment</div>
           )}
         </div>
-        <footer className="flex justify-center">
-          <Button key={JSON.stringify(content?.items)} label="See more" type="secondary" />
-        </footer>
       </div>
     </section>
   )
