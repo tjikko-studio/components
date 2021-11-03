@@ -9,7 +9,15 @@ import {ImageProps} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'
 
-type FeaturesShowItemBox = {
+export type HandlerDictionary = {
+  [id: string]: Function
+}
+
+export type ScrollListenerCaller = () => void
+export type ScrollListenerAdder = (id: string, handler: () => void) => void
+export type ScrollListenerRemover = (id: string) => void
+
+export type FeaturesShowItemBox = {
   title?: string
   body?: string
 
@@ -20,9 +28,11 @@ type FeaturesShowItemBox = {
   idx?: number
   totalNbBoxes?: number
   cloneLayerRef: RefObject<HTMLDivElement>
+  addScrollListener: ScrollListenerAdder
+  removeScrollListener: ScrollListenerRemover
 }
 
-type FeaturesShowItem = {
+export type FeaturesShowItem = {
   image: ImageProps[]
   info_boxes?: FeaturesShowItemBox[]
 }
@@ -45,7 +55,7 @@ function cap(val: number, [lower, upper]: Caps) {
 }
 
 function observerArgs(
-  cb: Function,
+  cb: ({elem, val}: {elem: Element; val: number}) => void,
   {
     steps = 2,
     easing = (val) => val,
@@ -106,14 +116,23 @@ function getOpacity(elem: Element): string {
 }
 
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
+type OpacityModifierFn = () => void
 
-function opacityModifier(elem: Element, clone: HTMLDivElement): () => void {
+function opacityModifier(elem: Element, clone: HTMLDivElement): OpacityModifierFn {
   return () => {
     clone.style.opacity = getOpacity(elem)
   }
 }
 
-const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, totalNbBoxes, cloneLayerRef}) => {
+const InfoBox: FC<FeaturesShowItemBox> = ({
+  title,
+  body,
+  position,
+  totalNbBoxes,
+  cloneLayerRef,
+  addScrollListener,
+  removeScrollListener
+}) => {
   const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -124,24 +143,20 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, totalNbBoxes, 
       const clone = infoBox.cloneNode(true) as HTMLDivElement
       clone.style.height = 'unset'
       clone.style.gridArea = position.replace('|', '-')
-
       clone.style.position = 'absolute' // required for the mobile case (no grid)
-
       cloneLayer.appendChild(clone)
-      const modifyOpacity = opacityModifier(infoBox, clone)
-      const scrollContainer = window.document.querySelector('.k-panel-view')
-      if (scrollContainer) {
-        scrollContainer.addEventListener('scroll', modifyOpacity, false)
-      }
-      window.addEventListener('scroll', modifyOpacity, false)
-      return () => {
-        if (scrollContainer) {
-          scrollContainer.removeEventListener('scroll', modifyOpacity, false)
-        }
-        window.removeEventListener('scroll', modifyOpacity, false)
-      }
+
+      const randomId = Math.random().toString()
+      const infoBoxObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const modifyOpacity = opacityModifier(infoBox, clone)
+          entry.isIntersecting ? addScrollListener(randomId, modifyOpacity) : removeScrollListener(randomId)
+        })
+      })
+      infoBoxObserver.observe(infoBoxContainerRef.current)
     }
-  }, [infoBoxContainerRef, cloneLayerRef, position])
+  }, [infoBoxContainerRef, cloneLayerRef, position, addScrollListener, removeScrollListener])
+
   return (
     <div
       className="relative flex items-start transition-opacity items-center"
@@ -158,7 +173,11 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, totalNbBoxes, 
   )
 }
 
-const FeaturesShowSection: FC<{item: FeaturesShowItem}> = ({item}) => {
+const FeaturesShowSection: FC<{
+  item: FeaturesShowItem
+  addScrollListener: ScrollListenerAdder
+  removeScrollListener: ScrollListenerRemover
+}> = ({item, addScrollListener, removeScrollListener}) => {
   const imgContainerRef = useRef<HTMLDivElement>(null)
   const cloneLayerRef = useRef<HTMLDivElement>(null)
 
@@ -206,15 +225,53 @@ const FeaturesShowSection: FC<{item: FeaturesShowItem}> = ({item}) => {
         </div>
       )}
       {item.info_boxes.map((box, idx, all) => {
-        return <InfoBox key={box.title} {...box} idx={idx} totalNbBoxes={all.length} cloneLayerRef={cloneLayerRef} />
+        return (
+          <InfoBox
+            key={box.title}
+            {...box}
+            idx={idx}
+            totalNbBoxes={all.length}
+            cloneLayerRef={cloneLayerRef}
+            addScrollListener={addScrollListener}
+            removeScrollListener={removeScrollListener}
+          />
+        )
       })}
     </div>
   )
 }
 
+const defaultHandlers: HandlerDictionary = {}
+
 export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
   const toComponent = getComponent()
   const [theme, background] = extractCombo(bgColor)
+  const handlers = useRef<HandlerDictionary>(defaultHandlers)
+  const addHandler: ScrollListenerAdder = (id, handler) => {
+    handlers.current[id] = handler
+  }
+  const removeHandler: ScrollListenerRemover = (id) => {
+    delete handlers.current[id]
+  }
+  const fireHandlers = useRef<ScrollListenerCaller>(() => {
+    for (const id in handlers.current) {
+      handlers.current[id]()
+    }
+  })
+  useEffect(() => {
+    const fire = fireHandlers.current
+    const scrollContainer = window.document.querySelector('.k-panel-view')
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', fire, false)
+    }
+    window.addEventListener('scroll', fire, false)
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', fire, false)
+      }
+      window.removeEventListener('scroll', fire, false)
+    }
+  }, [fireHandlers])
 
   return (
     <div className={cn(theme, className)} style={{backgroundColor: background}}>
@@ -224,7 +281,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
         })}
       </div>
       {items?.map((item, idx) => (
-        <FeaturesShowSection key={idx} item={item} />
+        <FeaturesShowSection key={idx} item={item} addScrollListener={addHandler} removeScrollListener={removeHandler} />
       ))}
     </div>
   )
