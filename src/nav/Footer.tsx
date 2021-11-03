@@ -112,9 +112,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                               >
                                                 {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
-                                                  const link = getLink(innerLink)
+                                                  const url = getLink(innerLink)
                                                   return (
-                                                    <a key={`${innerLabel}${link}`} href={link} className="fontStyle-sm">
+                                                    <a key={`${innerLabel}${url}`} href={url} className="fontStyle-sm">
                                                       {innerLabel}
                                                     </a>
                                                   )
