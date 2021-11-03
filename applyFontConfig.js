@@ -189,28 +189,33 @@ exports = function exports ({theme, addBase, addUtilities}) {
     /*
      * Paragraph and lists formating
      */
-    '.fontStyle-base, p': {
+    '.fontStyle-base, :not([class*="k-"]) > p': {
       marginTop: theme('spacing.2'),
       marginBottom: theme('spacing.2')
     },
-    'ol, ul': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) :is(ol, ul)': {
       marginTop: theme('spacing.4'),
       marginBottom: theme('spacing.4')
     },
-    hr: {
-      marginTop: theme('spacing.8'),
-      marginBottom: theme('spacing.8')
-    },
-    'ul li': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) ul li': {
       listStyleType: 'disc'
     },
-    'ol li': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) ol li': {
       listStyleType: 'decimal'
     },
-    'ul li, ol li': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) li': {
       listPosition: 'outside',
       marginTop: theme('spacing["0.5"]'),
       marginBottom: theme('spacing["0.5"]')
+    },
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) hr': {
+      marginTop: theme('spacing.8'),
+      marginBottom: theme('spacing.8')
+    },
+    'nav :is(ol, ul, ol li, ul li)': {
+      listStyle: 'none',
+      marginTop: 'unset',
+      marginBottom: 'unset'
     }
   }
   addBase(fontBase)
