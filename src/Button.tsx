@@ -72,7 +72,7 @@ export const Button: FC<ButtonProps> = ({
       return newClasses
     },
     secondary: (isForceDark: boolean) => {
-      const newClasses = ['bg-none rounded-lg border']
+      const newClasses = ['bg-none rounded-lg border border-solid']
       if (isForceDark) {
         newClasses.push('border-primary-400 hover:border-primary-200')
         newClasses.push('text-primary-400 hover:text-primary-200')
