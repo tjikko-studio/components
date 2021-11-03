@@ -5,7 +5,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * pop up type
    */
-  type: 'default' | 'header' | 'button' | 'special'
+  type?: 'default' | 'header' | 'button' | 'special'
 
   /**
    * Force padding
