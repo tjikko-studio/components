@@ -75,7 +75,19 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
   const sectionClasses = [
     'text-gray-900 dark:text-gray-50 grid gap-y-12 w-full h-full max-w-screen-xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24 md:py-32'
   ]
-  const navClasses = ['w-full hidden grid-flow-col md:grid md:grid-cols-4 md:grid-rows-2 lg:grid-rows-none lg:grid-cols-none gap-x-10 list-none justify-center']
+  const navClasses = [
+    'w-full',
+    'hidden',
+    'grid-flow-col',
+    'md:grid',
+    'md:grid-cols-4',
+    'md:grid-rows-2',
+    'lg:grid-rows-none',
+    'lg:grid-cols-none',
+    'gap-x-10',
+    'list-none',
+    'justify-center'
+  ]
   const navItemsClasses = ['flex justify-center content-center text-center']
 
   return (
@@ -100,7 +112,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
                           onClick={() => {
                             setFilterContent(item.label)
                           }}
-                          className={navItemsClasses}
+                          className={cn(navItemsClasses)}
                         >
                           <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
                         </li>
@@ -127,7 +139,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
                         : null}
                     </div>
                   </div>
-                  <Button key={job.title} label="Apply now" link={job.link} />
+                  <Button key={job.title} label="Apply now" link={{type: 'link', value: job.link}} />
                 </div>
               )
             })
