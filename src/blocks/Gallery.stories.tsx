@@ -29,15 +29,13 @@ const images = [
   {
     type: 'image',
     id: 'portfolio/sp-condos/my-image-01.png',
-    link: '/pages/portfolio+sp-condos/files/my-image-01.png',
-    url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/f711f48074-1635204716/my-image-01.png',
+    url: 'https://via.placeholder.com/1.gif/111827/111827',
     extension: 'png',
     content: {
       caption: '<p>Image 01 caption text</p>',
       alt: 'Image 01 alt text',
       creator: '',
       license: '',
-      link: ''
     },
     dimensions: {
       width: 4000,
@@ -50,15 +48,13 @@ const images = [
   {
     type: 'image',
     id: 'portfolio/sp-condos/my-image-02.png',
-    link: '/pages/portfolio+sp-condos/files/my-image-02.png',
-    url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/42a5a4accd-1635204716/my-image-02.png',
+    url: 'https://via.placeholder.com/1.gif/111827/111827',
     extension: 'png',
     content: {
       caption: '<p>Image 02 caption text</p>',
       alt: 'Image 02 alt text',
       creator: '',
       license: '',
-      link: ''
     },
     dimensions: {
       width: 4000,
@@ -71,15 +67,13 @@ const images = [
   {
     type: 'image',
     id: 'portfolio/sp-condos/my-image-03.png',
-    link: '/pages/portfolio+sp-condos/files/my-image-03.png',
-    url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/7a4944e872-1635204716/my-image-03.png',
+    url: 'https://via.placeholder.com/1.gif/111827/111827',
     extension: 'png',
     content: {
       caption: '<p>Image 03 caption text</p>',
       alt: 'Image 03 alt text',
       creator: '',
       license: '',
-      link: ''
     },
     dimensions: {
       width: 4000,
@@ -92,15 +86,13 @@ const images = [
   {
     type: 'image',
     id: 'portfolio/sp-condos/my-image-04.png',
-    link: '/pages/portfolio+sp-condos/files/my-image-04.png',
-    url: 'http://127.0.0.1:8000/media/pages/portfolio/sp-condos/614f34d975-1635204716/my-image-04.png',
+    url: 'https://via.placeholder.com/1.gif/111827/111827',
     extension: 'png',
     content: {
       caption: '<p>Image 04 caption text</p>',
       alt: 'Image 04 alt text',
       creator: '',
       license: '',
-      link: ''
     },
     dimensions: {
       width: 4000,
