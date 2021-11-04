@@ -50,13 +50,13 @@ export type ContentPosition =
 
 export interface MenuItem {
   label: string
-  link: string
+  link: LinkObject
   type?: 'default' | 'header' | 'button'
 }
 
 export interface MenuType {
   label: string
-  link?: string
+  link?: LinkObject
   content: MenuItem[]
   image?: ImageProps
   data_source?: string
@@ -64,10 +64,15 @@ export interface MenuType {
 
 export interface MenuItemType {
   label: string
-  link: string
+  link: LinkObject
   type: string
   content?: MenuType[] & MenuType
   id: string
+}
+
+export interface LinkObject {
+  type: string
+  value: string | {url: string}[]
 }
 
 export type ComponentsExtraProps<P = Record<string, unknown>, T = Record<string, unknown>> = Record<string, (props: P) => T>

@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import getLink from '../../utilities/getLink'
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
 import {Media} from '../parts/Media'
@@ -111,8 +112,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                               >
                                                 {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
+                                                  const url = getLink(innerLink)
                                                   return (
-                                                    <a key={`${innerLabel}${innerLink}`} href={innerLink} className="fontStyle-sm">
+                                                    <a key={`${innerLabel}${url}`} href={url} className="fontStyle-sm">
                                                       {innerLabel}
                                                     </a>
                                                   )
@@ -122,7 +124,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'link': {
                                             const Alink = () => {
                                               return (
-                                                <a href={link} className="fontStyle-sm">
+                                                <a href={getLink(link)} className="fontStyle-sm">
                                                   {label}
                                                 </a>
                                               )
