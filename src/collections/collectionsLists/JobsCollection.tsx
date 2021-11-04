@@ -5,11 +5,13 @@ import {Button} from '../../Button'
 import {PopUpNavItem} from '../../nav/PopUpNavItem'
 
 export interface JobsTags {
+  id?: string
   label?: string
   children?: JobsTags[]
 }
 
 export interface JobsItemTag {
+  id?: string
   label?: string
   value?: string
 }
@@ -49,7 +51,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
   if (content?.items) {
     content.items.forEach((job: JobItem) => {
       job.tags.forEach((tag: JobsItemTag) => {
-        if (tag.label === 'department') {
+        if (tag.id === 'department') {
           job.filter = tag.value
           availableNav.push(tag.value)
         }
@@ -59,7 +61,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
 
   if (content?.tags) {
     content.tags.map((tag: JobsTags) => {
-      if (tag.label === 'Department') {
+      if (tag.id === 'department') {
         navigation = tag.children.map((tag: JobsTags) => {
           return {
             label: tag.label,
