@@ -129,7 +129,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
                         : null}
                     </div>
                   </div>
-                  <Button key={job.title} label="Apply now" link={job.link} />
+                  <Button key={job.title} label="Apply now" link={{type: 'link', value: job.link}} />
                 </div>
               )
             })

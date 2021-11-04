@@ -34,7 +34,7 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
       {items?.map((item) => (
         <Tertiary
           key={item.id}
-          image={item.content.images[0]}
+          image={item.content.images?.[0]}
           imagePosition="right"
           title={item.content.title}
           body={item.content.description}
@@ -62,7 +62,12 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
 
           {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
 
-          <Button className="mt-4 w-fit" type="tertiary" link={item.url} label={`Read about ${item.content.title}`} />
+          <Button
+            className="mt-4 w-fit"
+            type="tertiary"
+            link={{type: 'link', value: item.url}}
+            label={`Read about ${item.content.title}`}
+          />
         </div>
       ))}
     </div>
