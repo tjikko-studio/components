@@ -1,6 +1,10 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import getLink from '../utilities/getLink'
+
+import {LinkObject} from '../shared/types'
+
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   /**
    * button type
@@ -34,7 +38,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   /**
    * button link
    */
-  link?: string
+  link?: LinkObject
 
   /**
    * className override
@@ -56,7 +60,7 @@ export const Button: FC<ButtonProps> = ({
   size = 'default',
   icon = '',
   iconPos = 'left',
-  link = '',
+  link = null,
   className = '',
   forceDark = false,
   fullWidth = false,
@@ -130,9 +134,9 @@ export const Button: FC<ButtonProps> = ({
     }
     return null
   }
-  if (link) {
+  if (link?.value) {
     return (
-      <a onClick={onClick} href={link} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={getLink(link)} className={cn(buttonClasses)}>
         <Content />
       </a>
     )

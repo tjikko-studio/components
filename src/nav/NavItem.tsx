@@ -3,10 +3,11 @@ import cn from 'classnames'
 
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
 
+import getLink from '../../utilities/getLink'
 import {ListNav} from './ListNav'
 import {PopUpNavItem} from './PopUpNavItem'
 
-import {MenuType} from '../../shared/types'
+import {LinkObject, MenuType} from '../../shared/types'
 
 export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -32,7 +33,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * link to go when menu clicked
    */
-  link?: string
+  link?: LinkObject
 
   /**
    * Sub menu items list array
@@ -86,7 +87,7 @@ export const NavItem: FC<NavItemProps> = ({
         }}
         type={styles}
         label={label}
-        href={link}
+        href={getLink(link)}
         padding={padding}
         className={cn(
           'flex items-center',

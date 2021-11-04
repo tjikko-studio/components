@@ -1,6 +1,6 @@
 import {ReactInVue} from 'vuera'
 
-import flattenNav, {flattenLinks, languageParser} from '../flattenNav'
+import flattenNav, {languageParser} from '../flattenNav'
 import blocks from './blocks'
 import {Button} from './Button'
 import collections from './collections'
@@ -19,6 +19,5 @@ export default {
   ...nav,
   ...textStyles,
   flattenNav,
-  flattenLinks,
   languageParser
 }

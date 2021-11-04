@@ -60,7 +60,12 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
 
           {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
 
-          <Button className="mt-4 w-fit" type="tertiary" link={item.url} label={`Read about ${item.content.title}`} />
+          <Button
+            className="mt-4 w-fit"
+            type="tertiary"
+            link={{type: 'link', value: item.url}}
+            label={`Read about ${item.content.title}`}
+          />
         </div>
       ))}
     </div>
