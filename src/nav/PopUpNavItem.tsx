@@ -5,7 +5,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * pop up type
    */
-  type: 'default' | 'header' | 'button' | 'special'
+  type?: 'default' | 'header' | 'button' | 'special'
 
   /**
    * Force padding
@@ -40,9 +40,10 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   label = 'link',
   type = 'default',
   padding = true,
-  href = '#',
+  href = null,
   isActive = false,
-  children = []
+  children = [],
+  className = ''
 }) => {
   const wrapperClasses = ['flex items-center']
   const linkClasses = [!padding && 'py-2.5']
@@ -79,11 +80,15 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       break
   }
   return (
-    <div className={cn(wrapperClasses)} role={'navigation'} aria-label={label}>
+    <div className={cn(wrapperClasses, className)} role={'navigation'} aria-label={label}>
       {type !== 'header' ? (
-        <a className={cn(linkClasses)} href={href}>
-          {label}
-        </a>
+        href ? (
+          <a className={cn(linkClasses)} href={href}>
+            {label}
+          </a>
+        ) : (
+          <span className={cn(linkClasses, 'cursor-pointer')}>{label}</span>
+        )
       ) : (
         <h3 className={cn(linkClasses)}>{label}</h3>
       )}
