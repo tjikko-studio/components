@@ -18,16 +18,17 @@ type CollectionItem = {
   }
 }
 
+type JobItems = {
+  jobs: JobItem[]
+  tags: JobsTags[]
+}
+
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
-  items?: CollectionItem[]
-  jobContent?: {
-    items: JobItem[]
-    tags: JobsTags[]
-  }
+  items?: CollectionItem[] & JobItems
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
-const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) => {
+const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
   return (
     <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
@@ -68,7 +69,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({items, jobContent, datasource} = {items: []}) => {
+export const Collection: FC<CollectionProps> = ({items, datasource} = {items: null}) => {
   if (datasource === 'success-stories') {
     return <SuccessStoriesCollection items={items} />
   }
@@ -78,7 +79,7 @@ export const Collection: FC<CollectionProps> = ({items, jobContent, datasource} 
   }
 
   if (datasource === 'jobs') {
-    return <JobsCollection content={jobContent} />
+    return <JobsCollection content={items} />
   }
 
   return null
