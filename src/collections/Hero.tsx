@@ -74,12 +74,12 @@ export const Hero: FC<HeroProps> = ({
   bgImage = {},
   bgVideo = {},
   contentPosition = 'bottom|left',
-  heroHeight = '80vh',
+  heroHeight = 'h-80vh',
   content = [],
   templatesContent = {},
   className
 }) => {
-  const finalHeroHeight = heroHeight || '80vh'
+  const finalHeroHeight = heroHeight || 'h-80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
@@ -134,7 +134,7 @@ export const Hero: FC<HeroProps> = ({
         </>
       )}
       {/* See the tailwind hacks in src/index.tsx */}
-      <div className={`h-${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
+      <div className={`${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
         <div
           className={cn([
             `text-${textColor || DEFAULT_TEXT_COLOR}`,
