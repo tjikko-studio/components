@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import getLink from '../../utilities/getLink'
 import {Button, ButtonProps} from '../Button'
 
 export interface GroupButtonProps extends ButtonProps {
@@ -45,7 +46,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
       {buttons.map(({label, link, type, iconPos, size}) => {
         return (
           <Button
-            key={`[${label}](${link.value})`}
+            key={`[${label}](${getLink(link)})`}
             link={link}
             label={label}
             type={type}
