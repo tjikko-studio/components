@@ -72,66 +72,54 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
     })
   }
 
-  const classes = [
-    'text-gray-900',
-    'dark:text-gray-50',
-    'grid',
-    'gap-y-8',
-    'w-full',
-    'h-full',
-    'max-w-screen-xl',
-    'mx-auto',
-    'px-4',
-    'sm:px-8',
-    'md:px-12',
-    'py-16',
-    'sm:py-24',
-    'md:py-32',
-    'flex',
-    'flex-col',
-    'space-y-6'
+  const sectionClasses = [
+    'text-gray-900 dark:text-gray-50 grid gap-y-12 w-full h-full max-w-screen-xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24 md:py-32'
   ]
+  const navClasses = ['w-full hidden grid-flow-col md:grid md:grid-cols-4 md:grid-rows-2 lg:grid-rows-none lg:grid-cols-none gap-x-10 list-none justify-center']
+  const navItemsClasses = ['flex justify-center content-center text-center']
 
   return (
     <section>
-      <div className={cn(classes)}>
+      <div className={cn(sectionClasses)}>
         <header>
           <nav>
-            <ul className="flex space-x-10 list-none justify-center">
+            <ul className={cn(navClasses)}>
               <li
                 onClick={() => {
                   setFilterContent(null)
                 }}
+                className={cn(navItemsClasses)}
               >
                 <PopUpNavItem key={JSON.stringify(content?.tags)} label="All" isActive={!filterContent} />
               </li>
               {navigation
                 ? navigation.map((item) => {
                     return (
-                      item.available && (
+                      //item.available && (
                         <li
                           onClick={() => {
                             setFilterContent(item.label)
                           }}
+                          className={navItemsClasses}
                         >
                           <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
                         </li>
-                      )
+                      //)
                     )
                   })
                 : null}
             </ul>
           </nav>
         </header>
-        <div className="flex flex-col">
+        <div>
           {content.items ? (
             content.items.map((job) => {
               const display = !filterContent || (filterContent && filterContent === job.filter) ? 'block' : 'hidden'
               return (
-                <div className={cn(['flex justify-between align-baseline border-b py-4', display])}>
+                <div className={cn(['flex justify-between align-baseline border-b py-6', display])}>
                   <div className="">
-                    <h4 className=" fontStyle-2xl">{job.title}</h4>
-                    <div className="flex gap-x-3 mt-3 fontStyle-xs text-gray-600">
+                    <h4 className="fontStyle-xl md:fontStyle-2xl">{job.title}</h4>
+                    <div className="flex gap-2 mt-3 flex-col sm:flex-row fontStyle-xs text-gray-600">
                       {job.tags.length
                         ? job.tags.map((tag) => {
                             return <div className="">{tag.value}</div>

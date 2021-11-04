@@ -42,7 +42,8 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   padding = true,
   href = null,
   isActive = false,
-  children = []
+  children = [],
+  className = ''
 }) => {
   const wrapperClasses = ['flex items-center']
   const linkClasses = [!padding && 'py-2.5']
@@ -79,7 +80,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       break
   }
   return (
-    <div className={cn(wrapperClasses)} role={'navigation'} aria-label={label}>
+    <div className={cn(wrapperClasses, className)} role={'navigation'} aria-label={label}>
       {type !== 'header' ? (
         href ? (
           <a className={cn(linkClasses)} href={href}>
