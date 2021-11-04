@@ -95,7 +95,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
               {navigation
                 ? navigation.map((item) => {
                     return (
-                      //item.available && (
+                      item.available && (
                         <li
                           onClick={() => {
                             setFilterContent(item.label)
@@ -104,7 +104,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {items: null,
                         >
                           <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
                         </li>
-                      //)
+                      )
                     )
                   })
                 : null}
