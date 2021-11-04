@@ -25,7 +25,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Content Position
    */
   contentPosition?: ContentPosition
-  heroHeight?: string
+  heroHeight?: 'h-80vh' | 'h-screen'
 
   /**
    * Hero object that will be parsed through to build the component
@@ -56,7 +56,7 @@ const getVerPos = (value: string) => {
     case 'center':
       return 'top-1/2 transform -translate-y-1/2'
     case 'bottom':
-      return 'bottom-0'
+      return 'bottom-36 xl:bottom-24'
     default:
       return ''
   }
@@ -74,12 +74,12 @@ export const Hero: FC<HeroProps> = ({
   bgImage = {},
   bgVideo = {},
   contentPosition = 'bottom|left',
-  heroHeight = '80vh',
+  heroHeight = 'h-80vh',
   content = [],
   templatesContent = {},
   className
 }) => {
-  const finalHeroHeight = heroHeight || '80vh'
+  const finalHeroHeight = heroHeight || 'h-80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
@@ -134,7 +134,7 @@ export const Hero: FC<HeroProps> = ({
         </>
       )}
       {/* See the tailwind hacks in src/index.tsx */}
-      <div className={`h-${finalHeroHeight} max-w-screen-xl mx-auto relative`}>
+      <div className={`${finalHeroHeight}  -mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl mx-auto relative`}>
         <div
           className={cn([
             `text-${textColor || DEFAULT_TEXT_COLOR}`,
