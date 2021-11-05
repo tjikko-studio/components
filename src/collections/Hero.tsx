@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
-import extractCombo from '../../utilities/stringUtils'
+import {extractCombo} from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'

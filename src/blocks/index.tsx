@@ -15,6 +15,7 @@ import {Tertiary} from './Tertiary'
 import {Testimonial} from './Testimonial'
 import {Text} from './Text'
 import {TextGroup} from './TextGroup'
+import {Timeline} from './Timeline'
 
 export default {
   Breadcrumb,
@@ -33,5 +34,6 @@ export default {
   Tertiary,
   Testimonial,
   Text,
-  TextGroup
+  TextGroup,
+  Timeline
 }

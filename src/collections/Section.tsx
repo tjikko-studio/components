@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
-import extractCombo from '../../utilities/stringUtils'
+import {extractCombo} from '../../utilities/stringUtils'
 import {ContentColumns} from '../layouts/ContentColumns'
 
 import {ColumnProps, ComponentsExtraProps} from '../../shared/types'

@@ -4,7 +4,7 @@ import React, {FC, RefObject, useEffect, useRef} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
-import extractCombo from '../../utilities/stringUtils'
+import {extractCombo} from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'
@@ -175,7 +175,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
   const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
     <div
-      className="relative flex items-start transition-opacity items-center"
+      className="relative flex items-start items-center transition-opacity"
       ref={infoBoxContainerRef}
       style={{
         height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
@@ -227,13 +227,13 @@ const FeaturesShowSection: FC<{
       {item.image?.[0] && (
         <div className="sticky h-100vh" ref={imgContainerRef} style={{top: '0'}}>
           <div
-            className="bg-img h-full w-full bg-center bg-cover rounded-3xl transition-transform duration-700"
+            className="w-full h-full transition-transform duration-700 bg-center bg-cover bg-img rounded-3xl"
             style={{
               backgroundImage: `url(${item.image?.[0].url})`
             }}
           />
           <div
-            className="absolute h-full w-full sm:grid"
+            className="absolute w-full h-full sm:grid"
             style={{
               top: '0',
               gridTemplateRows: '6rem 1fr 1fr 1fr',

@@ -4,7 +4,7 @@ import cn from 'classnames'
 import containVal from '../../utilities/containVal'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
-import extractCombo from '../../utilities/stringUtils'
+import {extractCombo} from '../../utilities/stringUtils'
 
 import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
 
