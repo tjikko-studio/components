@@ -29,9 +29,7 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
           <div className="m-0" dangerouslySetInnerHTML={{__html: item.body}} />
         </div>
       </div>
-      <div className="w-1/4">
-        <Media media={item.image?.[0]} className="w-full rounded-xl" />
-      </div>
+      <div className="w-1/4">{item.image?.[0] && <Media media={item.image[0]} className="w-full rounded-xl" />}</div>
     </div>
   )
 }
