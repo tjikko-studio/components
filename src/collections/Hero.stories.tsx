@@ -20,11 +20,10 @@ export const Default = Template.bind({})
 Default.args = {
   bgColor: 'dark|#171A22',
   bgType: 'video',
-  bgHasImage: true,
+  bgImageVideo: true,
   bgImage: {
     url: 'https://via.placeholder.com/1.gif/111827/111827'
   },
-  bgHasVideo: true,
   bgVideo: {
     url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
   },

@@ -16,8 +16,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Background data
    */
   bgColor?: string
-  bgHasImage?: boolean
-  bgHasVideo?: boolean
+  bgImageVideo?: 'image' | 'video'
   bgImage?: ImageProps
   bgVideo?: ImageProps
 
@@ -69,8 +68,7 @@ export const Hero: FC<HeroProps> = ({
   textColor = DEFAULT_TEXT_COLOR,
   darkTextColor = DEFAULT_DARK_TEXT_COLOR,
   bgColor = 'transparent',
-  bgHasImage = false,
-  bgHasVideo = false,
+  bgImageVideo = false,
   bgImage = {},
   bgVideo = {},
   contentPosition = 'bottom|left',
@@ -88,9 +86,9 @@ export const Hero: FC<HeroProps> = ({
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
-      style={{backgroundColor: bgColor, backgroundImage: `url(${bgHasImage && bgImage && !bgHasVideo ? bgImage.url : ''})`}}
+      style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageVideo === 'image' && bgImage ? bgImage.url : ''})`}}
     >
-      {bgHasVideo && (
+      {bgImageVideo === 'video' && (
         <video
           id="heroVideo"
           autoPlay
@@ -101,7 +99,7 @@ export const Hero: FC<HeroProps> = ({
           <source src={bgVideo.url} type="video/mp4" />
         </video>
       )}
-      {(bgHasImage || bgHasVideo) && (
+      {bgImageVideo && (
         <>
           <div
             className={cn([
