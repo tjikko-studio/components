@@ -19,8 +19,8 @@ export const MediaImage: FC<ImageProps> = ({
 }) => {
   return (
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
-      {url && <img src={url} alt={content && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
-      {content && content.caption && (
+      {url && <img src={url} alt={content.alt && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
+      {content.caption && (
         <>
           {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
@@ -57,9 +57,9 @@ export const MediaVideo: FC<VideoProps> = ({
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
       <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={content && content.alt && content.alt}></meta>
+        <meta itemProp="description" content={content?.alt && content.alt}></meta>
       </video>
-      {content && content.caption && (
+      {content.caption && (
         <>
           {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
@@ -76,7 +76,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Received media (It can be an image or a video)
    */
-  media: MediaProps | VideoProps
+  media?: MediaProps | VideoProps
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -87,16 +87,16 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Media: FC<GenericMediaProps> = ({
-  media,
+  media = null,
   autoplay = true,
   muted = true,
   controls = false,
   loop = false,
   className,
   wrapperClassName,
-  gallery
+  gallery,
 }) => {
-  return media.type === 'video' ? (
+  return media && media.type === 'video' ? (
     <MediaVideo
       key={media.url}
       {...media}
@@ -108,7 +108,15 @@ export const Media: FC<GenericMediaProps> = ({
       wrapperClassName={wrapperClassName}
       gallery={gallery}
     />
+  ) : media && media.type === 'image' ? (
+    <MediaImage
+      key={media.url}
+      {...media}
+      className={className}
+      wrapperClassName={wrapperClassName}
+      gallery={gallery}
+    />
   ) : (
-    <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
+    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">No medias yet</div>
   )
 }

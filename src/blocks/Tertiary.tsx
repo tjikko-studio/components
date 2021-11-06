@@ -64,16 +64,14 @@ export const Tertiary: FC<TertiaryProps> = ({
   return (
     <div className={cn(classes)}>
       <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2')}>
-        {image && (
-          <Media
-            media={image}
-            autoplay={autoplay}
-            muted={muted}
-            controls={controls}
-            loop={loop}
-            className={'rounded-lg shadow-xl w-full h-full'}
-          />
-        )}
+        <Media
+          media={image}
+          autoplay={autoplay}
+          muted={muted}
+          controls={controls}
+          loop={loop}
+          className={'rounded-lg shadow-xl w-full h-full'}
+        />
       </div>
       <div className={cn('mt-4 lg:mt-0', layoutTypeStaged !== 'vertical' && 'lg:w-1/2 lg:flex lg:ml-6')}>
         <div>

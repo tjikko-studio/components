@@ -2,10 +2,10 @@ import React, {FC, HTMLAttributes} from 'react'
 import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
+import {ImageProps, Media} from '../parts/Media'
+
 export interface ClientProps {
-  image: {
-    url: string
-  }
+  image: ImageProps
   company: string
 }
 
@@ -45,7 +45,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <img className={cn(logoClass)} src={image.url} alt={company} />
+              <Media media={image ? image : null} className={cn(logoClass)} />
             </div>
           )
         })}

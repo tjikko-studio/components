@@ -79,16 +79,14 @@ export const Secondary: FC<SecondaryProps> = ({
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
           <div className={finalLayout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4'}>
-            {image && (
-              <Media
-                media={image}
-                autoplay={autoplay}
-                muted={muted}
-                controls={controls}
-                loop={loop}
-                className={'rounded-lg shadow-xl w-full h-full'}
-              />
-            )}
+            <Media
+              media={image}
+              autoplay={autoplay}
+              muted={muted}
+              controls={controls}
+              loop={loop}
+              className={'rounded-lg shadow-xl w-full h-full'}
+            />
           </div>
           <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex')}>
             <div className={cn(finalLayout !== 'vertical' && 'lg:pl-12')}>

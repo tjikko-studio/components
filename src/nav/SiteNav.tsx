@@ -102,7 +102,7 @@ export const SiteNav: FC<SiteNavProps> = ({
               ])}
             >
               <a className="flex-auto" href={homeLink}>
-                {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
+                <Media media={logo ? logo : null} className="h-3 lg:h-4 w-auto" />
               </a>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {

@@ -66,6 +66,7 @@ export const Button: FC<ButtonProps> = ({
   fullWidth = false,
   onClick
 }) => {
+  console.log(link)
   const buttonType = type || 'primary'
   const buttonClasses = ['inline-flex items-center space-x-3 whitespace-nowrap']
   const contentClasses = ['']
