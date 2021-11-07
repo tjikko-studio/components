@@ -1,9 +1,10 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useMemo} from 'react'
 
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
 import {Tertiary} from '../blocks/Tertiary'
 import {Button} from '../Button'
+import {SideNav, SideNavItemProps} from '../nav/SideNav'
 import {ImageProps, Media} from '../parts/Media'
 import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
 
@@ -13,6 +14,7 @@ type CollectionItem = {
   content: {
     title: string
     description: string
+    category: string
     images: ImageProps[]
     video?: ImageProps[]
   }
@@ -26,14 +28,16 @@ type JobItems = {
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
   items?: CollectionItem[] & JobItems
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
+  navItems?: SideNavItemProps[]
 }
 
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
   return (
-    <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
+    <div className="grid gap-8 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
         <Tertiary
           key={item.id}
+          id={item.content.category}
           image={item.content.images?.[0]}
           imagePosition="right"
           title={item.content.title}
@@ -46,9 +50,9 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <div className="flex flex-wrap gap-16 py-12 px-4 sm:gap-8 sm:p-8 lg:m-8">
+    <div className="flex flex-wrap gap-16 px-4 py-12 sm:gap-8 sm:p-8 lg:m-8">
       {items?.map((item) => (
-        <div key={item.id} className="flex flex-col w-full lg:p-8 jus">
+        <div key={item.id} id={item.content.category} className="flex flex-col w-full lg:p-8 jus">
           <div className="lg:flex lg:gap-x-4">
             <div className="flex flex-col lg:w-1/2">
               <Heading text={item.content.title} className="pb-4" />
@@ -74,13 +78,44 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({items, datasource} = {items: null}) => {
-  if (datasource === 'success-stories') {
-    return <SuccessStoriesCollection items={items} />
-  }
+const mapNavItems = (items: CollectionItem[], navItems: any[]): SideNavItemProps[] => {
+  return navItems
+    ?.flatMap((navItem) => {
+      const hasChildren = navItem.children?.length > 0
+      const childNavItems = mapNavItems(items, navItem.children)
+      const id = hasChildren ? navItem.children[0].content.autoid : navItem.content.autoid
 
-  if (datasource === 'portfolio') {
-    return <PortfolioCollection items={items} />
+      return (hasChildren && childNavItems?.length > 0) || items.some((item) => item.content.category === id)
+        ? [
+            {
+              type: hasChildren ? 'header' : 'link',
+              status: 'default',
+              text: `${navItem.content.title}`,
+              link: `#${id}`
+            },
+            ...childNavItems
+          ]
+        : []
+    })
+    .filter(Boolean) as SideNavItemProps[]
+}
+
+export const Collection: FC<CollectionProps> = ({items = null, navItems = [], datasource}) => {
+  const sideNavItems = useMemo(() => mapNavItems(items, navItems), [items, navItems])
+
+  const Component = datasource === 'success-stories' ? SuccessStoriesCollection : datasource === 'portfolio' ? PortfolioCollection : null
+
+  if (Component) {
+    return (
+      <div className="flex">
+        {sideNavItems.length > 0 && (
+          <div className="sticky z-10 top-24">
+            <SideNav items={sideNavItems} />
+          </div>
+        )}
+        <Component items={items} />
+      </div>
+    )
   }
 
   if (datasource === 'jobs') {

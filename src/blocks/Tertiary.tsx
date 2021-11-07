@@ -50,7 +50,8 @@ export const Tertiary: FC<TertiaryProps> = ({
   controls = false,
   loop = true,
   title = '',
-  body = ''
+  body = '',
+  id
 }) => {
   const layoutTypeStaged = layout || 'default'
 
@@ -62,7 +63,7 @@ export const Tertiary: FC<TertiaryProps> = ({
     {'lg:space-x-6': layout !== 'vertical' && imagePosition === 'left'}
   ]
   return (
-    <div className={cn(classes)}>
+    <div id={id} className={cn(classes)}>
       <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2')}>
         {image && (
           <Media

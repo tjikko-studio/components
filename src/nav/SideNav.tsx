@@ -2,6 +2,8 @@ import React, {FC, HTMLAttributes} from 'react'
 
 import {SideNavItem, SideNavItemProps} from './SideNavItem'
 
+export {SideNavItemProps} from './SideNavItem'
+
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   /**
    * SideNav items list array that will be parsed through to build the component
