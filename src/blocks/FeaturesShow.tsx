@@ -174,10 +174,16 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     }
   }, [infoBoxContainerRef, cloneLayerRef, position, addScrollListener, removeScrollListener])
 
+  const relativePos = position.startsWith('top')
+    ? 'top-0'
+    : position.startsWith('bottom')
+    ? 'top-0 sm:top-auto sm:bottom-0'
+    : 'top-0 sm:bottom-0'
+
   const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
     <div
-      className="relative flex items-start transition-opacity items-center"
+      className={`relative flex items-start transition-opacity items-center top- ${relativePos}`}
       ref={infoBoxContainerRef}
       style={{
         height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
@@ -225,10 +231,10 @@ const FeaturesShowSection: FC<{
   }, [imgContainerRef])
 
   return (
-    <div className="relative w-full px-5">
+    <div className="relative w-full px-2.5 sm:px-5">
       {item.image?.[0] && (
         <div className="sticky h-screen" ref={imgContainerRef} style={{top: '0'}}>
-          <div className="flex flex-col h-full relative pt-32 pb-5">
+          <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
             {console.log(item)}
             {item.header && (
               <div className="text-center pb-4">
@@ -238,19 +244,18 @@ const FeaturesShowSection: FC<{
             )}
             <div className="h-full relative">
               <div
-                className="bg-img h-full w-full bg-center bg-cover rounded-xl shadow-2xl transition-transform duration-700"
+                className="bg-img h-full w-full bg-center bg-cover rounded-lg shadow-2xl transition-transform duration-700"
                 style={{
                   backgroundImage: `url(${item.image?.[0].url})`
                 }}
               />
               <div
-                className="absolute h-full w-full sm:grid pb-32"
+                className="absolute h-full w-full sm:grid sm:py-6"
                 style={{
                   top: '0',
-                  gridTemplateRows: '6rem 1fr 1fr 1fr',
+                  gridTemplateRows: '1fr 1fr 1fr',
                   gridTemplateColumns: '1fr 1fr 1fr',
                   gridTemplateAreas: `
-                    "   .             .             ."
                     "top-left    top-center    top-right"
                     "center-left center-center center-right"
                     "bottom-left bottom-center bottom-right"`
