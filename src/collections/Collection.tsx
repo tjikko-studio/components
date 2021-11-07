@@ -6,6 +6,7 @@ import {Tertiary} from '../blocks/Tertiary'
 import {Button} from '../Button'
 import {SideNav, SideNavItemProps} from '../nav/SideNav'
 import {ImageProps, Media} from '../parts/Media'
+import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
 
 type CollectionItem = {
   id: string
@@ -19,13 +20,18 @@ type CollectionItem = {
   }
 }
 
+type JobItems = {
+  jobs: JobItem[]
+  tags: JobsTags[]
+}
+
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
-  items?: CollectionItem[]
-  datasource?: 'success-stories' | 'portfolio'
+  items?: CollectionItem[] & JobItems
+  datasource?: 'success-stories' | 'portfolio' | 'jobs'
   navItems?: SideNavItemProps[]
 }
 
-const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: []}) => {
+const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
   return (
     <div className="grid gap-8 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
@@ -94,8 +100,9 @@ const mapNavItems = (items: CollectionItem[], navItems: any[]): SideNavItemProps
     .filter(Boolean) as SideNavItemProps[]
 }
 
-export const Collection: FC<CollectionProps> = ({items = [], navItems = [], datasource}) => {
+export const Collection: FC<CollectionProps> = ({items = null, navItems = [], datasource}) => {
   const sideNavItems = useMemo(() => mapNavItems(items, navItems), [items, navItems])
+
   const Component = datasource === 'success-stories' ? SuccessStoriesCollection : datasource === 'portfolio' ? PortfolioCollection : null
 
   if (Component) {
@@ -109,6 +116,10 @@ export const Collection: FC<CollectionProps> = ({items = [], navItems = [], data
         <Component items={items} />
       </div>
     )
+  }
+
+  if (datasource === 'jobs') {
+    return <JobsCollection content={items} />
   }
 
   return null
