@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink from '../../utilities/getLink'
+import getLink, {getTarget} from '../../utilities/getLink'
 import {PopUpNavItem} from './PopUpNavItem'
 
 import {MenuType} from '../../shared/types'
@@ -65,6 +65,7 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
                   type={menuItem.type ? menuItem.type : 'default'}
                   className="py-2.5"
                   href={getLink(menuItem.link)}
+                  target={getTarget(menuItem.link)}
                 />
               )
             })}

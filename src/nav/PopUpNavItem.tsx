@@ -28,6 +28,11 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   href?: string
 
   /**
+   * Link Target
+   */
+  target?: string
+
+  /**
    * child node
    */
   children?: React.ReactNode
@@ -41,6 +46,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   type = 'default',
   padding = true,
   href = null,
+  target = null,
   isActive = false,
   children = [],
   className = ''
@@ -83,7 +89,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
     <div className={cn(wrapperClasses, className)} role={'navigation'} aria-label={label}>
       {type !== 'header' ? (
         href ? (
-          <a className={cn(linkClasses)} href={href}>
+          <a target={target} className={cn(linkClasses)} href={href}>
             {label}
           </a>
         ) : (

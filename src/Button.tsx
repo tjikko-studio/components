@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink from '../utilities/getLink'
+import getLink, {getTarget} from '../utilities/getLink'
 
 import {LinkObject} from '../shared/types'
 
@@ -136,7 +136,7 @@ export const Button: FC<ButtonProps> = ({
   }
   if (link?.value) {
     return (
-      <a onClick={onClick} href={getLink(link)} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={getLink(link)} target={getTarget(link)} className={cn(buttonClasses)}>
         <Content />
       </a>
     )
