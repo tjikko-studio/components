@@ -39,7 +39,7 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
             imagePosition="right"
             title={item.content.title}
             body={item.content.description}
-            link={{type: 'link', value: item.url}}
+            link={{type: 'link', value: item.url, popup: false}}
             label={`Read about ${item.content.title}`}
           />
         </>
@@ -69,7 +69,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
           <Button
             className="mt-4 w-fit"
             type="tertiary"
-            link={{type: 'link', value: item.url}}
+            link={{type: 'link', value: item.url, popup: false}}
             label={`Read about ${item.content.title}`}
           />
         </div>
