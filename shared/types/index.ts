@@ -72,6 +72,7 @@ export interface MenuItemType {
 
 export interface LinkObject {
   type: string
+  popup: boolean
   value: string | {url: string}[]
 }
 
