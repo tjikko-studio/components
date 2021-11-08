@@ -17,15 +17,15 @@ type TimelineItemProps = {
 
 const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item, last}) => {
   return (
-    <div className="flex w-1/2 pb-24">
-      <div className="flex w-3/4 pt-12 pr-8">
+    <div className="flex w-1/2 pt-12 pb-24">
+      <div className="flex w-3/4 pr-8">
         <div className="relative mt-1 mr-4">
           <div className="w-6 h-6 bg-gray-500 rounded-full" />
           {!last && <div className="absolute top-0 w-px bg-gray-500 -bottom-40 left-1/2" />}
         </div>
         <div className="flex flex-col w-full dark:text-gray-50">
-          <Text className="m-0 font-bold" text={item.title} />
-          <Text className="m-0 italic font-bold" text={item.subtitle} />
+          <div className="m-0 font-bold" dangerouslySetInnerHTML={{__html: item.body}} />
+          <div className="m-0 italic font-bold" dangerouslySetInnerHTML={{__html: item.subtitle}} />
           <div className="m-0" dangerouslySetInnerHTML={{__html: item.body}} />
         </div>
       </div>
