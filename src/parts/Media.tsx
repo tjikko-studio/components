@@ -1,6 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import MediaIcon from '/assets/icons/media-image.svg'
+
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
 export type ImageProps = SharedImageProps
@@ -19,7 +21,7 @@ export const MediaImage: FC<ImageProps> = ({
 }) => {
   return (
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
-      {url && <img src={url} alt={content.alt && content.alt} className={!gallery ? className : `relative h-full w-full`} />}
+      {url && <img src={url} alt={content.alt} className={!gallery ? className : `relative h-full w-full`} />}
       {content.caption && (
         <>
           {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
@@ -57,7 +59,7 @@ export const MediaVideo: FC<VideoProps> = ({
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
       <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={content?.alt && content.alt}></meta>
+        <meta itemProp="description" content={content?.alt}></meta>
       </video>
       {content.caption && (
         <>
@@ -111,6 +113,8 @@ export const Media: FC<GenericMediaProps> = ({
   ) : media && media.type === 'image' ? (
     <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
   ) : (
-    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">Media</div>
+    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">
+      <MediaIcon className="w-8 h-8 opacity-60" />
+    </div>
   )
 }

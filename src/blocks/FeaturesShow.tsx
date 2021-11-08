@@ -238,7 +238,7 @@ const FeaturesShowSection: FC<{
             {item.header && (
               <div className="text-center pb-4">
                 <h4>{item.header}</h4>
-                {item.subtitle && <p> {item.subtitle} </p>}
+                {item.subtitle && <p>{item.subtitle}</p>}
               </div>
             )}
             <div className="h-full relative">
