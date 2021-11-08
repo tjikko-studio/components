@@ -178,9 +178,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                             console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                             return null
                                           case 'NavigationLogo':
-                                            return innerContent.image ? (
+                                            return innerContent ? (
                                               <a href={homeLink}>
-                                                <Media media={innerContent.image} className="h-8 w-auto" />
+                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" />
                                               </a>
                                             ) : null
                                           default:

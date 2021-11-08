@@ -45,10 +45,10 @@ const propsByType: Record<string, GetPropsFn> = {
       bgColor: content.bg_color,
       wrapperColor: content.wrapper_color,
       aboveColor: content.above_color,
-      bgHasImage: content.bg_has_image,
-      bgHasVideo: content.bg_has_video,
+      bgType: content.bg_type,
       bgImage: content.bg_image?.[0],
-      bgVideo: content.bg_video?.[0]
+      bgVideo: content.bg_video?.[0],
+      bgVideoFallback: content.bg_video_fallback?.[0]
     }
   },
   ClientsLogos: (content, id, attrs) => {
