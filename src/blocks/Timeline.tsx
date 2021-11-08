@@ -4,7 +4,6 @@ import cn from 'classnames'
 import getComponent from '../../utilities/getComponent'
 import {extractCombo} from '../../utilities/stringUtils'
 import {ImageProps, Media} from '../parts/Media'
-import {Text} from './Text'
 
 import {BlockProps} from '../../shared/types'
 
