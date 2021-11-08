@@ -183,7 +183,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
   const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
     <div
-      className={`relative flex items-start transition-opacity items-center top- ${relativePos}`}
+      className={`relative flex items-start transition-opacity items-center ${relativePos}`}
       ref={infoBoxContainerRef}
       style={{
         height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
@@ -235,7 +235,6 @@ const FeaturesShowSection: FC<{
       {item.image?.[0] && (
         <div className="sticky h-screen" ref={imgContainerRef} style={{top: '0'}}>
           <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
-            {console.log(item)}
             {item.header && (
               <div className="text-center pb-4">
                 <h4>{item.header}</h4>
@@ -318,7 +317,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
 
   return (
     <section className={cn(theme, classes, className)} style={{backgroundColor: background}}>
-      <div className="_p-8 dark:text-gray-50">
+      <div className="dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
         })}

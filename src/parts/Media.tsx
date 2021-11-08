@@ -109,14 +109,8 @@ export const Media: FC<GenericMediaProps> = ({
       gallery={gallery}
     />
   ) : media && media.type === 'image' ? (
-    <MediaImage
-      key={media.url}
-      {...media}
-      className={className}
-      wrapperClassName={wrapperClassName}
-      gallery={gallery}
-    />
+    <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
   ) : (
-    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">No medias yet</div>
+    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">Media</div>
   )
 }

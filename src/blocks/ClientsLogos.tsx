@@ -45,7 +45,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <Media media={image ? image : null} className={cn(logoClass)} />
+              <Media media={image} className={cn(logoClass)} />
             </div>
           )
         })}
