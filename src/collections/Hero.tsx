@@ -16,9 +16,10 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Background data
    */
   bgColor?: string
-  bgImageVideo?: 'image' | 'video'
+  bgType?: 'image' | 'video'
   bgImage?: ImageProps
   bgVideo?: ImageProps
+  bgVideoFallback?: ImageProps
 
   /**
    * Content Position
@@ -68,9 +69,10 @@ export const Hero: FC<HeroProps> = ({
   textColor = DEFAULT_TEXT_COLOR,
   darkTextColor = DEFAULT_DARK_TEXT_COLOR,
   bgColor = 'transparent',
-  bgImageVideo = false,
+  bgType = '',
   bgImage = {},
   bgVideo = {},
+  bgVideoFallback = {},
   contentPosition = 'bottom|left',
   heroHeight = 'h-80vh',
   content = [],
@@ -83,12 +85,14 @@ export const Hero: FC<HeroProps> = ({
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
+  const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
-      style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageVideo === 'image' && bgImage ? bgImage.url : ''})`}}
+      style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
     >
-      {bgImageVideo === 'video' && (
+      {console.log(bgVideo)}
+      {bgType === 'video' && (
         <video
           id="heroVideo"
           autoPlay
@@ -99,7 +103,7 @@ export const Hero: FC<HeroProps> = ({
           <source src={bgVideo.url} type="video/mp4" />
         </video>
       )}
-      {bgImageVideo && (
+      {bgType && (
         <>
           <div
             className={cn([

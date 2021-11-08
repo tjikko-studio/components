@@ -20,7 +20,6 @@ export const Default = Template.bind({})
 Default.args = {
   bgColor: 'dark|#171A22',
   bgType: 'video',
-  bgImageVideo: true,
   bgImage: {
     url: 'https://via.placeholder.com/1.gif/111827/111827'
   },
