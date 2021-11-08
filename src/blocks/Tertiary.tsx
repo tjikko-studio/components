@@ -1,7 +1,10 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
+
+import {LinkObject} from '../../shared/types'
 
 export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -36,6 +39,12 @@ export interface TertiaryProps extends HTMLAttributes<HTMLDivElement> {
    * text to display for paragraph
    */
   body: string
+
+  /**
+   * Button
+   */
+  link: LinkObject
+  label: string
 }
 
 /**
@@ -50,7 +59,9 @@ export const Tertiary: FC<TertiaryProps> = ({
   controls = false,
   loop = true,
   title = '',
-  body = ''
+  body = '',
+  link = null,
+  label = null
 }) => {
   const layoutTypeStaged = layout || 'default'
 
@@ -77,6 +88,7 @@ export const Tertiary: FC<TertiaryProps> = ({
         <div>
           <h2 className="fontStyle-2xl break-words block w-full">{title}</h2>
           <p className="fontStyle-base break-words mt-2" dangerouslySetInnerHTML={{__html: body}}></p>
+          {link && label && <Button key={`(${link})[${label})]`} label={label} type="tertiary" size="small" link={link} />}
         </div>
       </div>
     </div>
