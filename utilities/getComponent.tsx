@@ -57,7 +57,9 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       logosLayout: content.logos_layout,
       username: content.username,
-      duration: content.duration
+      duration: content.duration,
+      bgColor: content.bg_color,
+      header: content.header
     }
   },
   ClientsLogos: (content, id, attrs) => {

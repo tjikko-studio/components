@@ -189,7 +189,7 @@ export const Input: FC<InputProps> = ({
     return <Content />
   } else {
     return (
-      <div className="flex flex-col">
+      <div className={cn('flex flex-col', className)}>
         <Content />
       </div>
     )
