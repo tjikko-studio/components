@@ -10,6 +10,7 @@ import addErrorClasses from '../../snippets/addErrorClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
+import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
 
 export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -67,10 +68,10 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    */
   className?: string
 
-  columnIndex?: number
+  columnStart?: number | null
+  columnEnd?: number | null
 }
 
-const DEFAULT_COLUMN_INDEX = 1
 /**
  * Primary UI component for user interaction
  */
@@ -86,7 +87,8 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
-  columnIndex = DEFAULT_COLUMN_INDEX
+  columnStart = null,
+  columnEnd = null
 }) => {
   const textareaClasses = [
     'form-textarea',
@@ -125,7 +127,7 @@ export const TextArea: FC<TextAreaProps> = ({
             isDisabled && 'text-gray-500 dark:text-gray-600',
             'mb-2'
           ])}
-          style={{gridArea: `label-${columnIndex}`}}
+          style={gridAreas('label', columnStart, columnEnd)}
         >
           <p className="w-full">{label}</p>
           {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
@@ -133,7 +135,7 @@ export const TextArea: FC<TextAreaProps> = ({
           {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
         </div>
       )}
-      <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
+      <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
         <textarea
           className={cn(textareaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
           defaultValue={text}
@@ -144,22 +146,22 @@ export const TextArea: FC<TextAreaProps> = ({
       {information && (
         <div
           className={cn(
-            `sm:grid-in-info-${columnIndex}`,
+            `sm:grid-in-info-${columnStart}`,
             isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
             'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
           )}
-          style={{gridArea: `info-${columnIndex}`}}
+          style={gridAreas('info', columnStart, columnEnd)}
           dangerouslySetInnerHTML={{__html: information}}
         />
       )}
       {isError && (
         <div
           className={cn(
-            `sm:grid-in-error-${columnIndex} fontStyle-sm min-h-6 flex`,
+            `sm:grid-in-error-${columnStart} fontStyle-sm min-h-6 flex`,
             isError ? 'opacity-100' : 'opacity-0',
             'items-center text-red-600 dark:text-red-400 mt-2'
           )}
-          style={{gridArea: `error-${columnIndex}`}}
+          style={gridAreas('error', columnStart, columnEnd)}
         >
           {error}
         </div>
