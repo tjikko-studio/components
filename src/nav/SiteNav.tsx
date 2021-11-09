@@ -4,7 +4,7 @@ import cn from 'classnames'
 import CloseIcon from '/assets/icons/close-line.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
 
-import getLink from '../../utilities/getLink'
+import getLink, {getTarget} from '../../utilities/getLink'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {ListNav} from './ListNav'
@@ -102,7 +102,7 @@ export const SiteNav: FC<SiteNavProps> = ({
               ])}
             >
               <a className="flex-auto" href={homeLink}>
-                {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
+                <Media media={logo} className="h-3 lg:h-4 w-auto" />
               </a>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
@@ -242,7 +242,12 @@ export const SiteNav: FC<SiteNavProps> = ({
                             }
                             case 'link': {
                               return (
-                                <a key={innerId || `[${label}](${link})`} href={getLink(link)} className="fontStyle-xl">
+                                <a
+                                  key={innerId || `[${label}](${link})`}
+                                  target={getTarget(link)}
+                                  href={getLink(link)}
+                                  className="fontStyle-xl"
+                                >
                                   {label}
                                 </a>
                               )

@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink from '../utilities/getLink'
+import getLink, {getTarget} from '../utilities/getLink'
 
 import {LinkObject} from '../shared/types'
 
@@ -14,16 +14,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
    * text to display on button
    */
   label?: string
-
-  /**
-   * icon position
-   */
-  iconPos?: 'right' | 'left'
-
-  /**
-   * icon image
-   */
-  icon?: string
 
   /**
    * button size
@@ -58,8 +48,6 @@ export const Button: FC<ButtonProps> = ({
   type = 'primary',
   label = 'Button',
   size = 'default',
-  icon = '',
-  iconPos = 'left',
   link = null,
   className = '',
   forceDark = false,
@@ -136,7 +124,7 @@ export const Button: FC<ButtonProps> = ({
   }
   if (link?.value) {
     return (
-      <a onClick={onClick} href={getLink(link)} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={getLink(link)} target={getTarget(link)} className={cn(buttonClasses)}>
         <Content />
       </a>
     )

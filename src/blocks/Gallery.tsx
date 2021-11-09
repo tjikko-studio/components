@@ -59,7 +59,7 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
   return (
     <figure role="group" className={cn(className)}>
       <div className={cn('grid gap-2', gridLayout)}>
-        {images.map((image) => {
+        {images.length ? images.map((image) => {
           return (
             <Media
               key={image.id}
@@ -72,7 +72,9 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
               gallery={true}
             />
           )
-        })}
+        }) : (
+          <Media media={null} />
+        )}
       </div>
       <figcaption
         className="relative mt-4 fontStyle-sm bg-opacity-60 text-gray:500 dark:text-gray-400"

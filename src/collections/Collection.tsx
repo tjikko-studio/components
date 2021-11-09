@@ -32,13 +32,17 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
   return (
     <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
-        <Tertiary
-          key={item.id}
-          image={item.content.images?.[0]}
-          imagePosition="right"
-          title={item.content.title}
-          body={item.content.description}
-        />
+        <>
+          <Tertiary
+            key={item.id}
+            image={item.content.images?.[0]}
+            imagePosition="right"
+            title={item.content.title}
+            body={item.content.description}
+            link={{type: 'link', value: item.url, popup: false}}
+            label={`Read about ${item.content.title}`}
+          />
+        </>
       ))}
     </div>
   )
@@ -65,7 +69,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
           <Button
             className="mt-4 w-fit"
             type="tertiary"
-            link={{type: 'link', value: item.url}}
+            link={{type: 'link', value: item.url, popup: false}}
             label={`Read about ${item.content.title}`}
           />
         </div>

@@ -66,6 +66,7 @@ export const Primary: FC<PrimaryProps> = ({
   className = ''
 }) => {
   const finalLayout = layout || 'default'
+
   return (
     <div
       className={cn(
@@ -77,16 +78,14 @@ export const Primary: FC<PrimaryProps> = ({
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
           <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4')}>
-            {image && image.url && (
-              <Media
-                media={image}
-                autoplay={autoplay}
-                muted={muted}
-                controls={controls}
-                loop={loop}
-                className={'rounded-lg shadow-xl w-full h-full'}
-              />
-            )}
+            <Media
+              media={image}
+              autoplay={autoplay}
+              muted={muted}
+              controls={controls}
+              loop={loop}
+              className={'rounded-lg shadow-xl w-full h-full'}
+            />
           </div>
           <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-left', className)}>
             <div className={cn(finalLayout !== 'vertical' && 'lg:p-6')}>

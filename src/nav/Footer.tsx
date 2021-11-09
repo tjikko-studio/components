@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink from '../../utilities/getLink'
+import getLink, {getTarget} from '../../utilities/getLink'
 import getWidth from '../../utilities/getWidth'
 import {Button} from '../Button'
 import {Media} from '../parts/Media'
@@ -114,7 +114,12 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                   const url = getLink(innerLink)
                                                   return (
-                                                    <a key={`${innerLabel}${url}`} href={url} className="fontStyle-sm">
+                                                    <a
+                                                      key={`${innerLabel}${url}`}
+                                                      href={url}
+                                                      target={getTarget(innerLink)}
+                                                      className="fontStyle-sm"
+                                                    >
                                                       {innerLabel}
                                                     </a>
                                                   )
@@ -124,7 +129,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'link': {
                                             const Alink = () => {
                                               return (
-                                                <a href={getLink(link)} className="fontStyle-sm">
+                                                <a href={getLink(link)} target={getTarget(link)} className="fontStyle-sm">
                                                   {label}
                                                 </a>
                                               )
@@ -173,9 +178,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                             console.error('unrecognized dataSource in Footer', dataSource, typeof dataSource)
                                             return null
                                           case 'NavigationLogo':
-                                            return innerContent.image ? (
+                                            return innerContent ? (
                                               <a href={homeLink}>
-                                                <Media media={innerContent.image} className="h-8 w-auto" />
+                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" />
                                               </a>
                                             ) : null
                                           default:

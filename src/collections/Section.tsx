@@ -122,18 +122,9 @@ export const Section: FC<SectionProps> = ({
     }
   }
 
-  const classes = [
-    'text-gray-900',
-    'dark:text-gray-50',
-    'grid',
-    'gap-y-8',
-    'sm:gap-y-12',
-    'md:gap-y-16',
-    'w-full',
-    'h-full',
-    'max-w-screen-xl',
-    'mx-auto'
-  ]
+  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
+  const gridClasses = ['grid', 'gap-y-8', 'sm:gap-y-12', 'md:gap-y-16']
+
   if (layoutWidth === 'tight') {
     classes.push('px-4', 'sm:px-8', 'md:px-24')
   } else {
@@ -163,7 +154,7 @@ export const Section: FC<SectionProps> = ({
 
   return (
     <section className={cn('overflow-hidden', theme, className, wrapperClasses)} style={{backgroundColor: wrapperBg}}>
-      <div className={cn(classes)} style={{backgroundColor: innerBg}}>
+      <div className={cn(classes, gridClasses)} style={{backgroundColor: innerBg}}>
         {content.length >= 1 ? (
           <ContentColumns
             content={content}
@@ -171,6 +162,7 @@ export const Section: FC<SectionProps> = ({
             componentsExtraProps={columnComponentExtraProps}
             columnClasses="flex flex-col space-y-6 h-full"
             templatesContent={templatesContent}
+            className={cn(gridClasses)}
           />
         ) : (
           <div>No content yet</div>

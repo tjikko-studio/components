@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
 
-import getLink from '../../utilities/getLink'
+import getLink, {getTarget} from '../../utilities/getLink'
 import {ListNav} from './ListNav'
 import {PopUpNavItem} from './PopUpNavItem'
 
@@ -88,6 +88,7 @@ export const NavItem: FC<NavItemProps> = ({
         type={styles}
         label={label}
         href={getLink(link)}
+        target={getTarget(link)}
         padding={padding}
         className={cn(
           'flex items-center',

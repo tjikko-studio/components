@@ -34,6 +34,8 @@ export type FeaturesShowItemBox = {
 
 export type FeaturesShowItem = {
   image: ImageProps[]
+  header?: string
+  subtitle?: string
   info_boxes?: FeaturesShowItemBox[]
 }
 
@@ -172,10 +174,16 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     }
   }, [infoBoxContainerRef, cloneLayerRef, position, addScrollListener, removeScrollListener])
 
+  const relativePos = position.startsWith('top')
+    ? 'top-0'
+    : position.startsWith('bottom')
+    ? 'top-0 sm:top-auto sm:bottom-0'
+    : 'top-0 sm:bottom-0'
+
   const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
     <div
-      className="relative flex items-start items-center transition-opacity"
+      className={`relative flex items-start transition-opacity items-center ${relativePos}`}
       ref={infoBoxContainerRef}
       style={{
         height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
@@ -209,7 +217,7 @@ const FeaturesShowSection: FC<{
           },
           {
             steps: 10,
-            caps: [0.8, 0.9]
+            caps: [0.8, 1]
           }
         )
       )
@@ -223,29 +231,38 @@ const FeaturesShowSection: FC<{
   }, [imgContainerRef])
 
   return (
-    <div className="relative w-full px-8">
+    <div className="relative w-full px-2.5 sm:px-5">
       {item.image?.[0] && (
-        <div className="sticky h-100vh" ref={imgContainerRef} style={{top: '0'}}>
-          <div
-            className="w-full h-full transition-transform duration-700 bg-center bg-cover bg-img rounded-3xl"
-            style={{
-              backgroundImage: `url(${item.image?.[0].url})`
-            }}
-          />
-          <div
-            className="absolute w-full h-full sm:grid"
-            style={{
-              top: '0',
-              gridTemplateRows: '6rem 1fr 1fr 1fr',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              gridTemplateAreas: `
-                "   .             .             ."
-                "top-left    top-center    top-right"
-                "center-left center-center center-right"
-                "bottom-left bottom-center bottom-right"`
-            }}
-            ref={cloneLayerRef}
-          />
+        <div className="sticky h-screen" ref={imgContainerRef} style={{top: '0'}}>
+          <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
+            {item.header && (
+              <div className="text-center pb-4">
+                <h4>{item.header}</h4>
+                {item.subtitle && <p>{item.subtitle}</p>}
+              </div>
+            )}
+            <div className="h-full relative">
+              <div
+                className="bg-img h-full w-full bg-center bg-cover rounded-lg shadow-2xl transition-transform duration-700"
+                style={{
+                  backgroundImage: `url(${item.image?.[0].url})`
+                }}
+              />
+              <div
+                className="absolute h-full w-full sm:grid sm:py-6"
+                style={{
+                  top: '0',
+                  gridTemplateRows: '1fr 1fr 1fr',
+                  gridTemplateColumns: '1fr 1fr 1fr',
+                  gridTemplateAreas: `
+                    "top-left    top-center    top-right"
+                    "center-left center-center center-right"
+                    "bottom-left bottom-center bottom-right"`
+                }}
+                ref={cloneLayerRef}
+              />
+            </div>
+          </div>
         </div>
       )}
       {item.info_boxes.map((box, idx, all) => {
@@ -268,6 +285,7 @@ const FeaturesShowSection: FC<{
 const defaultHandlers: HandlerDictionary = {}
 
 export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
+  const classes = ['w-full', 'py-16', 'sm:py-24', 'md:py-32']
   const toComponent = getComponent()
   const [theme, background] = extractCombo(bgColor)
   const handlers = useRef<HandlerDictionary>(defaultHandlers)
@@ -298,8 +316,8 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
   }, [fireHandlers])
 
   return (
-    <div className={cn(theme, className)} style={{backgroundColor: background}}>
-      <div className="p-8 dark:text-gray-50">
+    <section className={cn(theme, classes, className)} style={{backgroundColor: background}}>
+      <div className="dark:text-gray-50">
         {header?.map((block) => {
           return toComponent(block)
         })}
@@ -307,6 +325,6 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
       {items?.map((item) => (
         <FeaturesShowSection key={JSON.stringify(item)} item={item} addScrollListener={addHandler} removeScrollListener={removeHandler} />
       ))}
-    </div>
+    </section>
   )
 }
