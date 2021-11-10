@@ -185,7 +185,7 @@ export const Input: FC<InputProps> = ({
     )
   }
 
-  if (!gridAreas(columnStart, columnEnd)) {
+  if (gridAreas(columnStart, columnEnd)) {
     return <Content />
   } else {
     return (

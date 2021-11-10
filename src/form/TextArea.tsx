@@ -171,7 +171,7 @@ export const TextArea: FC<TextAreaProps> = ({
     )
   }
 
-  if (!gridAreas(columnStart, columnEnd)) {
+  if (gridAreas(columnStart, columnEnd)) {
     return <Content />
   } else {
     return (
