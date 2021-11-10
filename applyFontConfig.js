@@ -180,7 +180,7 @@ exports = function exports ({theme, addBase, addUtilities}) {
     h2: fontStyles['.fontStyle-5xl'],
     h3: fontStyles['.fontStyle-4xl'],
     h4: fontStyles['.fontStyle-3xl'],
-    h5: fontStyles['.fontStyle-4xl'],
+    h5: fontStyles['.fontStyle-2xl'],
     h6: fontStyles['.fontStyle-xl'],
     body: fontStyles['.fontStyle-base'],
     strong: {fontWeight: theme('fontWeight.semibold')},
@@ -189,7 +189,7 @@ exports = function exports ({theme, addBase, addUtilities}) {
     /*
      * Paragraph and lists formating
      */
-    '.fontStyle-base, :not([class*="k-"]) > p': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p': {
       marginTop: theme('spacing.2'),
       marginBottom: theme('spacing.2')
     },
