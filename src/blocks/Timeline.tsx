@@ -52,7 +52,7 @@ export const Timeline: React.FC<TimelineProps> = ({content = []}) => {
   return (
     <div className="mx-auto w-full max-w-screen-lg flex flex-col gap-28">
       {content?.map(({header, items}) => (
-        <section>
+        <section key={header || JSON.stringify(items)}>
           {header && <h4>{header}</h4>}
           <div className="flex flex-col items-center gap-20 pt-12">
             {items?.map((item, idx) => (
