@@ -21,7 +21,7 @@ import {Form} from '../src/collections/Form'
 import {Hero} from '../src/collections/Hero'
 import {Section} from '../src/collections/Section'
 import {Input} from '../src/form/Input'
-import {TextArea} from '../src/form/Textarea'
+import {TextArea} from '../src/form/TextArea'
 
 import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
@@ -55,11 +55,11 @@ const propsByType: Record<string, GetPropsFn> = {
   Calendly: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      logosLayout: content.logos_layout,
       username: content.username,
       duration: content.duration,
       bgColor: content.bg_color,
-      header: content.header
+      title: content.title,
+      body: content.body
     }
   },
   ClientsLogos: (content, id, attrs) => {
