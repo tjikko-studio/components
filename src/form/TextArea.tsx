@@ -10,6 +10,7 @@ import addErrorClasses from '../../snippets/addErrorClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
+import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
 
 export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -67,10 +68,10 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    */
   className?: string
 
-  columnIndex?: number
+  columnStart?: number
+  columnEnd?: number
 }
 
-const DEFAULT_COLUMN_INDEX = 1
 /**
  * Primary UI component for user interaction
  */
@@ -86,9 +87,10 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
-  columnIndex = DEFAULT_COLUMN_INDEX
+  columnStart,
+  columnEnd
 }) => {
-  const textareaClasses = [
+  const textAreaClasses = [
     'form-textarea',
     'fontStyle-base',
     'py-3',
@@ -104,66 +106,77 @@ export const TextArea: FC<TextAreaProps> = ({
     'dark:border-gray-600'
   ]
 
-  addDisabledClasses(isDisabled, textareaClasses)
-  addErrorClasses(isError, textareaClasses)
-  addValidatingClasses(isValidating, textareaClasses)
+  addDisabledClasses(isDisabled, textAreaClasses)
+  addErrorClasses(isError, textAreaClasses)
+  addValidatingClasses(isValidating, textAreaClasses)
   if (isValidating) {
-    textareaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
+    textAreaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
   }
 
-  addSuccessClasses(isSuccess, textareaClasses)
+  addSuccessClasses(isSuccess, textAreaClasses)
   if (isSuccess) {
-    textareaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
+    textAreaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
   }
 
+  const Content = () => {
+    return (
+      <>
+        {label && (
+          <div
+            className={cn([
+              'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
+              isDisabled && 'text-gray-500 dark:text-gray-600',
+              'mb-2'
+            ])}
+            style={gridAreas('label', columnStart, columnEnd)}
+          >
+            <p className="w-full">{label}</p>
+            {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
+            {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
+            {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
+          </div>
+        )}
+        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+          <textarea
+            className={cn(textAreaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
+            defaultValue={text}
+            placeholder={placeholder}
+            disabled={isDisabled}
+          />
+        </div>
+        {information && (
+          <div
+            className={cn(
+              `sm:grid-in-info-${columnStart}`,
+              isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
+              'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
+            )}
+            style={gridAreas('info', columnStart, columnEnd)}
+            dangerouslySetInnerHTML={{__html: information}}
+          />
+        )}
+        {isError && (
+          <div
+            className={cn(
+              `sm:grid-in-error-${columnStart} fontStyle-sm min-h-6 flex`,
+              isError ? 'opacity-100' : 'opacity-0',
+              'items-center text-red-600 dark:text-red-400 mt-2'
+            )}
+            style={gridAreas('error', columnStart, columnEnd)}
+          >
+            {error}
+          </div>
+        )}
+      </>
+    )
+  }
+
+  if (isGridAreas(columnStart, columnEnd)) {
+    return <Content />
+  }
   return (
-    <>
-      {label && (
-        <div
-          className={cn([
-            'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
-            isDisabled && 'text-gray-500 dark:text-gray-600',
-            'mb-2'
-          ])}
-          style={{gridArea: `label-${columnIndex}`}}
-        >
-          <p className="w-full">{label}</p>
-          {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
-          {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
-          {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
-        </div>
-      )}
-      <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
-        <textarea
-          className={cn(textareaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
-          defaultValue={text}
-          placeholder={placeholder}
-          disabled={isDisabled}
-        />
-      </div>
-      {information && (
-        <div
-          className={cn(
-            `sm:grid-in-info-${columnIndex}`,
-            isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
-            'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
-          )}
-          style={{gridArea: `info-${columnIndex}`}}
-          dangerouslySetInnerHTML={{__html: information}}
-        />
-      )}
-      {isError && (
-        <div
-          className={cn(
-            `sm:grid-in-error-${columnIndex} fontStyle-sm min-h-6 flex`,
-            isError ? 'opacity-100' : 'opacity-0',
-            'items-center text-red-600 dark:text-red-400 mt-2'
-          )}
-          style={{gridArea: `error-${columnIndex}`}}
-        >
-          {error}
-        </div>
-      )}
-    </>
+    <div className={cn('flex flex-col', className)}>
+      <Content />
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
+import {Calendly} from '../src/blocks/Calendly'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
@@ -20,6 +21,7 @@ import {Form} from '../src/collections/Form'
 import {Hero} from '../src/collections/Hero'
 import {Section} from '../src/collections/Section'
 import {Input} from '../src/form/Input'
+import {TextArea} from '../src/form/TextArea'
 
 import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
@@ -35,8 +37,7 @@ const propsByType: Record<string, GetPropsFn> = {
   ButtonsGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      fullWidth: content.full_width,
-      className: 'mt-8'
+      fullWidth: content.full_width
     }
   },
   Hero: (content, id, attrs) => {
@@ -49,6 +50,13 @@ const propsByType: Record<string, GetPropsFn> = {
       bgImage: content.bg_image?.[0],
       bgVideo: content.bg_video?.[0],
       bgVideoFallback: content.bg_video_fallback?.[0]
+    }
+  },
+  Calendly: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      ...content,
+      bgColor: content.bg_color
     }
   },
   ClientsLogos: (content, id, attrs) => {
@@ -108,6 +116,7 @@ function getProps(
 const ValidComponents: Record<string, FC> = {
   Article,
   ButtonsGroup,
+  Calendly,
   Collection,
   ClientsLogos,
   Divider,
@@ -117,6 +126,7 @@ const ValidComponents: Record<string, FC> = {
   Hero,
   Icon,
   Input,
+  TextArea,
   Primary,
   Secondary,
   Section,

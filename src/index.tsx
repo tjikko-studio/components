@@ -1,6 +1,6 @@
 import {ReactInVue} from 'vuera'
 
-import flattenNav, {languageParser} from '../flattenNav'
+import {flattenImages, flattenNav, languageParser} from '../kirbyDatasCleaner'
 import blocks from './blocks'
 import {Button} from './Button'
 import collections from './collections'
@@ -18,6 +18,7 @@ export default {
   ...layouts,
   ...nav,
   ...textStyles,
+  flattenImages,
   flattenNav,
   languageParser
 }

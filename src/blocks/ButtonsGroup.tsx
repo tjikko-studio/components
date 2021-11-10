@@ -2,6 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getLink from '../../utilities/getLink'
+import {gridAreas} from '../../utilities/gridAreas'
 import {Button, ButtonProps} from '../Button'
 
 export interface GroupButtonProps extends ButtonProps {
@@ -24,24 +25,18 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
    */
   fullWidth?: boolean
 
-  columnIndex?: number
+  columnStart?: number
+  columnEnd?: number
 }
-
-const DEFAULT_COLUMN_INDEX = 1
 
 /**
  * Primary UI component for user interaction
  */
-export const ButtonsGroup: FC<ButtonsGroupProps> = ({
-  buttons = [],
-  className = '',
-  columnIndex = DEFAULT_COLUMN_INDEX,
-  fullWidth = false
-}) => {
+export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '', columnStart, columnEnd, fullWidth = false}) => {
   return (
     <div
       className={cn('inline-flex items-center space-x-4', fullWidth ? 'w-full' : 'w-max', className)}
-      style={{gridArea: `control-${columnIndex}`}}
+      style={gridAreas('control', columnStart, columnEnd)}
     >
       {buttons.map(({label, link, type, size}) => {
         return (

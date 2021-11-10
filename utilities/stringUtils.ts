@@ -1,3 +1,3 @@
-export default function extractCombo(thing: string): (string | null)[] {
-  return thing ? thing.split('|') : [null, null]
+export default function extractCombo(thing: string, separ: string = '|'): (string | null)[] {
+  return thing ? thing.split(separ) : [null, null]
 }

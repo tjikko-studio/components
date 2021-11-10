@@ -91,7 +91,6 @@ export const Hero: FC<HeroProps> = ({
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
       style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
     >
-      {console.log(bgVideo)}
       {bgType === 'video' && (
         <video
           id="heroVideo"
