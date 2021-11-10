@@ -55,11 +55,8 @@ const propsByType: Record<string, GetPropsFn> = {
   Calendly: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      username: content.username,
-      duration: content.duration,
-      bgColor: content.bg_color,
-      title: content.title,
-      body: content.body
+      ...content,
+      bgColor: content.bg_color
     }
   },
   ClientsLogos: (content, id, attrs) => {

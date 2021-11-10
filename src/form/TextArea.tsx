@@ -10,7 +10,7 @@ import addErrorClasses from '../../snippets/addErrorClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
-import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
+import {gridAreas} from '../../utilities/gridAreas'
 
 export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -68,8 +68,8 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    */
   className?: string
 
-  columnStart?: number | null
-  columnEnd?: number | null
+  columnStart?: number
+  columnEnd?: number
 }
 
 /**
@@ -87,8 +87,8 @@ export const TextArea: FC<TextAreaProps> = ({
   information,
   error,
   className,
-  columnStart = null,
-  columnEnd = null
+  columnStart,
+  columnEnd
 }) => {
   const textAreaClasses = [
     'form-textarea',
@@ -128,7 +128,7 @@ export const TextArea: FC<TextAreaProps> = ({
               isDisabled && 'text-gray-500 dark:text-gray-600',
               'mb-2'
             ])}
-            style={gridAreas('label', columnStart, columnEnd)}
+            style={gridAreas(columnStart, columnEnd, 'label')}
           >
             <p className="w-full">{label}</p>
             {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
@@ -136,7 +136,7 @@ export const TextArea: FC<TextAreaProps> = ({
             {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
           </div>
         )}
-        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas(columnStart, columnEnd, 'control')}>
           <textarea
             className={cn(textAreaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
             defaultValue={text}
@@ -151,7 +151,7 @@ export const TextArea: FC<TextAreaProps> = ({
               isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
               'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
             )}
-            style={gridAreas('info', columnStart, columnEnd)}
+            style={gridAreas(columnStart, columnEnd, 'info')}
             dangerouslySetInnerHTML={{__html: information}}
           />
         )}
@@ -162,7 +162,7 @@ export const TextArea: FC<TextAreaProps> = ({
               isError ? 'opacity-100' : 'opacity-0',
               'items-center text-red-600 dark:text-red-400 mt-2'
             )}
-            style={gridAreas('error', columnStart, columnEnd)}
+            style={gridAreas(columnStart, columnEnd, 'error')}
           >
             {error}
           </div>
@@ -171,7 +171,7 @@ export const TextArea: FC<TextAreaProps> = ({
     )
   }
 
-  if (isGridAreas(columnStart, columnEnd)) {
+  if (!gridAreas(columnStart, columnEnd)) {
     return <Content />
   } else {
     return (

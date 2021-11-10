@@ -10,7 +10,7 @@ import addErrorClasses from '../../snippets/addErrorClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
-import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
+import {gridAreas} from '../../utilities/gridAreas'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -87,8 +87,8 @@ export const Input: FC<InputProps> = ({
   information,
   error,
   className = '',
-  columnStart = null,
-  columnEnd = null,
+  columnStart,
+  columnEnd,
   value,
   onChange
 }) => {
@@ -139,14 +139,14 @@ export const Input: FC<InputProps> = ({
     return (
       <>
         {label && (
-          <div className={cn(labelContainerClasses)} style={gridAreas('label', columnStart, columnEnd)}>
+          <div className={cn(labelContainerClasses)} style={gridAreas(columnStart, columnEnd, 'label')}>
             <span>{label}</span>
             {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
             {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
             {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}
           </div>
         )}
-        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas(columnStart, columnEnd, 'control')}>
           <input
             className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
             value={value}
@@ -157,7 +157,7 @@ export const Input: FC<InputProps> = ({
           />
         </div>
         {information && (
-          <div className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas('info', columnStart, columnEnd)}>
+          <div className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas(columnStart, columnEnd, 'info')}>
             <div
               className={cn('fontStyle-sm min-h-6 flex items-center dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600')}
               dangerouslySetInnerHTML={{__html: information}}
@@ -165,7 +165,7 @@ export const Input: FC<InputProps> = ({
           </div>
         )}
         {isError && (
-          <div className={`grid-in-error-${columnStart} mt-2`} style={gridAreas('error', columnStart, columnEnd)}>
+          <div className={`grid-in-error-${columnStart} mt-2`} style={gridAreas(columnStart, columnEnd, 'error')}>
             <div
               className={cn([
                 'fontStyle-sm',
@@ -174,7 +174,7 @@ export const Input: FC<InputProps> = ({
                 'items-center',
                 'text-red-600',
                 'dark:text-red-400',
-                isError ? 'opacity-100' : 'opacity-o'
+                isError ? 'opacity-100' : 'opacity-0'
               ])}
             >
               {error}
@@ -185,7 +185,7 @@ export const Input: FC<InputProps> = ({
     )
   }
 
-  if (isGridAreas(columnStart, columnEnd)) {
+  if (!gridAreas(columnStart, columnEnd)) {
     return <Content />
   } else {
     return (

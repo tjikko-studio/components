@@ -1,7 +1,7 @@
-export function gridAreas(area: string, start: number, end: number): any {
-  return start != null && end != null ? {gridArea: `${area}-${start} / ${area}-${start} / ${area}-${start} / ${area}-${end}`} : null
-}
-
-export function isGridAreas(start: number, end: number): any {
-  return start != null && end != null
+export function gridAreas(
+  start: number = undefined,
+  end: number = undefined,
+  area: string = undefined
+): {[gridarea: string]: string} | null {
+  return start && end ? {gridArea: `${area}-${start} / ${area}-${start} / ${area}-${start} / ${area}-${end}`} : null
 }
