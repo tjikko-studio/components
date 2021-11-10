@@ -1,6 +1,5 @@
 /* eslint-env node */
-exports = function exports ({theme, addBase, addUtilities}) {
-
+exports = function exports({theme, addBase, addUtilities}) {
   const fontStyles = {
     /*
      *Font styles base modifiers
@@ -174,22 +173,22 @@ exports = function exports ({theme, addBase, addUtilities}) {
   }
   const fontBase = {
     /*
-     * Header and body Formating
+     * Header and Body formatting
      */
     h1: fontStyles['.fontStyle-6xl'],
     h2: fontStyles['.fontStyle-5xl'],
     h3: fontStyles['.fontStyle-4xl'],
     h4: fontStyles['.fontStyle-3xl'],
-    h5: fontStyles['.fontStyle-4xl'],
+    h5: fontStyles['.fontStyle-2xl'],
     h6: fontStyles['.fontStyle-xl'],
     body: fontStyles['.fontStyle-base'],
     strong: {fontWeight: theme('fontWeight.semibold')},
     uppercase: {letterSpacing: theme('letterSpacing.wider')},
 
     /*
-     * Paragraph and lists formating
+     * Paragraph and lists formatting
      */
-    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p:nth-child(n+2)': {
       marginTop: theme('spacing.2'),
       marginBottom: theme('spacing.2')
     },

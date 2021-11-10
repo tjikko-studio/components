@@ -3,8 +3,8 @@ import 'intersection-observer'
 import React, {FC, RefObject, useEffect, useRef} from 'react'
 import cn from 'classnames'
 
+import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
-import extractCombo from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'

@@ -1,9 +1,9 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
-import extractCombo from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'
