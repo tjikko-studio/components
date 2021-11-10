@@ -10,6 +10,7 @@ import addErrorClasses from '../../snippets/addErrorClasses'
 import addSuccessClasses from '../../snippets/addSuccessClasses'
 import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
+import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -67,10 +68,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   className?: string
 
-  columnIndex?: number
+  columnStart?: number
+  columnEnd?: number
 }
-
-const DEFAULT_COLUMN_INDEX = 1
 
 /**
  * Primary UI component for user interaction
@@ -87,7 +87,8 @@ export const Input: FC<InputProps> = ({
   information,
   error,
   className = '',
-  columnIndex = DEFAULT_COLUMN_INDEX,
+  columnStart,
+  columnEnd,
   value,
   onChange
 }) => {
@@ -134,51 +135,62 @@ export const Input: FC<InputProps> = ({
   addValidatingClasses(isValidating, inputClasses)
   addSuccessClasses(isSuccess, inputClasses)
 
-  return (
-    <>
-      {label && (
-        <div className={cn(labelContainerClasses)} style={{gridArea: `label-${columnIndex}`}}>
-          <p>{label}</p>
-          {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
-          {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-          {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}
-        </div>
-      )}
-      <div className={`sm:grid-in-control-${columnIndex}`} style={{gridArea: `control-${columnIndex}`}}>
-        <input
-          className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
-          value={value}
-          onChange={onChange}
-          defaultValue={text}
-          placeholder={placeholder}
-          disabled={isDisabled}
-        />
-      </div>
-      {information && (
-        <div className={`sm:grid-in-info-${columnIndex} mt-2`} style={{gridArea: `info-${columnIndex}`}}>
-          <div
-            className={cn('fontStyle-sm min-h-6 flex items-center dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600')}
-            dangerouslySetInnerHTML={{__html: information}}
+  const Content = () => {
+    return (
+      <>
+        {label && (
+          <div className={cn(labelContainerClasses)} style={gridAreas('label', columnStart, columnEnd)}>
+            <span>{label}</span>
+            {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
+            {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+            {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}
+          </div>
+        )}
+        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+          <input
+            className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
+            value={value}
+            onChange={onChange}
+            defaultValue={text}
+            placeholder={placeholder}
+            disabled={isDisabled}
           />
         </div>
-      )}
-      {isError && (
-        <div className={`grid-in-error-${columnIndex} mt-2`} style={{gridArea: `error-${columnIndex}`}}>
-          <div
-            className={cn([
-              'fontStyle-sm',
-              'min-h-6',
-              'flex',
-              'items-center',
-              'text-red-600',
-              'dark:text-red-400',
-              isError ? 'opacity-100' : 'opacity-o'
-            ])}
-          >
-            {error}
+        {information && (
+          <div className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas('info', columnStart, columnEnd)}>
+            <div
+              className={cn('fontStyle-sm min-h-6 flex items-center dark:text-gray-300', isDisabled && 'text-gray-500 dark:text-gray-600')}
+              dangerouslySetInnerHTML={{__html: information}}
+            />
           </div>
-        </div>
-      )}
-    </>
+        )}
+        {isError && (
+          <div className={`grid-in-error-${columnStart} mt-2`} style={gridAreas('error', columnStart, columnEnd)}>
+            <div
+              className={cn([
+                'fontStyle-sm',
+                'min-h-6',
+                'flex',
+                'items-center',
+                'text-red-600',
+                'dark:text-red-400',
+                isError ? 'opacity-100' : 'opacity-0'
+              ])}
+            >
+              {error}
+            </div>
+          </div>
+        )}
+      </>
+    )
+  }
+
+  if (isGridAreas(columnStart, columnEnd)) {
+    return <Content />
+  }
+  return (
+    <div className={cn('flex flex-col', className)}>
+      <Content />
+    </div>
   )
 }

@@ -1,9 +1,9 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
-import {extractCombo} from '../../utilities/stringUtils'
 import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'
@@ -91,7 +91,6 @@ export const Hero: FC<HeroProps> = ({
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
       style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
     >
-      {console.log(bgVideo)}
       {bgType === 'video' && (
         <video
           id="heroVideo"

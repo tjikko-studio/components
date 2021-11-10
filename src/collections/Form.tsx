@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 
 import {ColumnProps} from '../../shared/types'
@@ -28,15 +29,16 @@ export const Form: FC<FormProps> = ({width = 'full', content = [], templatesCont
     return <div>No content yet</div>
   }
   return (
-    <form className="grid gap-4">
+    <form className="grid gap-6">
       {content.length >= 1 ? (
         content.map(({columns}) => {
+          let lastIndex = 0
           return (
             <section
               key={JSON.stringify(columns)}
-              className={'sm:grid sm:gap-x-4'}
+              className={'sm:grid sm:gap-x-6'}
               style={{
-                gridTemplateColumns: 'repeat(12, minmax(0, auto))',
+                gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
                 gridTemplateRows: 'repeat(4, minmax(0, auto))',
                 gridTemplateAreas: `
   "  label-0   label-1   label-2   label-3   label-4   label-5   label-6   label-7   label-8   label-9   label-10   label-11"
@@ -47,31 +49,39 @@ export const Form: FC<FormProps> = ({width = 'full', content = [], templatesCont
               }}
             >
               {columns[0].blocks.length >= 1 ? (
-                columns.reduce((acc, column, columnIndex) => {
+                columns.reduce((acc, column, columnStart) => {
+                  const [length, total] = extractCombo(column.width, '/')
+                  const columnWidth = (Number(length) / Number(total)) * 12
+                  const columnEnd = columnStart + lastIndex - 1 + columnWidth
+                  columnStart += lastIndex
                   const newAcc = acc.concat(
                     column.blocks.map((block) => {
                       return toComponent(block, {
                         Input: (baseProps) => {
                           return {
                             className: cn(baseProps.className, 'w-full'),
-                            columnIndex
+                            columnStart,
+                            columnEnd
                           }
                         },
                         TextArea: (baseProps) => {
                           return {
                             className: cn(baseProps.className, 'w-full'),
-                            columnIndex
+                            columnStart,
+                            columnEnd
                           }
                         },
                         ButtonsGroup: (baseProps) => {
                           return {
                             className: cn(baseProps.className, 'w-full'),
-                            columnIndex
+                            columnStart,
+                            columnEnd
                           }
                         }
                       })
                     })
                   )
+                  lastIndex += columnWidth - 1
                   return newAcc
                 }, [])
               ) : (
