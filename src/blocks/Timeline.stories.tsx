@@ -24,7 +24,7 @@ SimpleTimeline.args = {
           body: 'Item A1 body. This is usually a bit longer.',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         },
         {
@@ -33,7 +33,34 @@ SimpleTimeline.args = {
           body: 'Item A2 body. This is usually a bit longer.',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
+          }
+        },
+        {
+          header: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.',
+          image: {
+            type: 'image',
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
+          }
+        },
+        {
+          header: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.',
+          image: {
+            type: 'image',
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
+          }
+        },
+        {
+          header: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.',
+          image: {
+            type: 'image',
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         }
       ]
@@ -47,7 +74,7 @@ SimpleTimeline.args = {
           body: 'Item B1 body. This is usually a bit longer.',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         },
         {
@@ -56,7 +83,21 @@ SimpleTimeline.args = {
           body: 'Item B2 body. This is usually a bit longer.',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
+          }
+        }
+      ]
+    },
+    {
+      header: 'Timeline header B',
+      items: [
+        {
+          header: 'Item B1 header',
+          subtitle: 'Item B1 subtitle',
+          body: 'Item B1 body. This is usually a bit longer.',
+          image: {
+            type: 'image',
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         }
       ]
@@ -76,14 +117,14 @@ CornerCasesTimeline.args = {
           body: 'short',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         },
         {
           header: 'Nothing but an image',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         },
         {
@@ -96,7 +137,7 @@ CornerCasesTimeline.args = {
           body: 'This one is without a header!',
           image: {
             type: 'image',
-            url: 'https://via.placeholder.com/1.gif'
+            url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         }
       ]
