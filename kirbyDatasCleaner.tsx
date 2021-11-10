@@ -136,4 +136,31 @@ export const languageParser: any = (languages: Language[], domain?: string, slug
     ]
   }
 }
-export default flattenNav
+
+export const flattenImages = (obj: any) => {
+  const {deeply}: any = mixin({
+    deeply: function (map: Function) {
+      return function (obj: any, fn: Function) {
+        return map(
+          mapValues(obj, function (val: any) {
+            if (isPlainObject(val) || isArray(val)) {
+              return isArray(val) ? toArray(deeply(map)(val, fn)) : deeply(map)(val, fn)
+            } else {
+              return val
+            }
+          }),
+          fn
+        )
+      }
+    }
+  })
+  return toArray(
+    deeply(mapValues)(obj, function (val: any, key: string) {
+      if (key === 'image' && isArray(val) && typeof val[0] !== undefined) {
+        return val[0]
+      } else {
+        return val
+      }
+    })
+  )
+}
