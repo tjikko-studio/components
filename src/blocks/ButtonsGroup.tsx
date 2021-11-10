@@ -43,14 +43,13 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({
       className={cn('inline-flex items-center space-x-4', fullWidth ? 'w-full' : 'w-max', className)}
       style={{gridArea: `control-${columnIndex}`}}
     >
-      {buttons.map(({label, link, type, iconPos, size}) => {
+      {buttons.map(({label, link, type, size}) => {
         return (
           <Button
             key={`[${label}](${getLink(link)})`}
             link={link}
             label={label}
             type={type}
-            iconPos={iconPos}
             fullWidth={fullWidth}
             size={size ? size : 'default'}
             className={cn(fullWidth && 'w-full justify-center')}
