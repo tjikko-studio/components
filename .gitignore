@@ -1,3 +1,15 @@
+# Dev build files
+index.js
+index.js.LICENSE.txt
+styles.js
+assets/app.css
+/build/
+
+# Prod build files
+storybook-static
+assets/app.css
+
+
 # Added by A2Hosting.com
 /public/
 /tmp/
@@ -13,13 +25,3 @@ node_modules
 # Pesky editors
 .vscode
 .DS_Store
-
-# Built files
-index.js
-index.js.LICENSE.txt
-styles.js
-assets/app.css
-
-# dist
-storybook-static
-assets/app.css

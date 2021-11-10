@@ -16,16 +16,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   label?: string
 
   /**
-   * icon position
-   */
-  iconPos?: 'right' | 'left'
-
-  /**
-   * icon image
-   */
-  icon?: string
-
-  /**
    * button size
    */
   size?: 'default' | 'large' | 'small'
@@ -58,8 +48,6 @@ export const Button: FC<ButtonProps> = ({
   type = 'primary',
   label = 'Button',
   size = 'default',
-  icon = '',
-  iconPos = 'left',
   link = null,
   className = '',
   forceDark = false,

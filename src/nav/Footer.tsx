@@ -154,7 +154,6 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                   label={label}
                                                   link={link}
                                                   type="primary"
-                                                  icon="none"
                                                   size="default"
                                                   forceDark={true}
                                                   className="lg:ml-6 lg:first:ml-0"
