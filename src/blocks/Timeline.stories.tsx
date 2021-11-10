@@ -69,7 +69,6 @@ SimpleTimeline.args = {
       header: 'Timeline header B',
       items: [
         {
-          header: 'Item B1 header',
           subtitle: 'Item B1 subtitle',
           body: 'Item B1 body. This is usually a bit longer.',
           image: {
@@ -78,8 +77,6 @@ SimpleTimeline.args = {
           }
         },
         {
-          header: 'Item B2 header',
-          subtitle: 'Item B2 subtitle',
           body: 'Item B2 body. This is usually a bit longer.',
           image: {
             type: 'image',
