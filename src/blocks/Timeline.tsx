@@ -24,7 +24,6 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
         </div>
       </div>
       <div className="w-1/4">
-        {console.log(item.image)}
         {item.image && (
           <Media
             media={item.image}
@@ -40,9 +39,10 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
   )
 }
 
-type TimelineProps = {
+export type TimelineProps = {
   content: {
     header: string
+    items: TimelineItemProps[]
   }[]
 }
 
