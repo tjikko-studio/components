@@ -36,7 +36,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '
   return (
     <div
       className={cn('inline-flex items-center space-x-4', fullWidth ? 'w-full' : 'w-max', className)}
-      style={gridAreas(columnStart, columnEnd, 'control')}
+      style={gridAreas('control', columnStart, columnEnd)}
     >
       {buttons.map(({label, link, type, size}) => {
         return (
