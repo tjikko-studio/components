@@ -108,7 +108,7 @@ const widthValues = {
   'screen-md': '768px',
   'screen-lg': '1024px',
   'screen-xl': '1280px',
-  'screen-2xl': '1536px',
+  'screen-2xl': '1536px'
 }
 
 const flex = {
