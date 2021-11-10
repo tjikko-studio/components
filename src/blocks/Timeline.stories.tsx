@@ -19,7 +19,7 @@ SimpleTimeline.args = {
       header: 'Timeline header A',
       items: [
         {
-          header: 'Item A1 header',
+          title: 'Item A1 header',
           subtitle: 'Item A1 subtitle',
           body: 'Item A1 body. This is usually a bit longer.',
           image: {
@@ -28,7 +28,7 @@ SimpleTimeline.args = {
           }
         },
         {
-          header: 'Item A2 header',
+          title: 'Item A2 header',
           subtitle: 'Item A2 subtitle',
           body: 'Item A2 body. This is usually a bit longer.',
           image: {
@@ -37,7 +37,7 @@ SimpleTimeline.args = {
           }
         },
         {
-          header: 'Item A2 header',
+          title: 'Item A2 header',
           subtitle: 'Item A2 subtitle',
           body: 'Item A2 body. This is usually a bit longer.',
           image: {
@@ -46,7 +46,7 @@ SimpleTimeline.args = {
           }
         },
         {
-          header: 'Item A2 header',
+          title: 'Item A2 header',
           subtitle: 'Item A2 subtitle',
           body: 'Item A2 body. This is usually a bit longer.',
           image: {
@@ -55,7 +55,7 @@ SimpleTimeline.args = {
           }
         },
         {
-          header: 'Item A2 header',
+          title: 'Item A2 header',
           subtitle: 'Item A2 subtitle',
           body: 'Item A2 body. This is usually a bit longer.',
           image: {
@@ -89,7 +89,7 @@ SimpleTimeline.args = {
       header: 'Timeline header B',
       items: [
         {
-          header: 'Item B1 header',
+          title: 'Item B1 header',
           subtitle: 'Item B1 subtitle',
           body: 'Item B1 body. This is usually a bit longer.',
           image: {
@@ -109,7 +109,7 @@ CornerCasesTimeline.args = {
       header: 'Super long header here. Super long header here. Super long header here. Super long header here. Super long header here.',
       items: [
         {
-          header: 'Super long header here. Super long header here. Super long header here. Super long header here. Super long header here.',
+          title: 'Super long header here. Super long header here. Super long header here. Super long header here. Super long header here.',
           subtitle: 'Super long subtitle here. Super long subtitle here. Super long subtitle here. Super long subtitle here.',
           body: 'short',
           image: {
@@ -118,14 +118,14 @@ CornerCasesTimeline.args = {
           }
         },
         {
-          header: 'Nothing but an image',
+          title: 'Nothing but an image',
           image: {
             type: 'image',
             url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
         },
         {
-          header: 'No image',
+          title: 'No image',
           subtitle: 'Subtitle',
           body: 'But a rather long body. But a rather long body. But a rather long body. But a rather long body. But a rather long body.'
         },

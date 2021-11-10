@@ -189,7 +189,7 @@ exports = function exports ({theme, addBase, addUtilities}) {
     /*
      * Paragraph and lists formating
      */
-    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p': {
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p:nth-child(n+2)': {
       marginTop: theme('spacing.2'),
       marginBottom: theme('spacing.2')
     },
