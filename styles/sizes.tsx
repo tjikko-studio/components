@@ -128,6 +128,9 @@ const flex = {
   '4/6': '0 0 66.666667%',
   '5/6': '0 0 83.333333%'
 }
+const zIndex = {
+  '-1': '-1'
+}
 
 export interface MediaQueryProps {
   [key: string]: string
@@ -175,7 +178,8 @@ export default {
   },
   minWidth: widthValues,
   maxWidth: widthValues,
-  flex
+  flex,
+  zIndex
 }
 
 export const breakpoints: MediaQueryProps = {

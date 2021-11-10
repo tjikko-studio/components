@@ -96,7 +96,7 @@ export const Media: FC<GenericMediaProps> = ({
   loop = false,
   className,
   wrapperClassName,
-  gallery,
+  gallery
 }) => {
   return media && media.type === 'video' ? (
     <MediaVideo
