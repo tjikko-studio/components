@@ -44,6 +44,9 @@ exports = [
   'lg:col-span-11',
   'lg:col-span-12',
 
+  'xs:grid-cols-2',
+  'xs:grid-cols-3',
+
   'justify-center',
   'justify-left',
 
