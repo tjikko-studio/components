@@ -37,12 +37,12 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
 
   return (
     <div className={cn('flex flex-col p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}}>
-      {title && body && (
+      {title || body ? (
         <div className="flex flex-col gap-3 dark:text-gray-50">
           {title && <h3>{title}</h3>}
           {body && <p className="my-0">{body}</p>}
         </div>
-      )}
+      ) : null}
       <div className="flex flex-col gap-y-6 w-full">
         <Input label="Company" value={company} onChange={(e) => setCompany(e.target.value)} className="w-full" />
         <Input label="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full" />
