@@ -59,20 +59,22 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
   return (
     <figure role="group" className={cn(className)}>
       <div className={cn('grid gap-2', gridLayout)}>
-        {images.length ? images.map((image) => {
-          return (
-            <Media
-              key={image.id}
-              media={image}
-              autoplay={false}
-              muted={false}
-              controls={false}
-              loop={false}
-              className={'relative rounded-lg shadow-xl w-full h-full overflow-hidden'}
-              gallery={true}
-            />
-          )
-        }) : (
+        {images.length ? (
+          images.map((image) => {
+            return (
+              <Media
+                key={image.id}
+                media={image}
+                autoplay={false}
+                muted={false}
+                controls={false}
+                loop={false}
+                className={'relative rounded-lg shadow-xl w-full h-full overflow-hidden'}
+                gallery={true}
+              />
+            )
+          })
+        ) : (
           <Media media={null} />
         )}
       </div>
