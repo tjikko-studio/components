@@ -44,7 +44,7 @@ export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title 
       </div>
       <div className={layout === 'horizontal' ? 'mt-4 sm:mt-0 sm:ml-6' : 'mt-6'}>
         <h2 className="fontStyle-2xl break-words">{title ? title : 'title'}</h2>
-        <p className="fontStyle-base mt-2">{body}</p>
+        <p className="mt-2">{body}</p>
       </div>
     </div>
   )

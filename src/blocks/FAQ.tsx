@@ -13,7 +13,7 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
   content?: QAProps[]
 
   /**
-   * Additional space-separated class names to append
+   * Additional space-separated class names to happend
    */
   className?: string
 }
@@ -28,7 +28,7 @@ export const FAQ: FC<FAQProps> = ({content = [], className = ''}) => {
         return (
           <div key={qa.question}>
             <div className="fontStyle-lg strong">{qa.question}</div>
-            <div className="pt-2 fontStyle-base">{qa.answer}</div>
+            <div className="pt-2">{qa.answer}</div>
           </div>
         )
       })}
