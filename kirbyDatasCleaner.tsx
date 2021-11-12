@@ -138,14 +138,15 @@ export const languageParser: any = (languages: Language[], domain?: string, slug
 }
 
 export const fixAlt = (image: any) => {
-  const newImage = {
-    ...image,
-    content: {
-      ...image.content,
-      alt: image.info
-    }
-  }
-  return newImage
+  return image
+    ? {
+        ...image,
+        content: {
+          ...image.content,
+          alt: image.info
+        }
+      }
+    : null
 }
 
 export const flattenImages = (obj: any) => {
