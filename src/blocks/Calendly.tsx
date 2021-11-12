@@ -1,6 +1,5 @@
-import React, {FC, useCallback, useMemo, useState} from 'react'
+import React, {FC, FormEvent, useCallback, useRef} from 'react'
 import {openPopupWidget} from 'react-calendly'
-import type {Prefill} from 'react-calendly/typings/calendly'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
@@ -17,43 +16,54 @@ export interface CalendlyProps {
 
 export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, duration}) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [company, setCompany] = useState('')
+  const emailRef = useRef(null)
+  const nameRef = useRef(null)
+  const companyRef = useRef(null)
+  const phoneRef = useRef(null)
 
-  const prefill: Prefill = useMemo(
-    () => ({email, phone, firstName, lastName, name: `${firstName} ${lastName}`, customAnswers: {a1: company}}),
-    [firstName, lastName, email, phone, company]
+  const onSubmit = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault()
+      console.log('Company', companyRef.current.value)
+      openPopupWidget({
+        prefill: {
+          email: emailRef.current.value,
+          name: nameRef.current.value,
+          customAnswers: {a1: companyRef.current.value, a2: phoneRef.current.value}
+        },
+        url: `https://calendly.com/${username}/${duration || '30min'}`
+      })
+    },
+    [username, duration]
   )
 
-  const handleBookClick = useCallback(() => {
-    openPopupWidget({
-      prefill,
-      url: `https://calendly.com/${username}/${duration || '30min'}`
-    })
-  }, [username, duration, prefill])
-
   return (
-    <div className={cn('flex flex-col p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}}>
+    <form className={cn('flex flex-col p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}} onSubmit={onSubmit}>
       {title || body ? (
         <div className="flex flex-col gap-3 dark:text-gray-50">
           {title && <h3>{title}</h3>}
           {body && <p className="my-0">{body}</p>}
         </div>
       ) : null}
-      <div className="flex flex-col gap-y-6 w-full">
-        <Input label="Company" value={company} onChange={(e) => setCompany(e.target.value)} className="w-full" />
-        <Input label="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full" />
-        <Input label="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-full" />
-        <Input label="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full" />
-        <Input label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full" />
-
-        <div className="flex gap-x-6 w-full">
-          <Button onClick={handleBookClick} label="Next" />
+      <div className="flex items-center gap-6">
+        <div className="flex-grow">
+          <Input label="Company" ref={companyRef} />
+        </div>
+        <div className="flex-grow">
+          <Input label="Name" ref={nameRef} />
         </div>
       </div>
-    </div>
+      <div className="flex items-center gap-6">
+        <div className="flex-grow">
+          <Input label="Email" ref={emailRef} />
+        </div>
+        <div className="flex-grow">
+          <Input label="Phone" ref={phoneRef} />
+        </div>
+      </div>
+      <div className="flex-grow-0">
+        <Button label="Next" />
+      </div>
+    </form>
   )
 }
