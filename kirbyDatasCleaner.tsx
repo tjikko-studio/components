@@ -137,6 +137,17 @@ export const languageParser: any = (languages: Language[], domain?: string, slug
   }
 }
 
+export const fixAlt = (image: any) => {
+  const newImage = {
+    ...image,
+    content: {
+      ...image.content,
+      alt: image.info
+    }
+  }
+  return newImage
+}
+
 export const flattenImages = (obj: any) => {
   const {deeply}: any = mixin({
     deeply: function (map: Function) {
@@ -157,7 +168,7 @@ export const flattenImages = (obj: any) => {
   return toArray(
     deeply(mapValues)(obj, function (val: any, key: string) {
       if (key === 'image' && isArray(val) && typeof val[0] !== undefined) {
-        return val[0]
+        return fixAlt(val[0])
       } else {
         return val
       }
