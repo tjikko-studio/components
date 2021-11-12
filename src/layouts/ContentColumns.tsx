@@ -87,7 +87,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                     // See safelist in tailwind.safelist.js
                     <div
                       key={columnId || JSON.stringify(blocks)}
-                      className={cn([`col-span-${getWidth(width)}`, align, headerClass, columnClasses])}
+                      className={cn([`sm:col-span-${getWidth(width)}`, align, headerClass, columnClasses])}
                       style={{...columnStyles}}
                     >
                       {blocks.map((block) => {
