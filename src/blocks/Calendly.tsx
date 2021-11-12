@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useCallback, useRef} from 'react'
+import React, {FC, FormEvent, PropsWithChildren, useCallback, useRef} from 'react'
 import {openPopupWidget} from 'react-calendly'
 import cn from 'classnames'
 
@@ -12,6 +12,14 @@ export interface CalendlyProps {
   bgColor?: string
   title?: string
   body?: string
+}
+
+const Row = ({children}: PropsWithChildren<{}>) => {
+  return <div className="flex items-center gap-6 flex-col sm:flex-row">{children}</div>
+}
+
+const Cell = ({children}: PropsWithChildren<{}>) => {
+  return <div className="flex-grow w-full">{children}</div>
 }
 
 export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, duration}) => {
@@ -45,22 +53,22 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
           {body && <p className="my-0">{body}</p>}
         </div>
       ) : null}
-      <div className="flex items-center gap-6">
-        <div className="flex-grow">
+      <Row>
+        <Cell>
           <Input label="Company" ref={companyRef} />
-        </div>
-        <div className="flex-grow">
+        </Cell>
+        <Cell>
           <Input label="Name" ref={nameRef} />
-        </div>
-      </div>
-      <div className="flex items-center gap-6">
-        <div className="flex-grow">
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
           <Input label="Email" ref={emailRef} />
-        </div>
-        <div className="flex-grow">
+        </Cell>
+        <Cell>
           <Input label="Phone" ref={phoneRef} />
-        </div>
-      </div>
+        </Cell>
+      </Row>
       <div className="flex-grow-0">
         <Button label="Next" />
       </div>
