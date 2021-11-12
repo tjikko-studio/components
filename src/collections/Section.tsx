@@ -75,8 +75,6 @@ export const Section: FC<SectionProps> = ({
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
   let imagePosPrimary = 'undefined'
-  let imagePosSecondary = 'undefined'
-  let imagePosTertiary = 'undefined'
   let wrapperBg = ''
   let nextBg = ''
   let wrapperClasses = []
@@ -106,18 +104,6 @@ export const Section: FC<SectionProps> = ({
       imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
       return {
         imagePosition: imagePosPrimary
-      }
-    },
-    Secondary: (baseProps: {imagePosition: string}) => {
-      imagePosSecondary = getNewPos(imagePosSecondary, baseProps.imagePosition)
-      return {
-        imagePosition: imagePosSecondary
-      }
-    },
-    Tertiary: (baseProps: {imagePosition: string}) => {
-      imagePosTertiary = getNewPos(imagePosTertiary, baseProps.imagePosition)
-      return {
-        imagePosition: imagePosTertiary
       }
     }
   }

@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
-import {Tertiary} from '../blocks/Tertiary'
+import {Primary} from '../blocks/Primary'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
@@ -33,14 +33,14 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
     <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
       {items?.map((item) => (
         <>
-          <Tertiary
+          <Primary
             key={item.id}
             image={item.content.images?.[0]}
             imagePosition="right"
             title={item.content.title}
             body={item.content.description}
-            link={{type: 'link', value: item.url, popup: false}}
-            label={`Read about ${item.content.title}`}
+            //link={{type: 'link', value: item.url, popup: false}}
+            //label={`Read about ${item.content.title}`}
           />
         </>
       ))}
