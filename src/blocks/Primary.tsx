@@ -82,9 +82,9 @@ export const Primary: FC<PrimaryProps> = ({
 
   let titleSize = ''
   if (textSize === 'regular' || textSize === '') {
-    titleSize = 'fontStyle-4xl'
-  } else if (textSize === 'small' || textSize === '') {
     titleSize = 'fontStyle-3xl'
+  } else if (textSize === 'small' || textSize === '') {
+    titleSize = 'fontStyle-2xl'
   }
 
   return (
