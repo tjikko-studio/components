@@ -77,7 +77,6 @@ export const Primary: FC<PrimaryProps> = ({
   buttons = [],
   className = ''
 }) => {
-  console.log(`${textPositionVertical} / ${textSize}`)
   const finalLayout = layout || 'default'
 
   let titleSize = ''

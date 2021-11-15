@@ -65,7 +65,6 @@ const propsByType: Record<string, GetPropsFn> = {
     }
   },
   Primary: (content, id, attrs) => {
-    console.log(`${content.text_position_vertical} / ${content.text_size}`)
     return {
       ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
