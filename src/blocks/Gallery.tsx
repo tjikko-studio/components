@@ -19,7 +19,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Block image
    */
-  images?: MediaProps[]
+  content?: MediaProps[]
 
   /**
    * alt text
@@ -40,9 +40,10 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption = '', mobileColumns = false}) => {
+export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption = '', mobileColumns = false}) => {
+  console.log(content)
   let gridLayout = null
-  switch (images.length) {
+  switch (content.length) {
     case 2:
     case 4:
       gridLayout = 'grid-cols-2'
@@ -55,20 +56,19 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
   }
 
   gridLayout = !mobileColumns && gridLayout ? `xs:${gridLayout}` : gridLayout
-
   return (
     <figure role="group" className={cn(className)}>
       <div className={cn('grid gap-2', gridLayout)}>
-        {images.length ? (
-          images.map((image) => {
+        {content.length ? (
+          content.map((img) => {
             return (
               <Media
-                key={image.id}
-                media={image}
-                autoplay={false}
-                muted={false}
-                controls={false}
-                loop={false}
+                key={img.image.id}
+                media={img.image}
+                autoplay={img.autoplay}
+                muted={img.muted}
+                controls={img.controls}
+                loop={img.loop}
                 className={'relative rounded-lg shadow-xl w-full h-full overflow-hidden'}
                 gallery={true}
               />
