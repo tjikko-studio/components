@@ -84,7 +84,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                           const contentLayout =
                             layout === 'horizontal'
                               ? ['flex', 'lg:mt-0', 'items-center']
-                              : ['lg:flex', 'items-start', 'flex-col', 'first:mt-0', 'lg:mt-0', 'space-y-4']
+                              : ['lg:flex', 'items-start', 'flex-col', 'first:mt-0', 'lg:mt-0', 'gap-y-4']
                           const justify = rtl ? 'lg:justify-end' : ''
                           const contentLength = content.length
                           return (
@@ -106,7 +106,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'NavigationDropdownChild':
                                             return (
                                               <div
-                                                className={cn(['dark', 'flex', 'flex-col', 'space-y-4'])}
+                                                className={cn(['dark', 'flex', 'flex-col', 'gap-y-4'])}
                                                 role={'navigation'}
                                                 aria-label={label}
                                               >

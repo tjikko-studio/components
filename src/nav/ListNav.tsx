@@ -27,7 +27,7 @@ const availableStyles = {
   elevated: [
     'flex',
     'w-max',
-    'space-x-6',
+    'gap-x-6',
     'px-6',
     'py-2.5',
     'shadow-lg',

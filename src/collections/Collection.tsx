@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, {FC, HTMLAttributes} from 'react'
 
 import {Gallery} from '../blocks/Gallery'
@@ -28,9 +29,29 @@ export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
+let classes = [
+  'grid',
+  'text-gray-900',
+  'dark:text-gray-50',
+  'w-full',
+  'h-full',
+  'max-w-screen-xl',
+  'mx-auto',
+  'px-4',
+  'sm:px-8',
+  'md:px-12',
+  'xl:px-0',
+  'py-20',
+  'sm:py-28',
+  'md:py-36',
+  'gap-16',
+  'sm:gap-8'
+]
+
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
+  classes.push('sm:grid-cols-2')
   return (
-    <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
+    <section className={classNames(classes)}>
       {items?.map((item) => (
         <>
           <Primary
@@ -44,19 +65,27 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
           />
         </>
       ))}
-    </div>
+    </section>
   )
 }
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <div className="flex flex-wrap gap-16 py-12 px-4 sm:gap-8 sm:p-8 lg:m-8">
+    <section className={classNames(classes)}>
       {items?.map((item) => (
-        <div key={item.id} className="flex flex-col w-full lg:p-8 jus">
-          <div className="lg:flex lg:gap-x-4">
+        <div key={item.id} className="flex flex-col w-full lg:p-8">
+          <div className="flex flex-col lg:flex-row lg:gap-x-4 gap-y-6">
             <div className="flex flex-col lg:w-1/2">
-              <Heading text={item.content.title} className="pb-4" />
-              <p className="pb-4 text-left">{item.content.description}</p>
+              <Heading text={item.content.title} />
+              <p className="mt-2">{item.content.description}</p>
+
+              <Button
+                className="mt-4 w-fit hidden sm:block"
+                type="tertiary"
+                link={{type: 'link', value: item.url, popup: false}}
+                label={`Read about ${item.content.title}`}
+              />
+
             </div>
 
             <div className="lg:w-1/2">
@@ -67,14 +96,14 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
           {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
 
           <Button
-            className="mt-4 w-fit"
+            className="mt-4 w-fit block sm:hidden"
             type="tertiary"
             link={{type: 'link', value: item.url, popup: false}}
             label={`Read about ${item.content.title}`}
           />
         </div>
       ))}
-    </div>
+    </section>
   )
 }
 

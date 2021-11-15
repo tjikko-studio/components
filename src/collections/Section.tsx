@@ -75,10 +75,13 @@ export const Section: FC<SectionProps> = ({
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
   let imagePosPrimary = 'undefined'
-  let wrapperBg = ''
-  let nextBg = ''
-  let wrapperClasses = []
-  let innerBg = ''
+  let wrapperBg: string = ''
+  let nextBg: string = ''
+  let wrapperClasses: string[] = []
+  let containerClass: string[] = []
+  let classes: string[] = []
+  let gridClasses: string[] = []
+  let innerBg: string = ''
 
   function getNewPos(prevPos: string, newPos: string) {
     const finalPos = newPos || 'auto'
@@ -108,26 +111,28 @@ export const Section: FC<SectionProps> = ({
     }
   }
 
-  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
-  const gridClasses = ['grid', 'gap-y-8', 'sm:gap-y-12', 'md:gap-y-16']
+  classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
 
   if (layoutWidth === 'tight') {
-    classes.push('px-4', 'sm:px-8', 'md:px-24')
+    classes.push('px-4', 'sm:px-8', 'md:px-24', 'xl:px-0')
   } else {
-    classes.push('px-4 sm:px-8 md:px-12')
+    classes.push('px-4', 'sm:px-8', 'md:px-12', 'xl:px-0')
   }
   if (layoutSpacing === 'tight') {
-    classes.push('py-8', 'sm:py-12', 'md:py-16')
+    classes.push('py-4', 'sm:py-8', 'md:py-16')
+    gridClasses.push('grid', 'gap-y-4', 'sm:gap-y-8', 'md:gap-y-16')
   } else {
-    classes.push('py-16', 'sm:py-24', 'md:py-32')
+    classes.push('py-12', 'sm:py-16', 'md:py-24')
+    gridClasses.push('grid', 'gap-y-12', 'sm:gap-y-16', 'md:gap-y-24')
   }
   if (align) {
     classes.push(align)
   }
   if (floating) {
     innerBg = bgColor
+    containerClass.push('mx-0 md:mx-8 xl:mx-auto')
     wrapperClasses.push('py-12 relative')
-    classes.push('rounded-lg shadow-2xl')
+    classes.push('md:rounded-lg md:shadow-2xl')
     wrapperBg = wrapperColor
     if (floatingAbove) {
       nextBg = aboveColor
@@ -140,19 +145,21 @@ export const Section: FC<SectionProps> = ({
 
   return (
     <section className={cn('overflow-hidden', theme, className, wrapperClasses)} style={{backgroundColor: wrapperBg}}>
-      <div className={cn(classes, gridClasses)} style={{backgroundColor: innerBg}}>
-        {content.length >= 1 ? (
-          <ContentColumns
-            content={content}
-            contentPosition={contentPosition}
-            componentsExtraProps={columnComponentExtraProps}
-            columnClasses="flex flex-col space-y-6 h-full"
-            templatesContent={templatesContent}
-            className={cn(gridClasses)}
-          />
-        ) : (
-          <div>No content yet</div>
-        )}
+      <div className={cn(containerClass)}>
+        <div className={cn(classes, gridClasses)} style={{backgroundColor: innerBg}}>
+          {content.length >= 1 ? (
+            <ContentColumns
+              content={content}
+              contentPosition={contentPosition}
+              componentsExtraProps={columnComponentExtraProps}
+              columnClasses="flex flex-col gap-y-6 h-full"
+              templatesContent={templatesContent}
+              className={cn(gridClasses)}
+            />
+          ) : (
+            <div>No content yet</div>
+          )}
+        </div>
       </div>
       {floatingAbove && <div className={cn('absolute w-full h-1/2', abovePos)} style={{backgroundColor: nextBg}} />}
     </section>

@@ -152,7 +152,7 @@ export const Hero: FC<HeroProps> = ({
             'sm:pb-12',
             'flex',
             'flex-col',
-            'space-y-5',
+            'gap-y-5',
             verPos,
             horPos
           ])}

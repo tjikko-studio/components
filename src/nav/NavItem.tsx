@@ -71,7 +71,7 @@ export const NavItem: FC<NavItemProps> = ({
 
   return (
     <div
-      className={cn('w-max relative z-10', className)}
+      className={cn('w-max relative z-10 gap-x-2.5', className)}
       style={{width: 'fit-content'}}
       onMouseEnter={() => {
         setMouseIn(true)
@@ -98,7 +98,7 @@ export const NavItem: FC<NavItemProps> = ({
         )}
       >
         {listNavContent.length && (
-          <span className="ml-2.5">
+          <span>
             <ArrowDown className="w-5 h-5" />
           </span>
         )}

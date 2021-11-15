@@ -113,7 +113,7 @@ export const Media: FC<GenericMediaProps> = ({
   ) : media && media.type === 'image' ? (
     <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
   ) : (
-    <div className="h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50 ">
+    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50', wrapperClassName)}>
       <MediaIcon className="w-8 h-8 opacity-60" />
     </div>
   )

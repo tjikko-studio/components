@@ -16,17 +16,22 @@ export interface ArticleProps extends HTMLAttributes<HTMLElement> {
 }
 
 const classes = [
+  'grid',
   'text-gray-900',
   'dark:text-gray-50',
-  'grid',
-  'gap-y-4',
-  'sm:gap-y-8',
-  'py-4',
-  'sm:py-8',
   'w-full',
   'h-full',
   'max-w-screen-xl',
-  'mx-auto'
+  'mx-auto',
+  'px-4',
+  'sm:px-8',
+  'md:px-12',
+  'xl:px-0',
+  'py-12',
+  'sm:py-16',
+  'md:py-24',
+  'gap-16',
+  'sm:gap-8'
 ]
 
 export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, className}) => {
@@ -39,7 +44,7 @@ export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, 
           return (
             <section
               key={JSON.stringify(block.content)}
-              className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-lg mx-auto')}
+              className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-md mx-auto')}
             >
               {toComponent(block)}
             </section>
