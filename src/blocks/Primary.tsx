@@ -77,6 +77,7 @@ export const Primary: FC<PrimaryProps> = ({
   buttons = [],
   className = ''
 }) => {
+  console.log(`${textPositionVertical} / ${textSize}`)
   const finalLayout = layout || 'default'
 
   let titleSize = ''
@@ -89,8 +90,8 @@ export const Primary: FC<PrimaryProps> = ({
   return (
     <div
       className={cn(
-        'flex gap-6 flex-col lg:gap-12 text-gray-900 dark:text-gray-50',
-        finalLayout === 'default' && 'lg:flex-row',
+        'flex gap-6 flex-col text-gray-900 dark:text-gray-50',
+        finalLayout === 'default' && 'lg:flex-row lg:gap-12',
         imagePosition === 'right' && finalLayout === 'default' && 'lg:flex-row-reverse',
       )}
     >
