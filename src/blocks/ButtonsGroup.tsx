@@ -6,7 +6,7 @@ import {gridAreas} from '../../utilities/gridAreas'
 import {Button, ButtonProps} from '../Button'
 
 export interface GroupButtonProps extends ButtonProps {
-  fullWidth: boolean
+  fullWidth?: boolean
 }
 
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {

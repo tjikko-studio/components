@@ -107,10 +107,10 @@ export const Primary: FC<PrimaryProps> = ({
           />
           <div className={cn('flex items-center flex-1', className, textPositionVertical === 'top' && 'items-baseline')}>
             <div>
-              <h2 className={cn('mb-2 break-words', titleSize)}>{title}</h2>
-              <p dangerouslySetInnerHTML={{__html: body}} />
+              <h2 className={cn('break-words', titleSize)}>{title}</h2>
+              <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
               {Object.keys(buttons).length ? (
-                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-6" />
+                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" />
               ) : null}
             </div>
           </div>

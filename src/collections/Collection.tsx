@@ -60,6 +60,19 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
             imagePosition="right"
             title={item.content.title}
             body={item.content.description}
+            textPositionVertical="top"
+            textSize="small"
+            buttons={[
+              {
+                label: `Read about ${item.content.title}`,
+                type: 'tertiary',
+                link: {
+                  type: 'page',
+                  popup: false,
+                  value: item.url
+                }
+              }
+            ]}
             //link={{type: 'link', value: item.url, popup: false}}
             //label={`Read about ${item.content.title}`}
           />
