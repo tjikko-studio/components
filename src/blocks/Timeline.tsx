@@ -18,7 +18,7 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
       </div>
       <div className="flex flex-col sm:flex-row w-full gap-4">
         <div className="sm:w-1/3 sm:order-last">
-          {item.image && (
+          {item?.image && (
             <Media
               media={item.image}
               autoplay={true}
