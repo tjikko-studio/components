@@ -75,7 +75,6 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
-            const headerClass = ''
             return (
               <div
                 key={id || JSON.stringify(columns)}
@@ -87,7 +86,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                     // See safelist in tailwind.safelist.js
                     <div
                       key={columnId || JSON.stringify(blocks)}
-                      className={cn([`col-span-${getWidth(width)}`, align, headerClass, columnClasses])}
+                      className={cn([`col-span-${getWidth(width)}`, align, columnClasses])}
                       style={{...columnStyles}}
                     >
                       {blocks.map((block) => {
