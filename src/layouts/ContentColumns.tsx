@@ -72,7 +72,6 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
-            console.log(contentSectionClasses, className, attrs?.className, contentSectionStyles)
             return (
               <div
                 key={id || JSON.stringify(columns)}
