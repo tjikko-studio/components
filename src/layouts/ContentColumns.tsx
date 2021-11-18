@@ -72,10 +72,11 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
+            console.log(contentSectionClasses, className, attrs?.className, contentSectionStyles)
             return (
               <div
                 key={id || JSON.stringify(columns)}
-                className={cn('grid', contentSectionClasses, className, attrs?.className)}
+                className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
