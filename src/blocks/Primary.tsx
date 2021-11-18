@@ -18,7 +18,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Text Position Position
    */
-  textPositionVertical?: '' | 'center' | 'top'
+  textPositionVertical?: 'center' | 'top'
 
   /**
    *  Block image
@@ -36,7 +36,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Text Size
    */
-  textSize?: '' | 'regular' | 'small'
+  textSize?: 'regular' | 'small'
 
   /**
    * text to display for heading
@@ -73,20 +73,14 @@ export const Primary: FC<PrimaryProps> = ({
   className = ''
 }) => {
   const finalLayout = layout || 'default'
-
-  let titleSize = ''
-  if (textSize === 'regular' || textSize === '') {
-    titleSize = 'fontStyle-3xl'
-  } else if (textSize === 'small' || textSize === '') {
-    titleSize = 'fontStyle-2xl'
-  }
+  const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
 
   return (
     <div
       className={cn(
         'flex gap-6 flex-col text-gray-900 dark:text-gray-50',
-        finalLayout === 'default' && 'lg:flex-row lg:gap-12',
-        imagePosition === 'right' && finalLayout === 'default' && 'lg:flex-row-reverse',
+        {'lg:flex-row-reverse': imagePosition === 'right' && finalLayout === 'default'},
+        {'lg:flex-row lg:gap-12': finalLayout === 'default'}
       )}
     >
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
@@ -97,17 +91,19 @@ export const Primary: FC<PrimaryProps> = ({
             muted={muted}
             controls={controls}
             loop={loop}
-            className={'rounded-lg shadow-xl w-full h-full'}
+            className="rounded-lg shadow-xl w-full h-full"
             wrapperClassName={'flex-1'}
           />
-          <div className={cn('flex items-center flex-1', className, textPositionVertical === 'top' && 'items-baseline')}>
-            <div>
-              <h2 className={cn('break-words', titleSize)}>{title}</h2>
-              <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
-              {Object.keys(buttons).length ? (
-                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" />
-              ) : null}
-            </div>
+          <div
+            className={cn(
+              'flex flex-col flex-1',
+              {'justify-center': textPositionVertical === 'center'},
+              className
+            )}
+          >
+            <h2 className={cn('break-words', titleSize)}>{title}</h2>
+            <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
+            {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>
         </>
       )}

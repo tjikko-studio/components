@@ -47,10 +47,9 @@ Default.args = {
   body: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.', // eslint-disable-line max-len
   buttons: [
     {
-      label: `Action Button`,
+      label: 'Action Button',
       type: 'secondary',
       link: {
-        type: 'page',
         popup: false,
         value: 'https://perdu.com'
       }
@@ -65,10 +64,9 @@ TextPositionTopWithSmallText.args = {
   textSize: 'small',
   buttons: [
     {
-      label: `Action Button`,
+      label: 'Action Button',
       type: 'tertiary',
       link: {
-        type: 'page',
         popup: false,
         value: 'https://perdu.com'
       }
@@ -87,19 +85,17 @@ TwoButtons.args = {
   ...Default.args,
   buttons: [
     {
-      label: `First Button`,
+      label: 'First Button',
       type: 'secondary',
       link: {
-        type: 'page',
         popup: false,
         value: 'https://perdu.com'
       }
     },
     {
-      label: `Second Button`,
+      label: 'Second Button',
       type: 'tertiary',
       link: {
-        type: 'page',
         popup: false,
         value: 'https://perdu.com'
       }

@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
@@ -51,7 +51,7 @@ let classes = [
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
   classes.push('sm:grid-cols-2')
   return (
-    <section className={classNames(classes)}>
+    <section className={cn(classes)}>
       {items?.map((item) => (
         <>
           <Primary
@@ -73,8 +73,6 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
                 }
               }
             ]}
-            //link={{type: 'link', value: item.url, popup: false}}
-            //label={`Read about ${item.content.title}`}
           />
         </>
       ))}
@@ -84,38 +82,39 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <section className={classNames(classes)}>
-      {items?.map((item) => (
-        <div key={item.id} className="flex flex-col w-full lg:p-8">
-          <div className="flex flex-col lg:flex-row lg:gap-x-4 gap-y-6">
-            <div className="flex flex-col lg:w-1/2">
-              <Heading text={item.content.title} />
-              <p className="mt-2">{item.content.description}</p>
+    <section className={cn(classes)}>
+      {items?.map((item) => {
+        const ReadMoreButton = ({hideOnSm = false}) => {
+          return (
+            <Button
+              className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
+              type="tertiary"
+              link={{type: 'link', value: item.url, popup: false}}
+              label={`Read about ${item.content.title}`}
+            />
+          )
+        }
+        return (
+          <div key={item.id} className="flex flex-col w-full gap-6 lg:gap-4">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-4">
+              <div className="flex flex-col lg:w-1/2">
+                <Heading text={item.content.title} />
+                <p className="mt-2">{item.content.description}</p>
 
-              <Button
-                className="mt-4 w-fit hidden sm:block"
-                type="tertiary"
-                link={{type: 'link', value: item.url, popup: false}}
-                label={`Read about ${item.content.title}`}
-              />
+                <ReadMoreButton />
+              </div>
 
+              <div className="lg:w-1/2">
+                <Gallery images={item.content.images} mobileColumns={true} />
+              </div>
             </div>
 
-            <div className="lg:w-1/2">
-              <Gallery images={item.content.images} mobileColumns={true} />
-            </div>
+            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
+
+            <ReadMoreButton hideOnSm />
           </div>
-
-          {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
-
-          <Button
-            className="mt-4 w-fit block sm:hidden"
-            type="tertiary"
-            link={{type: 'link', value: item.url, popup: false}}
-            label={`Read about ${item.content.title}`}
-          />
-        </div>
-      ))}
+        )
+      })}
     </section>
   )
 }

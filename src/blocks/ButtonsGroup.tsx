@@ -5,15 +5,16 @@ import getLink from '../../utilities/getLink'
 import {gridAreas} from '../../utilities/gridAreas'
 import {Button, ButtonProps} from '../Button'
 
-export interface GroupButtonProps extends ButtonProps {
-  fullWidth?: boolean
-}
-
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Buttons object that will be parsed through to build the component
    */
-  buttons?: GroupButtonProps[]
+  buttons?: ButtonProps[]
+
+  /**
+   * className override
+   */
+  className?: string
 
   /**
    * className override

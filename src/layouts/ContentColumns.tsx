@@ -1,7 +1,6 @@
 import React, {CSSProperties, FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import containVal from '../../utilities/containVal'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'

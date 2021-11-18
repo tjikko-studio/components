@@ -72,6 +72,9 @@ export const Section: FC<SectionProps> = ({
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
+  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
+  const gridClasses: string[] = []
+
   let imagePosPrimary = 'undefined'
 
   function getNewPos(prevPos: string, newPos: string) {
@@ -101,9 +104,6 @@ export const Section: FC<SectionProps> = ({
       }
     }
   }
-
-  let classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
-  let gridClasses: string[] = []
 
   if (layoutWidth === 'tight') {
     classes.push('px-4', 'sm:px-8', 'md:px-24', 'xl:px-0')
