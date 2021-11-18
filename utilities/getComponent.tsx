@@ -9,9 +9,7 @@ import {Gallery} from '../src/blocks/Gallery'
 import {Heading} from '../src/blocks/Heading'
 import {Icon} from '../src/blocks/Icon'
 import {Primary} from '../src/blocks/Primary'
-import {Secondary} from '../src/blocks/Secondary'
 import {Template} from '../src/blocks/Template'
-import {Tertiary} from '../src/blocks/Tertiary'
 import {Testimonial} from '../src/blocks/Testimonial'
 import {Text} from '../src/blocks/Text'
 import {TextGroup} from '../src/blocks/TextGroup'
@@ -69,27 +67,14 @@ const propsByType: Record<string, GetPropsFn> = {
     return {
       ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
-      layout: content.layout
-    }
-  },
-  Secondary: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      imagePosition: content.imageposition,
-      layout: content.layout
-    }
-  },
-  Tertiary: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      imagePosition: content.imageposition,
+      textPositionVertical: content.text_position_vertical,
+      textSize: content.text_size,
       layout: content.layout
     }
   },
   Text: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      className: 'fontStyle-base',
       tag: 'div'
     }
   }
@@ -128,10 +113,8 @@ const ValidComponents: Record<string, FC> = {
   Input,
   TextArea,
   Primary,
-  Secondary,
   Section,
   Gallery,
-  Tertiary,
   Testimonial,
   Timeline,
   TextGroup,

@@ -17,11 +17,6 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
    * text to show as question
    */
   text?: string
-
-  /**
-   * Additional space-separated class names to append
-   */
-  className?: string
 }
 
 /**

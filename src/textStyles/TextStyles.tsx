@@ -5,11 +5,6 @@ export interface TextStylesProps extends HTMLAttributes<HTMLDivElement> {
    * Type of heading to display
    */
   type?: 'all' | 'heading' | 'body'
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

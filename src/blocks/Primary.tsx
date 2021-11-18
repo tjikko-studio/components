@@ -1,7 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {ButtonsGroup, GroupButtonProps} from '../blocks/ButtonsGroup'
+import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
@@ -14,6 +15,11 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    * Image Position
    */
   imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
+
+  /**
+   * Text Position Position
+   */
+  textPositionVertical?: 'center' | 'top'
 
   /**
    *  Block image
@@ -29,6 +35,11 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   loop?: boolean
 
   /**
+   * Text Size
+   */
+  textSize?: 'regular' | 'small'
+
+  /**
    * text to display for heading
    */
   title: string
@@ -41,12 +52,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Block buttons list
    */
-  buttons?: GroupButtonProps[]
-
-  /**
-   * className override
-   */
-  className?: string
+  buttons?: ButtonProps[]
 }
 
 /**
@@ -55,46 +61,44 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 export const Primary: FC<PrimaryProps> = ({
   layout = 'default',
   imagePosition = 'auto',
+  textPositionVertical = 'center',
   image = null,
   autoplay = true,
   muted = true,
   controls = false,
   loop = true,
+  textSize = 'regular',
   title = '',
   body = '',
   buttons = [],
   className = ''
 }) => {
   const finalLayout = layout || 'default'
+  const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
 
   return (
     <div
       className={cn(
-        'text-gray-900 dark:text-gray-50',
-        finalLayout === 'default' && 'lg:flex',
-        imagePosition === 'right' && 'lg:flex-row-reverse'
+        'flex gap-6 flex-col text-gray-900 dark:text-gray-50',
+        {'lg:flex-row-reverse': imagePosition === 'right' && finalLayout === 'default'},
+        {'lg:flex-row lg:gap-12': finalLayout === 'default'}
       )}
     >
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
-          <div className={cn(layout === 'vertical' ? 'lg:pb-8' : 'lg:w-1/2 lg:p-4')}>
-            <Media
-              media={image}
-              autoplay={autoplay}
-              muted={muted}
-              controls={controls}
-              loop={loop}
-              className={'rounded-lg shadow-xl w-full h-full'}
-            />
-          </div>
-          <div className={cn('mt-4 lg:mt-0', finalLayout !== 'vertical' && 'lg:w-1/2 lg:flex lg:items-center lg:justify-left', className)}>
-            <div className={cn(finalLayout !== 'vertical' && 'lg:p-6')}>
-              <h2 className="fontStyle-4xl mb-4 break-words">{title}</h2>
-              <p className="fontStyle-base" dangerouslySetInnerHTML={{__html: body}} />
-              {Object.keys(buttons).length ? (
-                <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="space-x-4 mt-6" />
-              ) : null}
-            </div>
+          <Media
+            media={image}
+            autoplay={autoplay}
+            muted={muted}
+            controls={controls}
+            loop={loop}
+            className="rounded-lg shadow-xl w-full h-full"
+            wrapperClassName={'flex-1'}
+          />
+          <div className={cn('flex flex-col flex-1', {'justify-center': textPositionVertical === 'center'}, className)}>
+            <h2 className={cn('break-words', titleSize)}>{title}</h2>
+            <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
+            {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>
         </>
       )}

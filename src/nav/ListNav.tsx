@@ -16,18 +16,13 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
    * Links items list array that will be parsed through to build the component
    */
   listNavContent: MenuType[]
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 const availableStyles = {
   elevated: [
     'flex',
     'w-max',
-    'space-x-6',
+    'gap-x-6',
     'px-6',
     'py-2.5',
     'shadow-lg',

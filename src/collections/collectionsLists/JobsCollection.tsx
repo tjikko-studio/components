@@ -32,11 +32,6 @@ export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
     jobs?: JobItem[]
     tags?: JobsTags[]
   }
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**
