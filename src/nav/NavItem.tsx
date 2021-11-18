@@ -45,11 +45,6 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
    */
   dropdownRight?: boolean
   dropdownTop?: boolean
-
-  /**
-   * Additional space-separated class names to append
-   */
-  className?: string
 }
 
 /**

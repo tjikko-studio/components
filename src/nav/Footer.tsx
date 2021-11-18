@@ -46,8 +46,6 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
    * language list
    */
   locales?: LocalesType
-
-  className?: string
 }
 
 /**

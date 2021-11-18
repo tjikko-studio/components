@@ -31,11 +31,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   link?: LinkObject
 
   /**
-   * className override
-   */
-  className?: string
-
-  /**
    * apply the dark theme whether in dark or light mode
    */
   forceDark?: boolean

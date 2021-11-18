@@ -42,7 +42,6 @@ export type FeaturesShowItem = {
 export type FeaturesShowProps = {
   items?: FeaturesShowItem[]
   header?: BlockProps[]
-  className?: string
   bgColor?: string
 }
 

@@ -16,11 +16,6 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
    * text to show as question
    */
   text?: string
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

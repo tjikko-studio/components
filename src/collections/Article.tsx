@@ -11,8 +11,6 @@ export interface ArticleProps extends HTMLAttributes<HTMLElement> {
    */
   content?: BlockProps[]
   templatesContent?: Record<string, ColumnProps>
-
-  className?: string
 }
 
 const classes = [

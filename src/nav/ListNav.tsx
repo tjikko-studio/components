@@ -16,11 +16,6 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
    * Links items list array that will be parsed through to build the component
    */
   listNavContent: MenuType[]
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 const availableStyles = {

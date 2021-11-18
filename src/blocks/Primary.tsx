@@ -52,11 +52,6 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    *  Block buttons list
    */
   buttons?: GroupButtonProps[]
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

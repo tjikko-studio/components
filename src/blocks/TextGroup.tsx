@@ -11,11 +11,6 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    * text to display for paragraph
    */
   body: string
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

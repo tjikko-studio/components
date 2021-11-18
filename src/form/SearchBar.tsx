@@ -26,11 +26,6 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
    * disabled
    */
   isDisabled?: boolean
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

@@ -32,8 +32,6 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   content?: []
   templatesContent?: Record<string, ColumnProps>
-
-  className?: string
 }
 
 const getHorPos = (value: string) => {

@@ -83,7 +83,6 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-  className?: string
   wrapperClassName?: string
   gallery?: boolean
 }

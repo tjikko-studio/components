@@ -26,11 +26,6 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    * content text
    */
   body?: string
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

@@ -7,11 +7,6 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
    * SideNav items list array that will be parsed through to build the component
    */
   items?: SideNavItemProps[]
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

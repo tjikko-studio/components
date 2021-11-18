@@ -29,12 +29,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Columns on mobile
    */
-  mobileColumns?: boolean
-
-  /**
-   * className override
-   */
-  className?: string
+  mobileColumns?: booleanù
 }
 
 /**

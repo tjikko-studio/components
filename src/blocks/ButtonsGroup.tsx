@@ -18,11 +18,6 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * className override
    */
-  className?: string
-
-  /**
-   * className override
-   */
   fullWidth?: boolean
 
   columnStart?: number

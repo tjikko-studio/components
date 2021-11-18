@@ -56,9 +56,8 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   styles?: 'opaque' | 'transparent'
 
   /**
-   * className override
+   * Open Menu text
    */
-  className?: string
   openMenuText?: string
 }
 

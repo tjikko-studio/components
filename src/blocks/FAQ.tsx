@@ -11,11 +11,6 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
    * Questions object that will be parsed through to build the component
    */
   content?: QAProps[]
-
-  /**
-   * Additional space-separated class names to happend
-   */
-  className?: string
 }
 
 /**

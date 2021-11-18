@@ -51,8 +51,6 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    */
   content?: SectionItemProps[]
   templatesContent?: Record<string, ColumnProps>
-
-  className?: string
 }
 
 export const Section: FC<SectionProps> = ({
