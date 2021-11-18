@@ -45,11 +45,6 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
    */
   dropdownRight?: boolean
   dropdownTop?: boolean
-
-  /**
-   * Additional space-separated class names to append
-   */
-  className?: string
 }
 
 /**
@@ -71,7 +66,7 @@ export const NavItem: FC<NavItemProps> = ({
 
   return (
     <div
-      className={cn('w-max relative z-10', className)}
+      className={cn('w-max relative z-10 gap-x-2.5', className)}
       style={{width: 'fit-content'}}
       onMouseEnter={() => {
         setMouseIn(true)
@@ -97,11 +92,7 @@ export const NavItem: FC<NavItemProps> = ({
           mouseIn && popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
       >
-        {listNavContent.length && (
-          <span className="ml-2.5">
-            <ArrowDown className="w-5 h-5" />
-          </span>
-        )}
+        {listNavContent.length && <ArrowDown className="w-5 h-5" />}
       </PopUpNavItem>
       {mouseIn && mouseClick && listNavContent.length ? (
         <div

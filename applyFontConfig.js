@@ -11,8 +11,14 @@ exports = function exports({theme, addBase, addUtilities}) {
       letterSpacing: theme('letterSpacing.base'),
       fontWeight: theme('fontWeight.base')
     },
+    '.dark, .dark .fontStyle-base, .dark.fontStyle-base': {
+      fontWeight: theme('fontWeight.base-dark')
+    },
     '.fontStyle-base.strong, .fontStyle-base strong, .strong': {
       fontWeight: theme('fontWeight.semibold')
+    },
+    '.dark .fontStyle-base.strong, .dark.fontStyle-base.strong': {
+      fontWeight: theme('fontWeight.semibold-dark')
     },
     '.fontStyle-base.uppercase, .fontStyle-base uppercase, .uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -28,8 +34,14 @@ exports = function exports({theme, addBase, addUtilities}) {
       letterSpacing: theme('letterSpacing.lg'),
       fontWeight: theme('fontWeight.lg')
     },
+    '.dark .fontStyle-lg, .dark.fontStyle-lg': {
+      fontWeight: theme('fontWeight.lg-dark')
+    },
     '.fontStyle-lg.strong, .fontStyle-lg strong': {
       fontWeight: theme('fontWeight.semibold')
+    },
+    '.dark .fontStyle-lg.strong, .dark.fontStyle-lg.strong': {
+      fontWeight: theme('fontWeight.semibold-dark')
     },
     '.fontStyle-lg.uppercase, .fontStyle-lg uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -45,8 +57,14 @@ exports = function exports({theme, addBase, addUtilities}) {
       letterSpacing: theme('letterSpacing.sm'),
       fontWeight: theme('fontWeight.sm')
     },
+    '.dark .fontStyle-sm, .dark.fontStyle-sm': {
+      fontWeight: theme('fontWeight.sm-dark')
+    },
     '.fontStyle-sm.strong, .fontStyle-sm strong': {
       fontWeight: theme('fontWeight.semibold')
+    },
+    '.dark .fontStyle-sm.strong, .dark.fontStyle-sm.strong': {
+      fontWeight: theme('fontWeight.semibold-dark')
     },
     '.fontStyle-sm.uppercase, .fontStyle-sm uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -62,8 +80,14 @@ exports = function exports({theme, addBase, addUtilities}) {
       letterSpacing: theme('letterSpacing.xs'),
       fontWeight: theme('fontWeight.xs')
     },
+    '.dark .fontStyle-xs, .dark.fontStyle-xs': {
+      fontWeight: theme('fontWeight.xs-dark')
+    },
     '.fontStyle-xs.strong, .fontStyle-xs strong': {
       fontWeight: theme('fontWeight.bold')
+    },
+    '.dark .fontStyle-xs.strong, .dark.fontStyle-xs.strong': {
+      fontWeight: theme('fontWeight.bold-dark')
     },
     '.fontStyle-xs.uppercase, .fontStyle-xs uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -175,7 +199,7 @@ exports = function exports({theme, addBase, addUtilities}) {
     /*
      * Header and Body formatting
      */
-    h1: fontStyles['.fontStyle-6xl'],
+    h1: fontStyles['.fontStyle-7xl'],
     h2: fontStyles['.fontStyle-5xl'],
     h3: fontStyles['.fontStyle-4xl'],
     h4: fontStyles['.fontStyle-3xl'],

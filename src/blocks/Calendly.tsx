@@ -36,7 +36,7 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
   }, [username, duration, prefill])
 
   return (
-    <div className={cn('flex flex-col p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}}>
+    <div className={cn('flex flex-col w-full p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}}>
       {title || body ? (
         <div className="flex flex-col gap-3 dark:text-gray-50">
           {title && <h3>{title}</h3>}

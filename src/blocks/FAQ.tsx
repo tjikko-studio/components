@@ -11,11 +11,6 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
    * Questions object that will be parsed through to build the component
    */
   content?: QAProps[]
-
-  /**
-   * Additional space-separated class names to append
-   */
-  className?: string
 }
 
 /**
@@ -23,12 +18,12 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const FAQ: FC<FAQProps> = ({content = [], className = ''}) => {
   return (
-    <div className={cn('text-gray-900 dark:text-gray-50 flex flex-col space-y-12', className)}>
+    <div className={cn('text-gray-900 dark:text-gray-50 flex flex-col gap-y-12', className)}>
       {content.map((qa) => {
         return (
           <div key={qa.question}>
             <div className="fontStyle-lg strong">{qa.question}</div>
-            <div className="pt-2 fontStyle-base">{qa.answer}</div>
+            <div className="pt-2">{qa.answer}</div>
           </div>
         )
       })}

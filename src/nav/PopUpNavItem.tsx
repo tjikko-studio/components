@@ -56,7 +56,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   type === 'header' && linkClasses.push('cursor-default')
   switch (type) {
     case 'special':
-      linkClasses.push(...['fontStyle-base text-gray-100'])
+      linkClasses.push('text-gray-100')
       if (isActive) {
         linkClasses.push('text-primary-300 dark:text-primary-300')
       } else {

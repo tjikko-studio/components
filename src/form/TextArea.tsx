@@ -63,11 +63,6 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
    */
   isDisabled?: boolean
 
-  /**
-   * className override
-   */
-  className?: string
-
   columnStart?: number
   columnEnd?: number
 }

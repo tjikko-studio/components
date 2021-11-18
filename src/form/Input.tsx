@@ -64,10 +64,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isDisabled?: boolean
 
   /**
-   * Custom Classes
+   * Column start and end
    */
-  className?: string
-
   columnStart?: number
   columnEnd?: number
 }

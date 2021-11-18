@@ -30,11 +30,6 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
    * Columns on mobile
    */
   mobileColumns?: boolean
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**
@@ -57,8 +52,8 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
   gridLayout = !mobileColumns && gridLayout ? `xs:${gridLayout}` : gridLayout
 
   return (
-    <figure role="group" className={cn(className)}>
-      <div className={cn('grid gap-2', gridLayout)}>
+    <figure role="group" className={cn('h-full', className)}>
+      <div className={cn('grid gap-2 h-full', gridLayout)}>
         {images.length ? (
           images.map((image) => {
             return (
