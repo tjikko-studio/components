@@ -1,14 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {ImageProps, Media} from '../parts/Media'
-
-export interface MediaProps extends ImageProps {
-  autoplay?: boolean
-  muted?: boolean
-  controls?: boolean
-  loop?: boolean
-}
+import {GenericMediaProps, Media} from '../parts/Media'
 
 export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -19,7 +12,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Block image
    */
-  content?: MediaProps[]
+  content?: GenericMediaProps[]
 
   /**
    * alt text
@@ -57,8 +50,8 @@ export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption
           content.map((img) => {
             return (
               <Media
-                key={img.image.id}
-                media={img.image}
+                key={img.id}
+                media={img}
                 autoplay={img.autoplay}
                 muted={img.muted}
                 controls={img.controls}

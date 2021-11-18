@@ -7,6 +7,7 @@ import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '..
 
 export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
+export type GalleryProps = VideoProps
 
 export const MediaImage: FC<ImageProps> = ({
   id,
