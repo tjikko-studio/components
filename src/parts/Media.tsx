@@ -17,17 +17,19 @@ export const MediaImage: FC<ImageProps> = ({
   content = {},
   className,
   wrapperClassName,
-  gallery
+  gallery,
+  info = ''
 }) => {
+  const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
-      {url && <img src={url} alt={content.alt} className={!gallery ? className : `relative h-full w-full`} />}
-      {content.caption && (
+      {url && <img src={url} alt={parsedInfos?.alt && parsedInfos.alt} className={!gallery ? className : `relative h-full w-full`} />}
+      {parsedInfos?.caption && (
         <>
           {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
             className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-xs text-gray-50 bg-opacity-80`}
-            dangerouslySetInnerHTML={{__html: content.caption}}
+            dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
           />
         </>
       )}
@@ -53,20 +55,22 @@ export const MediaVideo: FC<VideoProps> = ({
   loop,
   className,
   wrapperClassName,
-  gallery
+  gallery,
+  info = ''
 }) => {
+  const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
       <video autoPlay={autoplay} muted={muted} controls={controls} loop={loop} className={!gallery ? className : `relative h-full w-full`}>
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={content?.alt}></meta>
+        <meta itemProp="description" content={parsedInfos?.alt && parsedInfos.alt}></meta>
       </video>
-      {content.caption && (
+      {parsedInfos?.caption && (
         <>
           {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
             className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-sm text-gray-50`}
-            dangerouslySetInnerHTML={{__html: content.caption}}
+            dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
           />
         </>
       )}
