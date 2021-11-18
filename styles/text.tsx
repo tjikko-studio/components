@@ -43,9 +43,9 @@ export default {
   },
   fontWeight: {
     xs: '450',
-    'xs-dark': '400',
+    'xs-dark': '350',
     sm: '400',
-    'sm-dark': '350',
+    'sm-dark': '300',
     base: '400',
     'base-dark': '350',
     'medium-dark': '450',
@@ -54,15 +54,15 @@ export default {
     lg: '400',
     'lg-dark': '250',
     xl: '500',
-    '2xl': '600',
-    '3xl': '600',
-    '4xl': '600',
-    '5xl': '500',
-    '6xl': '500',
+    '2xl': '500',
+    '3xl': '500',
+    '4xl': '400',
+    '5xl': '400',
+    '6xl': '400',
     '7xl': '400',
-    '8xl': '400',
-    '9xl': '400'
-  }
+    '8xl': '300',
+    '9xl': '300'
+  },
 }
 
 /* module.exports = text; */
