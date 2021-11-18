@@ -41,7 +41,6 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption = '', mobileColumns = false}) => {
-  console.log(content)
   let gridLayout = null
   switch (content.length) {
     case 2:
