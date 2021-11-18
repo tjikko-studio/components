@@ -18,8 +18,6 @@ const Template: Story<FormProps> = (args) => {
 
 export const SimpleFormFullPage = Template.bind({})
 SimpleFormFullPage.args = {
-  layout: 'Simple form',
-  width: 'full',
   content: [
     {
       columns: [
@@ -99,8 +97,6 @@ SimpleFormFullPage.args = {
 
 export const FormWithErrors = Template.bind({})
 FormWithErrors.args = {
-  layout: 'Simple form',
-  width: 'full',
   content: [
     {
       columns: [
@@ -183,8 +179,6 @@ FormWithErrors.args = {
 
 export const InlineForm = Template.bind({})
 InlineForm.args = {
-  layout: 'Simple form',
-  width: '1/2',
   content: [
     {
       columns: [
@@ -226,8 +220,6 @@ InlineForm.args = {
 
 export const AnnotatedFormFullPage = Template.bind({})
 AnnotatedFormFullPage.args = {
-  layout: 'Annotated form',
-  width: 'full',
   content: [
     {
       columns: [

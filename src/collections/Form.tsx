@@ -12,18 +12,13 @@ export interface FormItemProps {
 
 export interface FormProps extends HTMLAttributes<HTMLElement> {
   /**
-   * What is the width of the form?
-   */
-  width?: 'string'
-
-  /**
    * Form object that will be parsed through to build the component
    */
   content?: FormItemProps[]
   templatesContent?: Record<string, ColumnProps>
 }
 
-export const Form: FC<FormProps> = ({width = 'full', content = [], templatesContent = {}}) => {
+export const Form: FC<FormProps> = ({content = [], templatesContent = {}}) => {
   const toComponent = getComponent(templatesContent)
   const PlaceholderContent = () => {
     return <div>No content yet</div>

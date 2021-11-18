@@ -54,7 +54,6 @@ const propsByType: Record<string, GetPropsFn> = {
   Calendly: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      ...content,
       bgColor: content.bg_color
     }
   },
