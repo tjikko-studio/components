@@ -32,8 +32,6 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   content?: []
   templatesContent?: Record<string, ColumnProps>
-
-  className?: string
 }
 
 const getHorPos = (value: string) => {
@@ -142,13 +140,18 @@ export const Hero: FC<HeroProps> = ({
             `dark:text-${darkTextColor || DEFAULT_DARK_TEXT_COLOR}`,
             'absolute',
             'z-20',
+            'w-full',
             'p-6',
-            'lg:p-12',
-            'md:p-12',
-            'sm:p-12',
+            'lg:pb-24',
+            'md:pb-16',
+            'sm:pb-12',
+            'px-4',
+            'sm:px-8',
+            'md:px-12',
+            'xl:px-0',
             'flex',
             'flex-col',
-            'space-y-5',
+            'gap-y-5',
             verPos,
             horPos
           ])}

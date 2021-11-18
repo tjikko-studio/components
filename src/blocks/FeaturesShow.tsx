@@ -39,13 +39,6 @@ export type FeaturesShowItem = {
   info_boxes?: FeaturesShowItemBox[]
 }
 
-export type FeaturesShowProps = {
-  items?: FeaturesShowItem[]
-  header?: BlockProps[]
-  className?: string
-  bgColor?: string
-}
-
 const growthFactor = 2
 
 type Caps = [number, number]
@@ -283,6 +276,12 @@ const FeaturesShowSection: FC<{
 }
 
 const defaultHandlers: HandlerDictionary = {}
+
+export interface FeaturesShowProps extends HTMLElement {
+  items?: FeaturesShowItem[]
+  header?: BlockProps[]
+  bgColor?: string
+}
 
 export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
   const classes = ['w-full', 'py-16', 'sm:py-24', 'md:py-32']

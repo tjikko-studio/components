@@ -56,9 +56,8 @@ export interface SiteNavProps extends HTMLAttributes<HTMLDivElement> {
   styles?: 'opaque' | 'transparent'
 
   /**
-   * className override
+   * Open Menu text
    */
-  className?: string
   openMenuText?: string
 }
 
@@ -116,7 +115,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                         'justify-center',
                         'first:justify-start',
                         'last:justify-end',
-                        'space-x-6'
+                        'gap-x-12'
                       ])}
                     >
                       {content &&
@@ -131,7 +130,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   styles="special"
                                   label={label}
                                   listNavContent={innerContent}
-                                  className="ml-6 first:ml-0"
                                 />
                               )
                             case 'button':
@@ -143,7 +141,6 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   type="primary"
                                   size="default"
                                   forceDark={true}
-                                  className="ml-6 first:ml-0"
                                 />
                               )
                             case 'NavigationDynamicList':
@@ -183,7 +180,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'space-y-8', 'px-4', menuOpened && 'pb-4'])}>
+      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'gap-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <a className="flex-auto" href={homeLink}>
             {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
@@ -214,15 +211,15 @@ export const SiteNav: FC<SiteNavProps> = ({
           return (
             <section
               key={id || JSON.stringify(mobileNavContent)}
-              className={cn('flex flex-col space-y-6', border, dividerMd, attrs.className, !menuOpened && 'hidden')}
+              className={cn('flex flex-col gap-y-6', border, dividerMd, attrs.className, !menuOpened && 'hidden')}
             >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
-                  const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col space-y-4'
+                  const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col gap-y-4'
 
                   const columnsLength = content ? content.length : 0
                   return (
-                    <div key={navContentId || JSON.stringify(content)} className={cn('flex', border, dividerSm, layout)}>
+                    <div key={navContentId || JSON.stringify(content)} className={cn('flex', 'gap-x-6', border, dividerSm, layout)}>
                       {content &&
                         content.map(({label, link, type, content: innerContent, id: innerId}, idx) => {
                           const isLast = idx + 1 >= columnsLength
@@ -254,14 +251,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'button': {
                               return (
                                 <div key={innerId || `[${label}](${link})`} className="dark">
-                                  <Button
-                                    label={label}
-                                    link={link}
-                                    type="primary"
-                                    size="default"
-                                    forceDark={true}
-                                    className="lg:ml-6 lg:first:ml-0"
-                                  />
+                                  <Button label={label} link={link} type="primary" size="default" forceDark={true} />
                                 </div>
                               )
                             }

@@ -1,8 +1,9 @@
 import React, {FC, HTMLAttributes} from 'react'
+import cn from 'classnames'
 
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
-import {Tertiary} from '../blocks/Tertiary'
+import {Primary} from '../blocks/Primary'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
@@ -28,53 +29,93 @@ export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
+let classes = [
+  'grid',
+  'text-gray-900',
+  'dark:text-gray-50',
+  'w-full',
+  'h-full',
+  'max-w-screen-xl',
+  'mx-auto',
+  'px-4',
+  'sm:px-8',
+  'md:px-12',
+  'xl:px-0',
+  'py-20',
+  'sm:py-28',
+  'md:py-36',
+  'gap-16',
+  'sm:gap-8'
+]
+
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
+  classes.push('sm:grid-cols-2')
   return (
-    <div className="grid gap-8 py-8 px-4 sm:grid-cols-2 sm:gap-8 sm:p-8">
+    <section className={cn(classes)}>
       {items?.map((item) => (
         <>
-          <Tertiary
+          <Primary
             key={item.id}
             image={item.content.images?.[0]}
             imagePosition="right"
             title={item.content.title}
             body={item.content.description}
-            link={{type: 'link', value: item.url, popup: false}}
-            label={`Read about ${item.content.title}`}
+            textPositionVertical="top"
+            textSize="small"
+            buttons={[
+              {
+                label: `Read about ${item.content.title}`,
+                type: 'tertiary',
+                link: {
+                  type: 'page',
+                  popup: false,
+                  value: item.url
+                }
+              }
+            ]}
           />
         </>
       ))}
-    </div>
+    </section>
   )
 }
 
 const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   return (
-    <div className="flex flex-wrap gap-16 py-12 px-4 sm:gap-8 sm:p-8 lg:m-8">
-      {items?.map((item) => (
-        <div key={item.id} className="flex flex-col w-full lg:p-8 jus">
-          <div className="lg:flex lg:gap-x-4">
-            <div className="flex flex-col lg:w-1/2">
-              <Heading text={item.content.title} className="pb-4" />
-              <p className="pb-4 text-left">{item.content.description}</p>
+    <section className={cn(classes)}>
+      {items?.map((item) => {
+        const ReadMoreButton = ({hideOnSm = false}) => {
+          return (
+            <Button
+              className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
+              type="tertiary"
+              link={{type: 'link', value: item.url, popup: false}}
+              label={`Read about ${item.content.title}`}
+            />
+          )
+        }
+        return (
+          <div key={item.id} className="flex flex-col w-full gap-6 lg:gap-4">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-4">
+              <div className="flex flex-col lg:w-1/2">
+                <Heading text={item.content.title} />
+                <p className="mt-2">{item.content.description}</p>
+
+                <ReadMoreButton />
+              </div>
+
+              <div className="lg:w-1/2">
+                <Gallery images={item.content.images} mobileColumns={true} />
+              </div>
             </div>
 
-            <div className="lg:w-1/2">
-              <Gallery images={item.content.images} mobileColumns={true} />
-            </div>
+            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
+
+            <ReadMoreButton hideOnSm />
           </div>
-
-          {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
-
-          <Button
-            className="mt-4 w-fit"
-            type="tertiary"
-            link={{type: 'link', value: item.url, popup: false}}
-            label={`Read about ${item.content.title}`}
-          />
-        </div>
-      ))}
-    </div>
+        )
+      })}
+    </section>
   )
 }
 

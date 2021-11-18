@@ -1,7 +1,6 @@
 import React, {CSSProperties, FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import containVal from '../../utilities/containVal'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
@@ -51,8 +50,6 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   columnStyles?: CSSProperties
 
   templatesContent?: Record<string, ColumnProps>
-
-  className?: string
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
@@ -75,11 +72,10 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
-            const headerClass = content.length > 1 && containVal(columns[0].blocks, 'type', ['Heading', 'Text']) ? 'mb-4 sm: mb-8' : ''
             return (
               <div
                 key={id || JSON.stringify(columns)}
-                className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
+                className={cn('grid', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
@@ -87,7 +83,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                     // See safelist in tailwind.safelist.js
                     <div
                       key={columnId || JSON.stringify(blocks)}
-                      className={cn([`sm:col-span-${getWidth(width)}`, align, headerClass, columnClasses])}
+                      className={cn([`col-span-${getWidth(width)}`, align, columnClasses])}
                       style={{...columnStyles}}
                     >
                       {blocks.map((block) => {

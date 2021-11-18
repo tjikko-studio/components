@@ -25,7 +25,6 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   homeLink?: string
   templateType?: 'template' | 'navigation' | 'footer'
   content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
-  className?: string
 }
 
 /**

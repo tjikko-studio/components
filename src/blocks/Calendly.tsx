@@ -32,7 +32,6 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault()
-      console.log('Company', companyRef.current.value)
       openPopupWidget({
         prefill: {
           email: emailRef.current.value,
@@ -46,7 +45,7 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
   )
 
   return (
-    <form className={cn('flex flex-col p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}} onSubmit={onSubmit}>
+    <form className={cn('flex flex-col w-full p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}} onSubmit={onSubmit}>
       {title || body ? (
         <div className="flex flex-col gap-3 dark:text-gray-50">
           {title && <h3>{title}</h3>}

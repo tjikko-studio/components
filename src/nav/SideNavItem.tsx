@@ -26,11 +26,6 @@ export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
    * space bar ? if spacer, true else false
    */
   spacer?: boolean
-
-  /**
-   * className override
-   */
-  className?: string
 }
 
 /**

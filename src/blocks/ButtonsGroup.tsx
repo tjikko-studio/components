@@ -5,15 +5,11 @@ import getLink from '../../utilities/getLink'
 import {gridAreas} from '../../utilities/gridAreas'
 import {Button, ButtonProps} from '../Button'
 
-export interface GroupButtonProps extends ButtonProps {
-  fullWidth: boolean
-}
-
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Buttons object that will be parsed through to build the component
    */
-  buttons?: GroupButtonProps[]
+  buttons?: ButtonProps[]
 
   /**
    * className override
@@ -35,7 +31,7 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '', columnStart, columnEnd, fullWidth = false}) => {
   return (
     <div
-      className={cn('inline-flex items-center space-x-4', fullWidth ? 'w-full' : 'w-max', className)}
+      className={cn('inline-flex items-center gap-x-4', fullWidth ? 'w-full' : 'w-max', className)}
       style={gridAreas('control', columnStart, columnEnd)}
     >
       {buttons.map(({label, link, type, size}) => {
