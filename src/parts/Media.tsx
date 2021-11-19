@@ -82,7 +82,7 @@ export const MediaVideo: FC<VideoProps> = ({
             <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80 pointer-events-none" />
           )}
           <figcaption
-            className={gallery && `absolute bottom-0 p-4 w-full z-10 fontStyle-sm text-gray-50 pointer-events-none`}
+            className={gallery && `absolute bottom-0 pb-4 pl-4 w-full h-8 z-10 fontStyle-sm text-gray-50`}
             dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
           />
         </>
