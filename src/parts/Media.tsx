@@ -1,7 +1,8 @@
-import React, {FC, HTMLAttributes, useEffect, useRef, useState} from 'react'
+import React, {FC, HTMLAttributes, useRef, useState} from 'react'
 import cn from 'classnames'
 
 import MediaIcon from '/assets/icons/media-image.svg'
+import PlayIcon from '/assets/icons/play.svg'
 
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
@@ -78,23 +79,32 @@ export const MediaVideo: FC<VideoProps> = ({
     })
   })
 
+  const gradientClass = ['absolute bottom-0 w-full z-10 bg-gradient-to-t from-gray-900 to-transparent']
+  if (controls) {
+    gradientClass.push(' h-full flex items-center justify-center text-gray-50 transition-opacity')
+  } else {
+    gradientClass.push('h-1/2 opacity-80')
+  }
+
   return (
-    <figure key={id} role="group" className={cn('relative', {className: gallery}, wrapperClassName)}>
-      <div className={cn('absolute w-full h-full z-10', {hidden: videoPlaying || !controls})} onClick={handleClick} />
+    <figure key={id} role="group" className={cn('relative', gallery && className, wrapperClassName)}>
+      <div className={cn(gradientClass, videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80')} onClick={handleClick}>
+        {controls && <PlayIcon className="w-12 h-12" />}
+      </div>
       <video
         ref={videoRef}
         autoPlay={autoplay}
         muted={muted}
         controls={videoPlaying}
         loop={loop}
-        className={cn('relative h-full w-full no-timeline', {className: !gallery})}
+        className={cn('relative h-full w-full no-timeline', !gallery && className)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt && parsedInfos.alt}></meta>
       </video>
       {parsedInfos?.caption && (
-        <div className={cn({hidden: videoPlaying})}>
-          {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
+        <div className={cn(videoPlaying && 'hidden')}>
+          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-80" /> */}
           <figcaption
             className={gallery && `absolute bottom-0 pb-4 pl-4 w-full h-10 z-40 fontStyle-sm text-gray-50`}
             dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
