@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useEffect, useRef, useState} from 'react'
 import cn from 'classnames'
 
 import MediaIcon from '/assets/icons/media-image.svg'
@@ -63,29 +63,43 @@ export const MediaVideo: FC<VideoProps> = ({
   info = ''
 }) => {
   const parsedInfos = info ? JSON.parse(info) : null
+
+  const videoRef = useRef(null)
+  const [videoPlaying, setVideoPlaying] = useState(false)
+
+  const handleClick = (e: any) => {
+    setVideoPlaying(!videoPlaying)
+    videoRef.current.play()
+  }
+
+  React.useEffect(() => {
+    videoRef.current.addEventListener('pause', () => {
+      setVideoPlaying(!videoPlaying)
+    })
+  })
+
   return (
-    <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
+    <figure key={id} role="group" className={cn('relative', {className: gallery}, wrapperClassName)}>
+      <div className={cn('absolute w-full h-full z-10', {hidden: videoPlaying || !controls})} onClick={handleClick} />
       <video
+        ref={videoRef}
         autoPlay={autoplay}
         muted={muted}
-        controls={controls}
+        controls={videoPlaying}
         loop={loop}
-        className={!gallery ? className : `relative h-full w-full hover:z-20`}
+        className={cn('relative h-full w-full no-timeline', {className: !gallery})}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt && parsedInfos.alt}></meta>
       </video>
       {parsedInfos?.caption && (
-        <>
-          {gallery && (
-            // eslint-disable-next-line max-len
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80 pointer-events-none" />
-          )}
+        <div className={cn({hidden: videoPlaying})}>
+          {gallery && <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80" />}
           <figcaption
-            className={gallery && `absolute bottom-0 pb-4 pl-4 w-full h-8 z-10 fontStyle-sm text-gray-50`}
+            className={gallery && `absolute bottom-0 pb-4 pl-4 w-full h-10 z-40 fontStyle-sm text-gray-50`}
             dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
           />
-        </>
+      </div>
       )}
     </figure>
   )

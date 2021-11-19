@@ -193,6 +193,13 @@ exports = function exports({theme, addBase, addUtilities}) {
       lineHeight: theme('lineHeight.9xl'),
       letterSpacing: theme('letterSpacing.wide'),
       fontWeight: theme('fontWeight.9xl')
+    },
+
+    /*
+     *Hide video or audio controls when needed
+     */
+    'audio.no-timeline::-webkit-media-controls-timeline, video.no-timeline::-webkit-media-controls-timeline': {
+      display: 'none'
     }
   }
   const fontBase = {
