@@ -50,8 +50,8 @@ export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption
           content.map((img) => {
             return (
               <Media
-                key={img.id}
-                media={img}
+                key={img.media ? img.media.id : img.id}
+                media={img.media ? img.media : img}
                 autoplay={img.autoplay}
                 muted={img.muted}
                 controls={img.controls}
