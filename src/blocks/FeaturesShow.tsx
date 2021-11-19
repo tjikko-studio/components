@@ -222,7 +222,7 @@ const FeaturesShowSection: FC<{
       }
     }
   }, [imgContainerRef])
-
+  const parsedInfos = item.image?.[0].info ? JSON.parse(item.image?.[0].info) : null
   return (
     <div className="relative w-full px-2.5 sm:px-5">
       {item.image?.[0] && (
@@ -237,6 +237,7 @@ const FeaturesShowSection: FC<{
             <div className="h-full relative">
               <div
                 className="bg-img h-full w-full bg-center bg-cover rounded-lg shadow-2xl transition-transform duration-700"
+                aria-label={parsedInfos?.alt && parsedInfos.alt}
                 style={{
                   backgroundImage: `url(${item.image?.[0].url})`
                 }}
