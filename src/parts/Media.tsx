@@ -25,7 +25,7 @@ export const MediaImage: FC<ImageProps> = ({
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
-      {url && <img src={url} alt={parsedInfos?.alt && parsedInfos.alt} className={!gallery ? className : `relative h-full w-full`} />}
+      {url && <img src={url} alt={parsedInfos?.alt} className={!gallery ? className : `relative h-full w-full`} />}
       {parsedInfos?.caption && (
         <>
           {gallery && (
@@ -100,7 +100,7 @@ export const MediaVideo: FC<VideoProps> = ({
         className={cn('relative h-full w-full no-timeline', !gallery && className)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={parsedInfos?.alt && parsedInfos.alt}></meta>
+        <meta itemProp="description" content={parsedInfos?.alt}></meta>
       </video>
       {parsedInfos?.caption && (
         <div className={cn(videoPlaying && 'hidden')}>

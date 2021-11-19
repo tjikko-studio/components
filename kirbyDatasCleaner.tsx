@@ -39,13 +39,12 @@ export const flattenContent = (val: Record<string, unknown>, prop: string, level
 /*
  * To return if a string is a json
  */
-export const stringIsJson = (str: string): boolean => {
+export const nonThrowingJsonParse = (str: string): boolean => {
   try {
-    JSON.parse(str)
+    return JSON.parse(str)
   } catch (error) {
-    return false
+    return null
   }
-  return true
 }
 
 /*

@@ -1,6 +1,6 @@
 import {ReactInVue} from 'vuera'
 
-import {flattenImages, flattenNav, languageParser, stringIsJson} from '../kirbyDatasCleaner'
+import {flattenImages, flattenNav, languageParser, nonThrowingJsonParse} from '../kirbyDatasCleaner'
 import blocks from './blocks'
 import {Button} from './Button'
 import collections from './collections'
@@ -21,5 +21,5 @@ export default {
   flattenImages,
   flattenNav,
   languageParser,
-  stringIsJson
+  nonThrowingJsonParse
 }
