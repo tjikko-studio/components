@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useRef, useState} from 'react'
+import React, {FC, HTMLAttributes, useEffect, useRef, useState} from 'react'
 import cn from 'classnames'
 
 import MediaIcon from '/assets/icons/media-image.svg'
@@ -68,15 +68,20 @@ export const MediaVideo: FC<VideoProps> = ({
   const videoRef = useRef(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
 
-  const handleClick = (e: any) => {
-    setVideoPlaying(!videoPlaying)
+  const handleClick = () => {
+    setVideoPlaying(true)
     videoRef.current.play()
   }
 
-  React.useEffect(() => {
-    videoRef.current.addEventListener('pause', () => {
+  useEffect(() => {
+    function toggleVideoPlaying() {
       setVideoPlaying(!videoPlaying)
-    })
+    }
+    const videoRefEffect = videoRef.current
+    videoRefEffect.addEventListener('seeked', toggleVideoPlaying)
+    return () => {
+      videoRefEffect.removeEventListener('seeked', toggleVideoPlaying)
+    }
   })
 
   const gradientClass = ['absolute bottom-0 w-full z-10 bg-gradient-to-t from-gray-900 to-transparent']
@@ -87,29 +92,30 @@ export const MediaVideo: FC<VideoProps> = ({
   }
 
   return (
-    <figure key={id} role="group" className={cn('relative', gallery && className, wrapperClassName)}>
-      <div className={cn(gradientClass, videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80')} onClick={handleClick}>
-        {controls && <PlayIcon className="w-12 h-12" />}
+    <figure key={id} role="group" className={cn('relative flex flex-col', wrapperClassName)}>
+      <div className={cn('relative overflow-hidden', className)}>
+        <div className={cn(gradientClass, videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80')} onClick={handleClick}>
+          {controls && <PlayIcon className="w-12 h-12" />}
+        </div>
+        <video
+          ref={videoRef}
+          autoPlay={autoplay}
+          muted={muted}
+          controls={videoPlaying}
+          loop={loop}
+          className={cn('relative h-full w-full')}
+        >
+          <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
+          <meta itemProp="description" content={parsedInfos?.alt}></meta>
+        </video>
       </div>
-      <video
-        ref={videoRef}
-        autoPlay={autoplay}
-        muted={muted}
-        controls={videoPlaying}
-        loop={loop}
-        className={cn('relative h-full w-full no-timeline', !gallery && className)}
-      >
-        <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={parsedInfos?.alt}></meta>
-      </video>
       {parsedInfos?.caption && (
         <div className={cn(videoPlaying && 'hidden')}>
-          {/* <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900 to-transparent opacity-80" /> */}
           <figcaption
-            className={gallery && `absolute bottom-0 pb-4 pl-4 w-full h-10 z-40 fontStyle-sm text-gray-50`}
+            className={cn('fontStyle-sm', !gallery ? 'mt-4' : `absolute bottom-0 pb-4 pl-4 w-full h-10 z-40 text-gray-50`)}
             dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
           />
-      </div>
+        </div>
       )}
     </figure>
   )
