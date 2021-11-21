@@ -16,7 +16,7 @@ export const FigCaption: FC<{gallery?: boolean; playing?: boolean; caption: stri
   caption = ''
 }) => {
   const captionClasses = 'absolute flex w-full z-40 opacity-80 fontStyle-xs text-shadow-sm p-4 motion-safe:transition-all duration-200'
-  const captionBottom = [captionClasses, 'top-3/4 h-1/4 bg-gradient-to-t from-gray-900 to-transparent items-end']
+  const captionBottom = [captionClasses, 'top-1/2 h-1/2 bg-gradient-to-t from-gray-900 to-transparent items-end']
   const captionTop = [captionClasses, 'top-0 h-1/4 bg-gradient-to-b from-gray-900 to-transparent items-start']
   const captionStyle = playing ? captionTop : captionBottom
   return (
