@@ -15,13 +15,16 @@ export const FigCaption: FC<{gallery?: boolean; playing?: boolean; caption: stri
   playing = false,
   caption = ''
 }) => {
-  const captionClasses = 'absolute flex w-full z-40 opacity-80 fontStyle-xs text-shadow-sm p-4 motion-safe:transition-all duration-200'
-  const captionBottom = [captionClasses, 'top-1/2 h-1/2 bg-gradient-to-t from-gray-900 to-transparent items-end']
-  const captionTop = [captionClasses, 'top-0 h-1/4 bg-gradient-to-b from-gray-900 to-transparent items-start']
-  const captionStyle = playing ? captionTop : captionBottom
+  const shared = ['absolute w-full  motion-safe:transition-all duration-700']
+  const captionText = [shared, 'h-1/3 flex z-50 fontStyle-xs text-shadow-sm p-4']
+  const captionGradient = [shared, 'h-1/2 transform scale-y-150 opacity-80 bg-gradient-to-t from-transparent via-gray-900 to-transparent']
   return (
     <>
-      <figcaption className={cn(gallery && captionStyle)} dangerouslySetInnerHTML={{__html: caption}} />
+      <figcaption
+        className={cn(captionText, !playing ? 'top-2/3 items-end' : 'top-0 items-start')}
+        dangerouslySetInnerHTML={{__html: caption}}
+      />
+      <div className={cn(captionGradient, !playing ? 'top-3/4' : '-top-1/4 -translate-y-1/4')} />
     </>
   )
 }
