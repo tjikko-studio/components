@@ -15,7 +15,7 @@ export const FigCaption: FC<{gallery?: boolean; playing?: boolean; caption: stri
   playing = false,
   caption = ''
 }) => {
-  const shared = ['absolute w-full  motion-safe:transition-all duration-700']
+  const shared = ['absolute w-full transition-transform-top ease-out duration-700']
   const captionText = [shared, 'h-1/3 flex z-50 fontStyle-xs text-shadow-sm p-4']
   const captionGradient = [shared, 'h-1/2 transform scale-y-150 opacity-80 bg-gradient-to-t from-transparent via-gray-900 to-transparent']
   return (
