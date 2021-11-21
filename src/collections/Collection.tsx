@@ -109,7 +109,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
               </div>
             </div>
 
-            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
+            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" />}
 
             <ReadMoreButton hideOnSm />
           </div>

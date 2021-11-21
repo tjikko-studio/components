@@ -10,39 +10,26 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
-export const FigCaption: FC<{gallery: boolean; caption: string}> = ({gallery = false, caption = ''}) => {
-  const galleryClasses = [
-    'absolute',
-    'top-0',
-    'p-4',
-    'w-full',
-    'min-h-16',
-    'z-50',
-    'fontStyle-xs',
-    'bg-gradient-to-b',
-    'from-gray-900',
-    'to-transparent',
-    'opacity-80',
-    'text-shadow-sm'
-  ]
-  return <figcaption className={cn(gallery && galleryClasses)} dangerouslySetInnerHTML={{__html: caption}} />
+export const FigCaption: FC<{gallery?: boolean; playing?: boolean; caption: string}> = ({
+  gallery = false,
+  playing = false,
+  caption = ''
+}) => {
+  const captionClasses = 'absolute flex w-full z-40 opacity-80 fontStyle-xs text-shadow-sm p-4 motion-safe:transition-all duration-200'
+  const captionBottom = [captionClasses, 'top-3/4 h-1/4 bg-gradient-to-t from-gray-900 to-transparent items-end']
+  const captionTop = [captionClasses, 'top-0 h-1/4 bg-gradient-to-b from-gray-900 to-transparent items-start']
+  const captionStyle = playing ? captionTop : captionBottom
+  return (
+    <>
+      <figcaption className={cn(gallery && captionStyle)} dangerouslySetInnerHTML={{__html: caption}} />
+    </>
+  )
 }
 
-export const MediaImage: FC<ImageProps> = ({
-  id,
-  link,
-  url,
-  extension,
-  dimensions = {},
-  content = {},
-  className,
-  wrapperClassName,
-  gallery,
-  info = ''
-}) => {
+export const MediaImage: FC<ImageProps> = ({id, link, url, extension, dimensions = {}, content = {}, className, gallery, info = ''}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
-    <figure key={id} role="group" className={cn('relative text-gray-50', gallery && className, wrapperClassName)}>
+    <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', gallery && className)}>
       {url && <img src={url} alt={parsedInfos?.alt} className={!gallery ? className : `relative h-full w-full`} />}
       {parsedInfos?.caption && <FigCaption gallery={gallery} caption={parsedInfos?.caption} />}
     </figure>
@@ -66,7 +53,6 @@ export const MediaVideo: FC<VideoProps> = ({
   controls,
   loop,
   className,
-  wrapperClassName,
   gallery,
   info = ''
 }) => {
@@ -81,30 +67,21 @@ export const MediaVideo: FC<VideoProps> = ({
   }
 
   return (
-    <figure key={id} role="group" className={cn('relative flex flex-col text-gray-50', wrapperClassName)}>
-      <div className={cn('relative overflow-hidden', className)}>
-        <div
-          className={cn(
-            'absolute top-0 h-full w-full flex justify-center items-center z-10 transition-opacity ',
-            videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80'
-          )}
-          onClick={handleClick}
-        >
-          {controls && <PlayIcon className="w-12 h-12" />}
-        </div>
-        <video
-          ref={videoRef}
-          autoPlay={autoplay}
-          muted={muted}
-          controls={videoPlaying}
-          loop={loop}
-          className={cn('relative h-full w-full')}
-        >
-          <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-          <meta itemProp="description" content={parsedInfos?.alt}></meta>
-        </video>
+    <figure key={id} role="group" className={cn('relative flex flex-col text-gray-50 overflow-hidden', className)}>
+      <div
+        className={cn(
+          'absolute top-0 h-full w-full flex justify-center items-center z-10 transition-opacity',
+          videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80'
+        )}
+        onClick={handleClick}
+      >
+        {controls && <PlayIcon className="w-12 h-12" />}
       </div>
-      {parsedInfos?.caption && <FigCaption gallery={gallery} caption={parsedInfos?.caption} />}
+      <video ref={videoRef} autoPlay={autoplay} muted={muted} controls={videoPlaying} loop={loop} className={cn('relative h-full w-full')}>
+        <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
+        <meta itemProp="description" content={parsedInfos?.alt}></meta>
+      </video>
+      {parsedInfos?.caption && <FigCaption gallery={gallery} playing={videoPlaying} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
@@ -118,7 +95,6 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-  wrapperClassName?: string
   gallery?: boolean
 }
 
@@ -129,7 +105,6 @@ export const Media: FC<GenericMediaProps> = ({
   controls = false,
   loop = false,
   className,
-  wrapperClassName,
   gallery
 }) => {
   return media && media.type === 'video' ? (
@@ -141,13 +116,12 @@ export const Media: FC<GenericMediaProps> = ({
       controls={controls}
       loop={loop}
       className={className}
-      wrapperClassName={wrapperClassName}
       gallery={gallery}
     />
   ) : media && media.type === 'image' ? (
-    <MediaImage key={media.url} {...media} className={className} wrapperClassName={wrapperClassName} gallery={gallery} />
+    <MediaImage key={media.url} {...media} className={className} gallery={gallery} />
   ) : (
-    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50', wrapperClassName)}>
+    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50')}>
       <MediaIcon className="w-8 h-8 opacity-60" />
     </div>
   )
