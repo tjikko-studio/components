@@ -66,6 +66,17 @@ export const MediaVideo: FC<VideoProps> = ({
     videoRef.current.play()
   }
 
+  useEffect(() => {
+    const toggleVideoPlaying = () => {
+      setVideoPlaying(!videoPlaying)
+    }
+    const videoRefEffect = videoRef.current
+    videoRefEffect.addEventListener('ended', toggleVideoPlaying)
+    return () => {
+      videoRefEffect.removeEventListener('ended', toggleVideoPlaying)
+    }
+  }, [videoRef, videoPlaying, setVideoPlaying])
+
   return (
     <figure key={id} role="group" className={cn('relative flex flex-col text-gray-50 overflow-hidden', className)}>
       <div
