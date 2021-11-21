@@ -10,6 +10,24 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
+export const FigCaption: FC<{gallery: boolean; caption: string}> = ({gallery = false, caption = ''}) => {
+  const galleryClasses = [
+    'absolute',
+    'top-0',
+    'p-4',
+    'w-full',
+    'min-h-16',
+    'z-50',
+    'fontStyle-xs',
+    'bg-gradient-to-b',
+    'from-gray-900',
+    'to-transparent',
+    'opacity-80',
+    'text-shadow-sm'
+  ]
+  return <figcaption className={cn(gallery && galleryClasses)} dangerouslySetInnerHTML={{__html: caption}} />
+}
+
 export const MediaImage: FC<ImageProps> = ({
   id,
   link,
@@ -24,20 +42,9 @@ export const MediaImage: FC<ImageProps> = ({
 }) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
-    <figure key={id} role="group" className={cn(gallery && className, wrapperClassName)}>
+    <figure key={id} role="group" className={cn('relative text-gray-50', gallery && className, wrapperClassName)}>
       {url && <img src={url} alt={parsedInfos?.alt} className={!gallery ? className : `relative h-full w-full`} />}
-      {parsedInfos?.caption && (
-        <>
-          {gallery && (
-            // eslint-disable-next-line max-len
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-gray-900 to-transparent opacity-80 pointer-events-none" />
-          )}
-          <figcaption
-            className={gallery && `absolute bottom-0 p-4 w-full z-50 fontStyle-xs text-gray-50 bg-opacity-80`}
-            dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
-          />
-        </>
-      )}
+      {parsedInfos?.caption && <FigCaption gallery={gallery} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
@@ -73,28 +80,16 @@ export const MediaVideo: FC<VideoProps> = ({
     videoRef.current.play()
   }
 
-  useEffect(() => {
-    function toggleVideoPlaying() {
-      setVideoPlaying(!videoPlaying)
-    }
-    const videoRefEffect = videoRef.current
-    videoRefEffect.addEventListener('seeked', toggleVideoPlaying)
-    return () => {
-      videoRefEffect.removeEventListener('seeked', toggleVideoPlaying)
-    }
-  })
-
-  const gradientClass = ['absolute bottom-0 w-full z-10 bg-gradient-to-t from-gray-900 to-transparent']
-  if (controls) {
-    gradientClass.push(' h-full flex items-center justify-center text-gray-50 transition-opacity')
-  } else {
-    gradientClass.push('h-1/2 opacity-80')
-  }
-
   return (
-    <figure key={id} role="group" className={cn('relative flex flex-col', wrapperClassName)}>
+    <figure key={id} role="group" className={cn('relative flex flex-col text-gray-50', wrapperClassName)}>
       <div className={cn('relative overflow-hidden', className)}>
-        <div className={cn(gradientClass, videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80')} onClick={handleClick}>
+        <div
+          className={cn(
+            'absolute top-0 h-full w-full flex justify-center items-center z-10 transition-opacity ',
+            videoPlaying ? 'pointer-events-none opacity-0' : 'opacity-80'
+          )}
+          onClick={handleClick}
+        >
           {controls && <PlayIcon className="w-12 h-12" />}
         </div>
         <video
@@ -109,14 +104,7 @@ export const MediaVideo: FC<VideoProps> = ({
           <meta itemProp="description" content={parsedInfos?.alt}></meta>
         </video>
       </div>
-      {parsedInfos?.caption && (
-        <div className={cn(videoPlaying && 'hidden')}>
-          <figcaption
-            className={cn('fontStyle-sm', !gallery ? 'mt-4' : `absolute bottom-0 pb-4 pl-4 w-full h-10 z-40 text-gray-50`)}
-            dangerouslySetInnerHTML={{__html: parsedInfos.caption}}
-          />
-        </div>
-      )}
+      {parsedInfos?.caption && <FigCaption gallery={gallery} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
