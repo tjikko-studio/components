@@ -82,7 +82,7 @@ export const MediaVideo: FC<VideoProps> = ({
     return () => {
       videoRefEffect.removeEventListener('seeked', toggleVideoPlaying)
     }
-  })
+  }, [videoRef, videoPlaying, setVideoPlaying])
 
   const gradientClass = ['absolute bottom-0 w-full z-10 bg-gradient-to-t from-gray-900 to-transparent']
   if (controls) {
