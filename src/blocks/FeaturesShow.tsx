@@ -3,6 +3,7 @@ import 'intersection-observer'
 import React, {FC, RefObject, useEffect, useRef} from 'react'
 import cn from 'classnames'
 
+import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import {ImageProps} from '../parts/Media'
@@ -222,7 +223,7 @@ const FeaturesShowSection: FC<{
       }
     }
   }, [imgContainerRef])
-  const parsedInfos = item.image?.[0].info ? JSON.parse(item.image?.[0].info) : null
+  const parsedInfos = nonThrowingJsonParse(item.image?.[0]?.info)
   return (
     <div className="relative w-full px-2.5 sm:px-5">
       {item.image?.[0] && (

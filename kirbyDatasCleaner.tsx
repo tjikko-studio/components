@@ -39,7 +39,7 @@ export const flattenContent = (val: Record<string, unknown>, prop: string, level
 /*
  * To return if a string is a json
  */
-export const nonThrowingJsonParse = (str: string): boolean => {
+export const nonThrowingJsonParse = (str: string): any => {
   try {
     return JSON.parse(str)
   } catch (error) {
@@ -154,7 +154,7 @@ export const fixAlt = (image: any) => {
         ...image,
         content: {
           ...image.content,
-          alt: image.info
+          alt: image?.info
         }
       }
     : null
