@@ -10,5 +10,6 @@ export default {
   justifyContent: ['first', 'last'],
   borderWidth: ['first', 'last'],
   padding: ['first', 'last', 'before', 'after'],
-  margin: ['first', 'last', 'before', 'after']
+  margin: ['first', 'last', 'before', 'after'],
+  zIndex: ['hover']
 }

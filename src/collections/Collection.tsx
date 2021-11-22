@@ -105,11 +105,11 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
               </div>
 
               <div className="lg:w-1/2">
-                <Gallery images={item.content.images} mobileColumns={true} />
+                <Gallery content={item.content.images} mobileColumns={true} />
               </div>
             </div>
 
-            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" wrapperClassName="w-full" />}
+            {item.content.video?.[0] && <Media media={item.content.video[0]} className="w-full rounded-xl" />}
 
             <ReadMoreButton hideOnSm />
           </div>

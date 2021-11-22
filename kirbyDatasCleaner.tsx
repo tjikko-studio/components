@@ -37,6 +37,17 @@ export const flattenContent = (val: Record<string, unknown>, prop: string, level
 }
 
 /*
+ * To return if a string is a json
+ */
+export const nonThrowingJsonParse = (str: string): boolean => {
+  try {
+    return JSON.parse(str)
+  } catch (error) {
+    return null
+  }
+}
+
+/*
  * Navigation flatten function
  */
 export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
@@ -168,7 +179,7 @@ export const flattenImages = (obj: any) => {
   })
   return toArray(
     deeply(mapValues)(obj, function (val: any, key: string) {
-      if (key === 'image' && isArray(val) && typeof val[0] !== undefined) {
+      if ((key === 'image' || key === 'media') && isArray(val) && typeof val[0] !== undefined) {
         return fixAlt(val[0])
       } else {
         return val

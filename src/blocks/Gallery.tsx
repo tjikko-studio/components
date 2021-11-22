@@ -1,14 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {ImageProps, Media} from '../parts/Media'
-
-export interface MediaProps extends ImageProps {
-  autoplay?: boolean
-  muted?: boolean
-  controls?: boolean
-  loop?: boolean
-}
+import {GenericMediaProps, Media} from '../parts/Media'
 
 export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -19,7 +12,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
   /**
    *  Block image
    */
-  images?: MediaProps[]
+  content?: GenericMediaProps[]
 
   /**
    * alt text
@@ -35,9 +28,9 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption = '', mobileColumns = false}) => {
+export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption = '', mobileColumns = false}) => {
   let gridLayout = null
-  switch (images.length) {
+  switch (content.length) {
     case 2:
     case 4:
       gridLayout = 'grid-cols-2'
@@ -50,21 +43,20 @@ export const Gallery: FC<GalleryProps> = ({images = [], className = '', caption 
   }
 
   gridLayout = !mobileColumns && gridLayout ? `xs:${gridLayout}` : gridLayout
-
   return (
-    <figure role="group" className={cn('h-full', className)}>
-      <div className={cn('grid gap-2 h-full', gridLayout)}>
-        {images.length ? (
-          images.map((image) => {
+    <figure role="group" className={cn(className)}>
+      <div className={cn('grid gap-2', gridLayout)}>
+        {content.length ? (
+          content.map((img) => {
             return (
               <Media
-                key={image.id}
-                media={image}
-                autoplay={false}
-                muted={false}
-                controls={false}
-                loop={false}
-                className={'relative rounded-lg shadow-xl w-full h-full overflow-hidden'}
+                key={img.media ? img.media.id : img.id}
+                media={img.media ? img.media : img}
+                autoplay={img.autoplay}
+                muted={img.muted}
+                controls={img.controls}
+                loop={img.loop}
+                className={'rounded-lg shadow-xl w-full h-full overflow-hidden'}
                 gallery={true}
               />
             )
