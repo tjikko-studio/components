@@ -10,31 +10,24 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
-export const FigCaption: FC<{gallery?: boolean; playing?: boolean; caption: string}> = ({
-  gallery = false,
-  playing = false,
-  caption = ''
-}) => {
-  const shared = ['absolute w-full transition-transform-top ease-out duration-700']
-  const captionText = [shared, 'h-1/3 flex z-50 fontStyle-xs text-shadow-sm p-4']
-  const captionGradient = [shared, 'h-1/2 transform scale-y-150 opacity-80 bg-gradient-to-t from-transparent via-gray-900 to-transparent']
+export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = false, caption = ''}) => {
+  const shared = ['absolute w-full transition-transform transition-opacity z-50 fontStyle-xs text-shadow-sm p-4 transform']
+  const top = ['top-0 bg-gradient-to-b from-gray-900', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
+  const bottom = ['bottom-0 bg-gradient-to-t from-gray-900', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
   return (
     <>
-      <figcaption
-        className={cn(captionText, !playing ? 'top-2/3 items-end' : 'top-0 items-start')}
-        dangerouslySetInnerHTML={{__html: caption}}
-      />
-      <div className={cn(captionGradient, !playing ? 'top-3/4' : '-top-1/4 -translate-y-1/4')} />
+      <figcaption className={cn(shared, top)} dangerouslySetInnerHTML={{__html: caption}} />
+      <figcaption className={cn(shared, bottom)} dangerouslySetInnerHTML={{__html: caption}} />
     </>
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, link, url, extension, dimensions = {}, content = {}, className, gallery, info = ''}) => {
+export const MediaImage: FC<ImageProps> = ({id, url, className, gallery, info = ''}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', gallery && className)}>
       {url && <img src={url} alt={parsedInfos?.alt} className={!gallery ? className : `relative h-full w-full`} />}
-      {parsedInfos?.caption && <FigCaption gallery={gallery} caption={parsedInfos?.caption} />}
+      {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
     </figure>
   )
 }
@@ -46,19 +39,7 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({
-  id,
-  url,
-  content = {},
-  extension,
-  autoplay,
-  muted,
-  controls,
-  loop,
-  className,
-  gallery,
-  info = ''
-}) => {
+export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted, controls, loop, className, info = ''}) => {
   const parsedInfos = info ? JSON.parse(info) : null
 
   const videoRef = useRef(null)
@@ -95,7 +76,7 @@ export const MediaVideo: FC<VideoProps> = ({
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
       </video>
-      {parsedInfos?.caption && <FigCaption gallery={gallery} playing={videoPlaying} caption={parsedInfos?.caption} />}
+      {parsedInfos?.caption && <FigCaption playing={videoPlaying} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
