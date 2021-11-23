@@ -127,7 +127,7 @@ export const Hero: FC<HeroProps> = ({
               'bg-gradient-to-t',
               'from-gray-900',
               'to-transparent',
-              'opacity-60'
+              'opacity-80'
             ])}
           />
         </>
@@ -152,6 +152,7 @@ export const Hero: FC<HeroProps> = ({
             'flex',
             'flex-col',
             'gap-y-5',
+            'text-shadow-md',
             verPos,
             horPos
           ])}
