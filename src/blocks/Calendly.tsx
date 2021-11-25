@@ -70,10 +70,16 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
           <Input label="Phone" ref={phoneRef} />
         </Cell>
       </Row>
-      <TextArea label="Comments" information="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
-      <div className="flex-grow-0">
-        <Button label="Next" />
-      </div>
+      <Row>
+        <Cell>
+          <TextArea label="Comments" information="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Button label="Next" />
+        </Cell>
+      </Row>
     </form>
   )
 }
