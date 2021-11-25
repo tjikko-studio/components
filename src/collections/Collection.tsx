@@ -44,8 +44,7 @@ let classes = [
   'py-20',
   'sm:py-28',
   'md:py-36',
-  'gap-16',
-  'sm:gap-8'
+  'gap-16'
 ]
 
 const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
@@ -129,6 +128,7 @@ export const Collection: FC<CollectionProps> = ({items, datasource} = {items: nu
   }
 
   if (datasource === 'jobs') {
+    console.log(items)
     return <JobsCollection content={items} />
   }
 
