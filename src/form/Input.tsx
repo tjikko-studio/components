@@ -68,8 +68,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   columnStart?: number
   columnEnd?: number
-
-  inputRef?: any
 }
 
 /**
