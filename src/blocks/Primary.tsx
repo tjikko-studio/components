@@ -92,9 +92,9 @@ export const Primary: FC<PrimaryProps> = ({
             muted={muted}
             controls={controls}
             loop={loop}
-            className="rounded-lg shadow-xl w-full h-full flex-1"
+            className="rounded-lg shadow-xl w-full h-full lg:flex-1"
           />
-          <div className={cn('flex flex-col flex-1', {'justify-center': textPositionVertical === 'center'}, className)}>
+          <div className={cn('flex flex-col lg:flex-1', {'justify-center': textPositionVertical === 'center'}, className)}>
             <h2 className={cn('break-words', titleSize)}>{title}</h2>
             <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
