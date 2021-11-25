@@ -16,7 +16,7 @@ export interface CalendlyProps {
 }
 
 const Row = ({children}: PropsWithChildren<{}>) => {
-  return <div className="flex items-center gap-6 flex-col sm:flex-row">{children}</div>
+  return <div className="flex items-center gap-6 flex-col xl:flex-row">{children}</div>
 }
 
 const Cell = ({children}: PropsWithChildren<{}>) => {
