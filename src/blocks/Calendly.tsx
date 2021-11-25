@@ -5,6 +5,7 @@ import cn from 'classnames'
 import lightOrDark from '../../utilities/lightOrDark'
 import {Button} from '../Button'
 import {Input} from '../form/Input'
+import {TextArea} from '../form/TextArea'
 
 export interface CalendlyProps {
   username: string
@@ -15,7 +16,7 @@ export interface CalendlyProps {
 }
 
 const Row = ({children}: PropsWithChildren<{}>) => {
-  return <div className="flex items-center gap-6 flex-col sm:flex-row">{children}</div>
+  return <div className="flex items-center gap-6 flex-col xl:flex-row">{children}</div>
 }
 
 const Cell = ({children}: PropsWithChildren<{}>) => {
@@ -28,6 +29,7 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
   const nameRef = useRef(null)
   const companyRef = useRef(null)
   const phoneRef = useRef(null)
+  const commentsRef = useRef(null)
 
   const onSubmit = useCallback(
     (event: FormEvent) => {
@@ -36,7 +38,7 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
         prefill: {
           email: emailRef.current.value,
           name: nameRef.current.value,
-          customAnswers: {a1: companyRef.current.value, a2: phoneRef.current.value}
+          customAnswers: {a1: companyRef.current.value, a2: phoneRef.current.value, a3: commentsRef.current.value}
         },
         url: `https://calendly.com/${username}/${duration || '30min'}`
       })
@@ -68,9 +70,16 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
           <Input label="Phone" ref={phoneRef} />
         </Cell>
       </Row>
-      <div className="flex-grow-0">
-        <Button label="Next" />
-      </div>
+      <Row>
+        <Cell>
+          <TextArea label="Comments" information="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Button label="Next" />
+        </Cell>
+      </Row>
     </form>
   )
 }

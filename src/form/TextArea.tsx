@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {TextareaHTMLAttributes, forwardRef} from 'react'
 import cn from 'classnames'
 
 import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
@@ -12,7 +12,7 @@ import addValidatingClasses from '../../snippets/addValidatingClasses'
 import focusClasses from '../../utilities/focusClasses'
 import {gridAreas, isGridAreas} from '../../utilities/gridAreas'
 
-export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * focussed type
    */
@@ -70,108 +70,115 @@ export interface TextAreaProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const TextArea: FC<TextAreaProps> = ({
-  isError = false,
-  isDisabled = false,
-  isValidating = false,
-  isSuccess = false,
-  isFocussed = false,
-  label,
-  text,
-  placeholder,
-  information,
-  error,
-  className,
-  columnStart,
-  columnEnd
-}) => {
-  const textAreaClasses = [
-    'form-textarea',
-    'fontStyle-base',
-    'py-3',
-    'px-4',
-    'rounded-lg',
-    'border',
-    'w-full',
-    'bg-gray-50',
-    'dark:bg-gray-700',
-    'text-gray-800',
-    'dark:text-gray-100',
-    'border-gray-300',
-    'dark:border-gray-600'
-  ]
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (
+    {
+      isError = false,
+      isDisabled = false,
+      isValidating = false,
+      isSuccess = false,
+      isFocussed = false,
+      label,
+      text,
+      placeholder,
+      information,
+      error,
+      className,
+      columnStart,
+      columnEnd
+    },
+    ref
+  ) => {
+    const textAreaClasses = [
+      'form-textarea',
+      'fontStyle-base',
+      'py-3',
+      'px-4',
+      'rounded-lg',
+      'border',
+      'w-full',
+      'bg-gray-50',
+      'dark:bg-gray-700',
+      'text-gray-800',
+      'dark:text-gray-100',
+      'border-gray-300',
+      'dark:border-gray-600'
+    ]
 
-  addDisabledClasses(isDisabled, textAreaClasses)
-  addErrorClasses(isError, textAreaClasses)
-  addValidatingClasses(isValidating, textAreaClasses)
-  if (isValidating) {
-    textAreaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
-  }
+    addDisabledClasses(isDisabled, textAreaClasses)
+    addErrorClasses(isError, textAreaClasses)
+    addValidatingClasses(isValidating, textAreaClasses)
+    if (isValidating) {
+      textAreaClasses.push('drop-shadow-sm', 'outline-none', 'ring-2', 'border-transparent')
+    }
 
-  addSuccessClasses(isSuccess, textAreaClasses)
-  if (isSuccess) {
-    textAreaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
-  }
+    addSuccessClasses(isSuccess, textAreaClasses)
+    if (isSuccess) {
+      textAreaClasses.push('drop-shadow-sm outline-none ring-2 border-transparent')
+    }
 
-  const Content = () => {
+    const Content = () => {
+      return (
+        <>
+          {label && (
+            <div
+              className={cn([
+                'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
+                isDisabled && 'text-gray-500 dark:text-gray-600',
+                'mb-2'
+              ])}
+              style={gridAreas('label', columnStart, columnEnd)}
+            >
+              <p className="w-full">{label}</p>
+              {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
+              {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
+              {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
+            </div>
+          )}
+          <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+            <textarea
+              ref={ref}
+              className={cn(textAreaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
+              defaultValue={text}
+              placeholder={placeholder}
+              disabled={isDisabled}
+            />
+          </div>
+          {information && (
+            <div
+              className={cn(
+                `sm:grid-in-info-${columnStart}`,
+                isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
+                'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
+              )}
+              style={gridAreas('info', columnStart, columnEnd)}
+              dangerouslySetInnerHTML={{__html: information}}
+            />
+          )}
+          {isError && (
+            <div
+              className={cn(
+                `sm:grid-in-error-${columnStart} fontStyle-sm min-h-6 flex`,
+                isError ? 'opacity-100' : 'opacity-0',
+                'items-center text-red-600 dark:text-red-400 mt-2'
+              )}
+              style={gridAreas('error', columnStart, columnEnd)}
+            >
+              {error}
+            </div>
+          )}
+        </>
+      )
+    }
+
+    if (isGridAreas(columnStart, columnEnd)) {
+      return <Content />
+    }
     return (
-      <>
-        {label && (
-          <div
-            className={cn([
-              'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
-              isDisabled && 'text-gray-500 dark:text-gray-600',
-              'mb-2'
-            ])}
-            style={gridAreas('label', columnStart, columnEnd)}
-          >
-            <p className="w-full">{label}</p>
-            {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
-            {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
-            {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
-          </div>
-        )}
-        <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
-          <textarea
-            className={cn(textAreaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
-            defaultValue={text}
-            placeholder={placeholder}
-            disabled={isDisabled}
-          />
-        </div>
-        {information && (
-          <div
-            className={cn(
-              `sm:grid-in-info-${columnStart}`,
-              isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
-              'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
-            )}
-            style={gridAreas('info', columnStart, columnEnd)}
-            dangerouslySetInnerHTML={{__html: information}}
-          />
-        )}
-        {isError && (
-          <div
-            className={cn(
-              `sm:grid-in-error-${columnStart} fontStyle-sm min-h-6 flex`,
-              isError ? 'opacity-100' : 'opacity-0',
-              'items-center text-red-600 dark:text-red-400 mt-2'
-            )}
-            style={gridAreas('error', columnStart, columnEnd)}
-          >
-            {error}
-          </div>
-        )}
-      </>
+      <div className={cn('flex flex-col', className)}>
+        hello
+        <Content />
+      </div>
     )
   }
-
-  if (isGridAreas(columnStart, columnEnd)) {
-    return <Content />
-  }
-  return (
-    <div className={cn('flex flex-col', className)}>
-      <Content />
-    </div>
-  )
-}
+)
