@@ -111,6 +111,7 @@ function classModifier(
     const viewportHeight = window.innerHeight
     const {top, bottom, height} = elem.getBoundingClientRect()
     const from = window.innerHeight >= bottom ? 'top' : 'bottom'
+    // animation direction depending of the origin and scroll direction
     const inactiveClasses =
       lastScrollTop <= bottom
         ? from === 'bottom'
@@ -122,19 +123,10 @@ function classModifier(
 
     clone.className = inactiveClasses
     if (bottom > 0) {
-      if (top < viewportHeight) {
-        // isIntersecting
-        if (bottom > viewportHeight && top < 0) {
-          // sticking off both ends of the viewport!
+      if (top < viewportHeight && bottom > viewportHeight) {
+        const fullRatio = (viewportHeight - top) / height
+        if (fullRatio > fullRatio / 2) {
           clone.className = activeClasses
-        } else if (bottom > viewportHeight) {
-          // only top is partially visible
-          const fullRatio = (viewportHeight - top) / height
-          if (fullRatio > fullRatio / 2) {
-            clone.className = activeClasses
-          } else {
-            clone.className = activeClasses
-          }
         }
       }
     }
