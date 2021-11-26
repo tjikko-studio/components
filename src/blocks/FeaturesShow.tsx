@@ -92,23 +92,12 @@ function observerArgs(
   ]
 }
 
-function easeOutCirc(val: number): number {
-  return Math.sqrt(1 - Math.pow(val - 1, 2))
-}
+// function easeOutCirc(val: number): number {
+//   return Math.sqrt(1 - Math.pow(val - 1, 2))
+// }
 
-function getOpacity(elem: Element): string {
-  const viewportHeight = window.innerHeight
-  const viewportCenter = viewportHeight / 2
-  const {top, height} = elem.getBoundingClientRect()
-  const halfHeight = height / 2
-  const elemCenter = top + halfHeight
-  const delta = Math.abs(elemCenter - viewportCenter)
-  const fraction = delta / halfHeight
-  if (fraction > 1) {
-    return '0'
-  } else {
-    return easeOutCirc(1 - fraction).toString()
-  }
+function easeOutQuint(x: number): number {
+  return 1 - Math.pow(1 - x, 5)
 }
 
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
@@ -116,7 +105,27 @@ type OpacityModifierFn = () => void
 
 function opacityModifier(elem: Element, clone: HTMLDivElement): OpacityModifierFn {
   return () => {
-    clone.style.opacity = getOpacity(elem)
+    const viewportHeight = window.innerHeight
+    const {top, bottom, height} = elem.getBoundingClientRect()
+    let opacityRatio = 0
+    if (bottom > 0) {
+      if (top < viewportHeight) {
+        // isIntersecting
+        if (bottom > viewportHeight && top < 0) {
+          // sticking off both ends of the viewport!
+          opacityRatio = 1
+        } else if (bottom > viewportHeight) {
+          // only top is partially visible
+          const fullRatio = (viewportHeight - top) / height
+          if (fullRatio > fullRatio / 2) {
+            opacityRatio = 1 - fullRatio
+          } else {
+            opacityRatio = fullRatio * 2
+          }
+        }
+      }
+    }
+    clone.style.opacity = easeOutQuint(opacityRatio).toString()
   }
 }
 
@@ -174,16 +183,9 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     ? 'top-0 sm:top-auto sm:bottom-0'
     : 'top-0 sm:bottom-0'
 
-  const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
-    <div
-      className={`relative flex items-start transition-opacity items-center ${relativePos}`}
-      ref={infoBoxContainerRef}
-      style={{
-        height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
-      }}
-    >
-      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
+    <div className={`relative flex items-start items-center ${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
