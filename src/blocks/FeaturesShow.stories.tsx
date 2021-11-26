@@ -65,7 +65,6 @@ function makePages({
     for (let j = 0; j < amount; j += 1) {
       const pos = positions[j]
       postList.slice(j, 1)
-      console.log(positions)
       page.info_boxes.push(makePopup(i, j, pos))
     }
     items.push(page)

@@ -99,7 +99,7 @@ function observerArgs(
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
 type OpacityModifierFn = () => void
 
-function opacityModifier(
+function classModifier(
   elem: Element,
   clone: HTMLDivElement,
   activeClasses: string,
@@ -176,8 +176,8 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
       randomId = Math.random().toString()
       infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const modifyOpacity = opacityModifier(infoBox, clone, activeClasses, inactiveDownClasses, inactiveUpClasses)
-          entry.isIntersecting ? addScrollListener(randomId, modifyOpacity) : removeScrollListener(randomId)
+          const modifyClass = classModifier(infoBox, clone, activeClasses, inactiveDownClasses, inactiveUpClasses)
+          entry.isIntersecting ? addScrollListener(randomId, modifyClass) : removeScrollListener(randomId)
         })
       })
       infoBoxObserver.observe(infoBox)
