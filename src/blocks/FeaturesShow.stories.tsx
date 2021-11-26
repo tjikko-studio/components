@@ -31,7 +31,17 @@ const bodies = [
   '<p>Nunc pellentesque odio viverra consequat blandit. Praesent diam nunc, lacinia quis viverra vitae, dignissim vel elit. </p>'
 ]
 
-const postList = ['top|left', 'bottom|center', 'top|right', 'bottom|right', 'bottom|left', 'top|center']
+const postListRandom = [
+  'top|left',
+  'bottom|center',
+  'top|right',
+  'center|left',
+  'bottom|right',
+  'bottom|left',
+  'top|center',
+  'center|right'
+]
+const postListRepeat = ['top|left', 'top|left', 'center|right', 'center|right']
 
 function makePopup(parentIdx: number, idx: number, pos: string) {
   return {
@@ -43,11 +53,13 @@ function makePopup(parentIdx: number, idx: number, pos: string) {
 function makePages({
   nbPages,
   nbPopups,
-  makePopup
+  makePopup,
+  postList
 }: {
   nbPages: number
   nbPopups: number | ((pageIdx: number) => number)
   makePopup: Function
+  postList?: string[]
 }) {
   const items = []
   for (let i = 0; i < nbPages; i += 1) {
@@ -61,8 +73,8 @@ function makePages({
       info_boxes: []
     }
     const amount = typeof nbPopups === 'function' ? nbPopups(i) : nbPopups
-    const positions = [...postList, ...postList, ...postList]
     for (let j = 0; j < amount; j += 1) {
+      const positions = [...postList, ...postList, ...postList, ...postList]
       const pos = positions[j]
       postList.slice(j, 1)
       page.info_boxes.push(makePopup(i, j, pos))
@@ -82,13 +94,16 @@ function makePages({
 }
 
 export const OnePopupPerPage = Template.bind({})
-OnePopupPerPage.args = makePages({nbPages: 2, nbPopups: 1, makePopup})
+OnePopupPerPage.args = makePages({nbPages: 2, nbPopups: 1, makePopup, postList: postListRandom})
 
 export const TwoPopupsPerPage = Template.bind({})
-TwoPopupsPerPage.args = makePages({nbPages: 2, nbPopups: 2, makePopup})
+TwoPopupsPerPage.args = makePages({nbPages: 2, nbPopups: 2, makePopup, postList: postListRandom})
 
 export const ThreePopupsPerPage = Template.bind({})
-ThreePopupsPerPage.args = makePages({nbPages: 2, nbPopups: 3, makePopup})
+ThreePopupsPerPage.args = makePages({nbPages: 2, nbPopups: 3, makePopup, postList: postListRandom})
 
 export const xPopupsOnPageX = Template.bind({})
-xPopupsOnPageX.args = makePages({nbPages: 10, nbPopups: (pageIdx) => pageIdx, makePopup})
+xPopupsOnPageX.args = makePages({nbPages: 10, nbPopups: (pageIdx) => pageIdx, makePopup, postList: postListRandom})
+
+export const RepeatingPopupPosition = Template.bind({})
+RepeatingPopupPosition.args = makePages({nbPages: 2, nbPopups: 4, makePopup, postList: postListRepeat})
