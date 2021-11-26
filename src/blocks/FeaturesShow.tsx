@@ -96,36 +96,49 @@ function observerArgs(
 //   return Math.sqrt(1 - Math.pow(val - 1, 2))
 // }
 
-function easeOutQuint(x: number): number {
-  return 1 - Math.pow(1 - x, 5)
-}
-
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
 type OpacityModifierFn = () => void
 
-function opacityModifier(elem: Element, clone: HTMLDivElement): OpacityModifierFn {
+function opacityModifier(
+  elem: Element,
+  clone: HTMLDivElement,
+  activeClasses: string,
+  inactiveDownClasses: string,
+  inactiveUpClasses: string
+): OpacityModifierFn {
+  let lastScrollTop = 0
   return () => {
     const viewportHeight = window.innerHeight
     const {top, bottom, height} = elem.getBoundingClientRect()
-    let opacityRatio = 0
+    const from = window.innerHeight >= bottom ? 'top' : 'bottom'
+    const inactiveClasses =
+      lastScrollTop <= bottom
+        ? from === 'bottom'
+          ? inactiveDownClasses
+          : inactiveUpClasses
+        : from === 'top'
+        ? inactiveUpClasses
+        : inactiveDownClasses
+
+    clone.className = inactiveClasses
     if (bottom > 0) {
       if (top < viewportHeight) {
         // isIntersecting
         if (bottom > viewportHeight && top < 0) {
           // sticking off both ends of the viewport!
-          opacityRatio = 1
+          clone.className = activeClasses
         } else if (bottom > viewportHeight) {
           // only top is partially visible
           const fullRatio = (viewportHeight - top) / height
           if (fullRatio > fullRatio / 2) {
-            opacityRatio = 1 - fullRatio
+            clone.className = activeClasses
           } else {
-            opacityRatio = fullRatio * 2
+            clone.className = activeClasses
           }
         }
       }
     }
-    clone.style.opacity = easeOutQuint(opacityRatio).toString()
+    lastScrollTop = bottom
   }
 }
 
@@ -148,7 +161,12 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     let infoBoxObserver: IntersectionObserver = null
     let randomId: string = null
     if (infoBox && cloneLayer) {
-      infoBox.style.opacity = '0'
+      const initClassNames = `${infoBox.className} motion-safe:transition-opacity-transform duration-300 transform`
+      const activeClasses = `${initClassNames} translate-y-0 opacity-100`
+      const inactiveDownClasses = `${initClassNames} translate-y-4 opacity-0`
+      const inactiveUpClasses = `${initClassNames} -translate-y-4 opacity-0`
+      infoBox.className = inactiveDownClasses
+
       clone = infoBox.cloneNode(true) as HTMLDivElement
       clone.style.height = 'unset'
       clone.style.gridArea = position.replace('|', '-')
@@ -158,7 +176,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
       randomId = Math.random().toString()
       infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const modifyOpacity = opacityModifier(infoBox, clone)
+          const modifyOpacity = opacityModifier(infoBox, clone, activeClasses, inactiveDownClasses, inactiveUpClasses)
           entry.isIntersecting ? addScrollListener(randomId, modifyOpacity) : removeScrollListener(randomId)
         })
       })
@@ -184,7 +202,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     : 'top-0 sm:bottom-0'
 
   return (
-    <div className={`relative flex items-start items-center ${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
+    <div className={`relative flex items-start ${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
       <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />

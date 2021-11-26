@@ -1,11 +1,11 @@
-import animations from './animations'
 import colors from './colors'
 import sizes, {breakpoints} from './sizes'
 import text from './text'
+import transitions from './transitions'
 import variants from './variants'
 
 const theme = {
-  ...animations,
+  ...transitions,
   ...text,
   ...colors,
   ...sizes
