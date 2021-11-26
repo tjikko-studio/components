@@ -31,11 +31,13 @@ const bodies = [
   '<p>Nunc pellentesque odio viverra consequat blandit. Praesent diam nunc, lacinia quis viverra vitae, dignissim vel elit. </p>'
 ]
 
-function makePopup(parentIdx: number, idx: number) {
+const postList = ['top|left', 'bottom|center', 'top|right', 'bottom|right', 'bottom|left', 'top|center']
+
+function makePopup(parentIdx: number, idx: number, pos: string) {
   return {
     title: `<p>Page ${parentIdx} / popup ${idx + 1}.</p>`,
     body: bodies[idx],
-    position: 'top|right'
+    position: pos
   }
 }
 function makePages({
@@ -59,8 +61,12 @@ function makePages({
       info_boxes: []
     }
     const amount = typeof nbPopups === 'function' ? nbPopups(i) : nbPopups
+    const positions = [...postList, ...postList, ...postList]
     for (let j = 0; j < amount; j += 1) {
-      page.info_boxes.push(makePopup(i, j))
+      const pos = positions[j]
+      postList.slice(j, 1)
+      console.log(positions)
+      page.info_boxes.push(makePopup(i, j, pos))
     }
     items.push(page)
   }
