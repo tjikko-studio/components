@@ -38,7 +38,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
   let logoClass = ['w-auto h-12 md:h-14 lg:h-16 xl:h-18']
   let layoutClass = ['flex justify-center']
 
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0)
+  const [marqueeSpeed, setMarqueeSpeed] = useState(72)
 
   useEffect(() => {
     const updateMarqueeSpeed = () => {
@@ -69,14 +69,13 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <Media media={image} className={cn(logoClass)} fit={true} mediaClasses={cn({'filter grayscale': logosGrayscale})} />
+              <Media media={image} className={cn(logoClass)} mediaClasses={cn({'filter grayscale': logosGrayscale})} fit />
             </div>
           )
         })}
       </>
     )
   }
-  //window.innerWidth
   return (
     <section>
       {logosLayout === 'grid' ? (
