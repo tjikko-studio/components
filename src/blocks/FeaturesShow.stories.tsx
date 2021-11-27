@@ -94,7 +94,7 @@ function makePages({
 }
 
 export const OnePopupPerPage = Template.bind({})
-OnePopupPerPage.args = makePages({nbPages: 2, nbPopups: 1, makePopup, postList: postListRandom})
+OnePopupPerPage.args = makePages({nbPages: 1, nbPopups: 1, makePopup, postList: postListRandom})
 
 export const TwoPopupsPerPage = Template.bind({})
 TwoPopupsPerPage.args = makePages({nbPages: 2, nbPopups: 2, makePopup, postList: postListRandom})

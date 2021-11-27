@@ -103,23 +103,39 @@ function classModifier(
   elem: Element,
   clone: HTMLDivElement,
   activeClasses: string,
-  inactiveDownClasses: string,
-  inactiveUpClasses: string
+  animBelowClass: string,
+  animAboveClass: string
 ): OpacityModifierFn {
-  let lastScrollTop = 0
+  let lastBottom = 0
   return () => {
     const viewportHeight = window.innerHeight
     const {top, bottom, height} = elem.getBoundingClientRect()
-    const from = window.innerHeight >= bottom ? 'top' : 'bottom'
-    // animation direction depending of the origin and scroll direction
-    const inactiveClasses =
-      lastScrollTop <= bottom
-        ? from === 'bottom'
-          ? inactiveDownClasses
-          : inactiveUpClasses
-        : from === 'top'
-        ? inactiveUpClasses
-        : inactiveDownClasses
+
+    // Item position relative to the window height used to determine
+    const itemPos = window.innerHeight >= bottom ? 'below' : 'above'
+    const scrollDir = lastBottom <= bottom ? 'up' : 'down'
+
+    let inactiveClasses = ''
+    if (scrollDir === 'up') {
+      if (itemPos === 'above') {
+        // Scrolling up with item position below the viewport
+        // Animation will go forward
+        inactiveClasses = animBelowClass
+      } else if (itemPos === 'below') {
+        // Scrolling up with item position above the viewport
+        // Animation will go 
+        inactiveClasses = animAboveClass
+      }
+      // 
+    } else if (scrollDir === 'down') {
+      if (itemPos === 'above') {
+        // Scrolling down with item position below the viewport
+        inactiveClasses = animAboveClass
+      } else if (itemPos === 'below') {
+        // Scrolling down with item position above the viewport
+        inactiveClasses = animBelowClass
+      }
+    }
 
     clone.className = inactiveClasses
     if (bottom > 0) {
@@ -130,7 +146,7 @@ function classModifier(
         }
       }
     }
-    lastScrollTop = bottom
+    lastBottom = bottom
   }
 }
 
@@ -153,11 +169,24 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     let infoBoxObserver: IntersectionObserver = null
     let randomId: string = null
     if (infoBox && cloneLayer) {
+      // Classes applied all the time
       const initClassNames = `${infoBox.className} motion-safe:transition-opacity-transform duration-300 transform`
+
+      // Classes for the active state
       const activeClasses = `${initClassNames} translate-y-0 opacity-100`
-      const inactiveDownClasses = `${initClassNames} translate-y-4 opacity-0`
-      const inactiveUpClasses = `${initClassNames} -translate-y-4 opacity-0`
-      infoBox.className = inactiveDownClasses
+
+      // Classes used when:
+      // - When we scroll down and the item arrive from below the viewport
+      // - When we scroll up and the item leave below the viewport
+      const animBelowClass = `${initClassNames} translate-y-4 opacity-0`
+
+      // Classes used when:
+      // - When we scroll down and the item arrive from above the viewport
+      // - When we scroll up and the item leave above the viewport
+      const animAboveClass = `${initClassNames} -translate-y-4 opacity-0`
+
+      // Initial classes set to backward
+      infoBox.className = animBelowClass
 
       clone = infoBox.cloneNode(true) as HTMLDivElement
       clone.style.height = 'unset'
@@ -168,7 +197,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
       randomId = Math.random().toString()
       infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const modifyClass = classModifier(infoBox, clone, activeClasses, inactiveDownClasses, inactiveUpClasses)
+          const modifyClass = classModifier(infoBox, clone, activeClasses, animBelowClass, animAboveClass)
           entry.isIntersecting ? addScrollListener(randomId, modifyClass) : removeScrollListener(randomId)
         })
       })
