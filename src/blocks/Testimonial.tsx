@@ -24,7 +24,7 @@ export const Testimonial: FC<TestimonialProps> = ({body = '', image = {}, title 
   return (
     <div className="flex flex-col gap-y-6 text-gray-900 dark:text-gray-50">
       <p className="fontStyle-lg text-center text-brand-900 dark:text-brand-50">“{body}”</p>
-      <Media media={image} className="w-20 h-20 mx-auto rounded-full" />
+      <Media media={image} className="w-20 h-20 mx-auto rounded-full" fit={true} />
       <p className="fontStyle-xs uppercase text-center">{title}</p>
     </div>
   )

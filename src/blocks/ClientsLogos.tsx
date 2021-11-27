@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {FC, HTMLAttributes, useEffect, useState} from 'react'
 import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
@@ -17,6 +17,11 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   logosLayout?: 'grid' | 'marquee'
 
   /**
+   * To make logos grayscale (to avoid the client to reupload them and test their preference fast)
+   */
+  logosGrayscale?: boolean
+
+  /**
    * Clients logos object that will be parsed through to build the component
    */
   content?: ClientProps[]
@@ -25,12 +30,31 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout = 'grid'}) => {
+
+export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout = 'grid', logosGrayscale = false}) => {
   logosLayout = logosLayout ? logosLayout : 'grid'
 
   let wrapperClass = ['flex justify-center gap-12 sm:gap-14 lg:gap-16']
   let logoClass = ['w-auto h-12 md:h-14 lg:h-16 xl:h-18']
   let layoutClass = ['flex justify-center']
+
+  const [marqueeSpeed, setMarqueeSpeed] = useState(0)
+
+  useEffect(() => {
+    const updateMarqueeSpeed = () => {
+      const speed = window.innerWidth / 20
+      setMarqueeSpeed(speed <= 48 ? 48 : speed >= 96 ? 96 : speed)
+    }
+    if (logosLayout === 'marquee') {
+      updateMarqueeSpeed()
+      window.addEventListener('resize', updateMarqueeSpeed, false)
+    }
+    return () => {
+      if (logosLayout === 'marquee') {
+        window.removeEventListener('resize', updateMarqueeSpeed, false)
+      }
+    }
+  })
 
   if (logosLayout === 'grid') {
     wrapperClass.push('flex-wrap')
@@ -45,14 +69,14 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <Media media={image} className={cn(logoClass)} />
+              <Media media={image} className={cn(logoClass)} fit={true} mediaClasses={cn({'filter grayscale': logosGrayscale})} />
             </div>
           )
         })}
       </>
     )
   }
-
+  //window.innerWidth
   return (
     <section>
       {logosLayout === 'grid' ? (
@@ -62,7 +86,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
       ) : (
         logosLayout === 'marquee' && (
           <div className="relative w-screen transform -translate-x-1/2 left-1/2">
-            <Marquee gradientWidth="0" speed={88}>
+            <Marquee gradientWidth="0" speed={marqueeSpeed}>
               <div className={cn(wrapperClass)}>
                 <LogosList />
               </div>

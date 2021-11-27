@@ -60,7 +60,8 @@ const propsByType: Record<string, GetPropsFn> = {
   ClientsLogos: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      logosLayout: content.logos_layout
+      logosLayout: content.logos_layout,
+      logosGrayscale: content.logos_grayscale
     }
   },
   Primary: (content, id, attrs) => {
