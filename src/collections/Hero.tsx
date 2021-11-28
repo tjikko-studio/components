@@ -4,6 +4,7 @@ import cn from 'classnames'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
+import makeRandomId from '../../utilities/makeRandomId'
 import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'
@@ -77,6 +78,7 @@ export const Hero: FC<HeroProps> = ({
   templatesContent = {},
   className
 }) => {
+  const HeroHeadingId = makeRandomId()
   const finalHeroHeight = heroHeight || 'h-80vh'
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
@@ -88,6 +90,7 @@ export const Hero: FC<HeroProps> = ({
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
       style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
+      aria-labelledby={HeroHeadingId}
     >
       {bgType === 'video' && (
         <video
@@ -162,7 +165,8 @@ export const Hero: FC<HeroProps> = ({
               return toComponent(block, {
                 Heading: () => {
                   return {
-                    level: 'h1'
+                    level: 'h1',
+                    id: HeroHeadingId
                   }
                 }
               })

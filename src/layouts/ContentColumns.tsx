@@ -50,6 +50,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   columnStyles?: CSSProperties
 
   templatesContent?: Record<string, ColumnProps>
+
+  sectionHeadingId?: string
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
@@ -61,12 +63,25 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   columnClasses = '',
   columnStyles = {},
   templatesContent = {},
-  className
+  className,
+  sectionHeadingId
 }) => {
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
+  const headingExtraPropsFn = componentsExtraProps.Heading
+  if (headingExtraPropsFn) {
+    componentsExtraProps.Heading = (props) => {
+      return {...headingExtraPropsFn(props), id: sectionHeadingId}
+    }
+  } else {
+    componentsExtraProps.Heading = () => {
+      return {
+        id: sectionHeadingId
+      }
+    }
+  }
 
   return (
     <>

@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import extractCombo from '../../utilities/extractCombo'
 import lightOrDark from '../../utilities/lightOrDark'
+import makeRandomId from '../../utilities/makeRandomId'
 import {ContentColumns} from '../layouts/ContentColumns'
 
 import {ColumnProps, ComponentsExtraProps} from '../../shared/types'
@@ -67,6 +68,7 @@ export const Section: FC<SectionProps> = ({
   templatesContent = {},
   className
 }) => {
+  const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   // See safelist in tailwind.safelist.js
@@ -125,6 +127,7 @@ export const Section: FC<SectionProps> = ({
     <section
       className={cn('overflow-hidden', theme, className, floating && 'py-12 relative')}
       style={{backgroundColor: floating ? wrapperColor : bgColor}}
+      aria-labelledBy={sectionHeadingId}
     >
       <div className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div
@@ -139,6 +142,7 @@ export const Section: FC<SectionProps> = ({
               columnClasses="flex flex-col gap-y-6 h-full"
               templatesContent={templatesContent}
               className={cn(gridClasses)}
+              sectionHeadingId={sectionHeadingId}
             />
           ) : (
             <div>No content yet</div>
