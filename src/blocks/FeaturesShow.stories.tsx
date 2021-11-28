@@ -73,10 +73,10 @@ function makePages({
       info_boxes: []
     }
     const amount = typeof nbPopups === 'function' ? nbPopups(i) : nbPopups
+    const positions = [...postList, ...postList]
     for (let j = 0; j < amount; j += 1) {
-      const positions = [...postList, ...postList, ...postList, ...postList]
-      const pos = positions[j]
-      postList.slice(j, 1)
+      const pos = positions[j % positions.length]
+      console.log(`${j} % ${positions.length} = ${j % positions.length}`)
       page.info_boxes.push(makePopup(i, j, pos))
     }
     items.push(page)

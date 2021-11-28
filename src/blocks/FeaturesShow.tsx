@@ -186,7 +186,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     : 'top-0 sm:bottom-0'
 
   return (
-    <div className={`relative flex items-start ${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
+    <div className={`${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
       <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
