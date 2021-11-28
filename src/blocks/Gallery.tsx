@@ -57,7 +57,6 @@ export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption
                 controls={img.controls}
                 loop={img.loop}
                 className={'rounded-lg shadow-xl w-full h-full overflow-hidden'}
-                gallery={true}
               />
             )
           })

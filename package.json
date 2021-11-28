@@ -120,7 +120,7 @@
     "styles.js",
     "/README.md",
     "/assets/",
-    "applyFontConfig.js",
+    "tailwindCustomConfig.js",
     "tailwind.safelist.js",
     "shared/types/index.ts"
   ]

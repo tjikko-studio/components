@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 const styles = require('./styles')
-const applyFontConfig = require('./applyFontConfig')
+const tailwindCustomConfig = require('./tailwindCustomConfig')
 const safelist = require('./tailwind.safelist')
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
     require('@tailwindcss/forms')({strategy: 'class'}),
     plugin.withOptions(
       () => {
-        return applyFontConfig
+        return tailwindCustomConfig
       },
       () => {
         return styles

@@ -264,7 +264,30 @@ exports = function exports({theme, addBase, addUtilities}) {
       marginBottom: 'unset'
     }
   }
+
+  const ratios = {
+    '.ratio-none': {
+      'aspect-ratio': 'unset'
+    },
+    '.ratio-1\\/1': {
+      'aspect-ratio': '1 / 1'
+    },
+    '.ratio-3\\/2': {
+      'aspect-ratio': '3 / 2'
+    },
+    '.ratio-4\\/3': {
+      'aspect-ratio': '4 / 3'
+    },
+    '.ratio-16\\/9': {
+      'aspect-ratio': '16 / 9'
+    },
+    '.ratio-golden': {
+      'aspect-ratio': '1.618 / 1'
+    }
+  }
+
   addBase(fontBase)
   addUtilities(fontStyles, ['responsive'])
+  addUtilities(ratios, ['responsive'])
 }
 module.exports = exports

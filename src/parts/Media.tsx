@@ -22,11 +22,11 @@ export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = 
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, url, className, gallery, info = ''}) => {
+export const MediaImage: FC<ImageProps> = ({id, url, ratio, className, info = ''}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
-    <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', className)}>
-      {url && <img src={url} alt={parsedInfos?.alt} className="h-full w-full" />}
+    <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
+      {url && <img src={url} alt={parsedInfos?.alt} className={cn('h-full w-full', ratio && `object-cover`)} />}
       {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
     </figure>
   )
@@ -39,7 +39,7 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted, controls, loop, className, info = ''}) => {
+export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted, controls, loop, ratio, className, info = ''}) => {
   const parsedInfos = info ? JSON.parse(info) : null
 
   const videoRef = useRef(null)
@@ -62,7 +62,11 @@ export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted,
   }, [videoRef, videoPlaying, setVideoPlaying])
 
   return (
-    <figure key={id} role="group" className={cn('relative flex flex-col text-gray-50 overflow-hidden', className)}>
+    <figure
+      key={id}
+      role="group"
+      className={cn('relative flex flex-col text-gray-50 overflow-hidden', ratio && `ratio-${ratio}`, className)}
+    >
       <div
         className={cn(
           'absolute top-0 h-full w-full flex justify-center items-center z-10 transition-opacity',
@@ -72,7 +76,14 @@ export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted,
       >
         {controls && <PlayIcon className="w-12 h-12" />}
       </div>
-      <video ref={videoRef} autoPlay={autoplay} muted={muted} controls={videoPlaying} loop={loop} className="h-full w-full">
+      <video
+        ref={videoRef}
+        autoPlay={autoplay}
+        muted={muted}
+        controls={videoPlaying}
+        loop={loop}
+        className={cn('h-full w-full', ratio && `object-cover`)}
+      >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
       </video>
@@ -90,7 +101,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-  gallery?: boolean
+  ratio?: string
 }
 
 export const Media: FC<GenericMediaProps> = ({
@@ -99,8 +110,8 @@ export const Media: FC<GenericMediaProps> = ({
   muted = true,
   controls = false,
   loop = false,
-  className,
-  gallery
+  ratio = '',
+  className
 }) => {
   return media && media.type === 'video' ? (
     <MediaVideo
@@ -110,13 +121,18 @@ export const Media: FC<GenericMediaProps> = ({
       muted={muted}
       controls={controls}
       loop={loop}
+      ratio={ratio}
       className={className}
-      gallery={gallery}
     />
   ) : media && media.type === 'image' ? (
-    <MediaImage key={media.url} {...media} className={className} gallery={gallery} />
+    <MediaImage key={media.url} {...media} ratio={ratio} className={className} />
   ) : (
-    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50')}>
+    <div
+      className={cn(
+        'h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-50',
+        ratio && `ratio-${ratio}`
+      )}
+    >
       <MediaIcon className="w-8 h-8 opacity-60" />
     </div>
   )
