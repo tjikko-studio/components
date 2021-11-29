@@ -15,10 +15,10 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.base-dark')
     },
     '.fontStyle-base.strong, .fontStyle-base strong, .strong': {
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
     '.dark .fontStyle-base.strong, .dark.fontStyle-base.strong': {
-      fontWeight: theme('fontWeight.semibold-dark')
+      fontWeight: theme('fontWeight.medium-dark')
     },
     '.fontStyle-base.uppercase, .fontStyle-base uppercase, .uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -38,10 +38,10 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.lg-dark')
     },
     '.fontStyle-lg.strong, .fontStyle-lg strong': {
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
     '.dark .fontStyle-lg.strong, .dark.fontStyle-lg.strong': {
-      fontWeight: theme('fontWeight.semibold-dark')
+      fontWeight: theme('fontWeight.medium-dark')
     },
     '.fontStyle-lg.uppercase, .fontStyle-lg uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -61,10 +61,10 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.sm-dark')
     },
     '.fontStyle-sm.strong, .fontStyle-sm strong': {
-      fontWeight: theme('fontWeight.semibold')
+      fontWeight: theme('fontWeight.medium')
     },
     '.dark .fontStyle-sm.strong, .dark.fontStyle-sm.strong': {
-      fontWeight: theme('fontWeight.semibold-dark')
+      fontWeight: theme('fontWeight.medium-dark')
     },
     '.fontStyle-sm.uppercase, .fontStyle-sm uppercase': {
       letterSpacing: theme('letterSpacing.wider')
@@ -84,10 +84,10 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontWeight: theme('fontWeight.xs-dark')
     },
     '.fontStyle-xs.strong, .fontStyle-xs strong': {
-      fontWeight: theme('fontWeight.bold')
+      fontWeight: theme('fontWeight.semibold')
     },
     '.dark .fontStyle-xs.strong, .dark.fontStyle-xs.strong': {
-      fontWeight: theme('fontWeight.bold-dark')
+      fontWeight: theme('fontWeight.semibold-dark')
     },
     '.fontStyle-xs.uppercase, .fontStyle-xs uppercase': {
       letterSpacing: theme('letterSpacing.wider')

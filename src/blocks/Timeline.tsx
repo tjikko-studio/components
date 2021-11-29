@@ -25,7 +25,7 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
               muted={true}
               controls={false}
               loop={true}
-              className={'rounded-lg shadow-xl w-full h-full'}
+              className={'rounded-lg shadow-2xl w-full h-full'}
             />
           )}
         </div>

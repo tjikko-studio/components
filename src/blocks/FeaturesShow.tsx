@@ -183,7 +183,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
         height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
       }}
     >
-      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 transition-opacity duration-700')}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 transition-opacity duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
