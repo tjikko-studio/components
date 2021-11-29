@@ -89,22 +89,44 @@ function observerArgs(
 }
 
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
-type OpacityModifierFn = () => void
+type CloneModifierFn = () => void
 
-function classModifier(
+function cloneModifier(
   elem: Element,
   clone: HTMLDivElement,
   activeClasses: string,
   fadeOutDown: string,
   fadeOutUp: string
-): OpacityModifierFn {
+): CloneModifierFn {
   return () => {
     const viewportHeight = window.innerHeight
-    const {top, bottom} = elem.getBoundingClientRect()
-    const inactiveClasses = bottom >= window.innerHeight ? fadeOutDown : fadeOutUp
+    const {top, bottom, height} = elem.getBoundingClientRect()
+    const bottomBelowTopFold = bottom > 0
+    const bottomBelowFold = bottom > window.innerHeight
+    const topAboveFold = top < viewportHeight
+    const topAboveTopFold = top < 0
+    const inactiveClasses = bottomBelowFold ? fadeOutDown : fadeOutUp
+    clone.className = bottomBelowFold && topAboveFold ? activeClasses : inactiveClasses
 
-    clone.className = bottom > viewportHeight && top < viewportHeight ? activeClasses : inactiveClasses
+    let opacityRatio = 0
+    if (bottomBelowTopFold) {
+      if (bottomBelowFold && topAboveTopFold) {
+        opacityRatio = 1
+      } else if (bottomBelowFold) {
+        const fullRatio = (viewportHeight - top) / height
+        if (fullRatio > 1 / 2) {
+          opacityRatio = 1 - fullRatio
+        } else {
+          opacityRatio = fullRatio * 2
+        }
+      }
+    }
+    clone.style.opacity = easeOutQuint(opacityRatio).toString()
   }
+}
+
+function easeOutQuint(x: number): number {
+  return 1 - Math.pow(1 - x, 5)
 }
 
 const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef, addScrollListener, removeScrollListener}) => {
@@ -118,15 +140,14 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
     let randomId: string = null
     if (infoBox && cloneLayer) {
       // Classes applied all the time
-      const initClassNames = `${infoBox.className} transition-opacity-transform duration-300 ease-in-out transform`
-      const activeClasses = `${initClassNames} translate-y-0 opacity-100`
-      const fadeOutDown = `${initClassNames} translate-y-4 opacity-0`
-      const fadeOutUp = `${initClassNames} -translate-y-4 opacity-0`
-
-      infoBox.className = fadeOutDown
+      const initClassNames = `${infoBox.className} transition-transform duration-300 ease-in-out transform`
+      const activeClasses = `${initClassNames} translate-y-0`
+      const fadeOutDown = `${initClassNames} translate-y-4`
+      const fadeOutUp = `${initClassNames} -translate-y-4`
+      infoBox.style.opacity = '0'
 
       clone = infoBox.cloneNode(true) as HTMLDivElement
-      clone.style.height = 'unset'
+      clone.style.minHeight = 'unset'
       clone.style.gridArea = position.replace('|', '-')
       clone.style.position = 'absolute' // required for the mobile case (no grid)
       cloneLayer.appendChild(clone)
@@ -134,7 +155,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
       randomId = Math.random().toString()
       infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const modifyClass = classModifier(infoBox, clone, activeClasses, fadeOutDown, fadeOutUp)
+          const modifyClass = cloneModifier(infoBox, clone, activeClasses, fadeOutDown, fadeOutUp)
           entry.isIntersecting ? addScrollListener(randomId, modifyClass) : removeScrollListener(randomId)
         })
       })
@@ -160,7 +181,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
     : 'top-0 sm:bottom-0'
 
   return (
-    <div className={`${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
+    <div className={`${relativePos} min-h-1/2vh`} ref={infoBoxContainerRef}>
       <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
