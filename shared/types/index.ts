@@ -21,8 +21,9 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
   }
   info?: string
   className?: string
-  wrapperClassName?: string
+  mediaClasses?: string
   gallery?: boolean
+  fit?: boolean
 }
 
 export type ImageProps = MediaProps

@@ -188,7 +188,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'NavigationLogo':
                                             return innerContent ? (
                                               <a href={homeLink}>
-                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" />
+                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" fit />
                                               </a>
                                             ) : null
                                           default:
