@@ -108,7 +108,18 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                 role={'navigation'}
                                                 aria-label={label}
                                               >
-                                                {label && <h3 className={cn(['fontStyle-xs', 'uppercase', 'text-gray-300'])}>{label}</h3>}
+                                                {label && (
+                                                  <h3
+                                                    className={cn([
+                                                      'fontStyle-xs',
+                                                      'uppercase',
+                                                      'strong',
+                                                      'text-gray-300'
+                                                    ])}
+                                                  >
+                                                    {label}
+                                                  </h3>
+                                                )}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                   const url = getLink(innerLink)
                                                   return (
@@ -177,7 +188,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'NavigationLogo':
                                             return innerContent ? (
                                               <a href={homeLink}>
-                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" />
+                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" fit />
                                               </a>
                                             ) : null
                                           default:

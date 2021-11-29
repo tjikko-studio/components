@@ -8,7 +8,7 @@ export default {
   component: FeaturesShow,
   argTypes: {},
   parameters: {
-    componentSubtitle: 'FAQ'
+    componentSubtitle: 'FeaturesShow'
   }
 } as Meta
 
@@ -31,17 +31,8 @@ const bodies = [
   '<p>Nunc pellentesque odio viverra consequat blandit. Praesent diam nunc, lacinia quis viverra vitae, dignissim vel elit. </p>'
 ]
 
-const postListRandom = [
-  'top|left',
-  'bottom|center',
-  'top|right',
-  'center|left',
-  'bottom|right',
-  'bottom|left',
-  'top|center',
-  'center|right'
-]
-const postListRepeat = ['top|left', 'top|left', 'center|right', 'center|right']
+const posListRandom = ['top|left', 'bottom|center', 'top|right', 'center|left', 'bottom|right', 'bottom|left', 'top|center', 'center|right']
+const posListRepeat = ['top|left', 'top|left', 'center|right', 'center|right']
 
 function makePopup(parentIdx: number, idx: number, pos: string) {
   return {
@@ -54,12 +45,12 @@ function makePages({
   nbPages,
   nbPopups,
   makePopup,
-  postList
+  posList
 }: {
   nbPages: number
   nbPopups: number | ((pageIdx: number) => number)
   makePopup: Function
-  postList?: string[]
+  posList?: string[]
 }) {
   const items = []
   for (let i = 0; i < nbPages; i += 1) {
@@ -73,10 +64,8 @@ function makePages({
       info_boxes: []
     }
     const amount = typeof nbPopups === 'function' ? nbPopups(i) : nbPopups
-    const positions = [...postList, ...postList]
     for (let j = 0; j < amount; j += 1) {
-      const pos = positions[j % positions.length]
-      console.log(`${j} % ${positions.length} = ${j % positions.length}`)
+      const pos = posList[j % posList.length]
       page.info_boxes.push(makePopup(i, j, pos))
     }
     items.push(page)
@@ -94,16 +83,16 @@ function makePages({
 }
 
 export const OnePopupPerPage = Template.bind({})
-OnePopupPerPage.args = makePages({nbPages: 1, nbPopups: 1, makePopup, postList: postListRandom})
+OnePopupPerPage.args = makePages({nbPages: 1, nbPopups: 1, makePopup, posList: posListRandom})
 
 export const TwoPopupsPerPage = Template.bind({})
-TwoPopupsPerPage.args = makePages({nbPages: 2, nbPopups: 2, makePopup, postList: postListRandom})
+TwoPopupsPerPage.args = makePages({nbPages: 2, nbPopups: 2, makePopup, posList: posListRandom})
 
 export const ThreePopupsPerPage = Template.bind({})
-ThreePopupsPerPage.args = makePages({nbPages: 2, nbPopups: 3, makePopup, postList: postListRandom})
+ThreePopupsPerPage.args = makePages({nbPages: 2, nbPopups: 3, makePopup, posList: posListRandom})
 
 export const xPopupsOnPageX = Template.bind({})
-xPopupsOnPageX.args = makePages({nbPages: 10, nbPopups: (pageIdx) => pageIdx, makePopup, postList: postListRandom})
+xPopupsOnPageX.args = makePages({nbPages: 10, nbPopups: (pageIdx) => pageIdx, makePopup, posList: posListRandom})
 
 export const RepeatingPopupPosition = Template.bind({})
-RepeatingPopupPosition.args = makePages({nbPages: 2, nbPopups: 4, makePopup, postList: postListRepeat})
+RepeatingPopupPosition.args = makePages({nbPages: 2, nbPopups: 4, makePopup, posList: posListRepeat})

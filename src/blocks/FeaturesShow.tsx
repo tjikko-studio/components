@@ -26,8 +26,6 @@ export type FeaturesShowItemBox = {
    * Content Position
    */
   position?: ContentPosition
-  idx: number
-  totalNbBoxes: number
   cloneLayerRef: RefObject<HTMLDivElement>
   addScrollListener: ScrollListenerAdder
   removeScrollListener: ScrollListenerRemover
@@ -39,8 +37,6 @@ export type FeaturesShowItem = {
   subtitle?: string
   info_boxes?: FeaturesShowItemBox[]
 }
-
-const growthFactor = 2
 
 type Caps = [number, number]
 type Easing = (val: number) => number
@@ -92,10 +88,6 @@ function observerArgs(
   ]
 }
 
-// function easeOutCirc(val: number): number {
-//   return Math.sqrt(1 - Math.pow(val - 1, 2))
-// }
-
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
 type OpacityModifierFn = () => void
 
@@ -124,16 +116,7 @@ function classModifier(
   }
 }
 
-const InfoBox: FC<FeaturesShowItemBox> = ({
-  title,
-  body,
-  position,
-  idx,
-  totalNbBoxes,
-  cloneLayerRef,
-  addScrollListener,
-  removeScrollListener
-}) => {
+const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef, addScrollListener, removeScrollListener}) => {
   const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -187,7 +170,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
 
   return (
     <div className={`${relativePos} h-1/2vh`} ref={infoBoxContainerRef}>
-      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-xl p-8 duration-700')}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
@@ -264,13 +247,11 @@ const FeaturesShowSection: FC<{
           </div>
         </div>
       )}
-      {item.info_boxes.map((box, idx, all) => {
+      {item.info_boxes.map((box) => {
         return (
           <InfoBox
             key={box.title}
             {...box}
-            idx={idx}
-            totalNbBoxes={all.length}
             cloneLayerRef={cloneLayerRef}
             addScrollListener={addScrollListener}
             removeScrollListener={removeScrollListener}
