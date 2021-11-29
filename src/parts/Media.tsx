@@ -22,11 +22,13 @@ export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = 
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, url, ratio, className, info = ''}) => {
+export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, info = '', fit}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
-      {url && <img src={url} alt={parsedInfos?.alt} className={cn('h-full w-full', ratio && 'object-cover')} />}
+      {url && (
+        <img src={url} alt={parsedInfos?.alt} className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)} />
+      )}
       {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
     </figure>
   )
@@ -39,7 +41,20 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted, controls, loop, ratio, className, info = ''}) => {
+export const MediaVideo: FC<VideoProps> = ({
+  id,
+  url,
+  extension,
+  autoplay,
+  muted,
+  controls,
+  loop,
+  ratio,
+  className,
+  mediaClasses,
+  info = '',
+  fit
+}) => {
   const parsedInfos = info ? JSON.parse(info) : null
 
   const videoRef = useRef(null)
@@ -82,7 +97,7 @@ export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted,
         muted={muted}
         controls={videoPlaying}
         loop={loop}
-        className={cn('h-full w-full', ratio && 'object-cover')}
+        className={(cn('h-full', ratio && 'object-cover'), fit ? 'w-auto' : 'w-full', mediaClasses)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
@@ -102,6 +117,8 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   controls?: boolean
   loop?: boolean
   ratio?: string
+  fit?: boolean
+  mediaClasses?: string
 }
 
 export const Media: FC<GenericMediaProps> = ({
@@ -111,7 +128,9 @@ export const Media: FC<GenericMediaProps> = ({
   controls = false,
   loop = false,
   ratio = '',
-  className
+  className,
+  mediaClasses,
+  fit = false
 }) => {
   return media && media.type === 'video' ? (
     <MediaVideo
@@ -123,9 +142,11 @@ export const Media: FC<GenericMediaProps> = ({
       loop={loop}
       ratio={ratio}
       className={className}
+      mediaClasses={mediaClasses}
+      fit={fit}
     />
   ) : media && media.type === 'image' ? (
-    <MediaImage key={media.url} {...media} ratio={ratio} className={className} />
+    <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
   ) : (
     <div
       className={cn(
@@ -133,7 +154,7 @@ export const Media: FC<GenericMediaProps> = ({
         ratio && `ratio-${ratio}`
       )}
     >
-      <MediaIcon className="w-8 h-8 opacity-60" />
+      <MediaIcon className="w-8 h-8 opacity-60" fit={fit} />
     </div>
   )
 }

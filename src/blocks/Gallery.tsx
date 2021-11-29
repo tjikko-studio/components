@@ -56,7 +56,7 @@ export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption
                 muted={img.muted}
                 controls={img.controls}
                 loop={img.loop}
-                className={'rounded-lg shadow-xl w-full h-full overflow-hidden'}
+                className={'rounded-lg shadow-2xl w-full h-full overflow-hidden'}
               />
             )
           })

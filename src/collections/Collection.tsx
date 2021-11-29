@@ -128,7 +128,6 @@ export const Collection: FC<CollectionProps> = ({items, datasource} = {items: nu
   }
 
   if (datasource === 'jobs') {
-    console.log(items)
     return <JobsCollection content={items} />
   }
 

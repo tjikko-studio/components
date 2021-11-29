@@ -88,7 +88,7 @@ export const Primary: FC<PrimaryProps> = ({
             controls={controls}
             loop={loop}
             className={cn(
-              'rounded-lg shadow-xl',
+              'rounded-lg shadow-2xl',
               {'lg:col-start-2 lg:row-start-1': imagePosition === 'right' && finalLayout === 'default'},
               {'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'}
             )}
