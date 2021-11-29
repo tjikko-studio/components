@@ -54,7 +54,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
         window.removeEventListener('resize', updateMarqueeSpeed, false)
       }
     }
-  })
+  }, [setMarqueeSpeed, logosLayout])
 
   if (logosLayout === 'grid') {
     wrapperClass.push('flex-wrap')
