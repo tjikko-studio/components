@@ -1,1 +1,1 @@
-export default () => Math.round(Math.random() * 1000).toString()
+export default () => Math.round(Math.random() * 100000).toString()
