@@ -103,10 +103,7 @@ function classModifier(
     const {top, bottom} = elem.getBoundingClientRect()
     const inactiveClasses = bottom >= window.innerHeight ? fadeOutDown : fadeOutUp
 
-    clone.className = inactiveClasses
-    if (bottom > viewportHeight && top < viewportHeight) {
-      clone.className = activeClasses
-    }
+    clone.className = bottom > viewportHeight && top < viewportHeight ? activeClasses : inactiveClasses
   }
 }
 
