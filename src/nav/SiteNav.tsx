@@ -101,7 +101,7 @@ export const SiteNav: FC<SiteNavProps> = ({
               ])}
             >
               <a className="flex-auto" href={homeLink}>
-                <Media media={logo} className="h-3 lg:h-4 w-auto" />
+                <Media media={logo} className="h-3 lg:h-4 w-auto" fit />
               </a>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
@@ -183,7 +183,7 @@ export const SiteNav: FC<SiteNavProps> = ({
       <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'gap-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <a className="flex-auto" href={homeLink}>
-            {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" /> : null}
+            {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" fit /> : null}
           </a>
           <button
             aria-label={openMenuText}

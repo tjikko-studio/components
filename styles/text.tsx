@@ -50,7 +50,7 @@ export default {
     'base-dark': '350',
     'medium-dark': '450',
     'semibold-dark': '550',
-    'bold-dark': '550',
+    'bold-dark': '650',
     lg: '400',
     'lg-dark': '250',
     xl: '500',
@@ -62,7 +62,7 @@ export default {
     '7xl': '400',
     '8xl': '300',
     '9xl': '300'
-  },
+  }
 }
 
 /* module.exports = text; */

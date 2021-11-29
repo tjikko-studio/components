@@ -26,8 +26,6 @@ export type FeaturesShowItemBox = {
    * Content Position
    */
   position?: ContentPosition
-  idx: number
-  totalNbBoxes: number
   cloneLayerRef: RefObject<HTMLDivElement>
   addScrollListener: ScrollListenerAdder
   removeScrollListener: ScrollListenerRemover
@@ -39,8 +37,6 @@ export type FeaturesShowItem = {
   subtitle?: string
   info_boxes?: FeaturesShowItemBox[]
 }
-
-const growthFactor = 2
 
 type Caps = [number, number]
 type Easing = (val: number) => number
@@ -92,44 +88,48 @@ function observerArgs(
   ]
 }
 
-function easeOutCirc(val: number): number {
-  return Math.sqrt(1 - Math.pow(val - 1, 2))
-}
-
-function getOpacity(elem: Element): string {
-  const viewportHeight = window.innerHeight
-  const viewportCenter = viewportHeight / 2
-  const {top, height} = elem.getBoundingClientRect()
-  const halfHeight = height / 2
-  const elemCenter = top + halfHeight
-  const delta = Math.abs(elemCenter - viewportCenter)
-  const fraction = delta / halfHeight
-  if (fraction > 1) {
-    return '0'
-  } else {
-    return easeOutCirc(1 - fraction).toString()
-  }
-}
-
 type ObserverArgsCallback = {elem: HTMLElement; val: number}
-type OpacityModifierFn = () => void
+type CloneModifierFn = () => void
 
-function opacityModifier(elem: Element, clone: HTMLDivElement): OpacityModifierFn {
+function cloneModifier(
+  elem: Element,
+  clone: HTMLDivElement,
+  activeClasses: string,
+  fadeOutDown: string,
+  fadeOutUp: string
+): CloneModifierFn {
   return () => {
-    clone.style.opacity = getOpacity(elem)
+    const viewportHeight = window.innerHeight
+    const {top, bottom, height} = elem.getBoundingClientRect()
+    const bottomBelowTopFold = bottom > 0
+    const bottomBelowFold = bottom > window.innerHeight
+    const topAboveFold = top < viewportHeight
+    const topAboveTopFold = top < 0
+    const inactiveClasses = bottomBelowFold ? fadeOutDown : fadeOutUp
+    clone.className = bottomBelowFold && topAboveFold ? activeClasses : inactiveClasses
+
+    let opacityRatio = 0
+    if (bottomBelowTopFold) {
+      if (bottomBelowFold && topAboveTopFold) {
+        opacityRatio = 1
+      } else if (bottomBelowFold) {
+        const fullRatio = (viewportHeight - top) / height
+        if (fullRatio > 1 / 2) {
+          opacityRatio = 1 - fullRatio
+        } else {
+          opacityRatio = fullRatio * 2
+        }
+      }
+    }
+    clone.style.opacity = easeOutQuint(opacityRatio).toString()
   }
 }
 
-const InfoBox: FC<FeaturesShowItemBox> = ({
-  title,
-  body,
-  position,
-  idx,
-  totalNbBoxes,
-  cloneLayerRef,
-  addScrollListener,
-  removeScrollListener
-}) => {
+function easeOutQuint(x: number): number {
+  return 1 - Math.pow(1 - x, 5)
+}
+
+const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef, addScrollListener, removeScrollListener}) => {
   const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -139,9 +139,15 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     let infoBoxObserver: IntersectionObserver = null
     let randomId: string = null
     if (infoBox && cloneLayer) {
+      // Classes applied all the time
+      const initClassNames = `${infoBox.className} transition-transform duration-300 ease-in-out transform`
+      const activeClasses = `${initClassNames} translate-y-0`
+      const fadeOutDown = `${initClassNames} translate-y-4`
+      const fadeOutUp = `${initClassNames} -translate-y-4`
       infoBox.style.opacity = '0'
+
       clone = infoBox.cloneNode(true) as HTMLDivElement
-      clone.style.height = 'unset'
+      clone.style.minHeight = 'unset'
       clone.style.gridArea = position.replace('|', '-')
       clone.style.position = 'absolute' // required for the mobile case (no grid)
       cloneLayer.appendChild(clone)
@@ -149,8 +155,8 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
       randomId = Math.random().toString()
       infoBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const modifyOpacity = opacityModifier(infoBox, clone)
-          entry.isIntersecting ? addScrollListener(randomId, modifyOpacity) : removeScrollListener(randomId)
+          const modifyClass = cloneModifier(infoBox, clone, activeClasses, fadeOutDown, fadeOutUp)
+          entry.isIntersecting ? addScrollListener(randomId, modifyClass) : removeScrollListener(randomId)
         })
       })
       infoBoxObserver.observe(infoBox)
@@ -174,16 +180,9 @@ const InfoBox: FC<FeaturesShowItemBox> = ({
     ? 'top-0 sm:top-auto sm:bottom-0'
     : 'top-0 sm:bottom-0'
 
-  const extraGrowth = idx === totalNbBoxes - 1 ? 2 : 1
   return (
-    <div
-      className={`relative flex items-start transition-opacity items-center ${relativePos}`}
-      ref={infoBoxContainerRef}
-      style={{
-        height: `${(extraGrowth * growthFactor * 100) / totalNbBoxes}vh`
-      }}
-    >
-      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 transition-opacity duration-700')}>
+    <div className={`${relativePos} min-h-1/2vh`} ref={infoBoxContainerRef}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
@@ -260,13 +259,11 @@ const FeaturesShowSection: FC<{
           </div>
         </div>
       )}
-      {item.info_boxes.map((box, idx, all) => {
+      {item.info_boxes.map((box) => {
         return (
           <InfoBox
             key={box.title}
             {...box}
-            idx={idx}
-            totalNbBoxes={all.length}
             cloneLayerRef={cloneLayerRef}
             addScrollListener={addScrollListener}
             removeScrollListener={removeScrollListener}
