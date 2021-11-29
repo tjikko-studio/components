@@ -111,7 +111,12 @@ exports = [
   'h-2/6',
   'h-3/6',
   'h-4/6',
-  'h-5/6'
+  'h-5/6',
+
+  'ratio-1/1',
+  'ratio-3/2',
+  'ratio-4/3',
+  'ratio-16/9'
 ]
 module.exports = exports
 /* eslint-enable max-len */
