@@ -100,18 +100,12 @@ function classModifier(
 ): OpacityModifierFn {
   return () => {
     const viewportHeight = window.innerHeight
-    const {top, bottom, height} = elem.getBoundingClientRect()
-
+    const {top, bottom} = elem.getBoundingClientRect()
     const inactiveClasses = bottom >= window.innerHeight ? fadeOutDown : fadeOutUp
 
     clone.className = inactiveClasses
-    if (bottom > 0) {
-      if (top < viewportHeight && bottom > viewportHeight) {
-        const fullRatio = (viewportHeight - top) / height
-        if (fullRatio > fullRatio / 2) {
-          clone.className = activeClasses
-        }
-      }
+    if (bottom > viewportHeight && top < viewportHeight) {
+      clone.className = activeClasses
     }
   }
 }
@@ -127,7 +121,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
     let randomId: string = null
     if (infoBox && cloneLayer) {
       // Classes applied all the time
-      const initClassNames = `${infoBox.className} transition-opacity-transform duration-250 transform`
+      const initClassNames = `${infoBox.className} transition-opacity-transform duration-300 ease-in-out transform`
       const activeClasses = `${initClassNames} translate-y-0 opacity-100`
       const fadeOutDown = `${initClassNames} translate-y-4 opacity-0`
       const fadeOutUp = `${initClassNames} -translate-y-4 opacity-0`
