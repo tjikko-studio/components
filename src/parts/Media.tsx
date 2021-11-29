@@ -26,7 +26,7 @@ export const MediaImage: FC<ImageProps> = ({id, url, ratio, className, info = ''
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
-      {url && <img src={url} alt={parsedInfos?.alt} className={cn('h-full w-full', ratio && `object-cover`)} />}
+      {url && <img src={url} alt={parsedInfos?.alt} className={cn('h-full w-full', ratio && 'object-cover')} />}
       {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
     </figure>
   )
@@ -82,7 +82,7 @@ export const MediaVideo: FC<VideoProps> = ({id, url, extension, autoplay, muted,
         muted={muted}
         controls={videoPlaying}
         loop={loop}
-        className={cn('h-full w-full', ratio && `object-cover`)}
+        className={cn('h-full w-full', ratio && 'object-cover')}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
