@@ -18,16 +18,15 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
       </div>
       <div className="flex flex-col sm:flex-row w-full gap-4">
         <div className="sm:w-1/3 sm:order-last">
-          {item?.image && (
-            <Media
-              media={item.image}
-              autoplay={true}
-              muted={true}
-              controls={false}
-              loop={true}
-              className={'rounded-lg shadow-2xl w-full h-full'}
-            />
-          )}
+          <Media
+            media={item.image}
+            autoplay={true}
+            muted={true}
+            controls={false}
+            loop={true}
+            className={'rounded-lg shadow-2xl w-full h-full'}
+            ratio="16/9"
+          />
         </div>
         <div className="flex sm:w-2/3 pr-8">
           <div className="flex flex-col w-full dark:text-gray-50">
