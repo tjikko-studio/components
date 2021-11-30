@@ -1,8 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink, {getTarget} from '../../utilities/getLink'
 import getWidth from '../../utilities/getWidth'
+import parseLink from '../../utilities/parseLink'
 import {Button} from '../Button'
 import {Media} from '../parts/Media'
 import {NavItem} from './NavItem'
@@ -56,7 +56,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
 
   return (
     <footer className={cn(['lg:flex', 'flex-col', 'bg-gray-800', 'text-gray-50', 'px-8', className])}>
-      <div className="w-full max-w-screen-xl mx-auto rounded-lg drop-shadow-lg">
+      <nav className="w-full max-w-screen-xl mx-auto rounded-lg drop-shadow-lg">
         {menuData.map(({id, columns, attrs}) => {
           return (
             <section
@@ -103,32 +103,14 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                         switch (type) {
                                           case 'NavigationDropdownChild':
                                             return (
-                                              <div
-                                                className={cn(['dark', 'flex', 'flex-col', 'gap-y-4'])}
-                                                role={'navigation'}
-                                                aria-label={label}
-                                              >
+                                              <div className={cn(['dark', 'flex', 'flex-col', 'gap-y-4'])} aria-label={label}>
                                                 {label && (
-                                                  <h3
-                                                    className={cn([
-                                                      'fontStyle-xs',
-                                                      'uppercase',
-                                                      'strong',
-                                                      'text-gray-300'
-                                                    ])}
-                                                  >
-                                                    {label}
-                                                  </h3>
+                                                  <h3 className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}>{label}</h3>
                                                 )}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
-                                                  const url = getLink(innerLink)
+                                                  const {url, target} = parseLink(innerLink)
                                                   return (
-                                                    <a
-                                                      key={`${innerLabel}${url}`}
-                                                      href={url}
-                                                      target={getTarget(innerLink)}
-                                                      className="fontStyle-sm"
-                                                    >
+                                                    <a key={`${innerLabel}${url}`} href={url} target={target} className="fontStyle-sm">
                                                       {innerLabel}
                                                     </a>
                                                   )
@@ -137,8 +119,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                             )
                                           case 'link': {
                                             const Alink = () => {
+                                              const {url, target} = parseLink(link)
                                               return (
-                                                <a href={getLink(link)} target={getTarget(link)} className="fontStyle-sm">
+                                                <a href={url} target={target} className="fontStyle-sm">
                                                   {label}
                                                 </a>
                                               )
@@ -208,7 +191,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
             </section>
           )
         })}
-      </div>
+      </nav>
     </footer>
   )
 }

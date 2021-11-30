@@ -1,8 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink from '../../utilities/getLink'
 import {gridAreas} from '../../utilities/gridAreas'
+import parseLink from '../../utilities/parseLink'
 import {Button, ButtonProps} from '../Button'
 
 export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
@@ -37,7 +37,7 @@ export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '
       {buttons.map(({label, link, type, size}) => {
         return (
           <Button
-            key={`[${label}](${getLink(link)})`}
+            key={`[${label}](${parseLink(link).url})`}
             link={link}
             label={label}
             type={type}

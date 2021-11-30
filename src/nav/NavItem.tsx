@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
 
-import getLink, {getTarget} from '../../utilities/getLink'
+import parseLink from '../../utilities/parseLink'
 import {ListNav} from './ListNav'
 import {PopUpNavItem} from './PopUpNavItem'
 
@@ -61,25 +61,32 @@ export const NavItem: FC<NavItemProps> = ({
   dropdownTop = false,
   className = ''
 }) => {
-  const [subOpen, setSubOpen] = useState(false)
-  function openSub() {
-    setSubOpen(true)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const showSubMenu = () => {
+    setIsOpen(true)
   }
-  function closeSub() {
-    setSubOpen(false)
+  const hideSubMenu = () => {
+    setIsOpen(false)
   }
+
+  const {url, target} = parseLink(link)
+
+  const eventHandlers = listNavContent.length
+    ? {
+        onMouseOver: showSubMenu,
+        onMouseOut: hideSubMenu,
+        onFocus: showSubMenu,
+        onBlur: hideSubMenu
+      }
+    : {}
   return (
-    <div
-      className={cn('w-max relative z-10 gap-x-2.5', className)}
-      style={{width: 'fit-content'}}
-      onMouseOver={openSub}
-      onMouseOut={closeSub}
-    >
+    <div className={cn('w-max relative z-10 gap-x-2.5', className)} style={{width: 'fit-content'}} {...eventHandlers}>
       <PopUpNavItem
         type={styles}
         label={label}
-        href={getLink(link)}
-        target={getTarget(link)}
+        href={url}
+        target={target}
         padding={padding}
         className={cn(
           'flex items-center',
@@ -94,12 +101,11 @@ export const NavItem: FC<NavItemProps> = ({
         <div
           className={cn(
             'absolute w-max',
-            subOpen ? 'block' : 'hidden',
+            isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
             dropdownRight === false ? 'left-0' : 'right-0',
             dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3'
           )}
-          onMouseOver={openSub}
-          onMouseOut={closeSub}
+          {...eventHandlers}
         >
           <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>

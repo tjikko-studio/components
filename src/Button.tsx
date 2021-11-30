@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink, {getTarget} from '../utilities/getLink'
+import parseLink from '../utilities/parseLink'
 
 import {LinkObject} from '../shared/types'
 
@@ -118,8 +118,9 @@ export const Button: FC<ButtonProps> = ({
     return null
   }
   if (link?.value) {
+    const {url, target} = parseLink(link)
     return (
-      <a onClick={onClick} href={getLink(link)} target={getTarget(link)} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={url} target={target} className={cn(buttonClasses)}>
         <Content />
       </a>
     )

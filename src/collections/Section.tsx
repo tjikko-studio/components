@@ -127,7 +127,7 @@ export const Section: FC<SectionProps> = ({
     <section
       className={cn('overflow-hidden', theme, className, floating && 'py-12 relative')}
       style={{backgroundColor: floating ? wrapperColor : bgColor}}
-      aria-labelledBy={sectionHeadingId}
+      aria-labelledby={sectionHeadingId}
     >
       <div className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div

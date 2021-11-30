@@ -4,7 +4,7 @@ import cn from 'classnames'
 import CloseIcon from '/assets/icons/close-line.svg'
 import MenuIcon from '/assets/icons/menu-line.svg'
 
-import getLink, {getTarget} from '../../utilities/getLink'
+import parseLink from '../../utilities/parseLink'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {ListNav} from './ListNav'
@@ -87,7 +87,7 @@ export const SiteNav: FC<SiteNavProps> = ({
       <div className="hidden lg:block">
         {menuData.map(({columns, id, attrs}) => {
           return (
-            <section
+            <div
               key={id || JSON.stringify(columns)}
               className={cn([
                 'flex',
@@ -125,7 +125,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'NavigationDropdown':
                               return (
                                 <NavItem
-                                  key={innerId || getLink(link)}
+                                  key={innerId || parseLink(link).url}
                                   link={link}
                                   styles="special"
                                   label={label}
@@ -135,7 +135,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'button':
                               return (
                                 <Button
-                                  key={innerId || getLink(link)}
+                                  key={innerId || parseLink(link).url}
                                   label={label}
                                   link={link}
                                   type="primary"
@@ -165,7 +165,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                     </div>
                   )
                 })}
-            </section>
+            </div>
           )
         })}
       </div>
@@ -228,7 +228,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                               return (
                                 <div className={cn('dark', border, dividerSm)} key={innerId || JSON.stringify(innerContent)}>
                                   {label && (
-                                    <div className="fontStyle-xl mb-3" role={'navigation'} aria-label={label}>
+                                    <div className="fontStyle-xl mb-3" aria-label={label}>
                                       {label}
                                     </div>
                                   )}
@@ -237,13 +237,9 @@ export const SiteNav: FC<SiteNavProps> = ({
                               )
                             }
                             case 'link': {
+                              const {url, target} = parseLink(link)
                               return (
-                                <a
-                                  key={innerId || `[${label}](${link})`}
-                                  target={getTarget(link)}
-                                  href={getLink(link)}
-                                  className="fontStyle-xl"
-                                >
+                                <a key={innerId || `[${label}](${link})`} target={target} href={url} className="fontStyle-xl">
                                   {label}
                                 </a>
                               )
