@@ -89,6 +89,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
         ? content.map(({columns, id, attrs}) => {
             return (
               <div
+                role="presentation"
                 key={id || JSON.stringify(columns)}
                 className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
@@ -97,6 +98,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                   return (
                     // See safelist in tailwind.safelist.js
                     <div
+                      role="presentation"
                       key={columnId || JSON.stringify(blocks)}
                       className={cn([`col-span-${getWidth(width)}`, align, columnClasses])}
                       style={{...columnStyles}}

@@ -100,7 +100,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 attrs?.className
               ])}
             >
-              <a className="flex-auto" href={homeLink}>
+              <a className="flex-auto" href={homeLink} aria-label="Back to Homepage">
                 <Media media={logo} className="h-3 lg:h-4 w-auto" fit />
               </a>
               {columns.length &&

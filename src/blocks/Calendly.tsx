@@ -3,6 +3,7 @@ import {openPopupWidget} from 'react-calendly'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
+import makeRandomId from '../../utilities/makeRandomId'
 import {Button} from '../Button'
 import {Input} from '../form/Input'
 import {TextArea} from '../form/TextArea'
@@ -16,11 +17,19 @@ export interface CalendlyProps {
 }
 
 const Row = ({children}: PropsWithChildren<{}>) => {
-  return <div className="flex items-center gap-6 flex-col xl:flex-row">{children}</div>
+  return (
+    <div role="presentation" className="flex items-center gap-6 flex-col xl:flex-row">
+      {children}
+    </div>
+  )
 }
 
 const Cell = ({children}: PropsWithChildren<{}>) => {
-  return <div className="flex-grow w-full">{children}</div>
+  return (
+    <div role="presentation" className="flex-grow w-full">
+      {children}
+    </div>
+  )
 }
 
 export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, duration}) => {
@@ -46,11 +55,18 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
     [username, duration]
   )
 
+  const headingId = makeRandomId()
+
   return (
-    <form className={cn('flex flex-col w-full p-10 gap-8 rounded-lg', theme)} style={{backgroundColor: bgColor}} onSubmit={onSubmit}>
+    <form
+      className={cn('flex flex-col w-full p-10 gap-8 rounded-lg', theme)}
+      style={{backgroundColor: bgColor}}
+      onSubmit={onSubmit}
+      aria-labelledby={headingId}
+    >
       {title || body ? (
         <div className="flex flex-col gap-3 dark:text-gray-50">
-          {title && <h3>{title}</h3>}
+          {title && <h3 id={headingId}>{title}</h3>}
           {body && <p className="my-0">{body}</p>}
         </div>
       ) : null}

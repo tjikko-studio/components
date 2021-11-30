@@ -129,8 +129,9 @@ export const Section: FC<SectionProps> = ({
       style={{backgroundColor: floating ? wrapperColor : bgColor}}
       aria-labelledby={sectionHeadingId}
     >
-      <div className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
+      <div role="presentation" className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div
+          role="presentation"
           className={cn(classes, gridClasses, floating && 'md:rounded-lg md:shadow-2xl', floating && floatingAbove && 'relative z-10')}
           style={{backgroundColor: floating && bgColor}}
         >

@@ -4,6 +4,8 @@ import cn from 'classnames'
 import MediaIcon from '/assets/icons/media-image.svg'
 import PlayIcon from '/assets/icons/play.svg'
 
+import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
+
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
 export type ImageProps = SharedImageProps
@@ -25,7 +27,7 @@ export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = 
 export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, info = '', fit}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
-    <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
+    <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
       {url && (
         <img src={url} alt={parsedInfos?.alt} className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)} />
       )}
@@ -55,7 +57,7 @@ export const MediaVideo: FC<VideoProps> = ({
   info = '',
   fit
 }) => {
-  const parsedInfos = info ? JSON.parse(info) : null
+  const parsedInfos = nonThrowingJsonParse(info)
 
   const videoRef = useRef(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
@@ -100,7 +102,7 @@ export const MediaVideo: FC<VideoProps> = ({
         className={(cn('h-full', ratio && 'object-cover'), fit ? 'w-auto' : 'w-full', mediaClasses)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={parsedInfos?.alt}></meta>
+        <meta itemProp="description" content={parsedInfos?.alt} />
       </video>
       {parsedInfos?.caption && <FigCaption playing={videoPlaying} caption={parsedInfos?.caption} />}
     </figure>

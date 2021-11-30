@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
@@ -86,6 +87,7 @@ export const Hero: FC<HeroProps> = ({
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
+  const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   return (
     <header
       className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
@@ -93,15 +95,19 @@ export const Hero: FC<HeroProps> = ({
       aria-labelledby={HeroHeadingId}
     >
       {bgType === 'video' && (
-        <video
-          id="heroVideo"
-          autoPlay
-          muted
-          loop
-          className={cn(['absolute', 'z-0', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
-        >
-          <source src={bgVideo.url} type="video/mp4" />
-        </video>
+        <figure>
+          <video
+            role="img"
+            autoPlay
+            muted
+            loop
+            className={cn(['absolute', 'z-0', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
+            aria-label="Background video"
+          >
+            <source src={bgVideo.url} type="video/mp4" />
+          </video>
+          {parsedInfo?.caption && <figcaption className="hidden" dangerouslySetInnerHTML={{__html: parsedInfo.caption}} />}
+        </figure>
       )}
       {bgType && (
         <>
