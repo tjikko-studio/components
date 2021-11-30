@@ -282,7 +282,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   }
 
   return (
-    <nav className={cn('lg:sticky lg:z-50 top-0', className)}>
+    <nav className={cn('lg:sticky lg:z-50 top-0', className)} aria-label="Main Website navigation">
       {menuData.length >= 1 && (
         <>
           <DesktopNav />

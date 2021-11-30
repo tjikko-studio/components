@@ -55,7 +55,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (
-    <footer className={cn(['lg:flex', 'flex-col', 'bg-gray-800', 'text-gray-50', 'px-8', className])}>
+    <footer className={cn(['lg:flex', 'flex-col', 'bg-gray-800', 'text-gray-50', 'px-8', className])} aria-label="Footer navigation">
       <nav className="w-full max-w-screen-xl mx-auto rounded-lg drop-shadow-lg">
         {menuData.map(({id, columns, attrs}) => {
           return (
