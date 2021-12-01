@@ -89,7 +89,8 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                   return (
                     // See safelist in tailwind.safelist.js
                     <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
-                      {blocks.map((block) => {
+                      {blocks.map((block, index) => {
+                        block.content.typesList = blocks.map((block) => block.type)
                         return toComponent(block, {
                           ...componentsExtraProps
                         })

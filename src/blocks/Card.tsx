@@ -13,7 +13,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   layout?: 'horizontal' | 'vertical'
 
   /**
-   * IOmage Position
+   * Immage Position
    */
   imagePosition?: 'left' | 'right'
 
@@ -46,11 +46,26 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   buttons?: ButtonProps[]
 
   /**
-   * Styles
+   * Background color
    */
-  textAlign?: 'left' | 'center'
+  hasBackground?: boolean
   bgColor?: string
+
+  /**
+   * Is elevated (Will have a drop shadow)
+   */
   isElevated?: boolean
+
+  /**
+   * Height of the card
+   */
+  fullHeight?: boolean
+
+  /**
+   * List of column component types
+   * If there are multiple cards, h-full won't be applied
+   */
+  typesList?: string[]
 }
 
 /**
@@ -69,17 +84,27 @@ export const Card: FC<CardProps> = ({
   buttons = [],
   className = '',
   bgColor,
-  isElevated = false
+  isElevated = false,
+  hasBackground = true,
+  fullHeight,
+  typesList
 }) => {
-  const bgColorOutput = bgColor ? bgColor : '#f3f4f6'
+  const cardsFullHeight = fullHeight
+    ? fullHeight
+    : typesList && typesList.reduce((acc, curr) => curr === 'Card' && (acc += 1), 0) === 1
+    ? true
+    : false
+  const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
 
   return (
     <div
       className={cn(
-        lightOrDark(bgColorOutput),
-        'w-full h-full grid grid-rows-min-full gap-6 rounded-lg overflow-hidden',
+        'w-full grid grid-rows-min-full gap-6',
+        hasBackground && lightOrDark(bgColorOutput),
+        {'h-full': cardsFullHeight},
         {'xl:grid-rows-none': layout === 'horizontal'},
-        {'shadow-2xl': isElevated},
+        {'rounded-lg overflow-hidden': hasBackground},
+        {'shadow-2xl': isElevated && hasBackground},
         {'xl:grid-cols-2': layout === 'horizontal'},
         className
       )}
@@ -93,15 +118,17 @@ export const Card: FC<CardProps> = ({
         loop={loop}
         ratio="16/9"
         className={cn(
+          {'shadow-2xl': isElevated && !hasBackground},
           {'overflow-hidden xl:h-full xl:w-full': layout === 'horizontal'},
           {'xl:col-start-2 xl:row-start-1': imagePosition === 'right' && layout === 'horizontal'},
           {'xl:col-start-1 ': imagePosition === 'left' && layout === 'horizontal'}
         )}
-        mediaClasses="object-cover"
+        mediaClasses={cn('object-cover', {'rounded-lg': !hasBackground})}
       />
       <div
         className={cn(
-          'h-full p-6 pt-0 flex flex-col justify-between',
+          'h-full p-6 pt-0 flex flex-col',
+          {'justify-between': hasBackground},
           {'xl:pt-6': layout === 'horizontal'},
           {'xl:pr-0 xl:col-start-1': imagePosition === 'right' && layout === 'horizontal'},
           {'xl:pl-0 xl:col-start-2 xl:row-start-1': imagePosition === 'left' && layout === 'horizontal'}
