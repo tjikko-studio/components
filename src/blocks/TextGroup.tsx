@@ -42,7 +42,7 @@ export const TextGroup: FC<TextGroupProps> = ({
   return (
     <div
       className={cn(
-        'p-6',
+        'p-6 w-full',
         hasBackground && `rounded-lg`,
         hasBackground && isElevated && 'shadow-2xl',
         textAlign === 'center' && 'text-center',
