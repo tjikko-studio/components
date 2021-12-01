@@ -88,6 +88,17 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       tag: 'div'
     }
+  },
+  TextGroup: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      titleSize: content.title_size,
+      textAlign: content.text_align,
+      hasSepar: content.has_separ,
+      hasBackground: content.has_background,
+      bgColor: content.bg_color,
+      isElevated: content.is_elevated
+    }
   }
 }
 
