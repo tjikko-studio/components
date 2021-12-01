@@ -63,6 +63,7 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       imagePosition: content.image_position,
       layout: content.layout,
+      hasBackground: content.has_background,
       bgColor: content.bg_color,
       isElevated: content.is_elevated
     }
