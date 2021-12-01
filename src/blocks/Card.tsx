@@ -48,7 +48,6 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Styles
    */
-  titleSize?: 'default' | 'big' | 'huge'
   textAlign?: 'left' | 'center'
   bgColor?: string
   isElevated?: boolean
@@ -69,8 +68,6 @@ export const Card: FC<CardProps> = ({
   body = '',
   buttons = [],
   className = '',
-  titleSize = 'default',
-  textAlign = 'left',
   bgColor,
   isElevated = false
 }) => {
