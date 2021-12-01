@@ -3,5 +3,5 @@ export function gridAreas(area: string, start?: number, end?: number): {[gridAre
 }
 
 export function isGridAreas(start?: number, end?: number): boolean {
-  return start !== null && end !== null
+  return typeof start === 'number' && typeof end === 'number'
 }
