@@ -81,7 +81,7 @@ export const Card: FC<CardProps> = ({
       className={cn(
         lightOrDark(bgColorOutput),
         'w-full h-full grid grid-rows-min-full gap-6 rounded-lg overflow-hidden',
-        {'xl:auto-rows-auto': layout === 'horizontal'},
+        {'xl:grid-rows-none': layout === 'horizontal'},
         {'shadow-2xl': isElevated},
         {'xl:grid-cols-2': layout === 'horizontal'},
         className
