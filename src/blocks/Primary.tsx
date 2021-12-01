@@ -103,7 +103,7 @@ export const Primary: FC<PrimaryProps> = ({
               className
             )}
           >
-            <h2 className={cn('break-words', titleSize)}>{title}</h2>
+            <h3 className={cn('break-words', titleSize)}>{title}</h3>
             <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>
