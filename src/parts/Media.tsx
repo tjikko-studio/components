@@ -11,13 +11,22 @@ export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
 export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = false, caption = ''}) => {
-  const shared = ['absolute w-full transition-transform transition-opacity z-50 fontStyle-xs text-shadow-sm p-4 transform']
+  const shared = ['absolute w-full transition-transform transition-opacity z-50 p-4 transform']
   const top = ['top-0 bg-gradient-to-b from-gray-900', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
   const bottom = ['bottom-0 bg-gradient-to-t from-gray-900', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
+
+  const Caption: FC<{position: string[]}> = ({position}) => {
+    return (
+      <figcaption className={cn(shared, position)}>
+        <div className="fontStyle-xs text-shadow-sm opacity-90" dangerouslySetInnerHTML={{__html: caption}} />
+      </figcaption>
+    )
+  }
+
   return (
     <>
-      <figcaption className={cn(shared, top)} dangerouslySetInnerHTML={{__html: caption}} />
-      <figcaption className={cn(shared, bottom)} dangerouslySetInnerHTML={{__html: caption}} />
+      <Caption position={top} />
+      <Caption position={bottom} />
     </>
   )
 }
