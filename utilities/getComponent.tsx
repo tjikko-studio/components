@@ -7,6 +7,7 @@ import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
 import {Gallery} from '../src/blocks/Gallery'
+import {Header} from '../src/blocks/Header'
 import {Heading} from '../src/blocks/Heading'
 import {Icon} from '../src/blocks/Icon'
 import {Primary} from '../src/blocks/Primary'
@@ -90,6 +91,13 @@ const propsByType: Record<string, GetPropsFn> = {
       tag: 'div'
     }
   },
+  Header: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      headerType: content.header_type,
+      headerAlign: content.header_align
+    }
+  },
   TextGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -131,6 +139,7 @@ const ValidComponents: Record<string, FC> = {
   Divider,
   FAQ,
   Form,
+  Header,
   Heading,
   Hero,
   Icon,

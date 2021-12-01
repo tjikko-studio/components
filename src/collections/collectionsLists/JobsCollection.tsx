@@ -113,8 +113,8 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
               return (
                 <div className={cn(['flex justify-between align-baseline border-b py-6', display])}>
                   <div className="">
-                    <h4 className="fontStyle-xl md:fontStyle-2xl">{job.title}</h4>
-                    <div className="flex gap-2 mt-3 flex-col sm:flex-row fontStyle-xs text-gray-600">
+                    <h4 className="fontStyle-2xl">{job.title}</h4>
+                    <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                       {job.tags.length
                         ? job.tags.map((tag) => {
                             return <div className="">{tag.value}</div>

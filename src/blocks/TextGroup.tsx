@@ -43,9 +43,9 @@ export const TextGroup: FC<TextGroupProps> = ({
     <div
       className={cn(
         'p-6 w-full',
+        `text-${textAlign}`,
         hasBackground && `rounded-lg`,
         hasBackground && isElevated && 'shadow-2xl',
-        textAlign === 'center' && 'text-center',
         className
       )}
       style={{backgroundColor: hasBackground && bgColor}}
