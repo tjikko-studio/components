@@ -157,8 +157,10 @@ export const Media: FC<GenericMediaProps> = ({
   ) : media && media.type === 'image' ? (
     <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
   ) : (
-    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-30')}>
-      <MediaIcon className={cn('w-8 h-8', ratio && `ratio-${ratio}`)} fit={fit} />
+    <div className={cn('max-w-full overflow-hidden', className, ratio && `ratio-${ratio}`)}>
+      <div className="w-full h-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-30">
+        <MediaIcon className="w-8 h-8" fit={fit} />
+      </div>
     </div>
   )
 }
