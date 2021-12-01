@@ -70,9 +70,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
   const sectionClasses = [
     'text-gray-900 dark:text-gray-50 grid gap-y-12 w-full h-full max-w-screen-xl mx-auto px-4 sm:px-8 md:px-12 py-16 sm:py-24 md:py-32'
   ]
-  const navClasses = [
-    'flex justify-center gap-x-4 gap-y-1.5 sm:gap-x-6 lg:gap-x-8 flex-wrap'
-  ]
+  const navClasses = ['flex justify-center gap-x-4 gap-y-1.5 sm:gap-x-6 lg:gap-x-8 flex-wrap']
   const navItemsClasses = ['flex justify-center flex-grow-0 flex-shrink-0']
 
   return (

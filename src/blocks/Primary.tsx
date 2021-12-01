@@ -98,8 +98,8 @@ export const Primary: FC<PrimaryProps> = ({
             className={cn(
               'flex flex-col',
               {'justify-center': textPositionVertical === 'center'},
-              {'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'},
-              {'lg:col-start-2 lg:row-start-1': imagePosition !== 'right' && finalLayout === 'default'},
+              {'lg:col-start-1': imagePosition === 'right' && finalLayout === 'default'},
+              {'lg:col-start-2 lg:row-start-1': imagePosition === 'left' && finalLayout === 'default'},
               className
             )}
           >
