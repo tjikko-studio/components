@@ -2,6 +2,7 @@ import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {Calendly} from '../src/blocks/Calendly'
+import {Card} from '../src/blocks/Card'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
@@ -57,6 +58,15 @@ const propsByType: Record<string, GetPropsFn> = {
       bgColor: content.bg_color
     }
   },
+  Card: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      imagePosition: content.image_position,
+      layout: content.layout,
+      bgColor: content.bg_color,
+      isElevated: content.is_elevated
+    }
+  },
   ClientsLogos: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -103,6 +113,7 @@ const ValidComponents: Record<string, FC> = {
   Article,
   ButtonsGroup,
   Calendly,
+  Card,
   Collection,
   ClientsLogos,
   Divider,

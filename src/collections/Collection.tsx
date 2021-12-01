@@ -1,9 +1,9 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {Card} from '../blocks/Card'
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
-import {Primary} from '../blocks/Primary'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
@@ -53,14 +53,13 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
     <section className={cn(classes)}>
       {items?.map((item) => (
         <>
-          <Primary
+          <Card
             key={item.id}
             image={item.content.images?.[0]}
             imagePosition="right"
             title={item.content.title}
             body={item.content.description}
-            textPositionVertical="top"
-            textSize="small"
+            layout="horizontal"
             buttons={[
               {
                 label: `Read about ${item.content.title}`,
