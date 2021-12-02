@@ -10,10 +10,13 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
-export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = false, caption = ''}) => {
-  const shared = ['absolute w-full transition-transform transition-opacity z-50 p-4 transform']
-  const top = ['top-0 bg-gradient-to-b from-gray-900', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
-  const bottom = ['bottom-0 bg-gradient-to-t from-gray-900', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
+export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string}> = ({video = false, playing = false, caption = ''}) => {
+  const shared = [
+    'absolute flex w-full from-gray-900 via-transparent mix-blend-hard-light z-50 p-4 transform min-h-32',
+    video && 'transition-transform transition-opacity'
+  ]
+  const top = ['items-start top-0 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
+  const bottom = ['items-end bottom-0 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
 
   const Caption: FC<{position: string[]}> = ({position}) => {
     return (
@@ -25,7 +28,7 @@ export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = 
 
   return (
     <>
-      <Caption position={top} />
+      {video && <Caption position={top} />}
       <Caption position={bottom} />
     </>
   )
@@ -111,7 +114,7 @@ export const MediaVideo: FC<VideoProps> = ({
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
       </video>
-      {parsedInfos?.caption && <FigCaption playing={videoPlaying} caption={parsedInfos?.caption} />}
+      {parsedInfos?.caption && <FigCaption video playing={videoPlaying} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
