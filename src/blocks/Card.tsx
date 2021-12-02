@@ -13,7 +13,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   layout?: 'horizontal' | 'vertical'
 
   /**
-   * Immage Position
+   * Image Position
    */
   imagePosition?: 'left' | 'right'
 
@@ -60,12 +60,6 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * Height of the card
    */
   fullHeight?: boolean
-
-  /**
-   * List of column component types
-   * If there are multiple cards, h-full won't be applied
-   */
-  typesList?: string[]
 }
 
 /**
@@ -86,14 +80,8 @@ export const Card: FC<CardProps> = ({
   bgColor,
   isElevated = false,
   hasBackground = true,
-  fullHeight,
-  typesList
+  fullHeight
 }) => {
-  const cardsFullHeight = fullHeight
-    ? fullHeight
-    : typesList && typesList.reduce((acc, curr) => curr === 'Card' && (acc += 1), 0) === 1
-    ? true
-    : false
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
 
   return (
@@ -101,7 +89,7 @@ export const Card: FC<CardProps> = ({
       className={cn(
         'w-full grid grid-rows-min-full gap-6',
         hasBackground && lightOrDark(bgColorOutput),
-        {'h-full': cardsFullHeight},
+        {'h-full': fullHeight},
         {'xl:grid-rows-none': layout === 'horizontal'},
         {'rounded-lg overflow-hidden': hasBackground},
         {'shadow-2xl': isElevated && hasBackground},

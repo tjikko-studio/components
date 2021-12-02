@@ -82,12 +82,17 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
                   const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
-                  const typesList = blocks.map((block) => block.type)
+                  const loneCard =
+                    blocks.reduce((nbCards, block) => {
+                      return nbCards + block.type === 'Card' ? 1 : 0
+                    }, 0) === 1
                   return (
                     // See safelist in tailwind.safelist.js
                     <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
                       {blocks.map((block, index) => {
-                        block.content.typesList = typesList
+                        if (block.type === 'Card' && loneCard) {
+                          block.content.fullHeight = true
+                        }
                         return toComponent(block, {
                           ...componentsExtraProps
                         })
