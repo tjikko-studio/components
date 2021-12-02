@@ -84,7 +84,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                   const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
                   const loneCard =
                     blocks.reduce((nbCards, block) => {
-                      return nbCards + block.type === 'Card' ? 1 : 0
+                      return (nbCards += block.type === 'Card' ? 1 : 0)
                     }, 0) === 1
                   return (
                     // See safelist in tailwind.safelist.js
