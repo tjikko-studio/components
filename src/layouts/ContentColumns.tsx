@@ -73,8 +73,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
       {content
         ? content.map(({columns, id, attrs}) => {
             const columnsLength = columns.length
-            contentSectionClasses +=
-              columnsLength === 4 && columns[0].blocks[0].type === 'Card' ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
+            contentSectionClasses += columnsLength === 4 ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
             return (
               <div
                 key={id || JSON.stringify(columns)}
@@ -82,15 +81,13 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
-                  const columns =
-                    columnsLength === 4 && (blocks[0].type === 'Card' || blocks[0].type === 'TextGroup')
-                      ? `sm:col-span-6 lg:col-span-3`
-                      : `col-span-${getWidth(width)}`
+                  const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
+                  const typesList = blocks.map((block) => block.type)
                   return (
                     // See safelist in tailwind.safelist.js
                     <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
                       {blocks.map((block, index) => {
-                        block.content.typesList = blocks.map((block) => block.type)
+                        block.content.typesList = typesList
                         return toComponent(block, {
                           ...componentsExtraProps
                         })

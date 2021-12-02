@@ -140,7 +140,7 @@ export const Card: FC<CardProps> = ({
             <p className={cn('text-gray:500 dark:text-gray-400 mt-3')}>{body}</p>
           </div>
         )}
-        {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
+        {Object.keys(buttons).length ? <ButtonsGroup buttons={buttons} className="gap-x-4 mt-4" /> : null}
       </div>
     </div>
   )

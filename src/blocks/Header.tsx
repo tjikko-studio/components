@@ -2,7 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 import {Heading} from '../blocks/Heading'
 
-export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+export interface HeaderProps extends HTMLAttributes<HTMLElement> {
   /**
    * text to display for heading
    */
@@ -30,7 +30,9 @@ export const Header: FC<HeaderProps> = ({title = '', subtitle = '', className = 
       ? ['', 'fontStyle-2xl mt-3']
       : headerType === 'section_big'
       ? ['', 'fontStyle-lg uppercase mt-1.5']
-      : headerType === 'section_small' && ['fontStyle-4xl', 'fontStyle-base mt-3']
+      : headerType === 'section_small'
+      ? ['fontStyle-4xl', 'fontStyle-base mt-2']
+      : ['', '']
   const align = headerAlign === 'center' ? 'text-center' : ''
 
   return (
