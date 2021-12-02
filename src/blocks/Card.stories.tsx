@@ -1,6 +1,7 @@
 import React from 'react'
 import {Meta, Story} from '@storybook/react/types-6-0'
 
+import {ImageProps} from '../parts/Media'
 import {Card, CardProps} from './Card'
 
 export default {
@@ -16,11 +17,20 @@ const Template: Story<CardProps> = (args) => {
   return <Card {...args} />
 }
 
+const image: ImageProps = {
+  type: 'image',
+  id: 'https://via.placeholder.com/1.gif/111827/111827',
+  link: 'https://via.placeholder.com/1.gif/111827/111827',
+  url: 'https://via.placeholder.com/1.gif/111827/111827',
+  extension: 'gif',
+  info: '{"alt": "Image alt text", "caption": "<p>Image caption text</p>"}'
+}
 export const VerticalLayout = Template.bind({})
 VerticalLayout.args = {
   title: 'Some awesome title',
   body: `Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
         Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue.`,
+  image: image,
   buttons: [
     {
       label: 'Action Button',
