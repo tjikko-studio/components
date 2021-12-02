@@ -25,6 +25,7 @@ const image: ImageProps = {
   extension: 'gif',
   info: '{"alt": "Image alt text", "caption": "<p>Image caption text</p>"}'
 }
+
 export const VerticalLayout = Template.bind({})
 VerticalLayout.args = {
   title: 'Some awesome title',
@@ -85,7 +86,11 @@ ElevatedWithoutBackground.decorators = VerticalLayout.decorators
 export const DarkBackground = Template.bind({})
 DarkBackground.args = {
   ...VerticalLayout.args,
-  bgColor: '#171a22'
+  bgColor: '#171a22',
+  image: {
+    ...image,
+    url: 'https://via.placeholder.com/1.gif/D1D5DB/D1D5DB'
+  }
 }
 DarkBackground.decorators = VerticalLayout.decorators
 DarkBackground.parameters = {
@@ -115,6 +120,23 @@ HorCardsGrid.args = {
   layout: 'horizontal'
 }
 HorCardsGrid.decorators = [
+  (Story: any) => (
+    <div className="w-full p-4 grid gap-8 sm:grid-cols-2">
+      <Story />
+      <Story />
+      <Story />
+      <Story />
+    </div>
+  )
+]
+
+export const CardsWithoutImages = Template.bind({})
+CardsWithoutImages.args = {
+  ...VerticalLayout.args,
+  layout: 'horizontal',
+  image: null
+}
+CardsWithoutImages.decorators = [
   (Story: any) => (
     <div className="w-full p-4 grid gap-8 sm:grid-cols-2">
       <Story />

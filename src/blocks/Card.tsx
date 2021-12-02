@@ -87,39 +87,36 @@ export const Card: FC<CardProps> = ({
   return (
     <div
       className={cn(
-        'w-full grid grid-rows-min-full gap-6',
-        hasBackground && lightOrDark(bgColorOutput),
+        'w-full flex flex-col gap-6',
         {'h-full': fullHeight},
-        {'xl:grid-rows-none': layout === 'horizontal'},
+        hasBackground && lightOrDark(bgColorOutput),
+        {'md:flex-row md:h-auto': layout === 'horizontal'},
         {'rounded-lg overflow-hidden': hasBackground},
         {'shadow-2xl': isElevated && hasBackground},
-        {'xl:grid-cols-2': layout === 'horizontal'},
         className
       )}
       style={{backgroundColor: bgColorOutput}}
     >
-      <Media
-        media={image}
-        autoplay={autoplay}
-        muted={muted}
-        controls={controls}
-        loop={loop}
-        ratio="16/9"
-        className={cn(
-          {'shadow-2xl': isElevated && !hasBackground},
-          {'overflow-hidden xl:h-full xl:w-full': layout === 'horizontal'},
-          {'xl:col-start-2 xl:row-start-1': imagePosition === 'right' && layout === 'horizontal'},
-          {'xl:col-start-1 ': imagePosition === 'left' && layout === 'horizontal'}
-        )}
-        mediaClasses={cn('object-cover', {'rounded-lg': !hasBackground})}
-      />
+      {image && (
+        <Media
+          media={image}
+          autoplay={autoplay}
+          muted={muted}
+          controls={controls}
+          loop={loop}
+          ratio="16/9"
+          className={cn({'shadow-2xl': isElevated && !hasBackground}, {'overflow-hidden md:w-1/2': layout === 'horizontal'})}
+          mediaClasses={cn('object-cover', {'rounded-lg': !hasBackground})}
+        />
+      )}
       <div
         className={cn(
-          'h-full p-6 pt-0 flex flex-col',
+          'p-6 flex flex-col',
           {'justify-between': hasBackground},
-          {'xl:pt-6': layout === 'horizontal'},
-          {'xl:pr-0 xl:col-start-1': imagePosition === 'right' && layout === 'horizontal'},
-          {'xl:pl-0 xl:col-start-2 xl:row-start-1': imagePosition === 'left' && layout === 'horizontal'}
+          {'pt-0': image},
+          {'md:pt-6 md:w-1/2 md:h-full': image && layout === 'horizontal'},
+          {'md:pl-0 order:last': image && imagePosition === 'right' && layout === 'horizontal'},
+          {'md:pr-0': image && imagePosition === 'left' && layout === 'horizontal'}
         )}
       >
         {(title || body) && (
