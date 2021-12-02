@@ -86,7 +86,7 @@ SimpleTimeline.args = {
       ]
     },
     {
-      header: 'Timeline header B',
+      header: 'Timeline header C',
       items: [
         {
           title: 'Item B1 header',
@@ -136,6 +136,64 @@ CornerCasesTimeline.args = {
             type: 'image',
             url: 'https://via.placeholder.com/1.gif/111827/111827'
           }
+        }
+      ]
+    }
+  ]
+}
+
+export const TimelineWithoutImages = Template.bind({})
+TimelineWithoutImages.args = {
+  content: [
+    {
+      header: 'Timeline header A',
+      items: [
+        {
+          title: 'Item A1 header',
+          subtitle: 'Item A1 subtitle',
+          body: 'Item A1 body. This is usually a bit longer.'
+        },
+        {
+          title: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.'
+        },
+        {
+          title: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.'
+        },
+        {
+          title: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.'
+        },
+        {
+          title: 'Item A2 header',
+          subtitle: 'Item A2 subtitle',
+          body: 'Item A2 body. This is usually a bit longer.'
+        }
+      ]
+    },
+    {
+      header: 'Timeline header B',
+      items: [
+        {
+          subtitle: 'Item B1 subtitle',
+          body: 'Item B1 body. This is usually a bit longer.'
+        },
+        {
+          body: 'Item B2 body. This is usually a bit longer.'
+        }
+      ]
+    },
+    {
+      header: 'Timeline header C',
+      items: [
+        {
+          title: 'Item B1 header',
+          subtitle: 'Item B1 subtitle',
+          body: 'Item B1 body. This is usually a bit longer.'
         }
       ]
     }

@@ -52,6 +52,7 @@ Default.args = {
                   type: 'NavigationLogo',
                   content: {
                     image: {
+                      type: 'image',
                       url: './images/company_logo_placeholder.svg'
                     }
                   }

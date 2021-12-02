@@ -26,7 +26,6 @@ VerticalLayout.args = {
       label: 'Action Button',
       type: 'tertiary',
       link: {
-        popup: false,
         value: 'https://perdu.com'
       }
     }
@@ -49,6 +48,14 @@ HorizontalLayout.args = {
   layout: 'horizontal'
 }
 HorizontalLayout.decorators = VerticalLayout.decorators
+
+export const HorizontalLayoutImageRight = Template.bind({})
+HorizontalLayoutImageRight.args = {
+  ...VerticalLayout.args,
+  layout: 'horizontal',
+  imagePosition: 'right'
+}
+HorizontalLayoutImageRight.decorators = VerticalLayout.decorators
 
 export const Elevated = Template.bind({})
 Elevated.args = {

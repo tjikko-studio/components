@@ -26,7 +26,14 @@ export default {
   },
   parameters: {
     componentSubtitle: 'The Primary block'
-  }
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-full max-w-screen-lg">
+        <Story />
+      </div>
+    )
+  ]
 } as Meta
 
 const Template: Story<PrimaryProps> = (args) => {
