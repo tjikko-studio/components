@@ -80,8 +80,9 @@ export const Card: FC<CardProps> = ({
   bgColor,
   isElevated = false,
   hasBackground = true,
-  fullHeight
+  fullHeight = true
 }) => {
+  console.log(`Card: ${fullHeight}`)
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
 
   return (

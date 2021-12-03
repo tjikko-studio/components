@@ -5,12 +5,12 @@ import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 
-import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
+import {AttrProps, ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
 
 export interface SectionItemProps {
   id: string
+  attrs?: AttrProps
   columns: ColumnProps[]
-  attrs?: {className?: string}
 }
 
 export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
@@ -72,6 +72,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
+            const fullHeight = typeof attrs?.fullheight === 'boolean' ? attrs.fullheight : true
             const columnsLength = columns.length
             contentSectionClasses += columnsLength === 4 ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
             return (
@@ -82,17 +83,11 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
                   const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
-                  const loneCard =
-                    blocks.reduce((nbCards, block) => {
-                      return (nbCards += block.type === 'Card' ? 1 : 0)
-                    }, 0) === 1
                   return (
                     // See safelist in tailwind.safelist.js
                     <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
                       {blocks.map((block, index) => {
-                        if (block.type === 'Card' && loneCard) {
-                          block.content.fullHeight = true
-                        }
+                        block.content.fullHeight = fullHeight
                         return toComponent(block, {
                           ...componentsExtraProps
                         })

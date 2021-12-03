@@ -76,6 +76,9 @@ export const Section: FC<SectionProps> = ({
   const innerGridClasses: string[] = []
   const outerGridClasses: string[] = []
 
+  /* const fullHeight = content.attrs?.fullHeight ? content.attrs.fullHeight : true
+  console.log(content) */
+
   let imagePosPrimary = 'undefined'
 
   function getNewPos(prevPos: string, newPos: string) {
