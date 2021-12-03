@@ -14,7 +14,8 @@ export default {
 } as Meta
 
 const Template: Story<CardProps> = (args) => {
-  return <Card {...args} />
+  const key = Math.random().toString(36).slice(2)
+  return <Card key={key} {...args} />
 }
 
 const image: ImageProps = {
@@ -41,8 +42,7 @@ VerticalLayout.args = {
       }
     }
   ],
-  layout: 'vertical',
-  image_position: ''
+  layout: 'vertical'
 }
 
 VerticalLayout.decorators = [
@@ -146,3 +146,4 @@ CardsWithoutImages.decorators = [
     </div>
   )
 ]
+
