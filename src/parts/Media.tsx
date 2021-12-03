@@ -12,18 +12,14 @@ export type GalleryProps = VideoProps
 
 export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string}> = ({video = false, playing = false, caption = ''}) => {
   const shared = [
-    'absolute flex w-full from-gray-900 via-transparent mix-blend-hard-light z-50 p-4 transform min-h-32',
-    video && 'transition-transform transition-opacity'
+    'absolute flex w-full from-gray-900 z-50 min-h-32 p-4 fontStyle-xs text-shadow-md',
+    video && 'transform transition-opacity-transform ease-in-out duration-500'
   ]
-  const top = ['items-start top-0 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
-  const bottom = ['items-end bottom-0 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
+  const top = ['items-start -top-16 pt-20 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
+  const bottom = ['items-end -bottom-16 pb-20 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
 
   const Caption: FC<{position: string[]}> = ({position}) => {
-    return (
-      <figcaption className={cn(shared, position)}>
-        <div className="fontStyle-xs text-shadow-sm opacity-90" dangerouslySetInnerHTML={{__html: caption}} />
-      </figcaption>
-    )
+    return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} />
   }
 
   return (
@@ -134,7 +130,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Media: FC<GenericMediaProps> = ({
-  media = null,
+  media,
   autoplay = true,
   muted = true,
   controls = false,
@@ -144,7 +140,8 @@ export const Media: FC<GenericMediaProps> = ({
   mediaClasses,
   fit = false
 }) => {
-  return media && media.type === 'video' ? (
+  const type = media?.type ? media.type : 'image'
+  return media && type === 'video' ? (
     <MediaVideo
       key={media.url}
       {...media}
@@ -157,11 +154,11 @@ export const Media: FC<GenericMediaProps> = ({
       mediaClasses={mediaClasses}
       fit={fit}
     />
-  ) : media && media.type === 'image' ? (
+  ) : media && type === 'image' ? (
     <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
   ) : (
     <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)}>
-      <div className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
+      <div role="presentation" className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
         <MediaIcon className="w-8 h-8" fit={fit} />
       </div>
     </div>
