@@ -79,7 +79,7 @@ export interface LinkObject {
 }
 
 export interface AttrProps {
-  fullheight?: boolean
+  full_height?: boolean
   className?: string
 }
 
