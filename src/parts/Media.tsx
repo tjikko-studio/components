@@ -17,14 +17,14 @@ export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string
   ]
   const top = ['items-start -top-16 pt-20 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
   const bottom = ['items-end -bottom-16 pb-20 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
-
-  const Caption: FC<{position: string[]}> = ({position}) => {
-    return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} />
+  // aria-hidden="true"
+  const Caption: FC<{position: string[]; AriaHidden?: boolean}> = ({position, AriaHidden = false}) => {
+    return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} aria-hidden={AriaHidden} />
   }
 
   return (
     <>
-      {video && <Caption position={top} />}
+      {video && <Caption position={top} AriaHidden />}
       <Caption position={bottom} />
     </>
   )
