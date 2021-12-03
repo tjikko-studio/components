@@ -1,10 +1,12 @@
 import colors from './colors'
+import grids from './grids'
 import sizes, {breakpoints} from './sizes'
 import text from './text'
 import transitions from './transitions'
 import variants from './variants'
 
 const theme = {
+  ...grids,
   ...transitions,
   ...text,
   ...colors,

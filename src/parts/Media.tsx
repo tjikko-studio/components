@@ -10,14 +10,22 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
-export const FigCaption: FC<{playing?: boolean; caption: string}> = ({playing = false, caption = ''}) => {
-  const shared = ['absolute w-full transition-transform transition-opacity z-50 fontStyle-xs text-shadow-sm p-4 transform']
-  const top = ['top-0 bg-gradient-to-b from-gray-900', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
-  const bottom = ['bottom-0 bg-gradient-to-t from-gray-900', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
+export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string}> = ({video = false, playing = false, caption = ''}) => {
+  const shared = [
+    'absolute flex w-full from-gray-900 z-50 min-h-32 p-4 fontStyle-xs text-shadow-md',
+    video && 'transform transition-opacity-transform ease-in-out duration-500'
+  ]
+  const top = ['items-start -top-16 pt-20 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
+  const bottom = ['items-end -bottom-16 pb-20 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
+  // aria-hidden="true"
+  const Caption: FC<{position: string[]; AriaHidden?: boolean}> = ({position, AriaHidden = false}) => {
+    return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} aria-hidden={AriaHidden} />
+  }
+
   return (
     <>
-      <figcaption className={cn(shared, top)} dangerouslySetInnerHTML={{__html: caption}} />
-      <figcaption className={cn(shared, bottom)} dangerouslySetInnerHTML={{__html: caption}} />
+      {video && <Caption position={top} AriaHidden />}
+      <Caption position={bottom} />
     </>
   )
 }
@@ -102,7 +110,7 @@ export const MediaVideo: FC<VideoProps> = ({
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
       </video>
-      {parsedInfos?.caption && <FigCaption playing={videoPlaying} caption={parsedInfos?.caption} />}
+      {parsedInfos?.caption && <FigCaption video playing={videoPlaying} caption={parsedInfos?.caption} />}
     </figure>
   )
 }
@@ -122,7 +130,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Media: FC<GenericMediaProps> = ({
-  media = null,
+  media,
   autoplay = true,
   muted = true,
   controls = false,
@@ -132,24 +140,29 @@ export const Media: FC<GenericMediaProps> = ({
   mediaClasses,
   fit = false
 }) => {
-  return media && media.type === 'video' ? (
-    <MediaVideo
-      key={media.url}
-      {...media}
-      autoplay={autoplay}
-      muted={muted}
-      controls={controls}
-      loop={loop}
-      ratio={ratio}
-      className={className}
-      mediaClasses={mediaClasses}
-      fit={fit}
-    />
-  ) : media && media.type === 'image' ? (
-    <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
-  ) : (
-    <div className={cn('h-full justify-center flex items-center rounded-lg p-4 bg-gray-300 text-gray-800 opacity-30')}>
-      <MediaIcon className={cn('w-8 h-8', ratio && `ratio-${ratio}`)} fit={fit} />
+  if (media) {
+    return media.type === 'video' ? (
+      <MediaVideo
+        key={media.url}
+        {...media}
+        autoplay={autoplay}
+        muted={muted}
+        controls={controls}
+        loop={loop}
+        ratio={ratio}
+        className={className}
+        mediaClasses={mediaClasses}
+        fit={fit}
+      />
+    ) : (
+      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
+    )
+  }
+  return (
+    <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)}>
+      <div role="presentation" className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
+        <MediaIcon className="w-8 h-8" fit={fit} />
+      </div>
     </div>
   )
 }

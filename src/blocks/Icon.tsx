@@ -38,7 +38,7 @@ export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title 
         <Media media={image} className={'w-32 h-32'} />
       </div>
       <div>
-        <h2 className="fontStyle-2xl break-words">{title ? title : 'title'}</h2>
+        <h3 className="fontStyle-2xl break-words">{title ? title : 'title'}</h3>
         <p className="mt-2">{body}</p>
       </div>
     </div>

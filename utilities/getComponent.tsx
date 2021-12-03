@@ -2,10 +2,12 @@ import React, {FC} from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {Calendly} from '../src/blocks/Calendly'
+import {Card} from '../src/blocks/Card'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
 import {Gallery} from '../src/blocks/Gallery'
+import {Header} from '../src/blocks/Header'
 import {Heading} from '../src/blocks/Heading'
 import {Icon} from '../src/blocks/Icon'
 import {Primary} from '../src/blocks/Primary'
@@ -57,6 +59,16 @@ const propsByType: Record<string, GetPropsFn> = {
       bgColor: content.bg_color
     }
   },
+  Card: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      imagePosition: content.image_position,
+      layout: content.layout,
+      hasBackground: content.has_background,
+      bgColor: content.bg_color,
+      isElevated: content.is_elevated
+    }
+  },
   ClientsLogos: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -77,6 +89,24 @@ const propsByType: Record<string, GetPropsFn> = {
     return {
       ...getCommonProps(content, id, attrs),
       tag: 'div'
+    }
+  },
+  Header: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      headerType: content.header_type,
+      headerAlign: content.header_align
+    }
+  },
+  TextGroup: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      titleSize: content.title_size,
+      textAlign: content.text_align,
+      hasSepar: content.has_separ,
+      hasBackground: content.has_background,
+      bgColor: content.bg_color,
+      isElevated: content.is_elevated
     }
   }
 }
@@ -103,11 +133,13 @@ const ValidComponents: Record<string, FC> = {
   Article,
   ButtonsGroup,
   Calendly,
+  Card,
   Collection,
   ClientsLogos,
   Divider,
   FAQ,
   Form,
+  Header,
   Heading,
   Hero,
   Icon,

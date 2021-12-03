@@ -5,12 +5,12 @@ import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import getWidth from '../../utilities/getWidth'
 
-import {ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
+import {AttrProps, ColumnProps, ComponentsExtraProps, ContentPosition} from '../../shared/types'
 
 export interface SectionItemProps {
   id: string
+  attrs?: AttrProps
   columns: ColumnProps[]
-  attrs?: {className?: string}
 }
 
 export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
@@ -56,7 +56,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
-  contentSectionClasses = cn(['gap-y-8', 'sm:gap-y-12', 'md:gap-y-24', 'sm:gap-x-12', 'md:gap-x-16', 'w-full', 'h-full']),
+  contentSectionClasses = cn(['gap-y-8', 'sm:gap-x-6', 'md:gap-x-12', 'w-full', 'h-full']),
   contentSectionStyles = {},
   columnClasses = '',
   columnStyles = {},
@@ -72,6 +72,9 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
     <>
       {content
         ? content.map(({columns, id, attrs}) => {
+            const fullHeight = typeof attrs?.full_height === 'boolean' ? attrs.full_height : true
+            const columnsLength = columns.length
+            contentSectionClasses += columnsLength === 4 ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
             return (
               <div
                 key={id || JSON.stringify(columns)}
@@ -79,14 +82,12 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                 style={{...contentSectionStyles}}
               >
                 {columns.map(({width = '1/1', blocks, id: columnId}) => {
+                  const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
                   return (
                     // See safelist in tailwind.safelist.js
-                    <div
-                      key={columnId || JSON.stringify(blocks)}
-                      className={cn([`col-span-${getWidth(width)}`, align, columnClasses])}
-                      style={{...columnStyles}}
-                    >
-                      {blocks.map((block) => {
+                    <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
+                      {blocks.map((block, index) => {
+                        block.content.fullHeight = fullHeight
                         return toComponent(block, {
                           ...componentsExtraProps
                         })

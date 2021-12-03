@@ -73,7 +73,8 @@ export const Section: FC<SectionProps> = ({
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
   const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
-  const gridClasses: string[] = []
+  const innerGridClasses: string[] = []
+  const outerGridClasses: string[] = []
 
   let imagePosPrimary = 'undefined'
 
@@ -111,11 +112,15 @@ export const Section: FC<SectionProps> = ({
     classes.push('px-4', 'sm:px-8', 'md:px-12', 'xl:px-0')
   }
   if (layoutSpacing === 'tight') {
-    classes.push('py-4', 'sm:py-8', 'md:py-16')
-    gridClasses.push('grid', 'gap-y-4', 'sm:gap-y-8', 'md:gap-y-16')
+    classes.push('py-16', 'sm:py-24', 'md:py-32')
+    outerGridClasses.push('grid', 'gap-y-8')
+    innerGridClasses.push(cn(outerGridClasses))
+    outerGridClasses.push('sm:gap-y-12 md:gap-y-16')
   } else {
-    classes.push('py-12', 'sm:py-16', 'md:py-24')
-    gridClasses.push('grid', 'gap-y-12', 'sm:gap-y-16', 'md:gap-y-24')
+    classes.push('py-24', 'sm:py-32', 'md:py-40')
+    outerGridClasses.push('grid', 'gap-y-12')
+    innerGridClasses.push(cn(outerGridClasses))
+    outerGridClasses.push('sm:gap-y-16 md:gap-y-24')
   }
   if (align) {
     classes.push(align)
@@ -128,7 +133,7 @@ export const Section: FC<SectionProps> = ({
     >
       <div className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div
-          className={cn(classes, gridClasses, floating && 'md:rounded-lg md:shadow-2xl', floating && floatingAbove && 'relative z-10')}
+          className={cn(classes, outerGridClasses, floating && 'md:rounded-lg md:shadow-2xl', floating && floatingAbove && 'relative z-10')}
           style={{backgroundColor: floating && bgColor}}
         >
           {content.length >= 1 ? (
@@ -138,7 +143,7 @@ export const Section: FC<SectionProps> = ({
               componentsExtraProps={columnComponentExtraProps}
               columnClasses="flex flex-col gap-y-6 h-full"
               templatesContent={templatesContent}
-              className={cn(gridClasses)}
+              className={cn(innerGridClasses)}
             />
           ) : (
             <div>No content yet</div>

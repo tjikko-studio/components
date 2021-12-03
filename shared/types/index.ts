@@ -78,4 +78,9 @@ export interface LinkObject {
   value: string | {url: string}[]
 }
 
+export interface AttrProps {
+  full_height?: boolean
+  className?: string
+}
+
 export type ComponentsExtraProps<P = Record<string, unknown>, T = Record<string, unknown>> = Record<string, (props: P) => T>

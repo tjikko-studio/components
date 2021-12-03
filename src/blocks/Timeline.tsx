@@ -1,4 +1,5 @@
 import React from 'react'
+import cn from 'classnames'
 
 import {ImageProps, Media} from '../parts/Media'
 
@@ -16,9 +17,9 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
         <div className="w-4 h-4 pt-px pr-px box-content bg-gray-700 rounded-full relative z-10" />
         {!last && <div className="absolute top-0 w-px bg-gray-400 -bottom-24 left-1/2 -ml-px" />}
       </div>
-      <div className="flex flex-col sm:flex-row w-full gap-4">
-        <div className="sm:w-1/3 sm:order-last">
-          {item?.image && (
+      <div className={cn('flex w-full gap-4', {'flex-col sm:flex-row': item?.image})}>
+        {item?.image && (
+          <div className="sm:w-1/2 sm:order-last">
             <Media
               media={item.image}
               autoplay={true}
@@ -26,10 +27,11 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
               controls={false}
               loop={true}
               className={'rounded-lg shadow-2xl w-full h-full'}
+              ratio="16/9"
             />
-          )}
-        </div>
-        <div className="flex sm:w-2/3 pr-8">
+          </div>
+        )}
+        <div className={cn('flex pr-8', {'sm:w-1/2 w-full': item?.image})}>
           <div className="flex flex-col w-full dark:text-gray-50">
             {item.title && <h5 className="-mt-0.5">{item.title}</h5>}
             {item.subtitle && <h6 className="fontStyle-sm uppercase mt-1.5 first:mt-0">{item.subtitle}</h6>}
