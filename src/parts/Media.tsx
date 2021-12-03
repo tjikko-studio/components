@@ -140,23 +140,25 @@ export const Media: FC<GenericMediaProps> = ({
   mediaClasses,
   fit = false
 }) => {
-  const type = media?.type ? media.type : 'image'
-  return media && type === 'video' ? (
-    <MediaVideo
-      key={media.url}
-      {...media}
-      autoplay={autoplay}
-      muted={muted}
-      controls={controls}
-      loop={loop}
-      ratio={ratio}
-      className={className}
-      mediaClasses={mediaClasses}
-      fit={fit}
-    />
-  ) : media && type === 'image' ? (
-    <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
-  ) : (
+  if (media) {
+    return media.type === 'video' ? (
+      <MediaVideo
+        key={media.url}
+        {...media}
+        autoplay={autoplay}
+        muted={muted}
+        controls={controls}
+        loop={loop}
+        ratio={ratio}
+        className={className}
+        mediaClasses={mediaClasses}
+        fit={fit}
+      />
+    ) : (
+      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
+    )
+  }
+  return (
     <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)}>
       <div role="presentation" className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
         <MediaIcon className="w-8 h-8" fit={fit} />
