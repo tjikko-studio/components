@@ -1,6 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import makeRandomId from '../../utilities/makeRandomId'
+
 export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
    * pop up type
@@ -42,14 +44,15 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
  * Primary UI component for user interaction
  */
 export const PopUpNavItem: FC<PopUpNavItemProps> = ({
-  label = 'link',
+  label = 'Link',
   type = 'default',
   padding = true,
   href = null,
   target = null,
   isActive = false,
   children = [],
-  className = ''
+  className = '',
+  ...rest
 }) => {
   const wrapperClasses = ['flex items-center']
   const linkClasses = [!padding && 'py-2.5']
@@ -85,18 +88,21 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
       }
       break
   }
+  const labelId = makeRandomId()
   return (
-    <div className={cn(wrapperClasses, className)} role={'navigation'} aria-label={label}>
-      {type !== 'header' ? (
-        href ? (
-          <a target={target} className={cn(linkClasses)} href={href}>
-            {label}
-          </a>
-        ) : (
-          <span className={cn(linkClasses, 'cursor-pointer')}>{label}</span>
-        )
+    <div className={cn(wrapperClasses, className)} aria-labelledby={labelId} {...rest}>
+      {type === 'header' ? (
+        <h3 id={labelId} className={cn(linkClasses)}>
+          {label}
+        </h3>
+      ) : href ? (
+        <a id={labelId} target={target} className={cn(linkClasses)} href={href}>
+          {label}
+        </a>
       ) : (
-        <h3 className={cn(linkClasses)}>{label}</h3>
+        <span id={labelId} className={cn(linkClasses, 'cursor-pointer')}>
+          {label}
+        </span>
       )}
       {children ? children : ''}
     </div>

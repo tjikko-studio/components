@@ -50,6 +50,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   columnStyles?: CSSProperties
 
   templatesContent?: Record<string, ColumnProps>
+
+  sectionHeadingId?: string
 }
 
 export const ContentColumns: FC<ContentColumnsProps> = ({
@@ -61,12 +63,25 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   columnClasses = '',
   columnStyles = {},
   templatesContent = {},
-  className
+  className,
+  sectionHeadingId
 }) => {
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
+  const headingExtraPropsFn = componentsExtraProps.Heading
+  if (headingExtraPropsFn) {
+    componentsExtraProps.Heading = (props) => {
+      return {...headingExtraPropsFn(props), id: sectionHeadingId}
+    }
+  } else {
+    componentsExtraProps.Heading = () => {
+      return {
+        id: sectionHeadingId
+      }
+    }
+  }
 
   return (
     <>
@@ -77,6 +92,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
             contentSectionClasses += columnsLength === 4 ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
             return (
               <div
+                role="presentation"
                 key={id || JSON.stringify(columns)}
                 className={cn('grid sm:grid-cols-12', contentSectionClasses, className, attrs?.className)}
                 style={{...contentSectionStyles}}
@@ -85,8 +101,13 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
                   const columns = columnsLength === 4 ? `sm:col-span-6 lg:col-span-3` : `col-span-${getWidth(width)}`
                   return (
                     // See safelist in tailwind.safelist.js
-                    <div key={columnId || JSON.stringify(blocks)} className={cn(columns, align, columnClasses)} style={{...columnStyles}}>
-                      {blocks.map((block, index) => {
+                    <div
+                      role="presentation"
+                      key={columnId || JSON.stringify(blocks)}
+                      className={cn(columns, align, columnClasses)}
+                      style={{...columnStyles}}
+                    >
+                      {blocks.map((block) => {
                         block.content.fullHeight = fullHeight
                         return toComponent(block, {
                           ...componentsExtraProps

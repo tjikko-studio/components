@@ -1,7 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import getLink, {getTarget} from '../../utilities/getLink'
+import parseLink from '../../utilities/parseLink'
 import {PopUpNavItem} from './PopUpNavItem'
 
 import {MenuType} from '../../shared/types'
@@ -53,14 +53,15 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
           <div className={wMax} key={menu.label} role={'navigation'} aria-label={menu.label}>
             {listNavContent.length > 1 && <PopUpNavItem label={menu.label} type={'header'} className="py-2.5" />}
             {menu.content.map((menuItem) => {
+              const {url, target} = parseLink(menuItem.link)
               return (
                 <PopUpNavItem
                   key={menuItem.label}
                   label={menuItem.label}
                   type={menuItem.type ? menuItem.type : 'default'}
                   className="py-2.5"
-                  href={getLink(menuItem.link)}
-                  target={getTarget(menuItem.link)}
+                  href={url}
+                  target={target}
                 />
               )
             })}

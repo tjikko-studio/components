@@ -17,7 +17,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   logosLayout?: 'grid' | 'marquee'
 
   /**
-   * To make logos grayscale (to avoid the client to reupload them and test their preference fast)
+   * To make logos grayscale (to avoid the client to re-upload them and test their preference fast)
    */
   logosGrayscale?: boolean
 
@@ -65,7 +65,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
 
   const LogosList = () => {
     return (
-      <>
+      <div className={cn(wrapperClass)}>
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
@@ -73,26 +73,22 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
             </div>
           )
         })}
-      </>
+      </div>
     )
   }
   return (
-    <section>
+    <div>
       {logosLayout === 'grid' ? (
-        <div className={cn(wrapperClass)}>
-          <LogosList />
-        </div>
+        <LogosList />
       ) : (
         logosLayout === 'marquee' && (
           <div className="relative w-screen transform -translate-x-1/2 left-1/2">
             <Marquee gradientWidth="0" speed={marqueeSpeed}>
-              <div className={cn(wrapperClass)}>
-                <LogosList />
-              </div>
+              <LogosList />
             </Marquee>
           </div>
         )
       )}
-    </section>
+    </div>
   )
 }
