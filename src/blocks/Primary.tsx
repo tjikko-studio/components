@@ -98,12 +98,12 @@ export const Primary: FC<PrimaryProps> = ({
             className={cn(
               'flex flex-col',
               {'justify-center': textPositionVertical === 'center'},
-              {'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'},
-              {'lg:col-start-2 lg:row-start-1': imagePosition !== 'right' && finalLayout === 'default'},
+              {'lg:col-start-1': imagePosition === 'right' && finalLayout === 'default'},
+              {'lg:col-start-2 lg:row-start-1': imagePosition === 'left' && finalLayout === 'default'},
               className
             )}
           >
-            <h2 className={cn('break-words', titleSize)}>{title}</h2>
+            <h3 className={cn('break-words', titleSize)}>{title}</h3>
             <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>
