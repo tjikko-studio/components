@@ -63,7 +63,7 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta})
           hasBackground={false}
           buttons={[
             {
-              label: label.includes('{title}') ? label.replace('{title}', item.content.title) : label,
+              label: label.replace('{title}', item.content.title),
               type: 'tertiary',
               link: {
                 type: 'page',
@@ -89,7 +89,7 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
               className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
               type="tertiary"
               link={{type: 'link', value: item.url, popup: false}}
-              label={label.includes('{title}') ? label.replace('{title}', item.content.title) : label}
+              label={label.replace('{title}', item.content.title)}
             />
           )
         }
