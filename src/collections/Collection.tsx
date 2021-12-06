@@ -6,7 +6,7 @@ import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
-import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
+import {JobsCollection, JobsCollectionProps} from './collectionsLists/JobsCollection'
 
 type CollectionItem = {
   id: string
@@ -19,13 +19,13 @@ type CollectionItem = {
   }
 }
 
-type JobItems = {
-  jobs: JobItem[]
-  tags: JobsTags[]
+type CollectionItems = {
+  items: CollectionItem[]
+  link_cta: string
 }
 
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
-  items?: CollectionItem[] & JobItems
+  content?: CollectionItems & JobsCollectionProps
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
@@ -47,38 +47,39 @@ let classes = [
   'gap-16'
 ]
 
-const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
+const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+  const label = link_cta ? link_cta : 'Read about {title}'
   classes.push('sm:grid-cols-2')
   return (
     <section className={cn(classes)}>
       {items?.map((item) => (
-        <>
-          <Card
-            key={item.id}
-            image={item.content.images?.[0]}
-            imagePosition="right"
-            title={item.content.title}
-            body={item.content.description}
-            layout="horizontal"
-            buttons={[
-              {
-                label: `Read about ${item.content.title}`,
-                type: 'tertiary',
-                link: {
-                  type: 'page',
-                  popup: false,
-                  value: item.url
-                }
+        <Card
+          key={item.id}
+          image={item.content.images?.[0]}
+          imagePosition="right"
+          title={item.content.title}
+          body={item.content.description}
+          layout="horizontal"
+          hasBackground={false}
+          buttons={[
+            {
+              label: label.replace('{title}', item.content.title),
+              type: 'tertiary',
+              link: {
+                type: 'page',
+                popup: false,
+                value: item.url
               }
-            ]}
-          />
-        </>
+            }
+          ]}
+        />
       ))}
     </section>
   )
 }
 
-const PortfolioCollection: FC<CollectionProps> = ({items}) => {
+const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+  const label = link_cta ? link_cta : 'Read about {title}'
   return (
     <section className={cn(classes)}>
       {items?.map((item) => {
@@ -88,7 +89,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
               className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
               type="tertiary"
               link={{type: 'link', value: item.url, popup: false}}
-              label={`Read about ${item.content.title}`}
+              label={label.replace('{title}', item.content.title)}
             />
           )
         }
@@ -117,17 +118,25 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({items, datasource} = {items: null}) => {
-  if (datasource === 'success-stories') {
-    return <SuccessStoriesCollection items={items} />
+export const Collection: FC<CollectionProps> = ({content, datasource} = {content: null}) => {
+  if (datasource === 'success-stories' && content) {
+    return <SuccessStoriesCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
   }
 
-  if (datasource === 'portfolio') {
-    return <PortfolioCollection items={items} />
+  if (datasource === 'portfolio' && content) {
+    return <PortfolioCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
   }
 
-  if (datasource === 'jobs') {
-    return <JobsCollection content={items} />
+  if (datasource === 'jobs' && content) {
+    return (
+      <JobsCollection
+        key={JSON.stringify(content.jobs)}
+        jobs={content.jobs}
+        tags={content.tags}
+        apply_cta={content.apply_cta}
+        show_all={content.show_all}
+      />
+    )
   }
 
   return null
