@@ -6,7 +6,7 @@ import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
-import {JobItem, JobsCollection, JobsTags} from './collectionsLists/JobsCollection'
+import {JobsCollection, JobsCollectionProps} from './collectionsLists/JobsCollection'
 
 type CollectionItem = {
   id: string
@@ -19,13 +19,13 @@ type CollectionItem = {
   }
 }
 
-type JobItems = {
-  jobs: JobItem[]
-  tags: JobsTags[]
+type CollectionItems = {
+  items: CollectionItem[]
+  link_cta: string
 }
 
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
-  items?: CollectionItem[] & JobItems
+  content?: CollectionItems & JobsCollectionProps
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
@@ -47,7 +47,7 @@ let classes = [
   'gap-16'
 ]
 
-const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) => {
+const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta = 'Read about {title}'}) => {
   classes.push('sm:grid-cols-2')
   return (
     <section className={cn(classes)}>
@@ -62,7 +62,7 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
             layout="horizontal"
             buttons={[
               {
-                label: `Read about ${item.content.title}`,
+                label: link_cta.includes('{title}') ? link_cta.replace('{title}', item.content.title) : link_cta,
                 type: 'tertiary',
                 link: {
                   type: 'page',
@@ -78,7 +78,9 @@ const SuccessStoriesCollection: FC<CollectionProps> = ({items} = {items: null}) 
   )
 }
 
-const PortfolioCollection: FC<CollectionProps> = ({items}) => {
+const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta = 'Read about {title}'}) => {
+  // item.content.title
+  //label: `Read about ${item.content.title}`,
   return (
     <section className={cn(classes)}>
       {items?.map((item) => {
@@ -88,7 +90,7 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
               className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
               type="tertiary"
               link={{type: 'link', value: item.url, popup: false}}
-              label={`Read about ${item.content.title}`}
+              label={link_cta.includes('{title}') ? link_cta.replace('{title}', item.content.title) : link_cta}
             />
           )
         }
@@ -117,17 +119,17 @@ const PortfolioCollection: FC<CollectionProps> = ({items}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({items, datasource} = {items: null}) => {
-  if (datasource === 'success-stories') {
-    return <SuccessStoriesCollection items={items} />
+export const Collection: FC<CollectionProps> = ({content, datasource} = {content: null}) => {
+  if (datasource === 'success-stories' && content) {
+    return <SuccessStoriesCollection items={content.items} link_cta={content.link_cta} />
   }
 
-  if (datasource === 'portfolio') {
-    return <PortfolioCollection items={items} />
+  if (datasource === 'portfolio' && content) {
+    return <PortfolioCollection items={content.items} link_cta={content.link_cta} />
   }
 
-  if (datasource === 'jobs') {
-    return <JobsCollection content={items} />
+  if (datasource === 'jobs' && content) {
+    return <JobsCollection jobs={content.jobs} tags={content.tags} apply_cta={content.apply_cta} show_all={content.show_all} />
   }
 
   return null

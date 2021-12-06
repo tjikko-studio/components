@@ -28,23 +28,33 @@ export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
   /**
    * items
    */
-  content: {
-    jobs?: JobItem[]
-    tags?: JobsTags[]
-  }
+  jobs?: JobItem[]
+  tags?: JobsTags[]
+
+  /**
+   * Buttons Text
+   */
+  apply_cta?: string
+  show_all?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, tags: null}, className}) => {
+export const JobsCollection: FC<JobsCollectionProps> = ({
+  jobs = null,
+  tags = null,
+  apply_cta = 'Apply now',
+  show_all = 'All',
+  className
+}) => {
   const [filterContent, setFilterContent] = useState(null)
 
   let availableNav: string[] = []
   let navigation: {label: string; available: boolean}[] = null
 
-  if (content?.jobs) {
-    content.jobs.forEach((job: JobItem) => {
+  if (jobs) {
+    jobs.forEach((job: JobItem) => {
       job.tags.forEach((tag: JobsItemTag) => {
         if (tag.id === 'department') {
           job.filter = tag.value
@@ -54,8 +64,8 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
     })
   }
 
-  if (content?.tags) {
-    content.tags.map((tag: JobsTags) => {
+  if (tags) {
+    tags.map((tag: JobsTags) => {
       if (tag.id === 'department') {
         navigation = tag.children.map((tag: JobsTags) => {
           return {
@@ -85,7 +95,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
                 }}
                 className={cn(navItemsClasses)}
               >
-                <PopUpNavItem key={JSON.stringify(content?.tags)} label="All" isActive={!filterContent} />
+                <PopUpNavItem key={JSON.stringify(tags)} label={show_all} isActive={!filterContent} />
               </li>
               {navigation
                 ? navigation.map((item) => {
@@ -107,8 +117,8 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
           </nav>
         </header>
         <div>
-          {content.jobs ? (
-            content.jobs.map((job) => {
+          {jobs ? (
+            jobs.map((job) => {
               const display = !filterContent || (filterContent && filterContent === job.filter) ? 'block' : 'hidden'
               return (
                 <div className={cn(['flex justify-between align-baseline border-b py-6', display])}>
@@ -122,7 +132,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({content = {jobs: null, 
                         : null}
                     </div>
                   </div>
-                  <Button key={job.title} label="Apply now" link={{type: 'link', value: job.link, popup: false}} />
+                  <Button key={job.title} label={apply_cta} link={{type: 'link', value: job.link, popup: false}} />
                 </div>
               )
             })
