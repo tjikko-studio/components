@@ -90,7 +90,7 @@ export const Card: FC<CardProps> = ({
         'w-full flex flex-col gap-6',
         {'h-full': fullHeight},
         hasBackground && lightOrDark(bgColorOutput),
-        {'md:flex-row md:h-auto': layout === 'horizontal'},
+        {'xl:flex-row xl:h-auto': layout === 'horizontal'},
         {'rounded-lg overflow-hidden': hasBackground},
         {'shadow-2xl': isElevated && hasBackground},
         className
@@ -105,18 +105,22 @@ export const Card: FC<CardProps> = ({
           controls={controls}
           loop={loop}
           ratio="16/9"
-          className={cn({'shadow-2xl': isElevated && !hasBackground}, {'overflow-hidden md:w-1/2': layout === 'horizontal'})}
-          mediaClasses={cn('object-cover', {'rounded-lg': !hasBackground})}
+          className={cn(
+            {'shadow-2xl': isElevated && !hasBackground},
+            {'rounded-lg': !hasBackground},
+            {'overflow-hidden xl:w-1/2': layout === 'horizontal'}
+          )}
+          mediaClasses={cn('object-cover')}
         />
       )}
       <div
         className={cn(
-          'p-6 flex flex-col',
-          {'justify-between': hasBackground},
+          'flex flex-col justify-between',
+          {'p-6': hasBackground},
           {'pt-0': image},
-          {'md:pt-6 md:w-1/2 md:h-full': image && layout === 'horizontal'},
-          {'md:pl-0 order:last': image && imagePosition === 'right' && layout === 'horizontal'},
-          {'md:pr-0': image && imagePosition === 'left' && layout === 'horizontal'}
+          {'xl:pt-6 xl:w-1/2 xl:h-full': image && layout === 'horizontal'},
+          {'xl:pr-0 xl:order-first': image && imagePosition === 'right' && layout === 'horizontal'},
+          {'xl:pl-0': image && imagePosition === 'left' && layout === 'horizontal'}
         )}
       >
         {(title || body) && (
