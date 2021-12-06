@@ -104,12 +104,13 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
                     return (
                       item.available && (
                         <li
+                          key={item.label}
                           onClick={() => {
                             setFilterContent(item.label)
                           }}
                           className={cn(navItemsClasses)}
                         >
-                          <PopUpNavItem key={`${item.label}`} label={item.label} isActive={filterContent === item.label} />
+                          <PopUpNavItem label={item.label} isActive={filterContent === item.label} />
                         </li>
                       )
                     )
@@ -123,18 +124,25 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
             jobs.map((job) => {
               const display = !filterContent || (filterContent && filterContent === job.filter) ? 'block' : 'hidden'
               return (
-                <div className={cn(['flex justify-between align-baseline border-b py-6', display])}>
+                <div
+                  key={`${JSON.stringify([job.title, job.tags])}`}
+                  className={cn(['flex justify-between align-baseline border-b py-6', display])}
+                >
                   <div className="">
                     <h4 className="fontStyle-2xl">{job.title}</h4>
                     <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                       {job.tags.length
                         ? job.tags.map((tag) => {
-                            return <div className="">{tag.value}</div>
+                            return (
+                              <div key={`${job.title}[${tag.value}]`} className="">
+                                {tag.value}
+                              </div>
+                            )
                           })
                         : null}
                     </div>
                   </div>
-                  <Button key={job.title} label={applyCta} link={{type: 'link', value: job.link, popup: false}} />
+                  <Button label={applyCta} link={{type: 'link', value: job.link, popup: false}} />
                 </div>
               )
             })

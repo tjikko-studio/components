@@ -121,15 +121,23 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
 
 export const Collection: FC<CollectionProps> = ({content, datasource} = {content: null}) => {
   if (datasource === 'success-stories' && content) {
-    return <SuccessStoriesCollection items={content.items} link_cta={content.link_cta} />
+    return <SuccessStoriesCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
   }
 
   if (datasource === 'portfolio' && content) {
-    return <PortfolioCollection items={content.items} link_cta={content.link_cta} />
+    return <PortfolioCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
   }
 
   if (datasource === 'jobs' && content) {
-    return <JobsCollection jobs={content.jobs} tags={content.tags} apply_cta={content.apply_cta} show_all={content.show_all} />
+    return (
+      <JobsCollection
+        key={JSON.stringify(content.jobs)}
+        jobs={content.jobs}
+        tags={content.tags}
+        apply_cta={content.apply_cta}
+        show_all={content.show_all}
+      />
+    )
   }
 
   return null
