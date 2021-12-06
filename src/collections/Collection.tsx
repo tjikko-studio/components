@@ -53,27 +53,26 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta})
   return (
     <section className={cn(classes)}>
       {items?.map((item) => (
-        <>
-          <Card
-            key={item.id}
-            image={item.content.images?.[0]}
-            imagePosition="right"
-            title={item.content.title}
-            body={item.content.description}
-            layout="horizontal"
-            buttons={[
-              {
-                label: label.includes('{title}') ? label.replace('{title}', item.content.title) : label,
-                type: 'tertiary',
-                link: {
-                  type: 'page',
-                  popup: false,
-                  value: item.url
-                }
+        <Card
+          key={item.id}
+          image={item.content.images?.[0]}
+          imagePosition="right"
+          title={item.content.title}
+          body={item.content.description}
+          layout="horizontal"
+          hasBackground={false}
+          buttons={[
+            {
+              label: label.includes('{title}') ? label.replace('{title}', item.content.title) : label,
+              type: 'tertiary',
+              link: {
+                type: 'page',
+                popup: false,
+                value: item.url
               }
-            ]}
-          />
-        </>
+            }
+          ]}
+        />
       ))}
     </section>
   )
