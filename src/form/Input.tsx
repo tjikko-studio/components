@@ -138,17 +138,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     addSuccessClasses(isSuccess, inputClasses)
 
     const Content = () => {
+      const labelId = label
+      const infoId = information
       return (
         <>
           {label && (
             <div className={cn(labelContainerClasses)} style={gridAreas('label', columnStart, columnEnd)}>
-              <span>{label}</span>
+              <label id={labelId}>{label}</label>
               {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
               {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
               {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}
             </div>
           )}
-          <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+          <div role="presentation" className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
             <input
               className={cn(inputClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
               value={value}
@@ -157,10 +159,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               placeholder={placeholder}
               disabled={isDisabled}
               ref={ref}
+              aria-labelledby={labelId}
+              aria-describedby={infoId}
             />
           </div>
           {information && (
-            <div className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas('info', columnStart, columnEnd)}>
+            <div id={infoId} className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas('info', columnStart, columnEnd)}>
               <div
                 className={cn(
                   'fontStyle-sm min-h-6 flex items-center dark:text-gray-300',

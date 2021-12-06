@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
 
-import getLink, {getTarget} from '../../utilities/getLink'
+import parseLink from '../../utilities/parseLink'
 import {ListNav} from './ListNav'
 import {PopUpNavItem} from './PopUpNavItem'
 
@@ -61,46 +61,51 @@ export const NavItem: FC<NavItemProps> = ({
   dropdownTop = false,
   className = ''
 }) => {
-  const [mouseIn, setMouseIn] = useState(false)
-  const [mouseClick, setMouseClick] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
+  const showSubMenu = () => {
+    setIsOpen(true)
+  }
+  const hideSubMenu = () => {
+    setIsOpen(false)
+  }
+
+  const {url, target} = parseLink(link)
+
+  const eventHandlers = listNavContent.length
+    ? {
+        onMouseOver: showSubMenu,
+        onMouseOut: hideSubMenu,
+        onFocus: showSubMenu,
+        onBlur: hideSubMenu
+      }
+    : {}
   return (
-    <div
-      className={cn('w-max relative z-10 gap-x-2.5', className)}
-      style={{width: 'fit-content'}}
-      onMouseEnter={() => {
-        setMouseIn(true)
-        setMouseClick(true)
-      }}
-      onMouseLeave={() => {
-        setMouseIn(false)
-      }}
-    >
+    <div className={cn('w-max relative z-10 gap-x-2.5', className)} style={{width: 'fit-content'}} {...eventHandlers}>
       <PopUpNavItem
-        onClick={() => {
-          setMouseClick(!mouseClick)
-        }}
         type={styles}
         label={label}
-        href={getLink(link)}
-        target={getTarget(link)}
+        href={url}
+        target={target}
         padding={padding}
         className={cn(
           'flex items-center',
-          mouseIn && styles === 'default' && 'hover:text-primary-600',
-          mouseIn && styles === 'special' && 'hover:text-primary-300',
-          mouseIn && popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
+          styles === 'default' && 'hover:text-primary-600',
+          styles === 'special' && 'hover:text-primary-300',
+          popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
       >
         {listNavContent.length && <ArrowDown className="w-5 h-5" />}
       </PopUpNavItem>
-      {mouseIn && mouseClick && listNavContent.length ? (
+      {listNavContent.length ? (
         <div
           className={cn(
             'absolute w-max',
+            isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
             dropdownRight === false ? 'left-0' : 'right-0',
             dropdownTop === false ? 'top-full pt-1' : 'bottom-full pb-3'
           )}
+          {...eventHandlers}
         >
           <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
         </div>

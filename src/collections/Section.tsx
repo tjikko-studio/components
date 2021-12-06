@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import extractCombo from '../../utilities/extractCombo'
 import lightOrDark from '../../utilities/lightOrDark'
+import makeRandomId from '../../utilities/makeRandomId'
 import {ContentColumns} from '../layouts/ContentColumns'
 
 import {ColumnProps, ComponentsExtraProps} from '../../shared/types'
@@ -67,6 +68,7 @@ export const Section: FC<SectionProps> = ({
   templatesContent = {},
   className
 }) => {
+  const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   // See safelist in tailwind.safelist.js
@@ -130,9 +132,11 @@ export const Section: FC<SectionProps> = ({
     <section
       className={cn('overflow-hidden', theme, className, floating && 'py-12 relative')}
       style={{backgroundColor: floating ? wrapperColor : bgColor}}
+      aria-labelledby={sectionHeadingId}
     >
-      <div className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
+      <div role="presentation" className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div
+          role="presentation"
           className={cn(classes, outerGridClasses, floating && 'md:rounded-lg md:shadow-2xl', floating && floatingAbove && 'relative z-10')}
           style={{backgroundColor: floating && bgColor}}
         >
@@ -143,6 +147,7 @@ export const Section: FC<SectionProps> = ({
               componentsExtraProps={columnComponentExtraProps}
               columnClasses="flex flex-col gap-y-6 h-full"
               templatesContent={templatesContent}
+              sectionHeadingId={sectionHeadingId}
               className={cn(innerGridClasses)}
             />
           ) : (

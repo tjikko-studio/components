@@ -22,11 +22,15 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Heading: FC<HeadingProps> = ({level = 'h3', alignment = 'left', text = '', className = ''}) => {
+export const Heading: FC<HeadingProps> = ({level = 'h3', alignment = 'left', text = '', className = '', id}) => {
   const finalAlignment = alignment || 'left'
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
 
   return (
-    <HeaderTag className={cn(finalAlignment === 'left' && 'w-full', `text-${finalAlignment ? finalAlignment : 'left'}`, className)} dangerouslySetInnerHTML={{__html: text}} />
+    <HeaderTag
+      id={id}
+      className={cn(finalAlignment === 'left' && 'w-full', `text-${finalAlignment ? finalAlignment : 'left'}`, className)}
+      dangerouslySetInnerHTML={{__html: text}}
+    />
   )
 }

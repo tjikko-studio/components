@@ -118,6 +118,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }
 
     const Content = () => {
+      const labelId = label
       return (
         <>
           {label && (
@@ -129,19 +130,22 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
               ])}
               style={gridAreas('label', columnStart, columnEnd)}
             >
-              <p className="w-full">{label}</p>
+              <label id={labelId} className="w-full">
+                {label}
+              </label>
               {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
               {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
               {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
             </div>
           )}
-          <div className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
+          <div role="presentation" className={`sm:grid-in-control-${columnStart}`} style={gridAreas('control', columnStart, columnEnd)}>
             <textarea
               ref={ref}
               className={cn(textAreaClasses, focusClasses('outline-none ring-2 ring-primary-500 border-transparent', isFocussed))}
               defaultValue={text}
               placeholder={placeholder}
               disabled={isDisabled}
+              aria-labelledby={labelId}
             />
           </div>
           {information && (

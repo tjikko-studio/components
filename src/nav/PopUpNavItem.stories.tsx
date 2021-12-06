@@ -22,9 +22,7 @@ const Template: Story<PopUpNavItemProps> = (args) => {
 }
 
 export const Default = Template.bind({})
-Default.args = {
-  label: 'Link'
-}
+Default.args = {}
 
 export const Active = Template.bind({})
 Active.args = {

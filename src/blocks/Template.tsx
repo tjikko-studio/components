@@ -41,11 +41,11 @@ export const Template: FC<TemplateProps> = ({
   const AvailableTemplates = {
     template: () => {
       return (
-        <div>
+        <div role="presentation">
           {content ? (
             <ContentColumns content={content as SectionItemProps[]} className={className} contentSectionClasses="sm:grid sm:grid-cols-12" />
           ) : (
-            <div>No template yet</div>
+            <p>No template yet</p>
           )}
         </div>
       )
