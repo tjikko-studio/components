@@ -17,7 +17,6 @@ export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string
   ]
   const top = ['items-start -top-16 pt-20 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
   const bottom = ['items-end -bottom-16 pb-20 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
-  // aria-hidden="true"
   const Caption: FC<{position: string[]; AriaHidden?: boolean}> = ({position, AriaHidden = false}) => {
     return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} aria-hidden={AriaHidden} />
   }
@@ -30,7 +29,7 @@ export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, info = '', fit}) => {
+export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, info = '', fit = false}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} role="group" className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
@@ -152,16 +151,16 @@ export const Media: FC<GenericMediaProps> = ({
         ratio={ratio}
         className={className}
         mediaClasses={mediaClasses}
-        fit={fit}
+        fit
       />
     ) : (
-      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
+      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit mediaClasses={mediaClasses} />
     )
   }
   return (
     <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)}>
       <div role="presentation" className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
-        <MediaIcon className="w-8 h-8" fit={fit} />
+        <MediaIcon className="w-8 h-8" />
       </div>
     </div>
   )
