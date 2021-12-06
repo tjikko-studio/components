@@ -104,7 +104,7 @@ export const MediaVideo: FC<VideoProps> = ({
         muted={muted}
         controls={videoPlaying}
         loop={loop}
-        className={(cn('h-full', ratio && 'object-cover'), fit ? 'w-auto' : 'w-full', mediaClasses)}
+        className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
         <meta itemProp="description" content={parsedInfos?.alt}></meta>
@@ -151,10 +151,10 @@ export const Media: FC<GenericMediaProps> = ({
         ratio={ratio}
         className={className}
         mediaClasses={mediaClasses}
-        fit
+        fit={fit}
       />
     ) : (
-      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit mediaClasses={mediaClasses} />
+      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
     )
   }
   return (
