@@ -36,7 +36,7 @@ export const Header: FC<HeaderProps> = ({title = '', subtitle = '', className = 
   const align = headerAlign === 'center' ? 'text-center' : ''
 
   return (
-    <header className={cn('w-full', align, className)}>
+    <header className={cn('w-full', {'text-shadow-lg': headerType === 'hero'}, align, className)}>
       <Heading level={titleTag} text={title} className={titleClasses} alignment={headerAlign} />
       {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
     </header>
