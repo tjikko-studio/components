@@ -47,7 +47,8 @@ let classes = [
   'gap-16'
 ]
 
-const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta = 'Read about {title}'}) => {
+const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+  const label = link_cta ? link_cta : 'Read about {title}'
   classes.push('sm:grid-cols-2')
   return (
     <section className={cn(classes)}>
@@ -62,7 +63,7 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta =
             layout="horizontal"
             buttons={[
               {
-                label: link_cta.includes('{title}') ? link_cta.replace('{title}', item.content.title) : link_cta,
+                label: label.includes('{title}') ? label.replace('{title}', item.content.title) : label,
                 type: 'tertiary',
                 link: {
                   type: 'page',
@@ -78,9 +79,8 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta =
   )
 }
 
-const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta = 'Read about {title}'}) => {
-  // item.content.title
-  //label: `Read about ${item.content.title}`,
+const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+  const label = link_cta ? link_cta : 'Read about {title}'
   return (
     <section className={cn(classes)}>
       {items?.map((item) => {
@@ -90,7 +90,7 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta = 'Rea
               className={`mt-4 w-fit ${hideOnSm ? 'inline-flex sm:hidden' : 'hidden sm:inline-flex'}`}
               type="tertiary"
               link={{type: 'link', value: item.url, popup: false}}
-              label={link_cta.includes('{title}') ? link_cta.replace('{title}', item.content.title) : link_cta}
+              label={label.includes('{title}') ? label.replace('{title}', item.content.title) : label}
             />
           )
         }

@@ -49,6 +49,8 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
   className
 }) => {
   const [filterContent, setFilterContent] = useState(null)
+  const applyCta = apply_cta ? apply_cta : 'Apply now'
+  const showAll = show_all ? show_all : 'All'
 
   let availableNav: string[] = []
   let navigation: {label: string; available: boolean}[] = null
@@ -95,7 +97,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
                 }}
                 className={cn(navItemsClasses)}
               >
-                <PopUpNavItem key={JSON.stringify(tags)} label={show_all} isActive={!filterContent} />
+                <PopUpNavItem key={JSON.stringify(tags)} label={showAll} isActive={!filterContent} />
               </li>
               {navigation
                 ? navigation.map((item) => {
@@ -132,7 +134,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
                         : null}
                     </div>
                   </div>
-                  <Button key={job.title} label={apply_cta} link={{type: 'link', value: job.link, popup: false}} />
+                  <Button key={job.title} label={applyCta} link={{type: 'link', value: job.link, popup: false}} />
                 </div>
               )
             })
