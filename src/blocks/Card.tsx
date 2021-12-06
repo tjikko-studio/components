@@ -105,8 +105,12 @@ export const Card: FC<CardProps> = ({
           controls={controls}
           loop={loop}
           ratio="16/9"
-          className={cn({'shadow-2xl': isElevated && !hasBackground}, {'overflow-hidden xl:w-1/2': layout === 'horizontal'})}
-          mediaClasses={cn('object-cover', {'rounded-lg': !hasBackground})}
+          className={cn(
+            {'shadow-2xl': isElevated && !hasBackground},
+            {'rounded-lg': !hasBackground},
+            {'overflow-hidden xl:w-1/2': layout === 'horizontal'}
+          )}
+          mediaClasses={cn('object-cover')}
         />
       )}
       <div
