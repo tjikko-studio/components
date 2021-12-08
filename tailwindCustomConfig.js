@@ -5,7 +5,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles base modifiers
      */
     '.fontStyle-base': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.base'),
       lineHeight: theme('lineHeight.base'),
       letterSpacing: theme('letterSpacing.base'),
@@ -28,7 +27,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles large
      */
     '.fontStyle-lg': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.lg'),
       lineHeight: theme('lineHeight.lg'),
       letterSpacing: theme('letterSpacing.lg'),
@@ -51,7 +49,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles small
      */
     '.fontStyle-sm': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.sm'),
       lineHeight: theme('lineHeight.sm'),
       letterSpacing: theme('letterSpacing.sm'),
@@ -74,7 +71,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles xsmall
      */
     '.fontStyle-xs': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.xs'),
       lineHeight: theme('lineHeight.xs'),
       letterSpacing: theme('letterSpacing.xs'),

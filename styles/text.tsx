@@ -1,9 +1,7 @@
-const fontList = ['Inter', '"Helvetica Neue"', 'Helvetica', 'Arial', '"Lucida Grande"', 'sans-serif'].join(', ')
-
 export default {
   fontFamily: {
-    display: [fontList],
-    body: [fontList]
+    display: 'Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
+    body: 'Inter, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'
   },
   fontSize: {
     xxs: '.625rem',
