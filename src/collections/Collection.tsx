@@ -1,12 +1,15 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import getComponent from '../../utilities/getComponent'
 import {Card} from '../blocks/Card'
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
 import {Button} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 import {JobsCollection, JobsCollectionProps} from './collectionsLists/JobsCollection'
+
+import {BlockProps, ColumnProps} from '../../shared/types'
 
 type CollectionItem = {
   id: string
@@ -25,11 +28,13 @@ type CollectionItems = {
 }
 
 export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
+  header?: BlockProps[]
+  templatesContent?: Record<string, ColumnProps>
   content?: CollectionItems & JobsCollectionProps
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
 
-let classes = [
+let sectionClasses = [
   'grid',
   'text-gray-900',
   'dark:text-gray-50',
@@ -47,11 +52,13 @@ let classes = [
   'gap-16'
 ]
 
+let contentClasses = ['grid', 'w-full', 'px-4', 'gap-16']
+
 const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
   const label = link_cta ? link_cta : 'Read about {title}'
-  classes.push('sm:grid-cols-2')
+  contentClasses.push('sm:grid-cols-2')
   return (
-    <section className={cn(classes)}>
+    <div className={cn(contentClasses)}>
       {items?.map((item) => (
         <Card
           key={item.id}
@@ -74,14 +81,14 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta})
           ]}
         />
       ))}
-    </section>
+    </div>
   )
 }
 
 const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
   const label = link_cta ? link_cta : 'Read about {title}'
   return (
-    <section className={cn(classes)}>
+    <div className={cn(contentClasses)}>
       {items?.map((item) => {
         const ReadMoreButton = ({hideOnSm = false}) => {
           return (
@@ -114,30 +121,39 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
           </div>
         )
       })}
-    </section>
+    </div>
   )
 }
 
-export const Collection: FC<CollectionProps> = ({content, datasource} = {content: null}) => {
-  if (datasource === 'success-stories' && content) {
-    return <SuccessStoriesCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
-  }
+export const Collection: FC<CollectionProps> = ({header, content, templatesContent = {}, datasource} = {content: null}) => {
+  const toComponent = getComponent(templatesContent)
+  return (
+    <section className={cn(sectionClasses)}>
+      {header.length ? (
+        <header>
+          {header.map((block) => {
+            return <div key={JSON.stringify(block.content)}>{toComponent(block)}</div>
+          })}
+        </header>
+      ) : null}
 
-  if (datasource === 'portfolio' && content) {
-    return <PortfolioCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
-  }
+      {datasource === 'success-stories' && content && (
+        <SuccessStoriesCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
+      )}
 
-  if (datasource === 'jobs' && content) {
-    return (
-      <JobsCollection
-        key={JSON.stringify(content.jobs)}
-        jobs={content.jobs}
-        tags={content.tags}
-        apply_cta={content.apply_cta}
-        show_all={content.show_all}
-      />
-    )
-  }
+      {datasource === 'portfolio' && content && (
+        <PortfolioCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
+      )}
 
-  return null
+      {datasource === 'jobs' && content && (
+        <JobsCollection
+          key={JSON.stringify(content.jobs)}
+          jobs={content.jobs}
+          tags={content.tags}
+          apply_cta={content.apply_cta}
+          show_all={content.show_all}
+        />
+      )}
+    </section>
+  )
 }
