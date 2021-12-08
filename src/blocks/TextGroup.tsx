@@ -21,6 +21,11 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
   hasBackground?: boolean
   bgColor?: string
   isElevated?: boolean
+
+  /**
+   * Height of the card
+   */
+  fullHeight?: boolean
 }
 
 /**
@@ -35,15 +40,17 @@ export const TextGroup: FC<TextGroupProps> = ({
   hasSepar = true,
   hasBackground = false,
   bgColor = '#f3f4f6',
-  isElevated = false
+  isElevated = false,
+  fullHeight = true
 }) => {
   const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
 
   return (
     <div
       className={cn(
-        'p-6 w-full',
+        'p-4 sm:p-6 w-full',
         `text-${textAlign}`,
+        {'h-full': fullHeight},
         hasBackground && `rounded-lg`,
         hasBackground && isElevated && 'shadow-2xl',
         className
