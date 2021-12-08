@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
+import {Heading} from '../../blocks/Heading'
 import {Button} from '../../Button'
 import {PopUpNavItem} from '../../nav/PopUpNavItem'
 
@@ -126,7 +127,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
                 className={cn(['flex justify-between align-baseline border-b py-6', display])}
               >
                 <div>
-                  <h4 className="fontStyle-2xl">{job.title}</h4>
+                  <Heading level="h4" text={job.title} className="fontStyle-xl sm:fontStyle-2xl" />
                   <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                     {job.tags.length
                       ? job.tags.map((tag) => {

@@ -1,6 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {Heading} from '../blocks/Heading'
+
 export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * text to display for heading
@@ -57,7 +59,7 @@ export const TextGroup: FC<TextGroupProps> = ({
       )}
       style={{backgroundColor: hasBackground && bgColor}}
     >
-      {title && <h3 className={cn('text-gray-900 dark:text-gray-50', titleSizeOutput)}>{title}</h3>}
+      {title && <Heading level="h3" text={title} className={cn('text-gray-900 dark:text-gray-50', titleSizeOutput)} />}
       {hasSepar && (
         <hr
           role="presentation"

@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import {Heading} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
@@ -125,7 +126,7 @@ export const Card: FC<CardProps> = ({
       >
         {(title || body) && (
           <div>
-            <h3 className={cn('text-gray-900 dark:text-gray-50 fontStyle-2xl')}>{title}</h3>
+            <Heading level="h3" text={title} className={cn('text-gray-900 dark:text-gray-50 fontStyle-2xl')} />
             <p className={cn('text-gray:500 dark:text-gray-400 mt-3')}>{body}</p>
           </div>
         )}
