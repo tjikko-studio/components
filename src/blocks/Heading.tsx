@@ -23,29 +23,25 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Heading: FC<HeadingProps> = ({level = 'h3', alignment = 'left', text = '', className = '', id}) => {
-  const finalAlignment = alignment || 'left'
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
 
-  className +=
+  const finalAlignment =
+    alignment === 'left' ? 'w-full' : alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : ''
+
+  const headerSize =
     level === 'h1' && !className.includes('fontStyle')
-      ? ' fontStyle-5xl sm:fontStyle-7xl'
+      ? 'fontStyle-5xl sm:fontStyle-7xl'
       : level === 'h2' && !className.includes('fontStyle')
-      ? ' fontStyle-4xl sm:fontStyle-5xl'
+      ? 'fontStyle-4xl sm:fontStyle-5xl'
       : level === 'h3' && !className.includes('fontStyle')
-      ? ' fontStyle-3xl sm:fontStyle-4xl'
+      ? 'fontStyle-3xl sm:fontStyle-4xl'
       : level === 'h4' && !className.includes('fontStyle')
-      ? ' fontStyle-2xl sm:fontStyle-3xl'
+      ? 'fontStyle-2xl sm:fontStyle-3xl'
       : level === 'h5' && !className.includes('fontStyle')
-      ? ' fontStyle-xl sm:fontStyle-2xl'
+      ? 'fontStyle-xl sm:fontStyle-2xl'
       : level === 'h6' && !className.includes('fontStyle')
-      ? ' fontStyle-lg font-display sm:fontStyle-xl'
+      ? 'fontStyle-lg font-display sm:fontStyle-xl'
       : ''
 
-  return (
-    <HeaderTag
-      id={id}
-      className={cn(finalAlignment === 'left' && 'w-full', `text-${finalAlignment ? finalAlignment : 'left'}`, className)}
-      dangerouslySetInnerHTML={{__html: text}}
-    />
-  )
+  return <HeaderTag id={id} className={cn(finalAlignment, headerSize, className)} dangerouslySetInnerHTML={{__html: text}} />
 }
