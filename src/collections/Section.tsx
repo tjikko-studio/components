@@ -115,14 +115,14 @@ export const Section: FC<SectionProps> = ({
   }
   if (layoutSpacing === 'tight') {
     classes.push('py-16', 'sm:py-24', 'md:py-32')
-    outerGridClasses.push('grid', 'gap-y-8')
-    innerGridClasses.push(cn(outerGridClasses))
-    outerGridClasses.push('sm:gap-y-12 md:gap-y-16')
-  } else {
-    classes.push('py-24', 'sm:py-32', 'md:py-40')
     outerGridClasses.push('grid', 'gap-y-12')
     innerGridClasses.push(cn(outerGridClasses))
-    outerGridClasses.push('sm:gap-y-16 md:gap-y-24')
+    outerGridClasses.push('sm:gap-y-14 md:gap-y-18')
+  } else {
+    classes.push('py-24', 'sm:py-32', 'md:py-40')
+    outerGridClasses.push('grid', 'gap-y-14')
+    innerGridClasses.push(cn(outerGridClasses))
+    outerGridClasses.push('gap-y-14 sm:gap-y-22 md:gap-y-26')
   }
   if (align) {
     classes.push(align)

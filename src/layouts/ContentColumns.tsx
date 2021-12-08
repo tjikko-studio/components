@@ -89,7 +89,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
         ? content.map(({columns, id, attrs}) => {
             const fullHeight = typeof attrs?.full_height === 'boolean' ? attrs.full_height : true
             const columnsLength = columns.length
-            contentSectionClasses += columnsLength === 4 ? 'sm:gap-y-6 md:gap-y-12' : 'sm:gap-y-12 md:gap-y-24'
+            contentSectionClasses += columnsLength === 4 ? ' sm:gap-y-6 md:gap-y-12' : ' sm:gap-y-12 md:gap-y-18'
             return (
               <div
                 role="presentation"
