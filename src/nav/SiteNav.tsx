@@ -228,7 +228,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                               return (
                                 <div className={cn('dark', border, dividerSm)} key={innerId || JSON.stringify(innerContent)}>
                                   {label && (
-                                    <div className="fontStyle-xl mb-3" aria-label={label}>
+                                    <div className="fontStyle-xl uppercase mb-3" aria-label={label}>
                                       {label}
                                     </div>
                                   )}
@@ -239,7 +239,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                             case 'link': {
                               const {url, target} = parseLink(link)
                               return (
-                                <a key={innerId || `[${label}](${link})`} target={target} href={url} className="fontStyle-xl">
+                                <a key={innerId || `[${label}](${link})`} target={target} href={url} className="fontStyle-xl uppercase">
                                   {label}
                                 </a>
                               )

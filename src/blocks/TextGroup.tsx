@@ -45,7 +45,7 @@ export const TextGroup: FC<TextGroupProps> = ({
   isElevated = false,
   fullHeight = true
 }) => {
-  const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
+  const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl uppercase' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
 
   return (
     <div

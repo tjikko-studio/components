@@ -127,8 +127,7 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontSize: theme('fontSize.xl'),
       lineHeight: theme('lineHeight.xl'),
       letterSpacing: theme('letterSpacing.widest'),
-      fontWeight: theme('fontWeight.xl'),
-      textTransform: 'uppercase'
+      fontWeight: theme('fontWeight.xl')
     },
     '.fontStyle-2xl': {
       fontFamily: theme('fontFamily.display'),
