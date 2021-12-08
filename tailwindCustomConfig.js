@@ -94,7 +94,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      */
     '.fontStyle-button-lg': {
       fontSize: theme('fontSize.base'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
@@ -102,14 +101,12 @@ exports = function exports({theme, addBase, addUtilities}) {
 
     '.fontStyle-button-base': {
       fontSize: theme('fontSize.sm'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
     },
     '.fontStyle-button-sm': {
       fontSize: theme('fontSize.xs'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
@@ -117,7 +114,6 @@ exports = function exports({theme, addBase, addUtilities}) {
 
     '.fontStyle-button-xs': {
       fontSize: theme('fontSize.xxs'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.semibold')
