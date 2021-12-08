@@ -26,6 +26,21 @@ export const Heading: FC<HeadingProps> = ({level = 'h3', alignment = 'left', tex
   const finalAlignment = alignment || 'left'
   const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
 
+  className +=
+    level === 'h1' && !className.includes('fontStyle')
+      ? ' fontStyle-5xl sm:fontStyle-7xl'
+      : level === 'h2' && !className.includes('fontStyle')
+      ? ' fontStyle-4xl sm:fontStyle-5xl'
+      : level === 'h3' && !className.includes('fontStyle')
+      ? ' fontStyle-3xl sm:fontStyle-4xl'
+      : level === 'h4' && !className.includes('fontStyle')
+      ? ' fontStyle-2xl sm:fontStyle-3xl'
+      : level === 'h5' && !className.includes('fontStyle')
+      ? ' fontStyle-xl sm:fontStyle-2xl'
+      : level === 'h6' && !className.includes('fontStyle')
+      ? ' fontStyle-lg font-display sm:fontStyle-xl'
+      : ''
+
   return (
     <HeaderTag
       id={id}
