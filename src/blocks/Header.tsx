@@ -17,7 +17,7 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
    * Styles
    */
   headerType?: 'hero' | 'section_big' | 'section_small'
-  headerAlign?: 'left' | 'center'
+  headerAlign?: 'left' | 'center' | 'right'
 }
 
 /**
@@ -33,10 +33,11 @@ export const Header: FC<HeaderProps> = ({title = '', subtitle = '', className = 
       : headerType === 'section_small'
       ? ['fontStyle-3xl sm:fontStyle-4xl', 'fontStyle-base mt-2']
       : ['', '']
-  const align = headerAlign === 'center' ? 'text-center' : ''
+
+  const finalAlignment = headerAlign === 'center' ? 'text-center' : headerAlign === 'right' ? 'text-right' : ''
 
   return (
-    <header className={cn('w-full', {'text-shadow-lg': headerType === 'hero'}, align, className)}>
+    <header className={cn('w-full', {'text-shadow-lg': headerType === 'hero'}, finalAlignment, className)}>
       <Heading level={titleTag} text={title} className={titleClasses} alignment={headerAlign} />
       {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
     </header>

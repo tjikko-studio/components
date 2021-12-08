@@ -23,8 +23,10 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Text: FC<TextProps> = ({tag = 'p', alignment = 'left', text = '', className = ''}) => {
   const TextTag = tag
+
+  const finalAlignment =
+    alignment === 'left' ? 'md:w-full' : alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : ''
+
   // See safelist in tailwind.safelist.js
-  return (
-    <TextTag className={cn(alignment === 'left' && 'w-max', `text-${alignment}`, className)} dangerouslySetInnerHTML={{__html: text}} />
-  )
+  return <TextTag className={cn(finalAlignment, className)} dangerouslySetInnerHTML={{__html: text}} />
 }

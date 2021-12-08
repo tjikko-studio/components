@@ -18,7 +18,7 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    * Styles
    */
   titleSize?: 'default' | 'big' | 'huge'
-  textAlign?: 'left' | 'center'
+  textAlign?: 'left' | 'center' | 'right'
   hasSepar?: boolean
   hasBackground?: boolean
   bgColor?: string
@@ -47,14 +47,17 @@ export const TextGroup: FC<TextGroupProps> = ({
 }) => {
   const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl uppercase' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
 
+  const finalAlignment =
+    textAlign === 'left' ? 'md:w-full' : textAlign === 'center' ? 'text-center' : textAlign === 'right' ? 'text-right' : ''
+
   return (
     <div
       className={cn(
         'p-4 sm:p-6 w-full',
-        `text-${textAlign}`,
         {'h-full': fullHeight},
         hasBackground && `rounded-lg`,
         hasBackground && isElevated && 'shadow-2xl',
+        finalAlignment,
         className
       )}
       style={{backgroundColor: hasBackground && bgColor}}
