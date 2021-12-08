@@ -74,7 +74,7 @@ export const Section: FC<SectionProps> = ({
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
-  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'mx-auto']
+  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'xl:mx-auto']
   const innerGridClasses: string[] = []
   const outerGridClasses: string[] = []
 

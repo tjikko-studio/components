@@ -20,7 +20,7 @@ const classes = [
   'w-full',
   'h-full',
   'max-w-screen-xl',
-  'mx-auto',
+  'xl:mx-auto',
   'px-4',
   'sm:px-8',
   'md:px-12',
@@ -28,8 +28,7 @@ const classes = [
   'py-12',
   'sm:py-16',
   'md:py-24',
-  'gap-16',
-  'sm:gap-8'
+  'gap-8'
 ]
 
 export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, className}) => {
@@ -42,7 +41,7 @@ export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, 
           return (
             <section
               key={JSON.stringify(block.content)}
-              className={cn(block.type !== 'Gallery' && 'xs:w-screen-xs sm:w-screen-sm lg:w-screen-md mx-auto')}
+              className={cn(block.type !== 'Gallery' && 'sm:w-screen-sm lg:w-screen-md xl:mx-auto')}
             >
               {toComponent(block)}
             </section>

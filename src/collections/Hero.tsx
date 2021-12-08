@@ -142,7 +142,7 @@ export const Hero: FC<HeroProps> = ({
         </>
       )}
       {/* See the tailwind hacks in src/index.tsx */}
-      <div className={`${finalHeroHeight}  -mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl mx-auto relative`}>
+      <div className={`${finalHeroHeight}  -mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl xl:mx-auto relative`}>
         <div
           className={cn([
             `text-${textColor || DEFAULT_TEXT_COLOR}`,

@@ -14,7 +14,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div className="w-full mx-auto max-w-screen-xl">
+      <div className="w-full xl:mx-auto max-w-screen-xl">
         <Story />
       </div>
     )
