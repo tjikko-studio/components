@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {Heading} from '../blocks/Heading'
 import {ImageProps, Media} from '../parts/Media'
 
 /*
@@ -38,7 +39,7 @@ export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title 
         <Media media={image} className={'w-32 h-32'} />
       </div>
       <div>
-        <h3 className="fontStyle-2xl break-words">{title ? title : 'title'}</h3>
+        <Heading level="h3" text={title ? title : 'title'} className="fontStyle-2xl break-words" />
         <p className="mt-2">{body}</p>
       </div>
     </div>

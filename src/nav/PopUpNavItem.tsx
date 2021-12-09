@@ -2,6 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import makeRandomId from '../../utilities/makeRandomId'
+import {Heading} from '../blocks/Heading'
 
 export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
   /**
@@ -92,9 +93,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   return (
     <div className={cn(wrapperClasses, className)} aria-labelledby={labelId} {...rest}>
       {type === 'header' ? (
-        <h3 id={labelId} className={cn(linkClasses)}>
-          {label}
-        </h3>
+        <Heading id={labelId} level="h3" text={label} className={cn(linkClasses)} />
       ) : href ? (
         <a id={labelId} target={target} className={cn(linkClasses)} href={href}>
           {label}

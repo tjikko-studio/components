@@ -1,6 +1,8 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import {Heading} from '../blocks/Heading'
+
 export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * text to display for heading
@@ -16,11 +18,16 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    * Styles
    */
   titleSize?: 'default' | 'big' | 'huge'
-  textAlign?: 'left' | 'center'
+  textAlign?: 'left' | 'center' | 'right'
   hasSepar?: boolean
   hasBackground?: boolean
   bgColor?: string
   isElevated?: boolean
+
+  /**
+   * Height of the card
+   */
+  fullHeight?: boolean
 }
 
 /**
@@ -35,22 +42,27 @@ export const TextGroup: FC<TextGroupProps> = ({
   hasSepar = true,
   hasBackground = false,
   bgColor = '#f3f4f6',
-  isElevated = false
+  isElevated = false,
+  fullHeight = true
 }) => {
-  const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
+  const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl uppercase' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
+
+  const finalAlignment =
+    textAlign === 'left' ? 'md:w-full' : textAlign === 'center' ? 'text-center' : textAlign === 'right' ? 'text-right' : ''
 
   return (
     <div
       className={cn(
-        'p-6 w-full',
-        `text-${textAlign}`,
+        'p-4 sm:p-6 w-full',
+        {'h-full': fullHeight},
         hasBackground && `rounded-lg`,
         hasBackground && isElevated && 'shadow-2xl',
+        finalAlignment,
         className
       )}
       style={{backgroundColor: hasBackground && bgColor}}
     >
-      {title && <h3 className={cn('text-gray-900 dark:text-gray-50', titleSizeOutput)}>{title}</h3>}
+      {title && <Heading level="h3" text={title} className={cn('text-gray-900 dark:text-gray-50', titleSizeOutput)} />}
       {hasSepar && (
         <hr
           role="presentation"

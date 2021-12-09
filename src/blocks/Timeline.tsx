@@ -1,6 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
+import {Heading} from '../blocks/Heading'
 import {ImageProps, Media} from '../parts/Media'
 
 type TimelineItemProps = {
@@ -33,8 +34,8 @@ const TimelineItem: React.VFC<{item: TimelineItemProps; last: boolean}> = ({item
         )}
         <div className={cn('flex pr-8', {'sm:w-1/2 w-full': item?.image})}>
           <div className="flex flex-col w-full dark:text-gray-50">
-            {item.title && <h5 className="-mt-0.5">{item.title}</h5>}
-            {item.subtitle && <h6 className="fontStyle-sm uppercase mt-1.5 first:mt-0">{item.subtitle}</h6>}
+            {item.title && <Heading level="h4" text={item.title} className="-mt-0.5" />}
+            {item.subtitle && <p className="fontStyle-sm uppercase mt-1.5 first:mt-0">{item.subtitle}</p>}
             {item.body && <div className="mt-2 first:-mt-1 text-gray-700" dangerouslySetInnerHTML={{__html: item.body}} />}
           </div>
         </div>
@@ -55,7 +56,7 @@ export const Timeline: React.FC<TimelineProps> = ({content = []}) => {
     <div className="mx-auto w-full max-w-screen-lg flex flex-col gap-28">
       {content?.map(({header, items}) => (
         <section key={header || JSON.stringify(items)}>
-          {header && <h4>{header}</h4>}
+          {header && <Heading level="h3" text={header} />}
           <div className="flex flex-col items-center gap-20 pt-12">
             {items?.map((item, idx) => (
               <TimelineItem key={idx} last={idx + 1 === items.length} item={item} />

@@ -50,7 +50,7 @@ export const Button: FC<ButtonProps> = ({
   onClick
 }) => {
   const buttonType = type || 'primary'
-  const buttonClasses = ['inline-flex items-center gap-x-3 whitespace-nowrap']
+  const buttonClasses = ['inline-flex items-center gap-x-3 xxs:whitespace-nowrap']
   const contentClasses = ['']
   const styles = {
     primary: (isForceDark: boolean) => {
@@ -104,7 +104,7 @@ export const Button: FC<ButtonProps> = ({
       break
     case 'default':
     default:
-      buttonClasses.push('h-10 max-h-10 py-3.5')
+      buttonClasses.push('xs:h-10 xs:max-h-10 py-3.5')
       if (buttonType !== 'tertiary') {
         buttonClasses.push('px-4')
       }

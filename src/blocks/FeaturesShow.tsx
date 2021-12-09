@@ -6,6 +6,7 @@ import cn from 'classnames'
 import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
+import {Heading} from '../blocks/Heading'
 import {ImageProps} from '../parts/Media'
 
 import {BlockProps, ContentPosition} from '../../shared/types'
@@ -230,7 +231,7 @@ const FeaturesShowSection: FC<{
           <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
             {item.header && (
               <div className="text-center pb-4">
-                <h4>{item.header}</h4>
+                <Heading level="h3" text={item.header} alignment="center" />
                 {item.subtitle && <p>{item.subtitle}</p>}
               </div>
             )}
@@ -283,7 +284,7 @@ export interface FeaturesShowProps extends HTMLElement {
 }
 
 export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
-  const classes = ['w-full', 'py-16', 'sm:py-24', 'md:py-32']
+  const classes = ['grid', 'w-full', 'py-16', 'sm:py-24', 'md:py-32', 'gap-y-12', 'sm:gap-y-16', 'lg:gap-y-0']
   const toComponent = getComponent()
   const [theme, background] = extractCombo(bgColor)
   const handlers = useRef<HandlerDictionary>(defaultHandlers)
@@ -315,7 +316,7 @@ export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor,
 
   return (
     <section className={cn(theme, classes, className)} style={{backgroundColor: background}}>
-      <div className="dark:text-gray-50">
+      <div className="dark:text-gray-50 lg:-mb-32">
         {header?.map((block) => {
           return toComponent(block)
         })}

@@ -5,7 +5,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles base modifiers
      */
     '.fontStyle-base': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.base'),
       lineHeight: theme('lineHeight.base'),
       letterSpacing: theme('letterSpacing.base'),
@@ -28,7 +27,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles large
      */
     '.fontStyle-lg': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.lg'),
       lineHeight: theme('lineHeight.lg'),
       letterSpacing: theme('letterSpacing.lg'),
@@ -51,7 +49,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles small
      */
     '.fontStyle-sm': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.sm'),
       lineHeight: theme('lineHeight.sm'),
       letterSpacing: theme('letterSpacing.sm'),
@@ -74,7 +71,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      *Font styles xsmall
      */
     '.fontStyle-xs': {
-      fontFamily: theme('fontFamily.body'),
       fontSize: theme('fontSize.xs'),
       lineHeight: theme('lineHeight.xs'),
       letterSpacing: theme('letterSpacing.xs'),
@@ -98,7 +94,6 @@ exports = function exports({theme, addBase, addUtilities}) {
      */
     '.fontStyle-button-lg': {
       fontSize: theme('fontSize.base'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
@@ -106,14 +101,12 @@ exports = function exports({theme, addBase, addUtilities}) {
 
     '.fontStyle-button-base': {
       fontSize: theme('fontSize.sm'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
     },
     '.fontStyle-button-sm': {
       fontSize: theme('fontSize.xs'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.medium')
@@ -121,7 +114,6 @@ exports = function exports({theme, addBase, addUtilities}) {
 
     '.fontStyle-button-xs': {
       fontSize: theme('fontSize.xxs'),
-      lineHeight: theme('lineHeight.4'),
       textTransform: 'uppercase',
       letterSpacing: theme('letterSpacing.wider'),
       fontWeight: theme('fontWeight.semibold')
@@ -135,8 +127,7 @@ exports = function exports({theme, addBase, addUtilities}) {
       fontSize: theme('fontSize.xl'),
       lineHeight: theme('lineHeight.xl'),
       letterSpacing: theme('letterSpacing.widest'),
-      fontWeight: theme('fontWeight.xl'),
-      textTransform: 'uppercase'
+      fontWeight: theme('fontWeight.xl')
     },
     '.fontStyle-2xl': {
       fontFamily: theme('fontFamily.display'),

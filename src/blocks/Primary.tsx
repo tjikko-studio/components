@@ -2,6 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
+import {Heading} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
@@ -103,7 +104,7 @@ export const Primary: FC<PrimaryProps> = ({
               className
             )}
           >
-            <h3 className={cn('break-words', titleSize)}>{title}</h3>
+            <Heading level="h3" text={title} className={cn('break-words', titleSize)} />
             <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>

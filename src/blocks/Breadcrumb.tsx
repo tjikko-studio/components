@@ -23,7 +23,7 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({crumbs = [], className = ''}) =
         {crumbs.map((item, index) => {
           return (
             <li key={item.name}>
-              <span className={cn(['fontStyle-xl', 'hover:text-primary-300', 'dark:hover:text-primary-300'])}>
+              <span className={cn(['fontStyle-xl', 'uppercase', 'hover:text-primary-300', 'dark:hover:text-primary-300'])}>
                 <a href={item.url}>{item.name}</a>
               </span>
               {crumbs.length - 1 > index && <span className="px-2.5">/</span>}

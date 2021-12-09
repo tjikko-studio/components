@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
 import parseLink from '../../utilities/parseLink'
+import {Heading} from '../blocks/Heading'
 import {Button} from '../Button'
 import {Media} from '../parts/Media'
 import {NavItem} from './NavItem'
@@ -56,7 +57,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
 
   return (
     <footer className={cn(['lg:flex', 'flex-col', 'bg-gray-800', 'text-gray-50', 'px-8', className])} aria-label="Footer navigation">
-      <nav className="w-full max-w-screen-xl mx-auto rounded-lg drop-shadow-lg">
+      <nav className="w-full max-w-screen-xl xl:mx-auto rounded-lg drop-shadow-lg">
         {menuData.map(({id, columns, attrs}) => {
           return (
             <section
@@ -105,7 +106,11 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                             return (
                                               <div className={cn(['dark', 'flex', 'flex-col', 'gap-y-4'])} aria-label={label}>
                                                 {label && (
-                                                  <h3 className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}>{label}</h3>
+                                                  <Heading
+                                                    level="h3"
+                                                    text={label}
+                                                    className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}
+                                                  />
                                                 )}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                   const {url, target} = parseLink(innerLink)
