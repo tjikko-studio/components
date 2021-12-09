@@ -98,14 +98,14 @@ BackgroundDark.parameters = {
 }
 BackgroundDark.decorators = Default.decorators
 
-export const widthLightImage = Template.bind({})
-widthLightImage.args = {
+export const widthImage = Template.bind({})
+widthImage.args = {
   ...Default.args,
-  titleSize: 'huge',
-  hasSepar: true,
+  titleSize: 'big',
+  hasSepar: false,
   bgColor: '#171a22',
-  title: '100%',
-  body: 'Satisfaction graranteed',
+  title: 'Lighthouses',
+  body: 'Are magnifiscient',
   textAlign: 'center',
   verticalAlign: 'center',
   hasBackground: true,
@@ -117,10 +117,30 @@ widthLightImage.args = {
     type: 'image'
   }
 }
-widthLightImage.decorators = [
+widthImage.decorators = [
   (Story: any) => (
     <div className="w-full grid p-4 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <Story />
     </div>
   )
 ]
+
+export const withImageBelow = Template.bind({})
+withImageBelow.args = {
+  ...widthImage.args,
+  titleSize: 'huge',
+  bgColor: '',
+  title: 'Come in',
+  body: 'Please yourself!',
+  textAlign: 'center',
+  verticalAlign: 'top',
+  hasBackground: true,
+  dark: false,
+  contentShadow: false,
+  ratio: '1/1',
+  image: {
+    url: 'images/image_white.jpg',
+    type: 'image'
+  }
+}
+withImageBelow.decorators = widthImage.decorators
