@@ -90,7 +90,7 @@ export const Hero: FC<HeroProps> = ({
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   return (
     <header
-      className={cn('overflow-hidden bg-cover relative text-gray-50', theme ? theme : 'dark', className)}
+      className={cn('overflow-hidden relative text-gray-50', bgImageOutput && 'bg-cover', theme ? theme : 'dark', className)}
       style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
       aria-labelledby={HeroHeadingId}
     >
@@ -112,6 +112,7 @@ export const Hero: FC<HeroProps> = ({
       {bgType && (
         <>
           <div
+            aria-hidden="true"
             className={cn([
               'absolute',
               'z-1',
@@ -126,6 +127,7 @@ export const Hero: FC<HeroProps> = ({
             ])}
           />
           <div
+            aria-hidden="true"
             className={cn([
               'absolute',
               'z-1',

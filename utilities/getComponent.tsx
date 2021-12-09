@@ -103,9 +103,14 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       titleSize: content.title_size,
       textAlign: content.text_align,
+      verticalAlign: content.vertical_align,
+      ratio: content.ratio,
       hasSepar: content.has_separ,
       hasBackground: content.has_background,
+      contentShadow: content.content_shadow,
+      dark: content.dark,
       bgColor: content.bg_color,
+      image: content.image,
       isElevated: content.is_elevated
     }
   }
