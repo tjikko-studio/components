@@ -62,7 +62,12 @@ export const TextGroup: FC<TextGroupProps> = ({
   isElevated = false,
   fullHeight = true
 }) => {
-  const titleSizeOutput = titleSize === 'huge' ? 'fontStyle-7xl uppercase' : titleSize === 'big' ? 'fontStyle-4xl' : 'fontStyle-xl'
+  const titleSizeOutput =
+    titleSize === 'huge'
+      ? 'fontStyle-4xl md:fontStyle-5xl xl:fontStyle-6xl uppercase'
+      : titleSize === 'big'
+      ? 'fontStyle-3xl sm:fontStyle-4xl'
+      : 'fontStyle-xl sm:fontStyle-2xl'
 
   const textAlignOutput =
     textAlign === 'left' ? 'md:w-full' : textAlign === 'center' ? 'text-center' : textAlign === 'right' ? 'text-right' : ''
@@ -80,7 +85,7 @@ export const TextGroup: FC<TextGroupProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col p-4 sm:p-6 w-full overflow-hidden',
+        'flex flex-col p-4 w-full overflow-hidden',
         {relative: image},
         {'h-full': fullHeight},
         {'rounded-lg': hasBackground},
@@ -98,8 +103,8 @@ export const TextGroup: FC<TextGroupProps> = ({
     >
       <div className="relative z-10">
         {title && <Heading level="h3" text={title} className={cn(titleSizeOutput)} />}
-        {hasSepar && <hr role="presentation" className={cn(borderColor, titleSize !== 'huge' ? 'my-3' : 'mb-3')} />}
-        {body && <p className={cn((titleSize !== 'huge' || hasSepar) && 'mt-3')}>{body}</p>}
+        {hasSepar && <hr role="presentation" className={cn('my-2 sm:my-3', borderColor)} />}
+        {body && <p className="mt-2">{body}</p>}
       </div>
       {contentShadow && (
         <div
