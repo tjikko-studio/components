@@ -69,6 +69,16 @@ const propsByType: Record<string, GetPropsFn> = {
       isElevated: content.is_elevated
     }
   },
+  Collection: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      imagePosition: content.image_position,
+      layout: content.layout,
+      hasBackground: content.has_background,
+      bgColor: content.bg_color,
+      isElevated: content.is_elevated
+    }
+  },
   ClientsLogos: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
