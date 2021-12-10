@@ -32,6 +32,11 @@ interface BaseProps extends HTMLAttributes<HTMLDivElement> {
    * Is elevated (Will have a drop shadow)
    */
   isElevated?: boolean
+
+  /**
+   * Is elevated (Will have a drop shadow)
+   */
+  columns?: number
 }
 
 type CollectionItem = {
@@ -84,13 +89,15 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({
   imagePosition = 'right',
   hasBackground = false,
   bgColor,
-  isElevated = false
+  isElevated = false,
+  columns = 3
 }) => {
-  console.log(`${layout}, ${imagePosition}, ${hasBackground}, ${bgColor}, ${isElevated}`)
   const label = link_cta ? link_cta : 'Read about {title}'
-  contentClasses.push('sm:grid-cols-2')
+
+  const gridColumns = columns === 2 ? 'sm:grid-cols-2' : columns === 3 ? 'sm:grid-cols-3' : ''
+
   return (
-    <div className={cn(contentClasses)}>
+    <div className={cn(contentClasses, gridColumns)}>
       {items?.map((item) => (
         <Card
           key={item.id}
@@ -160,7 +167,7 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
 }
 
 export const Collection: FC<CollectionProps> = (
-  {header, content, templatesContent = {}, datasource, layout, imagePosition, hasBackground, bgColor, isElevated} = {content: null}
+  {header, content, templatesContent = {}, datasource, layout, imagePosition, hasBackground, bgColor, isElevated, columns} = {content: null}
 ) => {
   const toComponent = getComponent(templatesContent)
   return (
@@ -172,10 +179,9 @@ export const Collection: FC<CollectionProps> = (
           })}
         </header>
       ) : null}
-
       {datasource === 'success-stories' && content && (
         <SuccessStoriesCollection
-          key={JSON.stringify(content.items)}
+          key={JSON.stringify(content)}
           items={content.items}
           link_cta={content.link_cta}
           layout={layout}
@@ -183,6 +189,7 @@ export const Collection: FC<CollectionProps> = (
           hasBackground={hasBackground}
           bgColor={bgColor}
           isElevated={isElevated}
+          columns={columns}
         />
       )}
 
