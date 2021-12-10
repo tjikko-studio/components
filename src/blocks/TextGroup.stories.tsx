@@ -119,7 +119,7 @@ widthImage.args = {
 }
 widthImage.decorators = [
   (Story: any) => (
-    <div className="w-full grid p-4 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="w-full grid p-4 gap-8 sm:grid-cols-2 xl:grid-cols-3">
       <Story />
     </div>
   )
@@ -144,3 +144,22 @@ withImageBelow.args = {
   }
 }
 withImageBelow.decorators = widthImage.decorators
+
+export const withGraphic = Template.bind({})
+withGraphic.args = {
+  ...widthImage.args,
+  titleSize: 'huge',
+  bgColor: '#3E5ABB',
+  title: '5 offices:',
+  body: 'Montreal, New-York, Paris, Tokyo, Auckland',
+  textAlign: 'center',
+  verticalAlign: 'third',
+  hasBackground: true,
+  contentShadow: false,
+  ratio: '1/1',
+  image: {
+    url: 'images/image_with_background_01.jpg',
+    type: 'image'
+  }
+}
+withGraphic.decorators = widthImage.decorators

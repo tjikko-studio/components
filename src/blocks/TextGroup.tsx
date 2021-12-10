@@ -27,7 +27,7 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    */
   titleSize?: 'default' | 'big' | 'huge'
   textAlign?: 'left' | 'center' | 'right'
-  verticalAlign?: 'top' | 'center'
+  verticalAlign?: 'top' | 'center' | 'third'
   ratio?: '1/1' | '16/9'
   hasSepar?: boolean
   hasBackground?: boolean
@@ -64,13 +64,23 @@ export const TextGroup: FC<TextGroupProps> = ({
 }) => {
   const titleSizeOutput =
     titleSize === 'huge'
-      ? 'fontStyle-4xl md:fontStyle-5xl xl:fontStyle-6xl uppercase'
+      ? 'fontStyle-5xl xl:fontStyle-6xl uppercase'
       : titleSize === 'big'
       ? 'fontStyle-3xl sm:fontStyle-4xl'
       : 'fontStyle-xl sm:fontStyle-2xl'
 
   const textAlignOutput =
     textAlign === 'left' ? 'md:w-full' : textAlign === 'center' ? 'text-center' : textAlign === 'right' ? 'text-right' : ''
+
+  const wrapperClasses = []
+  const innerClasses = []
+  if (verticalAlign === 'third') {
+    wrapperClasses.push('grid grid-rows-6')
+    innerClasses.push('row-start-2')
+  } else if (verticalAlign === 'center') {
+    wrapperClasses.push('flex flex-col justify-center')
+  }
+  //const verticalPosition = verticalAlign === 'third' ? 'row-start-2' : verticalAlign === 'center' ? 'row-start-3' : ''
 
   const ratioOutput = ratio && hasBackground && `ratio-${ratio}`
   const theme = dark ? 'dark' : !hasBackground ? 'inherit' : !bgColor ? 'inherit' : lightOrDark(bgColor)
@@ -85,14 +95,14 @@ export const TextGroup: FC<TextGroupProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col p-4 w-full overflow-hidden',
+        'p-4 w-full overflow-hidden',
         {relative: image},
         {'h-full': fullHeight},
         {'rounded-lg': hasBackground},
         {'shadow-2xl': hasBackground && isElevated},
         {'bg-cover': image},
-        {'justify-center': verticalAlign === 'center' && hasBackground},
         {'text-shadow-lg': contentShadow},
+        wrapperClasses,
         contentShadow,
         textAlignOutput,
         ratioOutput,
@@ -101,7 +111,7 @@ export const TextGroup: FC<TextGroupProps> = ({
       )}
       style={{backgroundColor: hasBackground && bgColor, backgroundImage: image && hasBackground && `url(${image.url})`}}
     >
-      <div className="relative z-10">
+      <div className={cn('relative z-10', innerClasses)}>
         {title && <Heading level="h3" text={title} className={cn(titleSizeOutput)} />}
         {hasSepar && <hr role="presentation" className={cn('my-2 sm:my-3', borderColor)} />}
         {body && <p className="mt-2">{body}</p>}
