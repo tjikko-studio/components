@@ -19,6 +19,7 @@ export interface NavBlock {
   id?: string
   layout: string
   rtl: boolean
+  separation: string
   content: MenuItemType[]
 }
 
@@ -79,7 +80,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                   return (
                     <div key={columnId || JSON.stringify(blocks)} className={`lg:col-span-${getWidth(width)} lg:h-full`}>
                       {blocks.length >= 1 &&
-                        blocks.map(({content, layout, rtl, id: blockId}) => {
+                        blocks.map(({content, layout, rtl, separation, id: blockId}) => {
                           const contentLayout =
                             layout === 'horizontal'
                               ? ['flex', 'lg:mt-0', 'items-center']
@@ -97,7 +98,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                               ])}
                             >
                               {content.length &&
-                                content.map(({label, link, type, content: innerContent, id: contentId}, idx) => {
+                                content.map(({label, link, type, image, content: innerContent, id: contentId}, idx) => {
                                   return (
                                     <div key={contentId || JSON.stringify(innerContent)}>
                                       {(() => {
@@ -122,17 +123,29 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                 })}
                                               </div>
                                             )
+                                          case 'icon':
                                           case 'link': {
                                             const Alink = () => {
                                               const {url, target} = parseLink(link)
-                                              return (
-                                                <a href={url} target={target} className="fontStyle-sm">
-                                                  {label}
-                                                </a>
-                                              )
+                                              if (type === 'link') {
+                                                return (
+                                                  <a href={url} target={target} className="fontStyle-sm">
+                                                    {label}
+                                                  </a>
+                                                )
+                                              } else if (type === 'icon') {
+                                                return (
+                                                  <a href={url} target={target} className="flex flex-cols">
+                                                    <Media media={image} className="h-4 w-auto inline-flex" fit />
+                                                  </a>
+                                                )
+                                              }
                                             }
                                             if (layout === 'horizontal') {
-                                              const lClass = idx + 1 < contentLength ? 'after-content after:mr-2 after:ml-2' : ''
+                                              const lClass =
+                                                idx + 1 < contentLength && separation
+                                                  ? 'after-content after:mr-3 after:ml-3 flex flex-cols items-center'
+                                                  : 'mr-2 ml-2'
                                               return (
                                                 <div className={lClass} data-content-after="-">
                                                   <Alink />

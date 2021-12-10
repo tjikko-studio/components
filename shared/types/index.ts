@@ -66,6 +66,7 @@ export interface MenuType {
 
 export interface MenuItemType {
   label: string
+  image?: ImageProps
   link: LinkObject
   type: string
   content?: MenuType[] & MenuType
