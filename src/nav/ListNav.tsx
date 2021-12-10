@@ -24,7 +24,7 @@ const availableStyles = {
     'w-max',
     'gap-x-6',
     'px-6',
-    'py-2.5',
+    'py-4',
     'shadow-lg',
     'rounded-lg',
     'bg-gray-50',
@@ -51,7 +51,7 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
       {listNavContent.map((menu) => {
         return (
           <div className={wMax} key={menu.label} role={'navigation'} aria-label={menu.label}>
-            {listNavContent.length > 1 && <PopUpNavItem label={menu.label} type={'header'} className="py-2.5" />}
+            {listNavContent.length > 1 && <PopUpNavItem label={menu.label} type={'header'} />}
             {menu.content.map((menuItem) => {
               const {url, target} = parseLink(menuItem.link)
               return (
@@ -59,7 +59,7 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
                   key={menuItem.label}
                   label={menuItem.label}
                   type={menuItem.type ? menuItem.type : 'default'}
-                  className="py-2.5"
+                  className="py-1"
                   href={url}
                   target={target}
                 />

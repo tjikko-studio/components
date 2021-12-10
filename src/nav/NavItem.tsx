@@ -90,12 +90,13 @@ export const NavItem: FC<NavItemProps> = ({
         padding={padding}
         className={cn(
           'flex items-center',
+          listNavContent.length && 'gap-x-1.5',
           styles === 'default' && 'hover:text-primary-600',
           styles === 'special' && 'hover:text-primary-300',
           popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
       >
-        {listNavContent.length && <ArrowDown className="w-5 h-5" />}
+        {listNavContent.length && <ArrowDown className="w-5 h-5 relative top-px" />}
       </PopUpNavItem>
       {listNavContent.length ? (
         <div
