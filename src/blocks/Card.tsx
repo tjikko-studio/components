@@ -116,8 +116,8 @@ export const Card: FC<CardProps> = ({
       )}
       <div
         className={cn(
-          'flex flex-col flex-grow',
-          {'p-6 justify-between': hasBackground},
+          'flex flex-col flex-grow p-6',
+          {'justify-between': hasBackground},
           {'pt-0': image},
           {'xl:pt-6 xl:w-1/2 xl:h-full': image && layout === 'horizontal'},
           {'xl:pr-0 xl:order-first': image && imagePosition === 'right' && layout === 'horizontal'},
