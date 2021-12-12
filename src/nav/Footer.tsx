@@ -147,7 +147,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                   ? 'after-content after:mr-3 after:ml-3 flex flex-cols items-center'
                                                   : 'mr-2 ml-2'
                                               return (
-                                                <div className={lClass} data-content-after="-">
+                                                <div className={lClass} data-content-after={separation || '-'}>
                                                   <Alink />
                                                 </div>
                                               )
