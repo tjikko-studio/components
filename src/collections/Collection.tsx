@@ -33,9 +33,6 @@ interface BaseProps extends HTMLAttributes<HTMLDivElement> {
    */
   isElevated?: boolean
 
-  /**
-   * Is elevated (Will have a drop shadow)
-   */
   columns?: number
 }
 
