@@ -120,7 +120,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                       key={`${innerLabel}${url}`}
                                                       href={url}
                                                       target={target}
-                                                      className="fontStyle-sm hover:text-primary-400"
+                                                      className="fontStyle-sm hover:text-primary-600"
                                                     >
                                                       {innerLabel}
                                                     </a>
@@ -132,17 +132,18 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'link': {
                                             const Alink = () => {
                                               const {url, target} = parseLink(link)
+                                              const linkClass = url && 'hover:text-primary-600'
                                               const Tag: keyof JSX.IntrinsicElements = url ? 'a' : 'span'
                                               if (type === 'link') {
                                                 return (
-                                                  <Tag href={url} target={target} className="fontStyle-sm">
+                                                  <Tag href={url} target={target} className={cn(linkClass, 'fontStyle-sm')}>
                                                     {label}
                                                   </Tag>
                                                 )
                                               } else if (type === 'icon') {
                                                 return (
-                                                  <Tag href={url} target={target} className="flex flex-cols">
-                                                    <Media media={image} className="h-4 w-auto inline-flex" fit />
+                                                  <Tag href={url} target={target} className={cn(linkClass, 'flex flex-cols')}>
+                                                    <Media media={image} className="h-5 w-auto inline-flex" fit />
                                                   </Tag>
                                                 )
                                               }
@@ -151,7 +152,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                               const lClass =
                                                 idx + 1 < contentLength && separation
                                                   ? 'after-content after:mr-3 after:ml-3 flex flex-cols items-center'
-                                                  : 'mr-5'
+                                                  : 'mr-4'
                                               return (
                                                 <div className={lClass} data-content-after={separation || '-'}>
                                                   <Alink />

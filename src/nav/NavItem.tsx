@@ -53,7 +53,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
 export const NavItem: FC<NavItemProps> = ({
   label = 'Label',
   styles = 'default',
-  popup = 'white',
+  popup = 'elevated',
   padding = true,
   link = null,
   listNavContent = [],
@@ -91,7 +91,7 @@ export const NavItem: FC<NavItemProps> = ({
         className={cn(
           'flex items-center',
           listNavContent.length && 'gap-x-1.5',
-          styles === 'default' && 'hover:text-primary-600',
+          styles === 'default' && 'hover:text-primary-500',
           styles === 'special' && 'hover:text-primary-300',
           popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
