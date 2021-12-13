@@ -87,9 +87,9 @@ export const TextGroup: FC<TextGroupProps> = ({
 
   const [textColor, borderColor] =
     theme === 'inherit'
-      ? ['text-gray-900 dark:text-gray-50', 'border-primary-500 dark:border-primary-400']
+      ? ['text-gray-900 dark:text-gray-50', 'border-primary-200 dark:border-primary-700']
       : theme === 'light'
-      ? ['text-gray-900', 'border-primary-500']
+      ? ['text-gray-900', 'border-primary-200']
       : theme === 'dark' && ['text-gray-50', 'border-primary-400']
 
   return (
@@ -113,7 +113,7 @@ export const TextGroup: FC<TextGroupProps> = ({
     >
       <div className={cn('relative z-10', innerClasses)}>
         {title && <Heading level="h3" text={title} className={cn(titleSizeOutput)} />}
-        {hasSepar && <hr role="presentation" className={cn('my-2 sm:my-3', borderColor)} />}
+        {hasSepar && <hr role="presentation" className={cn('my-3 sm:my-4', borderColor)} />}
         {body && <p className="mt-2">{body}</p>}
       </div>
       {contentShadow && (
