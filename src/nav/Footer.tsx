@@ -110,13 +110,18 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                   <Heading
                                                     level="h3"
                                                     text={label}
-                                                    className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}
+                                                    className={cn(['fontStyle-sm', 'uppercase', 'strong', 'text-gray-400'])}
                                                   />
                                                 )}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                   const {url, target} = parseLink(innerLink)
                                                   return (
-                                                    <a key={`${innerLabel}${url}`} href={url} target={target} className="fontStyle-sm">
+                                                    <a
+                                                      key={`${innerLabel}${url}`}
+                                                      href={url}
+                                                      target={target}
+                                                      className="fontStyle-sm hover:text-primary-400"
+                                                    >
                                                       {innerLabel}
                                                     </a>
                                                   )
@@ -127,17 +132,19 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                           case 'link': {
                                             const Alink = () => {
                                               const {url, target} = parseLink(link)
+                                              const linkClass = url && 'hover:text-primary-400'
+                                              const Tag: keyof JSX.IntrinsicElements = url ? 'a' : 'span'
                                               if (type === 'link') {
                                                 return (
-                                                  <a href={url} target={target} className="fontStyle-sm">
+                                                  <Tag href={url} target={target} className={cn(linkClass, 'fontStyle-sm')}>
                                                     {label}
-                                                  </a>
+                                                  </Tag>
                                                 )
                                               } else if (type === 'icon') {
                                                 return (
-                                                  <a href={url} target={target} className="flex flex-cols">
+                                                  <Tag href={url} target={target} className={cn(linkClass, 'flex flex-cols')}>
                                                     <Media media={image} className="h-4 w-auto inline-flex" fit />
-                                                  </a>
+                                                  </Tag>
                                                 )
                                               }
                                             }
