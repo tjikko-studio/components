@@ -56,8 +56,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
 
 export const Section: FC<SectionProps> = ({
   bgColor = 'transparent',
-  wrapperColor = '',
-  aboveColor = '',
+  wrapperColor = 'transparent',
+  aboveColor = 'transparent',
   layoutWidth = 'default',
   layoutSpacing = 'default',
   contentPosition = 'center|center',
