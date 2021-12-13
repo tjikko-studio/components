@@ -11,6 +11,31 @@ import {JobsCollection, JobsCollectionProps} from './collectionsLists/JobsCollec
 
 import {BlockProps, ColumnProps} from '../../shared/types'
 
+interface BaseProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * default/horizontal (left to right) or vertical (image above)
+   */
+  layout?: 'horizontal' | 'vertical'
+
+  /**
+   * Image Position
+   */
+  imagePosition?: 'left' | 'right'
+
+  /**
+   * Background color
+   */
+  hasBackground?: boolean
+  bgColor?: string
+
+  /**
+   * Is elevated (Will have a drop shadow)
+   */
+  isElevated?: boolean
+
+  columns?: number
+}
+
 type CollectionItem = {
   id: string
   url: string
@@ -22,12 +47,12 @@ type CollectionItem = {
   }
 }
 
-type CollectionItems = {
+interface CollectionItems extends BaseProps {
   items: CollectionItem[]
   link_cta: string
 }
 
-export interface CollectionProps extends HTMLAttributes<HTMLDivElement> {
+export interface CollectionProps extends BaseProps {
   header?: BlockProps[]
   templatesContent?: Record<string, ColumnProps>
   content?: CollectionItems & JobsCollectionProps
@@ -54,20 +79,33 @@ let sectionClasses = [
 
 let contentClasses = ['grid', 'w-full', 'px-4', 'gap-16']
 
-const SuccessStoriesCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+const SuccessStoriesCollection: FC<CollectionItems> = ({
+  items = null,
+  link_cta,
+  layout = 'horizontal',
+  imagePosition = 'right',
+  hasBackground = false,
+  bgColor,
+  isElevated = false,
+  columns = 3
+}) => {
   const label = link_cta ? link_cta : 'Read about {title}'
-  contentClasses.push('sm:grid-cols-2')
+
+  const gridColumns = columns === 2 ? 'sm:grid-cols-2' : columns === 3 ? 'sm:grid-cols-3' : ''
+
   return (
-    <div className={cn(contentClasses)}>
+    <div className={cn(contentClasses, gridColumns)}>
       {items?.map((item) => (
         <Card
           key={item.id}
           image={item.content.images?.[0]}
-          imagePosition="right"
           title={item.content.title}
           body={item.content.description}
-          layout="horizontal"
-          hasBackground={false}
+          layout={layout}
+          imagePosition={imagePosition}
+          hasBackground={hasBackground}
+          bgColor={bgColor}
+          isElevated={isElevated}
           buttons={[
             {
               label: label.replace('{title}', item.content.title),
@@ -125,7 +163,9 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = ({header, content, templatesContent = {}, datasource} = {content: null}) => {
+export const Collection: FC<CollectionProps> = (
+  {header, content, templatesContent = {}, datasource, layout, imagePosition, hasBackground, bgColor, isElevated, columns} = {content: null}
+) => {
   const toComponent = getComponent(templatesContent)
   return (
     <section className={cn(sectionClasses)}>
@@ -136,9 +176,18 @@ export const Collection: FC<CollectionProps> = ({header, content, templatesConte
           })}
         </header>
       ) : null}
-
       {datasource === 'success-stories' && content && (
-        <SuccessStoriesCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
+        <SuccessStoriesCollection
+          key={JSON.stringify(content)}
+          items={content.items}
+          link_cta={content.link_cta}
+          layout={layout}
+          imagePosition={imagePosition}
+          hasBackground={hasBackground}
+          bgColor={bgColor}
+          isElevated={isElevated}
+          columns={columns}
+        />
       )}
 
       {datasource === 'portfolio' && content && (
