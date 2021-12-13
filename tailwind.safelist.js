@@ -116,7 +116,9 @@ exports = [
   'ratio-1/1',
   'ratio-3/2',
   'ratio-4/3',
-  'ratio-16/9'
+  'ratio-16/9',
+
+  'bottom-0'
 ]
 module.exports = exports
 /* eslint-enable max-len */
