@@ -99,6 +99,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                             >
                               {content.length &&
                                 content.map(({label, link, type, image, content: innerContent, id: contentId}, idx) => {
+                                  if (label && label.includes('{year}')) {
+                                    label = label.replace('{year}', new Date().getFullYear().toString())
+                                  }
                                   return (
                                     <div key={contentId || JSON.stringify(innerContent)}>
                                       {(() => {
