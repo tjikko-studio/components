@@ -118,15 +118,17 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                 )}
                                                 {innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                   const {url, target} = parseLink(innerLink)
+                                                  const linkClass = url && 'hover:text-primary-600'
+                                                  const Tag: keyof JSX.IntrinsicElements = url ? 'a' : 'span'
                                                   return (
-                                                    <a
+                                                    <Tag
                                                       key={`${innerLabel}${url}`}
                                                       href={url}
                                                       target={target}
-                                                      className="fontStyle-sm hover:text-primary-600"
+                                                      className={cn('fontStyle-sm', linkClass)}
                                                     >
                                                       {innerLabel}
-                                                    </a>
+                                                    </Tag>
                                                   )
                                                 })}
                                               </div>
