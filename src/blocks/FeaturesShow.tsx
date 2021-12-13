@@ -114,11 +114,13 @@ function cloneModifier(
       if (bottomBelowFold && topAboveTopFold) {
         opacityRatio = 1
       } else if (bottomBelowFold) {
-        const fullRatio = (viewportHeight - top) / height
-        if (fullRatio > 1 / 2) {
-          opacityRatio = 1 - fullRatio
+        const intersectionRatio = (viewportHeight - top) / height
+        if (intersectionRatio > 2 / 3) {
+          opacityRatio = 1 - 3 * (intersectionRatio - 2 / 3)
+        } else if (intersectionRatio > 1 / 3) {
+          opacityRatio = 1
         } else {
-          opacityRatio = fullRatio * 2
+          opacityRatio = intersectionRatio * 2
         }
       }
     }
