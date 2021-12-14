@@ -37,7 +37,7 @@ export const flattenContent = (val: Record<string, unknown>, prop: string, level
 }
 
 /*
- * To return if a string is a json
+ * Like `JSON.parse`, but returns `null` instead of throwing on invalid input
  */
 export const nonThrowingJsonParse = (str: string): any => {
   try {
