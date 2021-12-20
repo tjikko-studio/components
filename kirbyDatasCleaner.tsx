@@ -94,7 +94,7 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
         final = flattenContent(final, 'blocks', true)
       }
       if (isPlainObject(final) && final.type === 'NavigationLogo' && final.content.image) {
-        final.content.image = final.content.image?.[0]
+        final.content.image = isArray(final.content.image) ? final.content.image[0] : final.content.image
       }
       return final
     })
@@ -182,11 +182,12 @@ export const flattenImages = (obj: any) => {
   })
   return toArray(
     deeply(mapValues)(obj, function (val: any, key: string) {
-      if ((key === 'image' || key === 'media') && isArray(val) && typeof val[0] !== undefined) {
-        return fixAlt(val[0])
-      } else {
-        return val
+      if (key === 'image' || key === 'media') {
+        if (isArray(val) && typeof val[0] !== undefined) {
+          return fixAlt(val[0])
+        }
       }
+      return val
     })
   )
 }

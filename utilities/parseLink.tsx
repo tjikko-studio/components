@@ -8,7 +8,7 @@ export default function parseLink(link: LinkObject): ParsedLink {
     parsed.url = link
   } else {
     if (link?.value) {
-      parsed.url = typeof link.value === 'string' ? link.value : link.value[0]?.url
+      parsed.url = typeof link.value === 'string' ? `/${link.value}` : link.value[0]?.url
     }
     if (link?.popup === true) {
       parsed.target = '_blank'

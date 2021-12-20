@@ -79,6 +79,7 @@ export const Hero: FC<HeroProps> = ({
   templatesContent = {},
   className
 }) => {
+  content = typeof content === 'string' ? JSON.parse(content) : content
   const HeroHeadingId = makeRandomId()
   const finalHeroHeight = heroHeight || 'h-80vh'
   const toComponent = getComponent(templatesContent)

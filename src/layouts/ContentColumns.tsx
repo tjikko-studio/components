@@ -66,6 +66,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   className,
   sectionHeadingId
 }) => {
+  content = typeof content === 'string' ? JSON.parse(content) : content
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See safelist in tailwind.safelist.js
