@@ -31,12 +31,16 @@ export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, info = '', fit = false}) => {
+export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false}) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
       {url && (
-        <img src={url} alt={parsedInfos?.alt} className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)} />
+        <img
+          src={url}
+          alt={alt && alt !== '' ? alt : parsedInfos?.alt}
+          className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)}
+        />
       )}
       {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
     </figure>

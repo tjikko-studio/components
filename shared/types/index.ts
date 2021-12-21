@@ -5,6 +5,7 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
   id?: string
   link?: string
   url?: string
+  alt?: string
   extension?: string
   dimensions?: {
     width: number
