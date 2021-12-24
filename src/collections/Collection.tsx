@@ -172,7 +172,7 @@ export const Collection: FC<CollectionProps> = (
       {header.length ? (
         <header>
           {header.map((block) => {
-            return <div key={JSON.stringify(block.content)}>{toComponent(block)}</div>
+            return <div key={block.id || JSON.stringify(block.content)}>{toComponent(block)}</div>
           })}
         </header>
       ) : null}

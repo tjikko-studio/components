@@ -23,6 +23,7 @@ import {Hero} from '../src/collections/Hero'
 import {Section} from '../src/collections/Section'
 import {Input} from '../src/form/Input'
 import {TextArea} from '../src/form/TextArea'
+import {Columns, ColumnsBlockProps} from '../src/layouts/Columns'
 
 import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
@@ -171,14 +172,27 @@ const ValidComponents: Record<string, FC> = {
 }
 
 export default function getComponent(templatesContent: Record<string, ColumnProps> = {}) {
-  return function SelectedComponent(component: BlockProps, extraProps?: ComponentsExtraProps): React.ReactElement {
-    const Component = ValidComponents[component.type]
-    try {
-      return <Component {...getProps(component.type, component, extraProps, templatesContent)} />
-    } catch (ex) {
-      console.error('Unrecognized component type in getComponents', component)
-      console.error(ex)
-      return null
+  return function SelectedComponent(component: BlockProps | ColumnsBlockProps, extraProps?: ComponentsExtraProps): React.ReactElement {
+    const block = component as BlockProps
+    if (block.type) {
+      const Component = ValidComponents[block.type]
+      if (!Component) {
+        console.error('Unrecognized component type in getComponents', block)
+        return null
+      }
+      try {
+        return <Component {...getProps(block.type, component as BlockProps, extraProps, templatesContent)} />
+      } catch (ex) {
+        console.error('Unable to render', component)
+        console.error(ex)
+        return null
+      }
     }
+    const columnsBlock = component as ColumnsBlockProps
+    if (columnsBlock.columns) {
+      return <Columns columns={columnsBlock.columns} templatesContent={templatesContent} extraProps={extraProps} />
+    }
+    console.error('Dunno what to do with this', component)
+    return null
   }
 }

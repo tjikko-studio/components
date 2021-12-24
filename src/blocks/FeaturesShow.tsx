@@ -262,7 +262,7 @@ const FeaturesShowSection: FC<{
           </div>
         </div>
       )}
-      {item.info_boxes.map((box) => {
+      {item.info_boxes?.map((box) => {
         return (
           <InfoBox
             key={box.title}

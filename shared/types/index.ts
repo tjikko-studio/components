@@ -5,6 +5,7 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
   id?: string
   link?: string
   url?: string
+  alt?: string
   extension?: string
   dimensions?: {
     width: number
@@ -29,6 +30,7 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
 export type ImageProps = MediaProps
 
 export interface BlockProps {
+  id: string
   type: string
   content: ContentType
 }

@@ -68,6 +68,7 @@ export const Section: FC<SectionProps> = ({
   templatesContent = {},
   className
 }) => {
+  content = typeof content === 'string' ? JSON.parse(content) : content
   const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
