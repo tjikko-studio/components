@@ -102,6 +102,7 @@ const heightValues = {
   ...newHeightValues
 }
 const widthValues = {
+  '1/3vw': '33.333vw',
   'screen-xxs': '375px',
   'screen-xs': '414px',
   'screen-sm': '640px',
