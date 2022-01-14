@@ -41,6 +41,8 @@ export interface ColumnProps {
   id: string
 }
 
+export type ContentAlignment = 'left' | 'center' | 'right'
+
 export type ContentPosition =
   | 'top|left'
   | 'top|center'

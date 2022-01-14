@@ -5,6 +5,7 @@ import {Card} from './Card'
 import {ClientsLogos} from './ClientsLogos'
 import {Divider} from './Divider'
 import {FAQ} from './FAQ'
+import {FeatureShow} from './FeatureShow'
 import {FeaturesShow} from './FeaturesShow'
 import {Gallery} from './Gallery'
 import {Header} from './Header'
@@ -25,6 +26,7 @@ export default {
   ClientsLogos,
   Divider,
   FAQ,
+  FeatureShow,
   FeaturesShow,
   Gallery,
   Header,
