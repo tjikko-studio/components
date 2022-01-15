@@ -23,8 +23,9 @@ type TransitionSettings = {
 export type ImageSettings = TransitionSettings
 
 export interface InfoBoxSettings extends TransitionSettings {
-  marginBottom?: string
   color?: string
+  backgroundColor?: string
+  marginBottom?: string
 }
 
 export type FeatureShowSettings = {
@@ -54,7 +55,7 @@ const shownStyles = {
 }
 
 const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}}) => {
-  const {marginBottom, opacity, transformLeft, transformCenter, transformRight} = settings
+  const {color, backgroundColor, marginBottom, opacity, transformLeft, transformCenter, transformRight} = settings
   const infoBoxRef = useRef<HTMLDivElement>(null)
   const pos = position === 'right' ? 'mr-0 ml-auto' : position === 'center' ? 'mx-auto' : 'ml-0 mr-auto'
   const hiddenInfoBoxStyles = useMemo(() => {
@@ -104,7 +105,7 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
 
   return (
     <div
-      className={cn('relative z-20')}
+      className={cn('relative z-20 sm:mx-10')}
       style={{
         marginBottom
       }}
@@ -113,7 +114,11 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
       <div
         key={title}
         className={cn('bg-white rounded-xl shadow-2xl p-8 max-h-100vh w-fit sm:max-w-1/3vw', pos, 'transition duration-400')}
-        style={{...animatedStyles}}
+        style={{
+          color,
+          backgroundColor,
+          ...animatedStyles
+        }}
       >
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
@@ -188,10 +193,10 @@ const FeatureShowSection: FC<{
   }, [imgContainerRef, hiddenImgStyles])
   const parsedInfos = nonThrowingJsonParse(item.image?.[0]?.info)
   return (
-    <div className="relative w-full px-2.5 sm:px-5">
+    <div className="relative w-full">
       {item.image?.[0] && (
         <div className="sticky h-screen z-10" ref={imgContainerRef} style={{top: '0'}}>
-          <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
+          <div className="flex flex-col h-full relative lg:pt-32">
             {item.header && (
               <div className="text-center pb-4">
                 <Heading level="h3" text={item.header} alignment="center" />
@@ -200,7 +205,7 @@ const FeatureShowSection: FC<{
             )}
             <div className="h-full relative">
               <div
-                className={cn('bg-img h-full w-full bg-center bg-cover rounded-lg shadow-2xl transition')}
+                className={cn('bg-img h-full w-full bg-center bg-cover shadow-2xl transition')}
                 aria-label={parsedInfos?.alt}
                 style={{
                   backgroundImage: `url(${item.image?.[0].url})`,
