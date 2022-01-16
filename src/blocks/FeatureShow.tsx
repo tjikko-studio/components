@@ -55,7 +55,7 @@ const shownStyles = {
 }
 
 const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}}) => {
-  const {color, backgroundColor, marginBottom, opacity, transformLeft, transformCenter, transformRight} = settings
+  const {color, backgroundColor, duration, marginBottom, opacity, transformLeft, transformCenter, transformRight} = settings
   const infoBoxRef = useRef<HTMLDivElement>(null)
   const pos = position === 'right' ? 'mr-0 ml-auto' : position === 'center' ? 'mx-auto' : 'ml-0 mr-auto'
   const hiddenInfoBoxStyles = useMemo(() => {
@@ -80,7 +80,7 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              if (entry.intersectionRatio > 0.8) {
+              if (entry.intersectionRatio > 0.9) {
                 show()
               } else {
                 hide()
@@ -91,7 +91,7 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
           })
         },
         {
-          threshold: 0.8
+          threshold: 0.9
         }
       )
       observer.observe(infoBox)
@@ -113,11 +113,12 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
     >
       <div
         key={title}
-        className={cn('bg-white rounded-xl shadow-2xl p-8 max-h-100vh w-fit sm:max-w-1/3vw', pos, 'transition duration-400')}
+        className={cn('bg-white rounded-xl shadow-2xl p-8 max-h-100vh w-fit sm:max-w-1/3vw', pos, 'transition')}
         style={{
           color,
           backgroundColor,
-          ...animatedStyles
+          ...animatedStyles,
+          transitionDuration: duration
         }}
       >
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
