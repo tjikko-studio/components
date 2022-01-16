@@ -105,7 +105,7 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
 
   return (
     <div
-      className={cn('relative z-20 sm:mx-10')}
+      className={cn('relative z-20 sm:mx-10 overflow-hidden')}
       style={{
         marginBottom
       }}
@@ -194,7 +194,7 @@ const FeatureShowSection: FC<{
   }, [imgContainerRef, hiddenImgStyles])
   const parsedInfos = nonThrowingJsonParse(item.image?.[0]?.info)
   return (
-    <div className="relative w-full overflow-x-hidden">
+    <div className="relative w-full">
       {item.image?.[0] && (
         <div className="sticky h-screen z-10" ref={imgContainerRef} style={{top: '0'}}>
           <div className="flex flex-col h-full relative lg:pt-32">

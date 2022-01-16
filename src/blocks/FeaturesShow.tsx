@@ -185,7 +185,7 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
 
   return (
     <div className={`${relativePos} min-h-1/2vh`} ref={infoBoxContainerRef}>
-      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 duration-700 overflow-x-hidden')}>
+      <div key={title} className={cn('z-20 bg-white rounded-xl shadow-2xl p-8 duration-700')}>
         <div className="mb-4 fontStyle-2xl" dangerouslySetInnerHTML={{__html: title}} />
         <div dangerouslySetInnerHTML={{__html: body}} />
       </div>
