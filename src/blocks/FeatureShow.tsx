@@ -194,10 +194,10 @@ const FeatureShowSection: FC<{
   }, [imgContainerRef, hiddenImgStyles])
   const parsedInfos = nonThrowingJsonParse(item.image?.[0]?.info)
   return (
-    <div className="relative w-full">
+    <div className="relative w-full px-2.5 sm:px-5">
       {item.image?.[0] && (
         <div className="sticky h-screen z-10" ref={imgContainerRef} style={{top: '0'}}>
-          <div className="flex flex-col h-full relative lg:pt-32">
+          <div className="flex flex-col h-full p-4 relative lg:pt-32">
             {item.header && (
               <div className="text-center pb-4">
                 <Heading level="h3" text={item.header} alignment="center" />
@@ -206,7 +206,7 @@ const FeatureShowSection: FC<{
             )}
             <div className="h-full relative">
               <div
-                className={cn('bg-img h-full w-full bg-center bg-cover shadow-2xl transition')}
+                className={cn('bg-img h-full w-full bg-center bg-cover rounded-lg shadow-2xl transition')}
                 aria-label={parsedInfos?.alt}
                 style={{
                   backgroundImage: `url(${item.image?.[0].url})`,
