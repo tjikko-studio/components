@@ -194,7 +194,7 @@ const FeatureShowSection: FC<{
   }, [imgContainerRef, hiddenImgStyles])
   const parsedInfos = nonThrowingJsonParse(item.image?.[0]?.info)
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-x-hidden">
       {item.image?.[0] && (
         <div className="sticky h-screen z-10" ref={imgContainerRef} style={{top: '0'}}>
           <div className="flex flex-col h-full relative lg:pt-32">
