@@ -109,11 +109,7 @@ export const Section: FC<SectionProps> = ({
     }
   }
 
-  if (layoutWidth === 'tight') {
-    classes.push('px-4', 'sm:px-8', 'md:px-24', 'xl:px-0')
-  } else {
-    classes.push('px-4', 'sm:px-8', 'md:px-12', 'xl:px-0')
-  }
+  classes.push('px-4', 'sm:px-8', 'xl:px-0', layoutWidth === 'tight' ? 'md:px-24' : 'md:px-12')
   if (layoutSpacing === 'tight') {
     classes.push('py-16', 'sm:py-24', 'md:py-32')
     outerGridClasses.push('grid', 'gap-y-12')
