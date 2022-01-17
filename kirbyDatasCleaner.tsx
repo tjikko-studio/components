@@ -86,9 +86,6 @@ export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {
       }
       if (isPlainObject(final) && final.type === 'NavigationLink') {
         final = flattenContent(final, 'content')
-        if (final.type === 'icon') {
-          final.image = final.image?.[0] || null
-        }
       }
       if (blocks === true && isPlainObject(final) && final.width && final.blocks.length) {
         final = flattenContent(final, 'blocks', true)
