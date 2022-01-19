@@ -8,12 +8,7 @@ import {Button} from '../Button'
 import {Media} from '../parts/Media'
 import {NavItem} from './NavItem'
 
-import {MenuItemType, MenuType} from '../../shared/types'
-
-export interface LocalesType {
-  current?: string | null
-  content?: MenuType[]
-}
+import {LocalesType, MenuItemType} from '../../shared/types'
 
 export interface NavBlock {
   id?: string

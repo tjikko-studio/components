@@ -89,3 +89,8 @@ export interface AttrProps {
 }
 
 export type ComponentsExtraProps<P = Record<string, unknown>, T = Record<string, unknown>> = Record<string, (props: P) => T>
+
+export interface LocalesType {
+  current?: string | null
+  content?: MenuType[]
+}

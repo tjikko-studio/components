@@ -9,9 +9,9 @@ export default function parseLink(link: LinkObject): ParsedLink {
   } else {
     if (link?.value) {
       if (link?.type === 'page') {
-        parsed.url = typeof link.value === 'string' ? link.value : link.value[0]?.url
-      } else {
         parsed.url = typeof link.value === 'string' ? `/${link.value}` : link.value[0]?.url
+      } else {
+        parsed.url = typeof link.value === 'string' ? link.value : link.value[0]?.url
       }
     }
     if (link?.popup === true) {

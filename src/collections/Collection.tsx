@@ -95,30 +95,32 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({
 
   return (
     <div className={cn(contentClasses, gridColumns)}>
-      {items?.map((item) => (
-        <Card
-          key={item.id}
-          image={item.content.images?.[0]}
-          title={item.content.title}
-          body={item.content.description}
-          layout={layout}
-          imagePosition={imagePosition}
-          hasBackground={hasBackground}
-          bgColor={bgColor}
-          isElevated={isElevated}
-          buttons={[
-            {
-              label: label.replace('{title}', item.content.title),
-              type: 'tertiary',
-              link: {
-                type: 'page',
-                popup: false,
-                value: item.url
+      {items?.map((item) => {
+        return (
+          <Card
+            key={item.id}
+            image={item.content.images?.[0]}
+            title={item.content.title}
+            body={item.content.description}
+            layout={layout}
+            imagePosition={imagePosition}
+            hasBackground={hasBackground}
+            bgColor={bgColor}
+            isElevated={isElevated}
+            buttons={[
+              {
+                label: label.replace('{title}', item.content.title),
+                type: 'tertiary',
+                link: {
+                  type: 'url',
+                  popup: false,
+                  value: item.url
+                }
               }
-            }
-          ]}
-        />
-      ))}
+            ]}
+          />
+        )
+      })}
     </div>
   )
 }

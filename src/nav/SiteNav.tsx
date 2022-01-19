@@ -10,12 +10,7 @@ import {ImageProps, Media} from '../parts/Media'
 import {ListNav} from './ListNav'
 import {NavItem} from './NavItem'
 
-import {MenuItemType, MenuType} from '../../shared/types'
-
-export interface LocalesType {
-  current?: string | null
-  content?: MenuType[]
-}
+import {LocalesType, MenuItemType} from '../../shared/types'
 
 export interface NavColumn {
   mobile_layout: string
