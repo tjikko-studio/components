@@ -94,6 +94,9 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                             >
                               {content.length &&
                                 content.map(({label, link, type, image, content: innerContent, id: contentId}, idx) => {
+                                  if (Array.isArray(image) && image.length > 0) {
+                                    image = image[0]
+                                  }
                                   return (
                                     <div key={contentId || JSON.stringify(innerContent)}>
                                       {(() => {
@@ -108,14 +111,16 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                     className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}
                                                   />
                                                 )}
-                                                {innerContent.map(({label: innerLabel, link: innerLink}) => {
-                                                  const {url, target} = parseLink(innerLink)
-                                                  return (
-                                                    <a key={`${innerLabel}${url}`} href={url} target={target} className="fontStyle-sm">
-                                                      {innerLabel}
-                                                    </a>
-                                                  )
-                                                })}
+                                                {innerContent && innerContent.map
+                                                  ? innerContent.map(({label: innerLabel, link: innerLink}) => {
+                                                      const {url, target} = parseLink(innerLink)
+                                                      return (
+                                                        <a key={`${innerLabel}${url}`} href={url} target={target} className="fontStyle-sm">
+                                                          {innerLabel}
+                                                        </a>
+                                                      )
+                                                    })
+                                                  : null}
                                               </div>
                                             )
                                           case 'icon':
