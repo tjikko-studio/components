@@ -39,7 +39,12 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({card, content, content
           <div className="w-4 h-4 box-content bg-gray-700 rounded-full relative z-10" />
           <div className={cn('absolute top-0 w-px bg-gray-400 left-1/2 -ml-px -bottom-24')} />
         </div>
-        <div className={cn('flex flex-col w-full z-10', contentGap)}>
+        <div
+          className={cn('flex flex-col w-full z-10')}
+          style={{
+            gap: contentGap
+          }}
+        >
           {content && content.length >= 1 ? (
             content.map((block) => {
               return toComponent(block, {
