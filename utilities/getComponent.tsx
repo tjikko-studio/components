@@ -124,6 +124,14 @@ const propsByType: Record<string, GetPropsFn> = {
       image: content.image,
       isElevated: content.is_elevated
     }
+  },
+  Timeline: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      style: {
+        marginBottom: content.box_margin_bottom
+      }
+    }
   }
 }
 

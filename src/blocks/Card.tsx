@@ -21,12 +21,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * text to display for heading
    */
-  title: string
+  title?: string
 
   /**
    * text to display for paragraph
    */
-  body: string
+  body?: string
 
   /**
    *  Block image
@@ -85,6 +85,9 @@ export const Card: FC<CardProps> = ({
 }) => {
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
 
+  if (Array.isArray(image)) {
+    image = image[0]
+  }
   return (
     <div
       className={cn(
@@ -92,11 +95,11 @@ export const Card: FC<CardProps> = ({
         {'h-full': fullHeight},
         hasBackground && lightOrDark(bgColorOutput),
         {'xl:flex-row xl:h-auto': layout === 'horizontal'},
-        {'rounded-lg overflow-hidden': hasBackground},
+        {'rounded-lg': hasBackground},
         {'shadow-2xl': isElevated && hasBackground},
         className
       )}
-      style={{backgroundColor: bgColorOutput}}
+      style={{backgroundColor: title || body ? bgColorOutput : 'transparent'}}
     >
       {image && (
         <Media
@@ -109,6 +112,7 @@ export const Card: FC<CardProps> = ({
           className={cn(
             {'shadow-2xl': isElevated && !hasBackground},
             {'rounded-lg': !hasBackground},
+            {'rounded-t-lg': hasBackground},
             {'overflow-hidden xl:w-1/2': layout === 'horizontal'}
           )}
           mediaClasses={cn('object-cover')}
@@ -127,7 +131,7 @@ export const Card: FC<CardProps> = ({
         {(title || body) && (
           <div>
             <Heading level="h3" text={title} className={cn('text-gray-900 dark:text-gray-50 fontStyle-2xl')} />
-            <p className={cn('text-gray:500 dark:text-gray-400 mt-3')}>{body}</p>
+            <p className={cn('text-gray:500 dark:text-gray-400 mt-3')} dangerouslySetInnerHTML={{__html: body}}></p>
           </div>
         )}
         {Object.keys(buttons).length ? <ButtonsGroup buttons={buttons} className="gap-x-4 mt-4" /> : null}

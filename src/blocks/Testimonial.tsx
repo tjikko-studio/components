@@ -21,6 +21,9 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const Testimonial: FC<TestimonialProps> = ({body = '', image = {}, title = ''}) => {
+  if (Array.isArray(image)) {
+    image = image[0]
+  }
   return (
     <div className="flex flex-col items-center text-gray-700 dark:text-gray-200">
       <p className="fontStyle-lg italic text-center">“{body}”</p>
