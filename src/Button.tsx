@@ -50,7 +50,7 @@ export const Button: FC<ButtonProps> = ({
   onClick
 }) => {
   const buttonType = type || 'primary'
-  const buttonClasses = ['inline-flex items-center gap-x-3 xxs:whitespace-nowrap']
+  const buttonClasses = ['inline-flex items-center gap-x-3 my-1']
   const contentClasses = ['']
   const styles = {
     primary: (isForceDark: boolean) => {
@@ -89,14 +89,14 @@ export const Button: FC<ButtonProps> = ({
   buttonClasses.push(...styles[buttonType](forceDark))
   switch (size) {
     case 'small':
-      buttonClasses.push('h-8 max-h-8 py-2.5')
+      buttonClasses.push('min-h-8 py-2.5')
       contentClasses.push('fontStyle-button-sm')
       if (buttonType !== 'tertiary') {
         buttonClasses.push('px-3.5')
       }
       break
     case 'large':
-      buttonClasses.push('h-12 max-h-12 py-4')
+      buttonClasses.push('min-h-12 py-4')
       if (buttonType !== 'tertiary') {
         buttonClasses.push('px-5')
       }
@@ -104,7 +104,7 @@ export const Button: FC<ButtonProps> = ({
       break
     case 'default':
     default:
-      buttonClasses.push('xs:h-10 xs:max-h-10 py-3.5')
+      buttonClasses.push('xs:min-h-10 py-3.5')
       if (buttonType !== 'tertiary') {
         buttonClasses.push('px-4')
       }

@@ -28,5 +28,5 @@ export const Text: FC<TextProps> = ({tag = 'p', alignment = 'left', text = '', c
     alignment === 'left' ? 'md:w-full' : alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : ''
 
   // See safelist in tailwind.safelist.js
-  return <TextTag className={cn(finalAlignment, className)} dangerouslySetInnerHTML={{__html: text}} />
+  return <TextTag className={cn(finalAlignment, className, 'text-block-container')} dangerouslySetInnerHTML={{__html: text}} />
 }

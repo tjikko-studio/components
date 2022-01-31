@@ -226,9 +226,8 @@ exports = function exports({theme, addBase, addUtilities}) {
     /*
      * Paragraph and lists formatting
      */
-    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p:nth-child(n+2)': {
-      marginTop: theme('spacing.2'),
-      marginBottom: theme('spacing.2')
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) p': {
+      margin: '0.5rem 0'
     },
     ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) :is(ol, ul)': {
       marginTop: theme('spacing.4'),
@@ -241,13 +240,21 @@ exports = function exports({theme, addBase, addUtilities}) {
       listStyleType: 'decimal'
     },
     ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) li': {
-      listPosition: 'outside',
       marginTop: theme('spacing["0.5"]'),
       marginBottom: theme('spacing["0.5"]')
     },
-    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) hr': {
-      marginTop: theme('spacing.8'),
-      marginBottom: theme('spacing.8')
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) .text-block-container': {
+      wordBreak: 'break-word'
+    },
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) .text-block-container a': {
+      textDecoration: 'underline'
+    },
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) .text-block-container hr': {
+      margin: '2rem 0'
+    },
+    ':where(.ProseMirror, .k-list-field-preview, .k-block.k-block-type-Section, .article) .text-block-container ul': {
+      listStyleType: 'disc',
+      paddingLeft: '20px'
     },
     'nav :is(ol, ul, ol li, ul li)': {
       listStyle: 'none',

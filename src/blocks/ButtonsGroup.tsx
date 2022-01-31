@@ -30,10 +30,7 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '', columnStart, columnEnd, fullWidth = false}) => {
   return (
-    <div
-      className={cn('inline-flex flex-wrap items-center gap-x-4', fullWidth ? 'w-full' : 'xs:w-max', className)}
-      style={gridAreas('control', columnStart, columnEnd)}
-    >
+    <div className={cn('inline-flex flex-wrap items-center gap-x-4', className)} style={gridAreas('control', columnStart, columnEnd)}>
       {buttons.map(({label, link, type, size}) => {
         return (
           <Button

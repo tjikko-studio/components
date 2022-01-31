@@ -77,7 +77,7 @@ export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout =
     )
   }
   return (
-    <div>
+    <div className="-mx-4">
       {logosLayout === 'grid' ? (
         <LogosList />
       ) : (

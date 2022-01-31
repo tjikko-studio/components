@@ -77,7 +77,7 @@ let sectionClasses = [
   'gap-16'
 ]
 
-let contentClasses = ['grid', 'w-full', 'px-4', 'gap-16']
+let contentClasses = ['grid', 'w-full', 'gap-16']
 
 const SuccessStoriesCollection: FC<CollectionItems> = ({
   items = null,
