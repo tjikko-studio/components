@@ -160,7 +160,7 @@ export const Hero: FC<HeroProps> = ({
             'px-4',
             'sm:px-8',
             'md:px-12',
-            'xl:px-0',
+            'xl:px-24',
             'flex',
             'flex-col',
             'gap-y-5',
