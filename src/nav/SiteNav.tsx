@@ -79,7 +79,7 @@ export const SiteNav: FC<SiteNavProps> = ({
    */
   const DesktopNav = () => {
     return (
-      <div className="hidden lg:block">
+      <div className="hidden xl:block">
         {menuData.map(({columns, id, attrs}) => {
           return (
             <div
@@ -91,6 +91,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                 'md:justify-start',
                 'h-24',
                 'px-10',
+                'gap-x-4',
                 styles === 'opaque' && 'bg-gray-900 text-gray-50',
                 attrs?.className
               ])}
@@ -175,7 +176,7 @@ export const SiteNav: FC<SiteNavProps> = ({
     const dividerSm = 'pb-4 last:pb-0'
     const dividerMd = 'pb-8 last:pb-0'
     return (
-      <div className={cn(['flex', 'lg:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'gap-y-8', 'px-4', menuOpened && 'pb-4'])}>
+      <div className={cn(['flex', 'xl:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'gap-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <a className="flex-auto" href={homeLink}>
             {logo ? <Media media={logo} className="h-3 lg:h-4 w-auto" fit /> : null}
