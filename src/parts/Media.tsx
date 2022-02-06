@@ -146,6 +146,9 @@ export const Media: FC<GenericMediaProps> = ({
   fit = false
 }) => {
   if (media) {
+    if (Array.isArray(media) && media[0]) {
+      media = media[0]
+    }
     return media.type === 'video' ? (
       <MediaVideo
         key={media.url}
