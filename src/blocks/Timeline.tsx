@@ -15,29 +15,28 @@ export type TimelineComponentProps = {
   card?: CardEntry[]
   content?: []
   contentGap?: string
-  last: boolean
+  reverse: boolean
 }
 
-const TimelineItem: React.VFC<TimelineComponentProps> = ({card, content, contentGap, last}) => {
+const TimelineItem: React.VFC<TimelineComponentProps> = ({card, content, contentGap, reverse}) => {
   const toComponent = getComponent({})
-  const cardClassName = 'sm:mr-4 sticky top-0 sm:top-28 z-20'
-
+  const cardClassName = 'sticky top-0 sm:top-28 z-20'
   return (
-    <>
+    <div className="w-full">
       {card[0] ? (
         <Card {...card[0].content} className={cn('sm:hidden', cardClassName)} />
       ) : (
         <Card className={cn('sm:hidden', cardClassName)} />
       )}
-      <div className="flex w-full">
+      <div className={cn('flex w-full', {'flex-row-reverse': reverse})}>
         {card[0] ? (
           <Card {...card[0].content} className={cn('hidden sm:flex', cardClassName)} />
         ) : (
           <Card className={cn('hidden sm:visible', cardClassName)} />
         )}
-        <div className="relative ml-2 sm:ml-3 mr-4 sm:mr-6">
-          <div className="w-4 h-4 box-content bg-gray-700 rounded-full relative z-10" />
-          <div className={cn('absolute top-0 w-px bg-gray-400 left-1/2 -ml-px -bottom-24')} />
+        <div className="relative mx-4 sm:mx-6">
+          <div className="box-content bg-gray-700 rounded-full relative z-10" style={{width: '21px', height: '21px'}} />
+          <div className={cn('absolute top-0 bg-gray-400 left-1/2 -bottom-48')} style={{width: '3px', marginLeft: '-1.5px'}} />
         </div>
         <div
           className={cn('flex flex-col w-full z-10')}
@@ -58,7 +57,7 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({card, content, content
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -68,15 +67,25 @@ export type TimelineProps = {
     content: []
   }[]
   contentGap?: string
+  alignment?: boolean
+  alternates?: boolean
 }
 
-export const Timeline: React.FC<TimelineProps> = ({content = [], contentGap}) => {
+export const Timeline: React.FC<TimelineProps> = ({content = [], contentGap, alignment = false, alternates = false}) => {
   return (
-    <div className="mx-auto mb-24 w-full max-w-screen-lg flex flex-col gap-28">
+    <div className="relative mx-auto mb-48 w-full max-w-screen-lg flex flex-col gap-28">
       <section>
-        <div className="flex flex-col items-center gap-20 pt-12">
+        <div className="flex flex-col items-center gap-48 pt-12">
           {content?.map(({card, content: innerContent}, idx) => {
-            return <TimelineItem key={idx} card={card} content={innerContent} contentGap={contentGap} last={idx + 1 === content.length} />
+            return (
+              <TimelineItem
+                key={idx}
+                card={card}
+                content={innerContent}
+                contentGap={contentGap}
+                reverse={alternates ? (alignment ? idx % 2 === 0 : idx % 2 !== 0) : alignment}
+              />
+            )
           })}
         </div>
       </section>
