@@ -145,6 +145,9 @@ export const Media: FC<GenericMediaProps> = ({
   mediaClasses,
   fit = false
 }) => {
+  if (ratio === '') {
+    ratio = 'unset'
+  }
   if (media) {
     if (Array.isArray(media) && media[0]) {
       media = media[0]
