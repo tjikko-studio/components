@@ -184,6 +184,7 @@ export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink
                                                   label={locales.current ? locales.current : 'English'}
                                                   listNavContent={locales.content}
                                                   dropdownTop={true}
+                                                  theme="dark"
                                                 />
                                               )
                                             }

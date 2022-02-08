@@ -16,29 +16,18 @@ export interface ListNavProps extends HTMLAttributes<HTMLDivElement> {
    * Links items list array that will be parsed through to build the component
    */
   listNavContent: MenuType[]
+  theme?: string
 }
 
 const availableStyles = {
-  elevated: [
-    'flex',
-    'w-max',
-    'gap-x-6',
-    'px-6',
-    'py-4',
-    'shadow-lg',
-    'rounded-lg',
-    'bg-gray-50',
-    'dark:bg-gray-800',
-    'text-gray-900',
-    'dark:text-gray-50'
-  ],
+  elevated: ['flex', 'w-max', 'gap-x-6', 'px-6', 'py-4', 'shadow-lg', 'rounded-lg', 'bg-gray-50', 'text-gray-900', 'dark:text-gray-50'],
   flat: ['sm:grid', 'sm:grid-cols-2', 'xs:gap-6', 'justify-items-stretch']
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent = [], className = ''}) => {
+export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent = [], className = '', theme = 'light'}) => {
   const classes = [className]
   let wMax = ''
   classes.push(...availableStyles[styles])
@@ -51,7 +40,7 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
       {listNavContent.map((menu) => {
         return (
           <div className={wMax} key={menu.label} role={'navigation'} aria-label={menu.label}>
-            {listNavContent.length > 1 && <PopUpNavItem label={menu.label} type={'header'} />}
+            {listNavContent.length > 1 && <PopUpNavItem label={menu.label} type={'header'} theme={theme} />}
             {menu.content.map((menuItem) => {
               const {url, target} = parseLink(menuItem.link)
               return (
@@ -62,6 +51,7 @@ export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent =
                   className="py-1"
                   href={url}
                   target={target}
+                  theme={theme}
                 />
               )
             })}

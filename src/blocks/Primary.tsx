@@ -79,7 +79,7 @@ export const Primary: FC<PrimaryProps> = ({
   if (!textPositionVertical) textPositionVertical = 'center'
 
   return (
-    <div className={cn('grid gap-6 text-gray-900 dark:text-gray-50', {'lg:grid-cols-2 lg:gap-12': finalLayout === 'default'})}>
+    <div className={cn('grid gap-6', {'lg:grid-cols-2 lg:gap-12': finalLayout === 'default'})}>
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
           <Media

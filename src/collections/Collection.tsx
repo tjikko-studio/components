@@ -2,6 +2,7 @@ import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
+import lightOrDark from '../../utilities/lightOrDark'
 import {Card} from '../blocks/Card'
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
@@ -61,8 +62,6 @@ export interface CollectionProps extends BaseProps {
 
 let sectionClasses = [
   'grid',
-  'text-gray-900',
-  'dark:text-gray-50',
   'w-full',
   'h-full',
   'max-w-screen-xl',
@@ -85,7 +84,7 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({
   layout = 'horizontal',
   imagePosition = 'right',
   hasBackground = false,
-  bgColor,
+  bgColor = 'unset',
   isElevated = false,
   columns = 3
 }) => {
@@ -168,6 +167,7 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
 export const Collection: FC<CollectionProps> = (
   {header, content, templatesContent = {}, datasource, layout, imagePosition, hasBackground, bgColor, isElevated, columns} = {content: null}
 ) => {
+  sectionClasses.push('text-gray-900')
   const toComponent = getComponent(templatesContent)
   return (
     <section className={cn(sectionClasses)}>

@@ -1,5 +1,6 @@
 import React, {FC, HTMLAttributes} from 'react'
 import cn from 'classnames'
+
 import {Heading} from '../blocks/Heading'
 
 export interface HeaderProps extends HTMLAttributes<HTMLElement> {

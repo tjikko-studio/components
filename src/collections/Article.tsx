@@ -16,7 +16,6 @@ export interface ArticleProps extends HTMLAttributes<HTMLElement> {
 const classes = [
   'grid',
   'text-gray-900',
-  'dark:text-gray-50',
   'w-full',
   'h-full',
   'max-w-screen-xl',

@@ -1,7 +1,10 @@
-/* 
+/*
 Source: https://awik.io/determine-color-bright-dark-using-javascript/
 */
 export default function lightOrDark(color: any) {
+  if (!color) {
+    return 'light'
+  }
   let r
   let g
   let b
@@ -9,7 +12,7 @@ export default function lightOrDark(color: any) {
   // Check the format of the color, HEX or RGB?
   if (color.match(/^rgb/)) {
     // If HEX --> store the red, green, blue values in separate variables
-    color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+    color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
     r = color[1]
     g = color[2]
     b = color[3]

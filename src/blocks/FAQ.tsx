@@ -18,7 +18,7 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const FAQ: FC<FAQProps> = ({content = [], className = ''}) => {
   return (
-    <div className={cn('text-gray-900 dark:text-gray-50 flex flex-col gap-y-12', className)}>
+    <div className={cn('flex flex-col gap-y-12', className)}>
       {content.map((qa) => {
         return (
           <div key={qa.question}>

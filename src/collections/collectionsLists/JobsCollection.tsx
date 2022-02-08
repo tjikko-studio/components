@@ -1,6 +1,7 @@
 import React, {FC, HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
+import lightOrDark from '../../../utilities/lightOrDark'
 import {Heading} from '../../blocks/Heading'
 import {Button} from '../../Button'
 import {PopUpNavItem} from '../../nav/PopUpNavItem'
@@ -80,7 +81,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
     })
   }
 
-  const sectionClasses = ['grid gap-y-12 w-full']
+  const sectionClasses = ['grid gap-y-12 w-full', 'text-gray-900']
   const navClasses = ['flex justify-center gap-x-4 gap-y-1.5 sm:gap-x-6 lg:gap-x-8 flex-wrap']
   const navItemsClasses = ['flex justify-center flex-grow-0 flex-shrink-0']
 

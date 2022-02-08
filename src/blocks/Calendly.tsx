@@ -65,8 +65,12 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
       aria-labelledby={headingId}
     >
       {title || body ? (
-        <div className="flex flex-col gap-3 dark:text-gray-50">
-          {title && <h3 id={headingId}>{title}</h3>}
+        <div className="flex flex-col gap-3">
+          {title && (
+            <h3 id={headingId} className="fontStyle-4xl">
+              {title}
+            </h3>
+          )}
           {body && <p className="my-0">{body}</p>}
         </div>
       ) : null}

@@ -45,6 +45,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
    */
   dropdownRight?: boolean
   dropdownTop?: boolean
+  theme?: string
 }
 
 /**
@@ -52,6 +53,7 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const NavItem: FC<NavItemProps> = ({
   label = 'Label',
+  theme = 'light',
   styles = 'default',
   popup = 'white',
   padding = true,
@@ -95,6 +97,7 @@ export const NavItem: FC<NavItemProps> = ({
           styles === 'special' && 'hover:text-primary-300',
           popup === 'flat' && 'hover:text-primary-100 hover:dark:text-primary-300'
         )}
+        theme={theme}
       >
         {listNavContent.length && <ArrowDown className="w-5 h-5 relative top-px" />}
       </PopUpNavItem>
@@ -108,7 +111,7 @@ export const NavItem: FC<NavItemProps> = ({
           )}
           {...eventHandlers}
         >
-          <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} />
+          <ListNav styles={popup === 'flat' ? 'flat' : 'elevated'} listNavContent={listNavContent} theme={'light'} />
         </div>
       ) : null}
     </div>

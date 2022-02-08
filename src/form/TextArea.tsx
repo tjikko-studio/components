@@ -98,7 +98,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       'border',
       'w-full',
       'bg-gray-50',
-      'dark:bg-gray-700',
       'text-gray-800',
       'dark:text-gray-100',
       'border-gray-300',
@@ -123,11 +122,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <>
           {label && (
             <div
-              className={cn([
-                'relative fontStyle-sm strong flex flex-row dark:text-gray-300',
-                isDisabled && 'text-gray-500 dark:text-gray-600',
-                'mb-2'
-              ])}
+              className={cn(['relative fontStyle-sm strong flex flex-row', isDisabled && 'text-gray-500 dark:text-gray-600', 'mb-2'])}
               style={gridAreas('label', columnStart, columnEnd)}
             >
               <label id={labelId} className="w-full">
@@ -153,7 +148,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
               className={cn(
                 `sm:grid-in-info-${columnStart}`,
                 isDisabled && 'text-gray-500 dark:text-gray-600 mt-2',
-                'fontStyle-sm min-h-6 flex items-center dark:text-gray-300'
+                'fontStyle-sm min-h-6 flex items-center'
               )}
               style={gridAreas('info', columnStart, columnEnd)}
               dangerouslySetInnerHTML={{__html: information}}

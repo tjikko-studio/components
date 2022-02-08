@@ -75,7 +75,8 @@ export const Section: FC<SectionProps> = ({
   // See safelist in tailwind.safelist.js
   const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
 
-  const classes = ['text-gray-900', 'dark:text-gray-50', 'w-full', 'h-full', 'max-w-screen-xl', 'xl:mx-auto']
+  const classes = ['w-full', 'h-full', 'max-w-screen-xl', 'xl:mx-auto']
+  const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
   const innerGridClasses: string[] = []
   const outerGridClasses: string[] = []
 
@@ -96,11 +97,6 @@ export const Section: FC<SectionProps> = ({
   }
 
   const columnComponentExtraProps: ComponentsExtraProps = {
-    Text: (baseProps) => {
-      return {
-        className: cn(baseProps.className, 'text-gray-900 dark:text-gray-50')
-      }
-    },
     Primary: (baseProps: {imagePosition: string}) => {
       imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
       return {
@@ -134,7 +130,13 @@ export const Section: FC<SectionProps> = ({
       <div role="presentation" className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
         <div
           role="presentation"
-          className={cn(classes, outerGridClasses, floating && 'md:rounded-lg md:shadow-2xl', floating && floatingAbove && 'relative z-10')}
+          className={cn(
+            classes,
+            colorClass,
+            outerGridClasses,
+            floating && 'md:rounded-lg md:shadow-2xl',
+            floating && floatingAbove && 'relative z-10'
+          )}
           style={{backgroundColor: floating && bgColor}}
         >
           {content.length >= 1 ? (

@@ -34,7 +34,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  */
 export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title = '', body = '', className = ''}) => {
   return (
-    <div className={cn('flex flex-col gap-6 text-gray-900 dark:text-gray-50', layout === 'horizontal' && 'sm:flex-row', className)}>
+    <div className={cn('flex flex-col gap-6', layout === 'horizontal' && 'sm:flex-row', className)}>
       <div className={cn('flex-shrink-0 w-32')}>
         <Media media={image} className={'w-32 h-32'} />
       </div>

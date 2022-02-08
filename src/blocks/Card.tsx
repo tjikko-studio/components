@@ -61,11 +61,14 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * Height of the card
    */
   fullHeight?: boolean
+
+  allowRoundedCorners?: boolean
 }
 
 /**
  * Primary UI component for user interaction
  */
+// eslint-disable-next-line complexity
 export const Card: FC<CardProps> = ({
   layout = 'vertical',
   imagePosition = 'left',
@@ -81,9 +84,13 @@ export const Card: FC<CardProps> = ({
   bgColor,
   isElevated = false,
   hasBackground = true,
-  fullHeight = true
+  fullHeight = true,
+  allowRoundedCorners = true
 }) => {
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
+  const theme = lightOrDark(bgColorOutput)
+  const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
+  const pColorClass = theme === 'dark' ? 'text-gray-400' : 'text-gray-900'
 
   if (Array.isArray(image)) {
     image = image[0]
@@ -93,9 +100,9 @@ export const Card: FC<CardProps> = ({
       className={cn(
         'w-full flex flex-col gap-6',
         {'h-full': fullHeight},
-        hasBackground && lightOrDark(bgColorOutput),
+        hasBackground && theme,
         {'xl:flex-row xl:h-auto': layout === 'horizontal'},
-        {'rounded-lg': hasBackground},
+        {'rounded-lg': hasBackground && allowRoundedCorners},
         {'shadow-2xl': isElevated && hasBackground},
         className
       )}
@@ -111,8 +118,8 @@ export const Card: FC<CardProps> = ({
           ratio="16/9"
           className={cn(
             {'shadow-2xl': isElevated && !hasBackground},
-            {'rounded-lg': !hasBackground},
-            {'rounded-t-lg': hasBackground},
+            {'rounded-lg': !hasBackground && allowRoundedCorners},
+            {'rounded-t-lg': hasBackground && allowRoundedCorners},
             {'overflow-hidden xl:w-1/2': layout === 'horizontal'}
           )}
           mediaClasses={cn('object-cover')}
@@ -130,8 +137,8 @@ export const Card: FC<CardProps> = ({
       >
         {(title || body) && (
           <div>
-            <Heading level="h3" text={title} className={cn('text-gray-900 dark:text-gray-50 fontStyle-2xl')} />
-            <p className={cn('text-gray:500 dark:text-gray-400 mt-3')} dangerouslySetInnerHTML={{__html: body}}></p>
+            <Heading level="h3" text={title} className={cn('fontStyle-2xl', colorClass)} />
+            <p className={cn('mt-3', pColorClass)} dangerouslySetInnerHTML={{__html: body}}></p>
           </div>
         )}
         {Object.keys(buttons).length ? <ButtonsGroup buttons={buttons} className="gap-x-4 mt-4" /> : null}

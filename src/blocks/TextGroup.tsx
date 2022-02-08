@@ -87,7 +87,7 @@ export const TextGroup: FC<TextGroupProps> = ({
 
   const [textColor, borderColor] =
     theme === 'inherit'
-      ? ['text-gray-900 dark:text-gray-50', 'border-primary-200 dark:border-primary-700']
+      ? ['text-inherit', 'border-primary-200 dark:border-primary-700']
       : theme === 'light'
       ? ['text-gray-900', 'border-primary-200']
       : theme === 'dark' && ['text-gray-50', 'border-primary-400']

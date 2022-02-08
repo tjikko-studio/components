@@ -73,6 +73,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   locales = null,
   openMenuText = 'Toggle Menu'
 }) => {
+  const theme = 'dark'
   const [menuOpened, setMenuOpened] = useState(false)
   /*
    *Desktop Nav
@@ -126,6 +127,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   styles="special"
                                   label={label}
                                   listNavContent={innerContent}
+                                  theme={theme}
                                 />
                               )
                             case 'button':
@@ -148,6 +150,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                     styles="special"
                                     label={locales.current ? locales.current : 'English'}
                                     listNavContent={locales.content}
+                                    theme={theme}
                                   />
                                 )
                               }
@@ -228,7 +231,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                       {label}
                                     </div>
                                   )}
-                                  <ListNav styles="flat" listNavContent={innerContent} />
+                                  <ListNav styles="flat" listNavContent={innerContent} theme={theme} />
                                 </div>
                               )
                             }
@@ -257,6 +260,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                     label={locales.current ? locales.current : 'English'}
                                     listNavContent={locales.content}
                                     dropdownRight={isLast}
+                                    theme={theme}
                                   />
                                 )
                               }

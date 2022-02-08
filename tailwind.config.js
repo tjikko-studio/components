@@ -4,10 +4,8 @@ const tailwindCustomConfig = require('./tailwindCustomConfig')
 const safelist = require('./tailwind.safelist')
 
 module.exports = {
-  purge: {
-    content: ['./src/**/*.tsx', './styles/**/*.tsx', './index.js', './styles.js'],
-    safelist
-  },
+  content: ['./src/**/*.tsx', './styles/**/*.tsx', './index.js', './styles.js'],
+  safelist,
   plugins: [
     require('tailwind-pseudo-elements'),
     require('@tailwindcss/forms')({strategy: 'class'}),

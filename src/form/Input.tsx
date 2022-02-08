@@ -94,17 +94,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const labelContainerClasses = [
-      'fontStyle-sm',
-      'min-h-6',
-      'strong',
-      'flex',
-      'items-center',
-      'flex-row',
-      'justify-between',
-      'dark:text-gray-300',
-      'mb-2'
-    ]
+    const labelContainerClasses = ['fontStyle-sm', 'min-h-6', 'strong', 'flex', 'items-center', 'flex-row', 'justify-between', 'mb-2']
     const inputClasses = [
       'form-input',
       'fontStyle-base',
@@ -116,7 +106,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'border',
       'w-full',
       'bg-gray-50',
-      'dark:bg-gray-700',
       'text-gray-800',
       'dark:text-gray-100',
       'border-gray-300',
@@ -166,10 +155,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {information && (
             <div id={infoId} className={`sm:grid-in-info-${columnStart} mt-2`} style={gridAreas('info', columnStart, columnEnd)}>
               <div
-                className={cn(
-                  'fontStyle-sm min-h-6 flex items-center dark:text-gray-300',
-                  isDisabled && 'text-gray-500 dark:text-gray-600'
-                )}
+                className={cn('fontStyle-sm min-h-6 flex items-center', isDisabled && 'text-gray-500')}
                 dangerouslySetInnerHTML={{__html: information}}
               />
             </div>
