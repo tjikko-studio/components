@@ -29,17 +29,17 @@ jobs:
       - name: 'Build'
         run: npm run build
 
-      - name: 'Build Storybook'
-        run: npm run build:storybook
+      # - name: 'Build Storybook'
+      #   run: npm run build:storybook
 
       - name: 'Run tests'
         run: npm test
 
-      - name: 'Keep static storybook'
-        uses: actions/upload-artifact@master
-        with:
-          name: storybook-static
-          path: storybook-static
+      # - name: 'Keep static storybook'
+      #   uses: actions/upload-artifact@master
+      #   with:
+      #     name: storybook-static
+      #     path: storybook-static
 
   npm-publish:
     needs: test
@@ -68,28 +68,28 @@ jobs:
       - name: 'Publish to npm'
         run: npm publish
 
-  deploy-to-ftp:
-    needs: npm-publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+  # deploy-to-ftp:
+  #   needs: npm-publish
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 'Checkout'
+  #       uses: actions/checkout@v2
 
-      - name: 'Retrieve static storybook'
-        uses: actions/download-artifact@master
-        with:
-          name: storybook-static
-          path: storybook-static
+  #     - name: 'Retrieve static storybook'
+  #       uses: actions/download-artifact@master
+  #       with:
+  #         name: storybook-static
+  #         path: storybook-static
 
-      - name: 'Upload to the server'
-        uses: sebastianpopp/ftp-action@releases/v2
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: 'storybook-static'
-          remoteDir: '.'
-          options: "--delete --transfer-all"
+  #     - name: 'Upload to the server'
+  #       uses: sebastianpopp/ftp-action@releases/v2
+  #       with:
+  #         host: ${{ secrets.FTP_SERVER }}
+  #         user: ${{ secrets.FTP_USERNAME }}
+  #         password: ${{ secrets.FTP_PASSWORD }}
+  #         localDir: 'storybook-static'
+  #         remoteDir: '.'
+  #         options: "--delete --transfer-all"
 
 #  deploy-to-gh-pages:
 #    needs: npm-publish
