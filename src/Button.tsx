@@ -34,6 +34,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
    * apply the dark theme whether in dark or light mode
    */
   forceDark?: boolean
+
+  color?: string
+  hover_color?: string
+  text_color?: string
+  hover_text?: string
 }
 
 /**
@@ -47,7 +52,11 @@ export const Button: FC<ButtonProps> = ({
   className = '',
   forceDark = false,
   fullWidth = false,
-  onClick
+  onClick,
+  color,
+  hover_color,
+  text_color,
+  hover_text
 }) => {
   const buttonType = type || 'primary'
   const buttonClasses = ['inline-flex items-center gap-x-3 my-1']
@@ -56,31 +65,59 @@ export const Button: FC<ButtonProps> = ({
     primary: (isForceDark: boolean) => {
       const newClasses = ['rounded-lg']
       if (isForceDark) {
-        newClasses.push('bg-primary-400', 'hover:bg-primary-200')
-        newClasses.push('text-primary-900')
+        newClasses.push(cn({'bg-primary-400': !color, 'hover:bg-primary-200': !hover_color}))
+        newClasses.push(cn({'text-primary-900': !text_color}))
       } else {
-        newClasses.push('bg-primary-600', 'hover:bg-primary-700', 'dark:bg-primary-400', 'dark:hover:bg-primary-200')
-        newClasses.push('text-white', 'dark:text-primary-900')
+        newClasses.push(
+          cn({
+            'bg-primary-600': !color,
+            'hover:bg-primary-700': !hover_color,
+            'dark:bg-primary-400': !color,
+            'dark:hover:bg-primary-200': !hover_color
+          })
+        )
+        newClasses.push(cn({'text-white': !text_color, 'dark:text-primary-900': !text_color}))
       }
       return newClasses
     },
     secondary: (isForceDark: boolean) => {
       const newClasses = ['bg-none rounded-lg border border-solid']
       if (isForceDark) {
-        newClasses.push('border-primary-400 hover:border-primary-200')
-        newClasses.push('text-primary-400 hover:text-primary-200')
+        newClasses.push(cn({'border-primary-400': !color, 'hover:border-primary-200': !hover_color}))
+        newClasses.push(cn({'text-primary-400': !text_color, 'hover:text-primary-200': !hover_text}))
       } else {
-        newClasses.push('border-primary-600', 'hover:border-primary-800', 'dark:border-primary-300', 'dark:hover:border-primary-100')
-        newClasses.push('text-primary-600', 'hover:text-primary-800', 'dark:text-primary-300', 'dark:hover:text-primary-100')
+        newClasses.push(
+          cn({
+            'border-primary-600': !color,
+            'hover:border-primary-800': !hover_color,
+            'dark:border-primary-300': !color,
+            'dark:hover:border-primary-100': !hover_color
+          })
+        )
+        newClasses.push(
+          cn({
+            'text-primary-600': !text_color,
+            'hover:text-primary-800': !hover_text,
+            'dark:text-primary-300': !text_color,
+            'dark:hover:text-primary-100': !hover_text
+          })
+        )
       }
       return newClasses
     },
     tertiary: (isForceDark: boolean) => {
       const newClasses = ['bg-none']
       if (isForceDark) {
-        newClasses.push('text-primary-400 hover:text-primary-200')
+        newClasses.push(cn({'text-primary-400': !text_color, 'hover:text-primary-200': !hover_text}))
       } else {
-        newClasses.push('text-primary-600', 'hover:text-primary-700', 'dark:text-primary-400', 'dark:hover:text-primary-200')
+        newClasses.push(
+          cn({
+            'text-primary-600': !text_color,
+            'hover:text-primary-700': !hover_text,
+            'dark:text-primary-400': !text_color,
+            'dark:hover:text-primary-200': !hover_text
+          })
+        )
       }
       return newClasses
     }
@@ -117,16 +154,25 @@ export const Button: FC<ButtonProps> = ({
     }
     return null
   }
+  buttonClasses.push('hoverColorFix', 'hoverTextFix', 'hoverBorderFix')
+  const buttonStyle = {
+    '--hover-color': buttonType === 'primary' ? hover_color : undefined,
+    '--hover-text': hover_text,
+    '--hover-border': buttonType !== 'tertiary' ? hover_color : undefined,
+    color: text_color,
+    backgroundColor: buttonType === 'primary' ? color : undefined,
+    borderColor: buttonType !== 'tertiary' ? color : undefined
+  }
   if (link?.value) {
     const {url, target} = parseLink(link)
     return (
-      <a onClick={onClick} href={url} target={target} className={cn(buttonClasses)}>
+      <a onClick={onClick} href={url} target={target} className={cn(buttonClasses)} style={buttonStyle}>
         <Content />
       </a>
     )
   }
   return (
-    <button onClick={onClick} className={cn(buttonClasses)}>
+    <button onClick={onClick} className={cn(buttonClasses)} style={buttonStyle}>
       <Content />
     </button>
   )
