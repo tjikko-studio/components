@@ -20,7 +20,7 @@ export type TimelineComponentProps = {
   snaps?: boolean
   lineColor?: string
 }
-
+const defaultLineColor = 'black'
 const TimelineItem: React.VFC<TimelineComponentProps> = ({
   card,
   content,
@@ -28,8 +28,11 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({
   reverse,
   timelineRef,
   snaps = false,
-  lineColor = 'black'
+  lineColor = defaultLineColor
 }) => {
+  if (!lineColor || lineColor === '') {
+    lineColor = defaultLineColor
+  }
   const containerRef = useRef(null)
   const trackerRef = useRef(null)
   const [trackerHeight, setTrackerHeight] = useState('0')
@@ -42,7 +45,7 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({
         const target = window.innerHeight / 2
         const gap = parseFloat(window.getComputedStyle(timelineRef.current).gap.slice(0, -2))
         const margin = parseFloat(window.getComputedStyle(containerRef.current).marginBottom.slice(0, -2))
-        const newHeight = `${Math.min(target - rect.y, containerRect.height + gap + margin)}px`
+        const newHeight = rect.y > target ? '0' : `${Math.min(target - rect.y, containerRect.height + gap + margin)}px`
         setTrackerHeight(newHeight)
       }
     }
