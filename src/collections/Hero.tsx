@@ -34,6 +34,9 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    */
   content?: []
   templatesContent?: Record<string, ColumnProps>
+
+  overlay?: boolean
+  light?: boolean
 }
 
 const getHorPos = (value: string) => {
@@ -77,7 +80,9 @@ export const Hero: FC<HeroProps> = ({
   heroHeight = 'h-80vh',
   content = [],
   templatesContent = {},
-  className
+  className,
+  overlay = false,
+  light = true
 }) => {
   content = typeof content === 'string' ? JSON.parse(content) : content
   const HeroHeadingId = makeRandomId()
@@ -89,6 +94,7 @@ export const Hero: FC<HeroProps> = ({
   const horPos = getHorPos(horPosVal)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
+  const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
   return (
     <header
       className={cn('overflow-hidden relative text-gray-50', bgImageOutput && 'bg-cover', theme ? theme : 'dark', className)}
@@ -122,7 +128,7 @@ export const Hero: FC<HeroProps> = ({
               'left-0',
               'w-full',
               'bg-gradient-to-b',
-              'from-gray-900',
+              overlayClass,
               'to-transparent',
               'opacity-40'
             ])}
@@ -137,7 +143,7 @@ export const Hero: FC<HeroProps> = ({
               'left-0',
               'w-full',
               'bg-gradient-to-t',
-              'from-gray-900',
+              overlayClass,
               'to-transparent',
               'opacity-80'
             ])}
