@@ -138,7 +138,7 @@ export const Card: FC<CardProps> = ({
         {(title || body) && (
           <div>
             <Heading level="h3" text={title} className={cn('fontStyle-2xl', colorClass)} />
-            <p className={cn('mt-3', pColorClass)} dangerouslySetInnerHTML={{__html: body}}></p>
+            <p className={cn('mt-3', pColorClass)} dangerouslySetInnerHTML={{__html: body}} />
           </div>
         )}
         {Object.keys(buttons).length ? <ButtonsGroup buttons={buttons} className="gap-x-4 mt-4" /> : null}
