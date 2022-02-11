@@ -114,7 +114,7 @@ export const TextGroup: FC<TextGroupProps> = ({
       <div className={cn('relative z-10', innerClasses)}>
         {title && <Heading level="h3" text={title} className={cn(titleSizeOutput)} />}
         {hasSepar && <hr role="presentation" className={cn('my-3 sm:my-4', borderColor)} />}
-        {body && <p className="mt-2">{body}</p>}
+        {body && <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />}
       </div>
       {contentShadow && (
         <div
