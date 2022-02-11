@@ -62,14 +62,14 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({
   const contentStyle = {gap: contentGap}
   return (
     <div className={cn('w-full', snapClasses)} style={{scrollSnapAlign: snaps ? 'start' : 'none'}}>
-      {card[0] ? (
-        <Card {...card[0].content} className={cn('sm:hidden', cardClassName, mobileCardClassName)} {...mobileCardProps} />
+      {card && card[0] ? (
+        <Card {...card[0]?.content} className={cn('sm:hidden', cardClassName, mobileCardClassName)} {...mobileCardProps} />
       ) : (
         <Card className={cn('sm:hidden', cardClassName, mobileCardClassName)} {...mobileCardProps} />
       )}
       <div className={cn('flex w-full', {'flex-row-reverse': reverse})}>
-        {card[0] ? (
-          <Card {...card[0].content} className={cn('hidden sm:flex', cardClassName)} />
+        {card && card[0] ? (
+          <Card {...card[0]?.content} className={cn('hidden sm:flex', cardClassName)} />
         ) : (
           <Card className={cn('hidden sm:visible', cardClassName)} />
         )}
