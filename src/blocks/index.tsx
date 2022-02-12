@@ -7,6 +7,7 @@ import {Divider} from './Divider'
 import {FAQ} from './FAQ'
 import {FeatureShow} from './FeatureShow'
 import {FeaturesShow} from './FeaturesShow'
+import {Figure} from './Figure'
 import {Gallery} from './Gallery'
 import {Header} from './Header'
 import {Heading} from './Heading'
@@ -28,6 +29,7 @@ export default {
   FAQ,
   FeatureShow,
   FeaturesShow,
+  Figure,
   Gallery,
   Header,
   Heading,

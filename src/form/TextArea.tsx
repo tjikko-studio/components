@@ -1,4 +1,4 @@
-import React, {TextareaHTMLAttributes, forwardRef} from 'react'
+import React, {PropsWithChildren, TextareaHTMLAttributes, forwardRef} from 'react'
 import cn from 'classnames'
 
 import TickIcon from '/assets/icons/checkbox-circle-fill.svg'
@@ -70,7 +70,7 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 /**
  * Primary UI component for user interaction
  */
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAreaProps>>(
   (
     {
       isError = false,
@@ -175,7 +175,6 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }
     return (
       <div className={cn('flex flex-col', className)}>
-        hello
         <Content />
       </div>
     )

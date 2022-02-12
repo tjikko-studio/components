@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {GenericMediaProps, Media} from '../parts/Media'
@@ -28,7 +28,7 @@ export interface GalleryProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Gallery: FC<GalleryProps> = ({content = [], className = '', caption = '', mobileColumns = false}) => {
+export const Gallery = ({content = [], className = '', caption = '', mobileColumns = false}: GalleryProps) => {
   let gridLayout = null
   switch (content.length) {
     case 2:

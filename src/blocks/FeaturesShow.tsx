@@ -1,6 +1,6 @@
 import 'intersection-observer'
 
-import React, {FC, RefObject, useEffect, useRef} from 'react'
+import React, {RefObject, useEffect, useRef} from 'react'
 import cn from 'classnames'
 
 import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
@@ -132,7 +132,7 @@ function easeOutQuint(x: number): number {
   return 1 - Math.pow(1 - x, 5)
 }
 
-const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef, addScrollListener, removeScrollListener}) => {
+const InfoBox = ({title, body, position, cloneLayerRef, addScrollListener, removeScrollListener}: FeaturesShowItemBox) => {
   const infoBoxContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -193,11 +193,15 @@ const InfoBox: FC<FeaturesShowItemBox> = ({title, body, position, cloneLayerRef,
   )
 }
 
-const FeaturesShowSection: FC<{
+const FeaturesShowSection = ({
+  item,
+  addScrollListener,
+  removeScrollListener
+}: {
   item: FeaturesShowItem
   addScrollListener: ScrollListenerAdder
   removeScrollListener: ScrollListenerRemover
-}> = ({item, addScrollListener, removeScrollListener}) => {
+}) => {
   const imgContainerRef = useRef<HTMLDivElement>(null)
   const cloneLayerRef = useRef<HTMLDivElement>(null)
 
@@ -285,7 +289,7 @@ export interface FeaturesShowProps extends HTMLElement {
   bgColor?: string
 }
 
-export const FeaturesShow: FC<FeaturesShowProps> = ({className, header, bgColor, items}) => {
+export const FeaturesShow = ({className, header, bgColor, items}: FeaturesShowProps) => {
   const classes = ['grid', 'w-full', 'py-16', 'sm:py-24', 'md:py-32', 'gap-y-12', 'sm:gap-y-16', 'lg:gap-y-0']
   const toComponent = getComponent()
   const [theme, background] = extractCombo(bgColor)

@@ -1,4 +1,4 @@
-import React, {CSSProperties, FC, HTMLAttributes} from 'react'
+import React, {CSSProperties, HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import extractCombo from '../../utilities/extractCombo'
@@ -54,7 +54,7 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   sectionHeadingId?: string
 }
 
-export const ContentColumns: FC<ContentColumnsProps> = ({
+export const ContentColumns = ({
   content = [],
   contentPosition = 'center|center',
   componentsExtraProps = {},
@@ -65,7 +65,7 @@ export const ContentColumns: FC<ContentColumnsProps> = ({
   templatesContent = {},
   className,
   sectionHeadingId
-}) => {
+}: ContentColumnsProps) => {
   content = typeof content === 'string' ? JSON.parse(content) : content
   const toComponent = getComponent(templatesContent)
   const [verAlign, horAlign] = extractCombo(contentPosition)

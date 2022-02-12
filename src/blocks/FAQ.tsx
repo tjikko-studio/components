@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 export interface QAProps {
@@ -16,7 +16,7 @@ export interface FAQProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const FAQ: FC<FAQProps> = ({content = [], className = ''}) => {
+export const FAQ = ({content = [], className = ''}: FAQProps) => {
   return (
     <div className={cn('flex flex-col gap-y-12', className)}>
       {content.map((qa) => {

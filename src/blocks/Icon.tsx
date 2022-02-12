@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {Heading} from '../blocks/Heading'
@@ -32,7 +32,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Icon: FC<IconProps> = ({layout = 'horizontal', image = null, title = '', body = '', className = ''}) => {
+export const Icon = ({layout = 'horizontal', image = null, title = '', body = '', className = ''}: IconProps) => {
   return (
     <div className={cn('flex flex-col gap-6', layout === 'horizontal' && 'sm:flex-row', className)}>
       <div className={cn('flex-shrink-0 w-32')}>

@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getWidth from '../../utilities/getWidth'
@@ -48,7 +48,7 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Footer: FC<FooterProps> = ({menuData = [], locales = null, homeLink = null, className}) => {
+export const Footer = ({menuData = [], locales = null, homeLink = null, className}: FooterProps) => {
   const border = 'border-b border-gray-600 pb-12 last:border-b-0'
 
   return (

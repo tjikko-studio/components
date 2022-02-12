@@ -1,7 +1,6 @@
-import React, {FC, HTMLAttributes, useState} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
-import lightOrDark from '../../../utilities/lightOrDark'
 import {Heading} from '../../blocks/Heading'
 import {Button} from '../../Button'
 import {PopUpNavItem} from '../../nav/PopUpNavItem'
@@ -40,16 +39,7 @@ export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
   show_all?: string
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const JobsCollection: FC<JobsCollectionProps> = ({
-  jobs = null,
-  tags = null,
-  apply_cta = 'Apply now',
-  show_all = 'All',
-  className
-}) => {
+export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now', show_all = 'All'}: JobsCollectionProps) => {
   const [filterContent, setFilterContent] = useState(null)
   const applyCta = apply_cta ? apply_cta : 'Apply now'
   const showAll = show_all ? show_all : 'All'
@@ -69,6 +59,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
   }
 
   if (tags) {
+    // FIXME : this is full of anti-patterns!
     tags.map((tag: JobsTags) => {
       if (tag.id === 'department') {
         navigation = tag.children.map((tag: JobsTags) => {
@@ -78,6 +69,7 @@ export const JobsCollection: FC<JobsCollectionProps> = ({
           }
         })
       }
+      return null
     })
   }
 

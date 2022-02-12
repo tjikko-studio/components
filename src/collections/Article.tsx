@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
@@ -30,7 +30,7 @@ const classes = [
   'gap-8'
 ]
 
-export const Article: FC<ArticleProps> = ({content = [], templatesContent = {}, className}) => {
+export const Article = ({content = [], templatesContent = {}, className}: ArticleProps) => {
   const toComponent = getComponent(templatesContent)
 
   return (

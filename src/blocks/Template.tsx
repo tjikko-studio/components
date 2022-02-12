@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 
 import {ContentColumns, SectionItemProps} from '../layouts/ContentColumns'
 import {Footer, NavColumns as FooterNavColumns} from '../nav/Footer'
@@ -30,14 +30,14 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Template: FC<TemplateProps> = ({
+export const Template = ({
   logo = null,
   homeLink = null,
   content = [],
   locales = null,
   templateType = 'template',
   className
-}) => {
+}: TemplateProps) => {
   const AvailableTemplates = {
     template: () => {
       return (

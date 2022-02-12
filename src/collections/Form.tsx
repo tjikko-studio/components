@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import extractCombo from '../../utilities/extractCombo'
@@ -18,7 +18,7 @@ export interface FormProps extends HTMLAttributes<HTMLElement> {
   templatesContent?: Record<string, ColumnProps>
 }
 
-export const Form: FC<FormProps> = ({content = [], templatesContent = {}}) => {
+export const Form = ({content = [], templatesContent = {}}: FormProps) => {
   const toComponent = getComponent(templatesContent)
   const PlaceholderContent = () => {
     return <div>No content yet</div>

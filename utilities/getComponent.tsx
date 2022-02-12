@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React from 'react'
 
 import {ButtonsGroup} from '../src/blocks/ButtonsGroup'
 import {Calendly} from '../src/blocks/Calendly'
@@ -6,6 +6,7 @@ import {Card} from '../src/blocks/Card'
 import {ClientsLogos} from '../src/blocks/ClientsLogos'
 import {Divider} from '../src/blocks/Divider'
 import {FAQ} from '../src/blocks/FAQ'
+import {Figure} from '../src/blocks/Figure'
 import {Gallery} from '../src/blocks/Gallery'
 import {Header} from '../src/blocks/Header'
 import {Heading} from '../src/blocks/Heading'
@@ -42,18 +43,6 @@ const propsByType: Record<string, GetPropsFn> = {
       fullWidth: content.full_width
     }
   },
-  Hero: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      bgColor: content.bg_color,
-      wrapperColor: content.wrapper_color,
-      aboveColor: content.above_color,
-      bgType: content.bg_type,
-      bgImage: content.bg_image?.[0],
-      bgVideo: content.bg_video?.[0],
-      bgVideoFallback: content.bg_video_fallback?.[0]
-    }
-  },
   Calendly: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -87,6 +76,25 @@ const propsByType: Record<string, GetPropsFn> = {
       logosGrayscale: content.logos_grayscale
     }
   },
+  Header: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      headerType: content.header_type,
+      headerAlign: content.header_align
+    }
+  },
+  Hero: (content, id, attrs) => {
+    return {
+      ...getCommonProps(content, id, attrs),
+      bgColor: content.bg_color,
+      wrapperColor: content.wrapper_color,
+      aboveColor: content.above_color,
+      bgType: content.bg_type,
+      bgImage: content.bg_image?.[0],
+      bgVideo: content.bg_video?.[0],
+      bgVideoFallback: content.bg_video_fallback?.[0]
+    }
+  },
   Primary: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -102,13 +110,6 @@ const propsByType: Record<string, GetPropsFn> = {
       tag: 'div'
     }
   },
-  Header: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      headerType: content.header_type,
-      headerAlign: content.header_align
-    }
-  },
   TextGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
@@ -122,7 +123,8 @@ const propsByType: Record<string, GetPropsFn> = {
       dark: content.dark,
       bgColor: content.bg_color,
       image: content.image,
-      isElevated: content.is_elevated
+      isElevated: content.is_elevated,
+      fullHeight: content.full_height
     }
   },
   Timeline: (content, id, attrs) => {
@@ -155,7 +157,7 @@ function getProps(
   }
 }
 
-const ValidComponents: Record<string, FC> = {
+const ValidComponents: Record<string, any> = {
   Article,
   ButtonsGroup,
   Calendly,
@@ -165,6 +167,7 @@ const ValidComponents: Record<string, FC> = {
   Divider,
   FAQ,
   Form,
+  Figure,
   Header,
   Heading,
   Hero,

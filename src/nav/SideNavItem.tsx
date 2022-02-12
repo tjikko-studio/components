@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
@@ -31,13 +31,13 @@ export interface SideNavItemProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SideNavItem: FC<SideNavItemProps> = ({
+export const SideNavItem = ({
   link = '#',
   type = 'linkHeader',
   text = 'Link Header',
   status = 'default',
   spacer = false
-}) => {
+}: SideNavItemProps) => {
   link = link ? link : '#'
   const classes = [
     'list-none',

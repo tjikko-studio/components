@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useState} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
 import ArrowDown from '/assets/icons/arrow-down-s-line.svg'
@@ -51,18 +51,18 @@ export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const NavItem: FC<NavItemProps> = ({
+export const NavItem = ({
   label = 'Label',
   theme = 'light',
   styles = 'default',
-  popup = 'white',
+  popup = 'flat',
   padding = true,
   link = null,
   listNavContent = [],
   dropdownRight = false,
   dropdownTop = false,
   className = ''
-}) => {
+}: NavItemProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const showSubMenu = () => {

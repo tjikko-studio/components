@@ -1,8 +1,7 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import getComponent from '../../utilities/getComponent'
-import lightOrDark from '../../utilities/lightOrDark'
 import {Card} from '../blocks/Card'
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
@@ -78,7 +77,7 @@ let sectionClasses = [
 
 let contentClasses = ['grid', 'w-full', 'gap-16']
 
-const SuccessStoriesCollection: FC<CollectionItems> = ({
+const SuccessStoriesCollection = ({
   items = null,
   link_cta,
   layout = 'horizontal',
@@ -87,7 +86,7 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({
   bgColor = 'unset',
   isElevated = false,
   columns = 3
-}) => {
+}: CollectionItems) => {
   const label = link_cta ? link_cta : 'Read about {title}'
 
   const gridColumns = columns === 2 ? 'sm:grid-cols-2' : columns === 3 ? 'sm:grid-cols-3' : ''
@@ -124,7 +123,7 @@ const SuccessStoriesCollection: FC<CollectionItems> = ({
   )
 }
 
-const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
+const PortfolioCollection = ({items = null, link_cta}: CollectionItems) => {
   const label = link_cta ? link_cta : 'Read about {title}'
   return (
     <div className={cn(contentClasses)}>
@@ -164,8 +163,19 @@ const PortfolioCollection: FC<CollectionItems> = ({items = null, link_cta}) => {
   )
 }
 
-export const Collection: FC<CollectionProps> = (
-  {header, content, templatesContent = {}, datasource, layout, imagePosition, hasBackground, bgColor, isElevated, columns} = {content: null}
+export const Collection = (
+  {
+    header,
+    content,
+    templatesContent = {},
+    datasource,
+    layout,
+    imagePosition,
+    hasBackground,
+    bgColor,
+    isElevated,
+    columns
+  }: CollectionProps = {content: null}
 ) => {
   sectionClasses.push('text-gray-900')
   const toComponent = getComponent(templatesContent)

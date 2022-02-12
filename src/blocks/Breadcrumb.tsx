@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 export interface BreadcrumbType {
@@ -16,7 +16,7 @@ export interface BreadcrumbProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Breadcrumb: FC<BreadcrumbProps> = ({crumbs = [], className = ''}) => {
+export const Breadcrumb = ({crumbs = [], className = ''}: BreadcrumbProps) => {
   return (
     <nav aria-label="Breadcrumb" className={cn('dark:text-gray-50', className)}>
       <ul className="flex flex-wrap">

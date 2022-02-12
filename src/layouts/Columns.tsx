@@ -1,4 +1,4 @@
-import React, {FC, Fragment, ReactElement} from 'react'
+import React, {Fragment} from 'react'
 
 import getComponent from '../../utilities/getComponent'
 
@@ -10,7 +10,7 @@ export interface ColumnsBlockProps {
   extraProps?: ComponentsExtraProps
 }
 
-export const Columns: FC<ColumnsBlockProps> = ({columns, templatesContent = {}, extraProps}): ReactElement => {
+export const Columns = ({columns, templatesContent = {}, extraProps}: ColumnsBlockProps) => {
   if (!columns.length) {
     return null
   }

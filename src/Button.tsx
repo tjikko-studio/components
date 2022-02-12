@@ -1,9 +1,26 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
+import palette from '../styles/colors'
 import parseLink from '../utilities/parseLink'
 
 import {LinkObject} from '../shared/types'
+
+export type HoverFix = {
+  '--hover-color'?: string
+  '--hover-text'?: string
+  '--hover-border'?: string
+  color?: string
+  backgroundColor?: string
+  borderColor?: string
+}
+
+export type NewStyles = {
+  color?: string
+  hover_color?: string
+  text_color?: string
+  hover_text?: string
+}
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   /**
@@ -41,10 +58,12 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   hover_text?: string
 }
 
+const {colors} = palette
+
 /**
  * Primary UI component for user interaction
  */
-export const Button: FC<ButtonProps> = ({
+export const Button = ({
   type = 'primary',
   label = 'Button',
   size = 'default',
@@ -57,16 +76,21 @@ export const Button: FC<ButtonProps> = ({
   hover_color,
   text_color,
   hover_text
-}) => {
+}: ButtonProps) => {
   const buttonType = type || 'primary'
-  const buttonClasses = ['inline-flex items-center gap-x-3 my-1']
+  const buttonClasses = ['inline-flex items-center gap-x-3 my-1 cursor-pointer']
   const contentClasses = ['']
   const styles = {
     primary: (isForceDark: boolean) => {
       const newClasses = ['rounded-lg']
+      const newStyles: NewStyles = {}
       if (isForceDark) {
         newClasses.push(cn({'bg-primary-400': !color, 'hover:bg-primary-200': !hover_color}))
         newClasses.push(cn({'text-primary-900': !text_color}))
+        newStyles.color = color ? color : colors.primary['400']
+        newStyles.hover_color = hover_color ? hover_color : colors.primary['200']
+        newStyles.text_color = text_color ? text_color : colors.primary['900']
+        newStyles.hover_text = hover_text ? hover_text : colors.primary['900']
       } else {
         newClasses.push(
           cn({
@@ -77,14 +101,23 @@ export const Button: FC<ButtonProps> = ({
           })
         )
         newClasses.push(cn({'text-white': !text_color, 'dark:text-primary-900': !text_color}))
+        newStyles.color = color ? color : colors.primary['600']
+        newStyles.hover_color = hover_color ? hover_color : colors.primary['700']
+        newStyles.text_color = text_color ? text_color : 'white'
+        newStyles.hover_text = hover_text ? hover_text : 'white'
       }
-      return newClasses
+      return {classes: newClasses, styles: newStyles}
     },
     secondary: (isForceDark: boolean) => {
       const newClasses = ['bg-none rounded-lg border border-solid']
+      const newStyles: NewStyles = {}
       if (isForceDark) {
         newClasses.push(cn({'border-primary-400': !color, 'hover:border-primary-200': !hover_color}))
         newClasses.push(cn({'text-primary-400': !text_color, 'hover:text-primary-200': !hover_text}))
+        newStyles.color = color ? color : colors.primary['400']
+        newStyles.hover_color = hover_color ? hover_color : colors.primary['200']
+        newStyles.text_color = text_color ? text_color : colors.primary['400']
+        newStyles.hover_text = hover_text ? hover_text : colors.primary['200']
       } else {
         newClasses.push(
           cn({
@@ -102,13 +135,20 @@ export const Button: FC<ButtonProps> = ({
             'dark:hover:text-primary-100': !hover_text
           })
         )
+        newStyles.color = color ? color : colors.primary['600']
+        newStyles.hover_color = hover_color ? hover_color : colors.primary['800']
+        newStyles.text_color = text_color ? text_color : colors.primary['600']
+        newStyles.hover_text = hover_text ? hover_text : colors.primary['800']
       }
-      return newClasses
+      return {classes: newClasses, styles: newStyles}
     },
     tertiary: (isForceDark: boolean) => {
       const newClasses = ['bg-none']
+      const newStyles: NewStyles = {}
       if (isForceDark) {
         newClasses.push(cn({'text-primary-400': !text_color, 'hover:text-primary-200': !hover_text}))
+        newStyles.text_color = text_color ? text_color : colors.primary['400']
+        newStyles.hover_text = hover_text ? hover_text : colors.primary['200']
       } else {
         newClasses.push(
           cn({
@@ -118,12 +158,15 @@ export const Button: FC<ButtonProps> = ({
             'dark:hover:text-primary-200': !hover_text
           })
         )
+        newStyles.text_color = text_color ? text_color : colors.primary['600']
+        newStyles.hover_text = hover_text ? hover_text : colors.primary['700']
       }
-      return newClasses
+      return {classes: newClasses, styles: newStyles}
     }
   }
   fullWidth && buttonClasses.push('w-full justify-center')
-  buttonClasses.push(...styles[buttonType](forceDark))
+  const stls = styles[buttonType](forceDark)
+  buttonClasses.push(...stls.classes)
   switch (size) {
     case 'small':
       buttonClasses.push('min-h-8 py-2.5')
@@ -154,15 +197,18 @@ export const Button: FC<ButtonProps> = ({
     }
     return null
   }
+
   buttonClasses.push('hoverColorFix', 'hoverTextFix', 'hoverBorderFix')
-  const buttonStyle = {
-    '--hover-color': buttonType === 'primary' ? hover_color : undefined,
-    '--hover-text': hover_text,
-    '--hover-border': buttonType !== 'tertiary' ? hover_color : undefined,
-    color: text_color,
-    backgroundColor: buttonType === 'primary' ? color : undefined,
-    borderColor: buttonType !== 'tertiary' ? color : undefined
+
+  const buttonStyle: HoverFix = {
+    color: stls.styles.text_color,
+    '--hover-text': stls.styles.hover_text,
+    backgroundColor: buttonType === 'primary' ? stls.styles.color : 'unset',
+    '--hover-color': buttonType === 'primary' ? stls.styles.hover_color : 'unset',
+    borderColor: buttonType !== 'tertiary' ? stls.styles.color : 'unset',
+    '--hover-border': buttonType !== 'tertiary' ? stls.styles.hover_color : 'unset'
   }
+
   if (link?.value) {
     const {url, target} = parseLink(link)
     return (

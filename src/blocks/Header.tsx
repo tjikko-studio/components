@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {Heading} from '../blocks/Heading'
@@ -24,7 +24,7 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Header: FC<HeaderProps> = ({title = '', subtitle = '', className = '', headerType = 'section_big', headerAlign = 'left'}) => {
+export const Header = ({title = '', subtitle = '', className = '', headerType = 'section_big', headerAlign = 'left'}: HeaderProps) => {
   const titleTag = headerType === 'hero' ? 'h1' : 'h2'
   const [titleClasses, subtitleClasses] =
     headerType === 'hero'

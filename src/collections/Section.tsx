@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import extractCombo from '../../utilities/extractCombo'
@@ -54,7 +54,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   templatesContent?: Record<string, ColumnProps>
 }
 
-export const Section: FC<SectionProps> = ({
+export const Section = ({
   bgColor = 'transparent',
   wrapperColor = 'transparent',
   aboveColor = 'transparent',
@@ -67,7 +67,7 @@ export const Section: FC<SectionProps> = ({
   content = [],
   templatesContent = {},
   className
-}) => {
+}: SectionProps) => {
   content = typeof content === 'string' ? JSON.parse(content) : content
   const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)

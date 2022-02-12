@@ -21,7 +21,7 @@ export type TimelineComponentProps = {
   lineColor?: string
 }
 const defaultLineColor = 'black'
-const TimelineItem: React.VFC<TimelineComponentProps> = ({
+const TimelineItem = ({
   card,
   content,
   contentGap,
@@ -29,7 +29,7 @@ const TimelineItem: React.VFC<TimelineComponentProps> = ({
   timelineRef,
   snaps = false,
   lineColor = defaultLineColor
-}) => {
+}: TimelineComponentProps) => {
   if (!lineColor || lineColor === '') {
     lineColor = defaultLineColor
   }
@@ -112,14 +112,14 @@ export type TimelineProps = {
   lineColor?: string
 }
 
-export const Timeline: React.FC<TimelineProps> = ({
+export const Timeline = ({
   content = [],
   contentGap,
   alignment = false,
   alternates = false,
   snaps = false,
   lineColor = 'black'
-}) => {
+}: TimelineProps) => {
   const timelineRef = useRef(null)
   return (
     <div className="relative mx-auto mb-48 w-full max-w-screen-lg flex flex-col gap-28">

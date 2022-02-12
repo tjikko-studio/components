@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import makeRandomId from '../../utilities/makeRandomId'
@@ -46,7 +46,7 @@ export interface PopUpNavItemProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const PopUpNavItem: FC<PopUpNavItemProps> = ({
+export const PopUpNavItem = ({
   label = 'Link',
   theme = 'light',
   type = 'default',
@@ -57,7 +57,7 @@ export const PopUpNavItem: FC<PopUpNavItemProps> = ({
   children = [],
   className = '',
   ...rest
-}) => {
+}: PopUpNavItemProps) => {
   const wrapperClasses = ['flex items-center']
   const linkClasses = [!padding && 'py-2.5']
   type === 'header' && linkClasses.push('cursor-default')

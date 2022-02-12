@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, PropsWithChildren, useCallback, useRef} from 'react'
+import React, {FormEvent, PropsWithChildren, useCallback, useRef} from 'react'
 import {openPopupWidget} from 'react-calendly'
 import cn from 'classnames'
 
@@ -32,7 +32,7 @@ const Cell = ({children}: PropsWithChildren<{}>) => {
   )
 }
 
-export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, duration}) => {
+export const Calendly = ({title, body, bgColor, username, duration}: CalendlyProps) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const emailRef = useRef(null)
   const nameRef = useRef(null)
@@ -43,14 +43,16 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
   const onSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault()
-      openPopupWidget({
-        prefill: {
-          email: emailRef.current.value,
-          name: nameRef.current.value,
-          customAnswers: {a1: companyRef.current.value, a2: phoneRef.current.value, a3: commentsRef.current.value}
-        },
-        url: `https://calendly.com/${username}/${duration || '30min'}`
-      })
+      if (commentsRef.current) {
+        openPopupWidget({
+          prefill: {
+            email: emailRef.current.value,
+            name: nameRef.current.value,
+            customAnswers: {a1: companyRef.current.value, a2: phoneRef.current.value, a3: commentsRef.current.value}
+          },
+          url: `https://calendly.com/${username}/${duration || '30min'}`
+        })
+      }
     },
     [username, duration]
   )
@@ -92,7 +94,7 @@ export const Calendly: FC<CalendlyProps> = ({title, body, bgColor, username, dur
       </Row>
       <Row>
         <Cell>
-          <TextArea label="Comments" information="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
+          <TextArea label="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
         </Cell>
       </Row>
       <Row>

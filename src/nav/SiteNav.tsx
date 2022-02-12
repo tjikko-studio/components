@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useState} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
 import CloseIcon from '/assets/icons/close-line.svg'
@@ -64,7 +64,7 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
 /**
  * Primary UI component for user interaction
  */
-export const SiteNav: FC<SiteNavProps> = ({
+export const SiteNav = ({
   logo,
   homeLink = null,
   menuData = [],
@@ -72,7 +72,7 @@ export const SiteNav: FC<SiteNavProps> = ({
   className,
   locales = null,
   openMenuText = 'Toggle Menu'
-}) => {
+}: SiteNavProps) => {
   const theme = 'dark'
   const [menuOpened, setMenuOpened] = useState(false)
   /*
@@ -128,6 +128,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                   label={label}
                                   listNavContent={innerContent}
                                   theme={theme}
+                                  popup="elevated"
                                 />
                               )
                             case 'button':
@@ -151,6 +152,7 @@ export const SiteNav: FC<SiteNavProps> = ({
                                     label={locales.current ? locales.current : 'English'}
                                     listNavContent={locales.content}
                                     theme={theme}
+                                    popup="elevated"
                                   />
                                 )
                               }

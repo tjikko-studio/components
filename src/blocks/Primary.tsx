@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
@@ -59,7 +59,7 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Primary: FC<PrimaryProps> = ({
+export const Primary = ({
   layout = 'default',
   imagePosition = 'auto',
   textPositionVertical = 'center',
@@ -73,7 +73,7 @@ export const Primary: FC<PrimaryProps> = ({
   body = '',
   buttons = [],
   className = ''
-}) => {
+}: PrimaryProps) => {
   const finalLayout = layout || 'default'
   const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
   if (!textPositionVertical) textPositionVertical = 'center'

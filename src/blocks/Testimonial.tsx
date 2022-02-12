@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 
 import {ImageProps, Media} from '../parts/Media'
 
@@ -20,7 +20,7 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Testimonial: FC<TestimonialProps> = ({body = '', image = {}, title = ''}) => {
+export const Testimonial = ({body = '', image = {}, title = ''}: TestimonialProps) => {
   if (Array.isArray(image)) {
     image = image[0]
   }

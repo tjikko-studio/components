@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import parseLink from '../../utilities/parseLink'
@@ -27,7 +27,7 @@ const availableStyles = {
 /**
  * Primary UI component for user interaction
  */
-export const ListNav: FC<ListNavProps> = ({styles = 'elevated', listNavContent = [], className = '', theme = 'light'}) => {
+export const ListNav = ({styles = 'elevated', listNavContent = [], className = '', theme = 'light'}: ListNavProps) => {
   const classes = [className]
   let wMax = ''
   classes.push(...availableStyles[styles])

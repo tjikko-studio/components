@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useEffect, useState} from 'react'
+import React, {HTMLAttributes, useEffect, useState} from 'react'
 import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
@@ -27,11 +27,7 @@ export interface ClientsLogosProps extends HTMLAttributes<HTMLDivElement> {
   content?: ClientProps[]
 }
 
-/**
- * Primary UI component for user interaction
- */
-
-export const ClientsLogos: FC<ClientsLogosProps> = ({content = [], logosLayout = 'grid', logosGrayscale = false}) => {
+export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale = false}: ClientsLogosProps) => {
   logosLayout = logosLayout ? logosLayout : 'grid'
 
   let wrapperClass = ['flex justify-center gap-12 sm:gap-14 lg:gap-16']

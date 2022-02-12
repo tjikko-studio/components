@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
@@ -69,7 +69,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 // eslint-disable-next-line complexity
-export const Card: FC<CardProps> = ({
+export const Card = ({
   layout = 'vertical',
   imagePosition = 'left',
   image = null,
@@ -86,7 +86,7 @@ export const Card: FC<CardProps> = ({
   hasBackground = true,
   fullHeight = true,
   allowRoundedCorners = true
-}) => {
+}: CardProps) => {
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
   const theme = lightOrDark(bgColorOutput)
   const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'

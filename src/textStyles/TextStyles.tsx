@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 
 export interface TextStylesProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -10,7 +10,7 @@ export interface TextStylesProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const TextStyles: FC<TextStylesProps> = ({type = 'all', className}) => {
+export const TextStyles = ({type = 'all', className}: TextStylesProps) => {
   return (
     <div className={`w-full ${className}`}>
       <div className={`mb-16 ${type !== 'all' && type !== 'heading' && 'display: hidden'}`}>

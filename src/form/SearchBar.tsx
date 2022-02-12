@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import SearchIcon from '/assets/icons/search-line.svg'
@@ -31,7 +31,7 @@ export interface SearchBarProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SearchBar: FC<SearchBarProps> = ({isDisabled = false, isFocussed = false, text, placeHolder, className}) => {
+export const SearchBar = ({isDisabled = false, isFocussed = false, text, placeHolder, className}: SearchBarProps) => {
   const classes = [
     'form-input',
     'w-72',

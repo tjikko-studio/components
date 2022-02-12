@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 
 import {SideNavItem, SideNavItemProps} from './SideNavItem'
 
@@ -12,7 +12,7 @@ export interface SideNavProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const SideNav: FC<SideNavProps> = ({items = [], className = ''}) => {
+export const SideNav = ({items = [], className = ''}: SideNavProps) => {
   return (
     <ul className={className}>
       {items.map((item) => {

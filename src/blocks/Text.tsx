@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
@@ -21,7 +21,7 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Text: FC<TextProps> = ({tag = 'p', alignment = 'left', text = '', className = ''}) => {
+export const Text = ({tag = 'p', alignment = 'left', text = '', className = ''}: TextProps) => {
   const TextTag = tag
 
   const finalAlignment =

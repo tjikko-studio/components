@@ -1,12 +1,14 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
+
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Text semantic tag
    * (It won't be the same for a hero as for section)
    */
-  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  level?: HeadingLevel
 
   /**
    * text alignment
@@ -22,8 +24,8 @@ export interface HeadingProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Heading: FC<HeadingProps> = ({level = 'h3', alignment = 'left', text = '', className = '', id}) => {
-  const HeaderTag: keyof JSX.IntrinsicElements = level || 'h3'
+export const Heading = ({level = 'h3', alignment = 'left', text = '', className = '', id}: HeadingProps) => {
+  const HeaderTag: HeadingLevel = level || 'h3'
 
   const finalAlignment =
     alignment === 'left' ? 'w-full' : alignment === 'center' ? 'text-center' : alignment === 'right' ? 'text-right' : ''

@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
@@ -18,7 +18,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
    * Background data
    */
   bgColor?: string
-  bgType?: 'image' | 'video'
+  bgType?: 'image' | 'video' | ''
   bgImage?: ImageProps
   bgVideo?: ImageProps
   bgVideoFallback?: ImageProps
@@ -68,7 +68,7 @@ const getVerPos = (value: string) => {
 const DEFAULT_TEXT_COLOR = 'gray-900'
 const DEFAULT_DARK_TEXT_COLOR = 'gray-50'
 
-export const Hero: FC<HeroProps> = ({
+export const Hero = ({
   textColor = DEFAULT_TEXT_COLOR,
   darkTextColor = DEFAULT_DARK_TEXT_COLOR,
   bgColor = 'transparent',
@@ -83,7 +83,7 @@ export const Hero: FC<HeroProps> = ({
   className,
   overlay = false,
   light = true
-}) => {
+}: HeroProps) => {
   content = typeof content === 'string' ? JSON.parse(content) : content
   const HeroHeadingId = makeRandomId()
   const finalHeroHeight = heroHeight || 'h-80vh'

@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes, useEffect, useRef, useState} from 'react'
+import React, {HTMLAttributes, useEffect, useRef, useState} from 'react'
 import cn from 'classnames'
 
 import MediaIcon from '/assets/icons/media-image.svg'
@@ -12,14 +12,14 @@ export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
 
-export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string}> = ({video = false, playing = false, caption = ''}) => {
+export const FigCaption = ({video = false, playing = false, caption = ''}: {video?: boolean; playing?: boolean; caption: string}) => {
   const shared = [
     'absolute flex w-full from-gray-900 z-50 min-h-32 p-4 fontStyle-xs text-shadow-md',
     video && 'transform transition-opacity-transform ease-in-out duration-500'
   ]
   const top = ['items-start -top-16 pt-20 bg-gradient-to-b', playing ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0']
   const bottom = ['items-end -bottom-16 pb-20 bg-gradient-to-t', playing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100']
-  const Caption: FC<{position: string[]; AriaHidden?: boolean}> = ({position, AriaHidden = false}) => {
+  const Caption = ({position, AriaHidden = false}: {position: string[]; AriaHidden?: boolean}) => {
     return <figcaption className={cn(shared, position)} dangerouslySetInnerHTML={{__html: caption}} aria-hidden={AriaHidden} />
   }
 
@@ -31,10 +31,10 @@ export const FigCaption: FC<{video?: boolean; playing?: boolean; caption: string
   )
 }
 
-export const MediaImage: FC<ImageProps> = ({id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false}) => {
+export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
-    <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)}>
+    <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
           src={url}
@@ -54,7 +54,7 @@ export interface VideoProps extends MediaProps {
   loop?: boolean
 }
 
-export const MediaVideo: FC<VideoProps> = ({
+export const MediaVideo = ({
   id,
   url,
   extension,
@@ -66,8 +66,9 @@ export const MediaVideo: FC<VideoProps> = ({
   className,
   mediaClasses,
   info = '',
-  fit
-}) => {
+  fit,
+  style
+}: VideoProps) => {
   const parsedInfos = nonThrowingJsonParse(info)
 
   const videoRef = useRef(null)
@@ -94,6 +95,7 @@ export const MediaVideo: FC<VideoProps> = ({
       key={id}
       role="group"
       className={cn('relative flex flex-col text-gray-50 overflow-hidden', ratio && `ratio-${ratio}`, className)}
+      style={style}
     >
       <div
         className={cn(
@@ -134,7 +136,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   mediaClasses?: string
 }
 
-export const Media: FC<GenericMediaProps> = ({
+export const Media = ({
   media,
   autoplay = true,
   muted = true,
@@ -143,8 +145,9 @@ export const Media: FC<GenericMediaProps> = ({
   ratio = '',
   className,
   mediaClasses,
-  fit = false
-}) => {
+  fit = false,
+  style
+}: GenericMediaProps) => {
   if (ratio === '') {
     ratio = 'unset'
   }
@@ -164,13 +167,14 @@ export const Media: FC<GenericMediaProps> = ({
         className={className}
         mediaClasses={mediaClasses}
         fit={fit}
+        style={style}
       />
     ) : (
-      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} />
+      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
     )
   }
   return (
-    <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)}>
+    <div className={cn('flex max-w-full overflow-hidden', className, mediaClasses, ratio && `ratio-${ratio}`)} style={style}>
       <div role="presentation" className="w-full justify-center flex items-center p-4 bg-gray-300 text-gray-800 opacity-50">
         <MediaIcon className="w-8 h-8" />
       </div>

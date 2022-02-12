@@ -7,5 +7,6 @@
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["./index.js", "./jest.config.js", "./postcss.config.js", "./styles.js", "./tailwind.config.js", "./tailwind.safelist.js", "./tailwindCustomConfig.js", "./webpack.analyze.js", "./webpack.config.js", "./webpack.dev.js", "./webpack.prod.js"]
 }

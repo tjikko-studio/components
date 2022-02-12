@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {gridAreas} from '../../utilities/gridAreas'
@@ -28,7 +28,7 @@ export interface ButtonsGroupProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const ButtonsGroup: FC<ButtonsGroupProps> = ({buttons = [], className = '', columnStart, columnEnd, fullWidth = false}) => {
+export const ButtonsGroup = ({buttons = [], className = '', columnStart, columnEnd, fullWidth = false}: ButtonsGroupProps) => {
   return (
     <div className={cn('inline-flex flex-wrap items-center gap-x-4', className)} style={gridAreas('control', columnStart, columnEnd)}>
       {buttons.map(({label, link, type, size, color, hover_color, text_color, hover_text}) => {

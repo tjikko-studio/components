@@ -1,4 +1,4 @@
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 export interface DividerProps extends HTMLAttributes<HTMLElement> {
@@ -26,7 +26,7 @@ const extraClasses = {
 /**
  * Primary UI component for user interaction
  */
-export const Divider: FC<DividerProps> = ({direction = 'horizontal', className, forceDark = false}) => {
+export const Divider = ({direction = 'horizontal', className, forceDark = false}: DividerProps) => {
   const dividerClasses = ['border-0 border-gray-300 dark:border-gray-600']
 
   dividerClasses.push(extraClasses[direction])

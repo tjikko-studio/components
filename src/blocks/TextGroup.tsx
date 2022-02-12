@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import React, {FC, HTMLAttributes} from 'react'
+import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
@@ -45,7 +45,7 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const TextGroup: FC<TextGroupProps> = ({
+export const TextGroup = ({
   title = '',
   body = '',
   image,
@@ -53,7 +53,7 @@ export const TextGroup: FC<TextGroupProps> = ({
   titleSize = 'default',
   textAlign = 'left',
   ratio,
-  verticalAlign = '',
+  verticalAlign = 'top',
   hasSepar = true,
   hasBackground = false,
   bgColor = '#f3f4f6',
@@ -61,7 +61,7 @@ export const TextGroup: FC<TextGroupProps> = ({
   contentShadow = false,
   isElevated = false,
   fullHeight = true
-}) => {
+}: TextGroupProps) => {
   const titleSizeOutput =
     titleSize === 'huge'
       ? 'fontStyle-5xl xl:fontStyle-6xl uppercase'

@@ -1,6 +1,6 @@
 import 'intersection-observer'
 
-import React, {FC, useEffect, useMemo, useRef, useState} from 'react'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
 import cn from 'classnames'
 
 import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
@@ -54,7 +54,7 @@ const shownStyles = {
   transform: 'scale(1) translate(0, 0) rotate(0) skew(0,0)'
 }
 
-const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}}) => {
+const InfoBox = ({title, body, position, settings = {}}: FeatureShowItemBox) => {
   const {color, backgroundColor, duration, marginBottom, opacity, transformLeft, transformCenter, transformRight} = settings
   const infoBoxRef = useRef<HTMLDivElement>(null)
   const pos = position === 'right' ? 'mr-0 ml-auto' : position === 'center' ? 'mx-auto' : 'ml-0 mr-auto'
@@ -128,10 +128,7 @@ const InfoBox: FC<FeatureShowItemBox> = ({title, body, position, settings = {}})
   )
 }
 
-const FeatureShowSection: FC<{
-  item: FeatureShowItem
-  settings?: FeatureShowSettings
-}> = ({item, settings = {}}) => {
+const FeatureShowSection = ({item, settings = {}}: {item: FeatureShowItem; settings?: FeatureShowSettings}) => {
   let {images} = settings
   if (!images) {
     images = {}
@@ -231,7 +228,7 @@ export interface FeatureShowProps extends HTMLElement {
   settings?: FeatureShowSettings
 }
 
-export const FeatureShow: FC<FeatureShowProps> = ({className, header, items, settings = {}}) => {
+export const FeatureShow = ({className, header, items, settings = {}}: FeatureShowProps) => {
   const {color, backgroundColor} = settings
   const classes = ['grid', 'w-full', 'py-16', 'sm:py-24', 'md:py-32', 'gap-y-12', 'sm:gap-y-16', 'lg:gap-y-0']
   const toComponent = getComponent()
