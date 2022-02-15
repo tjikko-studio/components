@@ -118,9 +118,13 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                                   ? innerContent.map(({label: innerLabel, link: innerLink}) => {
                                                       const {url, target} = parseLink(innerLink)
                                                       return (
-                                                        <a key={`${innerLabel}${url}`} href={url} target={target} className="fontStyle-sm">
-                                                          {innerLabel}
-                                                        </a>
+                                                        <a
+                                                          key={`${innerLabel}${url}`}
+                                                          href={url}
+                                                          target={target}
+                                                          className="fontStyle-sm"
+                                                          dangerouslySetInnerHTML={{__html: innerLabel}}
+                                                        />
                                                       )
                                                     })
                                                   : null}
@@ -132,9 +136,12 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                               const {url, target} = parseLink(link)
                                               if (type === 'link') {
                                                 return (
-                                                  <a href={url} target={target} className="fontStyle-sm">
-                                                    {label}
-                                                  </a>
+                                                  <a
+                                                    href={url}
+                                                    target={target}
+                                                    className="fontStyle-sm"
+                                                    dangerouslySetInnerHTML={{__html: label}}
+                                                  />
                                                 )
                                               } else if (type === 'icon') {
                                                 return (

@@ -133,7 +133,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <>
           {label && (
             <div className={cn(labelContainerClasses)} style={gridAreas('label', columnStart, columnEnd)}>
-              <label id={labelId}>{label}</label>
+              <label id={labelId} dangerouslySetInnerHTML={{__html: label}} />
               {isError && <ErrorIcon className="w-4 h-4 text-red-600 dark:text-red-400" />}
               {isValidating && <ValidatingIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
               {isSuccess && <TickIcon className="w-4 h-4 text-green-600 dark:text-green-400" />}

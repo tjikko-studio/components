@@ -98,13 +98,9 @@ export const PopUpNavItem = ({
       {type === 'header' ? (
         <Heading id={labelId} level="h3" text={label} className={cn(linkClasses)} />
       ) : href ? (
-        <a id={labelId} target={target} className={cn(linkClasses)} href={href}>
-          {label}
-        </a>
+        <a id={labelId} target={target} className={cn(linkClasses)} href={href} dangerouslySetInnerHTML={{__html: label}} />
       ) : (
-        <span id={labelId} className={cn(linkClasses, 'cursor-pointer')}>
-          {label}
-        </span>
+        <span id={labelId} className={cn(linkClasses, 'cursor-pointer')} dangerouslySetInnerHTML={{__html: label}} />
       )}
       {children ? children : ''}
     </div>

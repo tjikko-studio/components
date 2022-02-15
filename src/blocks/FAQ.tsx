@@ -22,8 +22,8 @@ export const FAQ = ({content = [], className = ''}: FAQProps) => {
       {content.map((qa) => {
         return (
           <div key={qa.question}>
-            <div className="fontStyle-lg strong">{qa.question}</div>
-            <div className="pt-2">{qa.answer}</div>
+            <div className="fontStyle-lg strong" dangerouslySetInnerHTML={{__html: qa.question}} />
+            <div className="pt-2" dangerouslySetInnerHTML={{__html: qa.answer}} />
           </div>
         )
       })}

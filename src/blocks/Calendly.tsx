@@ -68,12 +68,8 @@ export const Calendly = ({title, body, bgColor, username, duration}: CalendlyPro
     >
       {title || body ? (
         <div className="flex flex-col gap-3">
-          {title && (
-            <h3 id={headingId} className="fontStyle-4xl">
-              {title}
-            </h3>
-          )}
-          {body && <p className="my-0">{body}</p>}
+          {title && <h3 id={headingId} className="fontStyle-4xl" dangerouslySetInnerHTML={{__html: title}} />}
+          {body && <p className="my-0" dangerouslySetInnerHTML={{__html: body}} />}
         </div>
       ) : null}
       <Row>

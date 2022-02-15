@@ -125,9 +125,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
               className={cn(['relative fontStyle-sm strong flex flex-row', isDisabled && 'text-gray-500 dark:text-gray-600', 'mb-2'])}
               style={gridAreas('label', columnStart, columnEnd)}
             >
-              <label id={labelId} className="w-full">
-                {label}
-              </label>
+              <label id={labelId} className="w-full" dangerouslySetInnerHTML={{__html: label}} />
               {isError && <ErrorIcon className="absolute right-0 text-red-600 dark:text-red-400" />}
               {isValidating && <ValidatingIcon className="absolute right-0 text-blue-600 dark:text-blue-400" />}
               {isSuccess && <TickIcon className="absolute right-0 text-green-600 dark:text-green-400" />}
@@ -162,9 +160,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
                 'items-center text-red-600 dark:text-red-400 mt-2'
               )}
               style={gridAreas('error', columnStart, columnEnd)}
-            >
-              {error}
-            </div>
+              dangerouslySetInnerHTML={{__html: error}}
+            />
           )}
         </>
       )

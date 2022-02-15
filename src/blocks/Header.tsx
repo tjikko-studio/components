@@ -40,7 +40,7 @@ export const Header = ({title = '', subtitle = '', className = '', headerType = 
   return (
     <header className={cn('w-full', {'text-shadow-xl': headerType === 'hero'}, finalAlignment, className)}>
       <Heading level={titleTag} text={title} className={titleClasses} alignment={headerAlign} />
-      {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
+      {subtitle && <p className={subtitleClasses} dangerouslySetInnerHTML={{__html: subtitle}} />}
     </header>
   )
 }

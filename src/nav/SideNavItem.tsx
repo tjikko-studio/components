@@ -64,9 +64,7 @@ export const SideNavItem = ({
       {spacer ? (
         ''
       ) : (
-        <a href={link} className={cn('fontStyle-sm', type === 'header' && 'strong')}>
-          {text}
-        </a>
+        <a href={link} className={cn('fontStyle-sm', type === 'header' && 'strong')} dangerouslySetInnerHTML={{__html: text}} />
       )}
     </li>
   )

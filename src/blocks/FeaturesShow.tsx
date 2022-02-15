@@ -238,7 +238,7 @@ const FeaturesShowSection = ({
             {item.header && (
               <div className="text-center pb-4">
                 <Heading level="h3" text={item.header} alignment="center" />
-                {item.subtitle && <p>{item.subtitle}</p>}
+                {item.subtitle && <p dangerouslySetInnerHTML={{__html: item.subtitle}} />}
               </div>
             )}
             <div className="h-full relative">

@@ -193,7 +193,7 @@ export const Button = ({
   buttonClasses.push(className)
   const Content = () => {
     if (label) {
-      return <span className={cn(contentClasses)}>{label}</span>
+      return <span className={cn(contentClasses)} dangerouslySetInnerHTML={{__html: label}} />
     }
     return null
   }

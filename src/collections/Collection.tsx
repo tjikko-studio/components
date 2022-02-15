@@ -143,7 +143,7 @@ const PortfolioCollection = ({items = null, link_cta}: CollectionItems) => {
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-4">
               <div className="flex flex-col lg:w-1/2">
                 <Heading text={item.content.title} />
-                <p className="mt-2">{item.content.description}</p>
+                <p className="mt-2" dangerouslySetInnerHTML={{__html: item.content.description}} />
 
                 <ReadMoreButton />
               </div>
