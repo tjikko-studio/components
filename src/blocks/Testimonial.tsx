@@ -26,9 +26,9 @@ export const Testimonial = ({body = '', image = {}, title = ''}: TestimonialProp
   }
   return (
     <div className="flex flex-col items-center">
-      <p className="fontStyle-lg italic text-center" dangerouslySetInnerHTML={{__html: body}} />
+      <div className="fontStyle-lg italic text-center" dangerouslySetInnerHTML={{__html: body}} />
       <Media media={image} className="w-28 h-28 mxl:x-auto rounded-full mt-4" ratio="1/1" />
-      <p className="fontStyle-xs uppercase text-center mt-6">{title}</p>
+      <span className="fontStyle-xs uppercase text-center mt-6" dangerouslySetInnerHTML={{__html: title}} />
     </div>
   )
 }

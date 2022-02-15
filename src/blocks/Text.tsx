@@ -5,7 +5,7 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * HTML to use as container
    */
-  tag?: 'p' | 'pre' | 'span' | 'div'
+  tag?: 'pre' | 'span' | 'div'
 
   /**
    * text alignment
@@ -21,7 +21,7 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Text = ({tag = 'p', alignment = 'left', text = '', className = ''}: TextProps) => {
+export const Text = ({tag = 'div', alignment = 'left', text = '', className = ''}: TextProps) => {
   const TextTag = tag
 
   const finalAlignment =

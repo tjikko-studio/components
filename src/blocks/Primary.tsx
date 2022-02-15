@@ -76,7 +76,6 @@ export const Primary = ({
 }: PrimaryProps) => {
   const finalLayout = layout || 'default'
   const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
-
   return (
     <div className={cn('grid gap-6', {'lg:grid-cols-2 lg:gap-12': finalLayout === 'default'})}>
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
@@ -109,7 +108,7 @@ export const Primary = ({
             )}
           >
             <Heading level="h3" text={title} className={cn('break-words', titleSize)} />
-            <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
+            <div className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>
         </>

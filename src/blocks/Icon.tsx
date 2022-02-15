@@ -40,7 +40,7 @@ export const Icon = ({layout = 'horizontal', image = null, title = '', body = ''
       </div>
       <div>
         <Heading level="h3" text={title ? title : 'title'} className="fontStyle-2xl break-words" />
-        <p className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
+        <div className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
       </div>
     </div>
   )
