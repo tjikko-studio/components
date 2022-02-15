@@ -100,6 +100,7 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       imagePosition: content.imageposition,
       textPositionVertical: content.text_position_vertical,
+      textPositionHorizontal: content.text_position_horizontal,
       textSize: content.text_size,
       layout: content.layout
     }

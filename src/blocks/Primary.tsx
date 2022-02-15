@@ -17,10 +17,9 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    */
   imagePosition?: 'undefined' | 'auto' | 'left' | 'right' | 'top'
 
-  /**
-   * Text Position Position
-   */
   textPositionVertical?: 'center' | 'top'
+
+  textPositionHorizontal?: 'left' | 'center' | 'right' | 'justify'
 
   /**
    *  Block image
@@ -63,6 +62,7 @@ export const Primary = ({
   layout = 'default',
   imagePosition = 'auto',
   textPositionVertical = 'center',
+  textPositionHorizontal = 'left',
   image = null,
   autoplay = true,
   muted = true,
@@ -76,7 +76,6 @@ export const Primary = ({
 }: PrimaryProps) => {
   const finalLayout = layout || 'default'
   const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
-  if (!textPositionVertical) textPositionVertical = 'center'
 
   return (
     <div className={cn('grid gap-6', {'lg:grid-cols-2 lg:gap-12': finalLayout === 'default'})}>
@@ -88,19 +87,24 @@ export const Primary = ({
             muted={muted}
             controls={controls}
             loop={loop}
-            className={cn(
-              'rounded-lg shadow-2xl',
-              {'lg:col-start-2 lg:row-start-1': imagePosition === 'right' && finalLayout === 'default'},
-              {'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'}
-            )}
+            className={cn('rounded-lg shadow-2xl', {
+              'lg:col-start-2 lg:row-start-1': imagePosition === 'right' && finalLayout === 'default',
+              'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'
+            })}
             ratio="16/9"
           />
           <div
             className={cn(
               'flex flex-col',
-              {'justify-center': textPositionVertical === 'center'},
-              {'lg:col-start-1': imagePosition === 'right' && finalLayout === 'default'},
-              {'lg:col-start-2 lg:row-start-1': imagePosition === 'left' && finalLayout === 'default'},
+              {
+                'justify-center': textPositionVertical === 'center',
+                'text-left': textPositionHorizontal === 'left',
+                'text-center': textPositionHorizontal === 'center',
+                'text-right': textPositionHorizontal === 'right',
+                'text-justify': textPositionHorizontal === 'justify',
+                'lg:col-start-1': imagePosition === 'right' && finalLayout === 'default',
+                'lg:col-start-2 lg:row-start-1': imagePosition === 'left' && finalLayout === 'default'
+              },
               className
             )}
           >
