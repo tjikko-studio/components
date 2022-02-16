@@ -138,7 +138,7 @@ export const SiteNav = ({
                                   label={label}
                                   link={link}
                                   type="primary"
-                                  size="default"
+                                  size="thin"
                                   forceDark={true}
                                 />
                               )
@@ -216,7 +216,7 @@ export const SiteNav = ({
             >
               {mobileNavContent.length &&
                 mobileNavContent.map(({content, mobile_layout, id: navContentId}) => {
-                  const layout = mobile_layout === 'horizontal' ? ' justify-between items-start' : ' flex-col gap-y-4'
+                  const layout = mobile_layout === 'horizontal' ? ' justify-between items-center' : ' flex-col gap-y-4'
 
                   const columnsLength = content ? content.length : 0
                   return (
@@ -248,7 +248,7 @@ export const SiteNav = ({
                             case 'button': {
                               return (
                                 <div key={innerId || `[${label}](${link})`} className="dark">
-                                  <Button label={label} link={link} type="primary" size="default" forceDark={true} />
+                                  <Button label={label} link={link} type="primary" size="thin" forceDark={true} />
                                 </div>
                               )
                             }

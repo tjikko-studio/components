@@ -26,7 +26,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   /**
    * button type
    */
-  type?: 'primary' | 'secondary' | 'tertiary'
+  type?: 'primary' | 'secondary' | 'tertiary' | ''
   /**
    * text to display on button
    */
@@ -35,7 +35,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   /**
    * button size
    */
-  size?: 'default' | 'large' | 'small'
+  size?: 'default' | 'large' | 'small' | 'thin'
 
   /**
    * Is the button full width
@@ -77,7 +77,7 @@ export const Button = ({
   text_color,
   hover_text
 }: ButtonProps) => {
-  const buttonType = type || 'primary'
+  const buttonType = type === '' ? 'primary' : type
   const buttonClasses = ['inline-flex items-center gap-x-3 my-1 cursor-pointer']
   const contentClasses = ['']
   const styles = {
@@ -168,6 +168,13 @@ export const Button = ({
   const stls = styles[buttonType](forceDark)
   buttonClasses.push(...stls.classes)
   switch (size) {
+    case 'thin':
+      buttonClasses.push('min-h-8 py-1.5')
+      contentClasses.push('fontStyle-button-sm')
+      if (buttonType !== 'tertiary') {
+        buttonClasses.push('px-3.5')
+      }
+      break
     case 'small':
       buttonClasses.push('min-h-8 py-2.5')
       contentClasses.push('fontStyle-button-sm')
