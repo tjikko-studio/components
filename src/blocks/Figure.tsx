@@ -29,7 +29,7 @@ export const Figure = (props: FigureProps) => {
       muted={muted}
       controls={controls}
       loop={loop}
-      className={cn(className, {
+      className={cn(className, 'max-w-full', 'max-h-full', {
         'mr-auto': alignment === 'left',
         'mx-auto': alignment === 'center',
         'ml-auto': alignment === 'right',

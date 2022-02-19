@@ -5,6 +5,20 @@
  * more info: https://tailwindcss.com/docs/optimizing-for-production#safelisting-specific-classes
  */
 exports = [
+  'basis-1/2',
+  'basis-1/3',
+  'basis-2/3',
+  'basis-1/4',
+  'basis-2/4',
+  'basis-3/4',
+
+  'sm:basis-1/2',
+  'sm:basis-1/3',
+  'sm:basis-2/3',
+  'sm:basis-1/4',
+  'sm:basis-2/4',
+  'sm:basis-3/4',
+
   'col-span-1',
   'col-span-2',
   'col-span-3',
@@ -47,9 +61,11 @@ exports = [
   'xs:grid-cols-2',
   'xs:grid-cols-3',
 
-  'justify-center',
   'justify-left',
+  'justify-center',
+  'justify-right',
 
+  'align-top',
   'align-center',
   'align-bottom',
 

@@ -83,8 +83,12 @@ export interface LinkObject {
   value: string | {url: string}[]
 }
 
+export type JustifyContent = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly' | ''
+
 export interface AttrProps {
   full_height?: boolean
+  row_justify_content?: JustifyContent
+  col_justify_content?: JustifyContent
   className?: string
 }
 

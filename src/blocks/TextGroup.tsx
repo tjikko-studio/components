@@ -95,7 +95,7 @@ export const TextGroup = ({
   return (
     <div
       className={cn(
-        'p-4 w-full overflow-hidden',
+        'py-4 w-full overflow-hidden',
         {relative: image},
         {'h-full': fullHeight},
         {'rounded-lg': hasBackground},

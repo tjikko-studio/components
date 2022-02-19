@@ -54,28 +54,31 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   templatesContent?: Record<string, ColumnProps>
 }
 
-export const Section = ({
-  bgColor = 'transparent',
-  wrapperColor = 'transparent',
-  aboveColor = 'transparent',
-  layoutWidth = 'default',
-  layoutSpacing = 'default',
-  contentPosition = 'center|center',
-  floating = false,
-  floatingAbove = false,
-  abovePos = 'bottom',
-  content = [],
-  templatesContent = {},
-  className
-}: SectionProps) => {
+// eslint-disable-next-line complexity
+export const Section = (props: SectionProps) => {
+  let {
+    bgColor = 'transparent',
+    wrapperColor = 'transparent',
+    aboveColor = 'transparent',
+    layoutWidth = 'default',
+    layoutSpacing = 'default',
+    contentPosition = 'center|center',
+    floating = false,
+    floatingAbove = false,
+    abovePos = 'bottom',
+    content = [],
+    templatesContent = {},
+    className
+  } = props
   content = typeof content === 'string' ? JSON.parse(content) : content
   const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   // See safelist in tailwind.safelist.js
-  const align = horAlign && verAlign ? `justify-${horAlign} items-${verAlign}` : ''
+  const hAlign = horAlign ? `justify-${horAlign}` : ''
+  const vAlign = verAlign ? `items-${verAlign}` : ''
 
-  const classes = ['w-full', 'h-full', 'max-w-screen-xl', 'xl:mx-auto']
+  const classes = ['w-full', 'h-full', 'max-w-screen-xl', 'px-4', 'sm:px-8']
   const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
   const innerGridClasses: string[] = []
   const outerGridClasses: string[] = []
@@ -105,38 +108,37 @@ export const Section = ({
     }
   }
 
-  classes.push('px-4', 'sm:px-8', 'xl:px-0', layoutWidth === 'tight' ? 'md:px-24' : 'md:px-12')
   if (layoutSpacing === 'tight') {
     classes.push('py-16', 'sm:py-24', 'md:py-32')
-    outerGridClasses.push('grid', 'gap-y-12')
+    outerGridClasses.push('flex', 'gap-y-12')
     innerGridClasses.push(cn(outerGridClasses))
-    outerGridClasses.push('sm:gap-y-14 md:gap-y-18')
+    outerGridClasses.push('flex-col sm:gap-y-14 md:gap-y-18')
   } else {
     classes.push('py-24', 'sm:py-32', 'md:py-40')
-    outerGridClasses.push('grid', 'gap-y-14')
+    outerGridClasses.push('flex', 'gap-y-14')
     innerGridClasses.push(cn(outerGridClasses))
-    outerGridClasses.push('gap-y-14 sm:gap-y-22 md:gap-y-26')
+    outerGridClasses.push('flex-col gap-y-14 sm:gap-y-22 md:gap-y-26')
   }
-  if (align) {
-    classes.push(align)
+  if (hAlign) {
+    classes.push(hAlign)
+  }
+  if (vAlign) {
+    classes.push(vAlign)
   }
 
   return (
     <section
-      className={cn('overflow-hidden', theme, className, floating && 'py-12 relative')}
+      className={cn('overflow-hidden', theme, className, {'py-12 relative': floating})}
       style={{backgroundColor: floating ? wrapperColor : bgColor}}
       aria-labelledby={sectionHeadingId}
     >
-      <div role="presentation" className={cn(floating && 'mx-0 md:mx-8 xl:mx-auto')}>
+      <div role="presentation" className={cn('flex', 'justify-center')}>
         <div
           role="presentation"
-          className={cn(
-            classes,
-            colorClass,
-            outerGridClasses,
-            floating && 'md:rounded-lg md:shadow-2xl',
-            floating && floatingAbove && 'relative z-10'
-          )}
+          className={cn(classes, colorClass, outerGridClasses, {
+            'md:rounded-lg md:shadow-2xl': floating,
+            'relative z-10': floating && floatingAbove
+          })}
           style={{backgroundColor: floating && bgColor}}
         >
           {content.length >= 1 ? (
@@ -144,7 +146,7 @@ export const Section = ({
               content={content}
               contentPosition={contentPosition}
               componentsExtraProps={columnComponentExtraProps}
-              columnClasses="flex flex-col gap-y-6 h-full"
+              columnClasses="flex flex-col gap-y-6"
               templatesContent={templatesContent}
               sectionHeadingId={sectionHeadingId}
               className={cn(innerGridClasses)}

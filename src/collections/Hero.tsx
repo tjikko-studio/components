@@ -97,7 +97,12 @@ export const Hero = ({
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
   return (
     <header
-      className={cn('overflow-hidden relative text-gray-50', bgImageOutput && 'bg-cover', theme ? theme : 'dark', className)}
+      className={cn(
+        'overflow-hidden relative text-gray-50 flex justify-center',
+        bgImageOutput && 'bg-cover',
+        theme ? theme : 'dark',
+        className
+      )}
       style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
       aria-labelledby={HeroHeadingId}
     >
@@ -151,22 +156,17 @@ export const Hero = ({
         </>
       )}
       {/* See the tailwind hacks in src/index.tsx */}
-      <div className={`${finalHeroHeight}  -mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl xl:mx-auto relative`}>
+      <div className={cn(finalHeroHeight, '-mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl relative w-full mx-4 sm:mx-8')}>
         <div
           className={cn([
             `text-${textColor || DEFAULT_TEXT_COLOR}`,
             `dark:text-${darkTextColor || DEFAULT_DARK_TEXT_COLOR}`,
             'absolute',
             'z-20',
-            'w-full',
-            'p-6',
+            'py-6',
             'lg:pb-24',
             'md:pb-16',
             'sm:pb-12',
-            'px-4',
-            'sm:px-8',
-            'md:px-12',
-            'xl:px-24',
             'flex',
             'flex-col',
             'gap-y-5',
