@@ -55,7 +55,7 @@ const TimelineItem = ({
     }
   }, [timelineRef])
   const toComponent = getComponent({})
-  const cardClassName = 'sticky top-0 sm:top-8 lg:top-24 xl:top-32 z-20'
+  const cardClassName = 'sm:sticky top-0 sm:top-8 lg:top-24 xl:top-32 z-20'
   const mobileCardClassName = 'mb-5'
   const mobileCardProps = {allowRoundedCorners: false}
   const snapClasses = 'scroll-mt-0 sm:scroll-mt-8 lg:scroll-mt-24 xl:scroll-mt-32'
