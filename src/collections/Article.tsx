@@ -37,14 +37,7 @@ export const Article = ({content = [], templatesContent = {}, className}: Articl
     <article className={cn(classes)}>
       {content.length ? (
         content.map((block) => {
-          return (
-            <section
-              key={JSON.stringify(block.content)}
-              className={cn(block.type !== 'Gallery' && 'sm:w-screen-sm lg:w-screen-md xl:mx-auto')}
-            >
-              {toComponent(block)}
-            </section>
-          )
+          return <section key={JSON.stringify(block.content)}>{toComponent(block)}</section>
         })
       ) : (
         <div>No content yet</div>
