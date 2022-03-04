@@ -122,7 +122,7 @@ export const Timeline = ({
 }: TimelineProps) => {
   const timelineRef = useRef(null)
   return (
-    <div className="relative mx-auto mb-48 w-full max-w-screen-lg flex flex-col gap-28">
+    <div className="relative mx-auto mb-48 w-full max-w-screen-xl px-4 sm:px-8 flex flex-col gap-28">
       <section>
         <div className="flex flex-col items-center gap-48 pt-12" ref={timelineRef}>
           {content?.map(({card, content: innerContent}, idx) => {
