@@ -1,15 +1,17 @@
-import React, {HTMLAttributes} from 'react'
+import React, {HTMLAttributes, useState} from 'react'
 import cn from 'classnames'
 
+import categoryNameFromId from '../../utilities/categoryNameFromId'
 import getComponent from '../../utilities/getComponent'
 import {Card} from '../blocks/Card'
 import {Gallery} from '../blocks/Gallery'
 import {Heading} from '../blocks/Heading'
 import {Button} from '../Button'
+import {SideNav} from '../nav/SideNav'
 import {ImageProps, Media} from '../parts/Media'
 import {JobsCollection, JobsCollectionProps} from './collectionsLists/JobsCollection'
 
-import {BlockProps, ColumnProps} from '../../shared/types'
+import {BlockProps, CategoriesType, ColumnProps} from '../../shared/types'
 
 interface BaseProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -44,7 +46,9 @@ type CollectionItem = {
     description: string
     images: ImageProps[]
     video?: ImageProps[]
+    category?: string
   }
+  filteredOut?: boolean
 }
 
 interface CollectionItems extends BaseProps {
@@ -55,6 +59,7 @@ interface CollectionItems extends BaseProps {
 export interface CollectionProps extends BaseProps {
   header?: BlockProps[]
   templatesContent?: Record<string, ColumnProps>
+  categories?: CategoriesType
   content?: CollectionItems & JobsCollectionProps
   datasource?: 'success-stories' | 'portfolio' | 'jobs'
 }
@@ -138,7 +143,7 @@ const PortfolioCollection = ({items = null, link_cta}: CollectionItems) => {
             />
           )
         }
-        return (
+        return item.filteredOut ? null : (
           <div key={item.id} className="flex flex-col w-full gap-6 lg:gap-4">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-4">
               <div className="flex flex-col lg:w-1/2">
@@ -168,6 +173,7 @@ export const Collection = (
     header,
     content,
     templatesContent = {},
+    categories = {},
     datasource,
     layout,
     imagePosition,
@@ -177,8 +183,25 @@ export const Collection = (
     columns
   }: CollectionProps = {content: null}
 ) => {
+  const [filtered, setFilteredItems] = useState({items: content.items, filter: null})
   sectionClasses.push('text-gray-900')
-  const toComponent = getComponent(templatesContent)
+  const toComponent = getComponent(templatesContent, categories)
+
+  const onFilter: React.MouseEventHandler = (event) => {
+    const categoryId = event.currentTarget.getAttribute('data-category-id')
+    const categoryName = categoryNameFromId(categoryId)
+    setFilteredItems(
+      categoryName === filtered.filter
+        ? {items: content.items, filter: null}
+        : {
+            items: content.items.map((item) => {
+              return {...item, filteredOut: item.content.category.toLowerCase() !== categoryName}
+            }),
+            filter: categoryName
+          }
+    )
+  }
+
   return (
     <section className={cn(sectionClasses)}>
       {header.length ? (
@@ -188,33 +211,38 @@ export const Collection = (
           })}
         </header>
       ) : null}
-      {datasource === 'success-stories' && content && (
-        <SuccessStoriesCollection
-          key={JSON.stringify(content)}
-          items={content.items}
-          link_cta={content.link_cta}
-          layout={layout}
-          imagePosition={imagePosition}
-          hasBackground={hasBackground}
-          bgColor={bgColor}
-          isElevated={isElevated}
-          columns={columns}
-        />
-      )}
-
-      {datasource === 'portfolio' && content && (
-        <PortfolioCollection key={JSON.stringify(content.items)} items={content.items} link_cta={content.link_cta} />
-      )}
-
-      {datasource === 'jobs' && content && (
-        <JobsCollection
-          key={JSON.stringify(content.jobs)}
-          jobs={content.jobs}
-          tags={content.tags}
-          apply_cta={content.apply_cta}
-          show_all={content.show_all}
-        />
-      )}
+      <div className="flex gap-32">
+        {Object.keys(categories).length > 0 ? (
+          <div className="sm:sticky sm:top-8 lg:top-24 xl:top-32 shrink-0">
+            <SideNav items={categories} onFilter={onFilter} currentFilter={filtered.filter} />
+          </div>
+        ) : null}
+        {datasource === 'success-stories' && content && (
+          <SuccessStoriesCollection
+            key={JSON.stringify(content)}
+            items={filtered.items}
+            link_cta={content.link_cta}
+            layout={layout}
+            imagePosition={imagePosition}
+            hasBackground={hasBackground}
+            bgColor={bgColor}
+            isElevated={isElevated}
+            columns={columns}
+          />
+        )}
+        {datasource === 'portfolio' && content && (
+          <PortfolioCollection key={JSON.stringify(filtered.items)} items={filtered.items} link_cta={content.link_cta} />
+        )}
+        {datasource === 'jobs' && content && (
+          <JobsCollection
+            key={JSON.stringify(content.jobs)}
+            jobs={content.jobs}
+            tags={content.tags}
+            apply_cta={content.apply_cta}
+            show_all={content.show_all}
+          />
+        )}
+      </div>
     </section>
   )
 }

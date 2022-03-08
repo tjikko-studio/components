@@ -98,3 +98,5 @@ export interface LocalesType {
   current?: string | null
   content?: MenuType[]
 }
+
+export type CategoriesType = Record<string, string[]>

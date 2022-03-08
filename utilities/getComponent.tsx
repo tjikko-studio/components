@@ -26,7 +26,7 @@ import {Input} from '../src/form/Input'
 import {TextArea} from '../src/form/TextArea'
 import {Columns, ColumnsBlockProps} from '../src/layouts/Columns'
 
-import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
+import {BlockProps, CategoriesType, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
 type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string, attrs?: {className: string}) => P
 
@@ -185,7 +185,7 @@ const ValidComponents: Record<string, any> = {
   Text
 }
 
-export default function getComponent(templatesContent: Record<string, ColumnProps> = {}) {
+export default function getComponent(templatesContent: Record<string, ColumnProps> = {}, categories: CategoriesType = {}) {
   return function SelectedComponent(component: BlockProps | ColumnsBlockProps, extraProps?: ComponentsExtraProps): React.ReactElement {
     const block = component as BlockProps
     if (block.type) {
