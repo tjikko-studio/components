@@ -92,19 +92,17 @@ export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now
             </li>
             {navigation
               ? navigation.map((item) => {
-                  return (
-                    item.available && (
-                      <li
-                        key={item.label}
-                        onClick={() => {
-                          setFilterContent(item.label)
-                        }}
-                        className={cn(navItemsClasses)}
-                      >
-                        <PopUpNavItem label={item.label} isActive={filterContent === item.label} />
-                      </li>
-                    )
-                  )
+                  return item.available ? (
+                    <li
+                      key={item.label}
+                      onClick={() => {
+                        setFilterContent(item.label)
+                      }}
+                      className={cn(navItemsClasses)}
+                    >
+                      <PopUpNavItem label={item.label} isActive={filterContent === item.label} />
+                    </li>
+                  ) : null
                 })
               : null}
           </ul>
@@ -124,11 +122,7 @@ export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now
                   <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                     {job.tags.length
                       ? job.tags.map((tag) => {
-                          return (
-                            <div key={`${job.title}[${tag.value}]`} className="">
-                              {tag.value}
-                            </div>
-                          )
+                          return <div key={`${job.title}[${tag.value}]`}>{tag.value}</div>
                         })
                       : null}
                   </div>
