@@ -90,6 +90,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       columnStart,
       columnEnd,
       value,
+      required,
       onChange
     },
     ref
@@ -150,6 +151,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               ref={ref}
               aria-labelledby={labelId}
               aria-describedby={infoId}
+              required={required}
             />
           </div>
           {information && (

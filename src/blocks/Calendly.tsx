@@ -32,6 +32,8 @@ const Cell = ({children}: PropsWithChildren<{}>) => {
   )
 }
 
+const requiredMark = `<sup class="text-red-600">*</sup>`
+
 export const Calendly = ({title, body, bgColor, username, duration}: CalendlyProps) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const emailRef = useRef(null)
@@ -77,12 +79,12 @@ export const Calendly = ({title, body, bgColor, username, duration}: CalendlyPro
           <Input label="Company" ref={companyRef} />
         </Cell>
         <Cell>
-          <Input label="Name" ref={nameRef} />
+          <Input label={`Name${requiredMark}`} ref={nameRef} required />
         </Cell>
       </Row>
       <Row>
         <Cell>
-          <Input label="Email" ref={emailRef} />
+          <Input label={`Email${requiredMark}`} ref={emailRef} required />
         </Cell>
         <Cell>
           <Input label="Phone" ref={phoneRef} />
