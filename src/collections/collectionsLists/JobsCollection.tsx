@@ -122,7 +122,7 @@ export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now
                   <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                     {job.tags.length
                       ? job.tags.map((tag) => {
-                          return <div key={`${job.title}[${tag.value}]`}>{tag.value}</div>
+                          return tag.value ? <div key={`${job.title}[${tag.value}]`}>{tag.value}</div> : null
                         })
                       : null}
                   </div>
