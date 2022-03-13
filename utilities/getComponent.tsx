@@ -116,6 +116,7 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       titleSize: content.title_size,
       textAlign: content.text_align,
+      mobileIgnoreAlign: content.mobile_ignore_align,
       verticalAlign: content.vertical_align,
       ratio: content.ratio,
       hasSepar: content.has_separ,
