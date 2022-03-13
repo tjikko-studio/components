@@ -144,10 +144,12 @@ function getProps(
   type: string,
   {content, id, attrs}: {content: ContentType; id?: string; attrs?: {className: string}},
   extraProps: ComponentsExtraProps = {},
-  templatesContent: Record<string, ColumnProps> = {}
+  templatesContent: Record<string, ColumnProps> = {},
+  locale?: string
 ) {
   const specificProps = propsByType[type] ? propsByType[type](content, id, attrs) : getCommonProps(content, id, attrs)
   const baseProps = {
+    locale,
     ...content,
     templatesContent,
     ...specificProps
@@ -185,7 +187,7 @@ const ValidComponents: Record<string, any> = {
   Text
 }
 
-export default function getComponent(templatesContent: Record<string, ColumnProps> = {}) {
+export default function getComponent(templatesContent: Record<string, ColumnProps> = {}, locale?: string) {
   return function SelectedComponent(component: BlockProps | ColumnsBlockProps, extraProps?: ComponentsExtraProps): React.ReactElement {
     const block = component as BlockProps
     if (block.type) {
@@ -195,7 +197,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
         return null
       }
       try {
-        return <Component {...getProps(block.type, component as BlockProps, extraProps, templatesContent)} />
+        return <Component {...getProps(block.type, component as BlockProps, extraProps, templatesContent, locale)} />
       } catch (ex) {
         console.error('Unable to render', component)
         console.error(ex)
@@ -204,7 +206,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
     }
     const columnsBlock = component as ColumnsBlockProps
     if (columnsBlock.columns) {
-      return <Columns columns={columnsBlock.columns} templatesContent={templatesContent} extraProps={extraProps} />
+      return <Columns columns={columnsBlock.columns} templatesContent={templatesContent} locale={locale} extraProps={extraProps} />
     }
     console.error('Dunno what to do with this', component)
     return null

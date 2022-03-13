@@ -52,6 +52,7 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
    */
   content?: SectionItemProps[]
   templatesContent?: Record<string, ColumnProps>
+  locale?: string
 }
 
 // eslint-disable-next-line complexity
@@ -68,6 +69,7 @@ export const Section = (props: SectionProps) => {
     abovePos = 'bottom',
     content = [],
     templatesContent = {},
+    locale,
     className
   } = props
   content = typeof content === 'string' ? JSON.parse(content) : content
@@ -148,6 +150,7 @@ export const Section = (props: SectionProps) => {
               componentsExtraProps={columnComponentExtraProps}
               columnClasses="flex flex-col gap-y-6"
               templatesContent={templatesContent}
+              locale={locale}
               sectionHeadingId={sectionHeadingId}
               className={cn(innerGridClasses)}
             />
