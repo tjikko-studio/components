@@ -132,7 +132,6 @@ const propsByType: Record<string, GetPropsFn> = {
   Timeline: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      snaps: content.snaps,
       lineColor: content.line_color,
       style: {
         marginBottom: content.box_margin_bottom
