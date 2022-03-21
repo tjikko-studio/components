@@ -1,7 +1,7 @@
 export type ContentType = any
 
 export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
-  type?: 'image' | 'video'
+  type?: 'image' | 'video' | 'youtube'
   id?: string
   link?: string
   url?: string

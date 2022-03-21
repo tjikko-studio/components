@@ -122,6 +122,20 @@ export const MediaVideo = ({
   )
 }
 
+export const YouTubeEmbed = ({url}: MediaProps) => {
+  return (
+    <iframe
+      width="100%"
+      height="100%"
+      src={url}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  )
+}
+
 export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Received media (It can be an image or a video)
@@ -169,6 +183,8 @@ export const Media = ({
         fit={fit}
         style={style}
       />
+    ) : media.type === 'youtube' ? (
+      <YouTubeEmbed key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
     ) : (
       <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
     )
