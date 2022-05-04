@@ -1,5 +1,5 @@
 {
-  "name": "@tjikko/components",
+  "name": "components",
   "version": "3.6.30",
   "description": "Component library for Tjikko Studio apps",
   "main": "index.js",
@@ -112,6 +112,6 @@
     "shared/types/index.ts"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@tjikko-studio"
+    "registry": "https://npm.pkg.github.com/@tjikko"
   }
 }
