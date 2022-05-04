@@ -112,6 +112,6 @@
     "shared/types/index.ts"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@tjikko"
+    "registry": "https://npm.pkg.github.com/"
   }
 }
