@@ -110,8 +110,5 @@
     "tailwindCustomConfig.js",
     "tailwind.safelist.js",
     "shared/types/index.ts"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  ]
 }
