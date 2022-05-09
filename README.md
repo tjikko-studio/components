@@ -1,8 +1,13 @@
 # @tjikko/components
 
 ## Install
+Add this to your `.npmrc`:
 ```
-npm i git+ssh://git@github.com:tjikko-studio/components.git
+@tjikko-studio:registry=https://npm.pkg.github.com
+```
+Then run:
+```
+npm i @tjikko-studio/components
 ```
 
 ## Usage
