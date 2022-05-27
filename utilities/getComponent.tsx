@@ -26,7 +26,7 @@ import {Input} from '../src/form/Input'
 import {TextArea} from '../src/form/TextArea'
 import {Columns, ColumnsBlockProps} from '../src/layouts/Columns'
 
-import {BlockProps, CategoriesType, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
+import {BlockProps, ColumnProps, ComponentsExtraProps, ContentType} from '../shared/types'
 
 type GetPropsFn<P = Record<string, unknown>> = (content: ContentType, id?: string, attrs?: {className: string}) => P
 
