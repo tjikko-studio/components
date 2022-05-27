@@ -1,7 +1,13 @@
 {
-  "name": "@tjikko/components",
-  "version": "3.6.26",
+  "name": "@tjikko-studio/components",
+  "version": "3.6.37",
   "description": "Component library for Tjikko Studio apps",
+  "repository": {
+    "url": "git@github.com:tjikko-studio/components.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "index.js",
   "scripts": {
     "build:analyze": "webpack --config ./webpack.analyze.js --node-env production",
@@ -105,7 +111,7 @@
   "files": [
     "index.js",
     "styles.js",
-    "/README.md",
+    "README.md",
     "/assets/",
     "tailwindCustomConfig.js",
     "tailwind.safelist.js",

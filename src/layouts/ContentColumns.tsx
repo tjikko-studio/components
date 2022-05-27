@@ -40,6 +40,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
 
   templatesContent?: Record<string, ColumnProps>
 
+  locale?: string
+
   sectionHeadingId?: string
 }
 
@@ -52,11 +54,12 @@ export const ContentColumns = ({
   contentSectionClasses = cn(['flex-wrap', 'sm:flex-nowrap', 'gap-y-8', 'sm:gap-x-6', 'md:gap-x-12', 'w-full', 'h-full']),
   columnClasses = '',
   templatesContent = {},
+  locale,
   className,
   sectionHeadingId
 }: ContentColumnsProps) => {
   content = typeof content === 'string' ? JSON.parse(content) : content
-  const toComponent = getComponent(templatesContent)
+  const toComponent = getComponent(templatesContent, locale)
   const [verAlign, horAlign] = extractCombo(contentPosition)
   // See safelist in tailwind.safelist.js
   const hAlign = horAlign ? `justify-${horAlign}` : ''

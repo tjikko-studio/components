@@ -17,19 +17,10 @@ export type TimelineComponentProps = {
   contentGap?: string
   reverse: boolean
   timelineRef: MutableRefObject<any>
-  snaps?: boolean
   lineColor?: string
 }
 const defaultLineColor = 'black'
-const TimelineItem = ({
-  card,
-  content,
-  contentGap,
-  reverse,
-  timelineRef,
-  snaps = false,
-  lineColor = defaultLineColor
-}: TimelineComponentProps) => {
+const TimelineItem = ({card, content, contentGap, reverse, timelineRef, lineColor = defaultLineColor}: TimelineComponentProps) => {
   if (!lineColor || lineColor === '') {
     lineColor = defaultLineColor
   }
@@ -58,10 +49,9 @@ const TimelineItem = ({
   const cardClassName = 'sm:sticky top-0 sm:top-8 lg:top-24 xl:top-32 z-20'
   const mobileCardClassName = 'mb-5'
   const mobileCardProps = {allowRoundedCorners: false}
-  const snapClasses = 'scroll-mt-0 sm:scroll-mt-8 lg:scroll-mt-24 xl:scroll-mt-32'
   const contentStyle = {gap: contentGap}
   return (
-    <div className={cn('w-full', snapClasses)} style={{scrollSnapAlign: snaps ? 'start' : 'none'}}>
+    <div className="w-full">
       {card && card[0] ? (
         <Card {...card[0]?.content} className={cn('sm:hidden', cardClassName, mobileCardClassName)} {...mobileCardProps} />
       ) : (
@@ -108,18 +98,10 @@ export type TimelineProps = {
   contentGap?: string
   alignment?: boolean
   alternates?: boolean
-  snaps?: boolean
   lineColor?: string
 }
 
-export const Timeline = ({
-  content = [],
-  contentGap,
-  alignment = false,
-  alternates = false,
-  snaps = false,
-  lineColor = 'black'
-}: TimelineProps) => {
+export const Timeline = ({content = [], contentGap, alignment = false, alternates = false, lineColor = 'black'}: TimelineProps) => {
   const timelineRef = useRef(null)
   return (
     <div className="relative mx-auto mb-48 w-full max-w-screen-xl px-4 sm:px-8 flex flex-col gap-28">
@@ -134,7 +116,6 @@ export const Timeline = ({
                 contentGap={contentGap}
                 reverse={alternates ? (alignment ? idx % 2 === 0 : idx % 2 !== 0) : alignment}
                 timelineRef={timelineRef}
-                snaps={snaps}
                 lineColor={lineColor}
               />
             )

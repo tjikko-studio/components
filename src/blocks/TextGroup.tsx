@@ -27,6 +27,7 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    */
   titleSize?: 'default' | 'big' | 'huge'
   textAlign?: 'left' | 'center' | 'right'
+  mobileIgnoreAlign?: boolean
   verticalAlign?: 'top' | 'center' | 'third'
   ratio?: '1/1' | '16/9'
   hasSepar?: boolean
@@ -52,6 +53,7 @@ export const TextGroup = ({
   className = '',
   titleSize = 'default',
   textAlign = 'left',
+  mobileIgnoreAlign,
   ratio,
   verticalAlign = 'top',
   hasSepar = true,
@@ -70,8 +72,17 @@ export const TextGroup = ({
       : 'fontStyle-xl sm:fontStyle-2xl'
 
   const textAlignOutput =
-    textAlign === 'left' ? 'md:w-full' : textAlign === 'center' ? 'text-center' : textAlign === 'right' ? 'text-right' : ''
-
+    textAlign === 'left'
+      ? 'md:w-full'
+      : textAlign === 'center'
+      ? mobileIgnoreAlign
+        ? 'sm:text-center'
+        : 'text-center'
+      : textAlign === 'right'
+      ? mobileIgnoreAlign
+        ? 'sm:text-right'
+        : 'text-right'
+      : ''
   const wrapperClasses = []
   const innerClasses = []
   if (verticalAlign === 'third') {

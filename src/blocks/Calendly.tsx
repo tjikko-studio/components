@@ -14,6 +14,7 @@ export interface CalendlyProps {
   bgColor?: string
   title?: string
   body?: string
+  locale?: string
 }
 
 const Row = ({children}: PropsWithChildren<{}>) => {
@@ -32,7 +33,9 @@ const Cell = ({children}: PropsWithChildren<{}>) => {
   )
 }
 
-export const Calendly = ({title, body, bgColor, username, duration}: CalendlyProps) => {
+const requiredMark = `<sup class="text-red-600">*</sup>`
+
+export const Calendly = ({title, body, bgColor, username, duration, locale}: CalendlyProps) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const emailRef = useRef(null)
   const nameRef = useRef(null)
@@ -58,7 +61,6 @@ export const Calendly = ({title, body, bgColor, username, duration}: CalendlyPro
   )
 
   const headingId = makeRandomId()
-
   return (
     <form
       className={cn('flex flex-col w-full p-10 gap-8 rounded-lg', theme)}
@@ -74,28 +76,35 @@ export const Calendly = ({title, body, bgColor, username, duration}: CalendlyPro
       ) : null}
       <Row>
         <Cell>
-          <Input label="Company" ref={companyRef} />
+          <Input label={locale === 'fr' ? 'Compagnie' : 'Company'} ref={companyRef} />
         </Cell>
         <Cell>
-          <Input label="Name" ref={nameRef} />
-        </Cell>
-      </Row>
-      <Row>
-        <Cell>
-          <Input label="Email" ref={emailRef} />
-        </Cell>
-        <Cell>
-          <Input label="Phone" ref={phoneRef} />
+          <Input label={`${locale === 'fr' ? 'Nom' : 'Name'}${requiredMark}`} ref={nameRef} required />
         </Cell>
       </Row>
       <Row>
         <Cell>
-          <TextArea label="Tell us more about your needs and we’ll prepare accordingly" ref={commentsRef} />
+          <Input label={`${locale === 'fr' ? 'Courriel' : 'Email'}${requiredMark}`} ref={emailRef} required />
+        </Cell>
+        <Cell>
+          <Input label={locale === 'fr' ? 'Téléphone' : 'Phone'} ref={phoneRef} />
         </Cell>
       </Row>
       <Row>
         <Cell>
-          <Button label="Next" />
+          <TextArea
+            label={
+              locale === 'fr'
+                ? 'Faites-nous part de vos besoins et nous nous préparerons en conséquence'
+                : 'Tell us more about your needs and we’ll prepare accordingly'
+            }
+            ref={commentsRef}
+          />
+        </Cell>
+      </Row>
+      <Row>
+        <Cell>
+          <Button label={locale === 'fr' ? 'Suivant' : 'Next'} />
         </Cell>
       </Row>
     </form>

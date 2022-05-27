@@ -183,9 +183,9 @@ export const Collection = (
     columns
   }: CollectionProps = {content: null}
 ) => {
-  const [filtered, setFilteredItems] = useState({items: content.items, filter: null})
+  const [filtered, setFilteredItems] = useState({items: content?.items, filter: null})
   sectionClasses.push('text-gray-900')
-  const toComponent = getComponent(templatesContent, categories)
+  const toComponent = getComponent(templatesContent)
 
   const onFilter: React.MouseEventHandler = (event) => {
     const categoryId = event.currentTarget.getAttribute('data-category-id')
