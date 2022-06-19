@@ -103,13 +103,13 @@ export type CategoriesType = Record<string, string[]>
 export interface CollectionItem {
   id: string
   url: string
-  title: string
-  description: string
-  images: ImageProps[]
+  title?: string
+  description?: string
+  images?: ImageProps[]
   video?: ImageProps[]
   category?: string
   filteredOut?: boolean
-  link_cta: string
+  link_cta?: string
   bgColor?: string
   hasBackground?: boolean
   isElevated?: boolean
@@ -121,8 +121,8 @@ export type CollectionsType = Record<string, CollectionItem[]>
 export interface TagItem {
   id: string
   url: string
-  title: string
-  description: string
+  title?: string
+  description?: string
   filteredOut?: boolean
 }
 export type TagsType = Record<string, TagItem[]>
