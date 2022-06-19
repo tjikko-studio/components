@@ -25,6 +25,7 @@ export interface TemplateProps extends HTMLAttributes<HTMLElement> {
   homeLink?: string
   templateType?: 'template' | 'navigation' | 'footer'
   content?: SiteNavColumns[] | FooterNavColumns[] | SectionItemProps[]
+  locale?: string
 }
 
 /**
@@ -36,14 +37,20 @@ export const Template = ({
   content = [],
   locales = null,
   templateType = 'template',
-  className
+  className,
+  locale
 }: TemplateProps) => {
   const AvailableTemplates = {
     template: () => {
       return (
         <div role="presentation">
           {content ? (
-            <ContentColumns content={content as SectionItemProps[]} className={className} contentSectionClasses="sm:grid sm:grid-cols-12" />
+            <ContentColumns
+              content={content as SectionItemProps[]}
+              className={className}
+              contentSectionClasses="sm:grid sm:grid-cols-12"
+              locale={locale}
+            />
           ) : (
             <p>No template yet</p>
           )}

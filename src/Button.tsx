@@ -22,36 +22,16 @@ export type NewStyles = {
   hover_text?: string
 }
 
+export type ButtonType = 'primary' | 'secondary' | 'tertiary' | ''
+export type ButtonSize = 'default' | 'large' | 'small' | 'thin'
+
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
-  /**
-   * button type
-   */
-  type?: 'primary' | 'secondary' | 'tertiary' | ''
-  /**
-   * text to display on button
-   */
+  type?: ButtonType
   label?: string
-
-  /**
-   * button size
-   */
-  size?: 'default' | 'large' | 'small' | 'thin'
-
-  /**
-   * Is the button full width
-   */
+  size?: ButtonSize
   fullWidth?: boolean
-
-  /**
-   * button link
-   */
   link?: LinkObject
-
-  /**
-   * apply the dark theme whether in dark or light mode
-   */
   forceDark?: boolean
-
   color?: string
   hover_color?: string
   text_color?: string

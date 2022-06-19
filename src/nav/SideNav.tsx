@@ -7,48 +7,56 @@ import {CategoriesType} from '../../shared/types'
 
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
   items?: CategoriesType
-  onFilter?: React.MouseEventHandler
+  onFilter?: (categoryId: string) => void
   currentFilter?: string | null
+  classNames?: {
+    sidebar: string
+    heading: string
+    item: string
+    target: string
+  }
 }
 
 export const SideNav = ({
   items = {},
-  onFilter = (event) => {
-    event.preventDefault()
-  },
+  onFilter = () => {},
   currentFilter = null,
+  classNames = {
+    sidebar: 'text-gray-600',
+    heading: 'border-gray-800',
+    item: 'border-gray-800 hover:text-primary-700 hover:border-primary-600',
+    target: 'text-primary-700 border-primary-600'
+  },
   className = ''
 }: SideNavProps) => {
   const commonClasses = ['list-none', 'border-l-2', 'pr-3']
-  const commonNonTargeted = ['text-gray-600', 'dark:text-gray-300']
-  const headerClasses = [...commonClasses, ...commonNonTargeted, 'pl-5', 'strong']
-  const linkClasses = [
-    ...commonClasses,
-    'pl-7',
-    'cursor-pointer',
-
-    'hover:border-primary-600',
-    'dark:hover:border-primary-300',
-
-    'hover:text-primary-700',
-    'dark:hover:text-primary-200'
-  ]
-  const nonTargetedLink = [...commonNonTargeted, 'border-gray-200', 'dark:border-gray-700']
-  const targetedLink = ['border-primary-600', 'dark:border-primary-300', 'text-primary-700', 'dark:text-primary-200']
+  const headerClasses = [...commonClasses, 'pl-5', 'strong']
+  const linkClasses = [...commonClasses, 'pl-7', 'cursor-pointer']
   return (
-    <ul className={className}>
+    <ul className={cn(className, classNames.sidebar)}>
       {Object.keys(items).map((groupName) => {
         const categories = items[groupName]
         return (
           <React.Fragment key={groupName}>
-            <li className={cn(headerClasses)}>{groupName}</li>
+            <li className={cn(headerClasses, classNames.heading)}>{groupName}</li>
             {categories.map((categoryId) => {
               const categoryName = categoryNameFromId(categoryId)
-              const targetedClassName = currentFilter === categoryName ? targetedLink : nonTargetedLink
-              console.log({currentFilter, categoryName, targetedClassName})
               return (
-                <li key={categoryId} className={cn(linkClasses, targetedClassName)}>
-                  <span onClick={onFilter} data-category-id={categoryId}>
+                <li key={categoryId} className={cn(linkClasses, currentFilter === categoryName ? classNames.target : classNames.item)}>
+                  <span
+                    onClick={(event) => {
+                      const categoryId = event.currentTarget.getAttribute('data-category-id')
+                      return onFilter(categoryId)
+                    }}
+                    onKeyPress={(event) => {
+                      if (event.key === 'Enter') {
+                        const categoryId = event.currentTarget.getAttribute('data-category-id')
+                        onFilter(categoryId)
+                      }
+                    }}
+                    data-category-id={categoryId}
+                    tabIndex={0}
+                  >
                     {categoryName}
                   </span>
                 </li>

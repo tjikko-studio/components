@@ -80,8 +80,8 @@ export const ContentColumns = ({
   return (
     <>
       {content
-        ? content.map(({columns, id, attrs}) => {
-            const fullHeight = typeof attrs?.full_height === 'boolean' ? attrs.full_height : true
+        ? content.map(({columns = [], id, attrs}) => {
+            const fullHeight = typeof attrs?.full_height === 'boolean' ? attrs?.full_height : true
             const rowJustifyContent = fallback(attrs?.row_justify_content, 'center')
             const colJustifyContent = fallback(attrs?.col_justify_content, defaultJustifyContent)
             const nbColumns = columns.length

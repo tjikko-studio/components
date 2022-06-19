@@ -52,21 +52,11 @@ const propsByType: Record<string, GetPropsFn> = {
   Card: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      imagePosition: content.image_position,
+      imagePosition: content.imagePosition || content.image_position,
       layout: content.layout,
-      hasBackground: content.has_background,
-      bgColor: content.bg_color,
-      isElevated: content.is_elevated
-    }
-  },
-  Collection: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      imagePosition: content.image_position,
-      layout: content.layout,
-      hasBackground: content.has_background,
-      bgColor: content.bg_color,
-      isElevated: content.is_elevated
+      hasBackground: typeof content.hasBackground === 'undefined' ? content.has_background : content.hasBackground,
+      bgColor: content.bgColor || content.bg_color,
+      isElevated: typeof content.isElevated === 'undefined' ? content.is_elevated : content.isElevated
     }
   },
   ClientsLogos: (content, id, attrs) => {
@@ -74,6 +64,33 @@ const propsByType: Record<string, GetPropsFn> = {
       ...getCommonProps(content, id, attrs),
       logosLayout: content.logos_layout,
       logosGrayscale: content.logos_grayscale
+    }
+  },
+  Collection: (content, id, attrs) => {
+    const {
+      datasource: dataSource,
+      collection_bg_color: bgColor,
+      layout: cardLayout,
+      image_position: cardImagePosition,
+      is_elevated: cardIsElevated,
+      has_background: cardHasBackground,
+      colors: cardBgColor,
+      cards_buttons_size: cardButtonSize,
+      cards_buttons_type: cardButtonType,
+      ...rest
+    } = content
+    return {
+      ...getCommonProps(content, id, attrs),
+      dataSource,
+      bgColor,
+      cardLayout,
+      cardImagePosition,
+      cardIsElevated,
+      cardHasBackground,
+      cardBgColor,
+      cardButtonSize,
+      cardButtonType,
+      ...rest
     }
   },
   Header: (content, id, attrs) => {
