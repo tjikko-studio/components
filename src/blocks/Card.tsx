@@ -7,32 +7,24 @@ import {Heading} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
+export type CardLayout = 'horizontal' | 'vertical'
+
+export type CardImagePosition = 'left' | 'right'
+export type CardImage = ImageProps | null
+
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * default/horizontal (left to right) or vertical (image above)
-   */
-  layout?: 'horizontal' | 'vertical'
-
-  /**
-   * Image Position
-   */
-  imagePosition?: 'left' | 'right'
-
-  /**
-   * text to display for heading
-   */
+  layout?: CardLayout
+  imagePosition?: CardImagePosition
   title?: string
-
-  /**
-   * text to display for paragraph
-   */
   body?: string
+  image?: CardImage
+  buttons?: ButtonProps[]
+  hasBackground?: boolean
+  bgColor?: string
+  isElevated?: boolean
+  fullHeight?: boolean
 
-  /**
-   *  Block image
-   */
-  image?: ImageProps | null
-
+  allowRoundedCorners?: boolean
   /**
    *  Video properties
    */
@@ -40,34 +32,8 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-
-  /**
-   *  Block buttons list
-   */
-  buttons?: ButtonProps[]
-
-  /**
-   * Background color
-   */
-  hasBackground?: boolean
-  bgColor?: string
-
-  /**
-   * Is elevated (Will have a drop shadow)
-   */
-  isElevated?: boolean
-
-  /**
-   * Height of the card
-   */
-  fullHeight?: boolean
-
-  allowRoundedCorners?: boolean
 }
 
-/**
- * Primary UI component for user interaction
- */
 // eslint-disable-next-line complexity
 export const Card = ({
   layout = 'vertical',

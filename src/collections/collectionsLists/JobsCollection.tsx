@@ -22,7 +22,8 @@ export interface JobItem {
   published?: string
   link?: string
   filter?: string
-  tags: JobsItemTag[]
+  apply_cta?: string
+  tags?: JobsItemTag[]
 }
 
 export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
@@ -32,6 +33,8 @@ export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
   jobs?: JobItem[]
   tags?: JobsTags[]
 
+  filterable?: boolean
+
   /**
    * Buttons Text
    */
@@ -39,22 +42,28 @@ export interface JobsCollectionProps extends HTMLAttributes<HTMLElement> {
   show_all?: string
 }
 
-export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now', show_all = 'All'}: JobsCollectionProps) => {
+export const JobsCollection = ({
+  jobs = null,
+  tags = null,
+  filterable = false,
+  apply_cta = 'Apply',
+  show_all = 'All'
+}: JobsCollectionProps) => {
   const [filterContent, setFilterContent] = useState(null)
-  const applyCta = apply_cta ? apply_cta : 'Apply now'
-  const showAll = show_all ? show_all : 'All'
 
   let availableNav: string[] = []
   let navigation: {label: string; available: boolean}[] = null
 
   if (jobs) {
     jobs.forEach((job: JobItem) => {
-      job.tags.forEach((tag: JobsItemTag) => {
-        if (tag.id === 'department') {
-          job.filter = tag.value
-          availableNav.push(tag.value)
-        }
-      })
+      if (job.tags) {
+        job.tags.forEach((tag: JobsItemTag) => {
+          if (tag.id === 'department') {
+            job.filter = tag.value
+            availableNav.push(tag.value)
+          }
+        })
+      }
     })
   }
 
@@ -79,37 +88,39 @@ export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now
 
   return (
     <div className={cn(sectionClasses)}>
-      <header>
-        <nav>
-          <ul className={cn(navClasses)}>
-            <li
-              onClick={() => {
-                setFilterContent(null)
-              }}
-              className={cn(navItemsClasses)}
-            >
-              <PopUpNavItem key={JSON.stringify(tags)} label={showAll} isActive={!filterContent} />
-            </li>
-            {navigation
-              ? navigation.map((item) => {
-                  return item.available ? (
-                    <li
-                      key={item.label}
-                      onClick={() => {
-                        setFilterContent(item.label)
-                      }}
-                      className={cn(navItemsClasses)}
-                    >
-                      <PopUpNavItem label={item.label} isActive={filterContent === item.label} />
-                    </li>
-                  ) : null
-                })
-              : null}
-          </ul>
-        </nav>
-      </header>
+      {filterable && (
+        <header>
+          <nav>
+            <ul className={cn(navClasses)}>
+              <li
+                onClick={() => {
+                  setFilterContent(null)
+                }}
+                className={cn(navItemsClasses)}
+              >
+                <PopUpNavItem key={JSON.stringify(tags)} label={show_all} isActive={!filterContent} />
+              </li>
+              {navigation
+                ? navigation.map((item) => {
+                    return item.available ? (
+                      <li
+                        key={item.label}
+                        onClick={() => {
+                          setFilterContent(item.label)
+                        }}
+                        className={cn(navItemsClasses)}
+                      >
+                        <PopUpNavItem label={item.label} isActive={filterContent === item.label} />
+                      </li>
+                    ) : null
+                  })
+                : null}
+            </ul>
+          </nav>
+        </header>
+      )}
       <div>
-        {jobs ? (
+        {jobs && jobs.length > 0 ? (
           jobs.map((job) => {
             const display = !filterContent || (filterContent && filterContent === job.filter) ? 'block' : 'hidden'
             return (
@@ -127,7 +138,7 @@ export const JobsCollection = ({jobs = null, tags = null, apply_cta = 'Apply now
                       : null}
                   </div>
                 </div>
-                <Button label={applyCta} link={{type: 'link', value: job.link, popup: false}} />
+                <Button label={job.apply_cta} link={{type: 'link', value: job.link, popup: false}} />
               </div>
             )
           })
