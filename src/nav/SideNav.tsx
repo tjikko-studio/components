@@ -57,7 +57,7 @@ export const SideNav = ({
                     data-category-id={categoryId}
                     tabIndex={0}
                   >
-                    {categoryName}
+                    {categoryName.substring(categoryName.lastIndexOf('/') + 1)}
                   </span>
                 </li>
               )
