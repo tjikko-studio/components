@@ -99,7 +99,12 @@ export interface LocalesType {
   content?: MenuType[]
 }
 
-export type CategoriesType = Record<string, string[]>
+export interface CategoriesItems {
+  label: string
+  slug: string
+}
+export type CategoriesType = Record<string, CategoriesItems[]>
+
 export interface CollectionItem {
   id: string
   url: string

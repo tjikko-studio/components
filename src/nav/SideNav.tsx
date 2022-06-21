@@ -1,8 +1,6 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import categoryNameFromId from '../../utilities/categoryNameFromId'
-
 import {CategoriesType} from '../../shared/types'
 
 export interface SideNavProps extends HTMLAttributes<HTMLElement> {
@@ -40,9 +38,11 @@ export const SideNav = ({
           <React.Fragment key={groupName}>
             <li className={cn(headerClasses, classNames.heading)}>{groupName}</li>
             {categories.map((categoryId) => {
-              const categoryName = categoryNameFromId(categoryId)
               return (
-                <li key={categoryId} className={cn(linkClasses, currentFilter === categoryName ? classNames.target : classNames.item)}>
+                <li
+                  key={categoryId['slug']}
+                  className={cn(linkClasses, currentFilter === categoryId['slug'] ? classNames.target : classNames.item)}
+                >
                   <span
                     onClick={(event) => {
                       const categoryId = event.currentTarget.getAttribute('data-category-id')
@@ -54,10 +54,10 @@ export const SideNav = ({
                         onFilter(categoryId)
                       }
                     }}
-                    data-category-id={categoryId}
+                    data-category-id={categoryId['slug']}
                     tabIndex={0}
                   >
-                    {categoryName.substring(categoryName.lastIndexOf('/') + 1)}
+                    {categoryId['label']}
                   </span>
                 </li>
               )

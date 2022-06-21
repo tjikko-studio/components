@@ -2,7 +2,6 @@ import React, {HTMLAttributes, RefObject, useCallback, useEffect, useMemo, useRe
 import cn from 'classnames'
 
 import sizes from '../../styles/sizes'
-import categoryNameFromId from '../../utilities/categoryNameFromId'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
 import {CardImagePosition, CardLayout} from '../blocks/Card'
@@ -135,13 +134,12 @@ function NonJobsCollection({
   )
 
   const onFilter = (categoryId: string) => {
-    const categoryName = categoryNameFromId(categoryId)
-    if (categoryName === filtered.filter) {
+    if (categoryId === filtered.filter) {
       setFilteredItems({items: items, filter: null})
       window.history.replaceState({}, '', `?#${resultsID}`)
     } else {
-      filterByCategory(categoryName)
-      window.history.replaceState({}, '', `?category=${categoryName}#${resultsID}`)
+      filterByCategory(categoryId)
+      window.history.replaceState({}, '', `?category=${categoryId}#${resultsID}`)
     }
     if (section.current) {
       section.current.scrollIntoView({
