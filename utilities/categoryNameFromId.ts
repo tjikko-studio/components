@@ -1,3 +1,3 @@
 export default function categoryNameFromId(id: string): string {
-  return id.substring(id.lastIndexOf('/') + 1)
+  return id.substring(id.lastIndexOf('categories') + 11)
 }
