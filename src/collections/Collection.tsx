@@ -136,10 +136,10 @@ function NonJobsCollection({
   const onFilter = (categoryId: string) => {
     if (categoryId === filtered.filter) {
       setFilteredItems({items: items, filter: null})
-      window.history.replaceState({}, '', `?#${resultsID}`)
+      window.history.replaceState(window.history.state, '', `${window.location.pathname}?#${resultsID}`)
     } else {
       filterByCategory(categoryId)
-      window.history.replaceState({}, '', `?category=${categoryId}#${resultsID}`)
+      window.history.replaceState(window.history.state, '', `${window.location.pathname}?category=${categoryId}#${resultsID}`)
     }
     if (section.current) {
       section.current.scrollIntoView({
