@@ -23,15 +23,15 @@ export const SideNav = ({
   currentFilter = null,
   classNames = {
     sidebar: 'text-gray-600',
-    heading: 'border-gray-800',
-    item: 'border-gray-800 hover:text-primary-700 hover:border-primary-600',
+    heading: 'border-gray-600',
+    item: 'border-gray-600 hover:text-primary-700 hover:border-primary-600',
     target: 'text-primary-700 border-primary-600'
   },
   className = ''
 }: SideNavProps) => {
   const commonClasses = ['list-none', 'border-l-2', 'pr-3']
-  const headerClasses = [...commonClasses, 'pl-5', 'strong']
-  const linkClasses = [...commonClasses, 'pl-7', 'cursor-pointer']
+  const headerClasses = [...commonClasses, 'pl-5', ' pt-3', 'strong']
+  const linkClasses = [...commonClasses, 'pl-7', 'py-0.5', 'cursor-pointer']
   return (
     <ul className={cn(className, classNames.sidebar)}>
       {Object.keys(items).map((groupName) => {

@@ -209,15 +209,15 @@ function NonJobsCollection({
               theme === 'dark'
                 ? {
                     sidebar: 'text-gray-300',
-                    heading: 'border-gray-300',
-                    item: 'border-gray-300 hover:text-primary-200 hover:border-primary-700',
-                    target: 'text-primary-200 border-primary-700'
+                    heading: 'border-gray-200',
+                    item: 'border-gray-200 hover:text-primary-300 hover:border-primary-700',
+                    target: 'text-primary-300 border-primary-700'
                   }
                 : {
                     sidebar: 'text-gray-600',
-                    heading: 'border-gray-800',
-                    item: 'border-gray-800 hover:text-primary-700 hover:border-primary-600',
-                    target: 'text-primary-700 border-primary-600'
+                    heading: 'border-gray-500',
+                    item: 'border-gray-500 hover:text-primary-600 hover:border-primary-600',
+                    target: 'text-primary-600 border-primary-600'
                   }
             }
           />
