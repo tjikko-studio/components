@@ -237,7 +237,7 @@ const FeaturesShowSection = ({
           <div className="flex flex-col h-full relative py-4 lg:pt-32 sm:pb-10">
             {item.header && (
               <div className="text-center pb-4">
-                <Heading level="h3" text={item.header} alignment="center" />
+                <Heading heading_text={item.header} heading_level="h3" heading_alignment="center" />
                 {item.subtitle && <span dangerouslySetInnerHTML={{__html: item.subtitle}} />}
               </div>
             )}

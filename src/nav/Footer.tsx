@@ -109,8 +109,9 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                               <div className={cn(['dark', 'flex', 'flex-col', 'gap-y-4'])} aria-label={label}>
                                                 {label && (
                                                   <Heading
-                                                    level="h3"
-                                                    text={label}
+                                                    heading_text={label}
+                                                    heading_level="h3"
+                                                    heading_size="h3"
                                                     className={cn(['fontStyle-xs', 'uppercase', 'strong', 'text-gray-300'])}
                                                   />
                                                 )}

@@ -161,7 +161,7 @@ function NonJobsCollection({
       content: {
         layout: cardLayout,
         imagePosition: cardImagePosition,
-        title: item.title,
+        heading_text: item.title,
         body: item.description,
         image: item.video?.[0] ? item.video[0] : item.images?.[0],
         buttons: [

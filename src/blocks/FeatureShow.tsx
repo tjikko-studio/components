@@ -197,7 +197,7 @@ const FeatureShowSection = ({item, settings = {}}: {item: FeatureShowItem; setti
           <div className="flex flex-col h-full p-4 relative lg:pt-32">
             {item.header && (
               <div className="text-center pb-4">
-                <Heading level="h3" text={item.header} alignment="center" />
+                <Heading heading_text={item.header} heading_level="h3" heading_alignment="center" />
                 {item.subtitle && <span dangerouslySetInnerHTML={{__html: item.subtitle}} />}
               </div>
             )}

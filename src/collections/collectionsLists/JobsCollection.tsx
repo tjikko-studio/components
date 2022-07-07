@@ -129,7 +129,7 @@ export const JobsCollection = ({
                 className={cn(['flex justify-between align-baseline border-b py-6', display])}
               >
                 <div>
-                  <Heading level="h4" text={job.title} className="fontStyle-xl sm:fontStyle-2xl" />
+                  <Heading heading_text={job.title} heading_level="h3" heading_size="h4" className="fontStyle-xl sm:fontStyle-2xl" />
                   <div className="flex gap-2 mt-2 flex-col sm:flex-row fontStyle-sm text-gray-600">
                     {job.tags.length
                       ? job.tags.map((tag) => {

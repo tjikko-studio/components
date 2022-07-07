@@ -3,14 +3,14 @@ import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
-import {Heading} from '../blocks/Heading'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ImageProps} from '../parts/Media'
 
 export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * text to display for heading
-   */
-  title: string
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
 
   /**
    * text to display for paragraph
@@ -22,10 +22,6 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
    */
   image?: ImageProps | null
 
-  /**
-   * Styles
-   */
-  titleSize?: 'default' | 'big' | 'huge'
   textAlign?: 'left' | 'center' | 'right'
   mobileIgnoreAlign?: boolean
   verticalAlign?: 'top' | 'center' | 'third'
@@ -47,11 +43,13 @@ export interface TextGroupProps extends HTMLAttributes<HTMLDivElement> {
  * Primary UI component for user interaction
  */
 export const TextGroup = ({
-  title = '',
+  heading_text,
+  heading_level = 'h3',
+  heading_size = 'h3',
+  heading_alignment,
   body = '',
   image,
   className = '',
-  titleSize = 'default',
   textAlign = 'left',
   mobileIgnoreAlign,
   ratio,
@@ -64,12 +62,12 @@ export const TextGroup = ({
   isElevated = false,
   fullHeight = true
 }: TextGroupProps) => {
-  const titleSizeOutput =
-    titleSize === 'huge'
-      ? 'fontStyle-5xl xl:fontStyle-6xl uppercase'
-      : titleSize === 'big'
-      ? 'fontStyle-3xl sm:fontStyle-4xl'
-      : 'fontStyle-xl sm:fontStyle-2xl'
+  if (heading_level === '') {
+    heading_level = 'h3'
+  }
+  if (heading_size === '') {
+    heading_size = 'h3'
+  }
 
   const textAlignOutput =
     textAlign === 'left'
@@ -123,7 +121,14 @@ export const TextGroup = ({
       style={{backgroundColor: hasBackground && bgColor, backgroundImage: image && hasBackground && `url(${image.url})`}}
     >
       <div className={cn('relative z-10', innerClasses)}>
-        {title && <Heading level="h3" text={title} className={cn(titleSizeOutput)} />}
+        {heading_text && (
+          <Heading
+            heading_text={heading_text}
+            heading_level={heading_level}
+            heading_size={heading_size}
+            heading_alignment={heading_alignment}
+          />
+        )}
         {hasSepar && <hr role="presentation" className={cn('my-3 sm:my-4', borderColor)} />}
         {body && <div className="mt-2" dangerouslySetInnerHTML={{__html: body}} />}
       </div>

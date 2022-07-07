@@ -96,8 +96,7 @@ const propsByType: Record<string, GetPropsFn> = {
   Header: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      headerType: content.header_type,
-      headerAlign: content.header_align
+      headerType: content.header_type
     }
   },
   Hero: (content, id, attrs) => {
@@ -118,7 +117,6 @@ const propsByType: Record<string, GetPropsFn> = {
       imagePosition: content.imageposition,
       textPositionVertical: content.text_position_vertical,
       textPositionHorizontal: content.text_position_horizontal,
-      textSize: content.text_size,
       layout: content.layout
     }
   },
@@ -131,7 +129,6 @@ const propsByType: Record<string, GetPropsFn> = {
   TextGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      titleSize: content.title_size,
       textAlign: content.text_align,
       mobileIgnoreAlign: content.mobile_ignore_align,
       verticalAlign: content.vertical_align,
@@ -225,7 +222,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
     if (columnsBlock.columns) {
       return <Columns columns={columnsBlock.columns} templatesContent={templatesContent} locale={locale} extraProps={extraProps} />
     }
-    console.error('Dunno what to do with this', component)
+    console.error('Neither component nor columns', component)
     return null
   }
 }
