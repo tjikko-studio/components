@@ -61,7 +61,7 @@ export const Section = (props: SectionProps) => {
     bgColor = 'transparent',
     wrapperColor = 'transparent',
     aboveColor = 'transparent',
-    layoutWidth = 'default',
+    // layoutWidth = 'default',
     layoutSpacing = 'default',
     contentPosition = 'center|center',
     floating = false,
