@@ -37,9 +37,15 @@ export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', i
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
+          loading="lazy"
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
-          className={cn('h-full', ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain', fit ? 'w-auto' : 'w-full', mediaClasses)}
+          className={cn(
+            'h-full',
+            ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
+            fit ? 'w-auto' : 'min-w-full',
+            mediaClasses
+          )}
         />
       )}
       {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}

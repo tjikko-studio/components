@@ -2,7 +2,7 @@ import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
-import {Heading} from '../blocks/Heading'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
@@ -34,15 +34,10 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   controls?: boolean
   loop?: boolean
 
-  /**
-   * Text Size
-   */
-  textSize?: 'regular' | 'small'
-
-  /**
-   * text to display for heading
-   */
-  title: string
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
 
   /**
    * text to display for paragraph
@@ -68,14 +63,21 @@ export const Primary = ({
   muted = true,
   controls = false,
   loop = true,
-  textSize = 'regular',
-  title = '',
+  heading_text,
+  heading_level = 'h3',
+  heading_size = 'h3',
+  heading_alignment,
   body = '',
   buttons = [],
   className = ''
 }: PrimaryProps) => {
+  if (heading_level === '') {
+    heading_level = 'h3'
+  }
+  if (heading_size === '') {
+    heading_size = 'h3'
+  }
   const finalLayout = layout || 'default'
-  const titleSize = textSize === 'small' ? 'fontStyle-2xl' : 'fontStyle-3xl'
   return (
     <div className={cn('grid gap-6', {'lg:grid-cols-2 lg:gap-12': finalLayout === 'default'})}>
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
@@ -107,7 +109,13 @@ export const Primary = ({
               className
             )}
           >
-            <Heading level="h3" text={title} className={cn('break-words', titleSize)} />
+            <Heading
+              heading_text={heading_text}
+              heading_level={heading_level}
+              heading_size={heading_size}
+              heading_alignment={heading_alignment}
+              className={cn('break-words')}
+            />
             <div className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
             {Object.keys(buttons).length ? <ButtonsGroup key={JSON.stringify(buttons)} buttons={buttons} className="gap-x-4 mt-4" /> : null}
           </div>

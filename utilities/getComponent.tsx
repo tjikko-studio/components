@@ -52,21 +52,11 @@ const propsByType: Record<string, GetPropsFn> = {
   Card: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      imagePosition: content.image_position,
+      imagePosition: content.imagePosition || content.image_position,
       layout: content.layout,
-      hasBackground: content.has_background,
-      bgColor: content.bg_color,
-      isElevated: content.is_elevated
-    }
-  },
-  Collection: (content, id, attrs) => {
-    return {
-      ...getCommonProps(content, id, attrs),
-      imagePosition: content.image_position,
-      layout: content.layout,
-      hasBackground: content.has_background,
-      bgColor: content.bg_color,
-      isElevated: content.is_elevated
+      hasBackground: typeof content.hasBackground === 'undefined' ? content.has_background : content.hasBackground,
+      bgColor: content.bgColor || content.bg_color,
+      isElevated: typeof content.isElevated === 'undefined' ? content.is_elevated : content.isElevated
     }
   },
   ClientsLogos: (content, id, attrs) => {
@@ -76,11 +66,37 @@ const propsByType: Record<string, GetPropsFn> = {
       logosGrayscale: content.logos_grayscale
     }
   },
+  Collection: (content, id, attrs) => {
+    const {
+      datasource: dataSource,
+      collection_bg_color: bgColor,
+      layout: cardLayout,
+      image_position: cardImagePosition,
+      is_elevated: cardIsElevated,
+      has_background: cardHasBackground,
+      colors: cardBgColor,
+      cards_buttons_size: cardButtonSize,
+      cards_buttons_type: cardButtonType,
+      ...rest
+    } = content
+    return {
+      ...getCommonProps(content, id, attrs),
+      dataSource,
+      bgColor,
+      cardLayout,
+      cardImagePosition,
+      cardIsElevated,
+      cardHasBackground,
+      cardBgColor,
+      cardButtonSize,
+      cardButtonType,
+      ...rest
+    }
+  },
   Header: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      headerType: content.header_type,
-      headerAlign: content.header_align
+      headerType: content.header_type
     }
   },
   Hero: (content, id, attrs) => {
@@ -101,7 +117,6 @@ const propsByType: Record<string, GetPropsFn> = {
       imagePosition: content.imageposition,
       textPositionVertical: content.text_position_vertical,
       textPositionHorizontal: content.text_position_horizontal,
-      textSize: content.text_size,
       layout: content.layout
     }
   },
@@ -114,7 +129,6 @@ const propsByType: Record<string, GetPropsFn> = {
   TextGroup: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      titleSize: content.title_size,
       textAlign: content.text_align,
       mobileIgnoreAlign: content.mobile_ignore_align,
       verticalAlign: content.vertical_align,
@@ -132,7 +146,6 @@ const propsByType: Record<string, GetPropsFn> = {
   Timeline: (content, id, attrs) => {
     return {
       ...getCommonProps(content, id, attrs),
-      snaps: content.snaps,
       lineColor: content.line_color,
       style: {
         marginBottom: content.box_margin_bottom
@@ -209,7 +222,7 @@ export default function getComponent(templatesContent: Record<string, ColumnProp
     if (columnsBlock.columns) {
       return <Columns columns={columnsBlock.columns} templatesContent={templatesContent} locale={locale} extraProps={extraProps} />
     }
-    console.error('Dunno what to do with this', component)
+    console.error('Neither component nor columns', component)
     return null
   }
 }

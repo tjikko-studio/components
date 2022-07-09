@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {Heading} from '../blocks/Heading'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ImageProps, Media} from '../parts/Media'
 
 /*
@@ -18,10 +18,10 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    */
   image?: ImageProps | null
 
-  /**
-   * title text
-   */
-  title?: string
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
 
   /**
    * content text
@@ -32,14 +32,32 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Icon = ({layout = 'horizontal', image = null, title = '', body = '', className = ''}: IconProps) => {
+export const Icon = ({
+  layout = 'horizontal',
+  image = null,
+  heading_text = '',
+  heading_level = 'h3',
+  heading_size,
+  heading_alignment,
+  body = '',
+  className = ''
+}: IconProps) => {
+  if (heading_level === '') {
+    heading_level = 'h3'
+  }
   return (
     <div className={cn('flex flex-col gap-6', {'sm:flex-row': layout === 'horizontal'}, className)}>
       <div className={cn('flex-shrink-0 w-32')}>
         <Media media={image} className={'w-32 h-32'} />
       </div>
       <div>
-        <Heading level="h3" text={title ? title : 'title'} className="fontStyle-2xl break-words" />
+        <Heading
+          heading_text={heading_text ? heading_text : 'title'}
+          heading_level={heading_level}
+          heading_size={heading_size}
+          heading_alignment={heading_alignment}
+          className="fontStyle-2xl break-words"
+        />
         <div className="mt-2" dangerouslySetInnerHTML={{__html: body}} />
       </div>
     </div>

@@ -96,7 +96,7 @@ export const PopUpNavItem = ({
   return (
     <div className={cn(wrapperClasses, className)} aria-labelledby={labelId} {...rest}>
       {type === 'header' ? (
-        <Heading id={labelId} level="h3" text={label} className={cn(linkClasses)} />
+        <Heading id={labelId} heading_text={label} heading_level="h3" heading_size="h3" className={cn(linkClasses)} />
       ) : href ? (
         <a id={labelId} target={target} className={cn(linkClasses)} href={href} dangerouslySetInnerHTML={{__html: label}} />
       ) : (

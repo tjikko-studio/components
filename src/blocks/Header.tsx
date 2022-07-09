@@ -1,13 +1,13 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {Heading} from '../blocks/Heading'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 
 export interface HeaderProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * text to display for heading
-   */
-  title: string
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
 
   /**
    * text to display for paragraph
@@ -18,28 +18,42 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement> {
    * Styles
    */
   headerType?: 'hero' | 'section_big' | 'section_small'
-  headerAlign?: 'left' | 'center' | 'right'
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Header = ({title = '', subtitle = '', className = '', headerType = 'section_big', headerAlign = 'left'}: HeaderProps) => {
-  const titleTag = headerType === 'hero' ? 'h1' : 'h2'
-  const [titleClasses, subtitleClasses] =
+export const Header = ({
+  headerType = 'section_big',
+  heading_text,
+  heading_level = 'h2',
+  heading_size = 'h3',
+  heading_alignment = 'left',
+  subtitle = '',
+  className = ''
+}: HeaderProps) => {
+  if (heading_alignment === '') {
+    heading_alignment = 'left'
+  }
+  const subtitleClasses =
     headerType === 'hero'
-      ? ['fontStyle-5xl sm:fontStyle-7xl', 'fontStyle-lg font-display font-medium sm:fontStyle-2xl mt-3']
+      ? 'fontStyle-lg font-display font-medium sm:fontStyle-2xl mt-3'
       : headerType === 'section_big'
-      ? ['fontStyle-4xl sm:fontStyle-5xl', 'fontStyle-lg uppercase mt-1.5']
+      ? 'fontStyle-lg uppercase mt-1.5'
       : headerType === 'section_small'
-      ? ['fontStyle-3xl sm:fontStyle-4xl', 'fontStyle-base mt-2']
-      : ['', '']
+      ? 'fontStyle-base mt-2'
+      : ''
 
-  const finalAlignment = headerAlign === 'center' ? 'text-center' : headerAlign === 'right' ? 'text-right' : ''
+  const finalAlignment = heading_alignment === 'center' ? 'text-center' : heading_alignment === 'right' ? 'text-right' : ''
 
   return (
     <header className={cn('w-full', {'text-shadow-xl': headerType === 'hero'}, finalAlignment, className)}>
-      <Heading level={titleTag} text={title} className={titleClasses} alignment={headerAlign} />
+      <Heading
+        heading_text={heading_text}
+        heading_level={heading_level}
+        heading_size={heading_size}
+        heading_alignment={heading_alignment}
+      />
       {subtitle && <span className={subtitleClasses} dangerouslySetInnerHTML={{__html: subtitle}} />}
     </header>
   )

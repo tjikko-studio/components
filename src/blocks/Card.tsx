@@ -3,36 +3,31 @@ import cn from 'classnames'
 
 import lightOrDark from '../../utilities/lightOrDark'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
-import {Heading} from '../blocks/Heading'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
 import {ImageProps, Media} from '../parts/Media'
 
+export type CardLayout = 'horizontal' | 'vertical'
+
+export type CardImagePosition = 'left' | 'right'
+export type CardImage = ImageProps | null
+
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * default/horizontal (left to right) or vertical (image above)
-   */
-  layout?: 'horizontal' | 'vertical'
-
-  /**
-   * Image Position
-   */
-  imagePosition?: 'left' | 'right'
-
-  /**
-   * text to display for heading
-   */
-  title?: string
-
-  /**
-   * text to display for paragraph
-   */
+  layout?: CardLayout
+  imagePosition?: CardImagePosition
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
   body?: string
+  image?: CardImage
+  buttons?: ButtonProps[]
+  hasBackground?: boolean
+  bgColor?: string
+  isElevated?: boolean
+  fullHeight?: boolean
 
-  /**
-   *  Block image
-   */
-  image?: ImageProps | null
-
+  allowRoundedCorners?: boolean
   /**
    *  Video properties
    */
@@ -40,34 +35,8 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   muted?: boolean
   controls?: boolean
   loop?: boolean
-
-  /**
-   *  Block buttons list
-   */
-  buttons?: ButtonProps[]
-
-  /**
-   * Background color
-   */
-  hasBackground?: boolean
-  bgColor?: string
-
-  /**
-   * Is elevated (Will have a drop shadow)
-   */
-  isElevated?: boolean
-
-  /**
-   * Height of the card
-   */
-  fullHeight?: boolean
-
-  allowRoundedCorners?: boolean
 }
 
-/**
- * Primary UI component for user interaction
- */
 // eslint-disable-next-line complexity
 export const Card = ({
   layout = 'vertical',
@@ -77,7 +46,10 @@ export const Card = ({
   muted = true,
   controls = false,
   loop = true,
-  title = '',
+  heading_text,
+  heading_level = 'h3',
+  heading_size = 'h4',
+  heading_alignment,
   body = '',
   buttons = [],
   className = '',
@@ -87,6 +59,15 @@ export const Card = ({
   fullHeight = true,
   allowRoundedCorners = true
 }: CardProps) => {
+  if (heading_level === '') {
+    heading_level = 'h3'
+  }
+  if (heading_size === '') {
+    heading_size = 'h5'
+  }
+  if (heading_alignment === '') {
+    heading_alignment = 'left'
+  }
   const bgColorOutput = !hasBackground ? '' : bgColor ? bgColor : '#f3f4f6'
   const theme = lightOrDark(bgColorOutput)
   const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
@@ -106,7 +87,7 @@ export const Card = ({
         {'shadow-2xl': isElevated && hasBackground},
         className
       )}
-      style={{backgroundColor: title || body ? bgColorOutput : 'transparent'}}
+      style={{backgroundColor: heading_text || body ? bgColorOutput : 'transparent'}}
     >
       {image && (
         <Media
@@ -135,9 +116,15 @@ export const Card = ({
           {'xl:pl-0': image && imagePosition === 'left' && layout === 'horizontal'}
         )}
       >
-        {(title || body) && (
+        {(heading_text || body) && (
           <div>
-            <Heading level="h3" text={title} className={cn('fontStyle-2xl', colorClass)} />
+            <Heading
+              heading_text={heading_text}
+              heading_level={heading_level}
+              heading_size={heading_size}
+              heading_alignment={heading_alignment}
+              className={cn(colorClass)}
+            />
             <div className={cn('mt-3', pColorClass)} dangerouslySetInnerHTML={{__html: body}} />
           </div>
         )}

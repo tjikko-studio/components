@@ -263,6 +263,7 @@ export const SiteNav = ({
                                     listNavContent={locales.content}
                                     dropdownRight={isLast}
                                     theme={theme}
+                                    popup="elevated"
                                   />
                                 )
                               }

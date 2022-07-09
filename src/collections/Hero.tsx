@@ -179,7 +179,6 @@ export const Hero = ({
               return toComponent(block, {
                 Heading: () => {
                   return {
-                    level: 'h1',
                     id: HeroHeadingId
                   }
                 }

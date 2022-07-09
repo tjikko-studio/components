@@ -7,12 +7,16 @@ import makeRandomId from '../../utilities/makeRandomId'
 import {Button} from '../Button'
 import {Input} from '../form/Input'
 import {TextArea} from '../form/TextArea'
+import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from './Heading'
 
 export interface CalendlyProps {
   username: string
   duration: string
   bgColor?: string
-  title?: string
+  heading_text?: string
+  heading_level?: HeadingLevel
+  heading_size?: HeadingSize
+  heading_alignment?: HeadingAlignment
   body?: string
   locale?: string
 }
@@ -35,7 +39,17 @@ const Cell = ({children}: PropsWithChildren<{}>) => {
 
 const requiredMark = `<sup class="text-red-600">*</sup>`
 
-export const Calendly = ({title, body, bgColor, username, duration, locale}: CalendlyProps) => {
+export const Calendly = ({
+  heading_text,
+  heading_level,
+  heading_size,
+  heading_alignment,
+  body,
+  bgColor,
+  username,
+  duration,
+  locale
+}: CalendlyProps) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const emailRef = useRef(null)
   const nameRef = useRef(null)
@@ -68,9 +82,17 @@ export const Calendly = ({title, body, bgColor, username, duration, locale}: Cal
       onSubmit={onSubmit}
       aria-labelledby={headingId}
     >
-      {title || body ? (
+      {heading_text || body ? (
         <div className="flex flex-col gap-3">
-          {title && <h3 id={headingId} className="fontStyle-4xl" dangerouslySetInnerHTML={{__html: title}} />}
+          {heading_text && (
+            <Heading
+              id={headingId}
+              heading_text={heading_text}
+              heading_level={heading_level}
+              heading_size={heading_size}
+              heading_alignment={heading_alignment}
+            />
+          )}
           {body && <div className="my-0" dangerouslySetInnerHTML={{__html: body}} />}
         </div>
       ) : null}

@@ -1,13 +1,9 @@
-# Dev build files
+# Build files
 index.js
 index.js.LICENSE.txt
 styles.js
 assets/app.css
 /build/
-
-# Prod build files
-assets/app.css
-
 
 # Added by A2Hosting.com
 /public/
