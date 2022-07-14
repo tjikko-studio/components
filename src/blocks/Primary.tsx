@@ -4,7 +4,7 @@ import cn from 'classnames'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
-import {ImageProps, Media} from '../parts/Media'
+import {ImageProps, Media, VideoProps} from '../parts/Media'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -21,18 +21,27 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
 
   textPositionHorizontal?: 'left' | 'center' | 'right' | 'justify'
 
+  media_type?: 'image' | 'video' | ''
   /**
    *  Block image
    */
-  image?: ImageProps | null
+  image?: ImageProps
 
   /**
    *  Video properties
    */
-  autoplay?: boolean
+  video?: VideoProps
+  auto_play?: boolean
   muted?: boolean
   controls?: boolean
   loop?: boolean
+  is_youtube?: boolean
+  youtube_url?: string
+  ratio?: string
+  height?: string
+  rounded?: boolean
+  align?: string
+  mobile_ignore_align?: boolean
 
   heading_text?: string
   heading_level?: HeadingLevel
@@ -58,11 +67,17 @@ export const Primary = ({
   imagePosition = 'auto',
   textPositionVertical = 'center',
   textPositionHorizontal = 'left',
+  media_type,
   image = null,
-  autoplay = true,
+  video = null,
+  is_youtube,
+  youtube_url,
+  auto_play = true,
   muted = true,
   controls = false,
   loop = true,
+  rounded = false,
+  height,
   heading_text,
   heading_level = 'h3',
   heading_size = 'h3',
@@ -83,16 +98,20 @@ export const Primary = ({
       {(finalLayout === 'default' || finalLayout === 'vertical') && (
         <>
           <Media
-            media={image}
-            autoplay={autoplay}
+            media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
+            autoplay={auto_play}
             muted={muted}
             controls={controls}
             loop={loop}
             className={cn('rounded-lg shadow-2xl', {
               'lg:col-start-2 lg:row-start-1': imagePosition === 'right' && finalLayout === 'default',
-              'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default'
+              'lg:col-start-1': imagePosition === 'left' && finalLayout === 'default',
+              'rounded-lg': rounded
             })}
             ratio="16/9"
+            style={{
+              height: !height || height === '' ? 'unset' : height
+            }}
           />
           <div
             className={cn(

@@ -128,16 +128,43 @@ export const MediaVideo = ({
   )
 }
 
-export const YouTubeEmbed = ({url}: MediaProps) => {
+export interface YouTubeEmbedProps extends GenericMediaProps {
+  url?: string
+  ratio?: string
+  autoplay?: boolean
+  loop?: boolean
+  muted?: boolean
+  controls?: boolean
+}
+
+export const YouTubeEmbed = ({url, ratio, autoplay, loop, muted, controls, fit, style, className}: YouTubeEmbedProps) => {
+  if (!ratio || ratio === '') {
+    ratio = 'unset'
+  }
+  const allowed = ['accelerometer', 'clipboard-write', 'encrypted-media', 'gyroscope', 'picture-in-picture']
+  const query = new URLSearchParams({rel: '0', modestbranding: '1'})
+  query.set('controls', controls === false ? '0' : '1')
+  if (autoplay) {
+    allowed.push('autoplay')
+    query.set('autoplay', '1')
+  }
+  if (muted) {
+    query.set('mute', '1')
+  }
+  if (loop) {
+    query.set('loop', '1')
+  }
   return (
     <iframe
-      width="100%"
+      width={ratio !== 'unset' ? '' : '100%'}
       height="100%"
-      src={url}
-      title="YouTube video player"
+      src={`${url}?${query.toString()}`}
+      title="Video"
       frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow={allowed.join('; ')}
       allowFullScreen
+      className={cn(className, ratio !== 'unset' && `ratio-${ratio}`)}
+      style={style}
     ></iframe>
   )
 }
@@ -190,7 +217,17 @@ export const Media = ({
         style={style}
       />
     ) : media.type === 'youtube' ? (
-      <YouTubeEmbed key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
+      <YouTubeEmbed
+        key={media.url}
+        {...media}
+        ratio={ratio}
+        autoplay={autoplay}
+        loop={loop}
+        muted={muted}
+        controls={controls}
+        className={cn(className, mediaClasses)}
+        style={style}
+      />
     ) : (
       <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
     )
