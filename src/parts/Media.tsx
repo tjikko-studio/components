@@ -41,7 +41,7 @@ export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', i
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
           className={cn(
-            'h-full',
+            'h-fit max-h-full',
             ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
             fit ? 'w-auto' : 'min-w-full',
             mediaClasses
@@ -128,6 +128,47 @@ export const MediaVideo = ({
   )
 }
 
+export interface YouTubeEmbedProps extends GenericMediaProps {
+  url?: string
+  ratio?: string
+  autoplay?: boolean
+  loop?: boolean
+  muted?: boolean
+  controls?: boolean
+}
+
+export const YouTubeEmbed = ({url, ratio, autoplay, loop, muted, controls, fit, style, className}: YouTubeEmbedProps) => {
+  if (!ratio || ratio === '') {
+    ratio = 'unset'
+  }
+  const allowed = ['accelerometer', 'clipboard-write', 'encrypted-media', 'gyroscope', 'picture-in-picture']
+  const query = new URLSearchParams({rel: '0', modestbranding: '1'})
+  query.set('controls', controls === false ? '0' : '1')
+  if (autoplay) {
+    allowed.push('autoplay')
+    query.set('autoplay', '1')
+  }
+  if (muted) {
+    query.set('mute', '1')
+  }
+  if (loop) {
+    query.set('loop', '1')
+  }
+  return (
+    <iframe
+      width={ratio !== 'unset' ? '' : '100%'}
+      height="100%"
+      src={`${url}?${query.toString()}`}
+      title="Video"
+      frameBorder="0"
+      allow={allowed.join('; ')}
+      allowFullScreen
+      className={cn(className, ratio !== 'unset' && `ratio-${ratio}`)}
+      style={style}
+    ></iframe>
+  )
+}
+
 export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Received media (It can be an image or a video)
@@ -173,6 +214,18 @@ export const Media = ({
         className={className}
         mediaClasses={mediaClasses}
         fit={fit}
+        style={style}
+      />
+    ) : media.type === 'youtube' ? (
+      <YouTubeEmbed
+        key={media.url}
+        {...media}
+        ratio={ratio}
+        autoplay={autoplay}
+        loop={loop}
+        muted={muted}
+        controls={controls}
+        className={cn(className, mediaClasses)}
         style={style}
       />
     ) : (
