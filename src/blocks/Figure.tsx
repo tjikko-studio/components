@@ -44,29 +44,27 @@ export const Figure = (props: FigureProps) => {
   } = props
   const alignment = !align || align === '' ? 'center' : align
   return (
-    <div>
-      <Media
-        media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
-        autoplay={auto_play}
-        muted={muted}
-        controls={controls}
-        loop={loop}
-        className={cn(className, (media_type === 'video' && !is_youtube) || media_type === 'image' ? 'max-w-full max-h-full' : 'w-full', {
-          'mr-auto': alignment === 'left',
-          'mr-auto sm:mr-0': mobile_ignore_align,
-          'mx-auto': alignment === 'center' && !mobile_ignore_align,
-          'sm:mx-auto': alignment === 'center' && mobile_ignore_align,
-          'ml-auto': alignment === 'right' && !mobile_ignore_align,
-          'sm:ml-auto': alignment === 'right' && mobile_ignore_align,
-          'm-4': padding,
-          'rounded-lg': rounded
-        })}
-        ratio={ratio}
-        fit={fit}
-        style={{
-          height: !height || height === '' ? 'unset' : height
-        }}
-      />
-    </div>
+    <Media
+      media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
+      autoplay={auto_play}
+      muted={muted}
+      controls={controls}
+      loop={loop}
+      className={cn(className, (media_type === 'video' && !is_youtube) || media_type === 'image' ? 'max-w-full max-h-full' : 'w-full', {
+        'mr-auto': alignment === 'left',
+        'mr-auto sm:mr-0': mobile_ignore_align,
+        'mx-auto': alignment === 'center' && !mobile_ignore_align,
+        'sm:mx-auto': alignment === 'center' && mobile_ignore_align,
+        'ml-auto': alignment === 'right' && !mobile_ignore_align,
+        'sm:ml-auto': alignment === 'right' && mobile_ignore_align,
+        'm-4': padding,
+        'rounded-lg': rounded
+      })}
+      ratio={ratio}
+      fit={fit}
+      style={{
+        height: !height || height === '' ? 'unset' : height
+      }}
+    />
   )
 }
