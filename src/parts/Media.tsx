@@ -41,7 +41,7 @@ export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', i
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
           className={cn(
-            'h-full',
+            'h-fit max-h-full',
             ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
             fit ? 'w-auto' : 'min-w-full',
             mediaClasses
