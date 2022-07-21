@@ -6,6 +6,8 @@ import {Media, MediaProps, VideoProps} from '../parts/Media'
 export interface FigureProps extends HTMLAttributes<HTMLDivElement> {
   media_type?: 'image' | 'video' | ''
   image?: MediaProps
+  is_youtube?: boolean
+  youtube_url?: string
   video?: VideoProps
   auto_play?: boolean
   muted?: boolean
@@ -24,6 +26,8 @@ export const Figure = (props: FigureProps) => {
   const {
     media_type,
     image,
+    is_youtube,
+    youtube_url,
     video,
     auto_play,
     controls,
@@ -41,12 +45,12 @@ export const Figure = (props: FigureProps) => {
   const alignment = !align || align === '' ? 'center' : align
   return (
     <Media
-      media={media_type === 'video' ? video : image}
+      media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
       autoplay={auto_play}
       muted={muted}
       controls={controls}
       loop={loop}
-      className={cn(className, 'max-w-full', 'max-h-full', {
+      className={cn(className, (media_type === 'video' && !is_youtube) || media_type === 'image' ? 'max-w-full max-h-full' : 'w-full', {
         'mr-auto': alignment === 'left',
         'mr-auto sm:mr-0': mobile_ignore_align,
         'mx-auto': alignment === 'center' && !mobile_ignore_align,
