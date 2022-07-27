@@ -193,7 +193,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    */
   media?: MediaProps | VideoProps
   image_srcset?: string
-  image_small?: string
+  image_srcset_medium?: string
   bgImageSrcSet?: string
   bg_image_srcset?: string
   bgVideoFallbackSrcSet?: string
@@ -210,7 +210,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 export const Media = ({
   media,
   image_srcset,
-  image_small,
+  image_srcset_medium,
   autoplay = true,
   muted = true,
   controls = false,
