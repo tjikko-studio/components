@@ -44,17 +44,13 @@ export const MediaImage = ({
   style
 }: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
+  const srcSetSize = image_srcset ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw' : ''
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
           srcSet={image_srcset ? image_srcset : ''}
-          sizes=" 
-            (min-width: 768w) 768px, 
-            (min-width: 1024w) 1024px, 
-            (min-width: 1440w) 1440px, 
-            100vw
-          "
+          sizes={srcSetSize}
           loading="lazy"
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
