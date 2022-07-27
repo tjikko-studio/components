@@ -6,7 +6,7 @@ import {ImageProps, Media} from '../parts/Media'
 
 export interface ClientProps {
   image: ImageProps
-  image_srcset?: string
+  image_srcset_small?: string
   company: string
 }
 
@@ -63,10 +63,10 @@ export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale
   const LogosList = () => {
     return (
       <div className={cn(wrapperClass)}>
-        {content.map(({image, company}) => {
+        {content.map(({image, image_srcset_small, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <Media media={image} className={cn(logoClass)} mediaClasses={cn({'filter grayscale': logosGrayscale})} fit />
+              <Media media={image} image_srcset={image_srcset_small} className={cn(logoClass)} mediaClasses={cn({'filter grayscale': logosGrayscale})} fit />
             </div>
           )
         })}
