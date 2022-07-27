@@ -66,7 +66,7 @@ function moveElement<T>(arr: T[], idx: number, pos: 'start' | 'end'): T[] {
  */
 export const SiteNav = ({
   logo,
-  image_srcset_small,
+  srcset_small,
   homeLink = null,
   menuData = [],
   styles = 'opaque',
@@ -99,7 +99,7 @@ export const SiteNav = ({
               ])}
             >
               <a className="flex-auto" href={homeLink} aria-label="Back to Homepage">
-                <Media media={logo} image_srcset={image_srcset_small} className="h-3 lg:h-4 w-auto" fit />
+                <Media media={logo} srcset={srcset_small} className="h-3 lg:h-4 w-auto" fit />
               </a>
               {columns.length &&
                 columns.map(({content, id: columnId}) => {
@@ -185,7 +185,7 @@ export const SiteNav = ({
       <div className={cn(['flex', 'xl:hidden', 'flex-col', 'bg-gray-900', 'text-gray-50', 'gap-y-8', 'px-4', menuOpened && 'pb-4'])}>
         <div className="flex justify-between items-center h-16">
           <a className="flex-auto" href={homeLink}>
-            {logo ? <Media media={logo} image_srcset={image_srcset_small} className="h-3 lg:h-4 w-auto" fit /> : null}
+            {logo ? <Media media={logo} srcset={srcset_small} className="h-3 lg:h-4 w-auto" fit /> : null}
           </a>
           <button
             aria-label={openMenuText}

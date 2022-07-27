@@ -17,7 +17,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    *  image url to show
    */
   image?: ImageProps | null
-  image_srcset_small?: string
+  srcset_small?: string
 
   heading_text?: string
   heading_level?: HeadingLevel
@@ -36,7 +36,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 export const Icon = ({
   layout = 'horizontal',
   image = null,
-  image_srcset_small = null,
+  srcset_small = null,
   heading_text = '',
   heading_level = 'h3',
   heading_size,
@@ -50,7 +50,7 @@ export const Icon = ({
   return (
     <div className={cn('flex flex-col gap-6', {'sm:flex-row': layout === 'horizontal'}, className)}>
       <div className={cn('flex-shrink-0 w-32')}>
-        <Media media={image} image_srcset={image_srcset_small} className={'w-32 h-32'} />
+        <Media media={image} srcset={srcset_small} className={'w-32 h-32'} />
       </div>
       <div>
         <Heading

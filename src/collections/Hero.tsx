@@ -20,7 +20,7 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgColor?: string
   bgType?: 'image' | 'video' | ''
   bgImage?: ImageProps
-  bg_image_srcset?: string
+  bg_srcset?: string
   bgVideo?: ImageProps
   bgVideoFallback?: ImageProps
   bg_video_fallback_srcset?: string
@@ -77,7 +77,7 @@ export const Hero = ({
   bgColor = 'transparent',
   bgType = '',
   bgImage = {},
-  bg_image_srcset = null,
+  bg_srcset = null,
   bgVideo = {},
   bgVideoFallback = {},
   bg_video_fallback_srcset = null,
@@ -99,7 +99,7 @@ export const Hero = ({
   const horPos = getHorPos(horPosVal)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
   const bgImageSrcOutput =
-    bgType === 'image' && bgImage ? bg_image_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
+    bgType === 'image' && bgImage ? bg_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
   return (

@@ -31,25 +31,14 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({
-  image_srcset,
-  id,
-  url,
-  ratio,
-  mediaClasses,
-  className,
-  alt = '',
-  info = '',
-  fit = false,
-  style
-}: ImageProps) => {
+export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
-  const srcSetSize = image_srcset ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw' : ''
+  const srcSetSize = srcset ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
-          srcSet={image_srcset ? image_srcset : ''}
+          srcSet={srcset ? srcset : ''}
           sizes={srcSetSize}
           loading="lazy"
           src={url}
@@ -188,12 +177,9 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    * Received media (It can be an image or a video)
    */
   media?: MediaProps | VideoProps
-  image_srcset?: string
-  image_srcset_medium?: string
+  srcset?: string
   bgImageSrcSet?: string
-  bg_image_srcset?: string
   bgVideoFallbackSrcSet?: string
-  bg_video_fallback_srcset?: string
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -205,8 +191,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Media = ({
   media,
-  image_srcset,
-  image_srcset_medium,
+  srcset,z
   autoplay = true,
   muted = true,
   controls = false,
@@ -254,7 +239,7 @@ export const Media = ({
       <MediaImage
         key={media.url}
         {...media}
-        image_srcset={image_srcset}
+        srcset={srcset}
         ratio={ratio}
         className={className}
         fit={fit}
