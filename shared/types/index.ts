@@ -20,7 +20,10 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
     license?: string
     link?: string
   }
+  srcset?: string
   image_srcset?: string
+  image_srcset_medium?: string
+  image_srcset_small?: string
   info?: string
   className?: string
   ratio?: string
@@ -112,6 +115,8 @@ export interface CollectionItem {
   title?: string
   description?: string
   images?: ImageProps[]
+  image_srcset_medium?: string
+  image_srcset_small?: string
   video?: ImageProps[]
   category?: string
   filteredOut?: boolean

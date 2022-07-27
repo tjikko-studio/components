@@ -201,7 +201,7 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                           case 'NavigationLogo':
                                             return innerContent ? (
                                               <a href={homeLink}>
-                                                <Media media={innerContent?.image ? innerContent.image : null} className="h-8 w-auto" fit />
+                                                <Media media={innerContent?.image ? innerContent.image : null} image_srcset={innerContent.image.srcset} className="h-8 w-auto" fit />
                                               </a>
                                             ) : null
                                           default:
