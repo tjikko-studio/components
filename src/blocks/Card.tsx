@@ -21,6 +21,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   heading_alignment?: HeadingAlignment
   body?: string
   image?: CardImage
+  image_small?: string
   buttons?: ButtonProps[]
   hasBackground?: boolean
   bgColor?: string
@@ -42,6 +43,7 @@ export const Card = ({
   layout = 'vertical',
   imagePosition = 'left',
   image = null,
+  image_small = null,
   autoplay = true,
   muted = true,
   controls = false,
@@ -72,7 +74,6 @@ export const Card = ({
   const theme = lightOrDark(bgColorOutput)
   const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
   const pColorClass = theme === 'dark' ? 'text-gray-400' : 'text-gray-900'
-
   if (Array.isArray(image)) {
     image = image[0]
   }
@@ -92,6 +93,7 @@ export const Card = ({
       {image && (
         <Media
           media={image}
+          image_srcset={image_small}
           autoplay={autoplay}
           muted={muted}
           controls={controls}

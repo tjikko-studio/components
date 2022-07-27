@@ -11,6 +11,7 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
    * avatar to display on Testimonial
    */
   image?: ImageProps
+  image_srcset?: string
   /**
    * customer name to display on Testimonial
    */
@@ -20,14 +21,14 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Testimonial = ({body = '', image = {}, title = ''}: TestimonialProps) => {
+export const Testimonial = ({body = '', image = {}, image_srcset = null, title = ''}: TestimonialProps) => {
   if (Array.isArray(image)) {
     image = image[0]
   }
   return (
     <div className="flex flex-col items-center">
       <div className="fontStyle-lg italic text-center" dangerouslySetInnerHTML={{__html: body}} />
-      <Media media={image} className="w-28 h-28 mxl:x-auto rounded-full mt-4" ratio="1/1" />
+      <Media media={image} image_srcset={image_srcset} className="w-28 h-28 mxl:x-auto rounded-full mt-4" ratio="1/1" />
       <span className="fontStyle-xs uppercase text-center mt-6" dangerouslySetInnerHTML={{__html: title}} />
     </div>
   )

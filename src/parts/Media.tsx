@@ -31,12 +31,30 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
+export const MediaImage = ({
+  image_srcset,
+  id,
+  url,
+  ratio,
+  mediaClasses,
+  className,
+  alt = '',
+  info = '',
+  fit = false,
+  style
+}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
+          srcSet={image_srcset ? image_srcset : ''}
+          sizes=" 
+            (min-width: 768w) 768px, 
+            (min-width: 1024w) 1024px, 
+            (min-width: 1440w) 1440px, 
+            100vw
+          "
           loading="lazy"
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
@@ -174,6 +192,12 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    * Received media (It can be an image or a video)
    */
   media?: MediaProps | VideoProps
+  image_srcset?: string
+  image_small?: string
+  bgImageSrcSet?: string
+  bg_image_srcset?: string
+  bgVideoFallbackSrcSet?: string
+  bg_video_fallback_srcset?: string
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -185,6 +209,8 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Media = ({
   media,
+  image_srcset,
+  image_small,
   autoplay = true,
   muted = true,
   controls = false,
@@ -229,7 +255,16 @@ export const Media = ({
         style={style}
       />
     ) : (
-      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
+      <MediaImage
+        key={media.url}
+        {...media}
+        image_srcset={image_srcset}
+        ratio={ratio}
+        className={className}
+        fit={fit}
+        mediaClasses={mediaClasses}
+        style={style}
+      />
     )
   }
   return (

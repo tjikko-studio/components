@@ -21,7 +21,9 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgType?: 'image' | 'video' | ''
   bgImage?: ImageProps
   bgVideo?: ImageProps
+  bgImageSrcSet?: string
   bgVideoFallback?: ImageProps
+  bgVideoFallbackSrcSet?: string
 
   /**
    * Content Position
@@ -68,6 +70,7 @@ const getVerPos = (value: string) => {
 const DEFAULT_TEXT_COLOR = 'gray-900'
 const DEFAULT_DARK_TEXT_COLOR = 'gray-50'
 
+// eslint-disable-next-line complexity
 export const Hero = ({
   textColor = DEFAULT_TEXT_COLOR,
   darkTextColor = DEFAULT_DARK_TEXT_COLOR,
@@ -93,6 +96,12 @@ export const Hero = ({
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
+  const bgImageSrcOutput =
+    bgType === 'image' && bgImage
+      ? bgImage.image.cards.srcset
+      : bgType === 'video' && bgVideoFallback
+      ? bgVideoFallback.image.cards.srcset
+      : ''
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
   return (
@@ -103,9 +112,16 @@ export const Hero = ({
         theme ? theme : 'dark',
         className
       )}
-      style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
+      style={{backgroundColor: bgColor}}
       aria-labelledby={HeroHeadingId}
     >
+      <img
+        alt=""
+        srcSet={bgImageSrcOutput}
+        sizes="100vw"
+        src={bgImageOutput}
+        className="absolute z-0 w-full h-full top-0 left-0 object-cover"
+      />
       {bgType === 'video' && (
         <figure>
           <video
@@ -113,7 +129,7 @@ export const Hero = ({
             autoPlay
             muted
             loop
-            className={cn(['absolute', 'z-0', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
+            className={cn(['absolute', 'z-1', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
             aria-label="Background video"
           >
             <source src={bgVideo.url} type="video/mp4" />
@@ -127,7 +143,7 @@ export const Hero = ({
             aria-hidden="true"
             className={cn([
               'absolute',
-              'z-1',
+              'z-3',
               'h-2/6',
               '-top-1/6',
               'left-0',
@@ -142,7 +158,7 @@ export const Hero = ({
             aria-hidden="true"
             className={cn([
               'absolute',
-              'z-1',
+              'z-3',
               'h-full',
               '-bottom-1/6',
               'left-0',

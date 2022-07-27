@@ -6,6 +6,7 @@ import {ImageProps, Media} from '../parts/Media'
 
 export interface ClientProps {
   image: ImageProps
+  image_srcset?: string
   company: string
 }
 
