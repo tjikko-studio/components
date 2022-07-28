@@ -13,17 +13,11 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
     ratio: number
     orientation: string
   }
-  content?: {
-    alt?: string
-    caption?: string
-    creator?: string
-    license?: string
-    link?: string
-  }
+  image_infos?: InfoProps
+  info?: InfoProps
   srcset?: string
   srcset_medium?: string
   srcset_small?: string
-  info?: string
   className?: string
   ratio?: string
   fit?: boolean
@@ -31,6 +25,14 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export type ImageProps = MediaProps
+
+export interface InfoProps {
+  alt?: string
+  caption?: string
+  creator?: string
+  license?: string
+  link?: string
+}
 
 export interface BlockProps {
   id: string

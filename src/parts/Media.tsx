@@ -4,13 +4,12 @@ import cn from 'classnames'
 import MediaIcon from '/assets/icons/media-image.svg'
 import PlayIcon from '/assets/icons/play.svg'
 
-import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
-
-import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
+import {ImageProps as SharedImageProps, InfoProps as SharedInfoProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
 export type ImageProps = SharedImageProps
 export type MediaProps = SharedMediaProps
 export type GalleryProps = VideoProps
+export type InfoProps = SharedInfoProps
 
 export const FigCaption = ({video = false, playing = false, caption = ''}: {video?: boolean; playing?: boolean; caption: string}) => {
   const shared = [
@@ -31,8 +30,7 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
-  const parsedInfos = info ? JSON.parse(info) : null
+export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, info = null, alt, fit = false, style}: ImageProps) => {
   const srcSetSize = srcset ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
@@ -42,7 +40,7 @@ export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, alt
           sizes={srcSetSize}
           loading="lazy"
           src={url}
-          alt={alt && alt !== '' ? alt : parsedInfos?.alt}
+          alt={info?.alt ? info.alt : alt ? alt : ''}
           className={cn(
             'h-fit max-h-full',
             ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
@@ -51,7 +49,7 @@ export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, alt
           )}
         />
       )}
-      {parsedInfos?.caption && <FigCaption caption={parsedInfos?.caption} />}
+      {info?.caption && <FigCaption caption={info?.caption} />}
     </figure>
   )
 }
@@ -74,12 +72,11 @@ export const MediaVideo = ({
   ratio,
   className,
   mediaClasses,
-  info = '',
   fit,
+  info,
+  alt,
   style
 }: VideoProps) => {
-  const parsedInfos = nonThrowingJsonParse(info)
-
   const videoRef = useRef(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
 
@@ -124,9 +121,9 @@ export const MediaVideo = ({
         className={cn('h-full', ratio && 'object-cover', fit ? 'w-auto' : 'w-full', mediaClasses)}
       >
         <source src={url} type={`video/${extension ? extension : 'mp4'}`} />
-        <meta itemProp="description" content={parsedInfos?.alt} />
+        <meta itemProp="description" content={info?.alt ? info.alt : alt ? alt : ''} />
       </video>
-      {parsedInfos?.caption && <FigCaption video playing={videoPlaying} caption={parsedInfos?.caption} />}
+      {info?.caption && <FigCaption video playing={videoPlaying} caption={info?.caption} />}
     </figure>
   )
 }
@@ -178,6 +175,8 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    */
   media?: MediaProps | VideoProps
   srcset?: string
+  info?: InfoProps
+  alt?: string
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -190,6 +189,8 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 export const Media = ({
   media,
   srcset,
+  info = null,
+  alt = null,
   autoplay = true,
   muted = true,
   controls = false,
@@ -212,6 +213,8 @@ export const Media = ({
         key={media.url}
         {...media}
         autoplay={autoplay}
+        info={info}
+        alt={alt}
         muted={muted}
         controls={controls}
         loop={loop}
@@ -238,6 +241,8 @@ export const Media = ({
         key={media.url}
         {...media}
         srcset={srcset}
+        info={info}
+        alt={alt}
         ratio={ratio}
         className={className}
         fit={fit}

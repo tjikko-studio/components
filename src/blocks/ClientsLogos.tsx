@@ -2,11 +2,12 @@ import React, {HTMLAttributes, useEffect, useState} from 'react'
 import Marquee from 'react-fast-marquee'
 import cn from 'classnames'
 
-import {ImageProps, Media} from '../parts/Media'
+import {ImageProps, InfoProps, Media} from '../parts/Media'
 
 export interface ClientProps {
   image: ImageProps
   srcset_small?: string
+  image_infos?: InfoProps
   company: string
 }
 
@@ -63,11 +64,12 @@ export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale
   const LogosList = () => {
     return (
       <div className={cn(wrapperClass)}>
-        {content.map(({image, srcset_small, company}) => {
+        {content.map(({image, image_infos, srcset_small, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
               <Media
                 media={image}
+                info={image_infos}
                 srcset={srcset_small}
                 className={cn(logoClass)}
                 mediaClasses={cn({'filter grayscale': logosGrayscale})}

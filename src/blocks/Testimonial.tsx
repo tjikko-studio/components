@@ -1,6 +1,6 @@
 import React, {HTMLAttributes} from 'react'
 
-import {ImageProps, Media} from '../parts/Media'
+import {ImageProps, InfoProps, Media} from '../parts/Media'
 
 export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -11,6 +11,7 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
    * avatar to display on Testimonial
    */
   image?: ImageProps
+  image_infos?: InfoProps
   srcset_small?: string
   /**
    * customer name to display on Testimonial
@@ -21,14 +22,14 @@ export interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Primary UI component for user interaction
  */
-export const Testimonial = ({body = '', image = {}, srcset_small = null, title = ''}: TestimonialProps) => {
+export const Testimonial = ({body = '', image = {}, image_infos = null, srcset_small = null, title = ''}: TestimonialProps) => {
   if (Array.isArray(image)) {
     image = image[0]
   }
   return (
     <div className="flex flex-col items-center">
       <div className="fontStyle-lg italic text-center" dangerouslySetInnerHTML={{__html: body}} />
-      <Media media={image} srcset={srcset_small} className="w-28 h-28 mxl:x-auto rounded-full mt-4" ratio="1/1" />
+      <Media media={image} info={image_infos} srcset={srcset_small} className="w-28 h-28 mxl:x-auto rounded-full mt-4" ratio="1/1" />
       <span className="fontStyle-xs uppercase text-center mt-6" dangerouslySetInnerHTML={{__html: title}} />
     </div>
   )

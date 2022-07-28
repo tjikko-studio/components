@@ -1,11 +1,12 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {Media, MediaProps, VideoProps} from '../parts/Media'
+import {InfoProps, Media, MediaProps, VideoProps} from '../parts/Media'
 
 export interface FigureProps extends HTMLAttributes<HTMLDivElement> {
   media_type?: 'image' | 'video' | ''
   image?: MediaProps
+  image_infos?: InfoProps
   srcset?: string
   is_youtube?: boolean
   youtube_url?: string
@@ -28,6 +29,7 @@ export const Figure = (props: FigureProps) => {
     media_type,
     image,
     srcset,
+    image_infos,
     is_youtube,
     youtube_url,
     video,
@@ -49,6 +51,7 @@ export const Figure = (props: FigureProps) => {
     <Media
       media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
       srcset={srcset}
+      info={image_infos}
       autoplay={auto_play}
       muted={muted}
       controls={controls}

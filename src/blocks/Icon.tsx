@@ -2,7 +2,7 @@ import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
 import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
-import {ImageProps, Media} from '../parts/Media'
+import {ImageProps, InfoProps, Media} from '../parts/Media'
 
 /*
  * In production mode, show dynamic image and video with url
@@ -17,6 +17,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    *  image url to show
    */
   image?: ImageProps | null
+  image_infos?: InfoProps
   srcset_small?: string
 
   heading_text?: string
@@ -37,6 +38,7 @@ export const Icon = ({
   layout = 'horizontal',
   image = null,
   srcset_small = null,
+  image_infos = null,
   heading_text = '',
   heading_level = 'h3',
   heading_size,
@@ -50,7 +52,7 @@ export const Icon = ({
   return (
     <div className={cn('flex flex-col gap-6', {'sm:flex-row': layout === 'horizontal'}, className)}>
       <div className={cn('flex-shrink-0 w-32')}>
-        <Media media={image} srcset={srcset_small} className={'w-32 h-32'} />
+        <Media media={image} info={image_infos} srcset={srcset_small} className={'w-32 h-32'} />
       </div>
       <div>
         <Heading
