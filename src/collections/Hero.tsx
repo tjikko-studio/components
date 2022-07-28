@@ -102,6 +102,7 @@ export const Hero = ({
     bgType === 'image' && bgImage ? bg_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
+  const srcSetSize = bgImageSrcOutput ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw' : ''
   return (
     <header
       className={cn(
@@ -116,7 +117,7 @@ export const Hero = ({
       <img
         alt=""
         srcSet={bgImageSrcOutput}
-        sizes="100vw"
+        sizes={srcSetSize}
         src={bgImageOutput}
         className="absolute z-0 w-full h-full top-0 left-0 object-cover"
       />
