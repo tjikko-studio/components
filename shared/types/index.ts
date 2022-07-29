@@ -24,6 +24,7 @@ export interface MediaProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
   ratio?: string
   fit?: boolean
+  lazyLoading?: boolean
   mediaClasses?: string
 }
 

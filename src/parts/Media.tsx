@@ -31,17 +31,29 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
+export const MediaImage = ({
+  id,
+  url,
+  ratio,
+  mediaClasses,
+  className,
+  alt = '',
+  info = '',
+  fit = false,
+  lazyLoading = true,
+  style
+}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
+  const loading = lazyLoading ? 'lazy' : 'eager'
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
-          loading="lazy"
+          loading={loading}
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
           className={cn(
-            'h-fit max-h-full',
+            'h-fit-ios md:h-fit max-h-full',
             ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
             fit ? 'w-auto' : 'min-w-full',
             mediaClasses
@@ -174,6 +186,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    * Received media (It can be an image or a video)
    */
   media?: MediaProps | VideoProps
+  lazyLoading?: boolean
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -189,6 +202,7 @@ export const Media = ({
   muted = true,
   controls = false,
   loop = false,
+  lazyLoading,
   ratio = '',
   className,
   mediaClasses,
@@ -229,7 +243,16 @@ export const Media = ({
         style={style}
       />
     ) : (
-      <MediaImage key={media.url} {...media} ratio={ratio} className={className} fit={fit} mediaClasses={mediaClasses} style={style} />
+      <MediaImage
+        key={media.url}
+        {...media}
+        ratio={ratio}
+        lazyLoading={lazyLoading}
+        className={className}
+        fit={fit}
+        mediaClasses={mediaClasses}
+        style={style}
+      />
     )
   }
   return (

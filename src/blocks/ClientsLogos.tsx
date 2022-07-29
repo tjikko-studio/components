@@ -65,7 +65,13 @@ export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale
         {content.map(({image, company}) => {
           return (
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
-              <Media media={image} className={cn(logoClass)} mediaClasses={cn({'filter grayscale': logosGrayscale})} fit />
+              <Media
+                media={image}
+                className={cn(logoClass)}
+                mediaClasses={cn({'filter grayscale': logosGrayscale})}
+                lazyLoading={false}
+                fit
+              />
             </div>
           )
         })}
