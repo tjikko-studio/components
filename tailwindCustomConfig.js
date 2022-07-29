@@ -284,8 +284,15 @@ exports = function exports({theme, addBase, addUtilities}) {
     }
   }
 
+  const height = {
+    '.h-fit-ios': {
+      height: ['-webkit-fit-content', '-moz-fit-content', '-webkit-fill-available', 'fit-content']
+    }
+  }
+
   addBase(fontBase)
   addUtilities(fontStyles, ['responsive'])
   addUtilities(ratios, ['responsive'])
+  addUtilities(height, ['responsive'])
 }
 module.exports = exports
