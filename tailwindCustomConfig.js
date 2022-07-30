@@ -286,7 +286,7 @@ exports = function exports({theme, addBase, addUtilities}) {
 
   const height = {
     '.h-fit-ios': {
-      height: ['-webkit-fit-content', '-moz-fit-content', '-webkit-fill-available', 'fit-content']
+      height: ['-webkit-fit-content', '-moz-fit-content', 'fit-content', '-webkit-fill-available']
     }
   }
 
