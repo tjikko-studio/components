@@ -103,7 +103,6 @@ export const Hero = ({
     bgType === 'image' && bgImage
       ? nonThrowingJsonParse(bgImage?.info)
       : bgType === 'video' && bgVideoFallback && nonThrowingJsonParse(bgVideoFallback?.info)
-  console.log(bgVideoFallback?.info)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : null
   const srcSet = parsedImageInfos?.srcset ? parsedImageInfos.srcset.default : null
 
