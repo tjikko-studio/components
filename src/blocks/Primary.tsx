@@ -4,7 +4,7 @@ import cn from 'classnames'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
-import {ImageProps, InfoProps, Media, VideoProps} from '../parts/Media'
+import {ImageProps, Media, VideoProps} from '../parts/Media'
 
 export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -26,7 +26,6 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    *  Block image
    */
   image?: ImageProps
-  image_infos?: InfoProps
   srcset_medium?: string
 
   /**
@@ -71,7 +70,6 @@ export const Primary = ({
   textPositionHorizontal = 'left',
   media_type,
   image = null,
-  image_infos = null,
   srcset_medium = null,
   video = null,
   is_youtube,
@@ -103,7 +101,6 @@ export const Primary = ({
         <>
           <Media
             media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
-            info={image_infos}
             srcset={srcset_medium}
             autoplay={auto_play}
             muted={muted}

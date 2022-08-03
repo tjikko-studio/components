@@ -6,7 +6,7 @@ import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
 import makeRandomId from '../../utilities/makeRandomId'
-import {ImageProps, InfoProps} from '../parts/Media'
+import {ImageProps} from '../parts/Media'
 
 import {ColumnProps, ContentPosition} from '../../shared/types'
 
@@ -24,8 +24,6 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgVideo?: ImageProps
   bgVideoFallback?: ImageProps
   bg_video_fallback_srcset?: string
-  bg_infos?: InfoProps
-  bg_video_fallback_infos?: InfoProps
 
   /**
    * Content Position
@@ -83,8 +81,6 @@ export const Hero = ({
   bgVideo = {},
   bgVideoFallback = {},
   bg_video_fallback_srcset = null,
-  bg_infos = null,
-  bg_video_fallback_infos = null,
   contentPosition = 'bottom|left',
   heroHeight = 'h-80vh',
   content = [],
@@ -102,11 +98,10 @@ export const Hero = ({
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
   const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
-  const bgImageSrcOutput = bgType === 'image' && bgImage ? bg_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
+  const bgImageSrcOutput =
+    bgType === 'image' && bgImage ? bg_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
   const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
-  const bgImageAlt =
-    bgType === 'image' && bgImage ? bg_infos?.alt : bgType === 'video' && bgVideoFallback ? bg_video_fallback_infos?.alt : ''
   const srcSetSize = bgImageSrcOutput ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw' : ''
   return (
     <header
@@ -120,7 +115,7 @@ export const Hero = ({
       aria-labelledby={HeroHeadingId}
     >
       <img
-        alt={bgImageAlt}
+        alt=""
         srcSet={bgImageSrcOutput}
         sizes={srcSetSize}
         src={bgImageOutput}

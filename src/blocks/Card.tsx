@@ -5,7 +5,7 @@ import lightOrDark from '../../utilities/lightOrDark'
 import {ButtonsGroup} from '../blocks/ButtonsGroup'
 import {Heading, HeadingAlignment, HeadingLevel, HeadingSize} from '../blocks/Heading'
 import {ButtonProps} from '../Button'
-import {ImageProps, InfoProps, Media} from '../parts/Media'
+import {ImageProps, Media} from '../parts/Media'
 
 export type CardLayout = 'horizontal' | 'vertical'
 
@@ -21,7 +21,6 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   heading_alignment?: HeadingAlignment
   body?: string
   image?: CardImage
-  image_infos?: InfoProps
   srcset_medium?: string
   buttons?: ButtonProps[]
   hasBackground?: boolean
@@ -44,7 +43,6 @@ export const Card = ({
   layout = 'vertical',
   imagePosition = 'left',
   image = null,
-  image_infos = null,
   srcset_medium = null,
   autoplay = true,
   muted = true,
@@ -95,7 +93,6 @@ export const Card = ({
       {image && (
         <Media
           media={image}
-          info={image_infos}
           srcset={srcset_medium}
           autoplay={autoplay}
           muted={muted}
