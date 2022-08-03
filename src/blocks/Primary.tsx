@@ -26,7 +26,6 @@ export interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {
    *  Block image
    */
   image?: ImageProps
-  srcset_medium?: string
 
   /**
    *  Video properties
@@ -70,7 +69,6 @@ export const Primary = ({
   textPositionHorizontal = 'left',
   media_type,
   image = null,
-  srcset_medium = null,
   video = null,
   is_youtube,
   youtube_url,
@@ -101,7 +99,7 @@ export const Primary = ({
         <>
           <Media
             media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
-            srcset={srcset_medium}
+            srcsetSize="medium"
             autoplay={auto_play}
             muted={muted}
             controls={controls}

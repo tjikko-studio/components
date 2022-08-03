@@ -21,7 +21,6 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   heading_alignment?: HeadingAlignment
   body?: string
   image?: CardImage
-  srcset_medium?: string
   buttons?: ButtonProps[]
   hasBackground?: boolean
   bgColor?: string
@@ -43,7 +42,6 @@ export const Card = ({
   layout = 'vertical',
   imagePosition = 'left',
   image = null,
-  srcset_medium = null,
   autoplay = true,
   muted = true,
   controls = false,
@@ -93,7 +91,7 @@ export const Card = ({
       {image && (
         <Media
           media={image}
-          srcset={srcset_medium}
+          srcsetSize="medium"
           autoplay={autoplay}
           muted={muted}
           controls={controls}

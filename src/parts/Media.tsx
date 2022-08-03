@@ -31,15 +31,18 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({srcset, id, url, ratio, mediaClasses, className, alt = '', info = '', fit = false, style}: ImageProps) => {
+export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', info = '', srcsetSize, fit = false, style}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
-  const srcSetSize = srcset ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
+  const srcSize = srcsetSize ? srcsetSize : null
+  const srcSet = parsedInfos?.srcset ? parsedInfos.srcset[srcSize] : null
+  const srcSizes = srcSet ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
+
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
-          srcSet={srcset ? srcset : ''}
-          sizes={srcSetSize}
+          srcSet={srcSet}
+          sizes={srcSizes}
           loading="lazy"
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
@@ -75,6 +78,7 @@ export const MediaVideo = ({
   className,
   mediaClasses,
   info = '',
+  srcsetSize,
   fit,
   style
 }: VideoProps) => {
@@ -177,7 +181,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    * Received media (It can be an image or a video)
    */
   media?: MediaProps | VideoProps
-  srcset?: string
+  srcsetSize?: string
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -189,7 +193,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Media = ({
   media,
-  srcset,
+  srcsetSize,
   autoplay = true,
   muted = true,
   controls = false,
@@ -211,6 +215,7 @@ export const Media = ({
       <MediaVideo
         key={media.url}
         {...media}
+        srcsetSize={srcsetSize}
         autoplay={autoplay}
         muted={muted}
         controls={controls}
@@ -237,7 +242,7 @@ export const Media = ({
       <MediaImage
         key={media.url}
         {...media}
-        srcset={srcset}
+        srcsetSize={srcsetSize}
         ratio={ratio}
         className={className}
         fit={fit}

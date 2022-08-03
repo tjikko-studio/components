@@ -6,7 +6,6 @@ import {Media, MediaProps, VideoProps} from '../parts/Media'
 export interface FigureProps extends HTMLAttributes<HTMLDivElement> {
   media_type?: 'image' | 'video' | ''
   image?: MediaProps
-  srcset?: string
   is_youtube?: boolean
   youtube_url?: string
   video?: VideoProps
@@ -27,7 +26,6 @@ export const Figure = (props: FigureProps) => {
   const {
     media_type,
     image,
-    srcset,
     is_youtube,
     youtube_url,
     video,
@@ -48,7 +46,7 @@ export const Figure = (props: FigureProps) => {
   return (
     <Media
       media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
-      srcset={srcset}
+      srcsetSize="default"
       autoplay={auto_play}
       muted={muted}
       controls={controls}

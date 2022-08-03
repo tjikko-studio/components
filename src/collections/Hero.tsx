@@ -97,12 +97,17 @@ export const Hero = ({
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
-  const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
-  const bgImageSrcOutput =
-    bgType === 'image' && bgImage ? bg_srcset : bgType === 'video' && bgVideoFallback ? bg_video_fallback_srcset : ''
-  const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
+
+  const parsedVideoInfos = nonThrowingJsonParse(bgVideo?.info)
+  const parsedImageInfos =
+    bgType === 'image' && bgImage
+      ? nonThrowingJsonParse(bgImage?.info)
+      : bgType === 'video' && bgVideoFallback && nonThrowingJsonParse(bgVideoFallback?.info)
+  console.log(bgVideoFallback?.info)
+  const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : null
+  const srcSet = parsedImageInfos?.srcset ? parsedImageInfos.srcset.default : null
+
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
-  const srcSetSize = bgImageSrcOutput ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw' : ''
   return (
     <header
       className={cn(
@@ -114,13 +119,15 @@ export const Hero = ({
       style={{backgroundColor: bgColor}}
       aria-labelledby={HeroHeadingId}
     >
-      <img
-        alt=""
-        srcSet={bgImageSrcOutput}
-        sizes={srcSetSize}
-        src={bgImageOutput}
-        className="absolute z-0 w-full h-full top-0 left-0 object-cover"
-      />
+      {bgImageOutput && (
+        <img
+          alt={parsedImageInfos?.alt}
+          srcSet={srcSet}
+          sizes="(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw"
+          src={bgImageOutput}
+          className="absolute z-0 w-full h-full top-0 left-0 object-cover"
+        />
+      )}
       {bgType === 'video' && (
         <figure>
           <video
@@ -132,8 +139,9 @@ export const Hero = ({
             aria-label="Background video"
           >
             <source src={bgVideo.url} type="video/mp4" />
+            <meta itemProp="description" content={parsedVideoInfos?.alt}></meta>
           </video>
-          {parsedInfo?.caption && <figcaption className="hidden" dangerouslySetInnerHTML={{__html: parsedInfo.caption}} />}
+          {parsedVideoInfos?.caption && <figcaption className="hidden" dangerouslySetInnerHTML={{__html: parsedVideoInfos.caption}} />}
         </figure>
       )}
       {bgType && (

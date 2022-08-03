@@ -147,7 +147,7 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                               } else if (type === 'icon') {
                                                 return (
                                                   <a href={url} target={target} className="flex flex-cols">
-                                                    <Media media={image} className="h-4 w-auto inline-flex" fit />
+                                                    <Media media={image} srcsetSize="small" className="h-4 w-auto inline-flex" fit />
                                                   </a>
                                                 )
                                               }
@@ -203,7 +203,7 @@ export const Footer = ({menuData = [], locales = null, homeLink = null, classNam
                                               <a href={homeLink}>
                                                 <Media
                                                   media={innerContent?.image ? innerContent.image : null}
-                                                  srcset={innerContent.image.srcset}
+                                                  srcsetSize="small"
                                                   className="h-8 w-auto"
                                                   fit
                                                 />
