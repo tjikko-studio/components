@@ -70,6 +70,7 @@ export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale
                 srcsetSize="small"
                 className={cn(logoClass)}
                 mediaClasses={cn({'filter grayscale': logosGrayscale})}
+                lazyLoading={false}
                 fit
               />
             </div>

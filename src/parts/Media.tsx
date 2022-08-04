@@ -31,23 +31,35 @@ export const FigCaption = ({video = false, playing = false, caption = ''}: {vide
   )
 }
 
-export const MediaImage = ({id, url, ratio, mediaClasses, className, alt = '', info = '', srcsetSize, fit = false, style}: ImageProps) => {
+export const MediaImage = ({
+  id,
+  url,
+  ratio,
+  mediaClasses,
+  className,
+  alt = '',
+  info = '',
+  srcsetSize,
+  fit = false,
+  lazyLoading = true,
+  style
+}: ImageProps) => {
   const parsedInfos = info ? JSON.parse(info) : null
   const srcSize = srcsetSize ? srcsetSize : null
   const srcSet = parsedInfos?.srcset ? parsedInfos.srcset[srcSize] : null
   const srcSizes = srcSet ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
-
+  const loading = lazyLoading ? 'lazy' : 'eager'
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
           srcSet={srcSet}
           sizes={srcSizes}
-          loading="lazy"
+          loading={loading}
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
           className={cn(
-            'h-fit max-h-full',
+            'max-h-full',
             ratio && ratio !== 'unset' ? 'object-cover' : 'object-contain',
             fit ? 'w-auto' : 'min-w-full',
             mediaClasses
@@ -78,7 +90,6 @@ export const MediaVideo = ({
   className,
   mediaClasses,
   info = '',
-  srcsetSize,
   fit,
   style
 }: VideoProps) => {
@@ -182,6 +193,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    */
   media?: MediaProps | VideoProps
   srcsetSize?: string
+  lazyLoading?: boolean
   autoplay?: boolean
   muted?: boolean
   controls?: boolean
@@ -198,6 +210,7 @@ export const Media = ({
   muted = true,
   controls = false,
   loop = false,
+  lazyLoading,
   ratio = '',
   className,
   mediaClasses,
@@ -244,6 +257,7 @@ export const Media = ({
         {...media}
         srcsetSize={srcsetSize}
         ratio={ratio}
+        lazyLoading={lazyLoading}
         className={className}
         fit={fit}
         mediaClasses={mediaClasses}
