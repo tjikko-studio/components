@@ -48,6 +48,19 @@ export const nonThrowingJsonParse = (str: string): any => {
 }
 
 /*
+ * Like `JSON.parse`, but returns `null` instead of throwing on invalid input
+ */
+export const getSrcSizes = (srcSet: string): any => {
+  let srcSizes: any[] = []
+  if (srcSet) {
+    srcSet.match(/[0-9]{2,4}(?=w\b)/gi).forEach((width) => {
+      srcSizes = [...srcSizes, `(min-width: ${width}w) ${width}px`]
+    })
+  }
+  return srcSizes.join(', ')
+}
+
+/*
  * Navigation flatten function
  */
 export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {

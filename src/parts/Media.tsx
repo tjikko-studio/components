@@ -4,7 +4,7 @@ import cn from 'classnames'
 import MediaIcon from '/assets/icons/media-image.svg'
 import PlayIcon from '/assets/icons/play.svg'
 
-import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
+import {getSrcSizes, nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
@@ -44,17 +44,16 @@ export const MediaImage = ({
   lazyLoading = true,
   style
 }: ImageProps) => {
-  const parsedInfos = info ? JSON.parse(info) : null
+  const parsedInfos = info ? nonThrowingJsonParse(info) : null
   const srcSize = srcsetSize ? srcsetSize : null
   const srcSet = parsedInfos?.srcset ? parsedInfos.srcset[srcSize] : null
-  const srcSizes = srcSet ? '(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px' : ''
   const loading = lazyLoading ? 'lazy' : 'eager'
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
           srcSet={srcSet}
-          sizes={srcSizes}
+          sizes={getSrcSizes(srcSet)}
           loading={loading}
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
