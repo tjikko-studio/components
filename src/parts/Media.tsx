@@ -44,7 +44,8 @@ export const MediaImage = ({
   lazyLoading = true,
   style
 }: ImageProps) => {
-  const parsedInfos = info ? nonThrowingJsonParse(info) : null
+  const isInfoStr = typeof info === 'string'
+  const parsedInfos = info && isInfoStr ? nonThrowingJsonParse(info) : info && !isInfoStr ? info : null
   const srcSize = srcsetSize ? srcsetSize : null
   const srcSet = parsedInfos?.srcset ? parsedInfos.srcset[srcSize] : null
   const loading = lazyLoading ? 'lazy' : 'eager'
