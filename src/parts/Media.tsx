@@ -228,7 +228,6 @@ export const Media = ({
       <MediaVideo
         key={media.url}
         {...media}
-        srcsetSize={srcsetSize}
         autoplay={autoplay}
         muted={muted}
         controls={controls}

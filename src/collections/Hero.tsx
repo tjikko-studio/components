@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
+import {getSrcSizes, nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
@@ -122,7 +122,7 @@ export const Hero = ({
         <img
           alt={parsedImageInfos?.alt}
           srcSet={srcSet}
-          sizes="(min-width: 768w) 768px, (min-width: 1024w) 1024px, (min-width: 1440w) 1440px, 100vw"
+          sizes={getSrcSizes(srcSet)}
           src={bgImageOutput}
           className="absolute z-0 w-full h-full top-0 left-0 object-cover"
         />

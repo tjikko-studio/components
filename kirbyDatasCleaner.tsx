@@ -48,16 +48,20 @@ export const nonThrowingJsonParse = (str: string): any => {
 }
 
 /*
- * Like `JSON.parse`, but returns `null` instead of throwing on invalid input
+ * Get the srcset string from Kirby and return src size prop
  */
 export const getSrcSizes = (srcSet: string): any => {
-  let srcSizes: any[] = []
   if (srcSet) {
-    srcSet.match(/[0-9]{2,4}(?=w\b)/gi).forEach((width) => {
-      srcSizes = [...srcSizes, `(min-width: ${width}w) ${width}px`]
-    })
+    const matches = srcSet.match(/[0-9]{2,4}(?=w\b)/gi)
+    if (matches) {
+      return matches
+        .map((width) => {
+          return `(min-width: ${width}w) ${width}px`
+        })
+        .join(', ')
+    }
   }
-  return srcSizes.join(', ')
+  return ''
 }
 
 /*
