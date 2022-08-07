@@ -108,7 +108,7 @@ const propsByType: Record<string, GetPropsFn> = {
       bgType: content.bg_type,
       bgImage: content.bg_image?.[0],
       bgVideo: content.bg_video?.[0],
-      bgVideoFallback: content.bg_video_fallback?.[0]
+      bgVideoFallback: content.bg_video_fallback?.[0],
     }
   },
   Primary: (content, id, attrs) => {

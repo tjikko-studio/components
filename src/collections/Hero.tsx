@@ -1,7 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import cn from 'classnames'
 
-import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
+import {getSrcSizes, nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 import extractCombo from '../../utilities/extractCombo'
 import getComponent from '../../utilities/getComponent'
 import lightOrDark from '../../utilities/lightOrDark'
@@ -20,8 +20,10 @@ export interface HeroProps extends HTMLAttributes<HTMLElement> {
   bgColor?: string
   bgType?: 'image' | 'video' | ''
   bgImage?: ImageProps
+  bg_srcset?: string
   bgVideo?: ImageProps
   bgVideoFallback?: ImageProps
+  bg_video_fallback_srcset?: string
 
   /**
    * Content Position
@@ -68,14 +70,17 @@ const getVerPos = (value: string) => {
 const DEFAULT_TEXT_COLOR = 'gray-900'
 const DEFAULT_DARK_TEXT_COLOR = 'gray-50'
 
+// eslint-disable-next-line complexity
 export const Hero = ({
   textColor = DEFAULT_TEXT_COLOR,
   darkTextColor = DEFAULT_DARK_TEXT_COLOR,
   bgColor = 'transparent',
   bgType = '',
   bgImage = {},
+  bg_srcset = null,
   bgVideo = {},
   bgVideoFallback = {},
+  bg_video_fallback_srcset = null,
   contentPosition = 'bottom|left',
   heroHeight = 'h-80vh',
   content = [],
@@ -92,8 +97,15 @@ export const Hero = ({
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
-  const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : ''
-  const parsedInfo = nonThrowingJsonParse(bgVideo?.info)
+
+  const parsedVideoInfos = nonThrowingJsonParse(bgVideo?.info)
+  const parsedImageInfos =
+    bgType === 'image' && bgImage
+      ? nonThrowingJsonParse(bgImage?.info)
+      : bgType === 'video' && bgVideoFallback && nonThrowingJsonParse(bgVideoFallback?.info)
+  const bgImageOutput = bgType === 'image' && bgImage ? bgImage.url : bgType === 'video' && bgVideoFallback ? bgVideoFallback.url : null
+  const srcSet = parsedImageInfos?.srcset ? parsedImageInfos.srcset.default : null
+
   const overlayClass = overlay ? (light ? 'from-gray-50' : 'from-gray-900') : null
   return (
     <header
@@ -103,9 +115,18 @@ export const Hero = ({
         theme ? theme : 'dark',
         className
       )}
-      style={{backgroundColor: bgColor, backgroundImage: `url(${bgImageOutput})`}}
+      style={{backgroundColor: bgColor}}
       aria-labelledby={HeroHeadingId}
     >
+      {bgImageOutput && (
+        <img
+          alt={parsedImageInfos?.alt}
+          srcSet={srcSet}
+          sizes={getSrcSizes(srcSet)}
+          src={bgImageOutput}
+          className="absolute z-0 w-full h-full top-0 left-0 object-cover"
+        />
+      )}
       {bgType === 'video' && (
         <figure>
           <video
@@ -113,12 +134,13 @@ export const Hero = ({
             autoPlay
             muted
             loop
-            className={cn(['absolute', 'z-0', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
+            className={cn(['absolute', 'z-1', 'top-0', 'left-0', 'object-cover', 'w-full', 'h-full', 'hidden', 'sm:block'])}
             aria-label="Background video"
           >
             <source src={bgVideo.url} type="video/mp4" />
+            <meta itemProp="description" content={parsedVideoInfos?.alt}></meta>
           </video>
-          {parsedInfo?.caption && <figcaption className="hidden" dangerouslySetInnerHTML={{__html: parsedInfo.caption}} />}
+          {parsedVideoInfos?.caption && <figcaption className="hidden" dangerouslySetInnerHTML={{__html: parsedVideoInfos.caption}} />}
         </figure>
       )}
       {bgType && (
@@ -127,7 +149,7 @@ export const Hero = ({
             aria-hidden="true"
             className={cn([
               'absolute',
-              'z-1',
+              'z-3',
               'h-2/6',
               '-top-1/6',
               'left-0',
@@ -142,7 +164,7 @@ export const Hero = ({
             aria-hidden="true"
             className={cn([
               'absolute',
-              'z-1',
+              'z-3',
               'h-full',
               '-bottom-1/6',
               'left-0',

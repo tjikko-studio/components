@@ -4,7 +4,7 @@ import cn from 'classnames'
 import MediaIcon from '/assets/icons/media-image.svg'
 import PlayIcon from '/assets/icons/play.svg'
 
-import {nonThrowingJsonParse} from '../../kirbyDatasCleaner'
+import {getSrcSizes, nonThrowingJsonParse} from '../../kirbyDatasCleaner'
 
 import {ImageProps as SharedImageProps, MediaProps as SharedMediaProps} from '../../shared/types'
 
@@ -39,16 +39,22 @@ export const MediaImage = ({
   className,
   alt = '',
   info = '',
+  srcsetSize,
   fit = false,
   lazyLoading = true,
   style
 }: ImageProps) => {
-  const parsedInfos = info ? JSON.parse(info) : null
+  const isInfoStr = typeof info === 'string'
+  const parsedInfos = info && isInfoStr ? nonThrowingJsonParse(info) : info && !isInfoStr ? info : null
+  const srcSize = srcsetSize ? srcsetSize : null
+  const srcSet = parsedInfos?.srcset ? parsedInfos.srcset[srcSize] : null
   const loading = lazyLoading ? 'lazy' : 'eager'
   return (
     <figure key={id} className={cn('relative text-gray-50 overflow-hidden transition', ratio && `ratio-${ratio}`, className)} style={style}>
       {url && (
         <img
+          srcSet={srcSet}
+          sizes={getSrcSizes(srcSet)}
           loading={loading}
           src={url}
           alt={alt && alt !== '' ? alt : parsedInfos?.alt}
@@ -186,6 +192,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
    * Received media (It can be an image or a video)
    */
   media?: MediaProps | VideoProps
+  srcsetSize?: string
   lazyLoading?: boolean
   autoplay?: boolean
   muted?: boolean
@@ -198,6 +205,7 @@ export interface GenericMediaProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Media = ({
   media,
+  srcsetSize,
   autoplay = true,
   muted = true,
   controls = false,
@@ -246,6 +254,7 @@ export const Media = ({
       <MediaImage
         key={media.url}
         {...media}
+        srcsetSize={srcsetSize}
         ratio={ratio}
         lazyLoading={lazyLoading}
         className={className}

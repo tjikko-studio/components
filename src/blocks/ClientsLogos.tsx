@@ -67,6 +67,7 @@ export const ClientsLogos = ({content = [], logosLayout = 'grid', logosGrayscale
             <div key={company} className={cn(['flex justify-center flex-grow-0 flex-shrink-0'])}>
               <Media
                 media={image}
+                srcsetSize="small"
                 className={cn(logoClass)}
                 mediaClasses={cn({'filter grayscale': logosGrayscale})}
                 lazyLoading={false}

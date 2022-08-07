@@ -48,7 +48,7 @@ export const Icon = ({
   return (
     <div className={cn('flex flex-col gap-6', {'sm:flex-row': layout === 'horizontal'}, className)}>
       <div className={cn('flex-shrink-0 w-32')}>
-        <Media media={image} className={'w-32 h-32'} />
+        <Media media={image} srcsetSize="small" className={'w-32 h-32'} />
       </div>
       <div>
         <Heading

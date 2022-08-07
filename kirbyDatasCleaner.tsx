@@ -48,6 +48,23 @@ export const nonThrowingJsonParse = (str: string): any => {
 }
 
 /*
+ * Get the srcset string from Kirby and return src size prop
+ */
+export const getSrcSizes = (srcSet: string): string => {
+  if (srcSet) {
+    const matches = srcSet.match(/[0-9]{2,4}(?=w\b)/gi)
+    if (matches) {
+      return matches
+        .map((width) => {
+          return `(min-width: ${width}w) ${width}px`
+        })
+        .join(', ')
+    }
+  }
+  return ''
+}
+
+/*
  * Navigation flatten function
  */
 export const flattenNav: any = (obj: any, page?: {blocks?: boolean}) => {

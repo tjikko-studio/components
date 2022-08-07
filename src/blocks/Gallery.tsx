@@ -52,6 +52,7 @@ export const Gallery = ({content = [], className = '', caption = '', mobileColum
               <Media
                 key={img.media ? img.media.id : img.id}
                 media={img.media ? img.media : img}
+                srcsetSize="default"
                 autoplay={img.autoplay}
                 muted={img.muted}
                 controls={img.controls}

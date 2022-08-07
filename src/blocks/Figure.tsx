@@ -46,6 +46,7 @@ export const Figure = (props: FigureProps) => {
   return (
     <Media
       media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
+      srcsetSize="default"
       autoplay={auto_play}
       muted={muted}
       controls={controls}

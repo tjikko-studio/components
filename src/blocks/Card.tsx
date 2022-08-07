@@ -72,7 +72,6 @@ export const Card = ({
   const theme = lightOrDark(bgColorOutput)
   const colorClass = theme === 'dark' ? 'text-gray-50' : 'text-gray-900'
   const pColorClass = theme === 'dark' ? 'text-gray-400' : 'text-gray-900'
-
   if (Array.isArray(image)) {
     image = image[0]
   }
@@ -92,6 +91,7 @@ export const Card = ({
       {image && (
         <Media
           media={image}
+          srcsetSize="medium"
           autoplay={autoplay}
           muted={muted}
           controls={controls}

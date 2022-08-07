@@ -99,6 +99,7 @@ export const Primary = ({
         <>
           <Media
             media={media_type === 'video' ? (is_youtube ? {type: 'youtube', url: youtube_url} : video) : image}
+            srcsetSize="medium"
             autoplay={auto_play}
             muted={muted}
             controls={controls}
