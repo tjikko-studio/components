@@ -27,6 +27,9 @@ const secondaryDomains = ['https://smpx-admin.tjikko-studio.a2hosted.com', 'http
 const primaryDomain = 'https://smartpixel.com'
 
 function sanitizeUrl(url: string) {
+  if (!url || typeof url !== 'string') {
+    return url
+  }
   // Use primary domain
   secondaryDomains.forEach((domain) => {
     if (url.substring(0, domain.length) === domain) {
