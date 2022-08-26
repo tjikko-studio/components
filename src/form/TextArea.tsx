@@ -99,9 +99,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
       'w-full',
       'bg-gray-50',
       'text-gray-800',
-      'dark:text-gray-100',
       'border-gray-300',
-      'dark:border-gray-600'
     ]
 
     addDisabledClasses(isDisabled, textAreaClasses)
@@ -122,7 +120,11 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
         <>
           {label && (
             <div
-              className={cn(['relative fontStyle-sm strong flex flex-row', isDisabled && 'text-gray-500 dark:text-gray-600', 'mb-2'])}
+              className={cn([
+                'relative fontStyle-sm strong flex flex-row',
+                isDisabled ? 'text-gray-500 dark:text-gray-600' : 'text-gray-900 dark:text-gray-50',
+                'mb-2'
+              ])}
               style={gridAreas('label', columnStart, columnEnd)}
             >
               <label id={labelId} className="w-full" dangerouslySetInnerHTML={{__html: label}} />

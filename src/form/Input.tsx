@@ -95,7 +95,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const labelContainerClasses = ['fontStyle-sm', 'min-h-6', 'strong', 'flex', 'items-center', 'flex-row', 'justify-between', 'mb-2']
+    const labelContainerClasses = [
+      'fontStyle-sm',
+      'min-h-6',
+      'strong',
+      'flex',
+      'items-center',
+      'flex-row',
+      'justify-between',
+      'mb-2',
+      isDisabled ? 'text-gray-500 dark:text-gray-600' : 'text-gray-900 dark:text-gray-50'
+    ]
     const inputClasses = [
       'form-input',
       'fontStyle-base',
@@ -108,9 +118,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'w-full',
       'bg-gray-50',
       'text-gray-800',
-      'dark:text-gray-100',
-      'border-gray-300',
-      'dark:border-gray-600'
+      'border-gray-300'
     ]
 
     addDisabledClasses(isDisabled, inputClasses)

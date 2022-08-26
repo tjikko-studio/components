@@ -83,7 +83,7 @@ export const Calendly = ({
       aria-labelledby={headingId}
     >
       {heading_text || body ? (
-        <div className="flex flex-col gap-3">
+        <div className={cn('flex flex-col gap-3 text-gray-900 dark:text-gray-50')}>
           {heading_text && (
             <Heading
               id={headingId}
