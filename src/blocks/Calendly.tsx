@@ -13,6 +13,7 @@ export interface CalendlyProps {
   username: string
   duration: string
   bgColor?: string
+  dark?: boolean
   heading_text?: string
   heading_level?: HeadingLevel
   heading_size?: HeadingSize
@@ -46,11 +47,13 @@ export const Calendly = ({
   heading_alignment,
   body,
   bgColor,
+  dark,
   username,
   duration,
   locale
 }: CalendlyProps) => {
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
+  const isDark = theme === 'dark' ? true : bgColor ? false : dark
   const emailRef = useRef(null)
   const nameRef = useRef(null)
   const companyRef = useRef(null)
@@ -83,7 +86,7 @@ export const Calendly = ({
       aria-labelledby={headingId}
     >
       {heading_text || body ? (
-        <div className={cn('flex flex-col gap-3 text-gray-900 dark:text-gray-50')}>
+        <div className={cn('flex flex-col gap-3', !isDark ? 'text-gray-900' : 'text-gray-50')}>
           {heading_text && (
             <Heading
               id={headingId}
@@ -98,18 +101,18 @@ export const Calendly = ({
       ) : null}
       <Row>
         <Cell>
-          <Input label={locale === 'fr' ? 'Compagnie' : 'Company'} ref={companyRef} />
+          <Input label={locale === 'fr' ? 'Compagnie' : 'Company'} ref={companyRef} dark={isDark} />
         </Cell>
         <Cell>
-          <Input label={`${locale === 'fr' ? 'Nom' : 'Name'}${requiredMark}`} ref={nameRef} required />
+          <Input label={`${locale === 'fr' ? 'Nom' : 'Name'}${requiredMark}`} ref={nameRef} dark={isDark} required />
         </Cell>
       </Row>
       <Row>
         <Cell>
-          <Input label={`${locale === 'fr' ? 'Courriel' : 'Email'}${requiredMark}`} ref={emailRef} required />
+          <Input label={`${locale === 'fr' ? 'Courriel' : 'Email'}${requiredMark}`} ref={emailRef} dark={isDark} required />
         </Cell>
         <Cell>
-          <Input label={locale === 'fr' ? 'Téléphone' : 'Phone'} ref={phoneRef} />
+          <Input label={locale === 'fr' ? 'Téléphone' : 'Phone'} ref={phoneRef} dark={isDark} />
         </Cell>
       </Row>
       <Row>
@@ -120,6 +123,7 @@ export const Calendly = ({
                 ? 'Faites-nous part de vos besoins et nous nous préparerons en conséquence'
                 : 'Tell us more about your needs and we’ll prepare accordingly'
             }
+            dark={isDark}
             ref={commentsRef}
           />
         </Cell>

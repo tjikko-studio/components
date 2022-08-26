@@ -118,6 +118,7 @@ export interface CollectionItem {
   filteredOut?: boolean
   link_cta?: string
   bgColor?: string
+  dark?: boolean
   hasBackground?: boolean
   isElevated?: boolean
   layout?: string

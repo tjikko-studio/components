@@ -76,6 +76,7 @@ export const Section = (props: SectionProps) => {
   const sectionHeadingId = makeRandomId()
   const [verAlign, horAlign] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
+  const isDark = theme === 'dark' ? true : false
   // See safelist in tailwind.safelist.js
   const hAlign = horAlign ? `justify-${horAlign}` : ''
   const vAlign = verAlign ? `items-${verAlign}` : ''
@@ -100,9 +101,8 @@ export const Section = (props: SectionProps) => {
         return finalPos
     }
   }
-
   const columnComponentExtraProps: ComponentsExtraProps = {
-    Primary: (baseProps: {imagePosition: string}) => {
+    Primary: (baseProps: {imagePosition: string; dark: boolean}) => {
       imagePosPrimary = getNewPos(imagePosPrimary, baseProps.imagePosition)
       return {
         imagePosition: imagePosPrimary
@@ -153,6 +153,7 @@ export const Section = (props: SectionProps) => {
               locale={locale}
               sectionHeadingId={sectionHeadingId}
               className={cn(innerGridClasses)}
+              dark={isDark}
             />
           ) : (
             <div>No content yet</div>

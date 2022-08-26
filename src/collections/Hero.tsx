@@ -95,6 +95,7 @@ export const Hero = ({
   const toComponent = getComponent(templatesContent)
   const [verPosVal, horPosVal] = extractCombo(contentPosition)
   const theme = !bgColor || bgColor === 'transparent' ? 'light' : lightOrDark(bgColor)
+  const dark = theme === 'dark' ? true : false
   const verPos = getVerPos(verPosVal)
   const horPos = getHorPos(horPosVal)
 
@@ -181,8 +182,7 @@ export const Hero = ({
       <div className={cn(finalHeroHeight, '-mb-36 pb-36 xl:-mb-24 xl:pb-24 max-w-screen-xl relative w-full mx-4 sm:mx-8')}>
         <div
           className={cn([
-            `text-${textColor || DEFAULT_TEXT_COLOR}`,
-            `dark:text-${darkTextColor || DEFAULT_DARK_TEXT_COLOR}`,
+            !dark ? `text-${textColor || DEFAULT_TEXT_COLOR}` : `text-${darkTextColor || DEFAULT_DARK_TEXT_COLOR}`,
             'absolute',
             'z-20',
             'py-6',

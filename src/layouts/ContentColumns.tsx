@@ -43,6 +43,8 @@ export interface ContentColumnsProps extends HTMLAttributes<HTMLElement> {
   locale?: string
 
   sectionHeadingId?: string
+
+  dark?: boolean
 }
 
 const defaultJustifyContent = 'flex-start'
@@ -54,6 +56,7 @@ export const ContentColumns = ({
   contentSectionClasses = cn(['flex-wrap', 'sm:flex-nowrap', 'gap-y-8', 'sm:gap-x-6', 'md:gap-x-12', 'w-full', 'h-full']),
   columnClasses = '',
   templatesContent = {},
+  dark = false,
   locale,
   className,
   sectionHeadingId
@@ -76,7 +79,6 @@ export const ContentColumns = ({
       }
     }
   }
-
   return (
     <>
       {content
@@ -106,6 +108,7 @@ export const ContentColumns = ({
                     >
                       {blocks.map((block) => {
                         block.content.fullHeight = fullHeight
+                        block.content.dark = dark
                         return toComponent(block, {
                           ...componentsExtraProps
                         })

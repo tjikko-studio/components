@@ -65,6 +65,11 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
   columnStart?: number
   columnEnd?: number
+
+  /**
+   * Dark theme
+   */
+  dark?: boolean
 }
 
 /**
@@ -78,6 +83,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
       isValidating = false,
       isSuccess = false,
       isFocussed = false,
+      dark = false,
       label,
       text,
       placeholder,
@@ -99,7 +105,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
       'w-full',
       'bg-gray-50',
       'text-gray-800',
-      'border-gray-300',
+      'border-gray-300'
     ]
 
     addDisabledClasses(isDisabled, textAreaClasses)
@@ -122,7 +128,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextAr
             <div
               className={cn([
                 'relative fontStyle-sm strong flex flex-row',
-                isDisabled ? 'text-gray-500 dark:text-gray-600' : 'text-gray-900 dark:text-gray-50',
+                isDisabled ? (!dark ? 'text-gray-500' : 'text-gray-600') : !dark ? 'text-gray-900' : 'text-gray-50',
                 'mb-2'
               ])}
               style={gridAreas('label', columnStart, columnEnd)}

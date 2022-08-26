@@ -68,6 +68,11 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   columnStart?: number
   columnEnd?: number
+
+  /**
+   * Dark theme
+   */
+  dark?: boolean
 }
 
 /**
@@ -81,6 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       isValidating = false,
       isSuccess = false,
       isFocussed = false,
+      dark = false,
       label,
       text,
       placeholder,
@@ -104,7 +110,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       'flex-row',
       'justify-between',
       'mb-2',
-      isDisabled ? 'text-gray-500 dark:text-gray-600' : 'text-gray-900 dark:text-gray-50'
+      isDisabled ? (!dark ? 'text-gray-500' : 'text-gray-600') : !dark ? 'text-gray-900' : 'text-gray-50'
     ]
     const inputClasses = [
       'form-input',
