@@ -121,7 +121,7 @@ function NonJobsCollection({
       setFilteredItems({
         items: categoryName
           ? items.reduce((all, item) => {
-              if (item.category.toLowerCase().replace(' ', '-') === categoryName) {
+              if (item.category && item.category.toLowerCase().replace(' ', '-') === categoryName) {
                 all.push(item)
               }
               return all
